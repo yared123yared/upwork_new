@@ -1,0 +1,513 @@
+{
+	"servicelistshop": [{
+			"sectionname": "DAILY NEEDS",
+			"icon": "iconlink",
+			"displaylist": "single",
+			"ordernum": 1,
+			"type":"shop",
+			
+
+			"servicetypelist": [
+
+				{
+					"servicetype": "GROCERY",
+					"querystr": "GROCERY",
+					"icon": "assets/dailyneeds/grocery1.svg",
+					"image": "assets/dailyneeds/grocery.png",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "FRUITS",
+					"querystr": "FRUITS",
+					"icon": "assets/dailyneeds/fruits1.svg",
+					"displaylist": "single",
+					"ordernum": 2,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "VEGETABLE",
+					"querystr": "VEGETABLE",
+					"icon": "assets/dailyneeds/vegetable1.svg",
+					"displaylist": "single",
+					"ordernum": 3,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "MILK",
+					"querystr": "MILK",
+					"icon": "assets/shopping/milk1.svg",
+					"displaylist": "single",
+					"ordernum": 4,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "RESTUARANT",
+					"querystr": "RESTUARANT",
+					"icon": "assets/dailyneeds/restaurant1.svg",
+					"displaylist": "single",
+					"ordernum": 5,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": "simple",
+					"filter": {
+						"depth": 2,
+						"heading": ["myhead1", "myheade2"],
+						"data": [{
+								"category": "val1",
+								"childval": ["val1child1", "val1child2"]
+							},
+							{
+								"category": "val2",
+								"childval": ["val2child1", "val2child2"]
+							}
+
+
+						]
+
+					}
+				}
+
+
+
+			]
+
+		},
+		{
+			"sectionname": "SHOPPING",
+			"icon": "iconlink",
+			"displaylist": "single",
+			"ordernum": 2,
+			"type":"shop",
+
+			"servicetypelist": [
+
+				{
+					"servicetype": "CLOTHES",
+					"querystr": "CLOTHES",
+					"icon": "iconlink",
+					"displaylist": "SINGLE",
+					"ordernum": 1,
+
+					"hasapt": false,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "COSMETICS",
+					"querystr": "COSMETICS",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": false,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "TOYS",
+					"querystr": "TOYS",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": false,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "PAINT/HARDWARE",
+					"querystr": "PAINT/HARDWARE",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": false,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "MEDICINE",
+					"querystr": "MEDICINE",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": false,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				}
+
+
+
+			]
+
+		},
+
+
+
+		{
+			"sectionname": "HELP",
+			"icon": "iconlink",
+			"displaylist": "single",
+			"ordernum": 3,
+			"type":"shop",
+			"servicetypelist": [
+
+				{
+					"servicetype": "COOK",
+					"querystr": "COOK",
+					"icon": "iconlink",
+					"displaylist": "SINGLE",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "HOUSEHELP",
+					"querystr": "HOUSEHELP",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "DRIVER",
+					"querystr": "DRIVER",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "SECUIRTY",
+					"querystr": "GROCERY",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				}
+
+
+
+			]
+
+		},
+		{
+			"sectionname": "HOME REPAIRS",
+			"icon": "iconlink",
+			"displaylist": "single",
+			"ordernum": 4,
+			"type":"shop",			
+			"servicetypelist": [
+
+				{
+					"servicetype": "ELECTRICIAN",
+					"querystr": "ELECTRICIAN",
+					"icon": "iconlink",
+					"displaylist": "SINGLE",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "PLUMBER",
+					"querystr": "PLUMBER",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "PAINTER",
+					"querystr": "PAINTER",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "AIRCONDITIONER",
+					"querystr": "AIRCONDITIONER",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "FRIDGE",
+					"querystr": "FRIDGE",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "TV",
+					"querystr": "TV",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				}
+
+
+
+			]
+
+		},
+		{
+			"sectionname": "SERVICES",
+			"icon": "iconlink",
+			"displaylist": "single",
+			"ordernum": 5,
+			"type":"shop",			
+			"servicetypelist": [
+
+				{
+					"servicetype": "BEAUTICIAN",
+					"querystr": "BEAUTICIAN",
+					"icon": "iconlink",
+					"displaylist": "SINGLE",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": true,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "DOCTOR",
+					"querystr": "DOCTOR",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "BARBER",
+					"querystr": "BARBER",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				},
+				{
+					"servicetype": "TUTION",
+					"querystr": "TUTION",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": "simple",
+					"filter": {
+						"depth": 2,
+						"heading": ["myhead1", "myheade2"],
+						"data": [{
+								"category": "val1",
+								"childval": ["val1child1", "val1child2"]
+							},
+							{
+								"category": "val2",
+								"childval": ["val2child1", "val2child2"]
+							}
+						]
+					}
+				},
+				{
+					"servicetype": "GYM",
+					"querystr": "GYM",
+					"icon": "iconlink",
+					"displaylist": "single",
+					"ordernum": 1,
+					"hasapt": true,
+					"hascall": true,
+					"hasshopping": false,
+					"haschat": true,
+					"hasdirections": true,
+					"defaultclick": "apt",
+					"filtertype": null,
+					"filter": null
+				}
+
+
+
+			]
+
+		}
+
+
+
+
+
+
+	]
+
+
+}

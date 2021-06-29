@@ -1,0 +1,279 @@
+{
+  "project_info": {
+    "project_number": "154238857434",
+    "firebase_url": "https://brindavan-c61b7.firebaseio.com",
+    "project_id": "brindavan-c61b7",
+    "storage_bucket": "brindavan-c61b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154238857434:android:afb218ccec5d05375cb5e3",
+        "android_client_info": {
+          "package_name": "com.VThePeople"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154238857434-a9qd97t9bppod1gqn7uvj8si8l5lbbnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuUwHeSs4XKcL5A0ay_0d6AA6nvlX-5RQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154238857434-a9qd97t9bppod1gqn7uvj8si8l5lbbnp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "154238857434-b1fc20plf80sh8o6s36et2slr7980jnv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "xyz.wallbreakers.complexapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154238857434:android:36c7ed9f270142e05cb5e3",
+        "android_client_info": {
+          "package_name": "com.example.cloudfunction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154238857434-4el6n7prvvdonbkj85j8nihrikihfsr8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cloudfunction",
+            "certificate_hash": "a3c1367cc353593463ccd953c4a5a96b161829da"
+          }
+        },
+        {
+          "client_id": "154238857434-bag778l337cr0pdjbodukpnul4v2j1if.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cloudfunction",
+            "certificate_hash": "985ef7cde612a05d65d0a3a7eafa8732d080f08c"
+          }
+        },
+        {
+          "client_id": "154238857434-f1p6sjnadjlpv2ds663grq6hcd7seq8l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cloudfunction",
+            "certificate_hash": "b7d2b6e8941753b83a365adb4ec51f9c433fd7d5"
+          }
+        },
+        {
+          "client_id": "154238857434-rabqd0g88t0i4mib6cv97bf2crdpohq2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cloudfunction",
+            "certificate_hash": "6032baf892ce453ae20cea56971645d75f7fc89a"
+          }
+        },
+        {
+          "client_id": "154238857434-t3jfh4qcbhu062rtur135eh3rhs66ggv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cloudfunction",
+            "certificate_hash": "535bb46ed4513bcbf156267ed42b0464fe1cd4fd"
+          }
+        },
+        {
+          "client_id": "154238857434-a9qd97t9bppod1gqn7uvj8si8l5lbbnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuUwHeSs4XKcL5A0ay_0d6AA6nvlX-5RQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154238857434-a9qd97t9bppod1gqn7uvj8si8l5lbbnp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "154238857434-b1fc20plf80sh8o6s36et2slr7980jnv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "xyz.wallbreakers.complexapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154238857434:android:26e775bfb787f2935cb5e3",
+        "android_client_info": {
+          "package_name": "com.madebyahmedafridee.module"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154238857434-a9qd97t9bppod1gqn7uvj8si8l5lbbnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuUwHeSs4XKcL5A0ay_0d6AA6nvlX-5RQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154238857434-a9qd97t9bppod1gqn7uvj8si8l5lbbnp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "154238857434-b1fc20plf80sh8o6s36et2slr7980jnv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "xyz.wallbreakers.complexapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154238857434:android:c019a137566534e45cb5e3",
+        "android_client_info": {
+          "package_name": "world.im8.brindaxoxo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154238857434-dusm48ek1o2js0e5blakmivedehlcljm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "world.im8.brindaxoxo",
+            "certificate_hash": "b233daa7917f8a77da73932bbf590776e1a4c42f"
+          }
+        },
+        {
+          "client_id": "154238857434-a9qd97t9bppod1gqn7uvj8si8l5lbbnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuUwHeSs4XKcL5A0ay_0d6AA6nvlX-5RQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154238857434-a9qd97t9bppod1gqn7uvj8si8l5lbbnp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "154238857434-b1fc20plf80sh8o6s36et2slr7980jnv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "xyz.wallbreakers.complexapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154238857434:android:270a228fd14cfec25cb5e3",
+        "android_client_info": {
+          "package_name": "xyz.wallbreakers.complexapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154238857434-e1c7dq5reethlpmsgfapm9gm7lnr09vl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.wallbreakers.complexapp",
+            "certificate_hash": "137187ca3a0b6c4d0234bee2f1cfd3870fe226c3"
+          }
+        },
+        {
+          "client_id": "154238857434-f4cvh1a0sm4hippgluqvlpitfib5r04g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.wallbreakers.complexapp",
+            "certificate_hash": "81d228840dcbc653ffb6154311eed4db65cf6d5a"
+          }
+        },
+        {
+          "client_id": "154238857434-g2pk2gri04a2f97h14fc7efe9ma5kmbd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.wallbreakers.complexapp",
+            "certificate_hash": "4caff5db1cd12ea33c95fda87abaca37fd3168ce"
+          }
+        },
+        {
+          "client_id": "154238857434-k96g0s4pfpgpekh6s2v6j9q4fc66ahm4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.wallbreakers.complexapp",
+            "certificate_hash": "b233daa7917f8a77da73932bbf590776e1a4c42f"
+          }
+        },
+        {
+          "client_id": "154238857434-lpff2mgsj4kpr383pb3kcpk5aejckjp7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.wallbreakers.complexapp",
+            "certificate_hash": "63910be13f0d00582fd7ccc0dcf74c43a19b1e61"
+          }
+        },
+        {
+          "client_id": "154238857434-a9qd97t9bppod1gqn7uvj8si8l5lbbnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuUwHeSs4XKcL5A0ay_0d6AA6nvlX-5RQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154238857434-a9qd97t9bppod1gqn7uvj8si8l5lbbnp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "154238857434-b1fc20plf80sh8o6s36et2slr7980jnv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "xyz.wallbreakers.complexapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

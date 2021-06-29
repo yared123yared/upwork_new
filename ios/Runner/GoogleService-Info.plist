@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>154238857434-s7vhsvo6vn14p9pqq00aja4nl77r2bn9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.154238857434-s7vhsvo6vn14p9pqq00aja4nl77r2bn9</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>154238857434-4el6n7prvvdonbkj85j8nihrikihfsr8.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDrvfkj5J0LKK3fhS-YOeip7YM1Y_eSUAg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>154238857434</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.wethepeople</string>
+	<key>PROJECT_ID</key>
+	<string>brindavan-c61b7</string>
+	<key>STORAGE_BUCKET</key>
+	<string>brindavan-c61b7.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:154238857434:ios:578855a6b97b74c95cb5e3</string>
+	<key>DATABASE_URL</key>
+	<string>https://brindavan-c61b7.firebaseio.com</string>
+</dict>
+</plist>
