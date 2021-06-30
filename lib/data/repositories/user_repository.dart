@@ -1,16 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
+import 'package:complex/data/models/response/generic_response.dart';
+import 'package:complex/data/models/response/user_response/complex_model.dart';
 import 'package:complex/data/models/response/user_response/user_alerts.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
 import 'package:complex/data/repositories/service_repository.dart';
+import 'package:injector/injector.dart';
+
+import 'complex_repository.dart';
 
 UserModel _user;
 
 class UserRepository {
   ServiceRepository serviceRepository;
 
+
   UserRepository({this.serviceRepository});
+
+  ComplexRepository getComplexRepository() {
+
+    ComplexRepository complexRepository  =  Injector.appInstance.get<ComplexRepository>();
+
+
+}
 
   Map<String, String> getComplexEntityNamesFromUser() {
     return _user.complexNames;
@@ -70,5 +83,17 @@ class UserRepository {
       _user.defaultServiceModel =
           await serviceRepository.getService(_user.defaultServiceEntity);
     }
+/*
+    else if (_user.defaultType == entityT.complex) {
+      GenericResponse gr =  await getComplexRepository().getComplexDetail(id:_user.defaultComplexEntity.complexID);
+      if(gr.success)
+        {
+          _user.defaultComplexModel =  gr.data as ComplexModel;
+        }
+      else
+        throw Exception("Unable to load message");
+    }
+
+*/
   }
 }

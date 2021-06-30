@@ -70,6 +70,7 @@ void _userProviderDI(Injector injector) {
 void _userRepositoryDI(Injector injector) {
   injector.registerDependency<UserRepository>(() {
     var serviceRepository = injector.get<ServiceRepository>();
+
     return UserRepository(serviceRepository: serviceRepository);
   });
 }
