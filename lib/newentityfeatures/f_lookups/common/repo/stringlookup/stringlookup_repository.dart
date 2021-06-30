@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:complex/newentityfeatures/commonrepo/lookup_repository.dart';
+
 //{MODELPATHIMPORT}
 
 class StringRepositoryReturnData {
@@ -18,11 +20,16 @@ class StringRepositoryReturnData {
 }
 
 class StringRepository {
+  LookupRepository _lookupRepository;
   Future<StringRepositoryReturnData> getAllStrings(
       String entitytype, String entityid,String fieldname) async {
 	
 	StringRepositoryReturnData myreturn = StringRepositoryReturnData();
 	//Please put your code here
+  if(fieldname=="feeitemlist"){
+    myreturn.itemlist=await _lookupRepository.getFeeItemsList(serviceID: entityid);
+  }
+
 
 	return myreturn;
   
