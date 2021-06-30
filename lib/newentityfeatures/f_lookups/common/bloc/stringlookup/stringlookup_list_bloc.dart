@@ -38,7 +38,7 @@ class StringListBloc
 	if (event is deleteItemWithData) {
       yield IsBusy();
 	  StringRepositoryReturnData ud = await mrepository
-          .deleteStringWithData(event.item,event.entitytype, event.entityid, event.fieldname);
+          .deleteStringWithData(event.item,event.entitytype, event.entityid, event.fieldname,event.roomInfo,event.examTermInfo,event.sessionTermModel);
       if (ud.errortype == -1) yield IsDeleted();
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error:ud.error);
@@ -49,7 +49,7 @@ class StringListBloc
 	if (event is createItem) {
       yield IsBusy();
 	  StringRepositoryReturnData ud = await mrepository
-          .createString(event.item,event.entitytype, event.entityid, event.fieldname);
+          .createString(event.item,event.entitytype, event.entityid, event.fieldname,event.roomInfo,event.examTermInfo,event.sessionTermModel);
       if (ud.errortype == -1) yield IsSaved();
       if (ud.errortype == 1)
         yield HasLogicalFaliur(error:ud.error);

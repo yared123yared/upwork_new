@@ -12,22 +12,23 @@ import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/blo
 class FeeItemFormList extends StatefulWidget {
   final String entityid;
   final String entitytype;
-  FeeItemFormList({this.entitytype, this.entityid});
+  final listbloc.StringListBloc mlistbloc;
+  FeeItemFormList({@required this.entitytype,@required this.entityid,@required this.mlistbloc});
 
   @override
   _FeeItemFormListState createState() => _FeeItemFormListState();
 }
 
 class _FeeItemFormListState extends State<FeeItemFormList> {
-  listbloc.StringListBloc mlistbloc;
+
 
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.StringListBloc();
-    mlistbloc.add(listbloc.getListData(
+
+    widget.mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype,
         entityid: widget.entityid,
-        fieldname: ''));
+        fieldname: 'feeitemlist'));
   }
 
   @override
@@ -38,7 +39,7 @@ class _FeeItemFormListState extends State<FeeItemFormList> {
 
   void doreload(bool reloadtype) {
     if (reloadtype) {
-      mlistbloc.add(listbloc.getListData(
+      widget.mlistbloc.add(listbloc.getListData(
           entitytype: widget.entitytype,
           entityid: widget.entityid,
           fieldname: ''));
@@ -138,7 +139,7 @@ class _FeeItemFormListState extends State<FeeItemFormList> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: mlistbloc,
+      value: widget.mlistbloc,
       child: Scaffold(
           appBar: AppBar(
             title: Text("FeeItems"),

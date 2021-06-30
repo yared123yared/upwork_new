@@ -15,6 +15,7 @@ class getListData extends StringListEvent {
   final String entityid;
   final String entitytype;
   final String fieldname;
+
   getListData({@required this.entityid,@required this.entitytype,@required this.fieldname});
   @override
   List<Object> get props => [entityid,entitytype,fieldname];
@@ -31,12 +32,20 @@ class deleteItemWithData extends StringListEvent {
   final String entityid;
   final String entitytype;
   final String fieldname;
+  final RoomInfo roomInfo;
+  final ExamTermInfo examTermInfo;
+  final SessionTermModel sessionTermModel;
   const deleteItemWithData({
     
     @required this.item,
     @required this.entityid,
     @required this.entitytype,
-	@required this.fieldname,
+    @required this.fieldname,
+    this.roomInfo,
+    this.sessionTermModel,
+    this.examTermInfo,
+
+
   });
   List<Object> get() => [ item, entityid, entitytype,fieldname];
 }
@@ -49,12 +58,18 @@ class createItem extends StringListEvent {
   final String entityid;
   final String entitytype;
   final String fieldname;
+  final RoomInfo roomInfo;
+  final ExamTermInfo examTermInfo;
+  final SessionTermModel sessionTermModel;
   const createItem({
     
     @required this.item,
     @required this.entityid,
     @required this.entitytype,
 	@required this.fieldname,
+    this.roomInfo,
+    this.examTermInfo,
+    this.sessionTermModel
   });
   List<Object> get() => [item, entityid, entitytype,fieldname];
 }

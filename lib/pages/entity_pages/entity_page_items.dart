@@ -190,9 +190,11 @@ class EntityPageItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: entityRoleState.pageState.map((state) => toPageState(context, state)).toList() ?? [Text('error')],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: entityRoleState.pageState.map((state) => toPageState(context, state)).toList() ?? [Text('error')],
+      ),
     );
   }
 }
