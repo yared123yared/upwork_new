@@ -1,25 +1,16 @@
 part of 'bloc.dart';
 
-
-
-@freezed
 class PaymentPeriodInfoListState extends Equatable {
   const PaymentPeriodInfoListState();
   @override
   List<Object> get props => [];
 }
 
-
-
-
-
-
 class IsBusy extends PaymentPeriodInfoListState {
   const IsBusy();
   @override
   List<Object> get props => [];
 }
-
 
 class HasLogicalFaliur extends PaymentPeriodInfoListState {
   HasLogicalFaliur({@required this.error});
@@ -35,22 +26,16 @@ class HasExceptionFaliur extends PaymentPeriodInfoListState {
   List<Object> get props => [error];
 }
 
- class IsListDataLoaded extends PaymentPeriodInfoListState {
-   IsListDataLoaded({@required this.listdata});
- 
-   final List<PaymentPeriodInfo> listdata;
-   @override
-   List<Object> get props => [listdata];
- }
- 
- 
+class IsListDataLoaded extends PaymentPeriodInfoListState {
+  IsListDataLoaded({@required this.listdata});
 
+  final List<PaymentPeriodInfo> listdata;
+  @override
+  List<Object> get props => [listdata];
+}
 
 class IsDeleted extends PaymentPeriodInfoListState {
   const IsDeleted();
   @override
   List<Object> get props => [];
 }
-
-
-

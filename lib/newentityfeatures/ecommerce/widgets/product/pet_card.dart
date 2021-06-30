@@ -2,7 +2,7 @@ import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedMod
 import 'package:flutter/material.dart';
 
 class PetCard extends StatelessWidget {
-  final LimitedPetModel petModel;
+  final LimitedPetData petModel;
   const PetCard({Key key, @required this.petModel}) : super(key: key);
 
   void addToFavorite() {

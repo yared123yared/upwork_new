@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class UnitModelListState extends Equatable {
   const UnitModelListState();
   @override

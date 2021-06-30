@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class RegisteredUsersListState extends Equatable {
   const RegisteredUsersListState();
   @override

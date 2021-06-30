@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class PointOfInterestListState extends Equatable {
   const PointOfInterestListState();
   @override

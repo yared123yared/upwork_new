@@ -3,7 +3,7 @@ import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/main.dart';
-import 'package:complex/newentityfeatures/ecommerce/views/simple_page.dart';
+import 'package:complex/newentityfeatures/ecommerce/views/main.dart';
 import 'package:complex/pages/chat_pages/channel_list_page.dart';
 import 'package:complex/common/bottom_bar/persistent-tab-view.dart';
 import 'package:complex/pages/entity_pages/entity_page.dart';
@@ -11,7 +11,6 @@ import 'package:complex/pages/profile_pages/profile_page.dart';
 import 'package:complex/utils/log_print.dart';
 import 'package:complex/utils/notification_helper.dart';
 import 'package:complex/utils/resource/colors.dart';
-import 'package:complex/utils/utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +113,7 @@ class _HomePageState extends State<HomePage> {
         _screen = ChannelsListPage();
         break;
       case DynamicTabState.Explore:
-        _screen =ECommercePage();
+        _screen = ECommerceScreen();
         break;
       case DynamicTabState.Profile:
         _screen = ProfilePage(context);

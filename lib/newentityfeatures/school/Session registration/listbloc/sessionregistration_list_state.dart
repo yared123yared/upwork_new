@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class SessionRegistrationListState extends Equatable {
   const SessionRegistrationListState();
   @override

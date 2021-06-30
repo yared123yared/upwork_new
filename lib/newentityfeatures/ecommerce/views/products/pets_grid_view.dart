@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 
 import '../../widgets/product/products_search.dart';
 import '../filters/products_filter.dart';
-import '../cart/cart_view.dart';
 
 class PetsGridView extends StatefulWidget {
   const PetsGridView({Key key}) : super(key: key);

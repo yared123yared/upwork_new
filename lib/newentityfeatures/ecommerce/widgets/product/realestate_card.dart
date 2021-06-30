@@ -5,7 +5,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 // RealEstateCard
 class RealEstateCard extends StatelessWidget {
-  final LimitedRealEstateModel realEstateModel;
+  final LimitedRealEstateData realEstateModel;
   const RealEstateCard({Key key, this.realEstateModel}) : super(key: key);
 
   @override

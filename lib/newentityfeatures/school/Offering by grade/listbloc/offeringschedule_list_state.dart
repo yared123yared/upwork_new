@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class OfferingWeeklyScheduleListState extends Equatable {
   const OfferingWeeklyScheduleListState();
   @override

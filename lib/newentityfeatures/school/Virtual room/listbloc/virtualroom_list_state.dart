@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class VirtualRoomModelListState extends Equatable {
   const VirtualRoomModelListState();
   @override

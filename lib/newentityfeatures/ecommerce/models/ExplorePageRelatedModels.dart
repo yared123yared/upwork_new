@@ -87,7 +87,7 @@ abstract class productinorder with _$productinorder {
 @freezed
 abstract class orderinfomodel with _$orderinfomodel {
   factory orderinfomodel({
-    @JsonKey(name: 'custaddress') addressmodel custaddress,
+    @JsonKey(name: 'custaddress') Addressmodel custaddress,
     @JsonKey(name: 'customerid') String customerid,
     @JsonKey(name: 'custuserid') String custuserid,
     @JsonKey(name: 'custname') String custname,
@@ -173,21 +173,30 @@ abstract class ProductFilterModel with _$ProductFilterModel {
 }
 
 @freezed
-abstract class LimitedPackageData with _$LimitedPackageData {
-  factory LimitedPackageData({
+abstract class LimitedData with _$LimitedData {
+  const factory LimitedData.pet({
+    @JsonKey(name: 'petclass') String petclass,
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'breed') String breed,
+    @JsonKey(name: 'gender') String gender,
+    @JsonKey(name: 'animalclass') String animalclass,
+    @JsonKey(name: 'age') int age,
+    @JsonKey(name: 'tileimage') String tileimage,
+    @JsonKey(name: 'price') double price,
+    @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        DateTime postedon,
+    @JsonKey(name: 'addressarea') Addressmodel addressarea,
+    @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+  }) = LimitedPetData;
+
+  const factory LimitedData.package({
     @JsonKey(name: 'itemid') String itemid,
     @JsonKey(name: 'desc') String desc,
     @JsonKey(name: 'origprice') double origprice,
     @JsonKey(name: 'discountedprice') double discountedprice,
-  }) = _LimitedPackageData;
-  factory LimitedPackageData.fromJson(Map<String, dynamic> json) =>
-      _$LimitedPackageDataFromJson(json);
-//require keysetting
-}
+  }) = LimitedPackageData;
 
-@freezed
-abstract class LimitedProductData with _$LimitedProductData {
-  factory LimitedProductData({
+  const factory LimitedData.product({
     @JsonKey(name: 'id') String id,
     @JsonKey(name: 'title') String title,
     @JsonKey(name: 'tileimage') String tileimage,
@@ -201,36 +210,9 @@ abstract class LimitedProductData with _$LimitedProductData {
     @JsonKey(name: 'varianttype') String varianttype,
     @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
     @JsonKey(name: 'contenttype') String contenttype,
-  }) = _LimitedProductData;
-  factory LimitedProductData.fromJson(Map<String, dynamic> json) =>
-      _$LimitedProductDataFromJson(json);
-//require keysetting
-}
+  }) = LimitedProductData;
 
-@freezed
-abstract class LimitedPetModel with _$LimitedPetModel {
-  factory LimitedPetModel({
-    @JsonKey(name: 'petclass') String petclass,
-    @JsonKey(name: 'name') String name,
-    @JsonKey(name: 'breed') String breed,
-    @JsonKey(name: 'gender') String gender,
-    @JsonKey(name: 'animalclass') String animalclass,
-    @JsonKey(name: 'age') int age,
-    @JsonKey(name: 'tileimage') String tileimage,
-    @JsonKey(name: 'price') double price,
-    @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-        DateTime postedon,
-    @JsonKey(name: 'addressarea') addressmodel addressarea,
-    @JsonKey(name: 'serviceproviderid') String serviceproviderid,
-  }) = _LimitedPetModel;
-  factory LimitedPetModel.fromJson(Map<String, dynamic> json) =>
-      _$LimitedPetModelFromJson(json);
-//require keysetting
-}
-
-@freezed
-abstract class LimitedVehicleModel with _$LimitedVehicleModel {
-  factory LimitedVehicleModel({
+  const factory LimitedData.vehicle({
     @JsonKey(name: 'productid') String productid,
     @JsonKey(name: 'title') String title,
     @JsonKey(name: 'vehicletype') String vehicletype,
@@ -242,17 +224,11 @@ abstract class LimitedVehicleModel with _$LimitedVehicleModel {
     @JsonKey(name: 'tileimage') String tileimage,
     @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
         DateTime postedon,
-    @JsonKey(name: 'addressarea') addressmodel addressarea,
+    @JsonKey(name: 'addressarea') Addressmodel addressarea,
     @JsonKey(name: 'serviceproviderid') String serviceproviderid,
-  }) = _LimitedVehicleModel;
-  factory LimitedVehicleModel.fromJson(Map<String, dynamic> json) =>
-      _$LimitedVehicleModelFromJson(json);
-//require keysetting
-}
+  }) = LimitedVehicleData;
 
-@freezed
-abstract class LimitedRealEstateModel with _$LimitedRealEstateModel {
-  factory LimitedRealEstateModel({
+  const factory LimitedData.realEstate({
     @JsonKey(name: 'productid') String productid,
     @JsonKey(name: 'listingtype') String listingtype,
     @JsonKey(name: 'propertytype') String propertytype,
@@ -262,52 +238,46 @@ abstract class LimitedRealEstateModel with _$LimitedRealEstateModel {
     @JsonKey(name: 'sqrfootage') int sqrfootage,
     @JsonKey(name: 'floorNumber') int floorNumber,
     @JsonKey(name: 'price') double price,
-    @JsonKey(name: 'addressarea') addressmodel addressarea,
+    @JsonKey(name: 'addressarea') Addressmodel addressarea,
     @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
         DateTime postedon,
     @JsonKey(name: 'tileimage') String tileimage,
     @JsonKey(name: 'serviceproviderid') String serviceproviderid,
-  }) = _LimitedRealEstateModel;
-  factory LimitedRealEstateModel.fromJson(Map<String, dynamic> json) =>
-      _$LimitedRealEstateModelFromJson(json);
-//require keysetting
-}
+  }) = LimitedRealEstateData;
 
-@freezed
-abstract class LimitedJobReqModel with _$LimitedJobReqModel {
-  factory LimitedJobReqModel({
+  const factory LimitedData.job({
     @JsonKey(name: 'productid') String productid,
     @JsonKey(name: 'title') String title,
     @JsonKey(name: 'companyname') String companyname,
     @JsonKey(name: 'companyicon') String companyicon,
     @JsonKey(name: 'salaryrange') String salaryrange,
-    @JsonKey(name: 'addressarea') addressmodel addressarea,
+    @JsonKey(name: 'addressarea') Addressmodel addressarea,
     @JsonKey(name: 'jobtype') String jobtype,
     @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
         DateTime postedon,
-  }) = _LimitedJobReqModel;
-  factory LimitedJobReqModel.fromJson(Map<String, dynamic> json) =>
-      _$LimitedJobReqModelFromJson(json);
-//require keysetting
+  }) = LimitedJobData;
+
+  factory LimitedData.fromJson(Map<String, dynamic> json) =>
+      _$LimitedDataFromJson(json);
 }
 
 @freezed
-abstract class customerinfo with _$customerinfo {
-  factory customerinfo({
+abstract class Customerinfo with _$Customerinfo {
+  factory Customerinfo({
     @JsonKey(name: 'infotype') int infotype,
     @JsonKey(name: 'customerid') String customerid,
     @JsonKey(name: 'customeruserid') String customeruserid,
     @JsonKey(name: 'name') String name,
-    @JsonKey(name: 'maddr') addressmodel maddr,
-  }) = _customerinfo;
-  factory customerinfo.fromJson(Map<String, dynamic> json) =>
-      _$customerinfoFromJson(json);
+    @JsonKey(name: 'maddr') Addressmodel maddr,
+  }) = _Customerinfo;
+  factory Customerinfo.fromJson(Map<String, dynamic> json) =>
+      _$CustomerinfoFromJson(json);
 //require keysetting
 }
 
 @freezed
-abstract class addressmodel with _$addressmodel {
-  factory addressmodel({
+abstract class Addressmodel with _$Addressmodel {
+  factory Addressmodel({
     @JsonKey(name: 'id') String id,
     @JsonKey(name: 'country') String country,
     @JsonKey(name: 'state') String state,
@@ -317,9 +287,9 @@ abstract class addressmodel with _$addressmodel {
     @JsonKey(name: 'addressinfo') String addressinfo,
     @JsonKey(name: 'lati') double lati,
     @JsonKey(name: 'longi') double longi,
-  }) = _addressmodel;
-  factory addressmodel.fromJson(Map<String, dynamic> json) =>
-      _$addressmodelFromJson(json);
+  }) = _Addressmodel;
+  factory Addressmodel.fromJson(Map<String, dynamic> json) =>
+      _$AddressmodelFromJson(json);
 //require keysetting
 }
 
@@ -329,10 +299,10 @@ abstract class ProductFilterResultModel with _$ProductFilterResultModel {
     @JsonKey(name: 'totalcount') int totalcount,
     @JsonKey(name: 'serviceproviderid') String serviceproviderid,
     @JsonKey(name: 'docwithdata1') List<LimitedProductData> docwithdata1,
-    @JsonKey(name: 'docwithdata2') List<LimitedJobReqModel> docwithdata2,
-    @JsonKey(name: 'docwithdata3') List<LimitedRealEstateModel> docwithdata3,
-    @JsonKey(name: 'docwithdata4') List<LimitedVehicleModel> docwithdata4,
-    @JsonKey(name: 'docwithdata5') List<LimitedPetModel> docwithdata5,
+    @JsonKey(name: 'docwithdata2') List<LimitedJobData> docwithdata2,
+    @JsonKey(name: 'docwithdata3') List<LimitedRealEstateData> docwithdata3,
+    @JsonKey(name: 'docwithdata4') List<LimitedVehicleData> docwithdata4,
+    @JsonKey(name: 'docwithdata5') List<LimitedPetData> docwithdata5,
     @JsonKey(name: 'pidlist') List<String> pidlist,
     @JsonKey(name: 'diminfo') List<DimData> diminfo,
     @JsonKey(name: 'catinfo') List<Categoryinfo> catinfo,
@@ -433,7 +403,7 @@ abstract class ProductSearchInformationConfig
     @JsonKey(name: 'grouptype') String grouptype,
     @JsonKey(name: 'isshop') bool isshop,
     @JsonKey(name: 'sp') SpatialData sp,
-    @JsonKey(name: 'cust') customerinfo cust,
+    @JsonKey(name: 'cust') Customerinfo cust,
     @JsonKey(name: 'entrypoint') int entrypoint,
     @JsonKey(name: 'servicesselected') List<String> servicesselected,
     @JsonKey(name: 'spoffset') int spoffset,
@@ -451,7 +421,7 @@ abstract class SPCustomerModel with _$SPCustomerModel {
     @JsonKey(name: 'phonenum') String phoneNum,
     @JsonKey(name: 'email') String email,
     @JsonKey(name: 'names') List<List<CustomerNameAgeIngo>> names,
-    @JsonKey(name: 'addressinfolist') List<addressmodel> addressInfolist,
+    @JsonKey(name: 'addressinfolist') List<Addressmodel> addressInfolist,
   }) = _SPCustomerModel;
   factory SPCustomerModel.fromJson(Map<String, dynamic> json) =>
       _$SPCustomerModelFromJson(json);

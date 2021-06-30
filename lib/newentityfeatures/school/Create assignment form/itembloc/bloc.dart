@@ -5,7 +5,7 @@ import 'package:complex/common/model/button_state.dart';
 import 'package:complex/newentityfeatures/commonrepo/assignment_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/Models/assignment_model.dart';
 import 'package:complex/newentityfeatures/Models/lookups.dart';

@@ -11,42 +11,53 @@ class EntityPageItems extends StatelessWidget {
     print("PAGE STATE: $pageState");
     switch (pageState) {
       case DynamicEntityPageState.SetupPanel:
-        if (entityRoleState.setupPanel !=null && entityRoleState.setupPanel.length > 0) {
+        if (entityRoleState.setupPanel != null &&
+            entityRoleState.setupPanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Setup',
-            customGridList: entityRoleState.setupPanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.setupPanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
         }
         break;
       case DynamicEntityPageState.NewForms:
-        if (entityRoleState.newformpanel !=null && entityRoleState.newformpanel.length > 0) {
+        if (entityRoleState.newformpanel != null &&
+            entityRoleState.newformpanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'NEWFORM',
-            customGridList: entityRoleState.newformpanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.newformpanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
         }
         break;
       case DynamicEntityPageState.NewForms:
-        if (entityRoleState.newformpanel !=null && entityRoleState.newformpanel.length > 0) {
+        if (entityRoleState.newformpanel != null &&
+            entityRoleState.newformpanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'NewTripForm',
-            customGridList: entityRoleState.newformpanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.newformpanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
         }
         break;
 
-
       case DynamicEntityPageState.SelfInformationAlert:
-        if (entityRoleState.selfalertInfo !=null && entityRoleState.selfalertInfo.length > 0) {
+        if (entityRoleState.selfalertInfo != null &&
+            entityRoleState.selfalertInfo.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Self Information',
-            customGridList: entityRoleState.selfalertInfo.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.selfalertInfo
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -54,10 +65,13 @@ class EntityPageItems extends StatelessWidget {
 
         break;
       case DynamicEntityPageState.SelfInformationOrderAndApt:
-        if (entityRoleState.selforderandappointmentInfo !=null && entityRoleState.selforderandappointmentInfo.length > 0) {
+        if (entityRoleState.selforderandappointmentInfo != null &&
+            entityRoleState.selforderandappointmentInfo.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Self Information',
-            customGridList: entityRoleState.selforderandappointmentInfo.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.selforderandappointmentInfo
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -66,10 +80,13 @@ class EntityPageItems extends StatelessWidget {
         break;
 
       case DynamicEntityPageState.AcademicManager:
-        if (entityRoleState.academicManagerPanel !=null && entityRoleState.academicManagerPanel.length > 0) {
+        if (entityRoleState.academicManagerPanel != null &&
+            entityRoleState.academicManagerPanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Academic',
-            customGridList: entityRoleState.academicManagerPanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.academicManagerPanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -78,10 +95,13 @@ class EntityPageItems extends StatelessWidget {
         break;
 
       case DynamicEntityPageState.Academic:
-        if (entityRoleState.academicPanel !=null && entityRoleState.academicPanel.length > 0) {
+        if (entityRoleState.academicPanel != null &&
+            entityRoleState.academicPanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Academic',
-            customGridList: entityRoleState.academicPanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.academicPanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -95,10 +115,13 @@ class EntityPageItems extends StatelessWidget {
 
          */
       case DynamicEntityPageState.FeesPayment:
-        if (entityRoleState.feesPaymentPanel !=null && entityRoleState.feesPaymentPanel.length > 0) {
+        if (entityRoleState.feesPaymentPanel != null &&
+            entityRoleState.feesPaymentPanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Fees and Payment',
-            customGridList: entityRoleState.feesPaymentPanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.feesPaymentPanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -106,10 +129,13 @@ class EntityPageItems extends StatelessWidget {
 
         break;
       case DynamicEntityPageState.StaffPanel:
-        if (entityRoleState.staffPanel !=null && entityRoleState.staffPanel.length > 0) {
+        if (entityRoleState.staffPanel != null &&
+            entityRoleState.staffPanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Staff',
-            customGridList: entityRoleState.staffPanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.staffPanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -117,10 +143,13 @@ class EntityPageItems extends StatelessWidget {
 
         break;
       case DynamicEntityPageState.SecurityPanel:
-        if (entityRoleState.securityPanel !=null &&  entityRoleState.securityPanel.length > 0) {
+        if (entityRoleState.securityPanel != null &&
+            entityRoleState.securityPanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Security',
-            customGridList: entityRoleState.securityPanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.securityPanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -128,10 +157,13 @@ class EntityPageItems extends StatelessWidget {
 
         break;
       case DynamicEntityPageState.EndUser:
-        if (entityRoleState.enduserpanel !=null && entityRoleState.enduserpanel.length > 0) {
+        if (entityRoleState.enduserpanel != null &&
+            entityRoleState.enduserpanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'EndUser',
-            customGridList: entityRoleState.enduserpanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.enduserpanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -139,10 +171,13 @@ class EntityPageItems extends StatelessWidget {
 
         break;
       case DynamicEntityPageState.EcomPanel:
-        if (entityRoleState.ecomPanel !=null && entityRoleState.ecomPanel.length > 0) {
+        if (entityRoleState.ecomPanel != null &&
+            entityRoleState.ecomPanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Product And Orders',
-            customGridList: entityRoleState.ecomPanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.ecomPanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -150,10 +185,13 @@ class EntityPageItems extends StatelessWidget {
 
         break;
       case DynamicEntityPageState.brokerpanel:
-        if (entityRoleState.brokerpanel !=null && entityRoleState.brokerpanel.length > 0) {
+        if (entityRoleState.brokerpanel != null &&
+            entityRoleState.brokerpanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Add Vehicle/RealEstate',
-            customGridList: entityRoleState.brokerpanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.brokerpanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -161,10 +199,13 @@ class EntityPageItems extends StatelessWidget {
 
         break;
       case DynamicEntityPageState.userclassifiedpanel:
-        if (entityRoleState.userclassifiedpanel !=null && entityRoleState.userclassifiedpanel.length > 0) {
+        if (entityRoleState.userclassifiedpanel != null &&
+            entityRoleState.userclassifiedpanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Create Classified Ads',
-            customGridList: entityRoleState.userclassifiedpanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.userclassifiedpanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -175,7 +216,9 @@ class EntityPageItems extends StatelessWidget {
         if (entityRoleState.productpanel.length > 0) {
           _stateWidget = CustomGridPanel(
             title: 'Product Category',
-            customGridList: entityRoleState.productpanel.map((grid) => UiSchoolHandler.toTopGrid(grid, context)).toList(),
+            customGridList: entityRoleState.productpanel
+                .map((grid) => UiSchoolHandler.toTopGrid(grid, context))
+                .toList(),
           );
         } else {
           _stateWidget = const SizedBox.shrink();
@@ -183,7 +226,24 @@ class EntityPageItems extends StatelessWidget {
 
         break;
 
-
+      case DynamicEntityPageState.SetupPanelComplex:
+        // TODO: Handle this case.
+        break;
+      case DynamicEntityPageState.EndUserComplex:
+        // TODO: Handle this case.
+        break;
+      case DynamicEntityPageState.AptPanel:
+        // TODO: Handle this case.
+        break;
+      case DynamicEntityPageState.TripUserPanel:
+        // TODO: Handle this case.
+        break;
+      case DynamicEntityPageState.TripManagerPanel:
+        // TODO: Handle this case.
+        break;
+      case DynamicEntityPageState.TripStaffPanel:
+        // TODO: Handle this case.
+        break;
     }
     return _stateWidget;
   }
@@ -192,7 +252,10 @@ class EntityPageItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: entityRoleState.pageState.map((state) => toPageState(context, state)).toList() ?? [Text('error')],
+      children: entityRoleState.pageState
+              .map((state) => toPageState(context, state))
+              .toList() ??
+          [Text('error')],
     );
   }
 }

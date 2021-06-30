@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class JobCard extends StatelessWidget {
-  final LimitedJobReqModel jobReqModel;
+  final LimitedJobData jobReqModel;
   const JobCard({Key key, @required this.jobReqModel}) : super(key: key);
 
   applyForJob() async {

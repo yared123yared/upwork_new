@@ -1,4 +1,3 @@
-
 import 'package:complex/common/helputil.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/common/model/grid_model.dart';
@@ -53,7 +52,6 @@ class EntityRoleState {
   final List<DynamicEntityGridState> selforderandappointmentInfo;
   final List<DynamicEntityGridState> userclassifiedpanel;
 
-
   final List<DynamicEntityGridState> setupPanel;
 
   final List<DynamicEntityGridState> academicPanel;
@@ -70,7 +68,6 @@ class EntityRoleState {
   final List<DynamicEntityGridState> newformpanel;
   final List<DynamicEntityGridState> brokerpanel;
   final List<DynamicEntityGridState> productpanel;
-
 
   EntityRoleState({
     @required this.pageState,
@@ -140,8 +137,6 @@ enum DynamicEntityGridState {
 
   securityservicerequest,
 
-
-
   SessionTerm,
   Rooms,
   ExamTerm,
@@ -173,8 +168,6 @@ enum DynamicEntityGridState {
   newStaffRegistry,
   newVRAssignment,
 
-
-
   classifiedvehicle,
   classifiedrealestate,
   classifiedpet,
@@ -193,7 +186,6 @@ enum DynamicEntityGridState {
   newdelivery,
   newdeliverytrip,
   newvenodr
-
 }
 
 class UiEntityPageStateList {
@@ -232,9 +224,9 @@ class UiEntityPageStateList {
   }
 
   static bool checkServiceTypeInService(List<String> allowedServiceType) {
-    if(_userRepository.getUser().defaultType != entityT.service)
-      return false;
-    List<String> serviceList = _userRepository.getUser().defaultServiceModel.serviceOffered;
+    if (_userRepository.getUser().defaultType != entityT.service) return false;
+    List<String> serviceList =
+        _userRepository.getUser().defaultServiceModel.serviceOffered;
     for (String service in allowedServiceType) {
       if (service.contains("*")) {
         String s12 = service.replaceAll("*", "");
@@ -249,9 +241,6 @@ class UiEntityPageStateList {
     }
     return false;
   }
-
-
-
 
   static bool checkifServiceHasSecurity() {
     return _userRepository.getUser().defaultServiceModel.hassec;
@@ -283,8 +272,7 @@ class UiEntityPageStateList {
 
   static List<DynamicEntityGridState> fillSetupPanelService() {
     List<DynamicEntityGridState> setupP = [];
-    if(_userRepository.getUser().defaultType != entityT.service)
-      return setupP;
+    if (_userRepository.getUser().defaultType != entityT.service) return setupP;
 
     List<String> allowedroles = ["MANAGER"];
     bool ismanager = checkRoleWithEmployeeCheckInService(allowedroles);
@@ -298,8 +286,7 @@ class UiEntityPageStateList {
 
   static List<DynamicEntityGridState> fillSetupPanelComplex() {
     List<DynamicEntityGridState> setupP = [];
-    if(_userRepository.getUser().defaultType != entityT.complex)
-      return setupP;
+    if (_userRepository.getUser().defaultType != entityT.complex) return setupP;
 
     List<String> allowedroles = ["MANAGER"];
     bool ismanager = checkRoleWithEmployeeCheckInComplex(allowedroles);
@@ -312,7 +299,6 @@ class UiEntityPageStateList {
 
     return setupP;
   }
-
 
   static List<DynamicEntityGridState> fillNewPanel() {
     List<DynamicEntityGridState> panelmem = [];
@@ -340,7 +326,7 @@ class UiEntityPageStateList {
 
   static List<DynamicEntityGridState> fillAcademicsManagerPanel() {
     List<DynamicEntityGridState> panelmem = [];
-    if(_userRepository.getUser().defaultType != entityT.service)
+    if (_userRepository.getUser().defaultType != entityT.service)
       return panelmem;
 
     List<String> allowedrolesIM = ["MANAGER", "INSTRUCTORMANAGER"];
@@ -366,12 +352,12 @@ class UiEntityPageStateList {
 
   static List<DynamicEntityGridState> fillAcademicsPanel() {
     List<DynamicEntityGridState> panelmem = [];
-    if(_userRepository.getUser().defaultType != entityT.service)
+    if (_userRepository.getUser().defaultType != entityT.service)
       return panelmem;
 
     List<String> allowedrolesI = ["MANAGER", "INSTRUCTORMANAGER", "INSTRUCTOR"];
     bool ismanager_Or_im_Or_i =
-    checkRoleWithEmployeeCheckInService(allowedrolesI);
+        checkRoleWithEmployeeCheckInService(allowedrolesI);
     List<String> allowedServiceTypes = ["SCHOOL*", "COACHING*"];
     bool isservicetypeallowed = checkServiceTypeInService(allowedServiceTypes);
     if (ismanager_Or_im_Or_i == false || isservicetypeallowed == false) {
@@ -384,20 +370,17 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.newvirtualroom);
     panelmem.add(DynamicEntityGridState.newofferingschedule);
 
-
-
     return panelmem;
   }
 
   static List<DynamicEntityGridState> fillFeePaymentPanel() {
-
     List<DynamicEntityGridState> panelmem = [];
-    if(_userRepository.getUser().defaultType != entityT.service)
+    if (_userRepository.getUser().defaultType != entityT.service)
       return panelmem;
 
     List<String> allowedrolesI = ["MANAGER", "FEEMANAGER"];
     bool ismanager_Or_im_Or_i =
-    checkRoleWithEmployeeCheckInService(allowedrolesI);
+        checkRoleWithEmployeeCheckInService(allowedrolesI);
     List<String> allowedServiceTypes = ["SCHOOL*", "COACHING*"];
     bool isservicetypeallowed = checkServiceTypeInService(allowedServiceTypes);
     if (ismanager_Or_im_Or_i == false || isservicetypeallowed == false) {
@@ -412,8 +395,6 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.newPaymentPeriod);
     panelmem.add(DynamicEntityGridState.newStudents);
 
-
-
     if (checkifServiceHasFeeScan())
       panelmem.add(DynamicEntityGridState.FeeQRScan);
     return panelmem;
@@ -421,33 +402,27 @@ class UiEntityPageStateList {
 
   static List<DynamicEntityGridState> fillEndUserPanelService() {
     List<DynamicEntityGridState> panelmem = [];
-    if(_userRepository.getUser().defaultType != entityT.service)
+    if (_userRepository.getUser().defaultType != entityT.service)
       return panelmem;
 
     bool isenduser = isEndUserInService();
-      List<String> allowedServiceTypes = ["SCHOOL*", "COACHING*"];
-      bool isservicetypeallowed = checkServiceTypeInService(
-          allowedServiceTypes);
-      if (isenduser == false || isservicetypeallowed == false) {
-        return panelmem;
-      }
-      panelmem.add(DynamicEntityGridState.newParentAttendance);
-      panelmem.add(DynamicEntityGridState.newParentAssignmentScore);
-      panelmem.add(DynamicEntityGridState.newParentAssignmentsList);
-      panelmem.add(DynamicEntityGridState.newParentEvent);
-      panelmem.add(DynamicEntityGridState.newParentProgress);
-
-
+    List<String> allowedServiceTypes = ["SCHOOL*", "COACHING*"];
+    bool isservicetypeallowed = checkServiceTypeInService(allowedServiceTypes);
+    if (isenduser == false || isservicetypeallowed == false) {
       return panelmem;
+    }
+    panelmem.add(DynamicEntityGridState.newParentAttendance);
+    panelmem.add(DynamicEntityGridState.newParentAssignmentScore);
+    panelmem.add(DynamicEntityGridState.newParentAssignmentsList);
+    panelmem.add(DynamicEntityGridState.newParentEvent);
+    panelmem.add(DynamicEntityGridState.newParentProgress);
 
-
+    return panelmem;
   }
 
   static List<DynamicEntityGridState> fillEndUserPanelComplex() {
-
-
     List<DynamicEntityGridState> panelmem = [];
-    if(_userRepository.getUser().defaultComplexEntity.isEndUser ==false)
+    if (_userRepository.getUser().defaultComplexEntity.isEndUser == false)
       return panelmem;
 
     panelmem.add(DynamicEntityGridState.newownerresidentregistry);
@@ -457,7 +432,6 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.newStaffRegistry);
     return panelmem;
   }
-
 
   static List<DynamicEntityGridState> fillEcomPanel() {
     List<DynamicEntityGridState> panelmem = [];
@@ -495,13 +469,12 @@ class UiEntityPageStateList {
 
   static List<DynamicEntityGridState> fillStaffPanelService() {
     List<DynamicEntityGridState> panelmem = [];
-    if(_userRepository.getUser().defaultServiceEntity.isEmployee ==false)
+    if (_userRepository.getUser().defaultServiceEntity.isEmployee == false)
       return panelmem;
-
 
     panelmem.add(DynamicEntityGridState.selfstaff);
     panelmem.add(DynamicEntityGridState.newStaffRegistry);
-    if(checkifServiceHasSecurity())
+    if (checkifServiceHasSecurity())
       panelmem.add(DynamicEntityGridState.newServiceRequest);
 
     panelmem.add(DynamicEntityGridState.selfleaverequest);
@@ -510,12 +483,12 @@ class UiEntityPageStateList {
 
   static List<DynamicEntityGridState> fillStaffPanelComplex() {
     List<DynamicEntityGridState> panelmem = [];
-    if(_userRepository.getUser().defaultComplexEntity.isEmployee ==false)
+    if (_userRepository.getUser().defaultComplexEntity.isEmployee == false)
       return panelmem;
 
     panelmem.add(DynamicEntityGridState.selfstaff);
     panelmem.add(DynamicEntityGridState.newStaffRegistry);
-    if(checkifServiceHasSecurity())
+    if (checkifServiceHasSecurity())
       panelmem.add(DynamicEntityGridState.newServiceRequest);
 
     panelmem.add(DynamicEntityGridState.selfleaverequest);
@@ -526,7 +499,7 @@ class UiEntityPageStateList {
     List<DynamicEntityGridState> panelmem = [];
     List<String> allowedrolesI = ["SECURITY", "MANAGER"];
     bool ismanager_Or_im_Or_i =
-    checkRoleWithEmployeeCheckInService(allowedrolesI);
+        checkRoleWithEmployeeCheckInService(allowedrolesI);
     bool hassec = checkifServiceHasSecurity();
     if (ismanager_Or_im_Or_i == false || hassec == false) {
       return panelmem;
@@ -540,7 +513,7 @@ class UiEntityPageStateList {
     List<DynamicEntityGridState> panelmem = [];
     List<String> allowedrolesI = ["SECURITY", "MANAGER"];
     bool ismanager_Or_im_Or_i =
-    checkRoleWithEmployeeCheckInService(allowedrolesI);
+        checkRoleWithEmployeeCheckInService(allowedrolesI);
     bool hassec = checkifServiceHasSecurity();
     if (ismanager_Or_im_Or_i == false || hassec == false) {
       return panelmem;
@@ -551,12 +524,11 @@ class UiEntityPageStateList {
     return panelmem;
   }
 
-
   static List<DynamicEntityGridState> fillTripManagerPanel() {
     List<DynamicEntityGridState> panelmem = [];
     List<String> allowedrolesI = ["TRIPMANAGER", "MANAGER"];
     bool ismanager_Or_im_Or_i =
-    checkRoleWithEmployeeCheckInService(allowedrolesI);
+        checkRoleWithEmployeeCheckInService(allowedrolesI);
     bool hassec = checkifServiceHasTrip();
     if (ismanager_Or_im_Or_i == false || hassec == false) {
       return panelmem;
@@ -569,7 +541,7 @@ class UiEntityPageStateList {
     List<DynamicEntityGridState> panelmem = [];
     List<String> allowedrolesI = ["TRIPMANAGER", "MANAGER", "TRIPUSER"];
     bool ismanager_Or_im_Or_i =
-    checkRoleWithEmployeeCheckInService(allowedrolesI);
+        checkRoleWithEmployeeCheckInService(allowedrolesI);
     bool hassec = checkifServiceHasTrip();
     if (ismanager_Or_im_Or_i == false || hassec == false) {
       return panelmem;
@@ -589,7 +561,6 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.temppetdetails);
     panelmem.add(DynamicEntityGridState.tempjobdetails);
     return panelmem;
-
   }
 
   static List<DynamicEntityGridState> fillClassifiedBrokerPanel() {
@@ -600,30 +571,25 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.classifiedproduct);
 
     return panelmem;
-
   }
+
   static List<DynamicEntityGridState> fillproductpanel() {
     List<DynamicEntityGridState> panelmem = [];
     panelmem.add(DynamicEntityGridState.productcategorylist);
 
     return panelmem;
-
   }
 
-
-  static EntityRoleState getroleToFeatureMap()
-  {
-    if(_userRepository.getUser().defaultType == entityT.service)
+  static EntityRoleState getroleToFeatureMap() {
+    if (_userRepository.getUser().defaultType == entityT.service)
       return getroleToFeatureMapForServiceProvider();
     else if (_userRepository.getUser().defaultType == entityT.complex)
       return getroleToFeatureMapForComplex();
     else
       return getroleToFeatureMapForSelf();
-
   }
 
   static EntityRoleState getroleToFeatureMapForSelf() {
-
     //return roleToServiceMap[EntityRoles.Manager];
     return new EntityRoleState(
       role: EntityRoles.Manager,
@@ -653,13 +619,12 @@ class UiEntityPageStateList {
   }
 
   static EntityRoleState getroleToFeatureMapForComplex() {
-
     //return roleToServiceMap[EntityRoles.Manager];
     return new EntityRoleState(
       role: EntityRoles.Manager,
       selfalertInfo: [],
       selforderandappointmentInfo: [],
-      securityPanel:  fillSecurityPaneComplex(),
+      securityPanel: fillSecurityPaneComplex(),
       staffPanel: fillStaffPanelComplex(),
       // staffPanel: [
       //   DynamicEntityGridState.FeePlans,
@@ -677,12 +642,11 @@ class UiEntityPageStateList {
       brokerpanel: [],
       userclassifiedpanel: [],
       productpanel: [],
-      pageState: UiEntityPageStateList.complexFeaturePageState,
+      pageState: UiEntityPageStateList.complexFeaturePageState, aptPanel: [],
     );
   }
 
-  static EntityRoleState getroleToFeatureMapForServiceProvider(){
-
+  static EntityRoleState getroleToFeatureMapForServiceProvider() {
     //return roleToServiceMap[EntityRoles.Manager];
     return new EntityRoleState(
       role: EntityRoles.Manager,
@@ -711,8 +675,6 @@ class UiEntityPageStateList {
       pageState: UiEntityPageStateList.serviceFeaturePageState,
     );
   }
-
-
 
   static List<DynamicEntityPageState> serviceFeaturePageState = [
     DynamicEntityPageState.SetupPanel,
@@ -743,9 +705,6 @@ class UiEntityPageStateList {
     DynamicEntityPageState.SelfInformationOrderAndApt,
     DynamicEntityPageState.userclassifiedpanel,
   ];
-
-
-
 }
 
 class CurEntity {
@@ -755,8 +714,6 @@ class CurEntity {
 }
 
 class UiSchoolHandler {
-
-
   static CurEntity getCurEntity() {
     UserRepository _user = Get.find();
     var user = _user.getUser();
@@ -783,61 +740,42 @@ class UiSchoolHandler {
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
             title: 'SessionTerm',
-            tapAction: () {
-
-            });
+            tapAction: () {});
         break;
       case DynamicEntityGridState.Rooms:
         _customGrid = CustomGridClass(
-            icon: Icons.import_contacts,
-            title: 'Rooms',
-            tapAction: () {
-
-            });
+            icon: Icons.import_contacts, title: 'Rooms', tapAction: () {});
         break;
       case DynamicEntityGridState.Grades:
         _customGrid = CustomGridClass(
-            icon: Icons.import_contacts,
-            title: 'ExamTerm',
-            tapAction: () {
-
-            });
+            icon: Icons.import_contacts, title: 'ExamTerm', tapAction: () {});
         break;
       case DynamicEntityGridState.Offerings:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
             title: 'SessionTerm',
-            tapAction: () {
-
-            });
+            tapAction: () {});
         break;
       case DynamicEntityGridState.FeeItem:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
             title: 'SessionTerm',
-            tapAction: () {
-
-            });
+            tapAction: () {});
         break;
 
       case DynamicEntityGridState.FeeQRScan:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
             title: 'SessionTerm',
-            tapAction: () {
-
-            });
+            tapAction: () {});
         break;
 
       case DynamicEntityGridState.selfstaff:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
             title: 'SessionTerm',
-            tapAction: () {
-
-            });
+            tapAction: () {});
         break;
-
 
       case DynamicEntityGridState.newBuilding:
         _customGrid = CustomGridClass(
@@ -880,12 +818,13 @@ class UiSchoolHandler {
                   MaterialPageRoute(
                     builder: (buildContext) => RegistryListList(
                       entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,origintype: 1,
+                      entityid: getCurEntity().entityid,
+                      origintype: 1,
                     ),
                   ));
             });
         break;
-    //origin =2 , building type - SingleOwner
+      //origin =2 , building type - SingleOwner
       case DynamicEntityGridState.managerregistrySingleOwner:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
@@ -896,12 +835,13 @@ class UiSchoolHandler {
                   MaterialPageRoute(
                     builder: (buildContext) => RegistryListList(
                       entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,origintype: 2,
+                      entityid: getCurEntity().entityid,
+                      origintype: 2,
                     ),
                   ));
             });
         break;
-    //origin =4 , Show list , no Add functionality allowed
+      //origin =4 , Show list , no Add functionality allowed
       case DynamicEntityGridState.registrylist:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
@@ -912,12 +852,13 @@ class UiSchoolHandler {
                   MaterialPageRoute(
                     builder: (buildContext) => RegistryListList(
                       entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,origintype: 4,
+                      entityid: getCurEntity().entityid,
+                      origintype: 4,
                     ),
                   ));
             });
         break;
-    //origin =3 , Just show Units from UserProfile , allow adding of resident -- In case of Owner , otherwise Add button is hidden
+      //origin =3 , Just show Units from UserProfile , allow adding of resident -- In case of Owner , otherwise Add button is hidden
       case DynamicEntityGridState.newownerresidentregistry:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
@@ -928,7 +869,8 @@ class UiSchoolHandler {
                   MaterialPageRoute(
                     builder: (buildContext) => RegistryListList(
                       entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,origintype: 3,
+                      entityid: getCurEntity().entityid,
+                      origintype: 3,
                     ),
                   ));
             });
@@ -945,7 +887,8 @@ class UiSchoolHandler {
                   MaterialPageRoute(
                     builder: (buildContext) => ServiceModelListList(
                       entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,originlist: 1,
+                      entityid: getCurEntity().entityid,
+                      originlist: 1,
                     ),
                   ));
             });
@@ -962,7 +905,8 @@ class UiSchoolHandler {
                   MaterialPageRoute(
                     builder: (buildContext) => ServiceModelListList(
                       entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,originlist: 1,
+                      entityid: getCurEntity().entityid,
+                      originlist: 1,
                     ),
                   ));
             });
@@ -979,7 +923,8 @@ class UiSchoolHandler {
                   MaterialPageRoute(
                     builder: (buildContext) => ServiceModelListList(
                       entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,originlist: 1,
+                      entityid: getCurEntity().entityid,
+                      originlist: 1,
                     ),
                   ));
             });
@@ -996,7 +941,8 @@ class UiSchoolHandler {
                   MaterialPageRoute(
                     builder: (buildContext) => LeaveRequestListList(
                       entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,origintype: 1,
+                      entityid: getCurEntity().entityid,
+                      origintype: 1,
                     ),
                   ));
             });
@@ -1012,12 +958,12 @@ class UiSchoolHandler {
                   MaterialPageRoute(
                     builder: (buildContext) => LeaveRequestListList(
                       entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,origintype: 2,
+                      entityid: getCurEntity().entityid,
+                      origintype: 2,
                     ),
                   ));
             });
         break;
-
 
       case DynamicEntityGridState.newVehicle:
         _customGrid = CustomGridClass(
@@ -1188,21 +1134,21 @@ class UiSchoolHandler {
                   ));
             });
         break;
-    // case DynamicEntityGridState.newSessionRegistration:
-    //   _customGrid = CustomGridClass(
-    //       icon: Icons.import_contacts,
-    //       title: 'newsessionregistration',
-    //       tapAction: () {
-    //         Navigator.push(
-    //             context,
-    //             MaterialPageRoute(
-    //               builder: (buildContext) => SessionRegistrationListList(
-    //                 entitytype: getCurEntity().entitytype,
-    //                 entityid: getCurEntity().entityid,
-    //               ),
-    //             ));
-    //       });
-    //   break;
+      // case DynamicEntityGridState.newSessionRegistration:
+      //   _customGrid = CustomGridClass(
+      //       icon: Icons.import_contacts,
+      //       title: 'newsessionregistration',
+      //       tapAction: () {
+      //         Navigator.push(
+      //             context,
+      //             MaterialPageRoute(
+      //               builder: (buildContext) => SessionRegistrationListList(
+      //                 entitytype: getCurEntity().entitytype,
+      //                 entityid: getCurEntity().entityid,
+      //               ),
+      //             ));
+      //       });
+      //   break;
       case DynamicEntityGridState.newEvent:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
@@ -1219,7 +1165,7 @@ class UiSchoolHandler {
                 serviceID: entityid,
               );
               var instructorData =
-              await _schoolRepo.instructor.setInstructorScheduleData(
+                  await _schoolRepo.instructor.setInstructorScheduleData(
                 serviceID: entityid,
                 staffID: _userRepository.getUser().userID,
               );
@@ -1267,9 +1213,15 @@ class UiSchoolHandler {
                     builder: (buildContext) => ParentInfoPage(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      sessionTerms: HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
-                      virtualRooms: HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
-                      idNumbers: HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
+                      sessionTerms: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getSessionTerms(),
+                      virtualRooms: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getVirtualRooms(),
+                      idNumbers: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getIdCardNumbers(),
                       assignmentListGetter: vrAssignmentGetter,
                       mode: ParentViewMode.Attendance,
                       dataList: null,
@@ -1305,9 +1257,15 @@ class UiSchoolHandler {
                     builder: (buildContext) => ParentInfoPage(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      sessionTerms: HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
-                      virtualRooms: HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
-                      idNumbers: HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
+                      sessionTerms: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getSessionTerms(),
+                      virtualRooms: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getVirtualRooms(),
+                      idNumbers: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getIdCardNumbers(),
                       assignmentListGetter: vrAssignmentGetter,
                       mode: ParentViewMode.Progress,
                       dataList: null,
@@ -1343,9 +1301,15 @@ class UiSchoolHandler {
                     builder: (buildContext) => ParentInfoPage(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      sessionTerms: HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
-                      virtualRooms: HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
-                      idNumbers: HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
+                      sessionTerms: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getSessionTerms(),
+                      virtualRooms: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getVirtualRooms(),
+                      idNumbers: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getIdCardNumbers(),
                       assignmentListGetter: vrAssignmentGetter,
                       mode: ParentViewMode.Event,
                       dataList: null,
@@ -1381,9 +1345,15 @@ class UiSchoolHandler {
                     builder: (buildContext) => ParentInfoPage(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      sessionTerms: HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
-                      virtualRooms: HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
-                      idNumbers: HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
+                      sessionTerms: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getSessionTerms(),
+                      virtualRooms: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getVirtualRooms(),
+                      idNumbers: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getIdCardNumbers(),
                       assignmentListGetter: vrAssignmentGetter,
                       mode: ParentViewMode.AssignmentScore,
                       dataList: null,
@@ -1419,9 +1389,15 @@ class UiSchoolHandler {
                     builder: (buildContext) => ParentInfoPage(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      sessionTerms:HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
-                      virtualRooms: HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
-                      idNumbers: HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
+                      sessionTerms: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getSessionTerms(),
+                      virtualRooms: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getVirtualRooms(),
+                      idNumbers: HelpUtil.getUserModel()
+                          .defaultServiceEntity
+                          .getIdCardNumbers(),
                       assignmentListGetter: vrAssignmentGetter,
                       mode: ParentViewMode.AssignmentsList,
                       dataList: null,
@@ -1451,11 +1427,11 @@ class UiSchoolHandler {
                 serviceID: entityid,
               );
               var virtualRoomList =
-              await _schoolRepo.virtualRoom.getVirtualRooms(
+                  await _schoolRepo.virtualRoom.getVirtualRooms(
                 serviceID: entityid,
               );
               var instructorData =
-              await _schoolRepo.instructor.setInstructorScheduleData(
+                  await _schoolRepo.instructor.setInstructorScheduleData(
                 serviceID: entityid,
                 staffID: _userRepository.getUser().userID,
               );
@@ -1494,7 +1470,7 @@ class UiSchoolHandler {
                 serviceID: entityid,
               );
               var instructorData =
-              await _schoolRepo.instructor.setInstructorScheduleData(
+                  await _schoolRepo.instructor.setInstructorScheduleData(
                 serviceID: entityid,
                 staffID: _userRepository.getUser().userID,
               );
@@ -1610,7 +1586,9 @@ class UiSchoolHandler {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (buildContext) => PetsDetailPage(docId: "MJtvMr9arqpepKVncqp5",),
+                    builder: (buildContext) => PetsDetailPage(
+                      docId: "MJtvMr9arqpepKVncqp5",
+                    ),
                   ));
             });
         break;
@@ -1622,7 +1600,9 @@ class UiSchoolHandler {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (buildContext) => JobDetailPage(docId: "MkWAEblEkuuEnIrNpGlE",),
+                    builder: (buildContext) => JobDetailPage(
+                      docId: "MkWAEblEkuuEnIrNpGlE",
+                    ),
                   ));
             });
         break;
@@ -1634,7 +1614,9 @@ class UiSchoolHandler {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (buildContext) => PropertyDetailPage(docId: "8iH7vo7wtzroFcHRN6Av",),
+                    builder: (buildContext) => PropertyDetailPage(
+                      docId: "8iH7vo7wtzroFcHRN6Av",
+                    ),
                   ));
             });
         break;
@@ -1646,7 +1628,9 @@ class UiSchoolHandler {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (buildContext) => VehicleDetailPage(docId: "6iknU0qt28LnJQYkHOzn",),
+                    builder: (buildContext) => VehicleDetailPage(
+                      docId: "6iknU0qt28LnJQYkHOzn",
+                    ),
                   ));
             });
         break;
@@ -1744,12 +1728,13 @@ class UiSchoolHandler {
                   context,
                   MaterialPageRoute(
                     builder: (buildContext) => DynamicCategoryPage(
-                      schemaname: "CATEGORY",entityid: null,entitytype: null,
+                      schemaname: "CATEGORY",
+                      entityid: null,
+                      entitytype: null,
                     ),
                   ));
             });
         break;
-
 
       case DynamicEntityGridState.shopproduct:
         _customGrid = CustomGridClass(
@@ -1772,9 +1757,9 @@ class UiSchoolHandler {
                   context,
                   NextPageRoute(GeneralContactDetailPage(
                     type: ContactOpenFrom.product,
-                    isService:false ,
-                    serviceProviderId: "ABC" ,
-                    serviceId: "BCD" ,
+                    isService: false,
+                    serviceProviderId: "ABC",
+                    serviceId: "BCD",
                   )));
             });
         break;
@@ -1783,10 +1768,9 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Manage Orders',
             tapAction: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => OrdersView(),
-                  ));
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => OrdersView(),
+              ));
             });
         break;
       case DynamicEntityGridState.newvenodr:
@@ -1816,7 +1800,7 @@ class UiSchoolHandler {
       case DynamicEntityGridState.newdeliverytrip:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
-            title: 'Manage Delievery Trips' ,
+            title: 'Manage Delievery Trips',
             tapAction: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -1826,11 +1810,25 @@ class UiSchoolHandler {
             });
         break;
 
-
         // TODO: Handle this case.
         break;
       case DynamicEntityGridState.SessionTerm:
-      // TODO: Handle this case.
+        // TODO: Handle this case.
+        break;
+      case DynamicEntityGridState.newRegistry:
+        // TODO: Handle this case.
+        break;
+      case DynamicEntityGridState.newServiceRequest:
+        // TODO: Handle this case.
+        break;
+      case DynamicEntityGridState.ComplexQRScan:
+        // TODO: Handle this case.
+        break;
+      case DynamicEntityGridState.ExamTerm:
+        // TODO: Handle this case.
+        break;
+      case DynamicEntityGridState.ClassPeriod:
+        // TODO: Handle this case.
         break;
     }
 

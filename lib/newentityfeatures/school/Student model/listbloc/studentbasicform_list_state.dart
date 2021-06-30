@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class StudentBasicFormModelListState extends Equatable {
   const StudentBasicFormModelListState();
   @override

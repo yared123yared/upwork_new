@@ -1308,7 +1308,7 @@ class _$orderinfomodelTearOff {
 // ignore: unused_element
   _orderinfomodel call(
       {@JsonKey(name: 'custaddress')
-          addressmodel custaddress,
+          Addressmodel custaddress,
       @JsonKey(name: 'customerid')
           String customerid,
       @JsonKey(name: 'custuserid')
@@ -1369,7 +1369,7 @@ const $orderinfomodel = _$orderinfomodelTearOff();
 /// @nodoc
 mixin _$orderinfomodel {
   @JsonKey(name: 'custaddress')
-  addressmodel get custaddress;
+  Addressmodel get custaddress;
   @JsonKey(name: 'customerid')
   String get customerid;
   @JsonKey(name: 'custuserid')
@@ -1414,7 +1414,7 @@ abstract class $orderinfomodelCopyWith<$Res> {
       _$orderinfomodelCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'custaddress')
-          addressmodel custaddress,
+          Addressmodel custaddress,
       @JsonKey(name: 'customerid')
           String customerid,
       @JsonKey(name: 'custuserid')
@@ -1444,7 +1444,7 @@ abstract class $orderinfomodelCopyWith<$Res> {
       @JsonKey(name: 'id')
           String id});
 
-  $addressmodelCopyWith<$Res> get custaddress;
+  $AddressmodelCopyWith<$Res> get custaddress;
 }
 
 /// @nodoc
@@ -1477,7 +1477,7 @@ class _$orderinfomodelCopyWithImpl<$Res>
     return _then(_value.copyWith(
       custaddress: custaddress == freezed
           ? _value.custaddress
-          : custaddress as addressmodel,
+          : custaddress as Addressmodel,
       customerid:
           customerid == freezed ? _value.customerid : customerid as String,
       custuserid:
@@ -1513,11 +1513,11 @@ class _$orderinfomodelCopyWithImpl<$Res>
   }
 
   @override
-  $addressmodelCopyWith<$Res> get custaddress {
+  $AddressmodelCopyWith<$Res> get custaddress {
     if (_value.custaddress == null) {
       return null;
     }
-    return $addressmodelCopyWith<$Res>(_value.custaddress, (value) {
+    return $AddressmodelCopyWith<$Res>(_value.custaddress, (value) {
       return _then(_value.copyWith(custaddress: value));
     });
   }
@@ -1532,7 +1532,7 @@ abstract class _$orderinfomodelCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'custaddress')
-          addressmodel custaddress,
+          Addressmodel custaddress,
       @JsonKey(name: 'customerid')
           String customerid,
       @JsonKey(name: 'custuserid')
@@ -1563,7 +1563,7 @@ abstract class _$orderinfomodelCopyWith<$Res>
           String id});
 
   @override
-  $addressmodelCopyWith<$Res> get custaddress;
+  $AddressmodelCopyWith<$Res> get custaddress;
 }
 
 /// @nodoc
@@ -1598,7 +1598,7 @@ class __$orderinfomodelCopyWithImpl<$Res>
     return _then(_orderinfomodel(
       custaddress: custaddress == freezed
           ? _value.custaddress
-          : custaddress as addressmodel,
+          : custaddress as Addressmodel,
       customerid:
           customerid == freezed ? _value.customerid : customerid as String,
       custuserid:
@@ -1675,7 +1675,7 @@ class _$_orderinfomodel implements _orderinfomodel {
 
   @override
   @JsonKey(name: 'custaddress')
-  final addressmodel custaddress;
+  final Addressmodel custaddress;
   @override
   @JsonKey(name: 'customerid')
   final String customerid;
@@ -1810,7 +1810,7 @@ class _$_orderinfomodel implements _orderinfomodel {
 abstract class _orderinfomodel implements orderinfomodel {
   factory _orderinfomodel(
       {@JsonKey(name: 'custaddress')
-          addressmodel custaddress,
+          Addressmodel custaddress,
       @JsonKey(name: 'customerid')
           String customerid,
       @JsonKey(name: 'custuserid')
@@ -1845,7 +1845,7 @@ abstract class _orderinfomodel implements orderinfomodel {
 
   @override
   @JsonKey(name: 'custaddress')
-  addressmodel get custaddress;
+  Addressmodel get custaddress;
   @override
   @JsonKey(name: 'customerid')
   String get customerid;
@@ -3001,21 +3001,76 @@ abstract class _ProductFilterModel implements ProductFilterModel {
   _$ProductFilterModelCopyWith<_ProductFilterModel> get copyWith;
 }
 
-LimitedPackageData _$LimitedPackageDataFromJson(Map<String, dynamic> json) {
-  return _LimitedPackageData.fromJson(json);
+LimitedData _$LimitedDataFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType'] as String) {
+    case 'pet':
+      return LimitedPetData.fromJson(json);
+    case 'package':
+      return LimitedPackageData.fromJson(json);
+    case 'product':
+      return LimitedProductData.fromJson(json);
+    case 'vehicle':
+      return LimitedVehicleData.fromJson(json);
+    case 'realEstate':
+      return LimitedRealEstateData.fromJson(json);
+    case 'job':
+      return LimitedJobData.fromJson(json);
+
+    default:
+      throw FallThroughError();
+  }
 }
 
 /// @nodoc
-class _$LimitedPackageDataTearOff {
-  const _$LimitedPackageDataTearOff();
+class _$LimitedDataTearOff {
+  const _$LimitedDataTearOff();
 
 // ignore: unused_element
-  _LimitedPackageData call(
+  LimitedPetData pet(
+      {@JsonKey(name: 'petclass')
+          String petclass,
+      @JsonKey(name: 'name')
+          String name,
+      @JsonKey(name: 'breed')
+          String breed,
+      @JsonKey(name: 'gender')
+          String gender,
+      @JsonKey(name: 'animalclass')
+          String animalclass,
+      @JsonKey(name: 'age')
+          int age,
+      @JsonKey(name: 'tileimage')
+          String tileimage,
+      @JsonKey(name: 'price')
+          double price,
+      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+          DateTime postedon,
+      @JsonKey(name: 'addressarea')
+          Addressmodel addressarea,
+      @JsonKey(name: 'serviceproviderid')
+          String serviceproviderid}) {
+    return LimitedPetData(
+      petclass: petclass,
+      name: name,
+      breed: breed,
+      gender: gender,
+      animalclass: animalclass,
+      age: age,
+      tileimage: tileimage,
+      price: price,
+      postedon: postedon,
+      addressarea: addressarea,
+      serviceproviderid: serviceproviderid,
+    );
+  }
+
+// ignore: unused_element
+  LimitedPackageData package(
       {@JsonKey(name: 'itemid') String itemid,
       @JsonKey(name: 'desc') String desc,
       @JsonKey(name: 'origprice') double origprice,
       @JsonKey(name: 'discountedprice') double discountedprice}) {
-    return _LimitedPackageData(
+    return LimitedPackageData(
       itemid: itemid,
       desc: desc,
       origprice: origprice,
@@ -3024,29 +3079,1006 @@ class _$LimitedPackageDataTearOff {
   }
 
 // ignore: unused_element
-  LimitedPackageData fromJson(Map<String, Object> json) {
-    return LimitedPackageData.fromJson(json);
+  LimitedProductData product(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'tileimage') String tileimage,
+      @JsonKey(name: 'reqqty') bool reqqty,
+      @JsonKey(name: 'isvegetarian') bool isvegetarian,
+      @JsonKey(name: 'spicetype') int spicetype,
+      @JsonKey(name: 'ispackage') bool ispackage,
+      @JsonKey(name: 'unitmeasure') String unitmeasure,
+      @JsonKey(name: 'origprice') double origprice,
+      @JsonKey(name: 'discountedprice') double discountedprice,
+      @JsonKey(name: 'varianttype') String varianttype,
+      @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+      @JsonKey(name: 'contenttype') String contenttype}) {
+    return LimitedProductData(
+      id: id,
+      title: title,
+      tileimage: tileimage,
+      reqqty: reqqty,
+      isvegetarian: isvegetarian,
+      spicetype: spicetype,
+      ispackage: ispackage,
+      unitmeasure: unitmeasure,
+      origprice: origprice,
+      discountedprice: discountedprice,
+      varianttype: varianttype,
+      packdata: packdata,
+      contenttype: contenttype,
+    );
+  }
+
+// ignore: unused_element
+  LimitedVehicleData vehicle(
+      {@JsonKey(name: 'productid')
+          String productid,
+      @JsonKey(name: 'title')
+          String title,
+      @JsonKey(name: 'vehicletype')
+          String vehicletype,
+      @JsonKey(name: 'make')
+          String make,
+      @JsonKey(name: 'model')
+          String model,
+      @JsonKey(name: 'yearmade')
+          int yearmade,
+      @JsonKey(name: 'milage')
+          int milage,
+      @JsonKey(name: 'price')
+          double price,
+      @JsonKey(name: 'tileimage')
+          String tileimage,
+      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+          DateTime postedon,
+      @JsonKey(name: 'addressarea')
+          Addressmodel addressarea,
+      @JsonKey(name: 'serviceproviderid')
+          String serviceproviderid}) {
+    return LimitedVehicleData(
+      productid: productid,
+      title: title,
+      vehicletype: vehicletype,
+      make: make,
+      model: model,
+      yearmade: yearmade,
+      milage: milage,
+      price: price,
+      tileimage: tileimage,
+      postedon: postedon,
+      addressarea: addressarea,
+      serviceproviderid: serviceproviderid,
+    );
+  }
+
+// ignore: unused_element
+  LimitedRealEstateData realEstate(
+      {@JsonKey(name: 'productid')
+          String productid,
+      @JsonKey(name: 'listingtype')
+          String listingtype,
+      @JsonKey(name: 'propertytype')
+          String propertytype,
+      @JsonKey(name: 'numbedroom')
+          int numbedroom,
+      @JsonKey(name: 'numbathroom')
+          int numbathroom,
+      @JsonKey(name: 'sharingallowed')
+          bool sharingallowed,
+      @JsonKey(name: 'sqrfootage')
+          int sqrfootage,
+      @JsonKey(name: 'floorNumber')
+          int floorNumber,
+      @JsonKey(name: 'price')
+          double price,
+      @JsonKey(name: 'addressarea')
+          Addressmodel addressarea,
+      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+          DateTime postedon,
+      @JsonKey(name: 'tileimage')
+          String tileimage,
+      @JsonKey(name: 'serviceproviderid')
+          String serviceproviderid}) {
+    return LimitedRealEstateData(
+      productid: productid,
+      listingtype: listingtype,
+      propertytype: propertytype,
+      numbedroom: numbedroom,
+      numbathroom: numbathroom,
+      sharingallowed: sharingallowed,
+      sqrfootage: sqrfootage,
+      floorNumber: floorNumber,
+      price: price,
+      addressarea: addressarea,
+      postedon: postedon,
+      tileimage: tileimage,
+      serviceproviderid: serviceproviderid,
+    );
+  }
+
+// ignore: unused_element
+  LimitedJobData job(
+      {@JsonKey(name: 'productid')
+          String productid,
+      @JsonKey(name: 'title')
+          String title,
+      @JsonKey(name: 'companyname')
+          String companyname,
+      @JsonKey(name: 'companyicon')
+          String companyicon,
+      @JsonKey(name: 'salaryrange')
+          String salaryrange,
+      @JsonKey(name: 'addressarea')
+          Addressmodel addressarea,
+      @JsonKey(name: 'jobtype')
+          String jobtype,
+      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+          DateTime postedon}) {
+    return LimitedJobData(
+      productid: productid,
+      title: title,
+      companyname: companyname,
+      companyicon: companyicon,
+      salaryrange: salaryrange,
+      addressarea: addressarea,
+      jobtype: jobtype,
+      postedon: postedon,
+    );
+  }
+
+// ignore: unused_element
+  LimitedData fromJson(Map<String, Object> json) {
+    return LimitedData.fromJson(json);
   }
 }
 
 /// @nodoc
 // ignore: unused_element
-const $LimitedPackageData = _$LimitedPackageDataTearOff();
+const $LimitedData = _$LimitedDataTearOff();
 
 /// @nodoc
-mixin _$LimitedPackageData {
-  @JsonKey(name: 'itemid')
-  String get itemid;
-  @JsonKey(name: 'desc')
-  String get desc;
-  @JsonKey(name: 'origprice')
-  double get origprice;
-  @JsonKey(name: 'discountedprice')
-  double get discountedprice;
-
+mixin _$LimitedData {
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult pet(
+            @JsonKey(name: 'petclass')
+                String petclass,
+            @JsonKey(name: 'name')
+                String name,
+            @JsonKey(name: 'breed')
+                String breed,
+            @JsonKey(name: 'gender')
+                String gender,
+            @JsonKey(name: 'animalclass')
+                String animalclass,
+            @JsonKey(name: 'age')
+                int age,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult package(
+            @JsonKey(name: 'itemid') String itemid,
+            @JsonKey(name: 'desc') String desc,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice),
+    @required
+        TResult product(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'tileimage') String tileimage,
+            @JsonKey(name: 'reqqty') bool reqqty,
+            @JsonKey(name: 'isvegetarian') bool isvegetarian,
+            @JsonKey(name: 'spicetype') int spicetype,
+            @JsonKey(name: 'ispackage') bool ispackage,
+            @JsonKey(name: 'unitmeasure') String unitmeasure,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice,
+            @JsonKey(name: 'varianttype') String varianttype,
+            @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+            @JsonKey(name: 'contenttype') String contenttype),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'vehicletype')
+                String vehicletype,
+            @JsonKey(name: 'make')
+                String make,
+            @JsonKey(name: 'model')
+                String model,
+            @JsonKey(name: 'yearmade')
+                int yearmade,
+            @JsonKey(name: 'milage')
+                int milage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult realEstate(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'listingtype')
+                String listingtype,
+            @JsonKey(name: 'propertytype')
+                String propertytype,
+            @JsonKey(name: 'numbedroom')
+                int numbedroom,
+            @JsonKey(name: 'numbathroom')
+                int numbathroom,
+            @JsonKey(name: 'sharingallowed')
+                bool sharingallowed,
+            @JsonKey(name: 'sqrfootage')
+                int sqrfootage,
+            @JsonKey(name: 'floorNumber')
+                int floorNumber,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult job(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'companyname')
+                String companyname,
+            @JsonKey(name: 'companyicon')
+                String companyicon,
+            @JsonKey(name: 'salaryrange')
+                String salaryrange,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'jobtype')
+                String jobtype,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon),
+  });
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(
+        @JsonKey(name: 'petclass')
+            String petclass,
+        @JsonKey(name: 'name')
+            String name,
+        @JsonKey(name: 'breed')
+            String breed,
+        @JsonKey(name: 'gender')
+            String gender,
+        @JsonKey(name: 'animalclass')
+            String animalclass,
+        @JsonKey(name: 'age')
+            int age,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult package(
+        @JsonKey(name: 'itemid') String itemid,
+        @JsonKey(name: 'desc') String desc,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice),
+    TResult product(
+        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'title') String title,
+        @JsonKey(name: 'tileimage') String tileimage,
+        @JsonKey(name: 'reqqty') bool reqqty,
+        @JsonKey(name: 'isvegetarian') bool isvegetarian,
+        @JsonKey(name: 'spicetype') int spicetype,
+        @JsonKey(name: 'ispackage') bool ispackage,
+        @JsonKey(name: 'unitmeasure') String unitmeasure,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice,
+        @JsonKey(name: 'varianttype') String varianttype,
+        @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+        @JsonKey(name: 'contenttype') String contenttype),
+    TResult vehicle(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'vehicletype')
+            String vehicletype,
+        @JsonKey(name: 'make')
+            String make,
+        @JsonKey(name: 'model')
+            String model,
+        @JsonKey(name: 'yearmade')
+            int yearmade,
+        @JsonKey(name: 'milage')
+            int milage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult realEstate(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'listingtype')
+            String listingtype,
+        @JsonKey(name: 'propertytype')
+            String propertytype,
+        @JsonKey(name: 'numbedroom')
+            int numbedroom,
+        @JsonKey(name: 'numbathroom')
+            int numbathroom,
+        @JsonKey(name: 'sharingallowed')
+            bool sharingallowed,
+        @JsonKey(name: 'sqrfootage')
+            int sqrfootage,
+        @JsonKey(name: 'floorNumber')
+            int floorNumber,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult job(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'companyname')
+            String companyname,
+        @JsonKey(name: 'companyicon')
+            String companyicon,
+        @JsonKey(name: 'salaryrange')
+            String salaryrange,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'jobtype')
+            String jobtype,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon),
+    @required TResult orElse(),
+  });
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetData value),
+    @required TResult package(LimitedPackageData value),
+    @required TResult product(LimitedProductData value),
+    @required TResult vehicle(LimitedVehicleData value),
+    @required TResult realEstate(LimitedRealEstateData value),
+    @required TResult job(LimitedJobData value),
+  });
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetData value),
+    TResult package(LimitedPackageData value),
+    TResult product(LimitedProductData value),
+    TResult vehicle(LimitedVehicleData value),
+    TResult realEstate(LimitedRealEstateData value),
+    TResult job(LimitedJobData value),
+    @required TResult orElse(),
+  });
   Map<String, dynamic> toJson();
+}
+
+/// @nodoc
+abstract class $LimitedDataCopyWith<$Res> {
+  factory $LimitedDataCopyWith(
+          LimitedData value, $Res Function(LimitedData) then) =
+      _$LimitedDataCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LimitedDataCopyWithImpl<$Res> implements $LimitedDataCopyWith<$Res> {
+  _$LimitedDataCopyWithImpl(this._value, this._then);
+
+  final LimitedData _value;
+  // ignore: unused_field
+  final $Res Function(LimitedData) _then;
+}
+
+/// @nodoc
+abstract class $LimitedPetDataCopyWith<$Res> {
+  factory $LimitedPetDataCopyWith(
+          LimitedPetData value, $Res Function(LimitedPetData) then) =
+      _$LimitedPetDataCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: 'petclass')
+          String petclass,
+      @JsonKey(name: 'name')
+          String name,
+      @JsonKey(name: 'breed')
+          String breed,
+      @JsonKey(name: 'gender')
+          String gender,
+      @JsonKey(name: 'animalclass')
+          String animalclass,
+      @JsonKey(name: 'age')
+          int age,
+      @JsonKey(name: 'tileimage')
+          String tileimage,
+      @JsonKey(name: 'price')
+          double price,
+      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+          DateTime postedon,
+      @JsonKey(name: 'addressarea')
+          Addressmodel addressarea,
+      @JsonKey(name: 'serviceproviderid')
+          String serviceproviderid});
+
+  $AddressmodelCopyWith<$Res> get addressarea;
+}
+
+/// @nodoc
+class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
+    implements $LimitedPetDataCopyWith<$Res> {
+  _$LimitedPetDataCopyWithImpl(
+      LimitedPetData _value, $Res Function(LimitedPetData) _then)
+      : super(_value, (v) => _then(v as LimitedPetData));
+
+  @override
+  LimitedPetData get _value => super._value as LimitedPetData;
+
+  @override
+  $Res call({
+    Object petclass = freezed,
+    Object name = freezed,
+    Object breed = freezed,
+    Object gender = freezed,
+    Object animalclass = freezed,
+    Object age = freezed,
+    Object tileimage = freezed,
+    Object price = freezed,
+    Object postedon = freezed,
+    Object addressarea = freezed,
+    Object serviceproviderid = freezed,
+  }) {
+    return _then(LimitedPetData(
+      petclass: petclass == freezed ? _value.petclass : petclass as String,
+      name: name == freezed ? _value.name : name as String,
+      breed: breed == freezed ? _value.breed : breed as String,
+      gender: gender == freezed ? _value.gender : gender as String,
+      animalclass:
+          animalclass == freezed ? _value.animalclass : animalclass as String,
+      age: age == freezed ? _value.age : age as int,
+      tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
+      price: price == freezed ? _value.price : price as double,
+      postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
+      addressarea: addressarea == freezed
+          ? _value.addressarea
+          : addressarea as Addressmodel,
+      serviceproviderid: serviceproviderid == freezed
+          ? _value.serviceproviderid
+          : serviceproviderid as String,
+    ));
+  }
+
+  @override
+  $AddressmodelCopyWith<$Res> get addressarea {
+    if (_value.addressarea == null) {
+      return null;
+    }
+    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
+      return _then(_value.copyWith(addressarea: value));
+    });
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$LimitedPetData implements LimitedPetData {
+  const _$LimitedPetData(
+      {@JsonKey(name: 'petclass')
+          this.petclass,
+      @JsonKey(name: 'name')
+          this.name,
+      @JsonKey(name: 'breed')
+          this.breed,
+      @JsonKey(name: 'gender')
+          this.gender,
+      @JsonKey(name: 'animalclass')
+          this.animalclass,
+      @JsonKey(name: 'age')
+          this.age,
+      @JsonKey(name: 'tileimage')
+          this.tileimage,
+      @JsonKey(name: 'price')
+          this.price,
+      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+          this.postedon,
+      @JsonKey(name: 'addressarea')
+          this.addressarea,
+      @JsonKey(name: 'serviceproviderid')
+          this.serviceproviderid});
+
+  factory _$LimitedPetData.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedPetDataFromJson(json);
+
+  @override
+  @JsonKey(name: 'petclass')
+  final String petclass;
+  @override
+  @JsonKey(name: 'name')
+  final String name;
+  @override
+  @JsonKey(name: 'breed')
+  final String breed;
+  @override
+  @JsonKey(name: 'gender')
+  final String gender;
+  @override
+  @JsonKey(name: 'animalclass')
+  final String animalclass;
+  @override
+  @JsonKey(name: 'age')
+  final int age;
+  @override
+  @JsonKey(name: 'tileimage')
+  final String tileimage;
+  @override
+  @JsonKey(name: 'price')
+  final double price;
+  @override
+  @JsonKey(
+      name: 'postedon',
+      fromJson: JsonHelper.fromJsonTimeStamp,
+      toJson: JsonHelper.toJsonTimeStamp)
+  final DateTime postedon;
+  @override
+  @JsonKey(name: 'addressarea')
+  final Addressmodel addressarea;
+  @override
+  @JsonKey(name: 'serviceproviderid')
+  final String serviceproviderid;
+
+  @override
+  String toString() {
+    return 'LimitedData.pet(petclass: $petclass, name: $name, breed: $breed, gender: $gender, animalclass: $animalclass, age: $age, tileimage: $tileimage, price: $price, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LimitedPetData &&
+            (identical(other.petclass, petclass) ||
+                const DeepCollectionEquality()
+                    .equals(other.petclass, petclass)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.breed, breed) ||
+                const DeepCollectionEquality().equals(other.breed, breed)) &&
+            (identical(other.gender, gender) ||
+                const DeepCollectionEquality().equals(other.gender, gender)) &&
+            (identical(other.animalclass, animalclass) ||
+                const DeepCollectionEquality()
+                    .equals(other.animalclass, animalclass)) &&
+            (identical(other.age, age) ||
+                const DeepCollectionEquality().equals(other.age, age)) &&
+            (identical(other.tileimage, tileimage) ||
+                const DeepCollectionEquality()
+                    .equals(other.tileimage, tileimage)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.postedon, postedon) ||
+                const DeepCollectionEquality()
+                    .equals(other.postedon, postedon)) &&
+            (identical(other.addressarea, addressarea) ||
+                const DeepCollectionEquality()
+                    .equals(other.addressarea, addressarea)) &&
+            (identical(other.serviceproviderid, serviceproviderid) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceproviderid, serviceproviderid)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(petclass) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(breed) ^
+      const DeepCollectionEquality().hash(gender) ^
+      const DeepCollectionEquality().hash(animalclass) ^
+      const DeepCollectionEquality().hash(age) ^
+      const DeepCollectionEquality().hash(tileimage) ^
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(postedon) ^
+      const DeepCollectionEquality().hash(addressarea) ^
+      const DeepCollectionEquality().hash(serviceproviderid);
+
   @JsonKey(ignore: true)
-  $LimitedPackageDataCopyWith<LimitedPackageData> get copyWith;
+  @override
+  $LimitedPetDataCopyWith<LimitedPetData> get copyWith =>
+      _$LimitedPetDataCopyWithImpl<LimitedPetData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult pet(
+            @JsonKey(name: 'petclass')
+                String petclass,
+            @JsonKey(name: 'name')
+                String name,
+            @JsonKey(name: 'breed')
+                String breed,
+            @JsonKey(name: 'gender')
+                String gender,
+            @JsonKey(name: 'animalclass')
+                String animalclass,
+            @JsonKey(name: 'age')
+                int age,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult package(
+            @JsonKey(name: 'itemid') String itemid,
+            @JsonKey(name: 'desc') String desc,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice),
+    @required
+        TResult product(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'tileimage') String tileimage,
+            @JsonKey(name: 'reqqty') bool reqqty,
+            @JsonKey(name: 'isvegetarian') bool isvegetarian,
+            @JsonKey(name: 'spicetype') int spicetype,
+            @JsonKey(name: 'ispackage') bool ispackage,
+            @JsonKey(name: 'unitmeasure') String unitmeasure,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice,
+            @JsonKey(name: 'varianttype') String varianttype,
+            @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+            @JsonKey(name: 'contenttype') String contenttype),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'vehicletype')
+                String vehicletype,
+            @JsonKey(name: 'make')
+                String make,
+            @JsonKey(name: 'model')
+                String model,
+            @JsonKey(name: 'yearmade')
+                int yearmade,
+            @JsonKey(name: 'milage')
+                int milage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult realEstate(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'listingtype')
+                String listingtype,
+            @JsonKey(name: 'propertytype')
+                String propertytype,
+            @JsonKey(name: 'numbedroom')
+                int numbedroom,
+            @JsonKey(name: 'numbathroom')
+                int numbathroom,
+            @JsonKey(name: 'sharingallowed')
+                bool sharingallowed,
+            @JsonKey(name: 'sqrfootage')
+                int sqrfootage,
+            @JsonKey(name: 'floorNumber')
+                int floorNumber,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult job(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'companyname')
+                String companyname,
+            @JsonKey(name: 'companyicon')
+                String companyicon,
+            @JsonKey(name: 'salaryrange')
+                String salaryrange,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'jobtype')
+                String jobtype,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return pet(petclass, name, breed, gender, animalclass, age, tileimage,
+        price, postedon, addressarea, serviceproviderid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(
+        @JsonKey(name: 'petclass')
+            String petclass,
+        @JsonKey(name: 'name')
+            String name,
+        @JsonKey(name: 'breed')
+            String breed,
+        @JsonKey(name: 'gender')
+            String gender,
+        @JsonKey(name: 'animalclass')
+            String animalclass,
+        @JsonKey(name: 'age')
+            int age,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult package(
+        @JsonKey(name: 'itemid') String itemid,
+        @JsonKey(name: 'desc') String desc,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice),
+    TResult product(
+        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'title') String title,
+        @JsonKey(name: 'tileimage') String tileimage,
+        @JsonKey(name: 'reqqty') bool reqqty,
+        @JsonKey(name: 'isvegetarian') bool isvegetarian,
+        @JsonKey(name: 'spicetype') int spicetype,
+        @JsonKey(name: 'ispackage') bool ispackage,
+        @JsonKey(name: 'unitmeasure') String unitmeasure,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice,
+        @JsonKey(name: 'varianttype') String varianttype,
+        @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+        @JsonKey(name: 'contenttype') String contenttype),
+    TResult vehicle(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'vehicletype')
+            String vehicletype,
+        @JsonKey(name: 'make')
+            String make,
+        @JsonKey(name: 'model')
+            String model,
+        @JsonKey(name: 'yearmade')
+            int yearmade,
+        @JsonKey(name: 'milage')
+            int milage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult realEstate(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'listingtype')
+            String listingtype,
+        @JsonKey(name: 'propertytype')
+            String propertytype,
+        @JsonKey(name: 'numbedroom')
+            int numbedroom,
+        @JsonKey(name: 'numbathroom')
+            int numbathroom,
+        @JsonKey(name: 'sharingallowed')
+            bool sharingallowed,
+        @JsonKey(name: 'sqrfootage')
+            int sqrfootage,
+        @JsonKey(name: 'floorNumber')
+            int floorNumber,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult job(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'companyname')
+            String companyname,
+        @JsonKey(name: 'companyicon')
+            String companyicon,
+        @JsonKey(name: 'salaryrange')
+            String salaryrange,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'jobtype')
+            String jobtype,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pet != null) {
+      return pet(petclass, name, breed, gender, animalclass, age, tileimage,
+          price, postedon, addressarea, serviceproviderid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetData value),
+    @required TResult package(LimitedPackageData value),
+    @required TResult product(LimitedProductData value),
+    @required TResult vehicle(LimitedVehicleData value),
+    @required TResult realEstate(LimitedRealEstateData value),
+    @required TResult job(LimitedJobData value),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return pet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetData value),
+    TResult package(LimitedPackageData value),
+    TResult product(LimitedProductData value),
+    TResult vehicle(LimitedVehicleData value),
+    TResult realEstate(LimitedRealEstateData value),
+    TResult job(LimitedJobData value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pet != null) {
+      return pet(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LimitedPetDataToJson(this)..['runtimeType'] = 'pet';
+  }
+}
+
+abstract class LimitedPetData implements LimitedData {
+  const factory LimitedPetData(
+      {@JsonKey(name: 'petclass')
+          String petclass,
+      @JsonKey(name: 'name')
+          String name,
+      @JsonKey(name: 'breed')
+          String breed,
+      @JsonKey(name: 'gender')
+          String gender,
+      @JsonKey(name: 'animalclass')
+          String animalclass,
+      @JsonKey(name: 'age')
+          int age,
+      @JsonKey(name: 'tileimage')
+          String tileimage,
+      @JsonKey(name: 'price')
+          double price,
+      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+          DateTime postedon,
+      @JsonKey(name: 'addressarea')
+          Addressmodel addressarea,
+      @JsonKey(name: 'serviceproviderid')
+          String serviceproviderid}) = _$LimitedPetData;
+
+  factory LimitedPetData.fromJson(Map<String, dynamic> json) =
+      _$LimitedPetData.fromJson;
+
+  @JsonKey(name: 'petclass')
+  String get petclass;
+  @JsonKey(name: 'name')
+  String get name;
+  @JsonKey(name: 'breed')
+  String get breed;
+  @JsonKey(name: 'gender')
+  String get gender;
+  @JsonKey(name: 'animalclass')
+  String get animalclass;
+  @JsonKey(name: 'age')
+  int get age;
+  @JsonKey(name: 'tileimage')
+  String get tileimage;
+  @JsonKey(name: 'price')
+  double get price;
+  @JsonKey(
+      name: 'postedon',
+      fromJson: JsonHelper.fromJsonTimeStamp,
+      toJson: JsonHelper.toJsonTimeStamp)
+  DateTime get postedon;
+  @JsonKey(name: 'addressarea')
+  Addressmodel get addressarea;
+  @JsonKey(name: 'serviceproviderid')
+  String get serviceproviderid;
+  @JsonKey(ignore: true)
+  $LimitedPetDataCopyWith<LimitedPetData> get copyWith;
 }
 
 /// @nodoc
@@ -3063,12 +4095,14 @@ abstract class $LimitedPackageDataCopyWith<$Res> {
 
 /// @nodoc
 class _$LimitedPackageDataCopyWithImpl<$Res>
+    extends _$LimitedDataCopyWithImpl<$Res>
     implements $LimitedPackageDataCopyWith<$Res> {
-  _$LimitedPackageDataCopyWithImpl(this._value, this._then);
+  _$LimitedPackageDataCopyWithImpl(
+      LimitedPackageData _value, $Res Function(LimitedPackageData) _then)
+      : super(_value, (v) => _then(v as LimitedPackageData));
 
-  final LimitedPackageData _value;
-  // ignore: unused_field
-  final $Res Function(LimitedPackageData) _then;
+  @override
+  LimitedPackageData get _value => super._value as LimitedPackageData;
 
   @override
   $Res call({
@@ -3077,50 +4111,7 @@ class _$LimitedPackageDataCopyWithImpl<$Res>
     Object origprice = freezed,
     Object discountedprice = freezed,
   }) {
-    return _then(_value.copyWith(
-      itemid: itemid == freezed ? _value.itemid : itemid as String,
-      desc: desc == freezed ? _value.desc : desc as String,
-      origprice: origprice == freezed ? _value.origprice : origprice as double,
-      discountedprice: discountedprice == freezed
-          ? _value.discountedprice
-          : discountedprice as double,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$LimitedPackageDataCopyWith<$Res>
-    implements $LimitedPackageDataCopyWith<$Res> {
-  factory _$LimitedPackageDataCopyWith(
-          _LimitedPackageData value, $Res Function(_LimitedPackageData) then) =
-      __$LimitedPackageDataCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {@JsonKey(name: 'itemid') String itemid,
-      @JsonKey(name: 'desc') String desc,
-      @JsonKey(name: 'origprice') double origprice,
-      @JsonKey(name: 'discountedprice') double discountedprice});
-}
-
-/// @nodoc
-class __$LimitedPackageDataCopyWithImpl<$Res>
-    extends _$LimitedPackageDataCopyWithImpl<$Res>
-    implements _$LimitedPackageDataCopyWith<$Res> {
-  __$LimitedPackageDataCopyWithImpl(
-      _LimitedPackageData _value, $Res Function(_LimitedPackageData) _then)
-      : super(_value, (v) => _then(v as _LimitedPackageData));
-
-  @override
-  _LimitedPackageData get _value => super._value as _LimitedPackageData;
-
-  @override
-  $Res call({
-    Object itemid = freezed,
-    Object desc = freezed,
-    Object origprice = freezed,
-    Object discountedprice = freezed,
-  }) {
-    return _then(_LimitedPackageData(
+    return _then(LimitedPackageData(
       itemid: itemid == freezed ? _value.itemid : itemid as String,
       desc: desc == freezed ? _value.desc : desc as String,
       origprice: origprice == freezed ? _value.origprice : origprice as double,
@@ -3134,15 +4125,15 @@ class __$LimitedPackageDataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_LimitedPackageData implements _LimitedPackageData {
-  _$_LimitedPackageData(
+class _$LimitedPackageData implements LimitedPackageData {
+  const _$LimitedPackageData(
       {@JsonKey(name: 'itemid') this.itemid,
       @JsonKey(name: 'desc') this.desc,
       @JsonKey(name: 'origprice') this.origprice,
       @JsonKey(name: 'discountedprice') this.discountedprice});
 
-  factory _$_LimitedPackageData.fromJson(Map<String, dynamic> json) =>
-      _$_$_LimitedPackageDataFromJson(json);
+  factory _$LimitedPackageData.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedPackageDataFromJson(json);
 
   @override
   @JsonKey(name: 'itemid')
@@ -3159,13 +4150,13 @@ class _$_LimitedPackageData implements _LimitedPackageData {
 
   @override
   String toString() {
-    return 'LimitedPackageData(itemid: $itemid, desc: $desc, origprice: $origprice, discountedprice: $discountedprice)';
+    return 'LimitedData.package(itemid: $itemid, desc: $desc, origprice: $origprice, discountedprice: $discountedprice)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LimitedPackageData &&
+        (other is LimitedPackageData &&
             (identical(other.itemid, itemid) ||
                 const DeepCollectionEquality().equals(other.itemid, itemid)) &&
             (identical(other.desc, desc) ||
@@ -3188,125 +4179,326 @@ class _$_LimitedPackageData implements _LimitedPackageData {
 
   @JsonKey(ignore: true)
   @override
-  _$LimitedPackageDataCopyWith<_LimitedPackageData> get copyWith =>
-      __$LimitedPackageDataCopyWithImpl<_LimitedPackageData>(this, _$identity);
+  $LimitedPackageDataCopyWith<LimitedPackageData> get copyWith =>
+      _$LimitedPackageDataCopyWithImpl<LimitedPackageData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult pet(
+            @JsonKey(name: 'petclass')
+                String petclass,
+            @JsonKey(name: 'name')
+                String name,
+            @JsonKey(name: 'breed')
+                String breed,
+            @JsonKey(name: 'gender')
+                String gender,
+            @JsonKey(name: 'animalclass')
+                String animalclass,
+            @JsonKey(name: 'age')
+                int age,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult package(
+            @JsonKey(name: 'itemid') String itemid,
+            @JsonKey(name: 'desc') String desc,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice),
+    @required
+        TResult product(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'tileimage') String tileimage,
+            @JsonKey(name: 'reqqty') bool reqqty,
+            @JsonKey(name: 'isvegetarian') bool isvegetarian,
+            @JsonKey(name: 'spicetype') int spicetype,
+            @JsonKey(name: 'ispackage') bool ispackage,
+            @JsonKey(name: 'unitmeasure') String unitmeasure,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice,
+            @JsonKey(name: 'varianttype') String varianttype,
+            @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+            @JsonKey(name: 'contenttype') String contenttype),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'vehicletype')
+                String vehicletype,
+            @JsonKey(name: 'make')
+                String make,
+            @JsonKey(name: 'model')
+                String model,
+            @JsonKey(name: 'yearmade')
+                int yearmade,
+            @JsonKey(name: 'milage')
+                int milage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult realEstate(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'listingtype')
+                String listingtype,
+            @JsonKey(name: 'propertytype')
+                String propertytype,
+            @JsonKey(name: 'numbedroom')
+                int numbedroom,
+            @JsonKey(name: 'numbathroom')
+                int numbathroom,
+            @JsonKey(name: 'sharingallowed')
+                bool sharingallowed,
+            @JsonKey(name: 'sqrfootage')
+                int sqrfootage,
+            @JsonKey(name: 'floorNumber')
+                int floorNumber,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult job(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'companyname')
+                String companyname,
+            @JsonKey(name: 'companyicon')
+                String companyicon,
+            @JsonKey(name: 'salaryrange')
+                String salaryrange,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'jobtype')
+                String jobtype,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return package(itemid, desc, origprice, discountedprice);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(
+        @JsonKey(name: 'petclass')
+            String petclass,
+        @JsonKey(name: 'name')
+            String name,
+        @JsonKey(name: 'breed')
+            String breed,
+        @JsonKey(name: 'gender')
+            String gender,
+        @JsonKey(name: 'animalclass')
+            String animalclass,
+        @JsonKey(name: 'age')
+            int age,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult package(
+        @JsonKey(name: 'itemid') String itemid,
+        @JsonKey(name: 'desc') String desc,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice),
+    TResult product(
+        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'title') String title,
+        @JsonKey(name: 'tileimage') String tileimage,
+        @JsonKey(name: 'reqqty') bool reqqty,
+        @JsonKey(name: 'isvegetarian') bool isvegetarian,
+        @JsonKey(name: 'spicetype') int spicetype,
+        @JsonKey(name: 'ispackage') bool ispackage,
+        @JsonKey(name: 'unitmeasure') String unitmeasure,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice,
+        @JsonKey(name: 'varianttype') String varianttype,
+        @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+        @JsonKey(name: 'contenttype') String contenttype),
+    TResult vehicle(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'vehicletype')
+            String vehicletype,
+        @JsonKey(name: 'make')
+            String make,
+        @JsonKey(name: 'model')
+            String model,
+        @JsonKey(name: 'yearmade')
+            int yearmade,
+        @JsonKey(name: 'milage')
+            int milage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult realEstate(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'listingtype')
+            String listingtype,
+        @JsonKey(name: 'propertytype')
+            String propertytype,
+        @JsonKey(name: 'numbedroom')
+            int numbedroom,
+        @JsonKey(name: 'numbathroom')
+            int numbathroom,
+        @JsonKey(name: 'sharingallowed')
+            bool sharingallowed,
+        @JsonKey(name: 'sqrfootage')
+            int sqrfootage,
+        @JsonKey(name: 'floorNumber')
+            int floorNumber,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult job(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'companyname')
+            String companyname,
+        @JsonKey(name: 'companyicon')
+            String companyicon,
+        @JsonKey(name: 'salaryrange')
+            String salaryrange,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'jobtype')
+            String jobtype,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (package != null) {
+      return package(itemid, desc, origprice, discountedprice);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetData value),
+    @required TResult package(LimitedPackageData value),
+    @required TResult product(LimitedProductData value),
+    @required TResult vehicle(LimitedVehicleData value),
+    @required TResult realEstate(LimitedRealEstateData value),
+    @required TResult job(LimitedJobData value),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return package(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetData value),
+    TResult package(LimitedPackageData value),
+    TResult product(LimitedProductData value),
+    TResult vehicle(LimitedVehicleData value),
+    TResult realEstate(LimitedRealEstateData value),
+    TResult job(LimitedJobData value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (package != null) {
+      return package(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_LimitedPackageDataToJson(this);
+    return _$_$LimitedPackageDataToJson(this)..['runtimeType'] = 'package';
   }
 }
 
-abstract class _LimitedPackageData implements LimitedPackageData {
-  factory _LimitedPackageData(
+abstract class LimitedPackageData implements LimitedData {
+  const factory LimitedPackageData(
           {@JsonKey(name: 'itemid') String itemid,
           @JsonKey(name: 'desc') String desc,
           @JsonKey(name: 'origprice') double origprice,
           @JsonKey(name: 'discountedprice') double discountedprice}) =
-      _$_LimitedPackageData;
+      _$LimitedPackageData;
 
-  factory _LimitedPackageData.fromJson(Map<String, dynamic> json) =
-      _$_LimitedPackageData.fromJson;
+  factory LimitedPackageData.fromJson(Map<String, dynamic> json) =
+      _$LimitedPackageData.fromJson;
 
-  @override
   @JsonKey(name: 'itemid')
   String get itemid;
-  @override
   @JsonKey(name: 'desc')
   String get desc;
-  @override
-  @JsonKey(name: 'origprice')
-  double get origprice;
-  @override
-  @JsonKey(name: 'discountedprice')
-  double get discountedprice;
-  @override
-  @JsonKey(ignore: true)
-  _$LimitedPackageDataCopyWith<_LimitedPackageData> get copyWith;
-}
-
-LimitedProductData _$LimitedProductDataFromJson(Map<String, dynamic> json) {
-  return _LimitedProductData.fromJson(json);
-}
-
-/// @nodoc
-class _$LimitedProductDataTearOff {
-  const _$LimitedProductDataTearOff();
-
-// ignore: unused_element
-  _LimitedProductData call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'tileimage') String tileimage,
-      @JsonKey(name: 'reqqty') bool reqqty,
-      @JsonKey(name: 'isvegetarian') bool isvegetarian,
-      @JsonKey(name: 'spicetype') int spicetype,
-      @JsonKey(name: 'ispackage') bool ispackage,
-      @JsonKey(name: 'unitmeasure') String unitmeasure,
-      @JsonKey(name: 'origprice') double origprice,
-      @JsonKey(name: 'discountedprice') double discountedprice,
-      @JsonKey(name: 'varianttype') String varianttype,
-      @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-      @JsonKey(name: 'contenttype') String contenttype}) {
-    return _LimitedProductData(
-      id: id,
-      title: title,
-      tileimage: tileimage,
-      reqqty: reqqty,
-      isvegetarian: isvegetarian,
-      spicetype: spicetype,
-      ispackage: ispackage,
-      unitmeasure: unitmeasure,
-      origprice: origprice,
-      discountedprice: discountedprice,
-      varianttype: varianttype,
-      packdata: packdata,
-      contenttype: contenttype,
-    );
-  }
-
-// ignore: unused_element
-  LimitedProductData fromJson(Map<String, Object> json) {
-    return LimitedProductData.fromJson(json);
-  }
-}
-
-/// @nodoc
-// ignore: unused_element
-const $LimitedProductData = _$LimitedProductDataTearOff();
-
-/// @nodoc
-mixin _$LimitedProductData {
-  @JsonKey(name: 'id')
-  String get id;
-  @JsonKey(name: 'title')
-  String get title;
-  @JsonKey(name: 'tileimage')
-  String get tileimage;
-  @JsonKey(name: 'reqqty')
-  bool get reqqty;
-  @JsonKey(name: 'isvegetarian')
-  bool get isvegetarian;
-  @JsonKey(name: 'spicetype')
-  int get spicetype;
-  @JsonKey(name: 'ispackage')
-  bool get ispackage;
-  @JsonKey(name: 'unitmeasure')
-  String get unitmeasure;
   @JsonKey(name: 'origprice')
   double get origprice;
   @JsonKey(name: 'discountedprice')
   double get discountedprice;
-  @JsonKey(name: 'varianttype')
-  String get varianttype;
-  @JsonKey(name: 'packdata')
-  List<LimitedPackageData> get packdata;
-  @JsonKey(name: 'contenttype')
-  String get contenttype;
-
-  Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
-  $LimitedProductDataCopyWith<LimitedProductData> get copyWith;
+  $LimitedPackageDataCopyWith<LimitedPackageData> get copyWith;
 }
 
 /// @nodoc
@@ -3332,12 +4524,14 @@ abstract class $LimitedProductDataCopyWith<$Res> {
 
 /// @nodoc
 class _$LimitedProductDataCopyWithImpl<$Res>
+    extends _$LimitedDataCopyWithImpl<$Res>
     implements $LimitedProductDataCopyWith<$Res> {
-  _$LimitedProductDataCopyWithImpl(this._value, this._then);
+  _$LimitedProductDataCopyWithImpl(
+      LimitedProductData _value, $Res Function(LimitedProductData) _then)
+      : super(_value, (v) => _then(v as LimitedProductData));
 
-  final LimitedProductData _value;
-  // ignore: unused_field
-  final $Res Function(LimitedProductData) _then;
+  @override
+  LimitedProductData get _value => super._value as LimitedProductData;
 
   @override
   $Res call({
@@ -3355,83 +4549,7 @@ class _$LimitedProductDataCopyWithImpl<$Res>
     Object packdata = freezed,
     Object contenttype = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
-      title: title == freezed ? _value.title : title as String,
-      tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
-      reqqty: reqqty == freezed ? _value.reqqty : reqqty as bool,
-      isvegetarian:
-          isvegetarian == freezed ? _value.isvegetarian : isvegetarian as bool,
-      spicetype: spicetype == freezed ? _value.spicetype : spicetype as int,
-      ispackage: ispackage == freezed ? _value.ispackage : ispackage as bool,
-      unitmeasure:
-          unitmeasure == freezed ? _value.unitmeasure : unitmeasure as String,
-      origprice: origprice == freezed ? _value.origprice : origprice as double,
-      discountedprice: discountedprice == freezed
-          ? _value.discountedprice
-          : discountedprice as double,
-      varianttype:
-          varianttype == freezed ? _value.varianttype : varianttype as String,
-      packdata: packdata == freezed
-          ? _value.packdata
-          : packdata as List<LimitedPackageData>,
-      contenttype:
-          contenttype == freezed ? _value.contenttype : contenttype as String,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$LimitedProductDataCopyWith<$Res>
-    implements $LimitedProductDataCopyWith<$Res> {
-  factory _$LimitedProductDataCopyWith(
-          _LimitedProductData value, $Res Function(_LimitedProductData) then) =
-      __$LimitedProductDataCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'tileimage') String tileimage,
-      @JsonKey(name: 'reqqty') bool reqqty,
-      @JsonKey(name: 'isvegetarian') bool isvegetarian,
-      @JsonKey(name: 'spicetype') int spicetype,
-      @JsonKey(name: 'ispackage') bool ispackage,
-      @JsonKey(name: 'unitmeasure') String unitmeasure,
-      @JsonKey(name: 'origprice') double origprice,
-      @JsonKey(name: 'discountedprice') double discountedprice,
-      @JsonKey(name: 'varianttype') String varianttype,
-      @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-      @JsonKey(name: 'contenttype') String contenttype});
-}
-
-/// @nodoc
-class __$LimitedProductDataCopyWithImpl<$Res>
-    extends _$LimitedProductDataCopyWithImpl<$Res>
-    implements _$LimitedProductDataCopyWith<$Res> {
-  __$LimitedProductDataCopyWithImpl(
-      _LimitedProductData _value, $Res Function(_LimitedProductData) _then)
-      : super(_value, (v) => _then(v as _LimitedProductData));
-
-  @override
-  _LimitedProductData get _value => super._value as _LimitedProductData;
-
-  @override
-  $Res call({
-    Object id = freezed,
-    Object title = freezed,
-    Object tileimage = freezed,
-    Object reqqty = freezed,
-    Object isvegetarian = freezed,
-    Object spicetype = freezed,
-    Object ispackage = freezed,
-    Object unitmeasure = freezed,
-    Object origprice = freezed,
-    Object discountedprice = freezed,
-    Object varianttype = freezed,
-    Object packdata = freezed,
-    Object contenttype = freezed,
-  }) {
-    return _then(_LimitedProductData(
+    return _then(LimitedProductData(
       id: id == freezed ? _value.id : id as String,
       title: title == freezed ? _value.title : title as String,
       tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
@@ -3460,8 +4578,8 @@ class __$LimitedProductDataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_LimitedProductData implements _LimitedProductData {
-  _$_LimitedProductData(
+class _$LimitedProductData implements LimitedProductData {
+  const _$LimitedProductData(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'tileimage') this.tileimage,
@@ -3476,8 +4594,8 @@ class _$_LimitedProductData implements _LimitedProductData {
       @JsonKey(name: 'packdata') this.packdata,
       @JsonKey(name: 'contenttype') this.contenttype});
 
-  factory _$_LimitedProductData.fromJson(Map<String, dynamic> json) =>
-      _$_$_LimitedProductDataFromJson(json);
+  factory _$LimitedProductData.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedProductDataFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -3521,13 +4639,13 @@ class _$_LimitedProductData implements _LimitedProductData {
 
   @override
   String toString() {
-    return 'LimitedProductData(id: $id, title: $title, tileimage: $tileimage, reqqty: $reqqty, isvegetarian: $isvegetarian, spicetype: $spicetype, ispackage: $ispackage, unitmeasure: $unitmeasure, origprice: $origprice, discountedprice: $discountedprice, varianttype: $varianttype, packdata: $packdata, contenttype: $contenttype)';
+    return 'LimitedData.product(id: $id, title: $title, tileimage: $tileimage, reqqty: $reqqty, isvegetarian: $isvegetarian, spicetype: $spicetype, ispackage: $ispackage, unitmeasure: $unitmeasure, origprice: $origprice, discountedprice: $discountedprice, varianttype: $varianttype, packdata: $packdata, contenttype: $contenttype)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LimitedProductData &&
+        (other is LimitedProductData &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.title, title) ||
@@ -3585,638 +4703,385 @@ class _$_LimitedProductData implements _LimitedProductData {
 
   @JsonKey(ignore: true)
   @override
-  _$LimitedProductDataCopyWith<_LimitedProductData> get copyWith =>
-      __$LimitedProductDataCopyWithImpl<_LimitedProductData>(this, _$identity);
+  $LimitedProductDataCopyWith<LimitedProductData> get copyWith =>
+      _$LimitedProductDataCopyWithImpl<LimitedProductData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult pet(
+            @JsonKey(name: 'petclass')
+                String petclass,
+            @JsonKey(name: 'name')
+                String name,
+            @JsonKey(name: 'breed')
+                String breed,
+            @JsonKey(name: 'gender')
+                String gender,
+            @JsonKey(name: 'animalclass')
+                String animalclass,
+            @JsonKey(name: 'age')
+                int age,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult package(
+            @JsonKey(name: 'itemid') String itemid,
+            @JsonKey(name: 'desc') String desc,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice),
+    @required
+        TResult product(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'tileimage') String tileimage,
+            @JsonKey(name: 'reqqty') bool reqqty,
+            @JsonKey(name: 'isvegetarian') bool isvegetarian,
+            @JsonKey(name: 'spicetype') int spicetype,
+            @JsonKey(name: 'ispackage') bool ispackage,
+            @JsonKey(name: 'unitmeasure') String unitmeasure,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice,
+            @JsonKey(name: 'varianttype') String varianttype,
+            @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+            @JsonKey(name: 'contenttype') String contenttype),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'vehicletype')
+                String vehicletype,
+            @JsonKey(name: 'make')
+                String make,
+            @JsonKey(name: 'model')
+                String model,
+            @JsonKey(name: 'yearmade')
+                int yearmade,
+            @JsonKey(name: 'milage')
+                int milage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult realEstate(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'listingtype')
+                String listingtype,
+            @JsonKey(name: 'propertytype')
+                String propertytype,
+            @JsonKey(name: 'numbedroom')
+                int numbedroom,
+            @JsonKey(name: 'numbathroom')
+                int numbathroom,
+            @JsonKey(name: 'sharingallowed')
+                bool sharingallowed,
+            @JsonKey(name: 'sqrfootage')
+                int sqrfootage,
+            @JsonKey(name: 'floorNumber')
+                int floorNumber,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult job(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'companyname')
+                String companyname,
+            @JsonKey(name: 'companyicon')
+                String companyicon,
+            @JsonKey(name: 'salaryrange')
+                String salaryrange,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'jobtype')
+                String jobtype,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return product(
+        id,
+        title,
+        tileimage,
+        reqqty,
+        isvegetarian,
+        spicetype,
+        ispackage,
+        unitmeasure,
+        origprice,
+        discountedprice,
+        varianttype,
+        packdata,
+        contenttype);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(
+        @JsonKey(name: 'petclass')
+            String petclass,
+        @JsonKey(name: 'name')
+            String name,
+        @JsonKey(name: 'breed')
+            String breed,
+        @JsonKey(name: 'gender')
+            String gender,
+        @JsonKey(name: 'animalclass')
+            String animalclass,
+        @JsonKey(name: 'age')
+            int age,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult package(
+        @JsonKey(name: 'itemid') String itemid,
+        @JsonKey(name: 'desc') String desc,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice),
+    TResult product(
+        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'title') String title,
+        @JsonKey(name: 'tileimage') String tileimage,
+        @JsonKey(name: 'reqqty') bool reqqty,
+        @JsonKey(name: 'isvegetarian') bool isvegetarian,
+        @JsonKey(name: 'spicetype') int spicetype,
+        @JsonKey(name: 'ispackage') bool ispackage,
+        @JsonKey(name: 'unitmeasure') String unitmeasure,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice,
+        @JsonKey(name: 'varianttype') String varianttype,
+        @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+        @JsonKey(name: 'contenttype') String contenttype),
+    TResult vehicle(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'vehicletype')
+            String vehicletype,
+        @JsonKey(name: 'make')
+            String make,
+        @JsonKey(name: 'model')
+            String model,
+        @JsonKey(name: 'yearmade')
+            int yearmade,
+        @JsonKey(name: 'milage')
+            int milage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult realEstate(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'listingtype')
+            String listingtype,
+        @JsonKey(name: 'propertytype')
+            String propertytype,
+        @JsonKey(name: 'numbedroom')
+            int numbedroom,
+        @JsonKey(name: 'numbathroom')
+            int numbathroom,
+        @JsonKey(name: 'sharingallowed')
+            bool sharingallowed,
+        @JsonKey(name: 'sqrfootage')
+            int sqrfootage,
+        @JsonKey(name: 'floorNumber')
+            int floorNumber,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult job(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'companyname')
+            String companyname,
+        @JsonKey(name: 'companyicon')
+            String companyicon,
+        @JsonKey(name: 'salaryrange')
+            String salaryrange,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'jobtype')
+            String jobtype,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (product != null) {
+      return product(
+          id,
+          title,
+          tileimage,
+          reqqty,
+          isvegetarian,
+          spicetype,
+          ispackage,
+          unitmeasure,
+          origprice,
+          discountedprice,
+          varianttype,
+          packdata,
+          contenttype);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetData value),
+    @required TResult package(LimitedPackageData value),
+    @required TResult product(LimitedProductData value),
+    @required TResult vehicle(LimitedVehicleData value),
+    @required TResult realEstate(LimitedRealEstateData value),
+    @required TResult job(LimitedJobData value),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return product(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetData value),
+    TResult package(LimitedPackageData value),
+    TResult product(LimitedProductData value),
+    TResult vehicle(LimitedVehicleData value),
+    TResult realEstate(LimitedRealEstateData value),
+    TResult job(LimitedJobData value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (product != null) {
+      return product(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_LimitedProductDataToJson(this);
+    return _$_$LimitedProductDataToJson(this)..['runtimeType'] = 'product';
   }
 }
 
-abstract class _LimitedProductData implements LimitedProductData {
-  factory _LimitedProductData(
-          {@JsonKey(name: 'id') String id,
-          @JsonKey(name: 'title') String title,
-          @JsonKey(name: 'tileimage') String tileimage,
-          @JsonKey(name: 'reqqty') bool reqqty,
-          @JsonKey(name: 'isvegetarian') bool isvegetarian,
-          @JsonKey(name: 'spicetype') int spicetype,
-          @JsonKey(name: 'ispackage') bool ispackage,
-          @JsonKey(name: 'unitmeasure') String unitmeasure,
-          @JsonKey(name: 'origprice') double origprice,
-          @JsonKey(name: 'discountedprice') double discountedprice,
-          @JsonKey(name: 'varianttype') String varianttype,
-          @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-          @JsonKey(name: 'contenttype') String contenttype}) =
-      _$_LimitedProductData;
+abstract class LimitedProductData implements LimitedData {
+  const factory LimitedProductData(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'tileimage') String tileimage,
+      @JsonKey(name: 'reqqty') bool reqqty,
+      @JsonKey(name: 'isvegetarian') bool isvegetarian,
+      @JsonKey(name: 'spicetype') int spicetype,
+      @JsonKey(name: 'ispackage') bool ispackage,
+      @JsonKey(name: 'unitmeasure') String unitmeasure,
+      @JsonKey(name: 'origprice') double origprice,
+      @JsonKey(name: 'discountedprice') double discountedprice,
+      @JsonKey(name: 'varianttype') String varianttype,
+      @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+      @JsonKey(name: 'contenttype') String contenttype}) = _$LimitedProductData;
 
-  factory _LimitedProductData.fromJson(Map<String, dynamic> json) =
-      _$_LimitedProductData.fromJson;
+  factory LimitedProductData.fromJson(Map<String, dynamic> json) =
+      _$LimitedProductData.fromJson;
 
-  @override
   @JsonKey(name: 'id')
   String get id;
-  @override
   @JsonKey(name: 'title')
   String get title;
-  @override
   @JsonKey(name: 'tileimage')
   String get tileimage;
-  @override
   @JsonKey(name: 'reqqty')
   bool get reqqty;
-  @override
   @JsonKey(name: 'isvegetarian')
   bool get isvegetarian;
-  @override
   @JsonKey(name: 'spicetype')
   int get spicetype;
-  @override
   @JsonKey(name: 'ispackage')
   bool get ispackage;
-  @override
   @JsonKey(name: 'unitmeasure')
   String get unitmeasure;
-  @override
   @JsonKey(name: 'origprice')
   double get origprice;
-  @override
   @JsonKey(name: 'discountedprice')
   double get discountedprice;
-  @override
   @JsonKey(name: 'varianttype')
   String get varianttype;
-  @override
   @JsonKey(name: 'packdata')
   List<LimitedPackageData> get packdata;
-  @override
   @JsonKey(name: 'contenttype')
   String get contenttype;
-  @override
   @JsonKey(ignore: true)
-  _$LimitedProductDataCopyWith<_LimitedProductData> get copyWith;
-}
-
-LimitedPetModel _$LimitedPetModelFromJson(Map<String, dynamic> json) {
-  return _LimitedPetModel.fromJson(json);
+  $LimitedProductDataCopyWith<LimitedProductData> get copyWith;
 }
 
 /// @nodoc
-class _$LimitedPetModelTearOff {
-  const _$LimitedPetModelTearOff();
-
-// ignore: unused_element
-  _LimitedPetModel call(
-      {@JsonKey(name: 'petclass')
-          String petclass,
-      @JsonKey(name: 'name')
-          String name,
-      @JsonKey(name: 'breed')
-          String breed,
-      @JsonKey(name: 'gender')
-          String gender,
-      @JsonKey(name: 'animalclass')
-          String animalclass,
-      @JsonKey(name: 'age')
-          int age,
-      @JsonKey(name: 'tileimage')
-          String tileimage,
-      @JsonKey(name: 'price')
-          double price,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon,
-      @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
-      @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) {
-    return _LimitedPetModel(
-      petclass: petclass,
-      name: name,
-      breed: breed,
-      gender: gender,
-      animalclass: animalclass,
-      age: age,
-      tileimage: tileimage,
-      price: price,
-      postedon: postedon,
-      addressarea: addressarea,
-      serviceproviderid: serviceproviderid,
-    );
-  }
-
-// ignore: unused_element
-  LimitedPetModel fromJson(Map<String, Object> json) {
-    return LimitedPetModel.fromJson(json);
-  }
-}
-
-/// @nodoc
-// ignore: unused_element
-const $LimitedPetModel = _$LimitedPetModelTearOff();
-
-/// @nodoc
-mixin _$LimitedPetModel {
-  @JsonKey(name: 'petclass')
-  String get petclass;
-  @JsonKey(name: 'name')
-  String get name;
-  @JsonKey(name: 'breed')
-  String get breed;
-  @JsonKey(name: 'gender')
-  String get gender;
-  @JsonKey(name: 'animalclass')
-  String get animalclass;
-  @JsonKey(name: 'age')
-  int get age;
-  @JsonKey(name: 'tileimage')
-  String get tileimage;
-  @JsonKey(name: 'price')
-  double get price;
-  @JsonKey(
-      name: 'postedon',
-      fromJson: JsonHelper.fromJsonTimeStamp,
-      toJson: JsonHelper.toJsonTimeStamp)
-  DateTime get postedon;
-  @JsonKey(name: 'addressarea')
-  addressmodel get addressarea;
-  @JsonKey(name: 'serviceproviderid')
-  String get serviceproviderid;
-
-  Map<String, dynamic> toJson();
-  @JsonKey(ignore: true)
-  $LimitedPetModelCopyWith<LimitedPetModel> get copyWith;
-}
-
-/// @nodoc
-abstract class $LimitedPetModelCopyWith<$Res> {
-  factory $LimitedPetModelCopyWith(
-          LimitedPetModel value, $Res Function(LimitedPetModel) then) =
-      _$LimitedPetModelCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(name: 'petclass')
-          String petclass,
-      @JsonKey(name: 'name')
-          String name,
-      @JsonKey(name: 'breed')
-          String breed,
-      @JsonKey(name: 'gender')
-          String gender,
-      @JsonKey(name: 'animalclass')
-          String animalclass,
-      @JsonKey(name: 'age')
-          int age,
-      @JsonKey(name: 'tileimage')
-          String tileimage,
-      @JsonKey(name: 'price')
-          double price,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon,
-      @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
-      @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid});
-
-  $addressmodelCopyWith<$Res> get addressarea;
-}
-
-/// @nodoc
-class _$LimitedPetModelCopyWithImpl<$Res>
-    implements $LimitedPetModelCopyWith<$Res> {
-  _$LimitedPetModelCopyWithImpl(this._value, this._then);
-
-  final LimitedPetModel _value;
-  // ignore: unused_field
-  final $Res Function(LimitedPetModel) _then;
-
-  @override
-  $Res call({
-    Object petclass = freezed,
-    Object name = freezed,
-    Object breed = freezed,
-    Object gender = freezed,
-    Object animalclass = freezed,
-    Object age = freezed,
-    Object tileimage = freezed,
-    Object price = freezed,
-    Object postedon = freezed,
-    Object addressarea = freezed,
-    Object serviceproviderid = freezed,
-  }) {
-    return _then(_value.copyWith(
-      petclass: petclass == freezed ? _value.petclass : petclass as String,
-      name: name == freezed ? _value.name : name as String,
-      breed: breed == freezed ? _value.breed : breed as String,
-      gender: gender == freezed ? _value.gender : gender as String,
-      animalclass:
-          animalclass == freezed ? _value.animalclass : animalclass as String,
-      age: age == freezed ? _value.age : age as int,
-      tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
-      price: price == freezed ? _value.price : price as double,
-      postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
-      addressarea: addressarea == freezed
-          ? _value.addressarea
-          : addressarea as addressmodel,
-      serviceproviderid: serviceproviderid == freezed
-          ? _value.serviceproviderid
-          : serviceproviderid as String,
-    ));
-  }
-
-  @override
-  $addressmodelCopyWith<$Res> get addressarea {
-    if (_value.addressarea == null) {
-      return null;
-    }
-    return $addressmodelCopyWith<$Res>(_value.addressarea, (value) {
-      return _then(_value.copyWith(addressarea: value));
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$LimitedPetModelCopyWith<$Res>
-    implements $LimitedPetModelCopyWith<$Res> {
-  factory _$LimitedPetModelCopyWith(
-          _LimitedPetModel value, $Res Function(_LimitedPetModel) then) =
-      __$LimitedPetModelCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {@JsonKey(name: 'petclass')
-          String petclass,
-      @JsonKey(name: 'name')
-          String name,
-      @JsonKey(name: 'breed')
-          String breed,
-      @JsonKey(name: 'gender')
-          String gender,
-      @JsonKey(name: 'animalclass')
-          String animalclass,
-      @JsonKey(name: 'age')
-          int age,
-      @JsonKey(name: 'tileimage')
-          String tileimage,
-      @JsonKey(name: 'price')
-          double price,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon,
-      @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
-      @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid});
-
-  @override
-  $addressmodelCopyWith<$Res> get addressarea;
-}
-
-/// @nodoc
-class __$LimitedPetModelCopyWithImpl<$Res>
-    extends _$LimitedPetModelCopyWithImpl<$Res>
-    implements _$LimitedPetModelCopyWith<$Res> {
-  __$LimitedPetModelCopyWithImpl(
-      _LimitedPetModel _value, $Res Function(_LimitedPetModel) _then)
-      : super(_value, (v) => _then(v as _LimitedPetModel));
-
-  @override
-  _LimitedPetModel get _value => super._value as _LimitedPetModel;
-
-  @override
-  $Res call({
-    Object petclass = freezed,
-    Object name = freezed,
-    Object breed = freezed,
-    Object gender = freezed,
-    Object animalclass = freezed,
-    Object age = freezed,
-    Object tileimage = freezed,
-    Object price = freezed,
-    Object postedon = freezed,
-    Object addressarea = freezed,
-    Object serviceproviderid = freezed,
-  }) {
-    return _then(_LimitedPetModel(
-      petclass: petclass == freezed ? _value.petclass : petclass as String,
-      name: name == freezed ? _value.name : name as String,
-      breed: breed == freezed ? _value.breed : breed as String,
-      gender: gender == freezed ? _value.gender : gender as String,
-      animalclass:
-          animalclass == freezed ? _value.animalclass : animalclass as String,
-      age: age == freezed ? _value.age : age as int,
-      tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
-      price: price == freezed ? _value.price : price as double,
-      postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
-      addressarea: addressarea == freezed
-          ? _value.addressarea
-          : addressarea as addressmodel,
-      serviceproviderid: serviceproviderid == freezed
-          ? _value.serviceproviderid
-          : serviceproviderid as String,
-    ));
-  }
-}
-
-@JsonSerializable()
-
-/// @nodoc
-class _$_LimitedPetModel implements _LimitedPetModel {
-  _$_LimitedPetModel(
-      {@JsonKey(name: 'petclass')
-          this.petclass,
-      @JsonKey(name: 'name')
-          this.name,
-      @JsonKey(name: 'breed')
-          this.breed,
-      @JsonKey(name: 'gender')
-          this.gender,
-      @JsonKey(name: 'animalclass')
-          this.animalclass,
-      @JsonKey(name: 'age')
-          this.age,
-      @JsonKey(name: 'tileimage')
-          this.tileimage,
-      @JsonKey(name: 'price')
-          this.price,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          this.postedon,
-      @JsonKey(name: 'addressarea')
-          this.addressarea,
-      @JsonKey(name: 'serviceproviderid')
-          this.serviceproviderid});
-
-  factory _$_LimitedPetModel.fromJson(Map<String, dynamic> json) =>
-      _$_$_LimitedPetModelFromJson(json);
-
-  @override
-  @JsonKey(name: 'petclass')
-  final String petclass;
-  @override
-  @JsonKey(name: 'name')
-  final String name;
-  @override
-  @JsonKey(name: 'breed')
-  final String breed;
-  @override
-  @JsonKey(name: 'gender')
-  final String gender;
-  @override
-  @JsonKey(name: 'animalclass')
-  final String animalclass;
-  @override
-  @JsonKey(name: 'age')
-  final int age;
-  @override
-  @JsonKey(name: 'tileimage')
-  final String tileimage;
-  @override
-  @JsonKey(name: 'price')
-  final double price;
-  @override
-  @JsonKey(
-      name: 'postedon',
-      fromJson: JsonHelper.fromJsonTimeStamp,
-      toJson: JsonHelper.toJsonTimeStamp)
-  final DateTime postedon;
-  @override
-  @JsonKey(name: 'addressarea')
-  final addressmodel addressarea;
-  @override
-  @JsonKey(name: 'serviceproviderid')
-  final String serviceproviderid;
-
-  @override
-  String toString() {
-    return 'LimitedPetModel(petclass: $petclass, name: $name, breed: $breed, gender: $gender, animalclass: $animalclass, age: $age, tileimage: $tileimage, price: $price, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _LimitedPetModel &&
-            (identical(other.petclass, petclass) ||
-                const DeepCollectionEquality()
-                    .equals(other.petclass, petclass)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.breed, breed) ||
-                const DeepCollectionEquality().equals(other.breed, breed)) &&
-            (identical(other.gender, gender) ||
-                const DeepCollectionEquality().equals(other.gender, gender)) &&
-            (identical(other.animalclass, animalclass) ||
-                const DeepCollectionEquality()
-                    .equals(other.animalclass, animalclass)) &&
-            (identical(other.age, age) ||
-                const DeepCollectionEquality().equals(other.age, age)) &&
-            (identical(other.tileimage, tileimage) ||
-                const DeepCollectionEquality()
-                    .equals(other.tileimage, tileimage)) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.postedon, postedon) ||
-                const DeepCollectionEquality()
-                    .equals(other.postedon, postedon)) &&
-            (identical(other.addressarea, addressarea) ||
-                const DeepCollectionEquality()
-                    .equals(other.addressarea, addressarea)) &&
-            (identical(other.serviceproviderid, serviceproviderid) ||
-                const DeepCollectionEquality()
-                    .equals(other.serviceproviderid, serviceproviderid)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(petclass) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(breed) ^
-      const DeepCollectionEquality().hash(gender) ^
-      const DeepCollectionEquality().hash(animalclass) ^
-      const DeepCollectionEquality().hash(age) ^
-      const DeepCollectionEquality().hash(tileimage) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(postedon) ^
-      const DeepCollectionEquality().hash(addressarea) ^
-      const DeepCollectionEquality().hash(serviceproviderid);
-
-  @JsonKey(ignore: true)
-  @override
-  _$LimitedPetModelCopyWith<_LimitedPetModel> get copyWith =>
-      __$LimitedPetModelCopyWithImpl<_LimitedPetModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_LimitedPetModelToJson(this);
-  }
-}
-
-abstract class _LimitedPetModel implements LimitedPetModel {
-  factory _LimitedPetModel(
-      {@JsonKey(name: 'petclass')
-          String petclass,
-      @JsonKey(name: 'name')
-          String name,
-      @JsonKey(name: 'breed')
-          String breed,
-      @JsonKey(name: 'gender')
-          String gender,
-      @JsonKey(name: 'animalclass')
-          String animalclass,
-      @JsonKey(name: 'age')
-          int age,
-      @JsonKey(name: 'tileimage')
-          String tileimage,
-      @JsonKey(name: 'price')
-          double price,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon,
-      @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
-      @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) = _$_LimitedPetModel;
-
-  factory _LimitedPetModel.fromJson(Map<String, dynamic> json) =
-      _$_LimitedPetModel.fromJson;
-
-  @override
-  @JsonKey(name: 'petclass')
-  String get petclass;
-  @override
-  @JsonKey(name: 'name')
-  String get name;
-  @override
-  @JsonKey(name: 'breed')
-  String get breed;
-  @override
-  @JsonKey(name: 'gender')
-  String get gender;
-  @override
-  @JsonKey(name: 'animalclass')
-  String get animalclass;
-  @override
-  @JsonKey(name: 'age')
-  int get age;
-  @override
-  @JsonKey(name: 'tileimage')
-  String get tileimage;
-  @override
-  @JsonKey(name: 'price')
-  double get price;
-  @override
-  @JsonKey(
-      name: 'postedon',
-      fromJson: JsonHelper.fromJsonTimeStamp,
-      toJson: JsonHelper.toJsonTimeStamp)
-  DateTime get postedon;
-  @override
-  @JsonKey(name: 'addressarea')
-  addressmodel get addressarea;
-  @override
-  @JsonKey(name: 'serviceproviderid')
-  String get serviceproviderid;
-  @override
-  @JsonKey(ignore: true)
-  _$LimitedPetModelCopyWith<_LimitedPetModel> get copyWith;
-}
-
-LimitedVehicleModel _$LimitedVehicleModelFromJson(Map<String, dynamic> json) {
-  return _LimitedVehicleModel.fromJson(json);
-}
-
-/// @nodoc
-class _$LimitedVehicleModelTearOff {
-  const _$LimitedVehicleModelTearOff();
-
-// ignore: unused_element
-  _LimitedVehicleModel call(
-      {@JsonKey(name: 'productid')
-          String productid,
-      @JsonKey(name: 'title')
-          String title,
-      @JsonKey(name: 'vehicletype')
-          String vehicletype,
-      @JsonKey(name: 'make')
-          String make,
-      @JsonKey(name: 'model')
-          String model,
-      @JsonKey(name: 'yearmade')
-          int yearmade,
-      @JsonKey(name: 'milage')
-          int milage,
-      @JsonKey(name: 'price')
-          double price,
-      @JsonKey(name: 'tileimage')
-          String tileimage,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon,
-      @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
-      @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) {
-    return _LimitedVehicleModel(
-      productid: productid,
-      title: title,
-      vehicletype: vehicletype,
-      make: make,
-      model: model,
-      yearmade: yearmade,
-      milage: milage,
-      price: price,
-      tileimage: tileimage,
-      postedon: postedon,
-      addressarea: addressarea,
-      serviceproviderid: serviceproviderid,
-    );
-  }
-
-// ignore: unused_element
-  LimitedVehicleModel fromJson(Map<String, Object> json) {
-    return LimitedVehicleModel.fromJson(json);
-  }
-}
-
-/// @nodoc
-// ignore: unused_element
-const $LimitedVehicleModel = _$LimitedVehicleModelTearOff();
-
-/// @nodoc
-mixin _$LimitedVehicleModel {
-  @JsonKey(name: 'productid')
-  String get productid;
-  @JsonKey(name: 'title')
-  String get title;
-  @JsonKey(name: 'vehicletype')
-  String get vehicletype;
-  @JsonKey(name: 'make')
-  String get make;
-  @JsonKey(name: 'model')
-  String get model;
-  @JsonKey(name: 'yearmade')
-  int get yearmade;
-  @JsonKey(name: 'milage')
-  int get milage;
-  @JsonKey(name: 'price')
-  double get price;
-  @JsonKey(name: 'tileimage')
-  String get tileimage;
-  @JsonKey(
-      name: 'postedon',
-      fromJson: JsonHelper.fromJsonTimeStamp,
-      toJson: JsonHelper.toJsonTimeStamp)
-  DateTime get postedon;
-  @JsonKey(name: 'addressarea')
-  addressmodel get addressarea;
-  @JsonKey(name: 'serviceproviderid')
-  String get serviceproviderid;
-
-  Map<String, dynamic> toJson();
-  @JsonKey(ignore: true)
-  $LimitedVehicleModelCopyWith<LimitedVehicleModel> get copyWith;
-}
-
-/// @nodoc
-abstract class $LimitedVehicleModelCopyWith<$Res> {
-  factory $LimitedVehicleModelCopyWith(
-          LimitedVehicleModel value, $Res Function(LimitedVehicleModel) then) =
-      _$LimitedVehicleModelCopyWithImpl<$Res>;
+abstract class $LimitedVehicleDataCopyWith<$Res> {
+  factory $LimitedVehicleDataCopyWith(
+          LimitedVehicleData value, $Res Function(LimitedVehicleData) then) =
+      _$LimitedVehicleDataCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'productid')
           String productid,
@@ -4239,21 +5104,23 @@ abstract class $LimitedVehicleModelCopyWith<$Res> {
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
+          Addressmodel addressarea,
       @JsonKey(name: 'serviceproviderid')
           String serviceproviderid});
 
-  $addressmodelCopyWith<$Res> get addressarea;
+  $AddressmodelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
-class _$LimitedVehicleModelCopyWithImpl<$Res>
-    implements $LimitedVehicleModelCopyWith<$Res> {
-  _$LimitedVehicleModelCopyWithImpl(this._value, this._then);
+class _$LimitedVehicleDataCopyWithImpl<$Res>
+    extends _$LimitedDataCopyWithImpl<$Res>
+    implements $LimitedVehicleDataCopyWith<$Res> {
+  _$LimitedVehicleDataCopyWithImpl(
+      LimitedVehicleData _value, $Res Function(LimitedVehicleData) _then)
+      : super(_value, (v) => _then(v as LimitedVehicleData));
 
-  final LimitedVehicleModel _value;
-  // ignore: unused_field
-  final $Res Function(LimitedVehicleModel) _then;
+  @override
+  LimitedVehicleData get _value => super._value as LimitedVehicleData;
 
   @override
   $Res call({
@@ -4270,7 +5137,7 @@ class _$LimitedVehicleModelCopyWithImpl<$Res>
     Object addressarea = freezed,
     Object serviceproviderid = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(LimitedVehicleData(
       productid: productid == freezed ? _value.productid : productid as String,
       title: title == freezed ? _value.title : title as String,
       vehicletype:
@@ -4284,7 +5151,7 @@ class _$LimitedVehicleModelCopyWithImpl<$Res>
       postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
       addressarea: addressarea == freezed
           ? _value.addressarea
-          : addressarea as addressmodel,
+          : addressarea as Addressmodel,
       serviceproviderid: serviceproviderid == freezed
           ? _value.serviceproviderid
           : serviceproviderid as String,
@@ -4292,106 +5159,21 @@ class _$LimitedVehicleModelCopyWithImpl<$Res>
   }
 
   @override
-  $addressmodelCopyWith<$Res> get addressarea {
+  $AddressmodelCopyWith<$Res> get addressarea {
     if (_value.addressarea == null) {
       return null;
     }
-    return $addressmodelCopyWith<$Res>(_value.addressarea, (value) {
+    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
       return _then(_value.copyWith(addressarea: value));
     });
-  }
-}
-
-/// @nodoc
-abstract class _$LimitedVehicleModelCopyWith<$Res>
-    implements $LimitedVehicleModelCopyWith<$Res> {
-  factory _$LimitedVehicleModelCopyWith(_LimitedVehicleModel value,
-          $Res Function(_LimitedVehicleModel) then) =
-      __$LimitedVehicleModelCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {@JsonKey(name: 'productid')
-          String productid,
-      @JsonKey(name: 'title')
-          String title,
-      @JsonKey(name: 'vehicletype')
-          String vehicletype,
-      @JsonKey(name: 'make')
-          String make,
-      @JsonKey(name: 'model')
-          String model,
-      @JsonKey(name: 'yearmade')
-          int yearmade,
-      @JsonKey(name: 'milage')
-          int milage,
-      @JsonKey(name: 'price')
-          double price,
-      @JsonKey(name: 'tileimage')
-          String tileimage,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon,
-      @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
-      @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid});
-
-  @override
-  $addressmodelCopyWith<$Res> get addressarea;
-}
-
-/// @nodoc
-class __$LimitedVehicleModelCopyWithImpl<$Res>
-    extends _$LimitedVehicleModelCopyWithImpl<$Res>
-    implements _$LimitedVehicleModelCopyWith<$Res> {
-  __$LimitedVehicleModelCopyWithImpl(
-      _LimitedVehicleModel _value, $Res Function(_LimitedVehicleModel) _then)
-      : super(_value, (v) => _then(v as _LimitedVehicleModel));
-
-  @override
-  _LimitedVehicleModel get _value => super._value as _LimitedVehicleModel;
-
-  @override
-  $Res call({
-    Object productid = freezed,
-    Object title = freezed,
-    Object vehicletype = freezed,
-    Object make = freezed,
-    Object model = freezed,
-    Object yearmade = freezed,
-    Object milage = freezed,
-    Object price = freezed,
-    Object tileimage = freezed,
-    Object postedon = freezed,
-    Object addressarea = freezed,
-    Object serviceproviderid = freezed,
-  }) {
-    return _then(_LimitedVehicleModel(
-      productid: productid == freezed ? _value.productid : productid as String,
-      title: title == freezed ? _value.title : title as String,
-      vehicletype:
-          vehicletype == freezed ? _value.vehicletype : vehicletype as String,
-      make: make == freezed ? _value.make : make as String,
-      model: model == freezed ? _value.model : model as String,
-      yearmade: yearmade == freezed ? _value.yearmade : yearmade as int,
-      milage: milage == freezed ? _value.milage : milage as int,
-      price: price == freezed ? _value.price : price as double,
-      tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
-      postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
-      addressarea: addressarea == freezed
-          ? _value.addressarea
-          : addressarea as addressmodel,
-      serviceproviderid: serviceproviderid == freezed
-          ? _value.serviceproviderid
-          : serviceproviderid as String,
-    ));
   }
 }
 
 @JsonSerializable()
 
 /// @nodoc
-class _$_LimitedVehicleModel implements _LimitedVehicleModel {
-  _$_LimitedVehicleModel(
+class _$LimitedVehicleData implements LimitedVehicleData {
+  const _$LimitedVehicleData(
       {@JsonKey(name: 'productid')
           this.productid,
       @JsonKey(name: 'title')
@@ -4417,8 +5199,8 @@ class _$_LimitedVehicleModel implements _LimitedVehicleModel {
       @JsonKey(name: 'serviceproviderid')
           this.serviceproviderid});
 
-  factory _$_LimitedVehicleModel.fromJson(Map<String, dynamic> json) =>
-      _$_$_LimitedVehicleModelFromJson(json);
+  factory _$LimitedVehicleData.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedVehicleDataFromJson(json);
 
   @override
   @JsonKey(name: 'productid')
@@ -4455,20 +5237,20 @@ class _$_LimitedVehicleModel implements _LimitedVehicleModel {
   final DateTime postedon;
   @override
   @JsonKey(name: 'addressarea')
-  final addressmodel addressarea;
+  final Addressmodel addressarea;
   @override
   @JsonKey(name: 'serviceproviderid')
   final String serviceproviderid;
 
   @override
   String toString() {
-    return 'LimitedVehicleModel(productid: $productid, title: $title, vehicletype: $vehicletype, make: $make, model: $model, yearmade: $yearmade, milage: $milage, price: $price, tileimage: $tileimage, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid)';
+    return 'LimitedData.vehicle(productid: $productid, title: $title, vehicletype: $vehicletype, make: $make, model: $model, yearmade: $yearmade, milage: $milage, price: $price, tileimage: $tileimage, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LimitedVehicleModel &&
+        (other is LimitedVehicleData &&
             (identical(other.productid, productid) ||
                 const DeepCollectionEquality()
                     .equals(other.productid, productid)) &&
@@ -4520,18 +5302,309 @@ class _$_LimitedVehicleModel implements _LimitedVehicleModel {
 
   @JsonKey(ignore: true)
   @override
-  _$LimitedVehicleModelCopyWith<_LimitedVehicleModel> get copyWith =>
-      __$LimitedVehicleModelCopyWithImpl<_LimitedVehicleModel>(
-          this, _$identity);
+  $LimitedVehicleDataCopyWith<LimitedVehicleData> get copyWith =>
+      _$LimitedVehicleDataCopyWithImpl<LimitedVehicleData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult pet(
+            @JsonKey(name: 'petclass')
+                String petclass,
+            @JsonKey(name: 'name')
+                String name,
+            @JsonKey(name: 'breed')
+                String breed,
+            @JsonKey(name: 'gender')
+                String gender,
+            @JsonKey(name: 'animalclass')
+                String animalclass,
+            @JsonKey(name: 'age')
+                int age,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult package(
+            @JsonKey(name: 'itemid') String itemid,
+            @JsonKey(name: 'desc') String desc,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice),
+    @required
+        TResult product(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'tileimage') String tileimage,
+            @JsonKey(name: 'reqqty') bool reqqty,
+            @JsonKey(name: 'isvegetarian') bool isvegetarian,
+            @JsonKey(name: 'spicetype') int spicetype,
+            @JsonKey(name: 'ispackage') bool ispackage,
+            @JsonKey(name: 'unitmeasure') String unitmeasure,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice,
+            @JsonKey(name: 'varianttype') String varianttype,
+            @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+            @JsonKey(name: 'contenttype') String contenttype),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'vehicletype')
+                String vehicletype,
+            @JsonKey(name: 'make')
+                String make,
+            @JsonKey(name: 'model')
+                String model,
+            @JsonKey(name: 'yearmade')
+                int yearmade,
+            @JsonKey(name: 'milage')
+                int milage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult realEstate(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'listingtype')
+                String listingtype,
+            @JsonKey(name: 'propertytype')
+                String propertytype,
+            @JsonKey(name: 'numbedroom')
+                int numbedroom,
+            @JsonKey(name: 'numbathroom')
+                int numbathroom,
+            @JsonKey(name: 'sharingallowed')
+                bool sharingallowed,
+            @JsonKey(name: 'sqrfootage')
+                int sqrfootage,
+            @JsonKey(name: 'floorNumber')
+                int floorNumber,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult job(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'companyname')
+                String companyname,
+            @JsonKey(name: 'companyicon')
+                String companyicon,
+            @JsonKey(name: 'salaryrange')
+                String salaryrange,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'jobtype')
+                String jobtype,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return vehicle(productid, title, vehicletype, make, model, yearmade, milage,
+        price, tileimage, postedon, addressarea, serviceproviderid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(
+        @JsonKey(name: 'petclass')
+            String petclass,
+        @JsonKey(name: 'name')
+            String name,
+        @JsonKey(name: 'breed')
+            String breed,
+        @JsonKey(name: 'gender')
+            String gender,
+        @JsonKey(name: 'animalclass')
+            String animalclass,
+        @JsonKey(name: 'age')
+            int age,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult package(
+        @JsonKey(name: 'itemid') String itemid,
+        @JsonKey(name: 'desc') String desc,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice),
+    TResult product(
+        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'title') String title,
+        @JsonKey(name: 'tileimage') String tileimage,
+        @JsonKey(name: 'reqqty') bool reqqty,
+        @JsonKey(name: 'isvegetarian') bool isvegetarian,
+        @JsonKey(name: 'spicetype') int spicetype,
+        @JsonKey(name: 'ispackage') bool ispackage,
+        @JsonKey(name: 'unitmeasure') String unitmeasure,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice,
+        @JsonKey(name: 'varianttype') String varianttype,
+        @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+        @JsonKey(name: 'contenttype') String contenttype),
+    TResult vehicle(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'vehicletype')
+            String vehicletype,
+        @JsonKey(name: 'make')
+            String make,
+        @JsonKey(name: 'model')
+            String model,
+        @JsonKey(name: 'yearmade')
+            int yearmade,
+        @JsonKey(name: 'milage')
+            int milage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult realEstate(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'listingtype')
+            String listingtype,
+        @JsonKey(name: 'propertytype')
+            String propertytype,
+        @JsonKey(name: 'numbedroom')
+            int numbedroom,
+        @JsonKey(name: 'numbathroom')
+            int numbathroom,
+        @JsonKey(name: 'sharingallowed')
+            bool sharingallowed,
+        @JsonKey(name: 'sqrfootage')
+            int sqrfootage,
+        @JsonKey(name: 'floorNumber')
+            int floorNumber,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult job(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'companyname')
+            String companyname,
+        @JsonKey(name: 'companyicon')
+            String companyicon,
+        @JsonKey(name: 'salaryrange')
+            String salaryrange,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'jobtype')
+            String jobtype,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (vehicle != null) {
+      return vehicle(productid, title, vehicletype, make, model, yearmade,
+          milage, price, tileimage, postedon, addressarea, serviceproviderid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetData value),
+    @required TResult package(LimitedPackageData value),
+    @required TResult product(LimitedProductData value),
+    @required TResult vehicle(LimitedVehicleData value),
+    @required TResult realEstate(LimitedRealEstateData value),
+    @required TResult job(LimitedJobData value),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return vehicle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetData value),
+    TResult package(LimitedPackageData value),
+    TResult product(LimitedProductData value),
+    TResult vehicle(LimitedVehicleData value),
+    TResult realEstate(LimitedRealEstateData value),
+    TResult job(LimitedJobData value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (vehicle != null) {
+      return vehicle(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_LimitedVehicleModelToJson(this);
+    return _$_$LimitedVehicleDataToJson(this)..['runtimeType'] = 'vehicle';
   }
 }
 
-abstract class _LimitedVehicleModel implements LimitedVehicleModel {
-  factory _LimitedVehicleModel(
+abstract class LimitedVehicleData implements LimitedData {
+  const factory LimitedVehicleData(
       {@JsonKey(name: 'productid')
           String productid,
       @JsonKey(name: 'title')
@@ -4553,163 +5626,49 @@ abstract class _LimitedVehicleModel implements LimitedVehicleModel {
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
+          Addressmodel addressarea,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) = _$_LimitedVehicleModel;
+          String serviceproviderid}) = _$LimitedVehicleData;
 
-  factory _LimitedVehicleModel.fromJson(Map<String, dynamic> json) =
-      _$_LimitedVehicleModel.fromJson;
+  factory LimitedVehicleData.fromJson(Map<String, dynamic> json) =
+      _$LimitedVehicleData.fromJson;
 
-  @override
   @JsonKey(name: 'productid')
   String get productid;
-  @override
   @JsonKey(name: 'title')
   String get title;
-  @override
   @JsonKey(name: 'vehicletype')
   String get vehicletype;
-  @override
   @JsonKey(name: 'make')
   String get make;
-  @override
   @JsonKey(name: 'model')
   String get model;
-  @override
   @JsonKey(name: 'yearmade')
   int get yearmade;
-  @override
   @JsonKey(name: 'milage')
   int get milage;
-  @override
   @JsonKey(name: 'price')
   double get price;
-  @override
   @JsonKey(name: 'tileimage')
   String get tileimage;
-  @override
   @JsonKey(
       name: 'postedon',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get postedon;
-  @override
   @JsonKey(name: 'addressarea')
-  addressmodel get addressarea;
-  @override
+  Addressmodel get addressarea;
   @JsonKey(name: 'serviceproviderid')
   String get serviceproviderid;
-  @override
   @JsonKey(ignore: true)
-  _$LimitedVehicleModelCopyWith<_LimitedVehicleModel> get copyWith;
-}
-
-LimitedRealEstateModel _$LimitedRealEstateModelFromJson(
-    Map<String, dynamic> json) {
-  return _LimitedRealEstateModel.fromJson(json);
+  $LimitedVehicleDataCopyWith<LimitedVehicleData> get copyWith;
 }
 
 /// @nodoc
-class _$LimitedRealEstateModelTearOff {
-  const _$LimitedRealEstateModelTearOff();
-
-// ignore: unused_element
-  _LimitedRealEstateModel call(
-      {@JsonKey(name: 'productid')
-          String productid,
-      @JsonKey(name: 'listingtype')
-          String listingtype,
-      @JsonKey(name: 'propertytype')
-          String propertytype,
-      @JsonKey(name: 'numbedroom')
-          int numbedroom,
-      @JsonKey(name: 'numbathroom')
-          int numbathroom,
-      @JsonKey(name: 'sharingallowed')
-          bool sharingallowed,
-      @JsonKey(name: 'sqrfootage')
-          int sqrfootage,
-      @JsonKey(name: 'floorNumber')
-          int floorNumber,
-      @JsonKey(name: 'price')
-          double price,
-      @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon,
-      @JsonKey(name: 'tileimage')
-          String tileimage,
-      @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) {
-    return _LimitedRealEstateModel(
-      productid: productid,
-      listingtype: listingtype,
-      propertytype: propertytype,
-      numbedroom: numbedroom,
-      numbathroom: numbathroom,
-      sharingallowed: sharingallowed,
-      sqrfootage: sqrfootage,
-      floorNumber: floorNumber,
-      price: price,
-      addressarea: addressarea,
-      postedon: postedon,
-      tileimage: tileimage,
-      serviceproviderid: serviceproviderid,
-    );
-  }
-
-// ignore: unused_element
-  LimitedRealEstateModel fromJson(Map<String, Object> json) {
-    return LimitedRealEstateModel.fromJson(json);
-  }
-}
-
-/// @nodoc
-// ignore: unused_element
-const $LimitedRealEstateModel = _$LimitedRealEstateModelTearOff();
-
-/// @nodoc
-mixin _$LimitedRealEstateModel {
-  @JsonKey(name: 'productid')
-  String get productid;
-  @JsonKey(name: 'listingtype')
-  String get listingtype;
-  @JsonKey(name: 'propertytype')
-  String get propertytype;
-  @JsonKey(name: 'numbedroom')
-  int get numbedroom;
-  @JsonKey(name: 'numbathroom')
-  int get numbathroom;
-  @JsonKey(name: 'sharingallowed')
-  bool get sharingallowed;
-  @JsonKey(name: 'sqrfootage')
-  int get sqrfootage;
-  @JsonKey(name: 'floorNumber')
-  int get floorNumber;
-  @JsonKey(name: 'price')
-  double get price;
-  @JsonKey(name: 'addressarea')
-  addressmodel get addressarea;
-  @JsonKey(
-      name: 'postedon',
-      fromJson: JsonHelper.fromJsonTimeStamp,
-      toJson: JsonHelper.toJsonTimeStamp)
-  DateTime get postedon;
-  @JsonKey(name: 'tileimage')
-  String get tileimage;
-  @JsonKey(name: 'serviceproviderid')
-  String get serviceproviderid;
-
-  Map<String, dynamic> toJson();
-  @JsonKey(ignore: true)
-  $LimitedRealEstateModelCopyWith<LimitedRealEstateModel> get copyWith;
-}
-
-/// @nodoc
-abstract class $LimitedRealEstateModelCopyWith<$Res> {
-  factory $LimitedRealEstateModelCopyWith(LimitedRealEstateModel value,
-          $Res Function(LimitedRealEstateModel) then) =
-      _$LimitedRealEstateModelCopyWithImpl<$Res>;
+abstract class $LimitedRealEstateDataCopyWith<$Res> {
+  factory $LimitedRealEstateDataCopyWith(LimitedRealEstateData value,
+          $Res Function(LimitedRealEstateData) then) =
+      _$LimitedRealEstateDataCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'productid')
           String productid,
@@ -4730,7 +5689,7 @@ abstract class $LimitedRealEstateModelCopyWith<$Res> {
       @JsonKey(name: 'price')
           double price,
       @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
+          Addressmodel addressarea,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'tileimage')
@@ -4738,17 +5697,19 @@ abstract class $LimitedRealEstateModelCopyWith<$Res> {
       @JsonKey(name: 'serviceproviderid')
           String serviceproviderid});
 
-  $addressmodelCopyWith<$Res> get addressarea;
+  $AddressmodelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
-class _$LimitedRealEstateModelCopyWithImpl<$Res>
-    implements $LimitedRealEstateModelCopyWith<$Res> {
-  _$LimitedRealEstateModelCopyWithImpl(this._value, this._then);
+class _$LimitedRealEstateDataCopyWithImpl<$Res>
+    extends _$LimitedDataCopyWithImpl<$Res>
+    implements $LimitedRealEstateDataCopyWith<$Res> {
+  _$LimitedRealEstateDataCopyWithImpl(
+      LimitedRealEstateData _value, $Res Function(LimitedRealEstateData) _then)
+      : super(_value, (v) => _then(v as LimitedRealEstateData));
 
-  final LimitedRealEstateModel _value;
-  // ignore: unused_field
-  final $Res Function(LimitedRealEstateModel) _then;
+  @override
+  LimitedRealEstateData get _value => super._value as LimitedRealEstateData;
 
   @override
   $Res call({
@@ -4766,7 +5727,7 @@ class _$LimitedRealEstateModelCopyWithImpl<$Res>
     Object tileimage = freezed,
     Object serviceproviderid = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(LimitedRealEstateData(
       productid: productid == freezed ? _value.productid : productid as String,
       listingtype:
           listingtype == freezed ? _value.listingtype : listingtype as String,
@@ -4785,7 +5746,7 @@ class _$LimitedRealEstateModelCopyWithImpl<$Res>
       price: price == freezed ? _value.price : price as double,
       addressarea: addressarea == freezed
           ? _value.addressarea
-          : addressarea as addressmodel,
+          : addressarea as Addressmodel,
       postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
       tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
       serviceproviderid: serviceproviderid == freezed
@@ -4795,116 +5756,21 @@ class _$LimitedRealEstateModelCopyWithImpl<$Res>
   }
 
   @override
-  $addressmodelCopyWith<$Res> get addressarea {
+  $AddressmodelCopyWith<$Res> get addressarea {
     if (_value.addressarea == null) {
       return null;
     }
-    return $addressmodelCopyWith<$Res>(_value.addressarea, (value) {
+    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
       return _then(_value.copyWith(addressarea: value));
     });
-  }
-}
-
-/// @nodoc
-abstract class _$LimitedRealEstateModelCopyWith<$Res>
-    implements $LimitedRealEstateModelCopyWith<$Res> {
-  factory _$LimitedRealEstateModelCopyWith(_LimitedRealEstateModel value,
-          $Res Function(_LimitedRealEstateModel) then) =
-      __$LimitedRealEstateModelCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {@JsonKey(name: 'productid')
-          String productid,
-      @JsonKey(name: 'listingtype')
-          String listingtype,
-      @JsonKey(name: 'propertytype')
-          String propertytype,
-      @JsonKey(name: 'numbedroom')
-          int numbedroom,
-      @JsonKey(name: 'numbathroom')
-          int numbathroom,
-      @JsonKey(name: 'sharingallowed')
-          bool sharingallowed,
-      @JsonKey(name: 'sqrfootage')
-          int sqrfootage,
-      @JsonKey(name: 'floorNumber')
-          int floorNumber,
-      @JsonKey(name: 'price')
-          double price,
-      @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon,
-      @JsonKey(name: 'tileimage')
-          String tileimage,
-      @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid});
-
-  @override
-  $addressmodelCopyWith<$Res> get addressarea;
-}
-
-/// @nodoc
-class __$LimitedRealEstateModelCopyWithImpl<$Res>
-    extends _$LimitedRealEstateModelCopyWithImpl<$Res>
-    implements _$LimitedRealEstateModelCopyWith<$Res> {
-  __$LimitedRealEstateModelCopyWithImpl(_LimitedRealEstateModel _value,
-      $Res Function(_LimitedRealEstateModel) _then)
-      : super(_value, (v) => _then(v as _LimitedRealEstateModel));
-
-  @override
-  _LimitedRealEstateModel get _value => super._value as _LimitedRealEstateModel;
-
-  @override
-  $Res call({
-    Object productid = freezed,
-    Object listingtype = freezed,
-    Object propertytype = freezed,
-    Object numbedroom = freezed,
-    Object numbathroom = freezed,
-    Object sharingallowed = freezed,
-    Object sqrfootage = freezed,
-    Object floorNumber = freezed,
-    Object price = freezed,
-    Object addressarea = freezed,
-    Object postedon = freezed,
-    Object tileimage = freezed,
-    Object serviceproviderid = freezed,
-  }) {
-    return _then(_LimitedRealEstateModel(
-      productid: productid == freezed ? _value.productid : productid as String,
-      listingtype:
-          listingtype == freezed ? _value.listingtype : listingtype as String,
-      propertytype: propertytype == freezed
-          ? _value.propertytype
-          : propertytype as String,
-      numbedroom: numbedroom == freezed ? _value.numbedroom : numbedroom as int,
-      numbathroom:
-          numbathroom == freezed ? _value.numbathroom : numbathroom as int,
-      sharingallowed: sharingallowed == freezed
-          ? _value.sharingallowed
-          : sharingallowed as bool,
-      sqrfootage: sqrfootage == freezed ? _value.sqrfootage : sqrfootage as int,
-      floorNumber:
-          floorNumber == freezed ? _value.floorNumber : floorNumber as int,
-      price: price == freezed ? _value.price : price as double,
-      addressarea: addressarea == freezed
-          ? _value.addressarea
-          : addressarea as addressmodel,
-      postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
-      tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
-      serviceproviderid: serviceproviderid == freezed
-          ? _value.serviceproviderid
-          : serviceproviderid as String,
-    ));
   }
 }
 
 @JsonSerializable()
 
 /// @nodoc
-class _$_LimitedRealEstateModel implements _LimitedRealEstateModel {
-  _$_LimitedRealEstateModel(
+class _$LimitedRealEstateData implements LimitedRealEstateData {
+  const _$LimitedRealEstateData(
       {@JsonKey(name: 'productid')
           this.productid,
       @JsonKey(name: 'listingtype')
@@ -4932,8 +5798,8 @@ class _$_LimitedRealEstateModel implements _LimitedRealEstateModel {
       @JsonKey(name: 'serviceproviderid')
           this.serviceproviderid});
 
-  factory _$_LimitedRealEstateModel.fromJson(Map<String, dynamic> json) =>
-      _$_$_LimitedRealEstateModelFromJson(json);
+  factory _$LimitedRealEstateData.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedRealEstateDataFromJson(json);
 
   @override
   @JsonKey(name: 'productid')
@@ -4964,7 +5830,7 @@ class _$_LimitedRealEstateModel implements _LimitedRealEstateModel {
   final double price;
   @override
   @JsonKey(name: 'addressarea')
-  final addressmodel addressarea;
+  final Addressmodel addressarea;
   @override
   @JsonKey(
       name: 'postedon',
@@ -4980,13 +5846,13 @@ class _$_LimitedRealEstateModel implements _LimitedRealEstateModel {
 
   @override
   String toString() {
-    return 'LimitedRealEstateModel(productid: $productid, listingtype: $listingtype, propertytype: $propertytype, numbedroom: $numbedroom, numbathroom: $numbathroom, sharingallowed: $sharingallowed, sqrfootage: $sqrfootage, floorNumber: $floorNumber, price: $price, addressarea: $addressarea, postedon: $postedon, tileimage: $tileimage, serviceproviderid: $serviceproviderid)';
+    return 'LimitedData.realEstate(productid: $productid, listingtype: $listingtype, propertytype: $propertytype, numbedroom: $numbedroom, numbathroom: $numbathroom, sharingallowed: $sharingallowed, sqrfootage: $sqrfootage, floorNumber: $floorNumber, price: $price, addressarea: $addressarea, postedon: $postedon, tileimage: $tileimage, serviceproviderid: $serviceproviderid)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LimitedRealEstateModel &&
+        (other is LimitedRealEstateData &&
             (identical(other.productid, productid) ||
                 const DeepCollectionEquality()
                     .equals(other.productid, productid)) &&
@@ -5046,18 +5912,335 @@ class _$_LimitedRealEstateModel implements _LimitedRealEstateModel {
 
   @JsonKey(ignore: true)
   @override
-  _$LimitedRealEstateModelCopyWith<_LimitedRealEstateModel> get copyWith =>
-      __$LimitedRealEstateModelCopyWithImpl<_LimitedRealEstateModel>(
+  $LimitedRealEstateDataCopyWith<LimitedRealEstateData> get copyWith =>
+      _$LimitedRealEstateDataCopyWithImpl<LimitedRealEstateData>(
           this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult pet(
+            @JsonKey(name: 'petclass')
+                String petclass,
+            @JsonKey(name: 'name')
+                String name,
+            @JsonKey(name: 'breed')
+                String breed,
+            @JsonKey(name: 'gender')
+                String gender,
+            @JsonKey(name: 'animalclass')
+                String animalclass,
+            @JsonKey(name: 'age')
+                int age,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult package(
+            @JsonKey(name: 'itemid') String itemid,
+            @JsonKey(name: 'desc') String desc,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice),
+    @required
+        TResult product(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'tileimage') String tileimage,
+            @JsonKey(name: 'reqqty') bool reqqty,
+            @JsonKey(name: 'isvegetarian') bool isvegetarian,
+            @JsonKey(name: 'spicetype') int spicetype,
+            @JsonKey(name: 'ispackage') bool ispackage,
+            @JsonKey(name: 'unitmeasure') String unitmeasure,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice,
+            @JsonKey(name: 'varianttype') String varianttype,
+            @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+            @JsonKey(name: 'contenttype') String contenttype),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'vehicletype')
+                String vehicletype,
+            @JsonKey(name: 'make')
+                String make,
+            @JsonKey(name: 'model')
+                String model,
+            @JsonKey(name: 'yearmade')
+                int yearmade,
+            @JsonKey(name: 'milage')
+                int milage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult realEstate(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'listingtype')
+                String listingtype,
+            @JsonKey(name: 'propertytype')
+                String propertytype,
+            @JsonKey(name: 'numbedroom')
+                int numbedroom,
+            @JsonKey(name: 'numbathroom')
+                int numbathroom,
+            @JsonKey(name: 'sharingallowed')
+                bool sharingallowed,
+            @JsonKey(name: 'sqrfootage')
+                int sqrfootage,
+            @JsonKey(name: 'floorNumber')
+                int floorNumber,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult job(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'companyname')
+                String companyname,
+            @JsonKey(name: 'companyicon')
+                String companyicon,
+            @JsonKey(name: 'salaryrange')
+                String salaryrange,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'jobtype')
+                String jobtype,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return realEstate(
+        productid,
+        listingtype,
+        propertytype,
+        numbedroom,
+        numbathroom,
+        sharingallowed,
+        sqrfootage,
+        floorNumber,
+        price,
+        addressarea,
+        postedon,
+        tileimage,
+        serviceproviderid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(
+        @JsonKey(name: 'petclass')
+            String petclass,
+        @JsonKey(name: 'name')
+            String name,
+        @JsonKey(name: 'breed')
+            String breed,
+        @JsonKey(name: 'gender')
+            String gender,
+        @JsonKey(name: 'animalclass')
+            String animalclass,
+        @JsonKey(name: 'age')
+            int age,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult package(
+        @JsonKey(name: 'itemid') String itemid,
+        @JsonKey(name: 'desc') String desc,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice),
+    TResult product(
+        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'title') String title,
+        @JsonKey(name: 'tileimage') String tileimage,
+        @JsonKey(name: 'reqqty') bool reqqty,
+        @JsonKey(name: 'isvegetarian') bool isvegetarian,
+        @JsonKey(name: 'spicetype') int spicetype,
+        @JsonKey(name: 'ispackage') bool ispackage,
+        @JsonKey(name: 'unitmeasure') String unitmeasure,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice,
+        @JsonKey(name: 'varianttype') String varianttype,
+        @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+        @JsonKey(name: 'contenttype') String contenttype),
+    TResult vehicle(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'vehicletype')
+            String vehicletype,
+        @JsonKey(name: 'make')
+            String make,
+        @JsonKey(name: 'model')
+            String model,
+        @JsonKey(name: 'yearmade')
+            int yearmade,
+        @JsonKey(name: 'milage')
+            int milage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult realEstate(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'listingtype')
+            String listingtype,
+        @JsonKey(name: 'propertytype')
+            String propertytype,
+        @JsonKey(name: 'numbedroom')
+            int numbedroom,
+        @JsonKey(name: 'numbathroom')
+            int numbathroom,
+        @JsonKey(name: 'sharingallowed')
+            bool sharingallowed,
+        @JsonKey(name: 'sqrfootage')
+            int sqrfootage,
+        @JsonKey(name: 'floorNumber')
+            int floorNumber,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult job(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'companyname')
+            String companyname,
+        @JsonKey(name: 'companyicon')
+            String companyicon,
+        @JsonKey(name: 'salaryrange')
+            String salaryrange,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'jobtype')
+            String jobtype,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (realEstate != null) {
+      return realEstate(
+          productid,
+          listingtype,
+          propertytype,
+          numbedroom,
+          numbathroom,
+          sharingallowed,
+          sqrfootage,
+          floorNumber,
+          price,
+          addressarea,
+          postedon,
+          tileimage,
+          serviceproviderid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetData value),
+    @required TResult package(LimitedPackageData value),
+    @required TResult product(LimitedProductData value),
+    @required TResult vehicle(LimitedVehicleData value),
+    @required TResult realEstate(LimitedRealEstateData value),
+    @required TResult job(LimitedJobData value),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return realEstate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetData value),
+    TResult package(LimitedPackageData value),
+    TResult product(LimitedProductData value),
+    TResult vehicle(LimitedVehicleData value),
+    TResult realEstate(LimitedRealEstateData value),
+    TResult job(LimitedJobData value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (realEstate != null) {
+      return realEstate(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
-    return _$_$_LimitedRealEstateModelToJson(this);
+    return _$_$LimitedRealEstateDataToJson(this)
+      ..['runtimeType'] = 'realEstate';
   }
 }
 
-abstract class _LimitedRealEstateModel implements LimitedRealEstateModel {
-  factory _LimitedRealEstateModel(
+abstract class LimitedRealEstateData implements LimitedData {
+  const factory LimitedRealEstateData(
       {@JsonKey(name: 'productid')
           String productid,
       @JsonKey(name: 'listingtype')
@@ -5077,144 +6260,55 @@ abstract class _LimitedRealEstateModel implements LimitedRealEstateModel {
       @JsonKey(name: 'price')
           double price,
       @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
+          Addressmodel addressarea,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'tileimage')
           String tileimage,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) = _$_LimitedRealEstateModel;
+          String serviceproviderid}) = _$LimitedRealEstateData;
 
-  factory _LimitedRealEstateModel.fromJson(Map<String, dynamic> json) =
-      _$_LimitedRealEstateModel.fromJson;
+  factory LimitedRealEstateData.fromJson(Map<String, dynamic> json) =
+      _$LimitedRealEstateData.fromJson;
 
-  @override
   @JsonKey(name: 'productid')
   String get productid;
-  @override
   @JsonKey(name: 'listingtype')
   String get listingtype;
-  @override
   @JsonKey(name: 'propertytype')
   String get propertytype;
-  @override
   @JsonKey(name: 'numbedroom')
   int get numbedroom;
-  @override
   @JsonKey(name: 'numbathroom')
   int get numbathroom;
-  @override
   @JsonKey(name: 'sharingallowed')
   bool get sharingallowed;
-  @override
   @JsonKey(name: 'sqrfootage')
   int get sqrfootage;
-  @override
   @JsonKey(name: 'floorNumber')
   int get floorNumber;
-  @override
   @JsonKey(name: 'price')
   double get price;
-  @override
   @JsonKey(name: 'addressarea')
-  addressmodel get addressarea;
-  @override
+  Addressmodel get addressarea;
   @JsonKey(
       name: 'postedon',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get postedon;
-  @override
   @JsonKey(name: 'tileimage')
   String get tileimage;
-  @override
   @JsonKey(name: 'serviceproviderid')
   String get serviceproviderid;
-  @override
   @JsonKey(ignore: true)
-  _$LimitedRealEstateModelCopyWith<_LimitedRealEstateModel> get copyWith;
-}
-
-LimitedJobReqModel _$LimitedJobReqModelFromJson(Map<String, dynamic> json) {
-  return _LimitedJobReqModel.fromJson(json);
+  $LimitedRealEstateDataCopyWith<LimitedRealEstateData> get copyWith;
 }
 
 /// @nodoc
-class _$LimitedJobReqModelTearOff {
-  const _$LimitedJobReqModelTearOff();
-
-// ignore: unused_element
-  _LimitedJobReqModel call(
-      {@JsonKey(name: 'productid')
-          String productid,
-      @JsonKey(name: 'title')
-          String title,
-      @JsonKey(name: 'companyname')
-          String companyname,
-      @JsonKey(name: 'companyicon')
-          String companyicon,
-      @JsonKey(name: 'salaryrange')
-          String salaryrange,
-      @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
-      @JsonKey(name: 'jobtype')
-          String jobtype,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon}) {
-    return _LimitedJobReqModel(
-      productid: productid,
-      title: title,
-      companyname: companyname,
-      companyicon: companyicon,
-      salaryrange: salaryrange,
-      addressarea: addressarea,
-      jobtype: jobtype,
-      postedon: postedon,
-    );
-  }
-
-// ignore: unused_element
-  LimitedJobReqModel fromJson(Map<String, Object> json) {
-    return LimitedJobReqModel.fromJson(json);
-  }
-}
-
-/// @nodoc
-// ignore: unused_element
-const $LimitedJobReqModel = _$LimitedJobReqModelTearOff();
-
-/// @nodoc
-mixin _$LimitedJobReqModel {
-  @JsonKey(name: 'productid')
-  String get productid;
-  @JsonKey(name: 'title')
-  String get title;
-  @JsonKey(name: 'companyname')
-  String get companyname;
-  @JsonKey(name: 'companyicon')
-  String get companyicon;
-  @JsonKey(name: 'salaryrange')
-  String get salaryrange;
-  @JsonKey(name: 'addressarea')
-  addressmodel get addressarea;
-  @JsonKey(name: 'jobtype')
-  String get jobtype;
-  @JsonKey(
-      name: 'postedon',
-      fromJson: JsonHelper.fromJsonTimeStamp,
-      toJson: JsonHelper.toJsonTimeStamp)
-  DateTime get postedon;
-
-  Map<String, dynamic> toJson();
-  @JsonKey(ignore: true)
-  $LimitedJobReqModelCopyWith<LimitedJobReqModel> get copyWith;
-}
-
-/// @nodoc
-abstract class $LimitedJobReqModelCopyWith<$Res> {
-  factory $LimitedJobReqModelCopyWith(
-          LimitedJobReqModel value, $Res Function(LimitedJobReqModel) then) =
-      _$LimitedJobReqModelCopyWithImpl<$Res>;
+abstract class $LimitedJobDataCopyWith<$Res> {
+  factory $LimitedJobDataCopyWith(
+          LimitedJobData value, $Res Function(LimitedJobData) then) =
+      _$LimitedJobDataCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'productid')
           String productid,
@@ -5227,23 +6321,24 @@ abstract class $LimitedJobReqModelCopyWith<$Res> {
       @JsonKey(name: 'salaryrange')
           String salaryrange,
       @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
+          Addressmodel addressarea,
       @JsonKey(name: 'jobtype')
           String jobtype,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon});
 
-  $addressmodelCopyWith<$Res> get addressarea;
+  $AddressmodelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
-class _$LimitedJobReqModelCopyWithImpl<$Res>
-    implements $LimitedJobReqModelCopyWith<$Res> {
-  _$LimitedJobReqModelCopyWithImpl(this._value, this._then);
+class _$LimitedJobDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
+    implements $LimitedJobDataCopyWith<$Res> {
+  _$LimitedJobDataCopyWithImpl(
+      LimitedJobData _value, $Res Function(LimitedJobData) _then)
+      : super(_value, (v) => _then(v as LimitedJobData));
 
-  final LimitedJobReqModel _value;
-  // ignore: unused_field
-  final $Res Function(LimitedJobReqModel) _then;
+  @override
+  LimitedJobData get _value => super._value as LimitedJobData;
 
   @override
   $Res call({
@@ -5256,7 +6351,7 @@ class _$LimitedJobReqModelCopyWithImpl<$Res>
     Object jobtype = freezed,
     Object postedon = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(LimitedJobData(
       productid: productid == freezed ? _value.productid : productid as String,
       title: title == freezed ? _value.title : title as String,
       companyname:
@@ -5267,97 +6362,28 @@ class _$LimitedJobReqModelCopyWithImpl<$Res>
           salaryrange == freezed ? _value.salaryrange : salaryrange as String,
       addressarea: addressarea == freezed
           ? _value.addressarea
-          : addressarea as addressmodel,
+          : addressarea as Addressmodel,
       jobtype: jobtype == freezed ? _value.jobtype : jobtype as String,
       postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
     ));
   }
 
   @override
-  $addressmodelCopyWith<$Res> get addressarea {
+  $AddressmodelCopyWith<$Res> get addressarea {
     if (_value.addressarea == null) {
       return null;
     }
-    return $addressmodelCopyWith<$Res>(_value.addressarea, (value) {
+    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
       return _then(_value.copyWith(addressarea: value));
     });
-  }
-}
-
-/// @nodoc
-abstract class _$LimitedJobReqModelCopyWith<$Res>
-    implements $LimitedJobReqModelCopyWith<$Res> {
-  factory _$LimitedJobReqModelCopyWith(
-          _LimitedJobReqModel value, $Res Function(_LimitedJobReqModel) then) =
-      __$LimitedJobReqModelCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {@JsonKey(name: 'productid')
-          String productid,
-      @JsonKey(name: 'title')
-          String title,
-      @JsonKey(name: 'companyname')
-          String companyname,
-      @JsonKey(name: 'companyicon')
-          String companyicon,
-      @JsonKey(name: 'salaryrange')
-          String salaryrange,
-      @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
-      @JsonKey(name: 'jobtype')
-          String jobtype,
-      @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon});
-
-  @override
-  $addressmodelCopyWith<$Res> get addressarea;
-}
-
-/// @nodoc
-class __$LimitedJobReqModelCopyWithImpl<$Res>
-    extends _$LimitedJobReqModelCopyWithImpl<$Res>
-    implements _$LimitedJobReqModelCopyWith<$Res> {
-  __$LimitedJobReqModelCopyWithImpl(
-      _LimitedJobReqModel _value, $Res Function(_LimitedJobReqModel) _then)
-      : super(_value, (v) => _then(v as _LimitedJobReqModel));
-
-  @override
-  _LimitedJobReqModel get _value => super._value as _LimitedJobReqModel;
-
-  @override
-  $Res call({
-    Object productid = freezed,
-    Object title = freezed,
-    Object companyname = freezed,
-    Object companyicon = freezed,
-    Object salaryrange = freezed,
-    Object addressarea = freezed,
-    Object jobtype = freezed,
-    Object postedon = freezed,
-  }) {
-    return _then(_LimitedJobReqModel(
-      productid: productid == freezed ? _value.productid : productid as String,
-      title: title == freezed ? _value.title : title as String,
-      companyname:
-          companyname == freezed ? _value.companyname : companyname as String,
-      companyicon:
-          companyicon == freezed ? _value.companyicon : companyicon as String,
-      salaryrange:
-          salaryrange == freezed ? _value.salaryrange : salaryrange as String,
-      addressarea: addressarea == freezed
-          ? _value.addressarea
-          : addressarea as addressmodel,
-      jobtype: jobtype == freezed ? _value.jobtype : jobtype as String,
-      postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
-    ));
   }
 }
 
 @JsonSerializable()
 
 /// @nodoc
-class _$_LimitedJobReqModel implements _LimitedJobReqModel {
-  _$_LimitedJobReqModel(
+class _$LimitedJobData implements LimitedJobData {
+  const _$LimitedJobData(
       {@JsonKey(name: 'productid')
           this.productid,
       @JsonKey(name: 'title')
@@ -5375,8 +6401,8 @@ class _$_LimitedJobReqModel implements _LimitedJobReqModel {
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.postedon});
 
-  factory _$_LimitedJobReqModel.fromJson(Map<String, dynamic> json) =>
-      _$_$_LimitedJobReqModelFromJson(json);
+  factory _$LimitedJobData.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedJobDataFromJson(json);
 
   @override
   @JsonKey(name: 'productid')
@@ -5395,7 +6421,7 @@ class _$_LimitedJobReqModel implements _LimitedJobReqModel {
   final String salaryrange;
   @override
   @JsonKey(name: 'addressarea')
-  final addressmodel addressarea;
+  final Addressmodel addressarea;
   @override
   @JsonKey(name: 'jobtype')
   final String jobtype;
@@ -5408,13 +6434,13 @@ class _$_LimitedJobReqModel implements _LimitedJobReqModel {
 
   @override
   String toString() {
-    return 'LimitedJobReqModel(productid: $productid, title: $title, companyname: $companyname, companyicon: $companyicon, salaryrange: $salaryrange, addressarea: $addressarea, jobtype: $jobtype, postedon: $postedon)';
+    return 'LimitedData.job(productid: $productid, title: $title, companyname: $companyname, companyicon: $companyicon, salaryrange: $salaryrange, addressarea: $addressarea, jobtype: $jobtype, postedon: $postedon)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LimitedJobReqModel &&
+        (other is LimitedJobData &&
             (identical(other.productid, productid) ||
                 const DeepCollectionEquality()
                     .equals(other.productid, productid)) &&
@@ -5454,17 +6480,309 @@ class _$_LimitedJobReqModel implements _LimitedJobReqModel {
 
   @JsonKey(ignore: true)
   @override
-  _$LimitedJobReqModelCopyWith<_LimitedJobReqModel> get copyWith =>
-      __$LimitedJobReqModelCopyWithImpl<_LimitedJobReqModel>(this, _$identity);
+  $LimitedJobDataCopyWith<LimitedJobData> get copyWith =>
+      _$LimitedJobDataCopyWithImpl<LimitedJobData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult pet(
+            @JsonKey(name: 'petclass')
+                String petclass,
+            @JsonKey(name: 'name')
+                String name,
+            @JsonKey(name: 'breed')
+                String breed,
+            @JsonKey(name: 'gender')
+                String gender,
+            @JsonKey(name: 'animalclass')
+                String animalclass,
+            @JsonKey(name: 'age')
+                int age,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult package(
+            @JsonKey(name: 'itemid') String itemid,
+            @JsonKey(name: 'desc') String desc,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice),
+    @required
+        TResult product(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'tileimage') String tileimage,
+            @JsonKey(name: 'reqqty') bool reqqty,
+            @JsonKey(name: 'isvegetarian') bool isvegetarian,
+            @JsonKey(name: 'spicetype') int spicetype,
+            @JsonKey(name: 'ispackage') bool ispackage,
+            @JsonKey(name: 'unitmeasure') String unitmeasure,
+            @JsonKey(name: 'origprice') double origprice,
+            @JsonKey(name: 'discountedprice') double discountedprice,
+            @JsonKey(name: 'varianttype') String varianttype,
+            @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+            @JsonKey(name: 'contenttype') String contenttype),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'vehicletype')
+                String vehicletype,
+            @JsonKey(name: 'make')
+                String make,
+            @JsonKey(name: 'model')
+                String model,
+            @JsonKey(name: 'yearmade')
+                int yearmade,
+            @JsonKey(name: 'milage')
+                int milage,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult realEstate(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'listingtype')
+                String listingtype,
+            @JsonKey(name: 'propertytype')
+                String propertytype,
+            @JsonKey(name: 'numbedroom')
+                int numbedroom,
+            @JsonKey(name: 'numbathroom')
+                int numbathroom,
+            @JsonKey(name: 'sharingallowed')
+                bool sharingallowed,
+            @JsonKey(name: 'sqrfootage')
+                int sqrfootage,
+            @JsonKey(name: 'floorNumber')
+                int floorNumber,
+            @JsonKey(name: 'price')
+                double price,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon,
+            @JsonKey(name: 'tileimage')
+                String tileimage,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid),
+    @required
+        TResult job(
+            @JsonKey(name: 'productid')
+                String productid,
+            @JsonKey(name: 'title')
+                String title,
+            @JsonKey(name: 'companyname')
+                String companyname,
+            @JsonKey(name: 'companyicon')
+                String companyicon,
+            @JsonKey(name: 'salaryrange')
+                String salaryrange,
+            @JsonKey(name: 'addressarea')
+                Addressmodel addressarea,
+            @JsonKey(name: 'jobtype')
+                String jobtype,
+            @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime postedon),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return job(productid, title, companyname, companyicon, salaryrange,
+        addressarea, jobtype, postedon);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(
+        @JsonKey(name: 'petclass')
+            String petclass,
+        @JsonKey(name: 'name')
+            String name,
+        @JsonKey(name: 'breed')
+            String breed,
+        @JsonKey(name: 'gender')
+            String gender,
+        @JsonKey(name: 'animalclass')
+            String animalclass,
+        @JsonKey(name: 'age')
+            int age,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult package(
+        @JsonKey(name: 'itemid') String itemid,
+        @JsonKey(name: 'desc') String desc,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice),
+    TResult product(
+        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'title') String title,
+        @JsonKey(name: 'tileimage') String tileimage,
+        @JsonKey(name: 'reqqty') bool reqqty,
+        @JsonKey(name: 'isvegetarian') bool isvegetarian,
+        @JsonKey(name: 'spicetype') int spicetype,
+        @JsonKey(name: 'ispackage') bool ispackage,
+        @JsonKey(name: 'unitmeasure') String unitmeasure,
+        @JsonKey(name: 'origprice') double origprice,
+        @JsonKey(name: 'discountedprice') double discountedprice,
+        @JsonKey(name: 'varianttype') String varianttype,
+        @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+        @JsonKey(name: 'contenttype') String contenttype),
+    TResult vehicle(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'vehicletype')
+            String vehicletype,
+        @JsonKey(name: 'make')
+            String make,
+        @JsonKey(name: 'model')
+            String model,
+        @JsonKey(name: 'yearmade')
+            int yearmade,
+        @JsonKey(name: 'milage')
+            int milage,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult realEstate(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'listingtype')
+            String listingtype,
+        @JsonKey(name: 'propertytype')
+            String propertytype,
+        @JsonKey(name: 'numbedroom')
+            int numbedroom,
+        @JsonKey(name: 'numbathroom')
+            int numbathroom,
+        @JsonKey(name: 'sharingallowed')
+            bool sharingallowed,
+        @JsonKey(name: 'sqrfootage')
+            int sqrfootage,
+        @JsonKey(name: 'floorNumber')
+            int floorNumber,
+        @JsonKey(name: 'price')
+            double price,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon,
+        @JsonKey(name: 'tileimage')
+            String tileimage,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid),
+    TResult job(
+        @JsonKey(name: 'productid')
+            String productid,
+        @JsonKey(name: 'title')
+            String title,
+        @JsonKey(name: 'companyname')
+            String companyname,
+        @JsonKey(name: 'companyicon')
+            String companyicon,
+        @JsonKey(name: 'salaryrange')
+            String salaryrange,
+        @JsonKey(name: 'addressarea')
+            Addressmodel addressarea,
+        @JsonKey(name: 'jobtype')
+            String jobtype,
+        @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime postedon),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (job != null) {
+      return job(productid, title, companyname, companyicon, salaryrange,
+          addressarea, jobtype, postedon);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetData value),
+    @required TResult package(LimitedPackageData value),
+    @required TResult product(LimitedProductData value),
+    @required TResult vehicle(LimitedVehicleData value),
+    @required TResult realEstate(LimitedRealEstateData value),
+    @required TResult job(LimitedJobData value),
+  }) {
+    assert(pet != null);
+    assert(package != null);
+    assert(product != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    return job(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetData value),
+    TResult package(LimitedPackageData value),
+    TResult product(LimitedProductData value),
+    TResult vehicle(LimitedVehicleData value),
+    TResult realEstate(LimitedRealEstateData value),
+    TResult job(LimitedJobData value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (job != null) {
+      return job(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_LimitedJobReqModelToJson(this);
+    return _$_$LimitedJobDataToJson(this)..['runtimeType'] = 'job';
   }
 }
 
-abstract class _LimitedJobReqModel implements LimitedJobReqModel {
-  factory _LimitedJobReqModel(
+abstract class LimitedJobData implements LimitedData {
+  const factory LimitedJobData(
       {@JsonKey(name: 'productid')
           String productid,
       @JsonKey(name: 'title')
@@ -5476,63 +6794,54 @@ abstract class _LimitedJobReqModel implements LimitedJobReqModel {
       @JsonKey(name: 'salaryrange')
           String salaryrange,
       @JsonKey(name: 'addressarea')
-          addressmodel addressarea,
+          Addressmodel addressarea,
       @JsonKey(name: 'jobtype')
           String jobtype,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon}) = _$_LimitedJobReqModel;
+          DateTime postedon}) = _$LimitedJobData;
 
-  factory _LimitedJobReqModel.fromJson(Map<String, dynamic> json) =
-      _$_LimitedJobReqModel.fromJson;
+  factory LimitedJobData.fromJson(Map<String, dynamic> json) =
+      _$LimitedJobData.fromJson;
 
-  @override
   @JsonKey(name: 'productid')
   String get productid;
-  @override
   @JsonKey(name: 'title')
   String get title;
-  @override
   @JsonKey(name: 'companyname')
   String get companyname;
-  @override
   @JsonKey(name: 'companyicon')
   String get companyicon;
-  @override
   @JsonKey(name: 'salaryrange')
   String get salaryrange;
-  @override
   @JsonKey(name: 'addressarea')
-  addressmodel get addressarea;
-  @override
+  Addressmodel get addressarea;
   @JsonKey(name: 'jobtype')
   String get jobtype;
-  @override
   @JsonKey(
       name: 'postedon',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get postedon;
-  @override
   @JsonKey(ignore: true)
-  _$LimitedJobReqModelCopyWith<_LimitedJobReqModel> get copyWith;
+  $LimitedJobDataCopyWith<LimitedJobData> get copyWith;
 }
 
-customerinfo _$customerinfoFromJson(Map<String, dynamic> json) {
-  return _customerinfo.fromJson(json);
+Customerinfo _$CustomerinfoFromJson(Map<String, dynamic> json) {
+  return _Customerinfo.fromJson(json);
 }
 
 /// @nodoc
-class _$customerinfoTearOff {
-  const _$customerinfoTearOff();
+class _$CustomerinfoTearOff {
+  const _$CustomerinfoTearOff();
 
 // ignore: unused_element
-  _customerinfo call(
+  _Customerinfo call(
       {@JsonKey(name: 'infotype') int infotype,
       @JsonKey(name: 'customerid') String customerid,
       @JsonKey(name: 'customeruserid') String customeruserid,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'maddr') addressmodel maddr}) {
-    return _customerinfo(
+      @JsonKey(name: 'maddr') Addressmodel maddr}) {
+    return _Customerinfo(
       infotype: infotype,
       customerid: customerid,
       customeruserid: customeruserid,
@@ -5542,17 +6851,17 @@ class _$customerinfoTearOff {
   }
 
 // ignore: unused_element
-  customerinfo fromJson(Map<String, Object> json) {
-    return customerinfo.fromJson(json);
+  Customerinfo fromJson(Map<String, Object> json) {
+    return Customerinfo.fromJson(json);
   }
 }
 
 /// @nodoc
 // ignore: unused_element
-const $customerinfo = _$customerinfoTearOff();
+const $Customerinfo = _$CustomerinfoTearOff();
 
 /// @nodoc
-mixin _$customerinfo {
+mixin _$Customerinfo {
   @JsonKey(name: 'infotype')
   int get infotype;
   @JsonKey(name: 'customerid')
@@ -5562,35 +6871,35 @@ mixin _$customerinfo {
   @JsonKey(name: 'name')
   String get name;
   @JsonKey(name: 'maddr')
-  addressmodel get maddr;
+  Addressmodel get maddr;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
-  $customerinfoCopyWith<customerinfo> get copyWith;
+  $CustomerinfoCopyWith<Customerinfo> get copyWith;
 }
 
 /// @nodoc
-abstract class $customerinfoCopyWith<$Res> {
-  factory $customerinfoCopyWith(
-          customerinfo value, $Res Function(customerinfo) then) =
-      _$customerinfoCopyWithImpl<$Res>;
+abstract class $CustomerinfoCopyWith<$Res> {
+  factory $CustomerinfoCopyWith(
+          Customerinfo value, $Res Function(Customerinfo) then) =
+      _$CustomerinfoCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'infotype') int infotype,
       @JsonKey(name: 'customerid') String customerid,
       @JsonKey(name: 'customeruserid') String customeruserid,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'maddr') addressmodel maddr});
+      @JsonKey(name: 'maddr') Addressmodel maddr});
 
-  $addressmodelCopyWith<$Res> get maddr;
+  $AddressmodelCopyWith<$Res> get maddr;
 }
 
 /// @nodoc
-class _$customerinfoCopyWithImpl<$Res> implements $customerinfoCopyWith<$Res> {
-  _$customerinfoCopyWithImpl(this._value, this._then);
+class _$CustomerinfoCopyWithImpl<$Res> implements $CustomerinfoCopyWith<$Res> {
+  _$CustomerinfoCopyWithImpl(this._value, this._then);
 
-  final customerinfo _value;
+  final Customerinfo _value;
   // ignore: unused_field
-  final $Res Function(customerinfo) _then;
+  final $Res Function(Customerinfo) _then;
 
   @override
   $Res call({
@@ -5608,48 +6917,48 @@ class _$customerinfoCopyWithImpl<$Res> implements $customerinfoCopyWith<$Res> {
           ? _value.customeruserid
           : customeruserid as String,
       name: name == freezed ? _value.name : name as String,
-      maddr: maddr == freezed ? _value.maddr : maddr as addressmodel,
+      maddr: maddr == freezed ? _value.maddr : maddr as Addressmodel,
     ));
   }
 
   @override
-  $addressmodelCopyWith<$Res> get maddr {
+  $AddressmodelCopyWith<$Res> get maddr {
     if (_value.maddr == null) {
       return null;
     }
-    return $addressmodelCopyWith<$Res>(_value.maddr, (value) {
+    return $AddressmodelCopyWith<$Res>(_value.maddr, (value) {
       return _then(_value.copyWith(maddr: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$customerinfoCopyWith<$Res>
-    implements $customerinfoCopyWith<$Res> {
-  factory _$customerinfoCopyWith(
-          _customerinfo value, $Res Function(_customerinfo) then) =
-      __$customerinfoCopyWithImpl<$Res>;
+abstract class _$CustomerinfoCopyWith<$Res>
+    implements $CustomerinfoCopyWith<$Res> {
+  factory _$CustomerinfoCopyWith(
+          _Customerinfo value, $Res Function(_Customerinfo) then) =
+      __$CustomerinfoCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'infotype') int infotype,
       @JsonKey(name: 'customerid') String customerid,
       @JsonKey(name: 'customeruserid') String customeruserid,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'maddr') addressmodel maddr});
+      @JsonKey(name: 'maddr') Addressmodel maddr});
 
   @override
-  $addressmodelCopyWith<$Res> get maddr;
+  $AddressmodelCopyWith<$Res> get maddr;
 }
 
 /// @nodoc
-class __$customerinfoCopyWithImpl<$Res> extends _$customerinfoCopyWithImpl<$Res>
-    implements _$customerinfoCopyWith<$Res> {
-  __$customerinfoCopyWithImpl(
-      _customerinfo _value, $Res Function(_customerinfo) _then)
-      : super(_value, (v) => _then(v as _customerinfo));
+class __$CustomerinfoCopyWithImpl<$Res> extends _$CustomerinfoCopyWithImpl<$Res>
+    implements _$CustomerinfoCopyWith<$Res> {
+  __$CustomerinfoCopyWithImpl(
+      _Customerinfo _value, $Res Function(_Customerinfo) _then)
+      : super(_value, (v) => _then(v as _Customerinfo));
 
   @override
-  _customerinfo get _value => super._value as _customerinfo;
+  _Customerinfo get _value => super._value as _Customerinfo;
 
   @override
   $Res call({
@@ -5659,7 +6968,7 @@ class __$customerinfoCopyWithImpl<$Res> extends _$customerinfoCopyWithImpl<$Res>
     Object name = freezed,
     Object maddr = freezed,
   }) {
-    return _then(_customerinfo(
+    return _then(_Customerinfo(
       infotype: infotype == freezed ? _value.infotype : infotype as int,
       customerid:
           customerid == freezed ? _value.customerid : customerid as String,
@@ -5667,7 +6976,7 @@ class __$customerinfoCopyWithImpl<$Res> extends _$customerinfoCopyWithImpl<$Res>
           ? _value.customeruserid
           : customeruserid as String,
       name: name == freezed ? _value.name : name as String,
-      maddr: maddr == freezed ? _value.maddr : maddr as addressmodel,
+      maddr: maddr == freezed ? _value.maddr : maddr as Addressmodel,
     ));
   }
 }
@@ -5675,16 +6984,16 @@ class __$customerinfoCopyWithImpl<$Res> extends _$customerinfoCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_customerinfo implements _customerinfo {
-  _$_customerinfo(
+class _$_Customerinfo implements _Customerinfo {
+  _$_Customerinfo(
       {@JsonKey(name: 'infotype') this.infotype,
       @JsonKey(name: 'customerid') this.customerid,
       @JsonKey(name: 'customeruserid') this.customeruserid,
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'maddr') this.maddr});
 
-  factory _$_customerinfo.fromJson(Map<String, dynamic> json) =>
-      _$_$_customerinfoFromJson(json);
+  factory _$_Customerinfo.fromJson(Map<String, dynamic> json) =>
+      _$_$_CustomerinfoFromJson(json);
 
   @override
   @JsonKey(name: 'infotype')
@@ -5700,17 +7009,17 @@ class _$_customerinfo implements _customerinfo {
   final String name;
   @override
   @JsonKey(name: 'maddr')
-  final addressmodel maddr;
+  final Addressmodel maddr;
 
   @override
   String toString() {
-    return 'customerinfo(infotype: $infotype, customerid: $customerid, customeruserid: $customeruserid, name: $name, maddr: $maddr)';
+    return 'Customerinfo(infotype: $infotype, customerid: $customerid, customeruserid: $customeruserid, name: $name, maddr: $maddr)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _customerinfo &&
+        (other is _Customerinfo &&
             (identical(other.infotype, infotype) ||
                 const DeepCollectionEquality()
                     .equals(other.infotype, infotype)) &&
@@ -5737,25 +7046,25 @@ class _$_customerinfo implements _customerinfo {
 
   @JsonKey(ignore: true)
   @override
-  _$customerinfoCopyWith<_customerinfo> get copyWith =>
-      __$customerinfoCopyWithImpl<_customerinfo>(this, _$identity);
+  _$CustomerinfoCopyWith<_Customerinfo> get copyWith =>
+      __$CustomerinfoCopyWithImpl<_Customerinfo>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_customerinfoToJson(this);
+    return _$_$_CustomerinfoToJson(this);
   }
 }
 
-abstract class _customerinfo implements customerinfo {
-  factory _customerinfo(
+abstract class _Customerinfo implements Customerinfo {
+  factory _Customerinfo(
       {@JsonKey(name: 'infotype') int infotype,
       @JsonKey(name: 'customerid') String customerid,
       @JsonKey(name: 'customeruserid') String customeruserid,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'maddr') addressmodel maddr}) = _$_customerinfo;
+      @JsonKey(name: 'maddr') Addressmodel maddr}) = _$_Customerinfo;
 
-  factory _customerinfo.fromJson(Map<String, dynamic> json) =
-      _$_customerinfo.fromJson;
+  factory _Customerinfo.fromJson(Map<String, dynamic> json) =
+      _$_Customerinfo.fromJson;
 
   @override
   @JsonKey(name: 'infotype')
@@ -5771,22 +7080,22 @@ abstract class _customerinfo implements customerinfo {
   String get name;
   @override
   @JsonKey(name: 'maddr')
-  addressmodel get maddr;
+  Addressmodel get maddr;
   @override
   @JsonKey(ignore: true)
-  _$customerinfoCopyWith<_customerinfo> get copyWith;
+  _$CustomerinfoCopyWith<_Customerinfo> get copyWith;
 }
 
-addressmodel _$addressmodelFromJson(Map<String, dynamic> json) {
-  return _addressmodel.fromJson(json);
+Addressmodel _$AddressmodelFromJson(Map<String, dynamic> json) {
+  return _Addressmodel.fromJson(json);
 }
 
 /// @nodoc
-class _$addressmodelTearOff {
-  const _$addressmodelTearOff();
+class _$AddressmodelTearOff {
+  const _$AddressmodelTearOff();
 
 // ignore: unused_element
-  _addressmodel call(
+  _Addressmodel call(
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'country') String country,
       @JsonKey(name: 'state') String state,
@@ -5796,7 +7105,7 @@ class _$addressmodelTearOff {
       @JsonKey(name: 'addressinfo') String addressinfo,
       @JsonKey(name: 'lati') double lati,
       @JsonKey(name: 'longi') double longi}) {
-    return _addressmodel(
+    return _Addressmodel(
       id: id,
       country: country,
       state: state,
@@ -5810,17 +7119,17 @@ class _$addressmodelTearOff {
   }
 
 // ignore: unused_element
-  addressmodel fromJson(Map<String, Object> json) {
-    return addressmodel.fromJson(json);
+  Addressmodel fromJson(Map<String, Object> json) {
+    return Addressmodel.fromJson(json);
   }
 }
 
 /// @nodoc
 // ignore: unused_element
-const $addressmodel = _$addressmodelTearOff();
+const $Addressmodel = _$AddressmodelTearOff();
 
 /// @nodoc
-mixin _$addressmodel {
+mixin _$Addressmodel {
   @JsonKey(name: 'id')
   String get id;
   @JsonKey(name: 'country')
@@ -5842,14 +7151,14 @@ mixin _$addressmodel {
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
-  $addressmodelCopyWith<addressmodel> get copyWith;
+  $AddressmodelCopyWith<Addressmodel> get copyWith;
 }
 
 /// @nodoc
-abstract class $addressmodelCopyWith<$Res> {
-  factory $addressmodelCopyWith(
-          addressmodel value, $Res Function(addressmodel) then) =
-      _$addressmodelCopyWithImpl<$Res>;
+abstract class $AddressmodelCopyWith<$Res> {
+  factory $AddressmodelCopyWith(
+          Addressmodel value, $Res Function(Addressmodel) then) =
+      _$AddressmodelCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'country') String country,
@@ -5863,12 +7172,12 @@ abstract class $addressmodelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$addressmodelCopyWithImpl<$Res> implements $addressmodelCopyWith<$Res> {
-  _$addressmodelCopyWithImpl(this._value, this._then);
+class _$AddressmodelCopyWithImpl<$Res> implements $AddressmodelCopyWith<$Res> {
+  _$AddressmodelCopyWithImpl(this._value, this._then);
 
-  final addressmodel _value;
+  final Addressmodel _value;
   // ignore: unused_field
-  final $Res Function(addressmodel) _then;
+  final $Res Function(Addressmodel) _then;
 
   @override
   $Res call({
@@ -5898,11 +7207,11 @@ class _$addressmodelCopyWithImpl<$Res> implements $addressmodelCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$addressmodelCopyWith<$Res>
-    implements $addressmodelCopyWith<$Res> {
-  factory _$addressmodelCopyWith(
-          _addressmodel value, $Res Function(_addressmodel) then) =
-      __$addressmodelCopyWithImpl<$Res>;
+abstract class _$AddressmodelCopyWith<$Res>
+    implements $AddressmodelCopyWith<$Res> {
+  factory _$AddressmodelCopyWith(
+          _Addressmodel value, $Res Function(_Addressmodel) then) =
+      __$AddressmodelCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -5917,14 +7226,14 @@ abstract class _$addressmodelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$addressmodelCopyWithImpl<$Res> extends _$addressmodelCopyWithImpl<$Res>
-    implements _$addressmodelCopyWith<$Res> {
-  __$addressmodelCopyWithImpl(
-      _addressmodel _value, $Res Function(_addressmodel) _then)
-      : super(_value, (v) => _then(v as _addressmodel));
+class __$AddressmodelCopyWithImpl<$Res> extends _$AddressmodelCopyWithImpl<$Res>
+    implements _$AddressmodelCopyWith<$Res> {
+  __$AddressmodelCopyWithImpl(
+      _Addressmodel _value, $Res Function(_Addressmodel) _then)
+      : super(_value, (v) => _then(v as _Addressmodel));
 
   @override
-  _addressmodel get _value => super._value as _addressmodel;
+  _Addressmodel get _value => super._value as _Addressmodel;
 
   @override
   $Res call({
@@ -5938,7 +7247,7 @@ class __$addressmodelCopyWithImpl<$Res> extends _$addressmodelCopyWithImpl<$Res>
     Object lati = freezed,
     Object longi = freezed,
   }) {
-    return _then(_addressmodel(
+    return _then(_Addressmodel(
       id: id == freezed ? _value.id : id as String,
       country: country == freezed ? _value.country : country as String,
       state: state == freezed ? _value.state : state as String,
@@ -5956,8 +7265,8 @@ class __$addressmodelCopyWithImpl<$Res> extends _$addressmodelCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_addressmodel implements _addressmodel {
-  _$_addressmodel(
+class _$_Addressmodel implements _Addressmodel {
+  _$_Addressmodel(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'country') this.country,
       @JsonKey(name: 'state') this.state,
@@ -5968,8 +7277,8 @@ class _$_addressmodel implements _addressmodel {
       @JsonKey(name: 'lati') this.lati,
       @JsonKey(name: 'longi') this.longi});
 
-  factory _$_addressmodel.fromJson(Map<String, dynamic> json) =>
-      _$_$_addressmodelFromJson(json);
+  factory _$_Addressmodel.fromJson(Map<String, dynamic> json) =>
+      _$_$_AddressmodelFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -6001,13 +7310,13 @@ class _$_addressmodel implements _addressmodel {
 
   @override
   String toString() {
-    return 'addressmodel(id: $id, country: $country, state: $state, district: $district, village: $village, areaname: $areaname, addressinfo: $addressinfo, lati: $lati, longi: $longi)';
+    return 'Addressmodel(id: $id, country: $country, state: $state, district: $district, village: $village, areaname: $areaname, addressinfo: $addressinfo, lati: $lati, longi: $longi)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _addressmodel &&
+        (other is _Addressmodel &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.country, country) ||
@@ -6048,17 +7357,17 @@ class _$_addressmodel implements _addressmodel {
 
   @JsonKey(ignore: true)
   @override
-  _$addressmodelCopyWith<_addressmodel> get copyWith =>
-      __$addressmodelCopyWithImpl<_addressmodel>(this, _$identity);
+  _$AddressmodelCopyWith<_Addressmodel> get copyWith =>
+      __$AddressmodelCopyWithImpl<_Addressmodel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_addressmodelToJson(this);
+    return _$_$_AddressmodelToJson(this);
   }
 }
 
-abstract class _addressmodel implements addressmodel {
-  factory _addressmodel(
+abstract class _Addressmodel implements Addressmodel {
+  factory _Addressmodel(
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'country') String country,
       @JsonKey(name: 'state') String state,
@@ -6067,10 +7376,10 @@ abstract class _addressmodel implements addressmodel {
       @JsonKey(name: 'areaname') String areaname,
       @JsonKey(name: 'addressinfo') String addressinfo,
       @JsonKey(name: 'lati') double lati,
-      @JsonKey(name: 'longi') double longi}) = _$_addressmodel;
+      @JsonKey(name: 'longi') double longi}) = _$_Addressmodel;
 
-  factory _addressmodel.fromJson(Map<String, dynamic> json) =
-      _$_addressmodel.fromJson;
+  factory _Addressmodel.fromJson(Map<String, dynamic> json) =
+      _$_Addressmodel.fromJson;
 
   @override
   @JsonKey(name: 'id')
@@ -6101,7 +7410,7 @@ abstract class _addressmodel implements addressmodel {
   double get longi;
   @override
   @JsonKey(ignore: true)
-  _$addressmodelCopyWith<_addressmodel> get copyWith;
+  _$AddressmodelCopyWith<_Addressmodel> get copyWith;
 }
 
 ProductFilterResultModel _$ProductFilterResultModelFromJson(
@@ -6118,10 +7427,10 @@ class _$ProductFilterResultModelTearOff {
       {@JsonKey(name: 'totalcount') int totalcount,
       @JsonKey(name: 'serviceproviderid') String serviceproviderid,
       @JsonKey(name: 'docwithdata1') List<LimitedProductData> docwithdata1,
-      @JsonKey(name: 'docwithdata2') List<LimitedJobReqModel> docwithdata2,
-      @JsonKey(name: 'docwithdata3') List<LimitedRealEstateModel> docwithdata3,
-      @JsonKey(name: 'docwithdata4') List<LimitedVehicleModel> docwithdata4,
-      @JsonKey(name: 'docwithdata5') List<LimitedPetModel> docwithdata5,
+      @JsonKey(name: 'docwithdata2') List<LimitedJobData> docwithdata2,
+      @JsonKey(name: 'docwithdata3') List<LimitedRealEstateData> docwithdata3,
+      @JsonKey(name: 'docwithdata4') List<LimitedVehicleData> docwithdata4,
+      @JsonKey(name: 'docwithdata5') List<LimitedPetData> docwithdata5,
       @JsonKey(name: 'pidlist') List<String> pidlist,
       @JsonKey(name: 'diminfo') List<DimData> diminfo,
       @JsonKey(name: 'catinfo') List<Categoryinfo> catinfo,
@@ -6162,13 +7471,13 @@ mixin _$ProductFilterResultModel {
   @JsonKey(name: 'docwithdata1')
   List<LimitedProductData> get docwithdata1;
   @JsonKey(name: 'docwithdata2')
-  List<LimitedJobReqModel> get docwithdata2;
+  List<LimitedJobData> get docwithdata2;
   @JsonKey(name: 'docwithdata3')
-  List<LimitedRealEstateModel> get docwithdata3;
+  List<LimitedRealEstateData> get docwithdata3;
   @JsonKey(name: 'docwithdata4')
-  List<LimitedVehicleModel> get docwithdata4;
+  List<LimitedVehicleData> get docwithdata4;
   @JsonKey(name: 'docwithdata5')
-  List<LimitedPetModel> get docwithdata5;
+  List<LimitedPetData> get docwithdata5;
   @JsonKey(name: 'pidlist')
   List<String> get pidlist;
   @JsonKey(name: 'diminfo')
@@ -6194,10 +7503,10 @@ abstract class $ProductFilterResultModelCopyWith<$Res> {
       {@JsonKey(name: 'totalcount') int totalcount,
       @JsonKey(name: 'serviceproviderid') String serviceproviderid,
       @JsonKey(name: 'docwithdata1') List<LimitedProductData> docwithdata1,
-      @JsonKey(name: 'docwithdata2') List<LimitedJobReqModel> docwithdata2,
-      @JsonKey(name: 'docwithdata3') List<LimitedRealEstateModel> docwithdata3,
-      @JsonKey(name: 'docwithdata4') List<LimitedVehicleModel> docwithdata4,
-      @JsonKey(name: 'docwithdata5') List<LimitedPetModel> docwithdata5,
+      @JsonKey(name: 'docwithdata2') List<LimitedJobData> docwithdata2,
+      @JsonKey(name: 'docwithdata3') List<LimitedRealEstateData> docwithdata3,
+      @JsonKey(name: 'docwithdata4') List<LimitedVehicleData> docwithdata4,
+      @JsonKey(name: 'docwithdata5') List<LimitedPetData> docwithdata5,
       @JsonKey(name: 'pidlist') List<String> pidlist,
       @JsonKey(name: 'diminfo') List<DimData> diminfo,
       @JsonKey(name: 'catinfo') List<Categoryinfo> catinfo,
@@ -6239,16 +7548,16 @@ class _$ProductFilterResultModelCopyWithImpl<$Res>
           : docwithdata1 as List<LimitedProductData>,
       docwithdata2: docwithdata2 == freezed
           ? _value.docwithdata2
-          : docwithdata2 as List<LimitedJobReqModel>,
+          : docwithdata2 as List<LimitedJobData>,
       docwithdata3: docwithdata3 == freezed
           ? _value.docwithdata3
-          : docwithdata3 as List<LimitedRealEstateModel>,
+          : docwithdata3 as List<LimitedRealEstateData>,
       docwithdata4: docwithdata4 == freezed
           ? _value.docwithdata4
-          : docwithdata4 as List<LimitedVehicleModel>,
+          : docwithdata4 as List<LimitedVehicleData>,
       docwithdata5: docwithdata5 == freezed
           ? _value.docwithdata5
-          : docwithdata5 as List<LimitedPetModel>,
+          : docwithdata5 as List<LimitedPetData>,
       pidlist: pidlist == freezed ? _value.pidlist : pidlist as List<String>,
       diminfo: diminfo == freezed ? _value.diminfo : diminfo as List<DimData>,
       catinfo:
@@ -6274,10 +7583,10 @@ abstract class _$ProductFilterResultModelCopyWith<$Res>
       {@JsonKey(name: 'totalcount') int totalcount,
       @JsonKey(name: 'serviceproviderid') String serviceproviderid,
       @JsonKey(name: 'docwithdata1') List<LimitedProductData> docwithdata1,
-      @JsonKey(name: 'docwithdata2') List<LimitedJobReqModel> docwithdata2,
-      @JsonKey(name: 'docwithdata3') List<LimitedRealEstateModel> docwithdata3,
-      @JsonKey(name: 'docwithdata4') List<LimitedVehicleModel> docwithdata4,
-      @JsonKey(name: 'docwithdata5') List<LimitedPetModel> docwithdata5,
+      @JsonKey(name: 'docwithdata2') List<LimitedJobData> docwithdata2,
+      @JsonKey(name: 'docwithdata3') List<LimitedRealEstateData> docwithdata3,
+      @JsonKey(name: 'docwithdata4') List<LimitedVehicleData> docwithdata4,
+      @JsonKey(name: 'docwithdata5') List<LimitedPetData> docwithdata5,
       @JsonKey(name: 'pidlist') List<String> pidlist,
       @JsonKey(name: 'diminfo') List<DimData> diminfo,
       @JsonKey(name: 'catinfo') List<Categoryinfo> catinfo,
@@ -6322,16 +7631,16 @@ class __$ProductFilterResultModelCopyWithImpl<$Res>
           : docwithdata1 as List<LimitedProductData>,
       docwithdata2: docwithdata2 == freezed
           ? _value.docwithdata2
-          : docwithdata2 as List<LimitedJobReqModel>,
+          : docwithdata2 as List<LimitedJobData>,
       docwithdata3: docwithdata3 == freezed
           ? _value.docwithdata3
-          : docwithdata3 as List<LimitedRealEstateModel>,
+          : docwithdata3 as List<LimitedRealEstateData>,
       docwithdata4: docwithdata4 == freezed
           ? _value.docwithdata4
-          : docwithdata4 as List<LimitedVehicleModel>,
+          : docwithdata4 as List<LimitedVehicleData>,
       docwithdata5: docwithdata5 == freezed
           ? _value.docwithdata5
-          : docwithdata5 as List<LimitedPetModel>,
+          : docwithdata5 as List<LimitedPetData>,
       pidlist: pidlist == freezed ? _value.pidlist : pidlist as List<String>,
       diminfo: diminfo == freezed ? _value.diminfo : diminfo as List<DimData>,
       catinfo:
@@ -6378,16 +7687,16 @@ class _$_ProductFilterResultModel implements _ProductFilterResultModel {
   final List<LimitedProductData> docwithdata1;
   @override
   @JsonKey(name: 'docwithdata2')
-  final List<LimitedJobReqModel> docwithdata2;
+  final List<LimitedJobData> docwithdata2;
   @override
   @JsonKey(name: 'docwithdata3')
-  final List<LimitedRealEstateModel> docwithdata3;
+  final List<LimitedRealEstateData> docwithdata3;
   @override
   @JsonKey(name: 'docwithdata4')
-  final List<LimitedVehicleModel> docwithdata4;
+  final List<LimitedVehicleData> docwithdata4;
   @override
   @JsonKey(name: 'docwithdata5')
-  final List<LimitedPetModel> docwithdata5;
+  final List<LimitedPetData> docwithdata5;
   @override
   @JsonKey(name: 'pidlist')
   final List<String> pidlist;
@@ -6488,13 +7797,13 @@ abstract class _ProductFilterResultModel implements ProductFilterResultModel {
       @JsonKey(name: 'docwithdata1')
           List<LimitedProductData> docwithdata1,
       @JsonKey(name: 'docwithdata2')
-          List<LimitedJobReqModel> docwithdata2,
+          List<LimitedJobData> docwithdata2,
       @JsonKey(name: 'docwithdata3')
-          List<LimitedRealEstateModel> docwithdata3,
+          List<LimitedRealEstateData> docwithdata3,
       @JsonKey(name: 'docwithdata4')
-          List<LimitedVehicleModel> docwithdata4,
+          List<LimitedVehicleData> docwithdata4,
       @JsonKey(name: 'docwithdata5')
-          List<LimitedPetModel> docwithdata5,
+          List<LimitedPetData> docwithdata5,
       @JsonKey(name: 'pidlist')
           List<String> pidlist,
       @JsonKey(name: 'diminfo')
@@ -6520,16 +7829,16 @@ abstract class _ProductFilterResultModel implements ProductFilterResultModel {
   List<LimitedProductData> get docwithdata1;
   @override
   @JsonKey(name: 'docwithdata2')
-  List<LimitedJobReqModel> get docwithdata2;
+  List<LimitedJobData> get docwithdata2;
   @override
   @JsonKey(name: 'docwithdata3')
-  List<LimitedRealEstateModel> get docwithdata3;
+  List<LimitedRealEstateData> get docwithdata3;
   @override
   @JsonKey(name: 'docwithdata4')
-  List<LimitedVehicleModel> get docwithdata4;
+  List<LimitedVehicleData> get docwithdata4;
   @override
   @JsonKey(name: 'docwithdata5')
-  List<LimitedPetModel> get docwithdata5;
+  List<LimitedPetData> get docwithdata5;
   @override
   @JsonKey(name: 'pidlist')
   List<String> get pidlist;
@@ -7141,7 +8450,6 @@ abstract class $ExplorePageAdCopyWith<$Res> {
       @JsonKey(name: 'lpd') LimitedProductData lpd});
 
   $LimitedServiceModelCopyWith<$Res> get lm;
-  $LimitedProductDataCopyWith<$Res> get lpd;
 }
 
 /// @nodoc
@@ -7177,16 +8485,6 @@ class _$ExplorePageAdCopyWithImpl<$Res>
       return _then(_value.copyWith(lm: value));
     });
   }
-
-  @override
-  $LimitedProductDataCopyWith<$Res> get lpd {
-    if (_value.lpd == null) {
-      return null;
-    }
-    return $LimitedProductDataCopyWith<$Res>(_value.lpd, (value) {
-      return _then(_value.copyWith(lpd: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -7204,8 +8502,6 @@ abstract class _$ExplorePageAdCopyWith<$Res>
 
   @override
   $LimitedServiceModelCopyWith<$Res> get lm;
-  @override
-  $LimitedProductDataCopyWith<$Res> get lpd;
 }
 
 /// @nodoc
@@ -8071,7 +9367,7 @@ class _$ProductSearchInformationConfigTearOff {
       @JsonKey(name: 'grouptype') String grouptype,
       @JsonKey(name: 'isshop') bool isshop,
       @JsonKey(name: 'sp') SpatialData sp,
-      @JsonKey(name: 'cust') customerinfo cust,
+      @JsonKey(name: 'cust') Customerinfo cust,
       @JsonKey(name: 'entrypoint') int entrypoint,
       @JsonKey(name: 'servicesselected') List<String> servicesselected,
       @JsonKey(name: 'spoffset') int spoffset}) {
@@ -8112,7 +9408,7 @@ mixin _$ProductSearchInformationConfig {
   @JsonKey(name: 'sp')
   SpatialData get sp;
   @JsonKey(name: 'cust')
-  customerinfo get cust;
+  Customerinfo get cust;
   @JsonKey(name: 'entrypoint')
   int get entrypoint;
   @JsonKey(name: 'servicesselected')
@@ -8138,14 +9434,14 @@ abstract class $ProductSearchInformationConfigCopyWith<$Res> {
       @JsonKey(name: 'grouptype') String grouptype,
       @JsonKey(name: 'isshop') bool isshop,
       @JsonKey(name: 'sp') SpatialData sp,
-      @JsonKey(name: 'cust') customerinfo cust,
+      @JsonKey(name: 'cust') Customerinfo cust,
       @JsonKey(name: 'entrypoint') int entrypoint,
       @JsonKey(name: 'servicesselected') List<String> servicesselected,
       @JsonKey(name: 'spoffset') int spoffset});
 
   $LimitedServiceModelCopyWith<$Res> get lsm;
   $SpatialDataCopyWith<$Res> get sp;
-  $customerinfoCopyWith<$Res> get cust;
+  $CustomerinfoCopyWith<$Res> get cust;
 }
 
 /// @nodoc
@@ -8176,7 +9472,7 @@ class _$ProductSearchInformationConfigCopyWithImpl<$Res>
       grouptype: grouptype == freezed ? _value.grouptype : grouptype as String,
       isshop: isshop == freezed ? _value.isshop : isshop as bool,
       sp: sp == freezed ? _value.sp : sp as SpatialData,
-      cust: cust == freezed ? _value.cust : cust as customerinfo,
+      cust: cust == freezed ? _value.cust : cust as Customerinfo,
       entrypoint: entrypoint == freezed ? _value.entrypoint : entrypoint as int,
       servicesselected: servicesselected == freezed
           ? _value.servicesselected
@@ -8206,11 +9502,11 @@ class _$ProductSearchInformationConfigCopyWithImpl<$Res>
   }
 
   @override
-  $customerinfoCopyWith<$Res> get cust {
+  $CustomerinfoCopyWith<$Res> get cust {
     if (_value.cust == null) {
       return null;
     }
-    return $customerinfoCopyWith<$Res>(_value.cust, (value) {
+    return $CustomerinfoCopyWith<$Res>(_value.cust, (value) {
       return _then(_value.copyWith(cust: value));
     });
   }
@@ -8230,7 +9526,7 @@ abstract class _$ProductSearchInformationConfigCopyWith<$Res>
       @JsonKey(name: 'grouptype') String grouptype,
       @JsonKey(name: 'isshop') bool isshop,
       @JsonKey(name: 'sp') SpatialData sp,
-      @JsonKey(name: 'cust') customerinfo cust,
+      @JsonKey(name: 'cust') Customerinfo cust,
       @JsonKey(name: 'entrypoint') int entrypoint,
       @JsonKey(name: 'servicesselected') List<String> servicesselected,
       @JsonKey(name: 'spoffset') int spoffset});
@@ -8240,7 +9536,7 @@ abstract class _$ProductSearchInformationConfigCopyWith<$Res>
   @override
   $SpatialDataCopyWith<$Res> get sp;
   @override
-  $customerinfoCopyWith<$Res> get cust;
+  $CustomerinfoCopyWith<$Res> get cust;
 }
 
 /// @nodoc
@@ -8275,7 +9571,7 @@ class __$ProductSearchInformationConfigCopyWithImpl<$Res>
       grouptype: grouptype == freezed ? _value.grouptype : grouptype as String,
       isshop: isshop == freezed ? _value.isshop : isshop as bool,
       sp: sp == freezed ? _value.sp : sp as SpatialData,
-      cust: cust == freezed ? _value.cust : cust as customerinfo,
+      cust: cust == freezed ? _value.cust : cust as Customerinfo,
       entrypoint: entrypoint == freezed ? _value.entrypoint : entrypoint as int,
       servicesselected: servicesselected == freezed
           ? _value.servicesselected
@@ -8322,7 +9618,7 @@ class _$_ProductSearchInformationConfig
   final SpatialData sp;
   @override
   @JsonKey(name: 'cust')
-  final customerinfo cust;
+  final Customerinfo cust;
   @override
   @JsonKey(name: 'entrypoint')
   final int entrypoint;
@@ -8400,7 +9696,7 @@ abstract class _ProductSearchInformationConfig
           @JsonKey(name: 'grouptype') String grouptype,
           @JsonKey(name: 'isshop') bool isshop,
           @JsonKey(name: 'sp') SpatialData sp,
-          @JsonKey(name: 'cust') customerinfo cust,
+          @JsonKey(name: 'cust') Customerinfo cust,
           @JsonKey(name: 'entrypoint') int entrypoint,
           @JsonKey(name: 'servicesselected') List<String> servicesselected,
           @JsonKey(name: 'spoffset') int spoffset}) =
@@ -8426,7 +9722,7 @@ abstract class _ProductSearchInformationConfig
   SpatialData get sp;
   @override
   @JsonKey(name: 'cust')
-  customerinfo get cust;
+  Customerinfo get cust;
   @override
   @JsonKey(name: 'entrypoint')
   int get entrypoint;
@@ -8457,7 +9753,7 @@ class _$SPCustomerModelTearOff {
       @JsonKey(name: 'phonenum') String phoneNum,
       @JsonKey(name: 'email') String email,
       @JsonKey(name: 'names') List<List<CustomerNameAgeIngo>> names,
-      @JsonKey(name: 'addressinfolist') List<addressmodel> addressInfolist}) {
+      @JsonKey(name: 'addressinfolist') List<Addressmodel> addressInfolist}) {
     return _SPCustomerModel(
       customerId: customerId,
       userId: userId,
@@ -8491,7 +9787,7 @@ mixin _$SPCustomerModel {
   @JsonKey(name: 'names')
   List<List<CustomerNameAgeIngo>> get names;
   @JsonKey(name: 'addressinfolist')
-  List<addressmodel> get addressInfolist;
+  List<Addressmodel> get addressInfolist;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -8509,7 +9805,7 @@ abstract class $SPCustomerModelCopyWith<$Res> {
       @JsonKey(name: 'phonenum') String phoneNum,
       @JsonKey(name: 'email') String email,
       @JsonKey(name: 'names') List<List<CustomerNameAgeIngo>> names,
-      @JsonKey(name: 'addressinfolist') List<addressmodel> addressInfolist});
+      @JsonKey(name: 'addressinfolist') List<Addressmodel> addressInfolist});
 }
 
 /// @nodoc
@@ -8541,7 +9837,7 @@ class _$SPCustomerModelCopyWithImpl<$Res>
           : names as List<List<CustomerNameAgeIngo>>,
       addressInfolist: addressInfolist == freezed
           ? _value.addressInfolist
-          : addressInfolist as List<addressmodel>,
+          : addressInfolist as List<Addressmodel>,
     ));
   }
 }
@@ -8559,7 +9855,7 @@ abstract class _$SPCustomerModelCopyWith<$Res>
       @JsonKey(name: 'phonenum') String phoneNum,
       @JsonKey(name: 'email') String email,
       @JsonKey(name: 'names') List<List<CustomerNameAgeIngo>> names,
-      @JsonKey(name: 'addressinfolist') List<addressmodel> addressInfolist});
+      @JsonKey(name: 'addressinfolist') List<Addressmodel> addressInfolist});
 }
 
 /// @nodoc
@@ -8593,7 +9889,7 @@ class __$SPCustomerModelCopyWithImpl<$Res>
           : names as List<List<CustomerNameAgeIngo>>,
       addressInfolist: addressInfolist == freezed
           ? _value.addressInfolist
-          : addressInfolist as List<addressmodel>,
+          : addressInfolist as List<Addressmodel>,
     ));
   }
 }
@@ -8630,7 +9926,7 @@ class _$_SPCustomerModel implements _SPCustomerModel {
   final List<List<CustomerNameAgeIngo>> names;
   @override
   @JsonKey(name: 'addressinfolist')
-  final List<addressmodel> addressInfolist;
+  final List<Addressmodel> addressInfolist;
 
   @override
   String toString() {
@@ -8692,7 +9988,7 @@ abstract class _SPCustomerModel implements SPCustomerModel {
       @JsonKey(name: 'names')
           List<List<CustomerNameAgeIngo>> names,
       @JsonKey(name: 'addressinfolist')
-          List<addressmodel> addressInfolist}) = _$_SPCustomerModel;
+          List<Addressmodel> addressInfolist}) = _$_SPCustomerModel;
 
   factory _SPCustomerModel.fromJson(Map<String, dynamic> json) =
       _$_SPCustomerModel.fromJson;
@@ -8714,7 +10010,7 @@ abstract class _SPCustomerModel implements SPCustomerModel {
   List<List<CustomerNameAgeIngo>> get names;
   @override
   @JsonKey(name: 'addressinfolist')
-  List<addressmodel> get addressInfolist;
+  List<Addressmodel> get addressInfolist;
   @override
   @JsonKey(ignore: true)
   _$SPCustomerModelCopyWith<_SPCustomerModel> get copyWith;

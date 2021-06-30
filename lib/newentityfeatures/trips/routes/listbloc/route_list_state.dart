@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class RouteListState extends Equatable {
   const RouteListState();
   @override

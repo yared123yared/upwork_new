@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class VehicleRelationListState extends Equatable {
   const VehicleRelationListState();
   @override

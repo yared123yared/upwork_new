@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class LeaveRequestListState extends Equatable {
   const LeaveRequestListState();
   @override

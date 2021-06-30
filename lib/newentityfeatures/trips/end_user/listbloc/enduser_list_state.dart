@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class EndUserListState extends Equatable {
   const EndUserListState();
   @override
@@ -45,7 +44,6 @@ class TripCutsResultsPageState extends EndUserListState {
   @override
   List<Object> get props => [tripCuts];
 }
-
 
 //
 class IsBusy extends EndUserListState {

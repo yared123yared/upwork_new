@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class RegistryModelListState extends Equatable {
   const RegistryModelListState();
   @override

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class VehicleCard extends StatelessWidget {
-  final LimitedVehicleModel vehicleModel;
+  final LimitedVehicleData vehicleModel;
   const VehicleCard({Key key, this.vehicleModel}) : super(key: key);
 
   @override

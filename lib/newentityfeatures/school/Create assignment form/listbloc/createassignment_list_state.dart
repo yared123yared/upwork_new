@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class CreateAssignmentListState extends Equatable {
   const CreateAssignmentListState();
   @override

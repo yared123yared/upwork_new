@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class FeePaymentListState extends Equatable {
   const FeePaymentListState();
   @override
@@ -36,7 +35,8 @@ class IsListDataLoaded extends FeePaymentListState {
 }
 
 class IsPaymentDetailsListDataLoaded extends FeePaymentListState {
-  IsPaymentDetailsListDataLoaded({@required this.listdata, @required this.feePlan});
+  IsPaymentDetailsListDataLoaded(
+      {@required this.listdata, @required this.feePlan});
   FeePlanModel feePlan;
 
   final List<PaymentDetails> listdata;

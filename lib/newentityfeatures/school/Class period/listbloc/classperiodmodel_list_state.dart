@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class ClassPeriodModelListState extends Equatable {
   const ClassPeriodModelListState();
   @override

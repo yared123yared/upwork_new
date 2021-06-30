@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class RemoteTripListState extends Equatable {
   const RemoteTripListState();
   @override

@@ -115,7 +115,7 @@ _$_orderinfomodel _$_$_orderinfomodelFromJson(Map<String, dynamic> json) {
   return _$_orderinfomodel(
     custaddress: json['custaddress'] == null
         ? null
-        : addressmodel.fromJson(json['custaddress'] as Map<String, dynamic>),
+        : Addressmodel.fromJson(json['custaddress'] as Map<String, dynamic>),
     customerid: json['customerid'] as String,
     custuserid: json['custuserid'] as String,
     custname: json['custname'] as String,
@@ -256,9 +256,41 @@ Map<String, dynamic> _$_$_ProductFilterModelToJson(
       'facetparalist': instance.facetparalist,
     };
 
-_$_LimitedPackageData _$_$_LimitedPackageDataFromJson(
-    Map<String, dynamic> json) {
-  return _$_LimitedPackageData(
+_$LimitedPetData _$_$LimitedPetDataFromJson(Map<String, dynamic> json) {
+  return _$LimitedPetData(
+    petclass: json['petclass'] as String,
+    name: json['name'] as String,
+    breed: json['breed'] as String,
+    gender: json['gender'] as String,
+    animalclass: json['animalclass'] as String,
+    age: json['age'] as int,
+    tileimage: json['tileimage'] as String,
+    price: (json['price'] as num)?.toDouble(),
+    postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
+    addressarea: json['addressarea'] == null
+        ? null
+        : Addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
+    serviceproviderid: json['serviceproviderid'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$LimitedPetDataToJson(_$LimitedPetData instance) =>
+    <String, dynamic>{
+      'petclass': instance.petclass,
+      'name': instance.name,
+      'breed': instance.breed,
+      'gender': instance.gender,
+      'animalclass': instance.animalclass,
+      'age': instance.age,
+      'tileimage': instance.tileimage,
+      'price': instance.price,
+      'postedon': JsonHelper.toJsonTimeStamp(instance.postedon),
+      'addressarea': instance.addressarea,
+      'serviceproviderid': instance.serviceproviderid,
+    };
+
+_$LimitedPackageData _$_$LimitedPackageDataFromJson(Map<String, dynamic> json) {
+  return _$LimitedPackageData(
     itemid: json['itemid'] as String,
     desc: json['desc'] as String,
     origprice: (json['origprice'] as num)?.toDouble(),
@@ -266,8 +298,8 @@ _$_LimitedPackageData _$_$_LimitedPackageDataFromJson(
   );
 }
 
-Map<String, dynamic> _$_$_LimitedPackageDataToJson(
-        _$_LimitedPackageData instance) =>
+Map<String, dynamic> _$_$LimitedPackageDataToJson(
+        _$LimitedPackageData instance) =>
     <String, dynamic>{
       'itemid': instance.itemid,
       'desc': instance.desc,
@@ -275,9 +307,8 @@ Map<String, dynamic> _$_$_LimitedPackageDataToJson(
       'discountedprice': instance.discountedprice,
     };
 
-_$_LimitedProductData _$_$_LimitedProductDataFromJson(
-    Map<String, dynamic> json) {
-  return _$_LimitedProductData(
+_$LimitedProductData _$_$LimitedProductDataFromJson(Map<String, dynamic> json) {
+  return _$LimitedProductData(
     id: json['id'] as String,
     title: json['title'] as String,
     tileimage: json['tileimage'] as String,
@@ -298,8 +329,8 @@ _$_LimitedProductData _$_$_LimitedProductDataFromJson(
   );
 }
 
-Map<String, dynamic> _$_$_LimitedProductDataToJson(
-        _$_LimitedProductData instance) =>
+Map<String, dynamic> _$_$LimitedProductDataToJson(
+        _$LimitedProductData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -316,42 +347,8 @@ Map<String, dynamic> _$_$_LimitedProductDataToJson(
       'contenttype': instance.contenttype,
     };
 
-_$_LimitedPetModel _$_$_LimitedPetModelFromJson(Map<String, dynamic> json) {
-  return _$_LimitedPetModel(
-    petclass: json['petclass'] as String,
-    name: json['name'] as String,
-    breed: json['breed'] as String,
-    gender: json['gender'] as String,
-    animalclass: json['animalclass'] as String,
-    age: json['age'] as int,
-    tileimage: json['tileimage'] as String,
-    price: (json['price'] as num)?.toDouble(),
-    postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
-    addressarea: json['addressarea'] == null
-        ? null
-        : addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
-    serviceproviderid: json['serviceproviderid'] as String,
-  );
-}
-
-Map<String, dynamic> _$_$_LimitedPetModelToJson(_$_LimitedPetModel instance) =>
-    <String, dynamic>{
-      'petclass': instance.petclass,
-      'name': instance.name,
-      'breed': instance.breed,
-      'gender': instance.gender,
-      'animalclass': instance.animalclass,
-      'age': instance.age,
-      'tileimage': instance.tileimage,
-      'price': instance.price,
-      'postedon': JsonHelper.toJsonTimeStamp(instance.postedon),
-      'addressarea': instance.addressarea,
-      'serviceproviderid': instance.serviceproviderid,
-    };
-
-_$_LimitedVehicleModel _$_$_LimitedVehicleModelFromJson(
-    Map<String, dynamic> json) {
-  return _$_LimitedVehicleModel(
+_$LimitedVehicleData _$_$LimitedVehicleDataFromJson(Map<String, dynamic> json) {
+  return _$LimitedVehicleData(
     productid: json['productid'] as String,
     title: json['title'] as String,
     vehicletype: json['vehicletype'] as String,
@@ -364,13 +361,13 @@ _$_LimitedVehicleModel _$_$_LimitedVehicleModelFromJson(
     postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
     addressarea: json['addressarea'] == null
         ? null
-        : addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
+        : Addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
     serviceproviderid: json['serviceproviderid'] as String,
   );
 }
 
-Map<String, dynamic> _$_$_LimitedVehicleModelToJson(
-        _$_LimitedVehicleModel instance) =>
+Map<String, dynamic> _$_$LimitedVehicleDataToJson(
+        _$LimitedVehicleData instance) =>
     <String, dynamic>{
       'productid': instance.productid,
       'title': instance.title,
@@ -386,9 +383,9 @@ Map<String, dynamic> _$_$_LimitedVehicleModelToJson(
       'serviceproviderid': instance.serviceproviderid,
     };
 
-_$_LimitedRealEstateModel _$_$_LimitedRealEstateModelFromJson(
+_$LimitedRealEstateData _$_$LimitedRealEstateDataFromJson(
     Map<String, dynamic> json) {
-  return _$_LimitedRealEstateModel(
+  return _$LimitedRealEstateData(
     productid: json['productid'] as String,
     listingtype: json['listingtype'] as String,
     propertytype: json['propertytype'] as String,
@@ -400,15 +397,15 @@ _$_LimitedRealEstateModel _$_$_LimitedRealEstateModelFromJson(
     price: (json['price'] as num)?.toDouble(),
     addressarea: json['addressarea'] == null
         ? null
-        : addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
+        : Addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
     postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
     tileimage: json['tileimage'] as String,
     serviceproviderid: json['serviceproviderid'] as String,
   );
 }
 
-Map<String, dynamic> _$_$_LimitedRealEstateModelToJson(
-        _$_LimitedRealEstateModel instance) =>
+Map<String, dynamic> _$_$LimitedRealEstateDataToJson(
+        _$LimitedRealEstateData instance) =>
     <String, dynamic>{
       'productid': instance.productid,
       'listingtype': instance.listingtype,
@@ -425,9 +422,8 @@ Map<String, dynamic> _$_$_LimitedRealEstateModelToJson(
       'serviceproviderid': instance.serviceproviderid,
     };
 
-_$_LimitedJobReqModel _$_$_LimitedJobReqModelFromJson(
-    Map<String, dynamic> json) {
-  return _$_LimitedJobReqModel(
+_$LimitedJobData _$_$LimitedJobDataFromJson(Map<String, dynamic> json) {
+  return _$LimitedJobData(
     productid: json['productid'] as String,
     title: json['title'] as String,
     companyname: json['companyname'] as String,
@@ -435,14 +431,13 @@ _$_LimitedJobReqModel _$_$_LimitedJobReqModelFromJson(
     salaryrange: json['salaryrange'] as String,
     addressarea: json['addressarea'] == null
         ? null
-        : addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
+        : Addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
     jobtype: json['jobtype'] as String,
     postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
   );
 }
 
-Map<String, dynamic> _$_$_LimitedJobReqModelToJson(
-        _$_LimitedJobReqModel instance) =>
+Map<String, dynamic> _$_$LimitedJobDataToJson(_$LimitedJobData instance) =>
     <String, dynamic>{
       'productid': instance.productid,
       'title': instance.title,
@@ -454,19 +449,19 @@ Map<String, dynamic> _$_$_LimitedJobReqModelToJson(
       'postedon': JsonHelper.toJsonTimeStamp(instance.postedon),
     };
 
-_$_customerinfo _$_$_customerinfoFromJson(Map<String, dynamic> json) {
-  return _$_customerinfo(
+_$_Customerinfo _$_$_CustomerinfoFromJson(Map<String, dynamic> json) {
+  return _$_Customerinfo(
     infotype: json['infotype'] as int,
     customerid: json['customerid'] as String,
     customeruserid: json['customeruserid'] as String,
     name: json['name'] as String,
     maddr: json['maddr'] == null
         ? null
-        : addressmodel.fromJson(json['maddr'] as Map<String, dynamic>),
+        : Addressmodel.fromJson(json['maddr'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$_$_customerinfoToJson(_$_customerinfo instance) =>
+Map<String, dynamic> _$_$_CustomerinfoToJson(_$_Customerinfo instance) =>
     <String, dynamic>{
       'infotype': instance.infotype,
       'customerid': instance.customerid,
@@ -475,8 +470,8 @@ Map<String, dynamic> _$_$_customerinfoToJson(_$_customerinfo instance) =>
       'maddr': instance.maddr,
     };
 
-_$_addressmodel _$_$_addressmodelFromJson(Map<String, dynamic> json) {
-  return _$_addressmodel(
+_$_Addressmodel _$_$_AddressmodelFromJson(Map<String, dynamic> json) {
+  return _$_Addressmodel(
     id: json['id'] as String,
     country: json['country'] as String,
     state: json['state'] as String,
@@ -489,7 +484,7 @@ _$_addressmodel _$_$_addressmodelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_addressmodelToJson(_$_addressmodel instance) =>
+Map<String, dynamic> _$_$_AddressmodelToJson(_$_Addressmodel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'country': instance.country,
@@ -515,22 +510,22 @@ _$_ProductFilterResultModel _$_$_ProductFilterResultModelFromJson(
     docwithdata2: (json['docwithdata2'] as List)
         ?.map((e) => e == null
             ? null
-            : LimitedJobReqModel.fromJson(e as Map<String, dynamic>))
+            : LimitedJobData.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     docwithdata3: (json['docwithdata3'] as List)
         ?.map((e) => e == null
             ? null
-            : LimitedRealEstateModel.fromJson(e as Map<String, dynamic>))
+            : LimitedRealEstateData.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     docwithdata4: (json['docwithdata4'] as List)
         ?.map((e) => e == null
             ? null
-            : LimitedVehicleModel.fromJson(e as Map<String, dynamic>))
+            : LimitedVehicleData.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     docwithdata5: (json['docwithdata5'] as List)
         ?.map((e) => e == null
             ? null
-            : LimitedPetModel.fromJson(e as Map<String, dynamic>))
+            : LimitedPetData.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     pidlist: (json['pidlist'] as List)?.map((e) => e as String)?.toList(),
     diminfo: (json['diminfo'] as List)
@@ -715,7 +710,7 @@ _$_ProductSearchInformationConfig _$_$_ProductSearchInformationConfigFromJson(
         : SpatialData.fromJson(json['sp'] as Map<String, dynamic>),
     cust: json['cust'] == null
         ? null
-        : customerinfo.fromJson(json['cust'] as Map<String, dynamic>),
+        : Customerinfo.fromJson(json['cust'] as Map<String, dynamic>),
     entrypoint: json['entrypoint'] as int,
     servicesselected:
         (json['servicesselected'] as List)?.map((e) => e as String)?.toList(),
@@ -752,7 +747,7 @@ _$_SPCustomerModel _$_$_SPCustomerModelFromJson(Map<String, dynamic> json) {
         ?.toList(),
     addressInfolist: (json['addressinfolist'] as List)
         ?.map((e) =>
-            e == null ? null : addressmodel.fromJson(e as Map<String, dynamic>))
+            e == null ? null : Addressmodel.fromJson(e as Map<String, dynamic>))
         ?.toList(),
   );
 }

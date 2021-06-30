@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class FeeItemGroupsModelListState extends Equatable {
   const FeeItemGroupsModelListState();
   @override

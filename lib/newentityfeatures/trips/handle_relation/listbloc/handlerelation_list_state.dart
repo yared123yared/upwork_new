@@ -1,6 +1,5 @@
 part of 'bloc.dart';
 
-@freezed
 class HandleRelationListState extends Equatable {
   const HandleRelationListState();
   @override
