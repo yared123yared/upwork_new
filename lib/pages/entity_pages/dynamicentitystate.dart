@@ -756,11 +756,11 @@ class CurEntity {
 }
 
 class UiSchoolHandler {
-
+  static final UserRepository _userRepository = HelpUtil.getUserRepository();
 
   static CurEntity getCurEntity() {
-    UserRepository _user = Get.find();
-    var user = _user.getUser();
+   // UserRepository _user = Get.find();
+    var user = _userRepository.getUser();
     CurEntity c;
     if (user.defaultType == entityT.complex &&
         user.defaultComplexEntity?.complexID != null) {
@@ -815,9 +815,16 @@ class UiSchoolHandler {
       case DynamicEntityGridState.FeeItem:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
-            title: 'SessionTerm',
+            title: 'Fee Item',
             tapAction: () {
-
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (buildContext) => FeeItemFormList(
+                      entitytype: getCurEntity().entitytype,
+                      entityid: getCurEntity().entityid,
+                    ),
+                  ));
             });
         break;
 
