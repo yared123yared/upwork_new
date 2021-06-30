@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/blocs/service_bloc.dart';
 import 'package:complex/data/models/response/user_response/service_model.dart';
+import 'package:complex/newentityfeatures/Appointment/AppointmentConfiguration/Presentation/configure_checkIn.dart';
 //lib/newentityfeatures/Appointment/models/appointment_model.dart
 //lib/newentityfeatures/Appointment/AppointmentConfiguration/configure_appointment.dart
 //lib/newentityfeatures/Appointment/AppointmentConfiguration/Presentation/configure_appointment.dart
 import 'package:complex/newentityfeatures/Appointment/models/slot_configuration_model/check_in_model.dart';
-import 'package:complex/newentityfeatures/appointment/appointmentConfiguration/Presentation/configure_checkIn.dart';
-import 'package:complex/newentityfeatures/Appointment/models/slot_configuration_model/check_in_model.dart';
+// import 'package:complex/newentityfeatures/appointment/appointmentConfiguration/Presentation/configure_checkIn.dart';
 import 'package:complex/newentityfeatures/Appointment/models/slot_configuration_model/home_visit_model.dart';
 import 'package:complex/newentityfeatures/Appointment/models/slot_configuration_model/reg_apt_model.dart';
 import 'package:complex/newentityfeatures/Appointment/models/slot_configuration_model/slot_configuration_model.dart';
@@ -59,7 +59,8 @@ class _ConfigureAppointmentState extends State<ConfigureAppointment> {
         toolbarHeight: 60,
       ),
       body: BlocBuilder<ServiceBloc, ServiceState>(
-        builder: (context, state) { return Container();
+        builder: (context, state) {
+          return Container();
           print('--------------------------------------------------');
           /*
           if (state is ServiceLoading) {
@@ -868,9 +869,5 @@ Widget buildLoading() {
 }
 
 void showToast(String text, BuildContext ctx) {
-
-  asuka.showSnackBar(SnackBar(
-    content: Text("Item is Created/Saved")
-  ));
-
+  asuka.showSnackBar(SnackBar(content: Text("Item is Created/Saved")));
 }

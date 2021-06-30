@@ -125,7 +125,6 @@ class UserModel {
     return clinfo;
   }
 
-  @override
   List<Object> get props => [isActive, name, qrCode, qrImgLink, resetPassword];
 
   UserModel copyWith({

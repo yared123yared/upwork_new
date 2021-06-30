@@ -23,7 +23,7 @@ class NotificationHelper {
 
   static getInstance() {
     if (_notificationHelper == null) {
-      _firebaseMessaging = FirebaseMessaging.instance;
+      _firebaseMessaging = FirebaseMessaging();
       _notificationHelper = new NotificationHelper._();
     }
     return _notificationHelper;
@@ -44,18 +44,20 @@ class NotificationHelper {
   }
 
   void setFcm() {
-    _firebaseMessaging.requestPermission(
-      sound: true,
-      badge: true,
-      alert: true,
-      provisional: false,
-    );
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      _onMessage(message);
-    });
-    FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      _onResume(event.data);
-    });
+    _firebaseMessaging.requestNotificationPermissions(
+        // sound: true,
+        // badge: true,
+        // alert: true,
+        // provisional: false,
+        );
+
+    _firebaseMessaging.configure(onMessage: _onMessage, onResume: _onResume);
+    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    //   _onMessage(message);
+    // });
+    // FirebaseMessaging.onMessageOpenedApp.listen((event) {
+    //   _onResume(event.data);
+    // });
   }
 
   Future<dynamic> _onResume(Map<String, dynamic> message) {
@@ -64,14 +66,14 @@ class NotificationHelper {
     return null;
   }
 
-  Future<dynamic> _onMessage(RemoteMessage message) {
-    Log.v('onMessage called --> ${message.data}');
-    _refreshUserData(message.data, false);
+  Future<dynamic> _onMessage(Map<String, dynamic> message) {
+    Log.v('onMessage called --> ${message}');
+    _refreshUserData(message, false);
     _shownotification(message);
     return null;
   }
 
-  Future<dynamic> _shownotification(RemoteMessage message) {
+  Future<dynamic> _shownotification(Map<String, dynamic> message) {
     try {
       showOverlayNotification((context) {
         return SafeArea(
@@ -82,18 +84,18 @@ class NotificationHelper {
               splashColor: Colors.transparent,
               onTap: () {
                 OverlaySupportEntry.of(context).dismiss();
-                UserSession.notificationData = message.data;
+                UserSession.notificationData = message;
                 Navigator.push(Application.getContext(),
                     NextPageRoute(ChannelsListPage()));
               },
               child: SafeArea(
                 child: ListTile(
                   title: Text(
-                    message.notification.title,
+                    message['title'],
                     maxLines: 2,
                   ),
                   subtitle: Text(
-                    message.notification.body,
+                    'message.notification.body',
                     maxLines: 10,
                     overflow: TextOverflow.ellipsis,
                   ),

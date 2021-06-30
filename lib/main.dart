@@ -23,38 +23,39 @@ import 'data/models/response/auth_response/user_session.dart';
 import 'dependency_injections.dart';
 import 'package:complex/newentityfeatures/ecommerce/cubit/ecommerce_cubit.dart';
 import 'package:complex/newentityfeatures/ecommerce/bloc/ads/ads_bloc.dart'
-as E3_AdsBloc;
+    as E3_AdsBloc;
 import 'package:complex/newentityfeatures/ecommerce/bloc/categories/categories_bloc.dart'
-as E3_CategoriesBloc;
+    as E3_CategoriesBloc;
 import 'package:complex/newentityfeatures/ecommerce/bloc/product/product_bloc.dart'
-as E3_ProductBloc;
+    as E3_ProductBloc;
 import 'package:complex/newentityfeatures/ecommerce/bloc/service/service_bloc.dart'
-as E3_ServiceBloc;
+    as E3_ServiceBloc;
 
 import 'package:complex/newentityfeatures/ecommerce-admin/bloc/order/order_bloc.dart'
-as E3_OrderBloc;
+    as E3_OrderBloc;
 import 'package:complex/newentityfeatures/ecommerce-admin/bloc/vendor/vendor_bloc.dart'
-as E3_VendorBloc;
+    as E3_VendorBloc;
 import 'package:complex/newentityfeatures/ecommerce-admin/bloc/delivery/delivery_bloc.dart'
-as E3_DeliveryBloc;
+    as E3_DeliveryBloc;
 import 'package:complex/newentityfeatures/ecommerce-admin/bloc/store-product/store_product_bloc.dart'
-as E3_StoreProductBloc;
+    as E3_StoreProductBloc;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp().then((value) {
-    var instance = FirebaseMessaging.instance;
-    FirebaseMessaging.onBackgroundMessage(onLaunch);
+    var instance = FirebaseMessaging();
+    instance.configure(onLaunch: onLaunch);
+    // FirebaseMessaging.onBackgroundMessage(onLaunch);
     setupDependencyInjections();
     runApp(MyApp());
   });
 }
 
-Future<void> onLaunch(RemoteMessage message) async {
+Future<void> onLaunch(Map<String, dynamic> message) async {
   Log.v('onLaunch called --> $message');
   // _notificationClickAction(message);
   await Firebase.initializeApp();
-  UserSession.notificationData = message.data;
+  UserSession.notificationData = message;
 }
 
 class MyApp extends StatelessWidget with PortraitModeMixin {
@@ -105,8 +106,8 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
               create: (_) => E3_ProductBloc.ProductBloc()),
           BlocProvider<E3_ServiceBloc.ServiceBloc>(
               create: (_) => E3_ServiceBloc.ServiceBloc(
-                Get.context.read<E3_ProductBloc.ProductBloc>(),
-              )),
+                    Get.context.read<E3_ProductBloc.ProductBloc>(),
+                  )),
 
           BlocProvider<E3_OrderBloc.OrderBloc>(
             create: (_) => E3_OrderBloc.OrderBloc(),
@@ -120,7 +121,6 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
           BlocProvider<E3_StoreProductBloc.StoreProductBloc>(
             create: (_) => E3_StoreProductBloc.StoreProductBloc(),
           ),
-
         ],
         child: GetMaterialApp(
           title: "VThePeople",

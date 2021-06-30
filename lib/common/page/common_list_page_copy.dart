@@ -16,7 +16,6 @@ class CommonListPage extends StatefulWidget {
   final bool hasError;
   final dynamic errorMessage;
 
-
   CommonListPage({
     this.addItemAction,
     this.inAppTitle,
@@ -40,8 +39,8 @@ class _CommonListPage extends State<CommonListPage> {
   initiateSearchEngine() {
     _searchResult = widget.listItems;
     searchEngine = AutoComplete(
-      engine: SortEngine.configMulti(Duration(milliseconds: 300), 15, 0.5, 0.5),
-    );
+        // engine: SortEngine.configMulti(Duration(milliseconds: 300), 15, 0.5, 0.5),
+        );
     widget.listItems.forEach((item) {
       if (item.title != null) searchEngine.enter(item.title);
       if (item.subtitle != null) searchEngine.enter(item.subtitle);
@@ -70,9 +69,7 @@ class _CommonListPage extends State<CommonListPage> {
     setState(() {
       if (searchText == null) {
         _searchResult = widget.listItems;
-      }
-
-      else {
+      } else {
         /*
         _searchResult = widget.listItems
             .where((element) =>
@@ -83,40 +80,25 @@ class _CommonListPage extends State<CommonListPage> {
 
          */
 
-        _searchResult =doseachInList(searchText);
-
+        _searchResult = doseachInList(searchText);
       }
     });
   }
 
-  List<ListStateClass> doseachInList(String searchtext)
-  {
-    List<ListStateClass> mk =[];
+  List<ListStateClass> doseachInList(String searchtext) {
+    List<ListStateClass> mk = [];
     String msearchtext = searchtext.toLowerCase();
-    for(var k in  widget.listItems)
-      {
-        if(k.textforsearch !=null )
-          {
-            if(k.textforsearch.contains(msearchtext))
-              mk.add(k);
-          }
-          else if(k.subtitle  !=null)
-            {
-              if(k.title.contains(msearchtext) ||  k.subtitle.contains(msearchtext))
-                mk.add(k);
-
-            }
-        else
-        {
-          if(k.title.contains(msearchtext))
-            mk.add(k);
-
-        }
-
-
+    for (var k in widget.listItems) {
+      if (k.textforsearch != null) {
+        if (k.textforsearch.contains(msearchtext)) mk.add(k);
+      } else if (k.subtitle != null) {
+        if (k.title.contains(msearchtext) || k.subtitle.contains(msearchtext))
+          mk.add(k);
+      } else {
+        if (k.title.contains(msearchtext)) mk.add(k);
       }
+    }
     return mk;
-
   }
 
   void checkAndAdd(List<ListStateClass> list, ListStateClass item) {
