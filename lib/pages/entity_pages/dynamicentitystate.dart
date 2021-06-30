@@ -23,6 +23,7 @@ import 'package:complex/newentityfeatures/ecommerce-admin/views/delivery/deliver
 import 'package:complex/newentityfeatures/ecommerce-admin/views/orders/orders_view.dart';
 import 'package:complex/newentityfeatures/ecommerce-admin/views/trip/trips_view.dart';
 import 'package:complex/newentityfeatures/ecommerce-admin/views/vendor/vendor_view.dart';
+import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
 import 'package:complex/newentityfeatures/school/Class%20period/presentation/classperiodmodel_listview.dart';
 import 'package:complex/newentityfeatures/school/Create%20assignment%20form/presentation/createassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Event/presentation/event_page.dart';
@@ -696,7 +697,7 @@ class UiEntityPageStateList {
       // ],
       aptPanel: [],
       setupPanel: fillSetupPanelService(),
-      feesPaymentPanel: [],
+      feesPaymentPanel: fillFeePaymentPanel(),
       academicManagerPanel: fillAcademicsManagerPanel(),
       academicPanel: fillAcademicsPanel(),
       ecomPanel: fillEcomPanel(),
@@ -755,11 +756,11 @@ class CurEntity {
 }
 
 class UiSchoolHandler {
-
+  static final UserRepository _userRepository = HelpUtil.getUserRepository();
 
   static CurEntity getCurEntity() {
-    UserRepository _user = Get.find();
-    var user = _user.getUser();
+   // UserRepository _user = Get.find();
+    var user = _userRepository.getUser();
     CurEntity c;
     if (user.defaultType == entityT.complex &&
         user.defaultComplexEntity?.complexID != null) {
@@ -814,9 +815,16 @@ class UiSchoolHandler {
       case DynamicEntityGridState.FeeItem:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
-            title: 'SessionTerm',
+            title: 'Fee Item',
             tapAction: () {
-
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (buildContext) => FeeItemFormList(
+                      entitytype: getCurEntity().entitytype,
+                      entityid: getCurEntity().entityid,
+                    ),
+                  ));
             });
         break;
 
