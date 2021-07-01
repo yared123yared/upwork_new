@@ -1,47 +1,15 @@
 part of 'bloc.dart';
 
-class StringListState extends Equatable {
-  const StringListState();
-  @override
-  List<Object> get props => [];
-}
-
-class IsBusy extends StringListState {
-  const IsBusy();
-  @override
-  List<Object> get props => [];
-}
-
-class HasLogicalFaliur extends StringListState {
-  HasLogicalFaliur({@required this.error});
-  final String error;
-  @override
-  List<Object> get props => [error];
-}
-
-class HasExceptionFaliur extends StringListState {
-  HasExceptionFaliur({@required this.error});
-  final String error;
-  @override
-  List<Object> get props => [error];
-}
-
-class IsListDataLoaded extends StringListState {
-  IsListDataLoaded({@required this.listdata});
-
-  final List<String> listdata;
-  @override
-  List<Object> get props => [listdata];
-}
-
-class IsDeleted extends StringListState {
-  const IsDeleted();
-  @override
-  List<Object> get props => [];
-}
-
-class IsSaved extends StringListState {
-  const IsSaved();
-  @override
-  List<Object> get props => [];
+@freezed
+abstract class StringListState with _$StringListState {
+  const factory StringListState.isBusy() = IsBusy;
+  const factory StringListState.isDeleted() = IsDeleted;
+  const factory StringListState.isSaved() = IsSaved;
+  const factory StringListState.hasLogicalFaliur({@required String error}) =
+      HasLogicalFaliur;
+  const factory StringListState.hasExceptionFaliur({@required String error}) =
+      HasExceptionFaliur;
+  const factory StringListState.isListDataLoaded({List<String> listdata}) =
+      IsListDataLoaded;
+  const factory StringListState.initial() = StringListInitialState;
 }

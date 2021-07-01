@@ -2,7 +2,7 @@ part of 'bloc.dart';
 
 class StringListBloc extends Bloc<StringListEvent, StringListState> {
   StringRepository mrepository = StringRepository();
-  StringListBloc() : super(StringListState());
+  StringListBloc() : super(StringListInitialState());
 
   @override
   Stream<StringListState> mapEventToState(
