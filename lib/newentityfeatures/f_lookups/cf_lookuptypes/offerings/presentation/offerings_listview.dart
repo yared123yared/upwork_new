@@ -23,7 +23,7 @@ class _OfferingsFormListState extends State<OfferingsFormList> {
 
   void initState() {
     mlistbloc = new listbloc.StringListBloc();
-    mlistbloc.add(listbloc.getListData(
+    mlistbloc.add(listbloc.GetListData(
         entitytype: widget.entitytype,
         entityid: widget.entityid,
         fieldname: ''));
@@ -37,7 +37,7 @@ class _OfferingsFormListState extends State<OfferingsFormList> {
 
   void doreload(bool reloadtype) {
     if (reloadtype) {
-      mlistbloc.add(listbloc.getListData(
+      mlistbloc.add(listbloc.GetListData(
           entitytype: widget.entitytype,
           entityid: widget.entityid,
           fieldname: ''));
@@ -94,7 +94,7 @@ class _OfferingsFormListState extends State<OfferingsFormList> {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
             BlocProvider.of<listbloc.StringListBloc>(context).add(
-                listbloc.deleteItemWithData(
+                listbloc.DeleteItemWithData(
                     entitytype: widget.entitytype,
                     entityid: widget.entitytype,
                     item: item,
@@ -186,7 +186,7 @@ class _OfferingsFormListState extends State<OfferingsFormList> {
                   context, widget.entitytype, widget.entityid);
               if (returnedval != "*NOVALUESET*") {
                 BlocProvider.of<listbloc.StringListBloc>(context).add(
-                  listbloc.createItem(
+                  listbloc.CreateItem(
                       item: returnedval,
                       entitytype: widget.entitytype,
                       entityid: widget.entityid,

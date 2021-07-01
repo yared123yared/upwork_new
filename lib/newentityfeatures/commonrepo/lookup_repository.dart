@@ -328,16 +328,16 @@ class LookupRepository {
     }
   }
 
-  Future<List<String>> getFeeItemsList({@required String serviceID}) async {
-    try {
-      if (_feeItemsList == null || _feeItemsList.isEmpty)
-        await setFeeItemsList(serviceID: serviceID);
-      return _feeItemsList[serviceID];
-    } catch (e) {
-      print(e);
-      return e;
-    }
-  }
+  // Future<List<String>> getFeeItemsList({@required String serviceID}) async {
+  //   try {
+  //     if (_feeItemsList == null || _feeItemsList.isEmpty)
+  //       await setFeeItemsList(serviceID: serviceID);
+  //     return _feeItemsList[serviceID];
+  //   } catch (e) {
+  //     print(e);
+  //     return e;
+  //   }
+  // }
 
   // room
   Future<void> setRoomList({@required String serviceID}) async {
