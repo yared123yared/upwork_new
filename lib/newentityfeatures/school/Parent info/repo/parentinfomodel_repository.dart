@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:complex/common/helputil.dart';
-import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 
 import 'package:complex/newentityfeatures/Models/assignment_model.dart';
@@ -10,7 +7,6 @@ import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_score_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/gateway/vr_assignment_gateway.dart';
-import 'package:flutter/cupertino.dart';
 import '../bloc/bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
@@ -43,12 +39,15 @@ class ParentInfoModelRepository {
     try {
       //Please put your code here
       ParentInfoDataModel gr = ParentInfoDataModel(
-        sessionTerms: HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
+        sessionTerms:
+            HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
         assignmentListGetter: vrAssignmentGetter,
-        virtualRooms: HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
+        virtualRooms:
+            HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
         mode: event.mode,
         data: null,
-        idNumbers: HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
+        idNumbers:
+            HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
         errortype: -1,
       );
 
@@ -67,8 +66,10 @@ class ParentInfoModelRepository {
       //Please put your code here
       ParentInfoDataModel gr = ParentInfoDataModel(
         assignmentListGetter: vrAssignmentGetter,
-        sessionTerms: HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
-        virtualRooms: HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
+        sessionTerms:
+            HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
+        virtualRooms:
+            HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
         mode: ParentViewMode.Attendance,
         data: await _schoolRepo.parent.getAttendenceForIDCardGaurdian(
           entityid: event.entityid,
@@ -77,7 +78,8 @@ class ParentInfoModelRepository {
           startdate: event.startDate,
           enddate: event.endDate,
         ),
-        idNumbers: HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
+        idNumbers:
+            HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
         errortype: -1,
       );
 
@@ -94,8 +96,10 @@ class ParentInfoModelRepository {
     try {
       //Please put your code here
       ParentInfoDataModel gr = ParentInfoDataModel(
-        sessionTerms: HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
-        virtualRooms: HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
+        sessionTerms:
+            HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
+        virtualRooms:
+            HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
         assignmentListGetter: vrAssignmentGetter,
         mode: ParentViewMode.Event,
         data: await _schoolRepo.parent.getEventForIDCardGaurdian(
@@ -104,7 +108,8 @@ class ParentInfoModelRepository {
             sessionterm: event.sessionTerm,
             startdate: event.startDate,
             enddate: event.endDate),
-        idNumbers: HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
+        idNumbers:
+            HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
         errortype: -1,
       );
 
@@ -122,16 +127,19 @@ class ParentInfoModelRepository {
     try {
       //Please put your code here
       ParentInfoDataModel gr = ParentInfoDataModel(
-        sessionTerms: HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
+        sessionTerms:
+            HelpUtil.getUserModel().defaultServiceEntity.getSessionTerms(),
         assignmentListGetter: vrAssignmentGetter,
-        virtualRooms: HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
+        virtualRooms:
+            HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
         mode: ParentViewMode.Progress,
         data: await _schoolRepo.parent.getProgressForGaurdian(
           entityid: event.entityid,
           sessionterm: event.sessionTerm,
           idCardNumber: event.idNumber,
         ),
-        idNumbers: HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
+        idNumbers:
+            HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
         errortype: -1,
       );
 

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/pages/job_pages/job_detail_page.dart';
 import 'package:complex/pages/pet_pages/pets_detail_page.dart';
-import 'package:complex/pages/product_pages/package_detail_view.dart';
 import 'package:complex/pages/property/property_detail_page.dart';
 import 'package:complex/pages/vehicle/vehicle_detail_page.dart';
 import 'package:flutter/widgets.dart';

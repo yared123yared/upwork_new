@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/blocs/channels_bloc.dart';
-import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/models/response/channel_model/channel_model.dart';
 import 'package:complex/data/models/response/channel_model/message_model.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
@@ -44,7 +43,7 @@ class _ChatPageState extends State<ChatPage>
   List<MessageModel> msgList = List();
   ChannelsBloc _bloc;
   ChannelsProvider _channelsProvider =
-  Injector.appInstance.get<ChannelsProvider>();
+      Injector.appInstance.get<ChannelsProvider>();
   var _key = GlobalKey<ScaffoldState>();
   StreamSubscription<QuerySnapshot> _messageSubscription;
   AnimationController controller;
@@ -63,7 +62,7 @@ class _ChatPageState extends State<ChatPage>
   @override
   void initState() {
     super.initState();
-   /* _dbUtil.getChatFromChannel(widget.channelMetaModel.id).then((value) {
+    /* _dbUtil.getChatFromChannel(widget.channelMetaModel.id).then((value) {
       if (value != null) {
         print("LOCAL DB ==> ${value}");
         oldMsgList = MessageModel.listFromLocalDb(value);
@@ -153,8 +152,7 @@ class _ChatPageState extends State<ChatPage>
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius:
-                                  BorderRadius.circular(35.0),
+                                  borderRadius: BorderRadius.circular(35.0),
                                   boxShadow: [
                                     BoxShadow(
                                         offset: Offset(0, 3),
@@ -204,10 +202,7 @@ class _ChatPageState extends State<ChatPage>
           context: context,
           builder: (context) {
             return Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
+              width: MediaQuery.of(context).size.width,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -217,10 +212,7 @@ class _ChatPageState extends State<ChatPage>
                       sendImage();
                     },
                     child: Container(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       height: 50,
                       alignment: Alignment.center,
                       child: Text(
@@ -237,10 +229,7 @@ class _ChatPageState extends State<ChatPage>
                       sendVideo();
                     },
                     child: Container(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       height: 50,
                       alignment: Alignment.center,
                       child: Text(
@@ -278,16 +267,14 @@ class _ChatPageState extends State<ChatPage>
           key: _key, message: "Please wait while one media is sharing");
       return;
     }
-    if (_messageController.text
-        .trim()
-        .isNotEmpty) {
+    if (_messageController.text.trim().isNotEmpty) {
       MessageModel msg = MessageModel(
         from: widget.user.name,
         msg: json.encode({"type": 0, "msg": _messageController.text.trim()}),
         to: "",
         version: 0,
       );
-        print("save data value  ${FieldValue.serverTimestamp().toString()}");
+      print("save data value  ${FieldValue.serverTimestamp().toString()}");
       _channelsProvider.sendNewMsg(
           msg: msg, channelMetaModel: widget.channelMetaModel);
       _dbUtil.addDataToChannel('rqItG6fJZKF9fnlrZI7A', msg.toLocalData());

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
 
 class RoomInfoRepositoryReturnData {
@@ -9,34 +7,27 @@ class RoomInfoRepositoryReturnData {
   int errortype;
   String error;
   List<String> searchparavalues;
-	RoomInfoRepositoryReturnData()
-	{
-		errortype=2;
-		error="Not Implemented";
-	}
-
+  RoomInfoRepositoryReturnData() {
+    errortype = 2;
+    error = "Not Implemented";
+  }
 }
 
 class RoomInfoRepository {
   Future<RoomInfoRepositoryReturnData> getAllRoomInfos(
       String entitytype, String entityid) async {
-	
-	RoomInfoRepositoryReturnData myreturn = RoomInfoRepositoryReturnData();
-	//Please put your code here
+    RoomInfoRepositoryReturnData myreturn = RoomInfoRepositoryReturnData();
+    //Please put your code here
 
-	return myreturn;
-  
-  
+    return myreturn;
   }
-
-
 
   Future<RoomInfoRepositoryReturnData> createRoomInfo(
       RoomInfo item, String entitytype, String entityid) async {
-	RoomInfoRepositoryReturnData myreturn = RoomInfoRepositoryReturnData();
-	//Please put your code here
-    
-	return myreturn;
+    RoomInfoRepositoryReturnData myreturn = RoomInfoRepositoryReturnData();
+    //Please put your code here
+
+    return myreturn;
   }
 
   Future<RoomInfoRepositoryReturnData> updateRoomInfo(
@@ -44,23 +35,21 @@ class RoomInfoRepository {
     return null;
   }
 
-  Future<RoomInfoRepositoryReturnData> updateRoomInfoWithDiff(
-      RoomInfo newitem,RoomInfo olditem, String entitytype, String entityid) async {
+  Future<RoomInfoRepositoryReturnData> updateRoomInfoWithDiff(RoomInfo newitem,
+      RoomInfo olditem, String entitytype, String entityid) async {
     return null;
   }
-
 
   Future<RoomInfoRepositoryReturnData> deleteRoomInfoWithData(
       RoomInfo item, String entitytype, String entityid) async {
     return null;
   }
-  
-    Future<RoomInfoRepositoryReturnData> getInitialData(
-       String entitytype, String entityid) async {
-	  
-	  RoomInfoRepositoryReturnData myreturn = RoomInfoRepositoryReturnData();
-	  myreturn.errortype=-1;
-	//Please put your code here
+
+  Future<RoomInfoRepositoryReturnData> getInitialData(
+      String entitytype, String entityid) async {
+    RoomInfoRepositoryReturnData myreturn = RoomInfoRepositoryReturnData();
+    myreturn.errortype = -1;
+    //Please put your code here
     return myreturn;
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/family_member.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
@@ -9,8 +7,6 @@ import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
 // import 'package:complex/newentityfeatures/complex/repository/repo/user_repository.dart';
 
-
-import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +37,8 @@ class FamilyMemberRepository {
       entitytype: entitytype,
       entityid: entityid,
     ))
-        ?.map((unit) => unit.unitID)?.toList();
+        ?.map((unit) => unit.unitID)
+        ?.toList();
 
     myreturn.itemlist = await _complexRepository.familyMembers(
       entitytype: entitytype,
@@ -70,7 +67,8 @@ class FamilyMemberRepository {
         entitytype: entitytype,
         entityid: entityid,
       ))
-          ?.map((unit) => unit.unitID)?.toList();
+          ?.map((unit) => unit.unitID)
+          ?.toList();
 
       gr.grades = units;
       gr.errortype = -1;
@@ -94,7 +92,8 @@ class FamilyMemberRepository {
         entitytype: entitytype,
         entityid: entityid,
       ))
-          ?.map((unit) => unit.unitID)?.toList();
+          ?.map((unit) => unit.unitID)
+          ?.toList();
 
       FamilyEntryData gr = new FamilyEntryData();
 

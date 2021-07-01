@@ -2,7 +2,6 @@ import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/models/response/product_models/product_model.dart';
-import 'package:complex/data/models/response/product_models/property_model.dart';
 import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
@@ -37,7 +36,6 @@ class _PackageListViewState extends State<PackageListView> {
   ProductBloc _productBloc;
   var _isLoading = false;
   var _key = GlobalKey<ScaffoldState>();
-
 
   void _handleAddNoPackageResponse(AddPackageState state) {
     switch (state.apiState) {
@@ -107,7 +105,8 @@ class _PackageListViewState extends State<PackageListView> {
                         onTap: () {
                           ProductModel _model = widget.model;
                           _model.packagedata = packageList;
-                          _productBloc.add(AddPackageEvent(model: _model, userId: UserSession.userId));
+                          _productBloc.add(AddPackageEvent(
+                              model: _model, userId: UserSession.userId));
                         },
                         borderColor: ColorConstants.primaryColor,
                       ),
@@ -148,8 +147,9 @@ class _PackageListViewState extends State<PackageListView> {
               ),
             ),
             onTap: () {
-              Navigator.push(context, NextPageRoute(PackageDetailView())).then((value) {
-                Utility.waitForMili(500).then((value) => setState((){}));
+              Navigator.push(context, NextPageRoute(PackageDetailView()))
+                  .then((value) {
+                Utility.waitForMili(500).then((value) => setState(() {}));
               });
             },
           ),
@@ -204,7 +204,10 @@ class _PackageListViewState extends State<PackageListView> {
         width: 100,
         height: double.infinity,
         color: ColorConstants.darkGreyColor.withOpacity(0.1),
-        child: Image.network(packageList.listimages.first,fit: BoxFit.cover,),
+        child: Image.network(
+          packageList.listimages.first,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -233,7 +236,9 @@ class _PackageListViewState extends State<PackageListView> {
                     ),
                   ),
                 ),
-                SizedBox(width: 20,),
+                SizedBox(
+                  width: 20,
+                ),
                 Expanded(
                   child: Container(
                     child: _renderTextField(

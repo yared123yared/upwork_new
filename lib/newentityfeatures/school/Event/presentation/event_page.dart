@@ -1,4 +1,3 @@
-
 import 'package:complex/common/helputil.dart';
 import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -8,11 +7,8 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
-import 'package:complex/common/helputil.dart' hide DateTimeMode;
-import "package:asuka/asuka.dart" as asuka;
 
 import '../bloc/bloc.dart';
-import 'package:complex/newentityfeatures/Models/attendance_model.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 
 class EventPage extends StatefulWidget {
@@ -199,7 +195,6 @@ class _EventPage extends State<EventPage> {
                           ],
                         ),
                       ),
-                      
                       BlocListener(
                         listener: (context, state) {
                           if (state is SubmitDataState) {
@@ -216,15 +211,17 @@ class _EventPage extends State<EventPage> {
                         },
                         child: BlocBuilder<EvtModelBloc, EvtModelState>(
                           builder: (context, state) {
-                            if (widget.evtdata != null && state is SubmitDataState) {
+                            if (widget.evtdata != null &&
+                                state is SubmitDataState) {
                               return CustomActionButton(
                                 state: widget.submitButtonState,
                                 title: "Submit",
                                 gradient: C.bgGradient,
-                                padding:
-                                    EdgeInsets.symmetric(vertical: height * 1.5),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: height * 1.5),
                                 margin: EdgeInsets.symmetric(
-                                    horizontal: width * 25, vertical: height * 6),
+                                    horizontal: width * 25,
+                                    vertical: height * 6),
                                 onTap: () {
                                   if (widget.submitButtonState ==
                                       ButtonState.idle) {
@@ -243,10 +240,10 @@ class _EventPage extends State<EventPage> {
                                         eventdata: _eventdata.text,
                                         date: _date,
                                         vrlist: selectedevtkind.vrlist,
-                                        atttype:
-                                            selectedevtkind.offering.isindependent
-                                                ? "of"
-                                                : "vr",
+                                        atttype: selectedevtkind
+                                                .offering.isindependent
+                                            ? "of"
+                                            : "vr",
                                       ),
                                     );
                                   }

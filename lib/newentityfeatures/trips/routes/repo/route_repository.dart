@@ -1,12 +1,8 @@
-import 'dart:convert';
-
 import 'package:complex/newentityfeatures/trips/model/models/route_points.dart';
 import 'package:complex/newentityfeatures/trips/model/models/routes.dart';
 import 'package:complex/newentityfeatures/trips/repository/repo/route_points_repository.dart';
 import 'package:complex/newentityfeatures/trips/repository/repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
 
 class RouteRepositoryReturnData {
   List<RouteModel> itemlist;

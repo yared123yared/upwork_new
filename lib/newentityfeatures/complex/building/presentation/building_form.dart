@@ -7,7 +7,6 @@ import 'package:complex/newentityfeatures/Models/building_model.dart';
 import 'package:complex/common/presentation.dart';
 
 import 'package:complex/data/screen_size.dart';
-import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
 import "package:asuka/asuka.dart" as asuka;
 import '../itembloc/bloc.dart' as itembloc;

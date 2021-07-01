@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
-import 'package:complex/newentityfeatures/gateway/staff_gateway.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
@@ -74,7 +71,6 @@ class ServiceRequestModelRepository {
       userModel: _user,
     );
     List<ServiceRequestModel> filteredServices = [];
-
 
     if (originType == 1) {
       // managerregistryMultiOwner

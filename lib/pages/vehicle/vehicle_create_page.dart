@@ -13,9 +13,7 @@ import 'package:complex/common/widgets/custom_slide_transition.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/selection_button.dart';
-import 'package:complex/pages/dashboard/home_page.dart';
 import 'package:complex/pages/login_pages/landing_page.dart';
-import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
 import 'package:complex/utils/utility.dart';
@@ -102,7 +100,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
           List<String> local = List<String>.from(result['values']);
           _makeList.clear();
           _makeList.addAll(local);
-        }else{
+        } else {
           _modelList.clear();
         }
         setState(() {
@@ -133,7 +131,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
       },
       child: BlocListener<ProductBloc, ProductState>(
         listener: (context, state) {
-          if(state is AddNewVehicleState) _handleCreatePropertyResponse(state);
+          if (state is AddNewVehicleState) _handleCreatePropertyResponse(state);
         },
         child: BlocBuilder<ProductBloc, ProductState>(
           builder: (context, state) {
@@ -506,8 +504,8 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                 ),
               ),
             ),
-            _makeDropdown("Make",_txtMake,_makeList),
-            _modelDropdown("Model",_txtModel,_modelList),
+            _makeDropdown("Make", _txtMake, _makeList),
+            _modelDropdown("Model", _txtModel, _modelList),
             CustomTextField(
               icon: null,
               title: "YearBuild",
@@ -546,10 +544,10 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
   }
 
   Widget _makeDropdown(
-      String text,
-      CustomTextFieldController controller,
-      List<String> items,
-      ) {
+    String text,
+    CustomTextFieldController controller,
+    List<String> items,
+  ) {
     return CustomDropDownList<String>(
       title: text,
       controller: controller,
@@ -560,13 +558,15 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
         setState(() {
           _isLoading = true;
         });
-        _productProvider.modelList(name: "${_vehicleType.toUpperCase()}@@$name").then((result) {
+        _productProvider
+            .modelList(name: "${_vehicleType.toUpperCase()}@@$name")
+            .then((result) {
           print("result :: $result");
           if (result != null) {
             List<String> local = List<String>.from(result['values']);
             _modelList.clear();
             _modelList.addAll(local);
-          }else{
+          } else {
             _modelList.clear();
           }
           _txtModel.clear();
@@ -582,17 +582,16 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
   }
 
   Widget _modelDropdown(
-      String text,
-      CustomTextFieldController controller,
-      List<String> items,
-      ) {
+    String text,
+    CustomTextFieldController controller,
+    List<String> items,
+  ) {
     return CustomDropDownList<String>(
       title: text,
       controller: controller,
       loadData: () async => items,
       displayName: (x) => x,
-      onSelected: (name, index) {
-      },
+      onSelected: (name, index) {},
       validate: Validate.withOption(
         isRequired: true,
       ),
@@ -1005,8 +1004,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
       servicetype: _serviceType,
       propertytype: _propertyType,
       contactdetails: widget.contactDetail,
-      creationdate:
-          ((DateTime.now().millisecondsSinceEpoch / 1000).round()),
+      creationdate: ((DateTime.now().millisecondsSinceEpoch / 1000).round()),
       title: _title.text,
       description: _description.text,
       docid: null,
@@ -1024,7 +1022,8 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
       fueltype: _fuelType,
       exteriorcolor: _txtExteriorColor.text,
       drivetype: _driveType,
-      cylinder: _cylinder == null || _cylinder.isEmpty ? null : int.parse(_cylinder),
+      cylinder:
+          _cylinder == null || _cylinder.isEmpty ? null : int.parse(_cylinder),
       bodytype: _bodyType,
       airbags: false,
       seatingcapacity: 4,
@@ -1041,6 +1040,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
       sunroof: false,
       turboengine: false,
     );
-    _bloc.add(AddNewVehicleEvent(model: _vehicleModel, userId: UserSession.userId));
+    _bloc.add(
+        AddNewVehicleEvent(model: _vehicleModel, userId: UserSession.userId));
   }
 }

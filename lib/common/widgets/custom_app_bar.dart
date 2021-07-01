@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import '../../data/data.dart';
 
@@ -42,11 +40,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   void initState() {
-
     super.initState();
     var keyboardVisibilityController = KeyboardVisibilityController();
     // Query
-    print('Keyboard visibility direct query: ${keyboardVisibilityController.isVisible}');
+    print(
+        'Keyboard visibility direct query: ${keyboardVisibilityController.isVisible}');
 
     // Subscribe
     keyboardVisibilityController.onChange.listen((bool visible) {
@@ -61,13 +59,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   void dispose() {
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return AppBar(
       title: searching ? _searchBar() : Text(widget.title),
       leading: widget.leading,

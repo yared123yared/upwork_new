@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:complex/newentityfeatures/Models/registry_model.dart';
 import 'package:complex/newentityfeatures/Models/resident_model.dart';
 import 'package:flutter/foundation.dart';
 

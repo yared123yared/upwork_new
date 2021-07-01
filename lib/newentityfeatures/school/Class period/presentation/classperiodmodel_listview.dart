@@ -1,5 +1,3 @@
-import 'package:complex/common/Colors/colors.dart';
-
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
 import "package:asuka/asuka.dart" as asuka;
@@ -11,12 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
-import 'package:provider/provider.dart';
-import 'package:get/get.dart';
 
-import '../itembloc/bloc.dart' as itembloc;
 import '../listbloc/bloc.dart' as listbloc;
-import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import './class_period_form.dart';
 
 class ClassPeriodModelListList extends StatefulWidget {
@@ -296,8 +290,7 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
                         appBarTitle: "Class Period List",
                         dynamicListState: "Class Period List",
                         listItems: em != null
-                            ? toCommonListState(
-                                em, context, em[i].type)
+                            ? toCommonListState(em, context, em[i].type)
                             : [],
                       ),
                     ],

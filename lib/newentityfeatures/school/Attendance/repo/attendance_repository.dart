@@ -1,18 +1,11 @@
-import 'dart:convert';
-
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/repositories/auth_repository.dart';
 
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
-import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
-import 'package:complex/newentityfeatures/commonrepo/user_session_reg_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import '../bloc/bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
@@ -65,8 +58,7 @@ class AttendanceModelRepository {
           attendanceModel: null,
         );
         return gr;
-      }
-      else {
+      } else {
         print("happening here");
         gr = AttendanceDataModel(
           sessionTerms: await _schoolRepo.lookup
@@ -95,7 +87,6 @@ class AttendanceModelRepository {
       print(ex);
       return grerror;
     }
-
   }
 
   Future<AttendanceDataModel> submitData(SubmitDataEvent event) async {

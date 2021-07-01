@@ -1,5 +1,4 @@
 import 'package:complex/data/models/response/product_models/property_model.dart';
-import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
 import 'package:complex/pages/product_pages/generic_prop.dart';
@@ -16,7 +15,8 @@ class SelectProductType extends StatefulWidget {
   final String serviceId;
   final String serviceProviderId;
 
-  SelectProductType(this.contactDetail,{this.isService,this.serviceId,this.serviceProviderId});
+  SelectProductType(this.contactDetail,
+      {this.isService, this.serviceId, this.serviceProviderId});
 
   @override
   _SelectProductTypeState createState() => _SelectProductTypeState();
@@ -130,7 +130,7 @@ class _SelectProductTypeState extends State<SelectProductType> {
     return TapWidget(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical:8,horizontal: 15),
+        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.width / 3,
         decoration: BoxDecoration(

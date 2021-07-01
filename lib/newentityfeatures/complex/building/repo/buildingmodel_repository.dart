@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 // import '../model/building_model.dart';
 import 'package:complex/newentityfeatures/Models/building_model.dart';
@@ -31,7 +29,8 @@ class BuildingModelRepository {
     //   await _complexRepository.setBuildingList(complexID: entityid);
     // }
 
-    myreturn.itemlist = await _complexRepository.getBuildingList(complexID: entityid);
+    myreturn.itemlist =
+        await _complexRepository.getBuildingList(complexID: entityid);
     myreturn.errortype = -1;
     return myreturn;
   }

@@ -11,11 +11,9 @@ import 'package:complex/common/widgets/custom_slide_transition.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/selection_button.dart';
-import 'package:complex/pages/dashboard/home_page.dart';
 import 'package:complex/pages/login_pages/landing_page.dart';
 import 'package:complex/pages/property/property_type.dart';
 import 'package:complex/pages/property/service_type.dart';
-import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
 import 'package:complex/utils/utility.dart';
@@ -281,9 +279,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                         validate: Validate.withOption(
                           isRequired: true,
                         ),
-                        onChange: (v) => setState(() {
-
-                        }),
+                        onChange: (v) => setState(() {}),
                       ),
                       CustomTextField(
                         icon: Icons.text_fields_outlined,
@@ -292,9 +288,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                         validate: Validate.withOption(
                           isRequired: true,
                         ),
-                        onChange: (v) => setState(() {
-
-                        }),
+                        onChange: (v) => setState(() {}),
                       ),
                     ],
                   ))),
@@ -865,9 +859,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                 isNumber: true,
                 isInt: true,
               ),
-              onChange: (v) => setState(() {
-
-              }),
+              onChange: (v) => setState(() {}),
             ),
             if (_serviceType == "PG" || _serviceType == "Sale")
               Column(
@@ -882,9 +874,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                       isInt: true,
                       isNumber: true,
                     ),
-                    onChange: (v) => setState(() {
-
-                    }),
+                    onChange: (v) => setState(() {}),
                   ),
                   SizedBox(height: 20),
                   Row(

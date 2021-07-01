@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
 import 'package:complex/common/presentation.dart';
-import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/sessiontermmodel/listbloc/bloc.dart'
-    as listbloc;
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/sessiontermmodel/itembloc/bloc.dart'
     as itembloc;
 import 'package:complex/data/screen_size.dart';

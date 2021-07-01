@@ -44,10 +44,7 @@ import 'package:complex/pages/property/property_detail_page.dart';
 import 'package:complex/pages/vehicle/vehicle_detail_page.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart'
-    as listbloc;
 
 class EntityRoleState {
   final EntityRoles role;
@@ -1224,7 +1221,6 @@ class UiSchoolHandler {
             title: 'newparentattendanceinfopage',
             tapAction: () async {
               NewSchoolRepository _schoolRepo = Get.find();
-              UserRepository _userRepository = Get.find();
 
               String entityid = getCurEntity().entityid;
 
@@ -1268,7 +1264,6 @@ class UiSchoolHandler {
             title: 'newparentprogressinfopage',
             tapAction: () async {
               NewSchoolRepository _schoolRepo = Get.find();
-              UserRepository _userRepository = Get.find();
 
               String entityid = getCurEntity().entityid;
 
@@ -1312,7 +1307,6 @@ class UiSchoolHandler {
             title: 'newparenteventinfopage',
             tapAction: () async {
               NewSchoolRepository _schoolRepo = Get.find();
-              UserRepository _userRepository = Get.find();
 
               String entityid = getCurEntity().entityid;
 
@@ -1400,7 +1394,6 @@ class UiSchoolHandler {
             title: 'newparentassignmentslistinfopage',
             tapAction: () async {
               NewSchoolRepository _schoolRepo = Get.find();
-              UserRepository _userRepository = Get.find();
 
               String entityid = getCurEntity().entityid;
 

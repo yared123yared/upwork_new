@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/blocs/service_bloc.dart';
-import 'package:complex/data/api/api_service.dart';
 
 import 'package:complex/data/models/response/user_response/service_model.dart';
 import 'package:complex/newentityfeatures/Appointment/models/slot_configuration_model/service_appointment.dart';
@@ -8,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'configure_appointment.dart';
-
 
 class InitialAppointmentScreen extends StatefulWidget {
   @override
@@ -40,8 +38,9 @@ class _InitialAppointmentScreenState extends State<InitialAppointmentScreen> {
         toolbarHeight: 60,
       ),
       body: BlocBuilder<ServiceBloc, ServiceState>(
-        builder: (context, state) { return Container();
-        /*
+        builder: (context, state) {
+          return Container();
+          /*
           if (state is ApiStatus.LOADING) {
             return buildLoading();
           }
@@ -74,7 +73,6 @@ class _InitialAppointmentScreenState extends State<InitialAppointmentScreen> {
             // );
           }
           */
-
         },
       ),
     );

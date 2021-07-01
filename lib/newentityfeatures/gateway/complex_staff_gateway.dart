@@ -5,9 +5,7 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/models/request/auth_request/signup_request.dart';
 import 'package:complex/data/models/response/general_response.dart';
-import 'package:complex/data/repositories/auth_repository.dart';
 import 'package:meta/meta.dart';
-
 
 // import '../../model/models.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
@@ -36,18 +34,17 @@ class ComplexStaffGateway {
 
   static Future<void> newStaffRequest(
       {StaffModelx staffModel, ComplexModel complexModel}) async {
-
     SignUpRequest _signUpModel = SignUpRequest(
-      password: "secretPassword",
-      username: staffModel.name,
-      email: staffModel.email,
-      phoneNum: staffModel.phoneNumStr,requestType: "PROFILE"
-    );
-    String _userID =null;
+        password: "secretPassword",
+        username: staffModel.name,
+        email: staffModel.email,
+        phoneNum: staffModel.phoneNumStr,
+        requestType: "PROFILE");
+    String _userID = null;
     var authrepository = HelpUtil.getAuthRepositoryl();
-    GeneralResponse gr = await authrepository.createUserForRequest(request:_signUpModel);
-    if(gr.success)
-      _userID=_signUpModel.userId;
+    GeneralResponse gr =
+        await authrepository.createUserForRequest(request: _signUpModel);
+    if (gr.success) _userID = _signUpModel.userId;
 
     print(json.encode(staffModel.toJson()));
     print('processing user id is: $_userID');

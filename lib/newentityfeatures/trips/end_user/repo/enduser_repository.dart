@@ -1,19 +1,10 @@
-import 'dart:convert';
-
 import 'package:complex/newentityfeatures/trips/model/models/route_points.dart';
 import 'package:complex/newentityfeatures/trips/model/models/route_trip.dart';
 import 'package:complex/newentityfeatures/trips/model/models/trip_cut.dart';
 import 'package:complex/newentityfeatures/trips/model/models/trip_cut_current_status.dart';
-import 'package:complex/newentityfeatures/Models/assignment_model.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
-import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/gateway/vr_assignment_gateway.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
 import 'package:complex/newentityfeatures/trips/repository/repo/end_user_repository.dart'
     as repo;
 
@@ -31,7 +22,6 @@ class EndUserRepositoryReturnData {
 }
 
 class EndUserRepository {
-
   Future<EndUserRepositoryReturnData> getAllEndUsers(
       String entitytype, String entityid) async {
     EndUserRepositoryReturnData myreturn = EndUserRepositoryReturnData();
@@ -68,7 +58,6 @@ class EndUserRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-
       GenericLookUpDataUsedForRegistration gr =
           new GenericLookUpDataUsedForRegistration();
       gr.errortype = -1;

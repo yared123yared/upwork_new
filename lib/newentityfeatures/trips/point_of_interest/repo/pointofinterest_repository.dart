@@ -1,10 +1,6 @@
-import 'dart:convert';
-
 import 'package:complex/newentityfeatures/trips/model/models.dart';
 import 'package:complex/newentityfeatures/trips/repository/repo/route_points_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
 
 class PointOfInterestRepositoryReturnData {
   List<RoutePointsModel> itemlist;
@@ -20,7 +16,6 @@ class PointOfInterestRepositoryReturnData {
 }
 
 class PointOfInterestRepository {
-
   Future<PointOfInterestRepositoryReturnData> getAllPointOfInterests(
       String entitytype, String entityid) async {
     PointOfInterestRepositoryReturnData myreturn =
@@ -62,7 +57,7 @@ class PointOfInterestRepository {
       GenericLookUpDataUsedForRegistration gr =
           new GenericLookUpDataUsedForRegistration();
       gr.errortype = -1;
-       return gr;
+      return gr;
     } catch (ex) {}
     return grerror;
   }

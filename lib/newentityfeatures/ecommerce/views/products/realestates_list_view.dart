@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 
 import '../../widgets/product/products_search.dart';
 import '../filters/products_filter.dart';
-import '../cart/cart_view.dart';
 
 class RealEstatesListView extends StatefulWidget {
   const RealEstatesListView({Key key}) : super(key: key);

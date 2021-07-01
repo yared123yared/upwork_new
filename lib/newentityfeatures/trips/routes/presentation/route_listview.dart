@@ -8,7 +8,6 @@ import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 
-import '../itembloc/bloc.dart' as itembloc;
 import '../listbloc/bloc.dart' as listbloc;
 import './route_form.dart';
 
@@ -18,8 +17,7 @@ class RouteListList extends StatefulWidget {
   RouteListList({this.entitytype, this.entityid});
 
   @override
-  _RouteListListState createState() =>
-      _RouteListListState();
+  _RouteListListState createState() => _RouteListListState();
 }
 
 class _RouteListListState extends State<RouteListList> {
@@ -141,8 +139,8 @@ class _RouteListListState extends State<RouteListList> {
             title: Text("Attach Assignment List"),
             centerTitle: true,
           ),
-          body: BlocListener<listbloc.RouteListBloc,
-              listbloc.RouteListState>(listener: (context, state) {
+          body: BlocListener<listbloc.RouteListBloc, listbloc.RouteListState>(
+              listener: (context, state) {
             if (state is listbloc.IsDeleted) {
               asuka.showSnackBar(SnackBar(
                 content: Text("Item is deleted"),
@@ -162,8 +160,9 @@ class _RouteListListState extends State<RouteListList> {
                 em = state.listdata;
               });
             }
-          }, child: BlocBuilder<listbloc.RouteListBloc,
-              listbloc.RouteListState>(builder: (context, state) {
+          }, child:
+                  BlocBuilder<listbloc.RouteListBloc, listbloc.RouteListState>(
+                      builder: (context, state) {
             if (state is listbloc.IsBusy)
               return Center(
                 child: Container(

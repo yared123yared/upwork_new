@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:complex/common/model/button_state.dart';
-import 'package:complex/newentityfeatures/Models/attendance_model.dart';
 import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/Models/progress_model.dart';
