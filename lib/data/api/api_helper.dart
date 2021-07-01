@@ -31,4 +31,27 @@ class ApiHelper {
           returnType: T.toString(), path: endPoint, error: e.toString()));
     }
   }
+
+  Future<Either<Failure, T>> getCollectionFromFirestore<T>({
+    @required
+        T Function(
+      List<Map<String, dynamic>> listData,
+    )
+            fromListData,
+  }) async {
+    try {
+      final QuerySnapshot querySnapshot =
+          await _firestoreInstance.collection(endPoint).get();
+      List<Map<String, dynamic>> dataList = List<Map<String, dynamic>>.from(
+          querySnapshot.docs.map((e) => e.data()));
+      final T typedResponse = fromListData(dataList);
+      return right(typedResponse);
+    } on FirebaseException catch (e) {
+      return left(LogicalFailure(
+          returnType: T.toString(), path: endPoint, error: e.toString()));
+    } catch (e) {
+      return left(ExceptionFailure(
+          returnType: T.toString(), path: endPoint, error: e.toString()));
+    }
+  }
 }
