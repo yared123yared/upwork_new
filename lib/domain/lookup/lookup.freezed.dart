@@ -15,7 +15,7 @@ Lookup _$LookupFromJson(Map<String, dynamic> json) {
     case 'examTermInfo':
       return ExamTermInfo.fromJson(json);
     case 'sessionTerm':
-      return SessionTermModel.fromJson(json);
+      return SessionTerm.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -28,8 +28,8 @@ class _$LookupTearOff {
 
 // ignore: unused_element
   RoomInfo roomInfo(
-      {@JsonKey(name: 'roomaddr') String roomAddr,
-      @JsonKey(name: 'roomname') String roomName}) {
+      {@required @JsonKey(name: 'roomaddr') String roomAddr,
+      @required @JsonKey(name: 'roomname') String roomName}) {
     return RoomInfo(
       roomAddr: roomAddr,
       roomName: roomName,
@@ -38,8 +38,8 @@ class _$LookupTearOff {
 
 // ignore: unused_element
   ExamTermInfo examTermInfo(
-      {@JsonKey(name: 'maintermname') String mainTermName,
-      @JsonKey(name: 'subtermname') String subTermName}) {
+      {@required @JsonKey(name: 'maintermname') String mainTermName,
+      @required @JsonKey(name: 'subtermname') String subTermName}) {
     return ExamTermInfo(
       mainTermName: mainTermName,
       subTermName: subTermName,
@@ -47,16 +47,20 @@ class _$LookupTearOff {
   }
 
 // ignore: unused_element
-  SessionTermModel sessionTerm(
-      {@JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+  SessionTerm sessionTerm(
+      {@required
+      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
+      @required
       @JsonKey(name: 'isactive')
           bool isActive,
+      @required
       @JsonKey(name: 'termname')
           String termName,
+      @required
       @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate}) {
-    return SessionTermModel(
+    return SessionTerm(
       endDate: endDate,
       isActive: isActive,
       termName: termName,
@@ -116,13 +120,13 @@ mixin _$Lookup {
   TResult map<TResult extends Object>({
     @required TResult roomInfo(RoomInfo value),
     @required TResult examTermInfo(ExamTermInfo value),
-    @required TResult sessionTerm(SessionTermModel value),
+    @required TResult sessionTerm(SessionTerm value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult roomInfo(RoomInfo value),
     TResult examTermInfo(ExamTermInfo value),
-    TResult sessionTerm(SessionTermModel value),
+    TResult sessionTerm(SessionTerm value),
     @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
@@ -178,8 +182,10 @@ class _$RoomInfoCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
 /// @nodoc
 class _$RoomInfo implements RoomInfo {
   const _$RoomInfo(
-      {@JsonKey(name: 'roomaddr') this.roomAddr,
-      @JsonKey(name: 'roomname') this.roomName});
+      {@required @JsonKey(name: 'roomaddr') this.roomAddr,
+      @required @JsonKey(name: 'roomname') this.roomName})
+      : assert(roomAddr != null),
+        assert(roomName != null);
 
   factory _$RoomInfo.fromJson(Map<String, dynamic> json) =>
       _$_$RoomInfoFromJson(json);
@@ -275,7 +281,7 @@ class _$RoomInfo implements RoomInfo {
   TResult map<TResult extends Object>({
     @required TResult roomInfo(RoomInfo value),
     @required TResult examTermInfo(ExamTermInfo value),
-    @required TResult sessionTerm(SessionTermModel value),
+    @required TResult sessionTerm(SessionTerm value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -288,7 +294,7 @@ class _$RoomInfo implements RoomInfo {
   TResult maybeMap<TResult extends Object>({
     TResult roomInfo(RoomInfo value),
     TResult examTermInfo(ExamTermInfo value),
-    TResult sessionTerm(SessionTermModel value),
+    TResult sessionTerm(SessionTerm value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -306,8 +312,8 @@ class _$RoomInfo implements RoomInfo {
 
 abstract class RoomInfo implements Lookup {
   const factory RoomInfo(
-      {@JsonKey(name: 'roomaddr') String roomAddr,
-      @JsonKey(name: 'roomname') String roomName}) = _$RoomInfo;
+      {@required @JsonKey(name: 'roomaddr') String roomAddr,
+      @required @JsonKey(name: 'roomname') String roomName}) = _$RoomInfo;
 
   factory RoomInfo.fromJson(Map<String, dynamic> json) = _$RoomInfo.fromJson;
 
@@ -359,8 +365,10 @@ class _$ExamTermInfoCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
 /// @nodoc
 class _$ExamTermInfo implements ExamTermInfo {
   const _$ExamTermInfo(
-      {@JsonKey(name: 'maintermname') this.mainTermName,
-      @JsonKey(name: 'subtermname') this.subTermName});
+      {@required @JsonKey(name: 'maintermname') this.mainTermName,
+      @required @JsonKey(name: 'subtermname') this.subTermName})
+      : assert(mainTermName != null),
+        assert(subTermName != null);
 
   factory _$ExamTermInfo.fromJson(Map<String, dynamic> json) =>
       _$_$ExamTermInfoFromJson(json);
@@ -456,7 +464,7 @@ class _$ExamTermInfo implements ExamTermInfo {
   TResult map<TResult extends Object>({
     @required TResult roomInfo(RoomInfo value),
     @required TResult examTermInfo(ExamTermInfo value),
-    @required TResult sessionTerm(SessionTermModel value),
+    @required TResult sessionTerm(SessionTerm value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -469,7 +477,7 @@ class _$ExamTermInfo implements ExamTermInfo {
   TResult maybeMap<TResult extends Object>({
     TResult roomInfo(RoomInfo value),
     TResult examTermInfo(ExamTermInfo value),
-    TResult sessionTerm(SessionTermModel value),
+    TResult sessionTerm(SessionTerm value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -487,8 +495,9 @@ class _$ExamTermInfo implements ExamTermInfo {
 
 abstract class ExamTermInfo implements Lookup {
   const factory ExamTermInfo(
-      {@JsonKey(name: 'maintermname') String mainTermName,
-      @JsonKey(name: 'subtermname') String subTermName}) = _$ExamTermInfo;
+          {@required @JsonKey(name: 'maintermname') String mainTermName,
+          @required @JsonKey(name: 'subtermname') String subTermName}) =
+      _$ExamTermInfo;
 
   factory ExamTermInfo.fromJson(Map<String, dynamic> json) =
       _$ExamTermInfo.fromJson;
@@ -502,10 +511,10 @@ abstract class ExamTermInfo implements Lookup {
 }
 
 /// @nodoc
-abstract class $SessionTermModelCopyWith<$Res> {
-  factory $SessionTermModelCopyWith(
-          SessionTermModel value, $Res Function(SessionTermModel) then) =
-      _$SessionTermModelCopyWithImpl<$Res>;
+abstract class $SessionTermCopyWith<$Res> {
+  factory $SessionTermCopyWith(
+          SessionTerm value, $Res Function(SessionTerm) then) =
+      _$SessionTermCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
@@ -518,14 +527,14 @@ abstract class $SessionTermModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SessionTermModelCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
-    implements $SessionTermModelCopyWith<$Res> {
-  _$SessionTermModelCopyWithImpl(
-      SessionTermModel _value, $Res Function(SessionTermModel) _then)
-      : super(_value, (v) => _then(v as SessionTermModel));
+class _$SessionTermCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
+    implements $SessionTermCopyWith<$Res> {
+  _$SessionTermCopyWithImpl(
+      SessionTerm _value, $Res Function(SessionTerm) _then)
+      : super(_value, (v) => _then(v as SessionTerm));
 
   @override
-  SessionTermModel get _value => super._value as SessionTermModel;
+  SessionTerm get _value => super._value as SessionTerm;
 
   @override
   $Res call({
@@ -534,7 +543,7 @@ class _$SessionTermModelCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
     Object termName = freezed,
     Object startDate = freezed,
   }) {
-    return _then(SessionTermModel(
+    return _then(SessionTerm(
       endDate: endDate == freezed ? _value.endDate : endDate as DateTime,
       isActive: isActive == freezed ? _value.isActive : isActive as bool,
       termName: termName == freezed ? _value.termName : termName as String,
@@ -547,19 +556,27 @@ class _$SessionTermModelCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$SessionTermModel implements SessionTermModel {
-  const _$SessionTermModel(
-      {@JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+class _$SessionTerm implements SessionTerm {
+  const _$SessionTerm(
+      {@required
+      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.endDate,
+      @required
       @JsonKey(name: 'isactive')
           this.isActive,
+      @required
       @JsonKey(name: 'termname')
           this.termName,
+      @required
       @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          this.startDate});
+          this.startDate})
+      : assert(endDate != null),
+        assert(isActive != null),
+        assert(termName != null),
+        assert(startDate != null);
 
-  factory _$SessionTermModel.fromJson(Map<String, dynamic> json) =>
-      _$_$SessionTermModelFromJson(json);
+  factory _$SessionTerm.fromJson(Map<String, dynamic> json) =>
+      _$_$SessionTermFromJson(json);
 
   @override
   @JsonKey(
@@ -588,7 +605,7 @@ class _$SessionTermModel implements SessionTermModel {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SessionTermModel &&
+        (other is SessionTerm &&
             (identical(other.endDate, endDate) ||
                 const DeepCollectionEquality()
                     .equals(other.endDate, endDate)) &&
@@ -613,8 +630,8 @@ class _$SessionTermModel implements SessionTermModel {
 
   @JsonKey(ignore: true)
   @override
-  $SessionTermModelCopyWith<SessionTermModel> get copyWith =>
-      _$SessionTermModelCopyWithImpl<SessionTermModel>(this, _$identity);
+  $SessionTermCopyWith<SessionTerm> get copyWith =>
+      _$SessionTermCopyWithImpl<SessionTerm>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -672,7 +689,7 @@ class _$SessionTermModel implements SessionTermModel {
   TResult map<TResult extends Object>({
     @required TResult roomInfo(RoomInfo value),
     @required TResult examTermInfo(ExamTermInfo value),
-    @required TResult sessionTerm(SessionTermModel value),
+    @required TResult sessionTerm(SessionTerm value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -685,7 +702,7 @@ class _$SessionTermModel implements SessionTermModel {
   TResult maybeMap<TResult extends Object>({
     TResult roomInfo(RoomInfo value),
     TResult examTermInfo(ExamTermInfo value),
-    TResult sessionTerm(SessionTermModel value),
+    TResult sessionTerm(SessionTerm value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -697,23 +714,27 @@ class _$SessionTermModel implements SessionTermModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$SessionTermModelToJson(this)..['runtimeType'] = 'sessionTerm';
+    return _$_$SessionTermToJson(this)..['runtimeType'] = 'sessionTerm';
   }
 }
 
-abstract class SessionTermModel implements Lookup {
-  const factory SessionTermModel(
-      {@JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+abstract class SessionTerm implements Lookup {
+  const factory SessionTerm(
+      {@required
+      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
+      @required
       @JsonKey(name: 'isactive')
           bool isActive,
+      @required
       @JsonKey(name: 'termname')
           String termName,
+      @required
       @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime startDate}) = _$SessionTermModel;
+          DateTime startDate}) = _$SessionTerm;
 
-  factory SessionTermModel.fromJson(Map<String, dynamic> json) =
-      _$SessionTermModel.fromJson;
+  factory SessionTerm.fromJson(Map<String, dynamic> json) =
+      _$SessionTerm.fromJson;
 
   @JsonKey(
       name: "enddate",
@@ -730,5 +751,1132 @@ abstract class SessionTermModel implements Lookup {
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get startDate;
   @JsonKey(ignore: true)
-  $SessionTermModelCopyWith<SessionTermModel> get copyWith;
+  $SessionTermCopyWith<SessionTerm> get copyWith;
+}
+
+LookupList _$LookupListFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType'] as String) {
+    case 'roomInfoList':
+      return RoomInfoList.fromJson(json);
+    case 'examTermInfoList':
+      return ExamTermInfoList.fromJson(json);
+    case 'sessionTermList':
+      return SessionTermList.fromJson(json);
+    case 'offering':
+      return Offerings.fromJson(json);
+    case 'feeItem':
+      return FeeItems.fromJson(json);
+    case 'grade':
+      return Grades.fromJson(json);
+
+    default:
+      throw FallThroughError();
+  }
+}
+
+/// @nodoc
+class _$LookupListTearOff {
+  const _$LookupListTearOff();
+
+// ignore: unused_element
+  RoomInfoList roomInfoList(
+      {@required @JsonKey(name: 'roominfo') List<RoomInfo> list}) {
+    return RoomInfoList(
+      list: list,
+    );
+  }
+
+// ignore: unused_element
+  ExamTermInfoList examTermInfoList(
+      {@required @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list}) {
+    return ExamTermInfoList(
+      list: list,
+    );
+  }
+
+// ignore: unused_element
+  SessionTermList sessionTermList(
+      {@required @JsonKey(name: 'sessionterm') List<SessionTerm> list}) {
+    return SessionTermList(
+      list: list,
+    );
+  }
+
+// ignore: unused_element
+  Offerings offering(
+      {@required @JsonKey(name: 'offerings') List<String> list}) {
+    return Offerings(
+      list: list,
+    );
+  }
+
+// ignore: unused_element
+  FeeItems feeItem(
+      {@required @JsonKey(name: 'feeitemlist') List<String> list}) {
+    return FeeItems(
+      list: list,
+    );
+  }
+
+// ignore: unused_element
+  Grades grade({@required @JsonKey(name: 'grades') List<String> list}) {
+    return Grades(
+      list: list,
+    );
+  }
+
+// ignore: unused_element
+  LookupList fromJson(Map<String, Object> json) {
+    return LookupList.fromJson(json);
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $LookupList = _$LookupListTearOff();
+
+/// @nodoc
+mixin _$LookupList {
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    @required
+        TResult examTermInfoList(
+            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    @required
+        TResult sessionTermList(
+            @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    @required TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+  });
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    TResult examTermInfoList(
+        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    TResult sessionTermList(
+        @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required TResult orElse(),
+  });
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfoList(RoomInfoList value),
+    @required TResult examTermInfoList(ExamTermInfoList value),
+    @required TResult sessionTermList(SessionTermList value),
+    @required TResult offering(Offerings value),
+    @required TResult feeItem(FeeItems value),
+    @required TResult grade(Grades value),
+  });
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfoList(RoomInfoList value),
+    TResult examTermInfoList(ExamTermInfoList value),
+    TResult sessionTermList(SessionTermList value),
+    TResult offering(Offerings value),
+    TResult feeItem(FeeItems value),
+    TResult grade(Grades value),
+    @required TResult orElse(),
+  });
+  Map<String, dynamic> toJson();
+}
+
+/// @nodoc
+abstract class $LookupListCopyWith<$Res> {
+  factory $LookupListCopyWith(
+          LookupList value, $Res Function(LookupList) then) =
+      _$LookupListCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LookupListCopyWithImpl<$Res> implements $LookupListCopyWith<$Res> {
+  _$LookupListCopyWithImpl(this._value, this._then);
+
+  final LookupList _value;
+  // ignore: unused_field
+  final $Res Function(LookupList) _then;
+}
+
+/// @nodoc
+abstract class $RoomInfoListCopyWith<$Res> {
+  factory $RoomInfoListCopyWith(
+          RoomInfoList value, $Res Function(RoomInfoList) then) =
+      _$RoomInfoListCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: 'roominfo') List<RoomInfo> list});
+}
+
+/// @nodoc
+class _$RoomInfoListCopyWithImpl<$Res> extends _$LookupListCopyWithImpl<$Res>
+    implements $RoomInfoListCopyWith<$Res> {
+  _$RoomInfoListCopyWithImpl(
+      RoomInfoList _value, $Res Function(RoomInfoList) _then)
+      : super(_value, (v) => _then(v as RoomInfoList));
+
+  @override
+  RoomInfoList get _value => super._value as RoomInfoList;
+
+  @override
+  $Res call({
+    Object list = freezed,
+  }) {
+    return _then(RoomInfoList(
+      list: list == freezed ? _value.list : list as List<RoomInfo>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$RoomInfoList implements RoomInfoList {
+  const _$RoomInfoList({@required @JsonKey(name: 'roominfo') this.list})
+      : assert(list != null);
+
+  factory _$RoomInfoList.fromJson(Map<String, dynamic> json) =>
+      _$_$RoomInfoListFromJson(json);
+
+  @override
+  @JsonKey(name: 'roominfo')
+  final List<RoomInfo> list;
+
+  @override
+  String toString() {
+    return 'LookupList.roomInfoList(list: $list)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RoomInfoList &&
+            (identical(other.list, list) ||
+                const DeepCollectionEquality().equals(other.list, list)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
+
+  @JsonKey(ignore: true)
+  @override
+  $RoomInfoListCopyWith<RoomInfoList> get copyWith =>
+      _$RoomInfoListCopyWithImpl<RoomInfoList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    @required
+        TResult examTermInfoList(
+            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    @required
+        TResult sessionTermList(
+            @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    @required TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return roomInfoList(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    TResult examTermInfoList(
+        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    TResult sessionTermList(
+        @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (roomInfoList != null) {
+      return roomInfoList(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfoList(RoomInfoList value),
+    @required TResult examTermInfoList(ExamTermInfoList value),
+    @required TResult sessionTermList(SessionTermList value),
+    @required TResult offering(Offerings value),
+    @required TResult feeItem(FeeItems value),
+    @required TResult grade(Grades value),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return roomInfoList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfoList(RoomInfoList value),
+    TResult examTermInfoList(ExamTermInfoList value),
+    TResult sessionTermList(SessionTermList value),
+    TResult offering(Offerings value),
+    TResult feeItem(FeeItems value),
+    TResult grade(Grades value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (roomInfoList != null) {
+      return roomInfoList(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$RoomInfoListToJson(this)..['runtimeType'] = 'roomInfoList';
+  }
+}
+
+abstract class RoomInfoList implements LookupList {
+  const factory RoomInfoList(
+          {@required @JsonKey(name: 'roominfo') List<RoomInfo> list}) =
+      _$RoomInfoList;
+
+  factory RoomInfoList.fromJson(Map<String, dynamic> json) =
+      _$RoomInfoList.fromJson;
+
+  @JsonKey(name: 'roominfo')
+  List<RoomInfo> get list;
+  @JsonKey(ignore: true)
+  $RoomInfoListCopyWith<RoomInfoList> get copyWith;
+}
+
+/// @nodoc
+abstract class $ExamTermInfoListCopyWith<$Res> {
+  factory $ExamTermInfoListCopyWith(
+          ExamTermInfoList value, $Res Function(ExamTermInfoList) then) =
+      _$ExamTermInfoListCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: 'examTermInfo') List<ExamTermInfo> list});
+}
+
+/// @nodoc
+class _$ExamTermInfoListCopyWithImpl<$Res>
+    extends _$LookupListCopyWithImpl<$Res>
+    implements $ExamTermInfoListCopyWith<$Res> {
+  _$ExamTermInfoListCopyWithImpl(
+      ExamTermInfoList _value, $Res Function(ExamTermInfoList) _then)
+      : super(_value, (v) => _then(v as ExamTermInfoList));
+
+  @override
+  ExamTermInfoList get _value => super._value as ExamTermInfoList;
+
+  @override
+  $Res call({
+    Object list = freezed,
+  }) {
+    return _then(ExamTermInfoList(
+      list: list == freezed ? _value.list : list as List<ExamTermInfo>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$ExamTermInfoList implements ExamTermInfoList {
+  const _$ExamTermInfoList({@required @JsonKey(name: 'examTermInfo') this.list})
+      : assert(list != null);
+
+  factory _$ExamTermInfoList.fromJson(Map<String, dynamic> json) =>
+      _$_$ExamTermInfoListFromJson(json);
+
+  @override
+  @JsonKey(name: 'examTermInfo')
+  final List<ExamTermInfo> list;
+
+  @override
+  String toString() {
+    return 'LookupList.examTermInfoList(list: $list)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ExamTermInfoList &&
+            (identical(other.list, list) ||
+                const DeepCollectionEquality().equals(other.list, list)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
+
+  @JsonKey(ignore: true)
+  @override
+  $ExamTermInfoListCopyWith<ExamTermInfoList> get copyWith =>
+      _$ExamTermInfoListCopyWithImpl<ExamTermInfoList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    @required
+        TResult examTermInfoList(
+            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    @required
+        TResult sessionTermList(
+            @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    @required TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return examTermInfoList(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    TResult examTermInfoList(
+        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    TResult sessionTermList(
+        @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (examTermInfoList != null) {
+      return examTermInfoList(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfoList(RoomInfoList value),
+    @required TResult examTermInfoList(ExamTermInfoList value),
+    @required TResult sessionTermList(SessionTermList value),
+    @required TResult offering(Offerings value),
+    @required TResult feeItem(FeeItems value),
+    @required TResult grade(Grades value),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return examTermInfoList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfoList(RoomInfoList value),
+    TResult examTermInfoList(ExamTermInfoList value),
+    TResult sessionTermList(SessionTermList value),
+    TResult offering(Offerings value),
+    TResult feeItem(FeeItems value),
+    TResult grade(Grades value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (examTermInfoList != null) {
+      return examTermInfoList(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$ExamTermInfoListToJson(this)
+      ..['runtimeType'] = 'examTermInfoList';
+  }
+}
+
+abstract class ExamTermInfoList implements LookupList {
+  const factory ExamTermInfoList(
+          {@required @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list}) =
+      _$ExamTermInfoList;
+
+  factory ExamTermInfoList.fromJson(Map<String, dynamic> json) =
+      _$ExamTermInfoList.fromJson;
+
+  @JsonKey(name: 'examTermInfo')
+  List<ExamTermInfo> get list;
+  @JsonKey(ignore: true)
+  $ExamTermInfoListCopyWith<ExamTermInfoList> get copyWith;
+}
+
+/// @nodoc
+abstract class $SessionTermListCopyWith<$Res> {
+  factory $SessionTermListCopyWith(
+          SessionTermList value, $Res Function(SessionTermList) then) =
+      _$SessionTermListCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: 'sessionterm') List<SessionTerm> list});
+}
+
+/// @nodoc
+class _$SessionTermListCopyWithImpl<$Res> extends _$LookupListCopyWithImpl<$Res>
+    implements $SessionTermListCopyWith<$Res> {
+  _$SessionTermListCopyWithImpl(
+      SessionTermList _value, $Res Function(SessionTermList) _then)
+      : super(_value, (v) => _then(v as SessionTermList));
+
+  @override
+  SessionTermList get _value => super._value as SessionTermList;
+
+  @override
+  $Res call({
+    Object list = freezed,
+  }) {
+    return _then(SessionTermList(
+      list: list == freezed ? _value.list : list as List<SessionTerm>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$SessionTermList implements SessionTermList {
+  const _$SessionTermList({@required @JsonKey(name: 'sessionterm') this.list})
+      : assert(list != null);
+
+  factory _$SessionTermList.fromJson(Map<String, dynamic> json) =>
+      _$_$SessionTermListFromJson(json);
+
+  @override
+  @JsonKey(name: 'sessionterm')
+  final List<SessionTerm> list;
+
+  @override
+  String toString() {
+    return 'LookupList.sessionTermList(list: $list)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SessionTermList &&
+            (identical(other.list, list) ||
+                const DeepCollectionEquality().equals(other.list, list)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
+
+  @JsonKey(ignore: true)
+  @override
+  $SessionTermListCopyWith<SessionTermList> get copyWith =>
+      _$SessionTermListCopyWithImpl<SessionTermList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    @required
+        TResult examTermInfoList(
+            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    @required
+        TResult sessionTermList(
+            @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    @required TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return sessionTermList(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    TResult examTermInfoList(
+        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    TResult sessionTermList(
+        @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sessionTermList != null) {
+      return sessionTermList(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfoList(RoomInfoList value),
+    @required TResult examTermInfoList(ExamTermInfoList value),
+    @required TResult sessionTermList(SessionTermList value),
+    @required TResult offering(Offerings value),
+    @required TResult feeItem(FeeItems value),
+    @required TResult grade(Grades value),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return sessionTermList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfoList(RoomInfoList value),
+    TResult examTermInfoList(ExamTermInfoList value),
+    TResult sessionTermList(SessionTermList value),
+    TResult offering(Offerings value),
+    TResult feeItem(FeeItems value),
+    TResult grade(Grades value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sessionTermList != null) {
+      return sessionTermList(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$SessionTermListToJson(this)..['runtimeType'] = 'sessionTermList';
+  }
+}
+
+abstract class SessionTermList implements LookupList {
+  const factory SessionTermList(
+          {@required @JsonKey(name: 'sessionterm') List<SessionTerm> list}) =
+      _$SessionTermList;
+
+  factory SessionTermList.fromJson(Map<String, dynamic> json) =
+      _$SessionTermList.fromJson;
+
+  @JsonKey(name: 'sessionterm')
+  List<SessionTerm> get list;
+  @JsonKey(ignore: true)
+  $SessionTermListCopyWith<SessionTermList> get copyWith;
+}
+
+/// @nodoc
+abstract class $OfferingsCopyWith<$Res> {
+  factory $OfferingsCopyWith(Offerings value, $Res Function(Offerings) then) =
+      _$OfferingsCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: 'offerings') List<String> list});
+}
+
+/// @nodoc
+class _$OfferingsCopyWithImpl<$Res> extends _$LookupListCopyWithImpl<$Res>
+    implements $OfferingsCopyWith<$Res> {
+  _$OfferingsCopyWithImpl(Offerings _value, $Res Function(Offerings) _then)
+      : super(_value, (v) => _then(v as Offerings));
+
+  @override
+  Offerings get _value => super._value as Offerings;
+
+  @override
+  $Res call({
+    Object list = freezed,
+  }) {
+    return _then(Offerings(
+      list: list == freezed ? _value.list : list as List<String>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$Offerings implements Offerings {
+  const _$Offerings({@required @JsonKey(name: 'offerings') this.list})
+      : assert(list != null);
+
+  factory _$Offerings.fromJson(Map<String, dynamic> json) =>
+      _$_$OfferingsFromJson(json);
+
+  @override
+  @JsonKey(name: 'offerings')
+  final List<String> list;
+
+  @override
+  String toString() {
+    return 'LookupList.offering(list: $list)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Offerings &&
+            (identical(other.list, list) ||
+                const DeepCollectionEquality().equals(other.list, list)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
+
+  @JsonKey(ignore: true)
+  @override
+  $OfferingsCopyWith<Offerings> get copyWith =>
+      _$OfferingsCopyWithImpl<Offerings>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    @required
+        TResult examTermInfoList(
+            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    @required
+        TResult sessionTermList(
+            @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    @required TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return offering(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    TResult examTermInfoList(
+        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    TResult sessionTermList(
+        @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (offering != null) {
+      return offering(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfoList(RoomInfoList value),
+    @required TResult examTermInfoList(ExamTermInfoList value),
+    @required TResult sessionTermList(SessionTermList value),
+    @required TResult offering(Offerings value),
+    @required TResult feeItem(FeeItems value),
+    @required TResult grade(Grades value),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return offering(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfoList(RoomInfoList value),
+    TResult examTermInfoList(ExamTermInfoList value),
+    TResult sessionTermList(SessionTermList value),
+    TResult offering(Offerings value),
+    TResult feeItem(FeeItems value),
+    TResult grade(Grades value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (offering != null) {
+      return offering(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$OfferingsToJson(this)..['runtimeType'] = 'offering';
+  }
+}
+
+abstract class Offerings implements LookupList {
+  const factory Offerings(
+      {@required @JsonKey(name: 'offerings') List<String> list}) = _$Offerings;
+
+  factory Offerings.fromJson(Map<String, dynamic> json) = _$Offerings.fromJson;
+
+  @JsonKey(name: 'offerings')
+  List<String> get list;
+  @JsonKey(ignore: true)
+  $OfferingsCopyWith<Offerings> get copyWith;
+}
+
+/// @nodoc
+abstract class $FeeItemsCopyWith<$Res> {
+  factory $FeeItemsCopyWith(FeeItems value, $Res Function(FeeItems) then) =
+      _$FeeItemsCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: 'feeitemlist') List<String> list});
+}
+
+/// @nodoc
+class _$FeeItemsCopyWithImpl<$Res> extends _$LookupListCopyWithImpl<$Res>
+    implements $FeeItemsCopyWith<$Res> {
+  _$FeeItemsCopyWithImpl(FeeItems _value, $Res Function(FeeItems) _then)
+      : super(_value, (v) => _then(v as FeeItems));
+
+  @override
+  FeeItems get _value => super._value as FeeItems;
+
+  @override
+  $Res call({
+    Object list = freezed,
+  }) {
+    return _then(FeeItems(
+      list: list == freezed ? _value.list : list as List<String>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$FeeItems implements FeeItems {
+  const _$FeeItems({@required @JsonKey(name: 'feeitemlist') this.list})
+      : assert(list != null);
+
+  factory _$FeeItems.fromJson(Map<String, dynamic> json) =>
+      _$_$FeeItemsFromJson(json);
+
+  @override
+  @JsonKey(name: 'feeitemlist')
+  final List<String> list;
+
+  @override
+  String toString() {
+    return 'LookupList.feeItem(list: $list)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is FeeItems &&
+            (identical(other.list, list) ||
+                const DeepCollectionEquality().equals(other.list, list)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
+
+  @JsonKey(ignore: true)
+  @override
+  $FeeItemsCopyWith<FeeItems> get copyWith =>
+      _$FeeItemsCopyWithImpl<FeeItems>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    @required
+        TResult examTermInfoList(
+            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    @required
+        TResult sessionTermList(
+            @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    @required TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return feeItem(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    TResult examTermInfoList(
+        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    TResult sessionTermList(
+        @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (feeItem != null) {
+      return feeItem(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfoList(RoomInfoList value),
+    @required TResult examTermInfoList(ExamTermInfoList value),
+    @required TResult sessionTermList(SessionTermList value),
+    @required TResult offering(Offerings value),
+    @required TResult feeItem(FeeItems value),
+    @required TResult grade(Grades value),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return feeItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfoList(RoomInfoList value),
+    TResult examTermInfoList(ExamTermInfoList value),
+    TResult sessionTermList(SessionTermList value),
+    TResult offering(Offerings value),
+    TResult feeItem(FeeItems value),
+    TResult grade(Grades value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (feeItem != null) {
+      return feeItem(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$FeeItemsToJson(this)..['runtimeType'] = 'feeItem';
+  }
+}
+
+abstract class FeeItems implements LookupList {
+  const factory FeeItems(
+      {@required @JsonKey(name: 'feeitemlist') List<String> list}) = _$FeeItems;
+
+  factory FeeItems.fromJson(Map<String, dynamic> json) = _$FeeItems.fromJson;
+
+  @JsonKey(name: 'feeitemlist')
+  List<String> get list;
+  @JsonKey(ignore: true)
+  $FeeItemsCopyWith<FeeItems> get copyWith;
+}
+
+/// @nodoc
+abstract class $GradesCopyWith<$Res> {
+  factory $GradesCopyWith(Grades value, $Res Function(Grades) then) =
+      _$GradesCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: 'grades') List<String> list});
+}
+
+/// @nodoc
+class _$GradesCopyWithImpl<$Res> extends _$LookupListCopyWithImpl<$Res>
+    implements $GradesCopyWith<$Res> {
+  _$GradesCopyWithImpl(Grades _value, $Res Function(Grades) _then)
+      : super(_value, (v) => _then(v as Grades));
+
+  @override
+  Grades get _value => super._value as Grades;
+
+  @override
+  $Res call({
+    Object list = freezed,
+  }) {
+    return _then(Grades(
+      list: list == freezed ? _value.list : list as List<String>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$Grades implements Grades {
+  const _$Grades({@required @JsonKey(name: 'grades') this.list})
+      : assert(list != null);
+
+  factory _$Grades.fromJson(Map<String, dynamic> json) =>
+      _$_$GradesFromJson(json);
+
+  @override
+  @JsonKey(name: 'grades')
+  final List<String> list;
+
+  @override
+  String toString() {
+    return 'LookupList.grade(list: $list)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Grades &&
+            (identical(other.list, list) ||
+                const DeepCollectionEquality().equals(other.list, list)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
+
+  @JsonKey(ignore: true)
+  @override
+  $GradesCopyWith<Grades> get copyWith =>
+      _$GradesCopyWithImpl<Grades>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    @required
+        TResult examTermInfoList(
+            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    @required
+        TResult sessionTermList(
+            @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    @required TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return grade(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    TResult examTermInfoList(
+        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    TResult sessionTermList(
+        @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    TResult offering(@JsonKey(name: 'offerings') List<String> list),
+    TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (grade != null) {
+      return grade(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfoList(RoomInfoList value),
+    @required TResult examTermInfoList(ExamTermInfoList value),
+    @required TResult sessionTermList(SessionTermList value),
+    @required TResult offering(Offerings value),
+    @required TResult feeItem(FeeItems value),
+    @required TResult grade(Grades value),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return grade(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfoList(RoomInfoList value),
+    TResult examTermInfoList(ExamTermInfoList value),
+    TResult sessionTermList(SessionTermList value),
+    TResult offering(Offerings value),
+    TResult feeItem(FeeItems value),
+    TResult grade(Grades value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (grade != null) {
+      return grade(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$GradesToJson(this)..['runtimeType'] = 'grade';
+  }
+}
+
+abstract class Grades implements LookupList {
+  const factory Grades({@required @JsonKey(name: 'grades') List<String> list}) =
+      _$Grades;
+
+  factory Grades.fromJson(Map<String, dynamic> json) = _$Grades.fromJson;
+
+  @JsonKey(name: 'grades')
+  List<String> get list;
+  @JsonKey(ignore: true)
+  $GradesCopyWith<Grades> get copyWith;
 }

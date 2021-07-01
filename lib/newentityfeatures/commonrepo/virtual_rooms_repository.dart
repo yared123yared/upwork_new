@@ -1,7 +1,7 @@
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/lookup_repository.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/Models/registered_id_model.dart';
 
 import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
@@ -12,12 +12,12 @@ class VirtualRoomsRepository {
   Map<String, Map<String, List<VirtualRoomModel>>> _virtualRooms = {};
 
   Future<void> setVirtualRooms({@required String serviceID}) async {
-    List<SessionTermModel> _sessionTermsList = await lookup.getSessionTermsList(
+    List<SessionTerm> _sessionTermsList = await lookup.getSessionTermsList(
       serviceID: serviceID,
     );
     _virtualRooms[serviceID] = {};
 
-    for (SessionTermModel session in _sessionTermsList) {
+    for (SessionTerm session in _sessionTermsList) {
       List<VirtualRoomModel> _tempList =
           await SessionTermGateway.getVirtualRoomList(
         serviceID,

@@ -46,32 +46,42 @@ _$_ServiceRequestModel _$_$_ServiceRequestModelFromJson(
 }
 
 Map<String, dynamic> _$_$_ServiceRequestModelToJson(
-        _$_ServiceRequestModel instance) =>
-    <String, dynamic>{
-      'adHocVisitorPhoto': instance.adHocVisitorPhoto,
-      'correspondingName': instance.correspondingName,
-      'generatedQrCode': instance.generatedQrCode,
-      'groupReqName': instance.groupReqName,
-      'endDate': instance.endDate?.toIso8601String(),
-      'multipleEntryAllowed': instance.multipleEntryAllowed,
-      'notesInstructions': instance.notesInstructions,
-      'phone': instance.phone,
-      'requestType': _$ServiceRequestTypeEnumMap[instance.requestType],
-      'requestedDate': instance.requestedDate?.toIso8601String(),
-      'requesterID': instance.requesterID,
-      'requesterType': instance.requesterType,
-      'requireNotificationEntry': instance.requireNotificationEntry,
-      'serviceRequestorMemberUserId': instance.serviceRequestorMemberUserId,
-      'serviceProviderId': instance.serviceProviderId,
-      'suspend': instance.suspend,
-      'terminate': instance.terminate,
-      'qrCodeLink': instance.qrCodeLink,
-      'unitId': instance.unitId,
-      'startDate': instance.startDate?.toIso8601String(),
-      'staffInfo': instance.staffInfo?.toJson(),
-      'requestID': instance.requestID,
-      'adhocstate': instance.adhocstate,
-    };
+    _$_ServiceRequestModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('adHocVisitorPhoto', instance.adHocVisitorPhoto);
+  writeNotNull('correspondingName', instance.correspondingName);
+  writeNotNull('generatedQrCode', instance.generatedQrCode);
+  writeNotNull('groupReqName', instance.groupReqName);
+  writeNotNull('endDate', instance.endDate?.toIso8601String());
+  writeNotNull('multipleEntryAllowed', instance.multipleEntryAllowed);
+  writeNotNull('notesInstructions', instance.notesInstructions);
+  writeNotNull('phone', instance.phone);
+  writeNotNull(
+      'requestType', _$ServiceRequestTypeEnumMap[instance.requestType]);
+  writeNotNull('requestedDate', instance.requestedDate?.toIso8601String());
+  writeNotNull('requesterID', instance.requesterID);
+  writeNotNull('requesterType', instance.requesterType);
+  writeNotNull('requireNotificationEntry', instance.requireNotificationEntry);
+  writeNotNull(
+      'serviceRequestorMemberUserId', instance.serviceRequestorMemberUserId);
+  writeNotNull('serviceProviderId', instance.serviceProviderId);
+  writeNotNull('suspend', instance.suspend);
+  writeNotNull('terminate', instance.terminate);
+  writeNotNull('qrCodeLink', instance.qrCodeLink);
+  writeNotNull('unitId', instance.unitId);
+  writeNotNull('startDate', instance.startDate?.toIso8601String());
+  writeNotNull('staffInfo', instance.staffInfo?.toJson());
+  writeNotNull('requestID', instance.requestID);
+  writeNotNull('adhocstate', instance.adhocstate);
+  return val;
+}
 
 T _$enumDecode<T>(
   Map<T, dynamic> enumValues,
@@ -121,8 +131,16 @@ _$_StaffInfo _$_$_StaffInfoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_StaffInfoToJson(_$_StaffInfo instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-    };
+Map<String, dynamic> _$_$_StaffInfoToJson(_$_StaffInfo instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  writeNotNull('name', instance.name);
+  return val;
+}

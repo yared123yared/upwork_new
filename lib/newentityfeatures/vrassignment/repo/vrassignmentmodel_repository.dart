@@ -1,4 +1,4 @@
-import 'package:complex/newentityfeatures/Models/lookups.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/gateway/vr_assignment_gateway.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart'

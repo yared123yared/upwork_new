@@ -1,8 +1,8 @@
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
 import 'package:complex/common/presentation.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/sessiontermmodel/itembloc/bloc.dart'
     as itembloc;
@@ -15,7 +15,7 @@ import 'package:complex/common/widgets/date_time_picker_newentity.dart'
     as newentitytimepicker;
 
 class SessionTermForm extends StatefulWidget {
-  final SessionTermModel sessionTermModel;
+  final SessionTerm sessionTermModel;
   final ButtonState buttonState;
   final String entityid;
   final String entitytype;
@@ -63,7 +63,7 @@ class _SessionTermFormState extends State<SessionTermForm> {
     // TODO: implement initState
     super.initState();
     mbloc = itembloc.SessionTermModelBloc();
-    mbloc.add(itembloc.getForNewEntry(
+    mbloc.add(itembloc.GetForNewEntry(
         entitytype: widget.entitytype, entityid: widget.entityid));
 
     _initFiledValue();
@@ -173,13 +173,13 @@ class _SessionTermFormState extends State<SessionTermForm> {
               if (widget.buttonState == ButtonState.idle) {
                 if (_validate()) {
                   if (_startDate.isBefore(_endDate)) {
-                    SessionTermModel _sessionTermModel = SessionTermModel(
+                    SessionTerm _sessionTermModel = SessionTerm(
                       startDate: _startDate,
                       endDate: _endDate,
                       termName: _sessionTermName.text,
                       isActive: _isActive,
                     );
-                    mbloc.add(itembloc.createItem(
+                    mbloc.add(itembloc.CreateItem(
                         item: _sessionTermModel,
                         entityid: widget.entityid,
                         entitytype: widget.entitytype));

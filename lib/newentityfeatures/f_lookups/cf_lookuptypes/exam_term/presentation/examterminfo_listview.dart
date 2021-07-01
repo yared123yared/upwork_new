@@ -1,4 +1,5 @@
 import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -6,8 +7,6 @@ import 'package:complex/common/page/common_list_page_copy.dart';
 
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/exam_term/listbloc/bloc.dart'
     as listbloc;
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart'
-    as cmodel;
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/exam_term/presentation/exam_term_form.dart';
 
 class ExamTemInfoList extends StatefulWidget {
@@ -58,7 +57,7 @@ class _ExamTemInfoListState extends State<ExamTemInfoList> {
   }
 
   List<ListStateClass> toCommonListState(
-      List<cmodel.ExamTermInfo> listItems, BuildContext context) {
+      List<ExamTermInfo> listItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
@@ -154,7 +153,7 @@ class _ExamTemInfoListState extends State<ExamTemInfoList> {
             }
 
             if (state is listbloc.IsListDataLoaded) {
-              List<cmodel.ExamTermInfo> em = state.listdata;
+              List<ExamTermInfo> em = state.listdata;
               return _blocBuilder(context, em);
             }
             return Center(child: Text('Empty'));
@@ -169,7 +168,7 @@ class _ExamTemInfoListState extends State<ExamTemInfoList> {
     );
   }
 
-  Widget _blocBuilder(context, List<cmodel.ExamTermInfo> em) {
+  Widget _blocBuilder(context, List<ExamTermInfo> em) {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [

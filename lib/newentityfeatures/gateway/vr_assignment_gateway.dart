@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:complex/common/helputil.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:meta/meta.dart';
 
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 
 import 'package:complex/newentityfeatures/Models/vrassignment_score_model.dart';
 import 'package:complex/newentityfeatures/Models/assignment_model.dart';
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
 
 class VrAssignmentGateway {
   static Future<List<VrAssignmentModel>> getVrAssignmentListOffering({
@@ -103,7 +103,7 @@ class VrAssignmentGateway {
 
   static Future<void> removeVrAssignment(
       {@required String serviceID,
-      @required SessionTermModel sessionTerm,
+      @required SessionTerm sessionTerm,
       @required VrAssignmentModel vrAssignmentModel}) async {
     return await FirebaseFirestore.instance
         .doc(

@@ -1,5 +1,5 @@
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/offering_schedule_model.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 
 import 'package:complex/newentityfeatures/commonrepo/lookup_repository.dart';
 
@@ -17,10 +17,10 @@ class OfferingScheduleRepository {
       {};
 
   Future<void> setOfferingsSchedule({@required String serviceID}) async {
-    List<SessionTermModel> _sessionTermsList =
+    List<SessionTerm> _sessionTermsList =
         await lookup.getSessionTermsList(serviceID: serviceID);
     _offeringsSchedule[serviceID] = {};
-    for (SessionTermModel session in _sessionTermsList) {
+    for (SessionTerm session in _sessionTermsList) {
       List<OfferingsScheduleModel> _tempList =
           await SessionTermGateway.getOfferingDocList(
               serviceID, session.termName);

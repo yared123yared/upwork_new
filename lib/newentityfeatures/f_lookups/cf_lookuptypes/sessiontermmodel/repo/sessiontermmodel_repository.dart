@@ -1,8 +1,8 @@
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 
 class SessionTermModelRepositoryReturnData {
-  List<SessionTermModel> itemlist;
-  SessionTermModel item;
+  List<SessionTerm> itemlist;
+  SessionTerm item;
   String id;
   int errortype;
   String error;
@@ -24,7 +24,7 @@ class SessionTermModelRepository {
   }
 
   Future<SessionTermModelRepositoryReturnData> createSessionTermModel(
-      SessionTermModel item, String entitytype, String entityid) async {
+      SessionTerm item, String entitytype, String entityid) async {
     SessionTermModelRepositoryReturnData myreturn =
         SessionTermModelRepositoryReturnData();
     //Please put your code here
@@ -33,20 +33,20 @@ class SessionTermModelRepository {
   }
 
   Future<SessionTermModelRepositoryReturnData> updateSessionTermModel(
-      SessionTermModel item, String entitytype, String entityid) async {
+      SessionTerm item, String entitytype, String entityid) async {
     return null;
   }
 
   Future<SessionTermModelRepositoryReturnData> updateSessionTermModelWithDiff(
-      SessionTermModel newitem,
-      SessionTermModel olditem,
+      SessionTerm newitem,
+      SessionTerm olditem,
       String entitytype,
       String entityid) async {
     return null;
   }
 
   Future<SessionTermModelRepositoryReturnData> deleteSessionTermModelWithData(
-      SessionTermModel item, String entitytype, String entityid) async {
+      SessionTerm item, String entitytype, String entityid) async {
     return null;
   }
 

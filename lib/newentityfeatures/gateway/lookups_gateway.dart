@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:complex/newentityfeatures/Models/lookups.dart';
@@ -148,15 +149,14 @@ class LookupGateway {
     });
   }
 
-  static Future<List<SessionTermModel>> getSessionTerms(
-      String serviceID) async {
+  static Future<List<SessionTerm>> getSessionTerms(String serviceID) async {
     try {
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
           .get()
           .then((x) {
 //            print(x.data();
-        return SessionTermModel.listFromData(x.data());
+        return SessionTermList.fromJson(x.data()).list;
       });
     } catch (e) {
       print("session term error: $e");
@@ -169,7 +169,7 @@ class LookupGateway {
     return await FirebaseFirestore.instance
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
-      'sessionterm': FieldValue.arrayRemove([examTerm.toData()])
+      'sessionterm': FieldValue.arrayRemove([examTerm.toJson()])
     });
   }
 
@@ -180,7 +180,7 @@ class LookupGateway {
           .get()
           .then((x) {
         if (x.data() != null) {
-          return ExamTermInfo.listFromData(x.data());
+          return ExamTermInfoList.fromJson(x.data()).list;
         } else {
           return [];
         }
@@ -198,7 +198,7 @@ class LookupGateway {
     return FirebaseFirestore.instance
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
-      'examterminfo': FieldValue.arrayUnion([examTermInfo.toData()])
+      'examterminfo': FieldValue.arrayUnion([examTermInfo.toJson()])
     });
   }
 
@@ -209,7 +209,7 @@ class LookupGateway {
           .get()
           .then((x) {
         if (x.data() != null) {
-          return RoomInfo.listFromData(x.data());
+          return RoomInfoList.fromJson(x.data()).list;
         } else {
           return [];
         }
@@ -227,7 +227,7 @@ class LookupGateway {
     return await FirebaseFirestore.instance
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
-      'roominfo': FieldValue.arrayUnion([roomInfo.toData()])
+      'roominfo': FieldValue.arrayUnion([roomInfo.toJson()])
     });
   }
 
@@ -236,7 +236,7 @@ class LookupGateway {
     return await FirebaseFirestore.instance
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
-      'roominfo': FieldValue.arrayUnion([roomInfo.toData()])
+      'roominfo': FieldValue.arrayUnion([roomInfo.toJson()])
     });
   }
 

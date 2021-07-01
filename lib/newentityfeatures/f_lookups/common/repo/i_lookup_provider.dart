@@ -1,5 +1,5 @@
 import 'package:complex/data/api/failure/failure.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 
@@ -14,6 +14,6 @@ abstract class ILookupProvider {
       {@required String serviceID});
   Future<Either<Failure, List<ExamTermInfo>>> getExamTermList(
       {@required String serviceID});
-  Future<Either<Failure, List<SessionTermModel>>> getSessionTermList(
+  Future<Either<Failure, List<SessionTerm>>> getSessionTermList(
       {@required String serviceID});
 }

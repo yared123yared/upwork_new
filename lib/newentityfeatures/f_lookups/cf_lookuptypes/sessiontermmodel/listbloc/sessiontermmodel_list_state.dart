@@ -29,7 +29,7 @@ class HasExceptionFaliur extends SessionTermModelListState {
 class IsListDataLoaded extends SessionTermModelListState {
   IsListDataLoaded({@required this.listdata});
 
-  final List<SessionTermModel> listdata;
+  final List<SessionTerm> listdata;
   @override
   List<Object> get props => [listdata];
 }

@@ -1098,6 +1098,8 @@ abstract class $HasFailureCopyWith<$Res> {
           HasFailure value, $Res Function(HasFailure) then) =
       _$HasFailureCopyWithImpl<$Res>;
   $Res call({Failure failure});
+
+  $FailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -1116,6 +1118,16 @@ class _$HasFailureCopyWithImpl<$Res> extends _$LookupStateCopyWithImpl<$Res>
     return _then(HasFailure(
       failure: failure == freezed ? _value.failure : failure as Failure,
     ));
+  }
+
+  @override
+  $FailureCopyWith<$Res> get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+    return $FailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
   }
 }
 

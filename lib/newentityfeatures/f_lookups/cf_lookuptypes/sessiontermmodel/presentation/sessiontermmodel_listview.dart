@@ -1,4 +1,5 @@
 import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,8 +8,6 @@ import 'package:complex/common/page/common_list_page_copy.dart';
 
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/sessiontermmodel/listbloc/bloc.dart'
     as listbloc;
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart'
-    as cmodel;
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/sessiontermmodel/presentation/session_term_form.dart';
 
 class SessionTermModelList extends StatefulWidget {
@@ -26,7 +25,7 @@ class _SessionTermModelListState extends State<SessionTermModelList> {
   void initState() {
     super.initState();
     mlistbloc = listbloc.SessionTermModelListBloc();
-    mlistbloc.add(listbloc.getListData(
+    mlistbloc.add(listbloc.GetListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }
 
@@ -38,7 +37,7 @@ class _SessionTermModelListState extends State<SessionTermModelList> {
 
   void doreload(bool reloadtype) {
     if (reloadtype) {
-      mlistbloc.add(listbloc.getListData(
+      mlistbloc.add(listbloc.GetListData(
           entitytype: widget.entitytype, entityid: widget.entityid));
     }
   }
@@ -60,7 +59,7 @@ class _SessionTermModelListState extends State<SessionTermModelList> {
   }
 
   List<ListStateClass> toCommonListState(
-      List<cmodel.SessionTermModel> listItems, BuildContext context) {
+      List<SessionTerm> listItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
@@ -82,7 +81,7 @@ class _SessionTermModelListState extends State<SessionTermModelList> {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
             BlocProvider.of<listbloc.SessionTermModelListBloc>(context).add(
-                listbloc.deleteItemWithData(
+                listbloc.DeleteItemWithData(
                     entitytype: widget.entitytype,
                     entityid: widget.entitytype,
                     item: listItems[index]));
@@ -156,7 +155,7 @@ class _SessionTermModelListState extends State<SessionTermModelList> {
             }
 
             if (state is listbloc.IsListDataLoaded) {
-              List<cmodel.SessionTermModel> em = state.listdata;
+              List<SessionTerm> em = state.listdata;
               return _blocBuilder(context, em);
             }
             return Center(child: Text('Empty'));
@@ -171,7 +170,7 @@ class _SessionTermModelListState extends State<SessionTermModelList> {
     );
   }
 
-  Widget _blocBuilder(context, List<cmodel.SessionTermModel> em) {
+  Widget _blocBuilder(context, List<SessionTerm> em) {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [

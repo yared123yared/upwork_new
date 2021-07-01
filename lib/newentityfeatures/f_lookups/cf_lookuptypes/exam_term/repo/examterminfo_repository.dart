@@ -1,4 +1,4 @@
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 
 class ExamTermInfoRepositoryReturnData {
   List<ExamTermInfo> itemlist;
@@ -19,13 +19,12 @@ class ExamTermInfoRepository {
     ExamTermInfoRepositoryReturnData erd =
         new ExamTermInfoRepositoryReturnData();
     erd.itemlist = [];
-    ExamTermInfo et1 = ExamTermInfo();
-    et1.mainTermName = "MTerm1";
-    et1.subTermName = "STerm1";
+    ExamTermInfo et1 =
+        ExamTermInfo(mainTermName: 'MTerm1', subTermName: 'STerm1');
 
-    ExamTermInfo et2 = ExamTermInfo();
-    et2.mainTermName = "MTerm2";
-    et2.subTermName = "STerm2";
+    ExamTermInfo et2 =
+        ExamTermInfo(mainTermName: 'MTerm2', subTermName: 'STerm2');
+
     erd.itemlist.add(et1);
     erd.itemlist.add(et2);
     erd.errortype = -1;

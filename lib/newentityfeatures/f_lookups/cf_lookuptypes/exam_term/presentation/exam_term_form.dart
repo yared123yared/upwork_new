@@ -1,7 +1,7 @@
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
 import 'package:complex/common/presentation.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/exam_term/itembloc/bloc.dart'
     as itembloc;
@@ -149,7 +149,7 @@ class _ExamTermFormState extends State<ExamTermForm> {
                 ExamTermInfo _offeringScheduleModel = ExamTermInfo(
                     mainTermName: _mainTerm.text, subTermName: _subTerm.text);
 
-                mbloc.add(itembloc.createItem(
+                mbloc.add(itembloc.CreateItem(
                     item: _offeringScheduleModel,
                     entityid: widget.entityid,
                     entitytype: widget.entitytype));

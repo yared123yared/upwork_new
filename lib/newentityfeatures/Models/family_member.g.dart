@@ -18,13 +18,21 @@ _$_FamilyMember _$_$_FamilyMemberFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_FamilyMemberToJson(_$_FamilyMember instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-      'name': instance.name,
-      'email': instance.email,
-      'modelId': instance.modelId,
-      'vehiclenumber': instance.vehiclenumber,
-      'vehicleactive': instance.vehicleactive,
-      'qrcodeimg': instance.qrcodeimg,
-    };
+Map<String, dynamic> _$_$_FamilyMemberToJson(_$_FamilyMember instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('userId', instance.userId);
+  writeNotNull('name', instance.name);
+  writeNotNull('email', instance.email);
+  writeNotNull('modelId', instance.modelId);
+  writeNotNull('vehiclenumber', instance.vehiclenumber);
+  writeNotNull('vehicleactive', instance.vehicleactive);
+  writeNotNull('qrcodeimg', instance.qrcodeimg);
+  return val;
+}
