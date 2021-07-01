@@ -8,25 +8,32 @@ class RegistryModelListEvent extends Equatable {
 class getListDataByBuildingAndFloor extends RegistryModelListEvent {
   final String entityid;
   final String entitytype;
+  final int originType;
   final String buildingName;
   final String floorNum;
   getListDataByBuildingAndFloor({
     @required this.entityid,
     @required this.entitytype,
+    @required this.originType,
     @required this.buildingName,
     @required this.floorNum,
   });
   @override
-  List<Object> get props => [entityid, entitytype, buildingName, floorNum];
+  List<Object> get props =>
+      [entityid, entitytype, originType, buildingName, floorNum];
 }
 
 //to get listdata
 class getListData extends RegistryModelListEvent {
   final String entityid;
   final String entitytype;
-  getListData({@required this.entityid, @required this.entitytype});
+  final int originType;
+  getListData(
+      {@required this.entityid,
+      @required this.entitytype,
+      @required this.originType});
   @override
-  List<Object> get props => [entityid, entitytype];
+  List<Object> get props => [entityid, entitytype, entitytype];
 }
 
 //We want to delete an item , we will call this method (if we have the complete item data )

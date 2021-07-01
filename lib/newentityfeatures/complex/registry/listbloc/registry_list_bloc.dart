@@ -15,6 +15,7 @@ class RegistryModelListBloc
           await mrepository.getAllRegistryModelsByBuildingAndFloor(
         event.entitytype,
         event.entityid,
+        event.originType,
         event.buildingName,
         event.floorNum,
       );
@@ -24,6 +25,7 @@ class RegistryModelListBloc
           listdata: ud.itemlist,
           roles: ud.listviewData.roles,
           buildingType: ud.listviewData.buildingType,
+          isOwner: ud.listviewData.isOwner,
         );
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
@@ -32,8 +34,12 @@ class RegistryModelListBloc
     }
     if (event is getListData) {
       yield IsBusy();
-      RegistryModelRepositoryReturnData ud = await mrepository
-          .getAllRegistryModels(event.entitytype, event.entityid);
+      RegistryModelRepositoryReturnData ud =
+          await mrepository.getAllRegistryModels(
+        event.entitytype,
+        event.entityid,
+        event.originType,
+      );
 
       if (ud.errortype == -1)
         yield IsListDataLoaded(

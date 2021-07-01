@@ -59,6 +59,11 @@ class getAdditionalDataEntryIDAvailable extends LeaveRequestEvent {
 class getForNewEntry extends LeaveRequestEvent {
   final String entityid;
   final String entitytype;
-  const getForNewEntry({@required this.entityid, @required this.entitytype});
-  List<Object> get() => [entityid, entitytype];
+  final int originType;
+  const getForNewEntry({
+    @required this.entityid,
+    @required this.entitytype,
+    @required this.originType,
+  });
+  List<Object> get() => [entityid, entitytype, originType];
 }

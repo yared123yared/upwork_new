@@ -20,7 +20,8 @@ class ServiceModelListList extends StatefulWidget {
   final String entitytype;
   final String fieldname;
   final int originlist;
-  ServiceModelListList({this.entitytype, this.entityid, this.fieldname,this.originlist});
+  ServiceModelListList(
+      {this.entitytype, this.entityid, this.fieldname, this.originlist});
 
   @override
   _ServiceModelListListState createState() => _ServiceModelListListState();
@@ -28,17 +29,20 @@ class ServiceModelListList extends StatefulWidget {
 
 class _ServiceModelListListState extends State<ServiceModelListList> {
   listbloc.ServiceRequestModelListBloc mlistbloc;
+  bool enabledAdding = true;
 
   void initState() {
     super.initState();
     mlistbloc = new listbloc.ServiceRequestModelListBloc();
     mlistbloc.add(listbloc.getListDataForServiceRequestType(
-        entitytype: widget.entitytype,
-        entityid: widget.entityid,
-        requesttype: widget.fieldname));
+      entitytype: widget.entitytype,
+      entityid: widget.entityid,
+      requesttype: widget.fieldname,
+    ));
     mlistbloc.add(listbloc.getListData(
       entitytype: widget.entitytype,
       entityid: widget.entityid,
+      originType: widget.originlist,
     ));
   }
 
@@ -52,7 +56,10 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
   void doreload(bool reloadtype) {
     if (reloadtype) {
       mlistbloc.add(listbloc.getListData(
-          entitytype: widget.entitytype, entityid: widget.entityid));
+        entitytype: widget.entitytype,
+        entityid: widget.entityid,
+        originType: widget.originlist,
+      ));
     }
   }
 
@@ -61,16 +68,17 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
   }) {
     var bcd = null;
     if (widget.fieldname == "abc") {
-      //bcd = GatePassRequestForm
+      //bcd = ServiceRequestForm
     }
 
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GatePassRequestForm(
+        builder: (context) => ServiceRequestForm(
             serviceRequestModel: null,
             entitytype: widget.entitytype,
-            entityid: widget.entityid,origintype:widget.originlist,
+            entityid: widget.entityid,
+            origintype: widget.originlist,
             givenreloadaction: doreload),
       ),
     );
@@ -86,9 +94,10 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => GatePassRequestForm(
+              builder: (context) => ServiceRequestForm(
                   serviceRequestModel: item,
-                  entitytype: widget.entitytype,origintype: widget.originlist,
+                  entitytype: widget.entitytype,
+                  origintype: widget.originlist,
                   entityid: widget.entityid,
                   givenreloadaction: doreload),
             ),
@@ -142,50 +151,57 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Service Request"),
-            centerTitle: true,
-          ),
-          body: BlocListener<listbloc.ServiceRequestModelListBloc,
-                  listbloc.ServiceRequestModelListState>(
-              listener: (context, state) {
-            if (state is listbloc.IsDeleted) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is deleted"),
-              ));
-              doreload(true);
-            }
-          }, child: BlocBuilder<listbloc.ServiceRequestModelListBloc,
-                      listbloc.ServiceRequestModelListState>(
-                  builder: (context, state) {
-            if (state is listbloc.IsBusy)
-              return Center(
-                child: Container(
-                    width: 20, height: 20, child: CircularProgressIndicator()),
-              );
-            if (state is listbloc.HasLogicalFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.IsDeleted) {
-              return Center(child: Text("Deleted item"));
-            }
+        appBar: AppBar(
+          title: Text("Service Request"),
+          centerTitle: true,
+        ),
+        body: BlocListener<listbloc.ServiceRequestModelListBloc,
+            listbloc.ServiceRequestModelListState>(listener: (context, state) {
+          if (state is listbloc.IsDeleted) {
+            asuka.showSnackBar(SnackBar(
+              content: Text("Item is deleted"),
+            ));
+            doreload(true);
+          }
+        }, child: BlocBuilder<listbloc.ServiceRequestModelListBloc,
+            listbloc.ServiceRequestModelListState>(builder: (context, state) {
+          if (state is listbloc.IsBusy)
+            return Center(
+              child: Container(
+                  width: 20, height: 20, child: CircularProgressIndicator()),
+            );
+          if (state is listbloc.HasLogicalFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.HasExceptionFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.HasExceptionFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.IsDeleted) {
+            return Center(child: Text("Deleted item"));
+          }
 
-            if (state is listbloc.IsListDataLoaded) {
-              List<cmodel.ServiceRequestModel> em = state.listdata;
-              return _blocBuilder(context, em);
+          if (state is listbloc.IsListDataLoaded) {
+            List<cmodel.ServiceRequestModel> em = state.listdata;
+            if (widget.originlist == 2 && !state.isStaff) {
+              enabledAdding = false;
             }
-            return Center(child: Text('Empty'));
-          })),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
-              addButtonActions(context: context);
-            },
-            icon: Icon(Icons.add),
-            label: Text("Add New"),
-          )),
+            if (widget.originlist == 3 && state.isStaff) {
+              enabledAdding = false;
+            }
+            return _blocBuilder(context, em);
+          }
+          return Center(child: Text('Empty'));
+        })),
+        floatingActionButton: enabledAdding
+            ? FloatingActionButton.extended(
+                onPressed: () async {
+                  addButtonActions(context: context);
+                },
+                icon: Icon(Icons.add),
+                label: Text("Add New"),
+              )
+            : SizedBox(),
+      ),
     );
   }
 

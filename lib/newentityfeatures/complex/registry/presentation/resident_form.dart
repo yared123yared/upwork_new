@@ -71,6 +71,7 @@ class _ResidentFormState extends State<ResidentForm> {
   DateTime _endDate = DateTime.now();
 
   List<String> roles;
+  List<String> registeredAsRoles = [];
   bool haveAccess;
   bool displayOwner;
   List<UnitModel> unitList;
@@ -81,7 +82,7 @@ class _ResidentFormState extends State<ResidentForm> {
 
   ResidentModel resident;
 
-  bool _isUpdate = false;
+  bool _newItem = false;
 
   bool _validate(int i) {
     if (i == 0) {
@@ -100,7 +101,8 @@ class _ResidentFormState extends State<ResidentForm> {
   void _initFiledValue() {
     Future.delayed(Duration(milliseconds: 80), () {
       if (widget.registry != null) {
-        if (widget.role == "manager") {
+        // if (widget.role == "manager") {
+        if (widget.origintype == 1) {
           String ownerName = widget.registry.ownerName;
           String firstName = ownerName.substring(0, ownerName.indexOf(","));
           String lastName = ownerName.substring(ownerName.indexOf(",") + 1);
@@ -129,7 +131,8 @@ class _ResidentFormState extends State<ResidentForm> {
           _endDate = resident?.endDate ??
               widget?.registry?.ownerEndDate ??
               DateTime.now();
-        } else if (widget.role == "owner") {
+          // } else if (widget.role == "owner") {
+        } else if (widget.origintype == 2 || widget.origintype == 3) {
           String residentName = widget.registry.residentName;
           String firstName =
               residentName.substring(0, residentName.indexOf(","));
@@ -250,6 +253,7 @@ class _ResidentFormState extends State<ResidentForm> {
                   children: <Widget>[
                     CustomTextField(
                       title: "First Name",
+                      enabled: _newItem,
                       controller: _firstName,
                       validate: Validate.withOption(
                         isRequired: true,
@@ -264,6 +268,7 @@ class _ResidentFormState extends State<ResidentForm> {
                     // ),
                     CustomTextField(
                       title: "Last Name",
+                      enabled: _newItem,
                       controller: _lastName,
                       validate: Validate.withOption(
                         isRequired: true,
@@ -271,12 +276,14 @@ class _ResidentFormState extends State<ResidentForm> {
                     ),
                     CustomTextField(
                       title: "Email address",
+                      enabled: _newItem,
                       controller: _emailAddress,
                       validate:
                           Validate.withOption(isRequired: true, isEmail: true),
                     ),
                     CustomTextField(
                       title: "Contact Number",
+                      enabled: _newItem || widget.origintype == 1,
                       controller: _contactNumber,
                       validate:
                           Validate.withOption(isRequired: true, isNumber: true),
@@ -323,8 +330,9 @@ class _ResidentFormState extends State<ResidentForm> {
                   children: <Widget>[
                     CustomDropDownList<String>(
                       title: "Registered as",
+                      enabled: _newItem,
                       controller: _registeredAs,
-                      loadData: () async => roles,
+                      loadData: () async => registeredAsRoles,
                       displayName: (x) => x,
                       validate: Validate.withOption(
                         isRequired: true,
@@ -332,6 +340,7 @@ class _ResidentFormState extends State<ResidentForm> {
                     ),
                     CustomDropDownList<String>(
                       title: "Management Position",
+                      enabled: _newItem,
                       controller: _managementPosition,
                       loadData: () async => managePos,
                       displayName: (x) => x,
@@ -341,7 +350,8 @@ class _ResidentFormState extends State<ResidentForm> {
                     ),
                     CustomDropDownList<String>(
                       initialValue: widget.registry?.buildingName,
-                      // enabled: isManager && !_isUpdate,
+                      enabled: _newItem,
+                      // enabled: isManager && !_newItem,
                       title: "Building Name",
                       controller: _building,
                       loadData: () async => buildings,
@@ -373,7 +383,7 @@ class _ResidentFormState extends State<ResidentForm> {
                       initialValue: widget.registry?.floorNum,
                       title: "Floor Number",
                       controller: _floorNum,
-                      enabled: buildings.isNotEmpty,
+                      enabled: buildings.isNotEmpty && _newItem,
                       validate: Validate.withOption(isRequired: true),
                       onSelected: (value, index) {
                         setState(() {
@@ -391,6 +401,7 @@ class _ResidentFormState extends State<ResidentForm> {
                     CustomDropDownList<String>(
                       title: "Select Unit",
                       controller: _unit,
+                      enabled: _newItem,
                       shouldReload: true,
                       loadData: () async =>
                           filteredUnits.map((e) => e.unitID).toList(),
@@ -401,6 +412,7 @@ class _ResidentFormState extends State<ResidentForm> {
                     ),
                     newentitytimepicker.CustomDateTimePicker(
                       controller: _startDateController,
+                      enabled: _newItem,
                       dateTime: _startDate,
                       title: 'Start Date',
                       mode: DateTimeMode.DATE,
@@ -408,6 +420,7 @@ class _ResidentFormState extends State<ResidentForm> {
                     ),
                     newentitytimepicker.CustomDateTimePicker(
                       controller: _endDateController,
+                      enabled: _newItem,
                       dateTime: _endDate,
                       title: 'End Date',
                       mode: DateTimeMode.DATE,
@@ -507,8 +520,15 @@ class _ResidentFormState extends State<ResidentForm> {
             displayOwner = state.displayOwner;
             roles = state.roles;
             unitList = state.unitList;
+            _newItem = widget.registry == null;
 
             resident = state.resident;
+
+            if (widget.origintype == 1) {
+              registeredAsRoles = ["owner"];
+            } else if (widget.origintype == 2 || widget.origintype == 3) {
+              registeredAsRoles = ["resident"];
+            }
 
             unitList.forEach((unit) {
               if (!buildings.contains(unit.buildingName)) {

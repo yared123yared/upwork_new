@@ -17,9 +17,10 @@ class getPreData extends LeaveRequestListEvent {
 class getListData extends LeaveRequestListEvent {
   final String entityid;
   final String entitytype;
-  getListData({@required this.entityid, @required this.entitytype});
+  final int originType;
+  getListData({@required this.entityid, @required this.entitytype, @required this.originType});
   @override
-  List<Object> get props => [entityid, entitytype];
+  List<Object> get props => [entityid, entitytype, originType];
 }
 
 class getListDataWithSearchParameter extends LeaveRequestListEvent {

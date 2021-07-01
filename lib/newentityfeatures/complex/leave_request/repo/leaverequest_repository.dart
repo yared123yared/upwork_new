@@ -32,7 +32,7 @@ class LeaveRequestRepository {
   UserModel get _user => _userRepository.getUser();
 
   Future<LeaveRequestRepositoryReturnData> getAllLeaveRequests(
-      String entitytype, String entityid) async {
+      String entitytype, String entityid, int originType) async {
     LeaveRequestRepositoryReturnData myreturn =
         LeaveRequestRepositoryReturnData();
 
@@ -68,7 +68,7 @@ class LeaveRequestRepository {
   }
 
   Future<LeaveRequestEntryData> getItemFormNewEntryData(
-      String entitytype, String entityid) async {
+      String entitytype, String entityid, int originType) async {
     LeaveRequestEntryData grerror = new LeaveRequestEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";

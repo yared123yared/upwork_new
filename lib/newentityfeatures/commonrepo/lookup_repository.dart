@@ -17,7 +17,8 @@ class LookupRepository {
     try {
       _gradeList = _gradeList ?? {};
       if (_gradeList[serviceID] == null || _gradeList[serviceID].length == 0) {
-        await setGradesList(serviceID: serviceID);
+        List<String> _list = await LookupGateway.getGradeList(serviceID);
+        _gradeList[serviceID] = _list;
       }
       return _gradeList[serviceID];
     } catch (e) {
@@ -50,6 +51,54 @@ class LookupRepository {
       print(e);
     }
   }
+
+  Future<void> addFeeItem({
+    @required String serviceID,
+    @required String feeItem,
+  }) async {
+    try {
+      await LookupGateway.addFeeItemList(
+        serviceID: serviceID,
+        feeItem: feeItem
+      );
+
+
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> deleteFeeItem({
+    @required String serviceID,
+    @required String feeItem,
+  }) async {
+    try {
+      await LookupGateway.deleteFeeItemList(
+        serviceID: serviceID,
+        feeItem: feeItem,
+      );
+      //await setPaymentPeriodList(serviceID: serviceID);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> deleteOffering({
+    @required String serviceID,
+    @required String subject,
+  }) async {
+    try {
+      await LookupGateway.deleteOfferingList(
+        serviceID: serviceID,
+        subject: subject,
+      );
+      //await setPaymentPeriodList(serviceID: serviceID);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+
 
   //sessionTerm
 
@@ -219,6 +268,17 @@ class LookupRepository {
     }
   }
 
+  Future<void> deleteRoomInfo(
+      {@required String serviceID, @required RoomInfo roomInfo}) async {
+    try {
+      await LookupGateway.deleteRoomInfo(
+          serviceID: serviceID, roomInfo: roomInfo);
+      await setExamTermInfoList(serviceID: serviceID);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   Future<void> addClassPeriod({
     @required String serviceID,
     List<ClassPeriodInfo> list,
@@ -330,9 +390,11 @@ class LookupRepository {
 
   Future<List<String>> getFeeItemsList({@required String serviceID}) async {
     try {
-      if (_feeItemsList == null || _feeItemsList.isEmpty)
-        await setFeeItemsList(serviceID: serviceID);
-      return _feeItemsList[serviceID];
+      if (_feeItemsList == null || _feeItemsList.isEmpty) {
+        _feeItemsList[serviceID] =
+        await LookupGateway.getFeeItemList(serviceID);
+        return _feeItemsList[serviceID];
+      }
     } catch (e) {
       print(e);
       return e;

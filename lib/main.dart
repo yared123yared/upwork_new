@@ -4,6 +4,7 @@ import 'package:complex/blocs/complex_bloc.dart';
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/blocs/service_bloc.dart';
 import 'package:complex/local/pref/Preference.dart';
+import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart';
 import 'package:complex/pages/login_pages/splash_page.dart';
 import 'package:complex/utils/local_db_util.dart';
 import 'package:complex/utils/log.dart';
@@ -94,6 +95,12 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
               ProductInitial(),
             ),
           ),
+            BlocProvider<StringListBloc>(
+            create: (context) => StringListBloc(
+
+            ),
+            ),
+
           // BY ABDERRAHMANE:
           // ECOMMERCE
           BlocProvider<E3_AdsBloc.AdsBloc>(create: (_) => E3_AdsBloc.AdsBloc()),

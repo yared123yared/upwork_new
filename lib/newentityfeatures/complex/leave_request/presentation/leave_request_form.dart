@@ -119,6 +119,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
           itembloc.getForNewEntry(
             entityid: widget.entityid,
             entitytype: widget.entitytype,
+            originType: widget.origintype,
           ),
         ),
       child: Scaffold(

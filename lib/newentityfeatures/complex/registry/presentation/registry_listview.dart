@@ -15,8 +15,7 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:get/get.dart';
 
 import '../listbloc/bloc.dart' as listbloc;
-import 'package:complex/newentityfeatures/Models/registry_model.dart'
-    as cmodel;
+import 'package:complex/newentityfeatures/Models/registry_model.dart' as cmodel;
 
 import './registry_form.dart';
 import './resident_form.dart';
@@ -42,12 +41,16 @@ class _RegistryListListState extends State<RegistryListList> {
   List floors = [];
   String buildingType;
 
+  bool isOwner = false; // for originType 3
   List<String> roles = [];
 
   void initState() {
     mlistbloc = new listbloc.RegistryModelListBloc();
     mlistbloc.add(listbloc.getListData(
-        entitytype: widget.entitytype, entityid: widget.entityid));
+      entitytype: widget.entitytype,
+      entityid: widget.entityid,
+      originType: widget.origintype,
+    ));
   }
 
   @override
@@ -60,7 +63,10 @@ class _RegistryListListState extends State<RegistryListList> {
   void doreload(bool reloadtype) {
     if (reloadtype) {
       mlistbloc.add(listbloc.getListData(
-          entitytype: widget.entitytype, entityid: widget.entityid));
+        entitytype: widget.entitytype,
+        entityid: widget.entityid,
+        originType: widget.origintype,
+      ));
     }
   }
 
@@ -83,6 +89,7 @@ class _RegistryListListState extends State<RegistryListList> {
           entitytype: widget.entitytype,
           entityid: widget.entityid,
           givenreloadaction: doreload,
+          origintype: widget.origintype,
           btnState: ButtonState.idle,
           registry: null,
           role: role,
@@ -108,7 +115,8 @@ class _RegistryListListState extends State<RegistryListList> {
                 builder: (context) => RegistryForm(
                   registryModel: item,
                   entitytype: widget.entitytype,
-                  entityid: widget.entityid,origintype: widget.origintype,
+                  entityid: widget.entityid,
+                  origintype: widget.origintype,
                   givenreloadaction: doreload,
                 ),
               ),
@@ -118,12 +126,14 @@ class _RegistryListListState extends State<RegistryListList> {
               context,
               MaterialPageRoute(
                 builder: (context) => ResidentForm(
-                    entitytype: widget.entitytype,
-                    entityid: widget.entityid,
-                    givenreloadaction: doreload,origintype: widget.origintype,
-                    btnState: ButtonState.idle,
-                    registry: item,
-                    role: "manager"),
+                  entitytype: widget.entitytype,
+                  entityid: widget.entityid,
+                  givenreloadaction: doreload,
+                  origintype: widget.origintype,
+                  btnState: ButtonState.idle,
+                  registry: item,
+                  role: "manager",
+                ),
               ),
             );
           } else {
@@ -134,6 +144,7 @@ class _RegistryListListState extends State<RegistryListList> {
                   entitytype: widget.entitytype,
                   entityid: widget.entityid,
                   givenreloadaction: doreload,
+                  origintype: widget.origintype,
                   btnState: ButtonState.idle,
                   registry: item,
                   role: "owner",
@@ -226,6 +237,11 @@ class _RegistryListListState extends State<RegistryListList> {
           }
           if (state is listbloc.IsSearchedListDataLoaded) {
             List<cmodel.RegistryModel> em = state.listdata;
+
+            setState(() {
+              isOwner = state.isOwner;
+            });
+
             return _blocBuilder(context, em);
           }
 
@@ -261,17 +277,19 @@ class _RegistryListListState extends State<RegistryListList> {
           }
           return Center(child: Text('Empty'));
         })),
-        floatingActionButton:
-            (buildingType == "Multi Owner" && roles.contains('owner')) ||
-                    (roles.contains('manager'))
-                ? FloatingActionButton.extended(
-                    onPressed: () async {
-                      addButtonActions(context: context);
-                    },
-                    icon: Icon(Icons.add),
-                    label: Text("Add New"),
-                  )
-                : Container(),
+        floatingActionButton: widget.origintype == 1 ||
+                widget.origintype == 2 ||
+                (widget.origintype == 3 && isOwner)
+            // (buildingType == "Multi Owner" && roles.contains('owner')) ||
+            //         (roles.contains('manager'))
+            ? FloatingActionButton.extended(
+                onPressed: () async {
+                  addButtonActions(context: context);
+                },
+                icon: Icon(Icons.add),
+                label: Text("Add New"),
+              )
+            : Container(),
       ),
     );
   }
@@ -321,6 +339,7 @@ class _RegistryListListState extends State<RegistryListList> {
                       listbloc.getListDataByBuildingAndFloor(
                         entityid: widget.entityid,
                         entitytype: widget.entitytype,
+                        originType: widget.origintype,
                         buildingName: _building.text,
                         floorNum: _floor.text,
                       ),

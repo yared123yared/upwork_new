@@ -25,9 +25,14 @@ class ServiceRequestModelBloc
     if (event is getForNewEntry) {
       yield IsBusy();
       ServiceRequestModelRepositoryReturnData ud =
-          await mrepository.getInitialData(event.entitytype, event.entityid,
-              event.isupdate, event.requesttype,
-              event.serviceRequest);
+          await mrepository.getInitialData(
+        event.entitytype,
+        event.entityid,
+        event.isupdate,
+        event.requesttype,
+        event.serviceRequest,
+        event.originType,
+      );
 
       if (ud.errortype == -1)
         yield IsReadyForDetailsPage(

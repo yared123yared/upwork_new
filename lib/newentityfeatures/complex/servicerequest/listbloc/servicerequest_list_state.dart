@@ -27,11 +27,12 @@ class HasExceptionFaliur extends ServiceRequestModelListState {
 }
 
 class IsListDataLoaded extends ServiceRequestModelListState {
-  IsListDataLoaded({@required this.listdata});
-
   final List<ServiceRequestModel> listdata;
+  final bool isStaff;
+
+  IsListDataLoaded({@required this.listdata, @required this.isStaff});
   @override
-  List<Object> get props => [listdata];
+  List<Object> get props => [listdata, isStaff];
 }
 
 class IsDeleted extends ServiceRequestModelListState {

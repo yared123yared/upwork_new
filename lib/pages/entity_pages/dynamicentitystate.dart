@@ -44,7 +44,10 @@ import 'package:complex/pages/property/property_detail_page.dart';
 import 'package:complex/pages/vehicle/vehicle_detail_page.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart'
+    as listbloc;
 
 class EntityRoleState {
   final EntityRoles role;
@@ -716,9 +719,11 @@ class CurEntity {
 }
 
 class UiSchoolHandler {
+  static final UserRepository _userRepository = HelpUtil.getUserRepository();
+
   static CurEntity getCurEntity() {
-    UserRepository _user = Get.find();
-    var user = _user.getUser();
+    // UserRepository _user = Get.find();
+    var user = _userRepository.getUser();
     CurEntity c;
     if (user.defaultType == entityT.complex &&
         user.defaultComplexEntity?.complexID != null) {
@@ -776,8 +781,19 @@ class UiSchoolHandler {
       case DynamicEntityGridState.FeeItem:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
-            title: 'SessionTerm',
-            tapAction: () {});
+            title: 'Fee Item',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FeeItemFormList(
+                      entitytype: getCurEntity().entitytype,
+                      entityid: getCurEntity().entityid,
+                      // mlistbloc: mlistbloc,
+                    ),
+                  ));
+            });
         break;
 
       case DynamicEntityGridState.FeeQRScan:
@@ -1604,6 +1620,21 @@ class UiSchoolHandler {
                   context,
                   MaterialPageRoute(
                     builder: (buildContext) => AttachAssignmentListList(
+                      entitytype: getCurEntity().entitytype,
+                      entityid: getCurEntity().entityid,
+                    ),
+                  ));
+            });
+        break;
+      case DynamicEntityGridState.FeeItem:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Fee Item',
+            tapAction: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (buildContext) => FeeItemFormList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
                     ),

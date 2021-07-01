@@ -17,7 +17,6 @@ import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
 // import 'package:complex/newentityfeatures/complex/repository/repo/user_repository.dart';
 
-
 // import '../model/service_request_model.dart';
 import 'package:complex/newentityfeatures/Models/service_request_model.dart';
 
@@ -50,7 +49,7 @@ class ServiceRequestModelRepository {
   FirebaseMessaging _firebaseMessaging = Get.find();
 
   Future<ServiceRequestModelRepositoryReturnData> getAllServiceRequestModels(
-      String entitytype, String entityid) async {
+      String entitytype, String entityid, int originType) async {
     ServiceRequestModelRepositoryReturnData myreturn =
         ServiceRequestModelRepositoryReturnData();
 
@@ -76,44 +75,34 @@ class ServiceRequestModelRepository {
     );
     List<ServiceRequestModel> filteredServices = [];
 
-    if (roles.contains("manager") || roles.contains("security")) {
+
+    if (originType == 1) {
+      // managerregistryMultiOwner
       filteredServices = services;
-    } else if (roles.contains("owner") || roles.contains("resident")) {
+    } else if (originType == 2) {
+      // managerregistrySingleOwner
+      // only show servicerequest created by this staff memeber
       services.forEach((service) {
         if (service.unitId == _user.userID) {
           filteredServices.add(service);
         }
       });
-    } else if (roles.contains("staff")) {
+    } else if (originType == 3) {
+      // newownerresidentregistry
+      // show servicerequest only corresponding to unitid present in userprofile
       services.forEach((service) {
         if (service.unitId == _user.userID) {
           filteredServices.add(service);
         }
       });
     }
-/*     
-    List<ServiceRequestModel> services = [];
-    if (roles.contains("manager") || roles.contains("security")) {
-      services = await _complexRepository.getAllActiveServiceRequestList(
-        entitytype: entitytype,
-        entityid: entityid,
-        userModel: _user,
-      );
-    } else if (roles.contains("owner") || roles.contains("resident")) {
-      services = await _complexRepository.getServiceRequestOwnerResident(
-        entitytype: entitytype,
-        entityid: entityid,
-        userModel: _user,
-      );
-    } else if (roles.contains("staff")) {
-      services = await _complexRepository.getServiceRequestStaffSelf(
-        entitytype: entitytype,
-        entityid: entityid,
-        userModel: _user,
-      );
-    }
- */
+
     myreturn.itemlist = filteredServices;
+
+    bool isStaff = _complexModel.roles.contains(EntityRoles.Staff) ||
+        _complexModel.roles.contains(EntityRoles.Manager);
+
+    myreturn.isStaff = isStaff;
 
     // myreturn.itemlist = await _complexRepository.getServiceRequestList(
     //   complexID: entityid,
@@ -130,6 +119,10 @@ class ServiceRequestModelRepository {
     ServiceRequestModelRepositoryReturnData myreturn =
         ServiceRequestModelRepositoryReturnData();
 
+    ComplexModel _complexModel = await _complexRepository.getComplexAsync(
+      complex: _user.defaultComplexEntity,
+    );
+
     myreturn.itemlist = await _complexRepository.getServiceRequestOwnerResident(
       entitytype: entitytype,
       entityid: entityid,
@@ -142,6 +135,11 @@ class ServiceRequestModelRepository {
     // );
 
     // await _complexRepository.getServiceRequestList(complexID: entityid);
+
+    bool isStaff = _complexModel.roles.contains(EntityRoles.Staff) ||
+        _complexModel.roles.contains(EntityRoles.Manager);
+
+    myreturn.isStaff = isStaff;
 
     myreturn.errortype = -1;
     return myreturn;
@@ -217,7 +215,8 @@ class ServiceRequestModelRepository {
       String entityid,
       bool isupdate,
       String requestype,
-      ServiceRequestModel serviceRequest) async {
+      ServiceRequestModel serviceRequest,
+      int originType) async {
     if (isupdate) {
       //
       //getstafflist, buildinglist,
@@ -251,6 +250,16 @@ class ServiceRequestModelRepository {
       // complexID: entityid,
       // user: _user,
     ));
+    List<UnitModel> filteredUnits = [];
+    if (originType == 3) {
+      units.forEach((unit) {
+        if (unit.hasOwner || unit.hasResident) {
+          filteredUnits.add(unit);
+        }
+      });
+    } else {
+      filteredUnits = units;
+    }
 
     List<StaffModelx> stafflist = _complexRepository.getStaffList(
       complexID: entityid,
@@ -263,7 +272,7 @@ class ServiceRequestModelRepository {
     myreturn.errortype = -1;
     myreturn.isStaff = isStaff;
     myreturn.haveAccess = haveAccess;
-    myreturn.unitlist = units;
+    myreturn.unitlist = filteredUnits;
     myreturn.stafflist = stafflist;
     myreturn.buildings = buildinglist;
     myreturn.roles = roles;

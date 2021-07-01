@@ -11,11 +11,15 @@ class ServiceRequestModelListBloc
   ) async* {
     if (event is getListData) {
       yield IsBusy();
-      ServiceRequestModelRepositoryReturnData ud = await mrepository
-          .getAllServiceRequestModels(event.entitytype, event.entityid);
+      ServiceRequestModelRepositoryReturnData ud =
+          await mrepository.getAllServiceRequestModels(
+        event.entitytype,
+        event.entityid,
+        event.originType,
+      );
 
       if (ud.errortype == -1)
-        yield IsListDataLoaded(listdata: ud.itemlist);
+        yield IsListDataLoaded(listdata: ud.itemlist, isStaff: ud.isStaff);
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
       else
@@ -29,7 +33,7 @@ class ServiceRequestModelListBloc
               event.entitytype, event.entityid, event.requesttype);
 
       if (ud.errortype == -1)
-        yield IsListDataLoaded(listdata: ud.itemlist);
+        yield IsListDataLoaded(listdata: ud.itemlist, isStaff: ud.isStaff);
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
       else
