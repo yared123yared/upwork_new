@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:complex/pages/job_pages/job_detail_page.dart';
-import 'package:complex/pages/pet_pages/pets_detail_page.dart';
-import 'package:complex/pages/property/property_detail_page.dart';
-import 'package:complex/pages/vehicle/vehicle_detail_page.dart';
+import 'package:complex/view/job_pages/job_detail_page.dart';
+import 'package:complex/view/pet_pages/pets_detail_page.dart';
+import 'package:complex/view/property/property_detail_page.dart';
+import 'package:complex/view/vehicle/vehicle_detail_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/route_manager.dart';
