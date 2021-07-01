@@ -15,6 +15,7 @@ import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
 // import 'package:complex/common_models/common_model.dart' as model;
 import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/newentityfeatures/Models/leaverequest_model.dart';
 import 'package:complex/common/widgets/date_time_picker_newentity.dart'
     as newentitytimepicker;
 
@@ -55,6 +56,8 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
   DateTime _endDate = DateTime.now();
   bool _isUpdate = false;
 
+  bool enabled = true;
+
   List<String> leaveRequest = [
     'SICK',
     'CASUAL',
@@ -75,6 +78,22 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
   ];
 
   Future _initFiledValue() async {
+    if (widget.leaveRequestModel == null) {
+      enabled = true;
+    } else {
+      if (widget.origintype == 1) {
+        if (widget.leaveRequestModel?.leavestatus ==
+            LeaveRequestStatus.APPROVED) {
+          enabled = false;
+        } else if (widget.leaveRequestModel?.leavestatus ==
+            LeaveRequestStatus.REJECTED) {
+          enabled = true;
+        }
+      } else if (widget.origintype == 2) {
+        enabled = false;
+      }
+    }
+
     if (widget.leaveRequestModel != null) {
       _isUpdate = true;
       _startDate = HelpUtil.formattedStringToDate(
@@ -179,7 +198,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
           ),
           CustomDropDownList<String>(
             title: "Leave Request Type",
-            enabled: !_isUpdate,
+            enabled: enabled,
             controller: _leaveReqType,
             loadData: () async => leaveRequest,
             displayName: (x) => x,
@@ -189,7 +208,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
           ),
           CustomDropDownList<String>(
             title: "Period Leave Type",
-            enabled: !_isUpdate,
+            enabled: enabled,
             controller: _periodLeaveType,
             loadData: () async => periodType,
             displayName: (x) => x,
@@ -199,7 +218,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
           ),
           newentitytimepicker.CustomDateTimePicker(
             controller: _startDateController,
-            enabled: !_isUpdate,
+            enabled: enabled,
             dateTime: _startDate,
             title: 'Start Date',
             mode: DateTimeMode.DATETIME,
@@ -207,7 +226,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
           ),
           newentitytimepicker.CustomDateTimePicker(
             controller: _endDateController,
-            enabled: !_isUpdate,
+            enabled: enabled,
             dateTime: _endDate,
             title: 'End Date',
             mode: DateTimeMode.DATETIME,
@@ -215,7 +234,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
           ),
           CustomDropDownList<String>(
             title: "Request Status",
-            enabled: _isUpdate && isManager,
+            enabled: widget.origintype == 2 && _isUpdate,
             controller: _requestStatus,
             loadData: () async => requestStatus,
             displayName: (x) => x,

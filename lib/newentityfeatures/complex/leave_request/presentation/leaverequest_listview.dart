@@ -36,6 +36,11 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
     mlistbloc = new listbloc.LeaveRequestListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
+    mlistbloc.add(listbloc.getListData(
+      entitytype: widget.entitytype,
+      entityid: widget.entityid,
+      originType: widget.origintype,
+    ));
   }
 
   @override
@@ -91,16 +96,18 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
             ),
           );
         },
-        deleteAction: () async {
-          bool docancel = await _asyncConfirmDialog(context);
-          if (docancel) {
-            BlocProvider.of<listbloc.LeaveRequestListBloc>(context).add(
-                listbloc.deleteItemWithData(
-                    entitytype: widget.entitytype,
-                    entityid: widget.entitytype,
-                    item: listItems[index]));
-          }
-        },
+        deleteAction: widget.origintype == 1
+            ? () async {
+                bool docancel = await _asyncConfirmDialog(context);
+                if (docancel && listItems[index].leavestatus == null) {
+                  BlocProvider.of<listbloc.LeaveRequestListBloc>(context).add(
+                      listbloc.deleteItemWithData(
+                          entitytype: widget.entitytype,
+                          entityid: widget.entitytype,
+                          item: listItems[index]));
+                }
+              }
+            : null,
       ));
     });
 
@@ -139,63 +146,66 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Attach Assignment List"),
-            centerTitle: true,
-          ),
-          body: BlocListener<listbloc.LeaveRequestListBloc,
-              listbloc.LeaveRequestListState>(listener: (context, state) {
-            if (state is listbloc.IsDeleted) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is deleted"),
-              ));
-              doreload(true);
-            }
+        appBar: AppBar(
+          title: Text("Attach Assignment List"),
+          centerTitle: true,
+        ),
+        body: BlocListener<listbloc.LeaveRequestListBloc,
+            listbloc.LeaveRequestListState>(listener: (context, state) {
+          if (state is listbloc.IsDeleted) {
+            asuka.showSnackBar(SnackBar(
+              content: Text("Item is deleted"),
+            ));
+            doreload(true);
+          }
 
-            if (state is listbloc.IsSearchParaLoaded) {
-              setState(() {
-                gradelist = state.gradelist;
-                sessionterm = state.sessiontermlist;
-                offeringModelGroupfunc = state.offeringModelGroupfunc;
-              });
-            }
-            if (state is listbloc.IsListDataLoaded) {
-              setState(() {
-                em = state.listdata;
-              });
-            }
-          }, child: BlocBuilder<listbloc.LeaveRequestListBloc,
-              listbloc.LeaveRequestListState>(builder: (context, state) {
-            if (state is listbloc.IsBusy)
-              return Center(
-                child: Container(
-                    width: 20, height: 20, child: CircularProgressIndicator()),
-              );
-            if (state is listbloc.HasLogicalFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.IsDeleted) {
-              return Center(child: Text("Deleted item"));
-            }
-            if (state is listbloc.IsSearchParaLoaded) {
-              return _blocBuilder(context);
-            }
+          if (state is listbloc.IsSearchParaLoaded) {
+            setState(() {
+              gradelist = state.gradelist;
+              sessionterm = state.sessiontermlist;
+              offeringModelGroupfunc = state.offeringModelGroupfunc;
+            });
+          }
+          if (state is listbloc.IsListDataLoaded) {
+            setState(() {
+              em = state.listdata;
+            });
+          }
+        }, child: BlocBuilder<listbloc.LeaveRequestListBloc,
+            listbloc.LeaveRequestListState>(builder: (context, state) {
+          if (state is listbloc.IsBusy)
+            return Center(
+              child: Container(
+                  width: 20, height: 20, child: CircularProgressIndicator()),
+            );
+          if (state is listbloc.HasLogicalFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.HasExceptionFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.HasExceptionFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.IsDeleted) {
+            return Center(child: Text("Deleted item"));
+          }
+          if (state is listbloc.IsSearchParaLoaded) {
+            return _blocBuilder(context);
+          }
 
-            if (state is listbloc.IsListDataLoaded) {
-              return _blocBuilder(context);
-            }
-            return Center(child: Text('Empty'));
-          })),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
-              addButtonActions(context: context);
-            },
-            icon: Icon(Icons.add),
-            label: Text("Add New"),
-          )),
+          if (state is listbloc.IsListDataLoaded) {
+            return _blocBuilder(context);
+          }
+          return Center(child: Text('Empty'));
+        })),
+        floatingActionButton: widget.origintype == 1
+            ? FloatingActionButton.extended(
+                onPressed: () async {
+                  addButtonActions(context: context);
+                },
+                icon: Icon(Icons.add),
+                label: Text("Add New"),
+              )
+            : null,
+      ),
     );
   }
 

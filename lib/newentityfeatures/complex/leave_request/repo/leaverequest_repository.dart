@@ -34,12 +34,29 @@ class LeaveRequestRepository {
     LeaveRequestRepositoryReturnData myreturn =
         LeaveRequestRepositoryReturnData();
 
-    myreturn.itemlist =
+    List<LeaveRequestModel> leaveRequests =
         await _complexRepository.leaveRequest.getLeaveRequestForAll(
       entitytype: entitytype,
       entityid: entityid,
       user: _user,
     );
+    List<LeaveRequestModel> filteredLeaveRequests = [];
+
+    leaveRequests.forEach((leaveRequest) {
+      DateTime now = DateTime.now();
+      if ((leaveRequest.startDate.difference(now).inDays < 90) &&
+          (leaveRequest.endDate.difference(now).inDays < 90)) {
+        if (originType == 1) {
+          if (leaveRequest.staffID == _user.userID) {
+            filteredLeaveRequests.add(leaveRequest);
+          }
+        } else if (originType == 2) {
+          filteredLeaveRequests.add(leaveRequest);
+        }
+      }
+    });
+
+    myreturn.itemlist = filteredLeaveRequests;
 
     return myreturn;
   }
