@@ -12,7 +12,11 @@ class LeaveRequestListBloc
     if (event is getListData) {
       yield IsBusy();
       LeaveRequestRepositoryReturnData ud =
-          await mrepository.getInitialData(event.entitytype, event.entityid);
+          await mrepository.getAllLeaveRequests(
+        event.entitytype,
+        event.entityid,
+        event.originType,
+      );
 
       if (ud.errortype == -1)
         yield IsListDataLoaded(listdata: ud.itemlist);

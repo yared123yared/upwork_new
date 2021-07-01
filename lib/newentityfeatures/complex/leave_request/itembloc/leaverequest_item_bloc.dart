@@ -25,7 +25,7 @@ class LeaveRequestBloc
     if (event is getForNewEntry) {
       yield IsBusy();
       LeaveRequestEntryData ud = await mrepository
-          .getItemFormNewEntryData(event.entitytype, event.entityid);
+          .getItemFormNewEntryData(event.entitytype, event.entityid, event.originType);
 
       if (ud.errortype == -1)
         yield IsReadyForDetailsPage(

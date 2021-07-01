@@ -1,7 +1,5 @@
 part of 'bloc.dart';
 
-
-
 @freezed
 class ServiceRequestModelListState extends Equatable {
   const ServiceRequestModelListState();
@@ -9,17 +7,11 @@ class ServiceRequestModelListState extends Equatable {
   List<Object> get props => [];
 }
 
-
-
-
-
-
 class IsBusy extends ServiceRequestModelListState {
   const IsBusy();
   @override
   List<Object> get props => [];
 }
-
 
 class HasLogicalFaliur extends ServiceRequestModelListState {
   HasLogicalFaliur({@required this.error});
@@ -35,22 +27,17 @@ class HasExceptionFaliur extends ServiceRequestModelListState {
   List<Object> get props => [error];
 }
 
- class IsListDataLoaded extends ServiceRequestModelListState {
-   IsListDataLoaded({@required this.listdata});
- 
-   final List<ServiceRequestModel> listdata;
-   @override
-   List<Object> get props => [listdata];
- }
- 
- 
+class IsListDataLoaded extends ServiceRequestModelListState {
+  final List<ServiceRequestModel> listdata;
+  final bool isStaff;
 
+  IsListDataLoaded({@required this.listdata, @required this.isStaff});
+  @override
+  List<Object> get props => [listdata, isStaff];
+}
 
 class IsDeleted extends ServiceRequestModelListState {
   const IsDeleted();
   @override
   List<Object> get props => [];
 }
-
-
-

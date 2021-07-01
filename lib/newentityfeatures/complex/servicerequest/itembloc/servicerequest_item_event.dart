@@ -59,17 +59,11 @@ class getAdditionalDataEntryIDAvailable extends ServiceRequestModelEvent {
 class getForNewEntry extends ServiceRequestModelEvent {
   final String entityid;
   final String entitytype;
+  final int originType;
   final bool isupdate;
   final String requesttype;
   final serviceRequest;
 
-  const getForNewEntry({
-    @required this.entityid,
-    @required this.entitytype,
-    @required this.isupdate,
-    @required this.requesttype,
-    @required this.serviceRequest,
-  });
-  List<Object> get() =>
-      [entityid, entitytype, isupdate, requesttype, serviceRequest];
+  const getForNewEntry({ @required this.entityid, @required this.entitytype, @required this.isupdate, @required this.requesttype, @required this.serviceRequest, @required this.originType});
+  List<Object> get() => [entityid, entitytype, isupdate, requesttype, serviceRequest, originType];
 }

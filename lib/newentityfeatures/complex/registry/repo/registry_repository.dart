@@ -15,7 +15,6 @@ import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 
 // import 'package:complex/newentityfeatures/complex/repository/repo/user_repository.dart';
 
-
 import 'package:complex/newentityfeatures/Models/unit_model.dart';
 import 'package:complex/newentityfeatures/Models/resident_model.dart';
 import 'package:complex/newentityfeatures/Models/registry_model.dart';
@@ -41,7 +40,7 @@ class RegistryModelRepository {
   UserModel get _user => _userRepository.getUser();
 
   Future<RegistryModelRepositoryReturnData> getAllRegistryModels(
-      String entitytype, String entityid) async {
+      String entitytype, String entityid, int originType) async {
     RegistryModelRepositoryReturnData myreturn =
         RegistryModelRepositoryReturnData();
 
@@ -69,13 +68,26 @@ class RegistryModelRepository {
       entityid: entityid,
     );
     registryList.forEach((registry) {
-      if (roles?.contains("owner") ?? false) {
+      if (originType == 1) {
+        newRegistryList.add(registry);
+      } else if (originType == 2) {
         if (registry?.ownerUserId == _user.userID) {
           newRegistryList.add(registry);
         }
-      } else {
+      } else if (originType == 3) {
         newRegistryList.add(registry);
+      } else if (originType == 4) {
+        if (registry?.ownerUserId == _user.userID) {
+          newRegistryList.add(registry);
+        }
       }
+      // if (roles?.contains("owner") ?? false) {
+      //   if (registry?.ownerUserId == _user.userID) {
+      //     newRegistryList.add(registry);
+      //   }
+      // } else {
+      //   newRegistryList.add(registry);
+      // }
     });
 
     myreturn.itemlist = newRegistryList;
@@ -86,7 +98,7 @@ class RegistryModelRepository {
 
   Future<RegistryModelRepositoryReturnData>
       getAllRegistryModelsByBuildingAndFloor(String entitytype, String entityid,
-          String buildingName, String floorNum) async {
+          int originType, String buildingName, String floorNum) async {
     RegistryModelRepositoryReturnData myreturn =
         RegistryModelRepositoryReturnData();
 
@@ -107,26 +119,45 @@ class RegistryModelRepository {
     myreturn.listviewData.buildingType = _complexModel.buildingType;
 
     List<RegistryModel> newRegistryList = [];
+    bool isOwner = false;
 
     List<RegistryModel> registryList =
         await _complexRepository.registry.getRegistryList(
       entitytype: entitytype,
       entityid: entityid,
     );
-    registryList.forEach((registry) {
+    registryList?.forEach((registry) {
       if (registry.buildingName == buildingName &&
           registry.floorNum == floorNum) {
-        if (roles?.contains("owner") ?? false) {
+        if (originType == 1) { // managerregistryMultiOwner
+          newRegistryList.add(registry);
+        } else if (originType == 2) { // managerregistrySingleOwner
+          newRegistryList.add(registry);
+        } else if (originType == 3) { // newownerresidentregistry
+          if (registry?.ownerUserId == _user.userID || registry?.residentUserId  == _user.userID) {
+            newRegistryList.add(registry);
+          }
+          if (registry?.ownerUserId == _user.userID) {
+            isOwner = true;
+          }
+        } else if (originType == 4) { // registrylist
           if (registry?.ownerUserId == _user.userID) {
             newRegistryList.add(registry);
           }
-        } else {
-          newRegistryList.add(registry);
         }
+
+        // if (roles?.contains("owner") ?? false) {
+        //   if (registry?.ownerUserId == _user.userID) {
+        //     newRegistryList.add(registry);
+        //   }
+        // } else {
+        //   newRegistryList.add(registry);
+        // }
       }
     });
 
     myreturn.itemlist = newRegistryList;
+    myreturn.listviewData.isOwner = isOwner;
 
     myreturn.errortype = -1;
     return myreturn;
@@ -304,7 +335,14 @@ class RegistryModelRepository {
       entitytype: entitytype,
       entityid: entityid,
     );
-    // List<UnitModel> unitList = await _complexRepository.units.getAvailableUnit(
+    // unitList[0].unitID == _user.userID,
+    // List<UnitModel> unitList =
+    //     await _complexRepository.units.getUnitListForResidentAvailableForOwner(
+    //   entitytype: entitytype,
+    //   entityid: entityid,
+    //   unitlist: unitList,
+    // );
+    // tAvailableUnit(
     //   complex: _complexModel,
     //   user: _user,
     // );
@@ -326,6 +364,7 @@ class RegistryEntryData {
   String buildingType;
   List<UnitModel> unitList;
   ResidentModel resident;
+  bool isOwner;
 
   var btnState;
 

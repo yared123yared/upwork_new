@@ -42,13 +42,14 @@ class IsDeleted extends LeaveRequestListState {
 }
 
 class IsSearchParaLoaded extends LeaveRequestListState {
-  IsSearchParaLoaded(
-      {@required this.gradelist,
-      @required this.sessiontermlist,
-      @required this.offeringModelGroupfunc});
   final List<String> gradelist;
   final List<String> sessiontermlist;
   final Future<List<String>> Function(String, String) offeringModelGroupfunc;
+  IsSearchParaLoaded({
+    @required this.gradelist,
+    @required this.sessiontermlist,
+    @required this.offeringModelGroupfunc,
+  });
   @override
   List<Object> get props =>
       [gradelist, sessiontermlist, offeringModelGroupfunc];

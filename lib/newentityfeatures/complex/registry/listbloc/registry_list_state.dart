@@ -32,13 +32,15 @@ class IsSearchedListDataLoaded extends RegistryModelListState {
     @required this.listdata,
     @required this.roles,
     @required this.buildingType,
+    this.isOwner,
   });
 
   final List<RegistryModel> listdata;
   final List<String> roles;
   final String buildingType;
+  final bool isOwner;
   @override
-  List<Object> get props => [listdata, roles, buildingType];
+  List<Object> get props => [listdata, roles, buildingType, isOwner];
 }
 
 class IsListDataLoaded extends RegistryModelListState {

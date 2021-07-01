@@ -24,24 +24,25 @@ import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/widgets/date_time_picker_newentity.dart'
     as newentitytimepicker;
 
-class GatePassRequestForm extends StatefulWidget {
+class ServiceRequestForm extends StatefulWidget {
   final ServiceRequestModel serviceRequestModel;
   final String entityid;
   final String entitytype;
   final reloadAction givenreloadaction;
   final int origintype;
 
-  GatePassRequestForm(
+  ServiceRequestForm(
       {this.serviceRequestModel,
       this.entityid,
       this.entitytype,
-      this.givenreloadaction,this.origintype});
+      this.givenreloadaction,
+      this.origintype});
 
   @override
-  _GatePassRequestFormState createState() => _GatePassRequestFormState();
+  _ServiceRequestFormState createState() => _ServiceRequestFormState();
 }
 
-class _GatePassRequestFormState extends State<GatePassRequestForm> {
+class _ServiceRequestFormState extends State<ServiceRequestForm> {
   CustomTextFieldController _serviceProviderId = CustomTextFieldController();
   CustomTextFieldController _memberId = CustomTextFieldController();
 
@@ -80,6 +81,7 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
 
   bool _isUpdate = false;
   bool _isStaff = false;
+  bool enabled = true;
 
   List<String> roles;
 
@@ -144,6 +146,7 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
         isupdate: _isUpdate,
         serviceRequest: widget.serviceRequestModel,
         requesttype: '',
+        originType: widget.origintype,
       ),
     );
   }
@@ -182,6 +185,16 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
             stafflist = state.stafflist;
             buildinglist = state.buildinglist;
 
+            if (widget.origintype == 1) {
+              enabled = false;
+              _requestType.text = "ADHOCVISITOR";
+            } else if (widget.origintype == 2) {
+              _isStaff = true;
+              serviceTypes = [];
+            } else if (widget.origintype == 3) {
+              _isStaff = false;
+            }
+
             _initFiledValue();
           }
         }, child: BlocBuilder<itembloc.ServiceRequestModelBloc,
@@ -207,9 +220,9 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
             stafflist = state.stafflist;
             buildinglist = state.buildinglist;
             roles = state.roles ?? [];
-            if (roles.contains("security")) {
-              _requestType.text = "ADHOCVISITOR";
-            }
+            // if (roles.contains("security")) {
+            //   _requestType.text = "ADHOCVISITOR";
+            // }
 
             return _render(context);
           }
@@ -228,11 +241,11 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
           children: <Widget>[
             Column(
               children: <Widget>[
-                CustomSwitchWithTitle(
-                  title: "For Staff",
-                  isEnabled: _isStaff,
-                  onChange: (value) => setState(() => _isStaff = value),
-                ),
+                // CustomSwitchWithTitle(
+                //   title: "For Staff",
+                //   isEnabled: enabled || _isStaff,
+                //   onChange: (value) => setState(() => _isStaff = value),
+                // ),
                 if (_isStaff)
                   CustomDropDownList<StaffModelx>(
                     title: "Staff Member",
@@ -245,6 +258,7 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
                   ),
                 CustomTextField(
                   title: "Service Provider ID",
+                  enabled: enabled,
                   controller: _serviceProviderId,
                   validate: Validate.withOption(
                     isRequired: true,
@@ -252,6 +266,7 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
                 ),
                 CustomTextField(
                   title: "Member Id",
+                  enabled: enabled,
                   controller: _memberId,
                   initialValue:
                       widget?.serviceRequestModel?.serviceRequestorMemberUserId,
@@ -262,6 +277,7 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
                 if (!_isStaff)
                   CustomTextField(
                     title: "Name",
+                    enabled: enabled,
                     initialValue:
                         widget?.serviceRequestModel?.correspondingName,
                     controller: _name,
@@ -280,6 +296,7 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
                 if (!_isStaff)
                   CustomDropDownList<String>(
                     title: "Unit Address",
+                    enabled: enabled,
                     controller: _unitAddress,
                     initialValue: widget?.serviceRequestModel?.unitId,
                     loadData: () async =>
@@ -291,10 +308,10 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
                   ),
                 CustomDropDownList(
                   title: "Request Type",
+                  enabled: widget.origintype == 1,
                   controller: _requestType,
                   initialValue:
                       widget?.serviceRequestModel?.requestType.toString(),
-                  enabled: !roles.contains("security"),
                   loadData: () async => serviceTypes,
                   displayName: (data) => data,
                   validate: Validate.withOption(
@@ -304,6 +321,7 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
 
                 CustomTextField(
                   title: "Notes",
+                  enabled: enabled,
                   controller: _notes,
                   initialValue: widget.serviceRequestModel?.notesInstructions,
                   validate: Validate.withOption(
@@ -312,6 +330,7 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
                 ),
                 newentitytimepicker.CustomDateTimePicker(
                   controller: _startDateController,
+                  enabled: enabled,
                   dateTime: _startDate,
                   title: 'Start Date',
                   mode: DateTimeMode.DATE,
@@ -319,6 +338,7 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
                 ),
                 newentitytimepicker.CustomDateTimePicker(
                   controller: _endDateController,
+                  enabled: enabled,
                   dateTime: _endDate,
                   title: 'End Date',
                   mode: DateTimeMode.DATE,
@@ -327,7 +347,7 @@ class _GatePassRequestFormState extends State<GatePassRequestForm> {
               ],
             ),
             SizedBox(height: height * 4),
-            if (!_isUpdate || haveAccess)
+            if ((!_isUpdate || haveAccess) && enabled)
               CustomActionButton(
                 // state: btnState,
                 title: _isUpdate ? "Update" : "Add",

@@ -22,8 +22,7 @@ class LeaveRequestListList extends StatefulWidget {
   LeaveRequestListList({this.entitytype, this.entityid, this.origintype});
 
   @override
-  _LeaveRequestListListState createState() =>
-      _LeaveRequestListListState();
+  _LeaveRequestListListState createState() => _LeaveRequestListListState();
 }
 
 class _LeaveRequestListListState extends State<LeaveRequestListList> {
@@ -53,7 +52,10 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
   void doreload(bool reloadtype) {
     if (reloadtype) {
       mlistbloc.add(listbloc.getListData(
-          entitytype: widget.entitytype, entityid: widget.entityid));
+        entitytype: widget.entitytype,
+        entityid: widget.entityid,
+        originType: widget.origintype,
+      ));
     }
   }
 
@@ -66,7 +68,8 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
         builder: (context) => LeaveRequestForm(
             leaveRequestModel: null,
             entitytype: widget.entitytype,
-            entityid: widget.entityid,origintype: widget.origintype,
+            entityid: widget.entityid,
+            origintype: widget.origintype,
             givenreloadaction: doreload),
       ),
     );
@@ -86,7 +89,8 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
               builder: (context) => LeaveRequestForm(
                   leaveRequestModel: item,
                   entitytype: widget.entitytype,
-                  entityid: widget.entityid,origintype: widget.origintype,
+                  entityid: widget.entityid,
+                  origintype: widget.origintype,
                   givenreloadaction: doreload),
             ),
           );
