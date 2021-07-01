@@ -35,7 +35,7 @@ class _TeacherAssignmentModelListListState
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.TeacherAssignmentModelListBloc();
+    mlistbloc = listbloc.TeacherAssignmentModelListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

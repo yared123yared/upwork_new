@@ -33,7 +33,7 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.FeePlanModelListBloc();
+    mlistbloc = listbloc.FeePlanModelListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

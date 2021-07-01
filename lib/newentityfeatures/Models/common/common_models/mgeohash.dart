@@ -1,34 +1,28 @@
 import 'dart:typed_data';
 import 'dart:math';
 
-
-
-class districtAreaList
-{
+class districtAreaList {
   String state;
   String district;
   List<String> areaname;
 }
 
-class georecorddata
-{
+class georecorddata {
   int curprecision;
   List<String> documentlist;
 }
 
-class HelperGeoFunctions
-{
-  static String getGeoHash(double longitude, double latitude,int precision)
-  {
+class HelperGeoFunctions {
+  static String getGeoHash(double longitude, double latitude, int precision) {
     return GeoHasher().encode(longitude, latitude, precision: precision);
   }
 
   // ignore: missing_return
-  static List<String> getGeoHashUpperLowerBount(double longitude, double latitude,int precision, int distanceinmeters)
-  {
-    List<String> result = new List<String>();
+  static List<String> getGeoHashUpperLowerBount(
+      double longitude, double latitude, int precision, int distanceinmeters) {
+    List<String> result = [];
     double coef = distanceinmeters * 0.0000089;
-    double longcoef =cos(latitude * 0.018);
+    double longcoef = cos(latitude * 0.018);
     double new_lat1 = latitude + coef;
 
     // pi / 180 = 0.018
@@ -39,26 +33,18 @@ class HelperGeoFunctions
     // pi / 180 = 0.018
     double new_long2 = longitude - longcoef;
 
-
     String s1 = GeoHasher().encode(new_long1, new_lat1, precision: precision);
 
-    String s2 =GeoHasher().encode(new_long2, new_lat2, precision: precision);
+    String s2 = GeoHasher().encode(new_long2, new_lat2, precision: precision);
     int r = s1.compareTo(s2);
-    if (r <= 0)
-    {
+    if (r <= 0) {
       result.add(s1);
       result.add(s2);
-    }
-    else
-    {
+    } else {
       result.add(s2);
       result.add(s1);
-
     }
-
   }
-
-
 }
 
 /// A list of possible directions of neighboring geohash.
@@ -73,12 +59,13 @@ enum Direction {
   NORTHWEST,
   CENTRAL
 }
+
 class GeoHasher {
   static String _baseSequence = '0123456789bcdefghjkmnpqrstuvwxyz';
 
   /// Creates a Map of available characters for a geohash
   Map<String, int> _base32Map =
-  Map.fromIterable(_baseSequence.split(""), key: (key) {
+      Map.fromIterable(_baseSequence.split(""), key: (key) {
     return key;
   }, value: (value) {
     return _baseSequence.indexOf(value);
@@ -86,7 +73,7 @@ class GeoHasher {
 
   /// Creates a reversed Map of available characters for a geohash
   Map<int, String> _base32MapR =
-  Map.fromIterable(_baseSequence.split(""), key: (key) {
+      Map.fromIterable(_baseSequence.split(""), key: (key) {
     return _baseSequence.indexOf(key);
   }, value: (value) {
     return value;
@@ -95,9 +82,9 @@ class GeoHasher {
   /// Converts a List<int> of bits into a double for Longitude and Latitude
   double _bitsToDouble(
       {List<int> bits,
-        double lower = -90.0,
-        double middle = 0.0,
-        double upper = 90.0}) {
+      double lower = -90.0,
+      double middle = 0.0,
+      double upper = 90.0}) {
     bits.forEach((bit) {
       if (bit == 1) {
         lower = middle;
@@ -112,10 +99,10 @@ class GeoHasher {
   /// Converts a double value Longitude or Latitude to a List<int> of bits
   List<int> _doubleToBits(
       {double value,
-        double lower = -90.0,
-        double middle = 0.0,
-        double upper = 90.0,
-        int length = 15}) {
+      double lower = -90.0,
+      double middle = 0.0,
+      double upper = 90.0,
+      int length = 15}) {
     List<int> ret = List<int>();
 
     for (int i = 0; i < length; i++) {
@@ -136,7 +123,7 @@ class GeoHasher {
   String _bitsToGeoHash(List<int> bitValue) {
     List<int> remainingBits = List<int>.from(bitValue);
     List<int> subBits = List<int>();
-    List<String> geoHashList = List<String>();
+    List<String> geoHashList = [];
 
     String subBitsAsString;
     int value;
@@ -211,8 +198,8 @@ class GeoHasher {
     return originalPrecision == 1
         ? geohashString.substring(0, 1)
         : (precisionOdd
-        ? geohashString.substring(0, geohashString.length - 1)
-        : geohashString);
+            ? geohashString.substring(0, geohashString.length - 1)
+            : geohashString);
   }
 
   /// Decodes a given String into a List<double> containing Longitude and
@@ -248,7 +235,7 @@ class GeoHasher {
   /// direction.
   String _adjacent({String geohash, String direction}) {
     assert(direction.contains(new RegExp(r'[nsewNSEW]')),
-    "Invalid Direction $direction not in NSEW");
+        "Invalid Direction $direction not in NSEW");
     assert(geohash != null, "Invalid GeoHash");
 
     Map<String, List> neighbor = {
@@ -302,19 +289,19 @@ class GeoHasher {
 
     return {
       Direction.NORTH.toString().split(".")[1]:
-      _adjacent(geohash: geohash, direction: "n"),
+          _adjacent(geohash: geohash, direction: "n"),
       Direction.NORTHEAST.toString().split(".")[1]: _adjacent(
           geohash: _adjacent(geohash: geohash, direction: 'n'), direction: 'e'),
       Direction.EAST.toString().split(".")[1]:
-      _adjacent(geohash: geohash, direction: 'e'),
+          _adjacent(geohash: geohash, direction: 'e'),
       Direction.SOUTHEAST.toString().split(".")[1]: _adjacent(
           geohash: _adjacent(geohash: geohash, direction: 's'), direction: 'e'),
       Direction.SOUTH.toString().split(".")[1]:
-      _adjacent(geohash: geohash, direction: 's'),
+          _adjacent(geohash: geohash, direction: 's'),
       Direction.SOUTHWEST.toString().split(".")[1]: _adjacent(
           geohash: _adjacent(geohash: geohash, direction: 's'), direction: 'w'),
       Direction.WEST.toString().split(".")[1]:
-      _adjacent(geohash: geohash, direction: 'w'),
+          _adjacent(geohash: geohash, direction: 'w'),
       Direction.NORTHWEST.toString().split(".")[1]: _adjacent(
           geohash: _adjacent(geohash: geohash, direction: 'n'), direction: 'w'),
       Direction.CENTRAL.toString().split(".")[1]: geohash

@@ -32,7 +32,7 @@ class _RemoteTripListListState extends State<RemoteTripListList> {
   List<RemoteTripData> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.RemoteTripListBloc();
+    mlistbloc = listbloc.RemoteTripListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(

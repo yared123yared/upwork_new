@@ -132,7 +132,7 @@ class PropertyModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['docid'] = this.docid;
     data['serviceproviderid'] = this.serviceproviderid;
     data['userid'] = this.userid;
@@ -207,7 +207,7 @@ class Contactdetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['name'] = this.name;
     data['phonenum'] = this.phonenum;
     data['sharephone'] = this.sharephone;
@@ -256,7 +256,7 @@ class Address {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['country'] = this.country;
     data['state'] = this.state;
     data['district'] = this.district;

@@ -36,7 +36,7 @@ class _FamilyMemberListListState extends State<FamilyMemberListList> {
   List<FamilyMember> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.FamilyMemberListBloc();
+    mlistbloc = listbloc.FamilyMemberListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

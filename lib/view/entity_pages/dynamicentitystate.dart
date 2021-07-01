@@ -718,13 +718,12 @@ class UiSchoolHandler {
     CurEntity c;
     if (user.defaultType == entityT.complex &&
         user.defaultComplexEntity?.complexID != null) {
-      c = new CurEntity("COMPLEXES", user.defaultComplexEntity.complexID);
+      c = CurEntity("COMPLEXES", user.defaultComplexEntity.complexID);
     } else if (user.defaultType == entityT.service &&
         user.defaultServiceEntity?.serviceID != null) {
-      c = new CurEntity(
-          "SERVICEPROVIDERINFO", user.defaultServiceEntity.serviceID);
+      c = CurEntity("SERVICEPROVIDERINFO", user.defaultServiceEntity.serviceID);
     } else {
-      c = new CurEntity(null, null);
+      c = CurEntity(null, null);
     }
 
     return c;

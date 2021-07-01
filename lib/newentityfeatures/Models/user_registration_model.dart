@@ -96,7 +96,7 @@ class UserRegistrationModel extends Equatable {
         email,
         name,
         qrCode,
-    appuserid,
+        appuserid,
         addressLine,
         allocatedTransportRoute,
         allocatedTransportCost,
@@ -284,10 +284,10 @@ class UserRegistrationModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['academicpercentage'] = this.academicPercentage;
-    data['appuserid']=this.appuserid;
+    data['appuserid'] = this.appuserid;
 
     data['email'] = this.email;
     data['addressline'] = this.addressLine;

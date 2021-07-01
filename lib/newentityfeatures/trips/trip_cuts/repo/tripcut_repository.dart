@@ -67,12 +67,12 @@ class TripCutRepository {
       String entityid,
       String sessionterm,
       String offeringgroup) async {
-    TripCutRepositoryReturnData grerror = new TripCutRepositoryReturnData();
+    TripCutRepositoryReturnData grerror = TripCutRepositoryReturnData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
-      TripCutRepositoryReturnData gr = new TripCutRepositoryReturnData();
+      TripCutRepositoryReturnData gr = TripCutRepositoryReturnData();
       gr.errortype = -1;
       return gr;
     } catch (ex) {}

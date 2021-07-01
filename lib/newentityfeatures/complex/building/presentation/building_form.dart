@@ -49,7 +49,7 @@ class _BuildingFormState extends State<BuildingForm> {
   void initState() {
     _isUpdate = widget.buildingModel != null;
     super.initState();
-    mbloc = new itembloc.BuildingModelBloc();
+    mbloc = itembloc.BuildingModelBloc();
     mbloc.add(itembloc.getForNewEntry(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

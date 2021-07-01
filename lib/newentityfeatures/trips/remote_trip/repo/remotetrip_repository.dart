@@ -69,7 +69,7 @@ class RemoteTripRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      RemoteTripRepositoryReturnData gr = new RemoteTripRepositoryReturnData();
+      RemoteTripRepositoryReturnData gr = RemoteTripRepositoryReturnData();
       gr.errortype = -1;
       return gr;
     } catch (ex) {}

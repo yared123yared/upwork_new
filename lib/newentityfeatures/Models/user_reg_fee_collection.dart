@@ -129,7 +129,7 @@ class UserRegFeeCollectionModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['closed'] = this.closed;
     data['totalfeeamount'] = this.totalFeeAmount;
@@ -242,7 +242,7 @@ class PaymentDetails {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['amountrecvddate'] = this.amountReceivedDate;
     data['amountvalidatedate'] = this.amountValidateDate;

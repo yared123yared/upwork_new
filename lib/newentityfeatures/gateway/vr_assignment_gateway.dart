@@ -186,7 +186,7 @@ class VrAssignmentGateway {
     // Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     // if (mdata['error'] != null) return kindlist;
 
-    // //kindlist = new List<AssignmentModelDropdown>();
+    // //kindlist = List<AssignmentModelDropdown>();
     // for (dynamic d in mdata['lm']) {
     //   Map<String, dynamic> bk = Map<String, dynamic>.from(d);
     //   String key = bk['vrid'];
@@ -221,7 +221,7 @@ class VrAssignmentGateway {
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return kindlist;
 
-    //kindlist = new List<AssignmentModelDropdown>();
+    //kindlist = List<AssignmentModelDropdown>();
     for (dynamic d in mdata['lm']) {
       Map<String, dynamic> bk = Map<String, dynamic>.from(d);
       String key = bk['vrid'];
@@ -252,7 +252,7 @@ class VrAssignmentGateway {
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return kindlist;
 
-    //kindlist = new List<AssignmentModelDropdown>();
+    //kindlist = List<AssignmentModelDropdown>();
     for (dynamic d in mdata['lm']) {
       Map<String, dynamic> bk = Map<String, dynamic>.from(d);
       String key = bk['vrid'];
@@ -284,7 +284,7 @@ class VrAssignmentGateway {
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return kindlist;
 
-    //kindlist = new List<AssignmentModelDropdown>();
+    //kindlist = List<AssignmentModelDropdown>();
     for (dynamic d in mdata['lm']) {
       Map<String, dynamic> bk = Map<String, dynamic>.from(d);
       kindlist.add(AnsweredPaper.fromMap1(bk));
@@ -315,7 +315,7 @@ class VrAssignmentGateway {
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return kindlist;
 
-    //kindlist = new List<AssignmentModelDropdown>();
+    //kindlist = List<AssignmentModelDropdown>();
     for (dynamic d in mdata['lm']) {
       Map<String, dynamic> bk = Map<String, dynamic>.from(d);
       kindlist.add(AnsweredPaper.fromMap1(bk));
@@ -414,7 +414,7 @@ class VrAssignmentGateway {
       Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
       if (mdata['error'] != null) return kindlist;
       print(resp.data);
-      //kindlist = new List<AssignmentModelDropdown>();
+      //kindlist = List<AssignmentModelDropdown>();
       for (dynamic d in mdata['lm']) {
         Map<String, dynamic> bk = Map<String, dynamic>.from(d);
         kindlist.add(AnsweredPaper.fromMap1(bk));

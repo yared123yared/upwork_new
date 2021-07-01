@@ -17,7 +17,8 @@ class SlotConfigurationRepository {
   Stream<SlotConfigurationModel> getSlotConfiguration(
       String serviceProviderId, String slotId) {
     try {
-      Stream<SlotConfigurationModel> slotConfigStream = FirebaseFirestore.instance
+      Stream<SlotConfigurationModel> slotConfigStream = FirebaseFirestore
+          .instance
           .collection('SERVICEPROVIDERINFO')
           .doc(serviceProviderId)
           .collection('APPOINTMENTSLOTCONFIGURATION')
@@ -27,7 +28,7 @@ class SlotConfigurationRepository {
         return SlotConfigurationModel.fromFirestore(doc);
       });
 
-      // final SlotConfigurationModel slotConfiguration = new SlotConfigurationModel();
+      // final SlotConfigurationModel slotConfiguration = SlotConfigurationModel();
       //
       // var slotConfigStream = Stream.value(slotConfiguration);
 

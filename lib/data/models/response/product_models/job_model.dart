@@ -59,7 +59,7 @@ class JobModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['docid'] = this.docid;
     data['serviceproviderid'] = this.serviceproviderid;
     data['userid'] = this.userid;

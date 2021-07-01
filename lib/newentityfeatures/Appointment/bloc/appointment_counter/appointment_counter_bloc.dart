@@ -39,7 +39,7 @@ class AppointmentCounterBloc
         Future<List<AppointmentCounterModel>> ac =
             repository.getCheckInCounterFuture(
                 event.serviceId, event.ownerId, event.date, event.period);
-        var appointmentCounter = new Stream.fromFuture(ac);
+        var appointmentCounter = Stream.fromFuture(ac);
         /*
         Stream<List<AppointmentCounterModel>> appointmentCounter =
             repository.getCheckInCounter(
@@ -56,7 +56,7 @@ class AppointmentCounterBloc
     // if (event is UpdateAppointmentCounter) {
     //   try {
     //     yield AppointmentCounterLoading();
-    //     final AppointmentCounterRepository repository = new AppointmentCounterRepository();
+    //     final AppointmentCounterRepository repository = AppointmentCounterRepository();
     //     repository.updateAppointmentCounter(event.appointmentCounter, event.serviceId);
     //     Stream<AppointmentCounterModel> appointmentCounter = repository.getAppointmentCounter(event.serviceId, event.appointmentCounter.ownerId);
     //     yield AppointmentCounterLoaded(appointmentCounter);

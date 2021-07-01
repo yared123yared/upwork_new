@@ -58,12 +58,12 @@ class StaffModelRepository {
 
   Future<StaffEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    StaffEntryData grerror = new StaffEntryData();
+    StaffEntryData grerror = StaffEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
-      StaffEntryData gr = new StaffEntryData();
+      StaffEntryData gr = StaffEntryData();
       gr.errortype = -1;
       if (_user.defaultComplexEntity != null) {
         gr.complexModel = await _complexRepository.getComplexAsync(
@@ -88,7 +88,7 @@ class StaffModelRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      StaffModelRepositoryReturnData gr = new StaffModelRepositoryReturnData();
+      StaffModelRepositoryReturnData gr = StaffModelRepositoryReturnData();
       // List<StaffModelx> vrlist =
       //     await VrAssignmentGateway.getVrAssignmentListForOfferingGroup(
       //         serviceID: entityid,

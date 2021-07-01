@@ -33,7 +33,7 @@ class _PaymentModelListListState extends State<PaymentModelListList> {
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.PaymentModelListBloc();
+    mlistbloc = listbloc.PaymentModelListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

@@ -362,7 +362,7 @@ class SessionTermGateway {
   }
 
   static List<RegisteredIdModel> getRegisterIdList(Map<String, dynamic> json) {
-    List<RegisteredIdModel> mylist = new List<RegisteredIdModel>();
+    List<RegisteredIdModel> mylist = List<RegisteredIdModel>();
     if (json['listofregisteredid'] != null) {
       json['listofregisteredid'].forEach((v) {
         mylist.add(RegisteredIdModel.fromData(data: v));

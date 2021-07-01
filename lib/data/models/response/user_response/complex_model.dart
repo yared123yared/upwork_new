@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/utils/utility.dart';
+
 class ComplexModel {
   String complexID;
   String buildingType;
@@ -112,7 +113,7 @@ class ComplexModel {
       Map<String, dynamic> data, List<String> userRoles, String complexID) {
     if (userRoles != null) {
       stringRoles = userRoles;
-      roles = List<EntityRoles>();
+      roles = [];
       userRoles.forEach((role) {
         if (role == 'owner') {
           roles.add(EntityRoles.Owner);
@@ -133,7 +134,7 @@ class ComplexModel {
     complexType = data['complextype'];
     address = data['address'];
     if (data['channels'] != null) {
-      channels = List<String>();
+      channels = [];
       data['channels'].forEach((v) {
         channels.add(v);
       });
@@ -147,7 +148,7 @@ class ComplexModel {
         : DateTime.now();
     defaultPassword = data['defaultpassword'];
     if (data['deviceallowed'] != null) {
-      deviceAllowed = List<String>();
+      deviceAllowed = [];
       data['deviceallowed'].forEach((v) {
         deviceAllowed.add(v);
       });
@@ -174,7 +175,7 @@ class ComplexModel {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['buildingtype'] = this.buildingType;
     data['complextype'] = this.complexType;
     data['address'] = this.address;

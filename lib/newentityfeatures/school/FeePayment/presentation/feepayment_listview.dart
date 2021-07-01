@@ -44,7 +44,7 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
 
   void initState() {
-    mlistbloc = new listbloc.FeePaymentListBloc();
+    mlistbloc = listbloc.FeePaymentListBloc();
     // mlistbloc.add(listbloc.getPreData(
     //     entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(

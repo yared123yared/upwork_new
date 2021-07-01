@@ -67,7 +67,7 @@ class OfferingWeeklyScheduleRepository {
 
   Future<OfferingWeeklyDataEntry> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    OfferingWeeklyDataEntry grerror = new OfferingWeeklyDataEntry();
+    OfferingWeeklyDataEntry grerror = OfferingWeeklyDataEntry();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -97,7 +97,7 @@ class OfferingWeeklyScheduleRepository {
           );
       //
       //Please put your code here
-      OfferingWeeklyDataEntry gr = new OfferingWeeklyDataEntry(
+      OfferingWeeklyDataEntry gr = OfferingWeeklyDataEntry(
         buttonstate: ButtonState.idle,
         offeringsScheduleModel: null,
         rooms: await _schoolRepo.lookup

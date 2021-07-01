@@ -66,7 +66,7 @@ class VirtualRoomModelRepository {
 
   Future<VirtualRoomDataEntry> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    VirtualRoomDataEntry grerror = new VirtualRoomDataEntry();
+    VirtualRoomDataEntry grerror = VirtualRoomDataEntry();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -84,7 +84,7 @@ class VirtualRoomModelRepository {
         staffcategory: 'instructor',
       );
 
-      VirtualRoomDataEntry gr = new VirtualRoomDataEntry();
+      VirtualRoomDataEntry gr = VirtualRoomDataEntry();
       gr.errortype = -1;
       gr.grades = grades;
       gr.rooms = rooms;

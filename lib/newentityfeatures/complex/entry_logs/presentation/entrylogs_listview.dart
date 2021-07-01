@@ -32,7 +32,7 @@ class _EntryLogsListListState extends State<EntryLogsListList> {
   List<EntryLogModel> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.EntryLogsListBloc();
+    mlistbloc = listbloc.EntryLogsListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

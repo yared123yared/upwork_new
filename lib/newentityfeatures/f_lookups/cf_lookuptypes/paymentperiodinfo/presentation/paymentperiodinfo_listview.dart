@@ -23,7 +23,7 @@ class _PaymentPeriodInfoListState extends State<PaymentPeriodInfoList> {
   listbloc.PaymentPeriodInfoListBloc mlistbloc;
 
   void initState() {
-    mlistbloc = new listbloc.PaymentPeriodInfoListBloc();
+    mlistbloc = listbloc.PaymentPeriodInfoListBloc();
     mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

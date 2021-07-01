@@ -27,7 +27,7 @@ class EvtModelRepository {
 
   Future<EventDataModel> loadData(LoadDataEvent event) async {
     final String userId = FirebaseAuth.instance.currentUser.uid;
-    EventDataModel grerror = new EventDataModel();
+    EventDataModel grerror = EventDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -103,7 +103,7 @@ class EvtModelRepository {
   }
 
   Future<EventDataModel> submitData(SubmitDataEvent event) async {
-    EventDataModel grerror = new EventDataModel();
+    EventDataModel grerror = EventDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 

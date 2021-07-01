@@ -27,7 +27,7 @@ class ProgressModelRepository {
   // UserSessionRegRepository _userRepository;
 
   Future<ProgressDataModel> loadData(LoadDataEvent event) async {
-    ProgressDataModel grerror = new ProgressDataModel();
+    ProgressDataModel grerror = ProgressDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -100,7 +100,7 @@ class ProgressModelRepository {
   }
 
   Future<ProgressDataModel> submitData(SubmitDataEvent event) async {
-    ProgressDataModel grerror = new ProgressDataModel();
+    ProgressDataModel grerror = ProgressDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 

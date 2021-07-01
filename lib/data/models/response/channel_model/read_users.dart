@@ -21,7 +21,7 @@ class ReadUsers {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['readusers'] = this.readUsers;
     return data;
   }

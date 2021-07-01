@@ -14,8 +14,8 @@ class ProgressRepository {
     @required String sessionTerm,
     @required String kind,
   }) async {
-    DateTime now = new DateTime.now();
-    DateTime date = new DateTime(now.year, now.month, now.day);
+    DateTime now = DateTime.now();
+    DateTime date = DateTime(now.year, now.month, now.day);
 
     _progressList[serviceID][sessionTerm][virtualRoom][kind] =
         await ProgressGateway.getProgressVR(
@@ -32,8 +32,8 @@ class ProgressRepository {
     @required String sessionTerm,
     @required String kind,
   }) async {
-    DateTime now = new DateTime.now();
-    DateTime date = new DateTime(now.year, now.month, now.day);
+    DateTime now = DateTime.now();
+    DateTime date = DateTime(now.year, now.month, now.day);
     _progressList[serviceID][sessionTerm][offeringname][kind] =
         await ProgressGateway.getProgressOFR(
             offeringname: offeringname,

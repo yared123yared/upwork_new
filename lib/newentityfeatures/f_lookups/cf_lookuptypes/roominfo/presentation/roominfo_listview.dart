@@ -23,7 +23,7 @@ class _RoomInfoListState extends State<RoomInfoList> {
   listbloc.RoomInfoListBloc mlistbloc;
 
   void initState() {
-    mlistbloc = new listbloc.RoomInfoListBloc();
+    mlistbloc = listbloc.RoomInfoListBloc();
     mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

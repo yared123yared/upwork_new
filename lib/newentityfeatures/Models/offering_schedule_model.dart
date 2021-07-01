@@ -73,7 +73,7 @@ class OfferingsScheduleModel {
 
   OfferingsScheduleModel.fromJson(Map<String, dynamic> json, String docID) {
     if (json['daysofweek'] != null) {
-      daysOfWeek = List<String>();
+      daysOfWeek = [];
       json['daysofweek'].forEach((v) {
         daysOfWeek.add(v);
       });
@@ -118,7 +118,7 @@ class OfferingsScheduleModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     List<String> daysOfWeek = [];
 
@@ -145,7 +145,7 @@ class OfferingsScheduleModel {
   }
 
   Map<String, dynamic> toSessionRegData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['ofr'] = this.offeringName;
     data['id'] = this.offeringScheduleID;
 

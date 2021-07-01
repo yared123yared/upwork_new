@@ -1,5 +1,6 @@
 import 'package:complex/newentityfeatures/Models/registered_id_model.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
+
 //todo remove this
 @deprecated
 class VirtualRoomModel {
@@ -133,7 +134,7 @@ class VirtualRoomModel {
     channelType = json['channeltype'];
 
     if (json['listofofferings'] != null) {
-      listOfOfferings = List<String>();
+      listOfOfferings = [];
       json['listofofferings'].forEach((v) {
         listOfOfferings.add(v);
       });
@@ -145,7 +146,7 @@ class VirtualRoomModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['associatedchatroomid'] = this.associatedChatRoomId;
     data['associatedroom'] = this.associatedRoom;

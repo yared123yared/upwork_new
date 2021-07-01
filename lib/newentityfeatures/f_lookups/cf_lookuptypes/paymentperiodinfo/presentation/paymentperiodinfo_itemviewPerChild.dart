@@ -65,7 +65,7 @@ class _PeriodInfoFormState extends State<PeriodInfoForm> {
   @override
   void initState() {
     super.initState();
-    mbloc = new itembloc.PaymentPeriodInfoBloc();
+    mbloc = itembloc.PaymentPeriodInfoBloc();
 
     _initFiledValue();
   }

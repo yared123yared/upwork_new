@@ -71,7 +71,7 @@ class CreateAssignmentRepository {
 
   Future<CreateAssignmentEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    CreateAssignmentEntryData grerror = new CreateAssignmentEntryData();
+    CreateAssignmentEntryData grerror = CreateAssignmentEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -99,7 +99,7 @@ class CreateAssignmentRepository {
           ?.questions
           ?.first;
 
-      CreateAssignmentEntryData gr = new CreateAssignmentEntryData(
+      CreateAssignmentEntryData gr = CreateAssignmentEntryData(
         offerings: offerings,
         grades: grades,
         index: 0,

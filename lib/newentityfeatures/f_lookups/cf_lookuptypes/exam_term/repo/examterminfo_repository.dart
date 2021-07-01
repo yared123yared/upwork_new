@@ -19,11 +19,11 @@ class ExamTermInfoRepository {
     ExamTermInfoRepositoryReturnData erd =
         new ExamTermInfoRepositoryReturnData();
     erd.itemlist = [];
-    ExamTermInfo et1 = new ExamTermInfo();
+    ExamTermInfo et1 = ExamTermInfo();
     et1.mainTermName = "MTerm1";
     et1.subTermName = "STerm1";
 
-    ExamTermInfo et2 = new ExamTermInfo();
+    ExamTermInfo et2 = ExamTermInfo();
     et2.mainTermName = "MTerm2";
     et2.subTermName = "STerm2";
     erd.itemlist.add(et1);

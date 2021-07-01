@@ -66,7 +66,7 @@ class UserService {
     channels = List<UserChannelsModel>();
     channelsVr = List<UserChannelsModel>();
     channelsOfr = List<UserChannelsModel>();
-    moduleTypesReq = new List<String>();
+    moduleTypesReq = [];
     moduleTypesReq.add('SCHOOL');
     moduleTypesReq.add('ORDER');
     moduleTypesReq.add('APT');

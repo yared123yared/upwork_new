@@ -62,7 +62,7 @@ class _SessionTermFormState extends State<SessionTermForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    mbloc = new itembloc.SessionTermModelBloc();
+    mbloc = itembloc.SessionTermModelBloc();
     mbloc.add(itembloc.getForNewEntry(
         entitytype: widget.entitytype, entityid: widget.entityid));
 

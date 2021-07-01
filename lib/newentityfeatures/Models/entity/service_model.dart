@@ -265,7 +265,7 @@
 //       serviceTypes = [];
 //     }
 //     if (userRoles != null) {
-//       roles = List<EntityRoles>();
+//       roles = [];
 //       userRoles.forEach((role) {
 //         if (role == 'staff') {
 //           roles.add(EntityRoles.Staff);
@@ -285,7 +285,7 @@
 //       roles = [];
 //     }
 //     if (json['servicetype'] != null) {
-//       serviceType = List<String>();
+//       serviceType = [];
 //       json['servicetype'].forEach((v) {
 //         serviceType.add(v);
 //       });
@@ -294,7 +294,7 @@
 //     }
 
 //     if (json['channels'] != null) {
-//       channel = List<String>();
+//       channel = [];
 //       json['channels'].forEach((v) {
 //         channel.add(v);
 //       });
@@ -302,7 +302,7 @@
 //       channel = [];
 //     }
 //     if (json['languages'] != null) {
-//       languages = List<String>();
+//       languages = [];
 //       json['languages'].forEach((v) {
 //         languages.add(v);
 //       });
@@ -310,7 +310,7 @@
 //       languages = [];
 //     }
 //     if (json['phone'] != null) {
-//       phone = List<String>();
+//       phone = [];
 //       json['phone'].forEach((v) {
 //         phone.add(v.toString());
 //       });
@@ -318,7 +318,7 @@
 //       phone = [];
 //     }
 //     if (json['serviceoffered'] != null) {
-//       serviceOffered = List<String>();
+//       serviceOffered = [];
 //       json['serviceoffered'].forEach((v) {
 //         serviceOffered.add(v);
 //       });
@@ -371,7 +371,7 @@
 //   }
 
 //   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> json = new Map<String, dynamic>();
+//     final Map<String, dynamic> json = Map<String, dynamic>();
 
 //     List<String> mchannel = [];
 //     List<String> mlanguage = [];
@@ -1166,10 +1166,10 @@ class ServiceModel extends Equatable {
       photo1 = json['photo1'];
     } else {
       try {
-        photo1 = new String.fromCharCodes(json['photo1'].bytes);
+        photo1 = String.fromCharCodes(json['photo1'].bytes);
       } catch (e) {}
     }
-    //photo1 = new String.fromCharCodes(json['photo1'].bytes);
+    //photo1 = String.fromCharCodes(json['photo1'].bytes);
     // photo1 = null;
     pointPlacesRunningNumber = json['pointplacesrunningnumber'];
     providePickup = json['providepickup'];
@@ -1237,7 +1237,7 @@ class ServiceModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
 
     List<String> mlanguage = [];
     List<String> mphone = [];

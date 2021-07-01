@@ -67,7 +67,7 @@ class LeaveRequestRepository {
 
   Future<LeaveRequestEntryData> getItemFormNewEntryData(
       String entitytype, String entityid, int originType) async {
-    LeaveRequestEntryData grerror = new LeaveRequestEntryData();
+    LeaveRequestEntryData grerror = LeaveRequestEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -91,7 +91,7 @@ class LeaveRequestRepository {
       //     .roles
       //     .contains(EntityRoles.Manager);
 
-      LeaveRequestEntryData gr = new LeaveRequestEntryData();
+      LeaveRequestEntryData gr = LeaveRequestEntryData();
       gr.isManager = isManager;
       gr.user = _user;
       gr.errortype = -1;

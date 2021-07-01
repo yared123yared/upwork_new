@@ -66,7 +66,7 @@ class BuildingModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     if (attachedGate != null) {
       data['attachedgate'] = attachedGate;

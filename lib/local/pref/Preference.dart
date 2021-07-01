@@ -21,7 +21,7 @@ class Preference {
   static const String ADDRESS = "address";
 
   static getInstance() {
-    if (_prefHelper == null) _prefHelper = new Preference();
+    if (_prefHelper == null) _prefHelper = Preference();
     return _prefHelper;
   }
 

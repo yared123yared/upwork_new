@@ -50,7 +50,7 @@ class _ExamTermFormState extends State<ExamTermForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    mbloc = new itembloc.ExamTermInfoBloc();
+    mbloc = itembloc.ExamTermInfoBloc();
     mbloc.add(itembloc.getForNewEntry(
         entitytype: widget.entitytype, entityid: widget.entityid));
     _mainTerm = CustomTextFieldController();

@@ -67,7 +67,7 @@ class FeePlanModelRepository {
 
   Future<FeePlanEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    FeePlanEntryData grerror = new FeePlanEntryData();
+    FeePlanEntryData grerror = FeePlanEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -84,7 +84,7 @@ class FeePlanModelRepository {
 
       bool editable = true;
 
-      FeePlanEntryData gr = new FeePlanEntryData();
+      FeePlanEntryData gr = FeePlanEntryData();
 
       gr.errortype = -1;
 

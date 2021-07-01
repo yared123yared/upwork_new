@@ -35,7 +35,7 @@ class _OfferingModelGroupListListState
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.OfferingModelGroupListBloc();
+    mlistbloc = listbloc.OfferingModelGroupListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

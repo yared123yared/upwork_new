@@ -63,7 +63,7 @@ class PaymentModelRepository {
 
   Future<PaymentDataEntry> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    PaymentDataEntry grerror = new PaymentDataEntry();
+    PaymentDataEntry grerror = PaymentDataEntry();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -74,7 +74,7 @@ class PaymentModelRepository {
       );
       bool editable = true;
 
-      PaymentDataEntry gr = new PaymentDataEntry(
+      PaymentDataEntry gr = PaymentDataEntry(
         paymentPeriodInfo: paymentPeriodInfo,
         sessions: sessions,
         editable: editable,
