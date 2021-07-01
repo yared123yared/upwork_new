@@ -331,12 +331,12 @@ class UiEntityPageStateList {
       return panelmem;
 
     List<String> allowedrolesIM = ["MANAGER", "INSTRUCTORMANAGER"];
-    bool ismanager_Or_im = checkRoleWithEmployeeCheckInService(allowedrolesIM);
+    bool ismanagerOrIm = checkRoleWithEmployeeCheckInService(allowedrolesIM);
 
     List<String> allowedServiceTypes = ["SCHOOL*", "COACHING*"];
     bool isservicetypeallowed = checkServiceTypeInService(allowedServiceTypes);
 
-    if (ismanager_Or_im == false || isservicetypeallowed == false) {
+    if (ismanagerOrIm == false || isservicetypeallowed == false) {
       return panelmem;
     }
 
@@ -357,11 +357,10 @@ class UiEntityPageStateList {
       return panelmem;
 
     List<String> allowedrolesI = ["MANAGER", "INSTRUCTORMANAGER", "INSTRUCTOR"];
-    bool ismanager_Or_im_Or_i =
-        checkRoleWithEmployeeCheckInService(allowedrolesI);
+    bool ismanagerOrImOrI = checkRoleWithEmployeeCheckInService(allowedrolesI);
     List<String> allowedServiceTypes = ["SCHOOL*", "COACHING*"];
     bool isservicetypeallowed = checkServiceTypeInService(allowedServiceTypes);
-    if (ismanager_Or_im_Or_i == false || isservicetypeallowed == false) {
+    if (ismanagerOrImOrI == false || isservicetypeallowed == false) {
       return panelmem;
     }
     panelmem.add(DynamicEntityGridState.newAssignment);
@@ -380,11 +379,10 @@ class UiEntityPageStateList {
       return panelmem;
 
     List<String> allowedrolesI = ["MANAGER", "FEEMANAGER"];
-    bool ismanager_Or_im_Or_i =
-        checkRoleWithEmployeeCheckInService(allowedrolesI);
+    bool ismanagerOrImOrI = checkRoleWithEmployeeCheckInService(allowedrolesI);
     List<String> allowedServiceTypes = ["SCHOOL*", "COACHING*"];
     bool isservicetypeallowed = checkServiceTypeInService(allowedServiceTypes);
-    if (ismanager_Or_im_Or_i == false || isservicetypeallowed == false) {
+    if (ismanagerOrImOrI == false || isservicetypeallowed == false) {
       return panelmem;
     }
     panelmem.add(DynamicEntityGridState.SessionTerm);
@@ -499,10 +497,9 @@ class UiEntityPageStateList {
   static List<DynamicEntityGridState> fillSecurityPaneService() {
     List<DynamicEntityGridState> panelmem = [];
     List<String> allowedrolesI = ["SECURITY", "MANAGER"];
-    bool ismanager_Or_im_Or_i =
-        checkRoleWithEmployeeCheckInService(allowedrolesI);
+    bool ismanagerOrImOrI = checkRoleWithEmployeeCheckInService(allowedrolesI);
     bool hassec = checkifServiceHasSecurity();
-    if (ismanager_Or_im_Or_i == false || hassec == false) {
+    if (ismanagerOrImOrI == false || hassec == false) {
       return panelmem;
     }
     panelmem.add(DynamicEntityGridState.newVehicle);
@@ -513,10 +510,9 @@ class UiEntityPageStateList {
   static List<DynamicEntityGridState> fillSecurityPaneComplex() {
     List<DynamicEntityGridState> panelmem = [];
     List<String> allowedrolesI = ["SECURITY", "MANAGER"];
-    bool ismanager_Or_im_Or_i =
-        checkRoleWithEmployeeCheckInService(allowedrolesI);
+    bool ismanagerOrImOrI = checkRoleWithEmployeeCheckInService(allowedrolesI);
     bool hassec = checkifServiceHasSecurity();
-    if (ismanager_Or_im_Or_i == false || hassec == false) {
+    if (ismanagerOrImOrI == false || hassec == false) {
       return panelmem;
     }
     panelmem.add(DynamicEntityGridState.ComplexQRScan);
@@ -528,10 +524,9 @@ class UiEntityPageStateList {
   static List<DynamicEntityGridState> fillTripManagerPanel() {
     List<DynamicEntityGridState> panelmem = [];
     List<String> allowedrolesI = ["TRIPMANAGER", "MANAGER"];
-    bool ismanager_Or_im_Or_i =
-        checkRoleWithEmployeeCheckInService(allowedrolesI);
+    bool ismanagerOrImOrI = checkRoleWithEmployeeCheckInService(allowedrolesI);
     bool hassec = checkifServiceHasTrip();
-    if (ismanager_Or_im_Or_i == false || hassec == false) {
+    if (ismanagerOrImOrI == false || hassec == false) {
       return panelmem;
     }
     panelmem.add(DynamicEntityGridState.newStaff);
@@ -541,10 +536,9 @@ class UiEntityPageStateList {
   static List<DynamicEntityGridState> fillTripUserPanel() {
     List<DynamicEntityGridState> panelmem = [];
     List<String> allowedrolesI = ["TRIPMANAGER", "MANAGER", "TRIPUSER"];
-    bool ismanager_Or_im_Or_i =
-        checkRoleWithEmployeeCheckInService(allowedrolesI);
+    bool ismanagerOrImOrI = checkRoleWithEmployeeCheckInService(allowedrolesI);
     bool hassec = checkifServiceHasTrip();
-    if (ismanager_Or_im_Or_i == false || hassec == false) {
+    if (ismanagerOrImOrI == false || hassec == false) {
       return panelmem;
     }
     panelmem.add(DynamicEntityGridState.newStaff);

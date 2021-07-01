@@ -25,8 +25,8 @@ class _BottomNavStyle14State extends State<BottomNavStyle14>
     super.initState();
     _lastSelectedIndex = 0;
     _selectedIndex = 0;
-    _animationControllerList = List<AnimationController>();
-    _animationList = List<Animation<Offset>>();
+    _animationControllerList = [];
+    _animationList = [];
 
     for (int i = 0; i < widget.navBarEssentials.items.length; ++i) {
       _animationControllerList.add(AnimationController(
@@ -152,8 +152,8 @@ class _BottomNavStyle14State extends State<BottomNavStyle14>
   Widget build(BuildContext context) {
     if (widget.navBarEssentials.items.length !=
         _animationControllerList.length) {
-      _animationControllerList = List<AnimationController>();
-      _animationList = List<Animation<Offset>>();
+      _animationControllerList = [];
+      _animationList = [];
 
       for (int i = 0; i < widget.navBarEssentials.items.length; ++i) {
         _animationControllerList.add(AnimationController(

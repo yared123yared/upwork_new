@@ -24,41 +24,42 @@ class UserService {
 
   List<String> getIdCardNumbers() {
     List<String> _idNumbers = [];
-     {
+    {
       if (channelsVr != null) {
         channelsVr.forEach((vr) {
           if (vr.customerUserId != null) _idNumbers.add(vr.customerUserId);
         });
       }
-    };
+    }
+    ;
     return _idNumbers;
   }
 
   List<String> getSessionTerms() {
     List<String> _idNumbers = [];
-     {
+    {
       if (channelsVr != null) {
         channelsVr.forEach((vr) {
           if (vr.sessionTerm != null) _idNumbers.add(vr.sessionTerm);
         });
       }
-    };
+    }
+    ;
     return _idNumbers;
   }
 
   List<String> getVirtualRooms() {
     List<String> _idNumbers = [];
-     {
+    {
       if (channelsVr != null) {
         channelsVr.forEach((vr) {
           if (vr.vrRoomName != null) _idNumbers.add(vr.vrRoomName);
         });
       }
-    };
+    }
+    ;
     return _idNumbers;
   }
-
-
 
   UserService.fromData(Map<String, dynamic> data, String key) {
     serviceID = key;
@@ -110,7 +111,7 @@ class UserService {
     isEmployee = true;
   }
 
-  void ConsolidateChannelsForVirtualRoom() {
+  void consolidateChannelsForVirtualRoom() {
     for (UserChannelsModel ucm in channelsVr) {
       UserChannelsModel matched = null;
       for (UserChannelsModel ucmCon in channelsOfr) {

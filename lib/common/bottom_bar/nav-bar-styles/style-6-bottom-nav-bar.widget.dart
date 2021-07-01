@@ -25,7 +25,7 @@ class _BottomNavStyle6State extends State<BottomNavStyle6>
     super.initState();
     _lastSelectedIndex = 0;
     _selectedIndex = 0;
-    _animationControllerList = List<AnimationController>();
+    _animationControllerList = [];
     _animationList = List<Animation<double>>();
 
     for (int i = 0; i < widget.navBarEssentials.items.length; ++i) {
@@ -129,7 +129,7 @@ class _BottomNavStyle6State extends State<BottomNavStyle6>
   Widget build(BuildContext context) {
     if (widget.navBarEssentials.items.length !=
         _animationControllerList.length) {
-      _animationControllerList = List<AnimationController>();
+      _animationControllerList = [];
       _animationList = List<Animation<double>>();
 
       for (int i = 0; i < widget.navBarEssentials.items.length; ++i) {

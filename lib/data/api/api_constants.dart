@@ -15,7 +15,7 @@ class ApiConstants {
 
   static const DOCS_BASE_URL =
       "https://argo-storage.s3.ap-south-1.amazonaws.com/";
-  static String AGORA_PLAIN_CREDENTION =
+  static const String AGORA_PLAIN_CREDENTION =
       "d14dff8bbef64af981139db223ac0eff:f93da2285c4f489d9fbf7cefd9c0b2bf";
   static const AGORA_RECORDING_RESOURCE_ID =
       "https://api.agora.io/v1/apps/4f673277993b48d5870a9d380b031607/cloud_recording/acquire";
