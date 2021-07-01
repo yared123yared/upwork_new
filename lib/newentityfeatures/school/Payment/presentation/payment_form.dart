@@ -11,7 +11,6 @@ import 'package:complex/data/styles_colors.dart';
 import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/helputil.dart' hide DateTimeMode;
 
-
 import '../itembloc/bloc.dart' as itembloc;
 import '../listbloc/bloc.dart' as listbloc;
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
@@ -21,7 +20,7 @@ class PaymentModelForm extends StatefulWidget {
   final PaymentPeriodInfo paymentPeriodInfo;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   PaymentModelForm({
     @required this.paymentPeriodInfo,
@@ -409,55 +408,56 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: width * 6),
       child: Column(
-      children: [
-        CustomTextField(
-          enabled: editable,
-          initialValue: periodInfoList[i].paymentPeriodName,
-          title: "Payment Period Name",
-          onChange: (text) => periodInfoList[i].paymentPeriodName = text,
-          // controller: controllers[i * 2],
-          controller: controllers[i][0],
-          validate: Validate.withOption(
-            isRequired: true,
+        children: [
+          CustomTextField(
+            enabled: editable,
+            initialValue: periodInfoList[i].paymentPeriodName,
+            title: "Payment Period Name",
+            onChange: (text) => periodInfoList[i].paymentPeriodName = text,
+            // controller: controllers[i * 2],
+            controller: controllers[i][0],
+            validate: Validate.withOption(
+              isRequired: true,
+            ),
           ),
-        ),
-        CustomDateTimePicker(
-          controller: _startDateController,
-          enabled: editable,
-          dateTime: periodInfoList[i].startDate,
-          title: 'Start Date',
-          mode: DateTimeMode.DATE,
-          onChange: (x) => periodInfoList[i].startDate = x,
-        ),
-        CustomDateTimePicker(
-          controller: _endDateController,
-          enabled: editable,
-          dateTime: periodInfoList[i].endDate,
-          title: 'End Date',
-          mode: DateTimeMode.DATE,
-          onChange: (x) => periodInfoList[i].endDate = x,
-        ),
-        CustomDateTimePicker(
-          controller: _dueDateController,
-          enabled: editable,
-          dateTime: periodInfoList[i].dueDate,
-          title: 'Due Date',
-          mode: DateTimeMode.DATE,
-          onChange: (x) => periodInfoList[i].dueDate = x,
-        ),
-        CustomTextField(
-          enabled: editable,
-          title: "Number Of Days",
-          initialValue: periodInfoList[i].numDays.toString(),
-          onChange: (text) => periodInfoList[i].numDays = int.tryParse(text),
-          // controller: controllers[i * 2 + 1],
-          controller: controllers[i][1],
-          validate: Validate.withOption(
-            isRequired: true,
-            isNumber: true,
+          CustomDateTimePicker(
+            controller: _startDateController,
+            enabled: editable,
+            dateTime: periodInfoList[i].startDate,
+            title: 'Start Date',
+            mode: DateTimeMode.DATE,
+            onChange: (x) => periodInfoList[i].startDate = x,
           ),
-        ),
-      ],
-    ),);
+          CustomDateTimePicker(
+            controller: _endDateController,
+            enabled: editable,
+            dateTime: periodInfoList[i].endDate,
+            title: 'End Date',
+            mode: DateTimeMode.DATE,
+            onChange: (x) => periodInfoList[i].endDate = x,
+          ),
+          CustomDateTimePicker(
+            controller: _dueDateController,
+            enabled: editable,
+            dateTime: periodInfoList[i].dueDate,
+            title: 'Due Date',
+            mode: DateTimeMode.DATE,
+            onChange: (x) => periodInfoList[i].dueDate = x,
+          ),
+          CustomTextField(
+            enabled: editable,
+            title: "Number Of Days",
+            initialValue: periodInfoList[i].numDays.toString(),
+            onChange: (text) => periodInfoList[i].numDays = int.tryParse(text),
+            // controller: controllers[i * 2 + 1],
+            controller: controllers[i][1],
+            validate: Validate.withOption(
+              isRequired: true,
+              isNumber: true,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

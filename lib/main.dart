@@ -15,12 +15,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'data/models/response/auth_response/user_session.dart';
 import 'dependency_injections.dart';
 import 'package:get/get.dart';
-import 'data/models/response/auth_response/user_session.dart';
-import 'dependency_injections.dart';
 import 'package:complex/newentityfeatures/ecommerce/cubit/ecommerce_cubit.dart';
 import 'package:complex/newentityfeatures/ecommerce/bloc/ads/ads_bloc.dart'
     as E3_AdsBloc;

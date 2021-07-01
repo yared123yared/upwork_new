@@ -1,4 +1,5 @@
-import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart' as model;
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart'
+    as model;
 import 'package:complex/newentityfeatures/trips/model/models/registered_user.dart';
 import 'package:complex/newentityfeatures/trips/model/models/relation.dart';
 import 'package:complex/newentityfeatures/trips/model/models/route_main_point.dart';
@@ -33,7 +34,7 @@ class HandleRelationForm extends StatefulWidget {
   final VrAssignmentModel vrAssignmentModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   HandleRelationForm({
     @required this.vrAssignmentModel,

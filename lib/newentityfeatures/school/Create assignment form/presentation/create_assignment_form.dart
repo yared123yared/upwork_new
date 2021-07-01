@@ -32,7 +32,7 @@ class CreateAssignmentForm extends StatefulWidget {
   final AssignmentModel assignmentModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   final int formMode;
 
   CreateAssignmentForm({

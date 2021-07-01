@@ -13,7 +13,6 @@ import 'package:complex/data/styles_colors.dart';
 import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/helputil.dart' hide DateTimeMode;
 
-
 import '../itembloc/bloc.dart' as itembloc;
 import '../listbloc/bloc.dart' as listbloc;
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
@@ -24,7 +23,7 @@ class ClassPeriodModelForm extends StatefulWidget {
   final String entityid;
   final String entitytype;
   final String type;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   ClassPeriodModelForm({
     @required this.classPeriodInfo,
@@ -47,7 +46,7 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
 
   CustomTextFieldController _classPeriodName = CustomTextFieldController();
   CustomTextFieldController _type = CustomTextFieldController();
-  
+
   // DateTime _startDate;
   // DateTime _endDate;
 
@@ -272,8 +271,7 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
                         ? CustomTextField(
                             controller: _type,
                             title: "New Type",
-                            validate:
-                                Validate.withOption(isRequired: true),
+                            validate: Validate.withOption(isRequired: true),
                           )
                         : CustomDropDownList<String>(
                             initialValue: widget.classPeriodInfo?.type,

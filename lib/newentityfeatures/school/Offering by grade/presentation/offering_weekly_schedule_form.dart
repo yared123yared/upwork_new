@@ -18,7 +18,7 @@ class OfferingWeeklyScheduleForm extends StatefulWidget {
   final OfferingWeeklySchedule offeringsScheduleModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   OfferingWeeklyScheduleForm({
     @required this.offeringsScheduleModel,

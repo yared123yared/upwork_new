@@ -21,7 +21,7 @@ class UnitModelForm extends StatefulWidget {
   final UnitModel unitModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   UnitModelForm({
     @required this.unitModel,

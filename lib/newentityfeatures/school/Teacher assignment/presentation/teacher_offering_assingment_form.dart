@@ -17,7 +17,7 @@ class TeacherAssignmentModelForm extends StatefulWidget {
   final TeacherOfferingsAssignment teacherOfferingsAssignment;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   TeacherAssignmentModelForm({
     @required this.teacherOfferingsAssignment,

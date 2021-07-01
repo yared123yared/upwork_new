@@ -17,7 +17,7 @@ class PointOfInterestForm extends StatefulWidget {
   final RoutePointsModel routePoint;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   PointOfInterestForm({
     @required this.routePoint,
@@ -157,13 +157,13 @@ class _PointOfInterestFormState extends State<PointOfInterestForm> {
                 CustomTextField(
                     title: "Latitude",
                     controller: _latitudeControllerText,
-                    validate: Validate.withOption(
-                        isRequired: true, isNumber: true)),
+                    validate:
+                        Validate.withOption(isRequired: true, isNumber: true)),
                 CustomTextField(
                   title: "Longitude",
                   controller: _longitudeControllerText,
-                  validate: Validate.withOption(
-                      isRequired: true, isNumber: true),
+                  validate:
+                      Validate.withOption(isRequired: true, isNumber: true),
                 ),
                 CustomTextField(
                   title: "State",
@@ -226,8 +226,7 @@ class _PointOfInterestFormState extends State<PointOfInterestForm> {
               ),
             ),
             Expanded(
-                child:
-                    CustomActionButton(
+                child: CustomActionButton(
               title: "Confirm",
               isExpanded: true,
               isOutline: true,
@@ -258,8 +257,7 @@ class _PointOfInterestFormState extends State<PointOfInterestForm> {
                   }
                 }
               },
-            )
-                ),
+            )),
           ],
         ),
       ],

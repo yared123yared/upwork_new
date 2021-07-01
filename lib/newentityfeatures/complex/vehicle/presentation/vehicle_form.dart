@@ -24,7 +24,7 @@ class VehicleModelForm extends StatefulWidget {
   final ComplexVehicleModel vehicleModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   VehicleModelForm({
     @required this.vehicleModel,

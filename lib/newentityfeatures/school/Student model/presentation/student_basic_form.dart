@@ -27,7 +27,7 @@ class StudentBasicFormForm extends StatefulWidget {
   final UserRegistrationModel userRegistrationModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   StudentBasicFormForm({
     @required this.userRegistrationModel,
@@ -91,7 +91,8 @@ class _StudentBasicFormFormState extends State<StudentBasicFormForm> {
 
   CustomTextFieldController _guardianRelation2 = CustomTextFieldController();
   CustomTextFieldController _guardianName2 = CustomTextFieldController();
-  CustomTextFieldController _guardianEmailAddress2 = CustomTextFieldController();
+  CustomTextFieldController _guardianEmailAddress2 =
+      CustomTextFieldController();
   CustomTextFieldController _guardianPhoneNumber2 = CustomTextFieldController();
   CustomTextFieldController _guardianId2 = CustomTextFieldController();
 
@@ -135,14 +136,13 @@ class _StudentBasicFormFormState extends State<StudentBasicFormForm> {
           _guardianEmailAddress.isValid &&
           _guardianPhoneNumber.isValid &&
           _guardianId.isValid;
-    }
-    else if (timelineIndex == 3) {
+    } else if (timelineIndex == 3) {
       return _guardianRelation.isValid &&
           _guardianName.isValid &&
           _guardianEmailAddress.isValid &&
           _guardianPhoneNumber.isValid &&
           _guardianId.isValid;
-    }else if (timelineIndex == 4) {
+    } else if (timelineIndex == 4) {
       return _casteName.isValid && _motherTongue.isValid && _religion.isValid;
       //  _additionalInfo.isValid;
     } else if (timelineIndex == 5) {

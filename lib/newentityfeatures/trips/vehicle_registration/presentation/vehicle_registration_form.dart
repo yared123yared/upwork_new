@@ -12,7 +12,6 @@ import 'package:complex/common/helputil.dart';
 import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/newentityfeatures/Models/assignment_model.dart';
 
-
 import '../itembloc/bloc.dart' as itembloc;
 import '../listbloc/bloc.dart' as listbloc;
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
@@ -23,7 +22,7 @@ class VehicleRegistrationForm extends StatefulWidget {
   final ServiceVehicleModel vehicleRegistrationModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   VehicleRegistrationForm({
     @required this.vehicleRegistrationModel,
@@ -352,8 +351,8 @@ class _VehicleRegistrationFormState extends State<VehicleRegistrationForm> {
                 CustomTextField(
                   title: "Maximum Capacity",
                   controller: _maximumCapacity,
-                  validate: Validate.withOption(
-                      isRequired: true, isNumber: true),
+                  validate:
+                      Validate.withOption(isRequired: true, isNumber: true),
                 ),
                 CustomDropDownList<String>(
                   title: "Load Type",

@@ -146,7 +146,7 @@ class _PackageDetailViewState extends State<PackageDetailView> {
               if (_photos.length == 0) {
                 Utility.showSnackBar(
                     key: _key, message: "At least one image required");
-              } else if (_validateInput()){
+              } else if (_validateInput()) {
                 packageList.add(
                   Packagedata(
                     packageid: _idController.text.trim(),
@@ -154,12 +154,12 @@ class _PackageDetailViewState extends State<PackageDetailView> {
                     price: double.parse(_priceController.text.trim()),
                     listimages: _photos,
                     discountedprice:
-                    double.parse(_discountPriceController.text.trim()),
+                        double.parse(_discountPriceController.text.trim()),
                     unit: int.parse(_unitController.text.trim()),
                     barcodeid: _barCodeController.text.trim(),
                     tileimage: _photos.first,
                     inventoryunits:
-                    int.parse(_inventoryUnitController.text.trim()),
+                        int.parse(_inventoryUnitController.text.trim()),
                   ),
                 );
                 Navigator.pop(context);

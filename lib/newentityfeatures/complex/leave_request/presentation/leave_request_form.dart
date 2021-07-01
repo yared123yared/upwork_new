@@ -27,15 +27,15 @@ class LeaveRequestForm extends StatefulWidget {
   final LeaveRequestModel leaveRequestModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   final int origintype;
 
-  LeaveRequestForm({
-    @required this.leaveRequestModel,
-    @required this.givenreloadaction,
-    this.entitytype,
-    this.entityid,this.origintype
-  });
+  LeaveRequestForm(
+      {@required this.leaveRequestModel,
+      @required this.givenreloadaction,
+      this.entitytype,
+      this.entityid,
+      this.origintype});
 
   @override
   _LeaveRequestFormState createState() => _LeaveRequestFormState();
@@ -252,8 +252,8 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
                 startDate: _startDate,
                 staffID: _staffID,
                 staffName: _staffName.text,
-                leavestatus:
-                    LeaveRequestModel.stringToRequestStatus(_requestStatus.text),
+                leavestatus: LeaveRequestModel.stringToRequestStatus(
+                    _requestStatus.text),
                 rejectionReason: _reason.text,
                 leavreqType: LeaveRequestModel.stringtoLeaveRequestType(
                     _leaveReqType.text),

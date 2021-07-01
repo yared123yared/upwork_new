@@ -25,7 +25,7 @@ class RouteForm extends StatefulWidget {
   final RouteModel route;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   RouteForm({
     @required this.route,
@@ -671,8 +671,8 @@ class _RouteFormState extends State<RouteForm> {
                 CustomTextField(
                   title: "Distance In Km",
                   controller: _distanceControllerText,
-                  validate: Validate.withOption(
-                      isRequired: true, isNumber: true),
+                  validate:
+                      Validate.withOption(isRequired: true, isNumber: true),
                 ),
                 CustomTextField(
                   title: "Time Offset In Minutes",

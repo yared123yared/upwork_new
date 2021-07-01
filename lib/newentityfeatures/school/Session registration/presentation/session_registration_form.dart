@@ -21,7 +21,7 @@ class SessionRegistrationForm extends StatefulWidget {
   final UserSessionRegModel userSessionRegModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   final UserRegistrationModel userRegistrationModel;
   final String sessionTerm;
   final String cardNum;
@@ -111,7 +111,6 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
         });
       });
     }
-
   }
 
   @override
@@ -206,7 +205,7 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
                 Column(
                   children: <Widget>[
                     CustomTextField(
-                       initialValue: widget.userRegistrationModel.idCardNum,
+                      initialValue: widget.userRegistrationModel.idCardNum,
                       title: "ID Card Number",
                       controller: _idCardNumber,
                       validate: Validate.withOption(

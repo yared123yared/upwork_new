@@ -1,4 +1,3 @@
-
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,13 +22,14 @@ class RegistryForm extends StatefulWidget {
 
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   final int origintype;
 
   RegistryForm(
       {@required this.registryModel,
       @required this.entitytype,
-      @required this.entityid,@required this.origintype,
+      @required this.entityid,
+      @required this.origintype,
       @required this.givenreloadaction});
 
   @override

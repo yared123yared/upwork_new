@@ -1,5 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/pages/job_pages/job_detail_page.dart';
+import 'package:complex/pages/pet_pages/pets_detail_page.dart';
+import 'package:complex/pages/product_pages/package_detail_view.dart';
+import 'package:complex/pages/property/property_detail_page.dart';
+import 'package:complex/pages/vehicle/vehicle_detail_page.dart';
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:get/route_manager.dart';
 
 part 'ExplorePageRelatedModels.freezed.dart';
 part 'ExplorePageRelatedModels.g.dart';
@@ -175,6 +182,7 @@ abstract class ProductFilterModel with _$ProductFilterModel {
 @freezed
 abstract class LimitedData with _$LimitedData {
   const factory LimitedData.pet({
+    String docid,
     @JsonKey(name: 'petclass') String petclass,
     @JsonKey(name: 'name') String name,
     @JsonKey(name: 'breed') String breed,
@@ -259,6 +267,22 @@ abstract class LimitedData with _$LimitedData {
 
   factory LimitedData.fromJson(Map<String, dynamic> json) =>
       _$LimitedDataFromJson(json);
+
+  static void toDetailsPage({@required LimitedData data}) {
+    data.map(
+        pet: (v) => Get.to(() => PetsDetailPage(docId: "MJtvMr9arqpepKVncqp5")),
+        package: (v) {
+          print(v.toString());
+        },
+        product: (v) {
+          print(v.toString());
+        },
+        vehicle: (v) =>
+            Get.to(() => VehicleDetailPage(docId: "6iknU0qt28LnJQYkHOzn")),
+        realEstate: (v) =>
+            Get.to(() => PropertyDetailPage(docId: "8iH7vo7wtzroFcHRN6Av")),
+        job: (v) => Get.to(() => JobDetailPage(docId: "MkWAEblEkuuEnIrNpGlE")));
+  }
 }
 
 @freezed

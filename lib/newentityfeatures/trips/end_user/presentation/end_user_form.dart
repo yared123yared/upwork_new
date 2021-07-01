@@ -25,7 +25,7 @@ class EndUserForm extends StatefulWidget {
   // final VrAssignmentModel vrAssignmentModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   final RoutePointsModel startPoint;
   final RoutePointsModel endPoint;
 
@@ -139,27 +139,27 @@ class _EndUserFormState extends State<EndUserForm> {
                 CustomTextField(
                   title: 'Number of seats for adults',
                   controller: _numOfSeatsAdultController,
-                  validate:  Validate.withOption(
-                      isRequired: true, isNumber: true),
+                  validate:
+                      Validate.withOption(isRequired: true, isNumber: true),
                 ),
                 CustomTextField(
                   title: 'Number of seats for children',
                   controller: _numOfSeatsChildController,
-                  validate:  Validate.withOption(
-                      isRequired: true, isNumber: true),
+                  validate:
+                      Validate.withOption(isRequired: true, isNumber: true),
                 ),
                 CustomTextField(
                   title: 'Luggage Weight',
                   controller: _luggageWeightController,
-                  validate:  Validate.withOption(
-                      isRequired: true, isNumber: true),
+                  validate:
+                      Validate.withOption(isRequired: true, isNumber: true),
                 ),
                 CustomDropDownList<String>(
                   displayName: (typeOfSeat) => typeOfSeat,
                   loadData: () async => ['Ordinary', 'Berth', 'Cushioned'],
                   title: 'Type of seat',
                   controller: _seatTypeController,
-                  validate:  Validate.withOption(isRequired: true),
+                  validate: Validate.withOption(isRequired: true),
                 ),
               ],
             ),

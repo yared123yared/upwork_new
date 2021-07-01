@@ -258,6 +258,7 @@ Map<String, dynamic> _$_$_ProductFilterModelToJson(
 
 _$LimitedPetData _$_$LimitedPetDataFromJson(Map<String, dynamic> json) {
   return _$LimitedPetData(
+    docid: json['docid'] as String,
     petclass: json['petclass'] as String,
     name: json['name'] as String,
     breed: json['breed'] as String,
@@ -276,6 +277,7 @@ _$LimitedPetData _$_$LimitedPetDataFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$LimitedPetDataToJson(_$LimitedPetData instance) =>
     <String, dynamic>{
+      'docid': instance.docid,
       'petclass': instance.petclass,
       'name': instance.name,
       'breed': instance.breed,

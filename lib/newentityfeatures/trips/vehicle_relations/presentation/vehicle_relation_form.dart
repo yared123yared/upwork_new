@@ -1,4 +1,3 @@
-
 import 'package:complex/newentityfeatures/trips/widgets/day_item.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ class VehicleRelationForm extends StatefulWidget {
   final Relation vehicleRelation;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   VehicleRelationForm({
     @required this.vehicleRelation,
@@ -87,14 +86,12 @@ class _VehicleRelationFormState extends State<VehicleRelationForm> {
             _relationNameController.text = _vehicleRelation.name;
           }
           if (_vehicleRelation.startDate != null) {
-            _startDateController.text =
-                HelpUtil.formattedDateToString(
-                    _vehicleRelation.startDate, DateTimeMode.DATE);
+            _startDateController.text = HelpUtil.formattedDateToString(
+                _vehicleRelation.startDate, DateTimeMode.DATE);
           }
           if (_vehicleRelation.endDate != null) {
-            _endDateController.text =
-                HelpUtil.formattedDateToString(
-                    _vehicleRelation.endDate, DateTimeMode.DATE);
+            _endDateController.text = HelpUtil.formattedDateToString(
+                _vehicleRelation.endDate, DateTimeMode.DATE);
           }
           if (_vehicleRelation.staff1 != null) {
             _staff1Controller.text = _vehicleRelation.staff1.name;
@@ -327,8 +324,7 @@ class _VehicleRelationFormState extends State<VehicleRelationForm> {
                             title: 'Trip cut - Click to search',
                             enabled: false,
                             controller: tripCutController,
-                            validate:
-                                Validate.withOption(isRequired: true),
+                            validate: Validate.withOption(isRequired: true),
                           ),
                           CustomTextField(
                             onTap: () {
@@ -340,8 +336,7 @@ class _VehicleRelationFormState extends State<VehicleRelationForm> {
                             title: 'Staff 1 - Click to search',
                             enabled: false,
                             controller: staff1Controller,
-                            validate:
-                                Validate.withOption(isRequired: true),
+                            validate: Validate.withOption(isRequired: true),
                           ),
                           CustomTextField(
                             onTap: () {
@@ -353,8 +348,7 @@ class _VehicleRelationFormState extends State<VehicleRelationForm> {
                             title: 'Staff 2 - Click to search',
                             enabled: false,
                             controller: staff2Controller,
-                            validate:
-                                Validate.withOption(isRequired: true),
+                            validate: Validate.withOption(isRequired: true),
                           ),
                           CustomTextField(
                             title: 'Vehicle - Click to search',
@@ -381,7 +375,8 @@ class _VehicleRelationFormState extends State<VehicleRelationForm> {
                                 onConfirm: (date) {
                                   setState(() {
                                     _vehicleRelation.startDate = date;
-                                    _startDateController.text = HelpUtil.formattedDateToString(
+                                    _startDateController.text =
+                                        HelpUtil.formattedDateToString(
                                       date,
                                       DateTimeMode.DATE,
                                     );
@@ -391,8 +386,7 @@ class _VehicleRelationFormState extends State<VehicleRelationForm> {
                             },
                             enabled: false,
                             controller: _startDateController,
-                            validate:
-                                Validate.withOption(isRequired: true),
+                            validate: Validate.withOption(isRequired: true),
                           ),
                           CustomTextField(
                             onTap: () {
@@ -401,17 +395,15 @@ class _VehicleRelationFormState extends State<VehicleRelationForm> {
                                 setState(() {
                                   _vehicleRelation.endDate = date;
                                   _endDateController.text =
-                                      HelpUtil
-                                          .formattedDateToString(
-                                              date, DateTimeMode.DATE);
+                                      HelpUtil.formattedDateToString(
+                                          date, DateTimeMode.DATE);
                                 });
                               });
                             },
                             title: 'End date',
                             enabled: false,
                             controller: _endDateController,
-                            validate:
-                                Validate.withOption(isRequired: true),
+                            validate: Validate.withOption(isRequired: true),
                           ),
                         ],
                       ),

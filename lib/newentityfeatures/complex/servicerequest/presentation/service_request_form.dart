@@ -28,14 +28,15 @@ class GatePassRequestForm extends StatefulWidget {
   final ServiceRequestModel serviceRequestModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   final int origintype;
 
   GatePassRequestForm(
       {this.serviceRequestModel,
       this.entityid,
       this.entitytype,
-      this.givenreloadaction,this.origintype});
+      this.givenreloadaction,
+      this.origintype});
 
   @override
   _GatePassRequestFormState createState() => _GatePassRequestFormState();

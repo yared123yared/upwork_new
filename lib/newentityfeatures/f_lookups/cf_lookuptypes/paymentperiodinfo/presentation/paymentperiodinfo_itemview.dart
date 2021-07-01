@@ -4,22 +4,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
 import 'package:complex/common/presentation.dart';
-import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/paymentperiodinfo/listbloc/bloc.dart' as listbloc;
-import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/paymentperiodinfo/itembloc/bloc.dart'as itembloc;
+import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/paymentperiodinfo/listbloc/bloc.dart'
+    as listbloc;
+import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/paymentperiodinfo/itembloc/bloc.dart'
+    as itembloc;
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
 import "package:asuka/asuka.dart" as asuka;
-import 'package:complex/common/widgets/date_time_picker_newentity.dart' as newentitytimepicker;
+import 'package:complex/common/widgets/date_time_picker_newentity.dart'
+    as newentitytimepicker;
 
 ///this will used to create the payment and its periods
 class PaymentPeriodInfoForm extends StatefulWidget {
   final PaymentPeriodInfo paymentPeriodInfo;
-  final String entityid ;
-  final String entitytype ;
-  final reloadAction givenreloadaction;
-  PaymentPeriodInfoForm({ this.paymentPeriodInfo,@required this.entitytype,@required this.entityid,@required this.givenreloadaction });
+  final String entityid;
+  final String entitytype;
+  final ReloadAction givenreloadaction;
+  PaymentPeriodInfoForm(
+      {this.paymentPeriodInfo,
+      @required this.entitytype,
+      @required this.entityid,
+      @required this.givenreloadaction});
   @override
   _PaymentPeriodInfoFormState createState() => _PaymentPeriodInfoFormState();
 }
@@ -31,13 +38,14 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
   CustomTextFieldController _sessionName = CustomTextFieldController();
   CustomTextFieldController _groupName = CustomTextFieldController();
   bool _frozen = false;
-  CustomTextFieldController _numperiods= CustomTextFieldController();
+  CustomTextFieldController _numperiods = CustomTextFieldController();
 
   CustomTextFieldController _startDateController = CustomTextFieldController();
   CustomTextFieldController _endDateController = CustomTextFieldController();
   CustomTextFieldController _dueDateController = CustomTextFieldController();
 
   bool editable;
+
   ///each period info needs two controllers
   List<CustomTextFieldController> controllers = [];
   List<PeriodInfo> periodInfoList = [];
@@ -100,16 +108,16 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
         periodInfoList.length * 2,
         (i) => CustomTextFieldController(),
       );
-      if (widget.paymentPeriodInfo.isfrozen)
-        editable=false;
+      if (widget.paymentPeriodInfo.isfrozen) editable = false;
       Future.delayed(Duration(milliseconds: 80), () {
         _sessionName.text = widget.paymentPeriodInfo.sessionName;
         _groupName.text = widget.paymentPeriodInfo.grpName;
-        _frozen = widget.paymentPeriodInfo.isfrozen;;
-        _numperiods.text= widget.paymentPeriodInfo.numperiods.toString();
+        _frozen = widget.paymentPeriodInfo.isfrozen;
+        ;
+        _numperiods.text = widget.paymentPeriodInfo.numperiods.toString();
       });
     }
-    editable=true;
+    editable = true;
   }
 
   @override
@@ -120,6 +128,7 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
         entitytype: widget.entitytype, entityid: widget.entityid));
     _initFiledValue();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
@@ -129,141 +138,128 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
           title: Text('Payment Period'),
           centerTitle: true,
         ),
-        body:BlocListener<itembloc.PaymentPeriodInfoBloc,itembloc.PaymentPeriodInfoState>(
-            listener: (context, state) {
-              if (state is itembloc.IsSaved) {
-                asuka.showSnackBar(SnackBar(
-                  content: Text("Item is Created/Saved"),
-                ));
-                widget.givenreloadaction(true);
-                Navigator.of(context).pop(false);
-              }
+        body: BlocListener<itembloc.PaymentPeriodInfoBloc,
+            itembloc.PaymentPeriodInfoState>(listener: (context, state) {
+          if (state is itembloc.IsSaved) {
+            asuka.showSnackBar(SnackBar(
+              content: Text("Item is Created/Saved"),
+            ));
+            widget.givenreloadaction(true);
+            Navigator.of(context).pop(false);
+          }
+        }, child: BlocBuilder<itembloc.PaymentPeriodInfoBloc,
+            itembloc.PaymentPeriodInfoState>(builder: (context, state) {
+          if (state is itembloc.IsBusy)
+            return Center(
+              child: Container(
+                  width: 20, height: 20, child: CircularProgressIndicator()),
+            );
+          if (state is itembloc.HasLogicalFaliur)
+            return Center(child: Text(state.error));
+          if (state is itembloc.HasExceptionFaliur)
+            return Center(child: Text(state.error));
+          if (state is itembloc.HasExceptionFaliur)
+            return Center(child: Text(state.error));
 
+          if (state is itembloc.IsReadyForDetailsPage) {
+            setState(() {
+              sessions = state.sessionterms;
+            });
+            return _blocBuilder(context);
+          }
 
-            },
-            child:BlocBuilder<itembloc.PaymentPeriodInfoBloc,
-                itembloc.PaymentPeriodInfoState>(builder: (context, state) {
-              if (state is itembloc.IsBusy)
-                return Center(
-                  child: Container(
-                      width: 20, height: 20, child: CircularProgressIndicator()),
-                );
-              if (state is itembloc.HasLogicalFaliur)
-                return Center(child: Text(state.error));
-              if (state is itembloc.HasExceptionFaliur)
-                return Center(child: Text(state.error));
-              if (state is itembloc.HasExceptionFaliur)
-                return Center(child: Text(state.error));
-
-              if (state is itembloc.IsReadyForDetailsPage) {
-                setState(() {
-                  sessions=state.sessionterms;
-                });
-                return _blocBuilder(
-                    context
-
-
-                );
-              }
-
-              return Center(child: Text('Empty'));
-            }
-            )
-        ),
-
+          return Center(child: Text('Empty'));
+        })),
       ),
     );
   }
 
   ///todo add delete period ability
   @override
-  Widget _blocBuilder(
-      context
+  Widget _blocBuilder(context) {
+    return ListView(
+      padding: EdgeInsets.symmetric(horizontal: width * 6),
+      children: <Widget>[
+        CustomTextField(
+          enabled: editable,
+          title: "Group Name",
+          controller: _groupName,
+          validate: Validate.withOption(
+            isRequired: true,
+          ),
+        ),
+        CustomDropDownList<String>(
+          enabled: editable,
+          title: "Session Name",
+          controller: _sessionName,
+          loadData: () async => sessions,
+          displayName: (x) => x,
+          validate: Validate.withOption(
+            isRequired: true,
+          ),
+        ),
+        CustomTextField(
+          enabled: editable,
+          title: "Group Name",
+          controller: _groupName,
+          validate: Validate.withOption(
+            isRequired: true,
+          ),
+        ),
+        CustomTextField(
+          title: "Number of Student",
+          controller: _numperiods,
+          validate: Validate.withOption(
+            isRequired: true,
+            isInt: true,
+          ),
+        ),
+        CustomSwitchWithTitle(
+          title: "Is Active?",
+          enabled: editable,
+          isEnabled: _frozen,
+          onChange: (x) {
+            _frozen = x;
+          },
+        ),
+        // ExpansionList(),
+        for (var i = 0; i < periodInfoList.length; i++) buildPeriodInfoInput(i),
+        ListTile(
+          title: Text("Add Peroid"),
+          trailing: Icon(Icons.add),
+          onTap: addPeriod,
+        ),
 
-      ) {
-    return  ListView(
-          padding: EdgeInsets.symmetric(horizontal: width * 6),
-          children: <Widget>[
-            CustomTextField(
-              enabled: editable,
-              title: "Group Name",
-              controller: _groupName,
-              validate: Validate.withOption(
-                isRequired: true,
-              ),
-            ),
-            CustomDropDownList<String>(
-              enabled: editable,
-              title: "Session Name",
-              controller: _sessionName,
-              loadData: () async => sessions,
-              displayName: (x) => x,
-              validate: Validate.withOption(
-                isRequired: true,
-              ),
-            ),
-            CustomTextField(
-              enabled: editable,
-              title: "Group Name",
-              controller: _groupName,
-              validate: Validate.withOption(
-                isRequired: true,
-              ),
-            ),
-            CustomTextField(
-              title: "Number of Student",
-              controller: _numperiods,
-              validate: Validate.withOption(
-                isRequired: true,
-                isInt:true,
-              ),
-
-            ),
-            CustomSwitchWithTitle(
-              title: "Is Active?",
-              enabled: editable,
-              isEnabled: _frozen,
-              onChange: (x) {
-                _frozen = x;
-              },
-            ),
-            // ExpansionList(),
-            for (var i = 0; i < periodInfoList.length; i++)
-              buildPeriodInfoInput(i),
-            ListTile(
-              title: Text("Add Peroid"),
-              trailing: Icon(Icons.add),
-              onTap: addPeriod,
-            ),
-
-            CustomActionButton(
-              state: ButtonState.idle,
-              title: edit ? "EDITE" : "ADD",
-              gradient: C.bgGradient,
-              // padding: EdgeInsets.symmetric(vertical: height * 1.5),
-              // margin: EdgeInsets.symmetric(
-              //     horizontal: width * 25, vertical: height * 6),
-              onTap: () async {
-                if (_validate()) {
-                  PaymentPeriodInfo _paymentPeriodInfo = PaymentPeriodInfo(
-                    sessionName: _sessionName.text,
-                    grpName: _groupName.text,
-                    periodInfo: periodInfoList,
-                  );
-                  if (edit) {
-                    mbloc.add(itembloc.updateItemWithDiff(newitem: _paymentPeriodInfo,olditem: widget.paymentPeriodInfo,entityid: widget.entityid,entitytype: widget.entitytype));
-
-                  } else {
-                    mbloc.add(itembloc.createItem(item: _paymentPeriodInfo,entityid: widget.entityid,entitytype: widget.entitytype));
-                  }
-                }
-              },
-            ),
-
-
-          ],
-
-
+        CustomActionButton(
+          state: ButtonState.idle,
+          title: edit ? "EDITE" : "ADD",
+          gradient: C.bgGradient,
+          // padding: EdgeInsets.symmetric(vertical: height * 1.5),
+          // margin: EdgeInsets.symmetric(
+          //     horizontal: width * 25, vertical: height * 6),
+          onTap: () async {
+            if (_validate()) {
+              PaymentPeriodInfo _paymentPeriodInfo = PaymentPeriodInfo(
+                sessionName: _sessionName.text,
+                grpName: _groupName.text,
+                periodInfo: periodInfoList,
+              );
+              if (edit) {
+                mbloc.add(itembloc.updateItemWithDiff(
+                    newitem: _paymentPeriodInfo,
+                    olditem: widget.paymentPeriodInfo,
+                    entityid: widget.entityid,
+                    entitytype: widget.entitytype));
+              } else {
+                mbloc.add(itembloc.createItem(
+                    item: _paymentPeriodInfo,
+                    entityid: widget.entityid,
+                    entitytype: widget.entitytype));
+              }
+            }
+          },
+        ),
+      ],
     );
   }
 

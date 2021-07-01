@@ -3027,7 +3027,8 @@ class _$LimitedDataTearOff {
 
 // ignore: unused_element
   LimitedPetData pet(
-      {@JsonKey(name: 'petclass')
+      {String docid,
+      @JsonKey(name: 'petclass')
           String petclass,
       @JsonKey(name: 'name')
           String name,
@@ -3050,6 +3051,7 @@ class _$LimitedDataTearOff {
       @JsonKey(name: 'serviceproviderid')
           String serviceproviderid}) {
     return LimitedPetData(
+      docid: docid,
       petclass: petclass,
       name: name,
       breed: breed,
@@ -3243,6 +3245,7 @@ mixin _$LimitedData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
+            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -3362,6 +3365,7 @@ mixin _$LimitedData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
+        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -3518,7 +3522,8 @@ abstract class $LimitedPetDataCopyWith<$Res> {
           LimitedPetData value, $Res Function(LimitedPetData) then) =
       _$LimitedPetDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'petclass')
+      {String docid,
+      @JsonKey(name: 'petclass')
           String petclass,
       @JsonKey(name: 'name')
           String name,
@@ -3556,6 +3561,7 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object docid = freezed,
     Object petclass = freezed,
     Object name = freezed,
     Object breed = freezed,
@@ -3569,6 +3575,7 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
     Object serviceproviderid = freezed,
   }) {
     return _then(LimitedPetData(
+      docid: docid == freezed ? _value.docid : docid as String,
       petclass: petclass == freezed ? _value.petclass : petclass as String,
       name: name == freezed ? _value.name : name as String,
       breed: breed == freezed ? _value.breed : breed as String,
@@ -3604,7 +3611,8 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
 /// @nodoc
 class _$LimitedPetData implements LimitedPetData {
   const _$LimitedPetData(
-      {@JsonKey(name: 'petclass')
+      {this.docid,
+      @JsonKey(name: 'petclass')
           this.petclass,
       @JsonKey(name: 'name')
           this.name,
@@ -3630,6 +3638,8 @@ class _$LimitedPetData implements LimitedPetData {
   factory _$LimitedPetData.fromJson(Map<String, dynamic> json) =>
       _$_$LimitedPetDataFromJson(json);
 
+  @override
+  final String docid;
   @override
   @JsonKey(name: 'petclass')
   final String petclass;
@@ -3669,13 +3679,15 @@ class _$LimitedPetData implements LimitedPetData {
 
   @override
   String toString() {
-    return 'LimitedData.pet(petclass: $petclass, name: $name, breed: $breed, gender: $gender, animalclass: $animalclass, age: $age, tileimage: $tileimage, price: $price, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid)';
+    return 'LimitedData.pet(docid: $docid, petclass: $petclass, name: $name, breed: $breed, gender: $gender, animalclass: $animalclass, age: $age, tileimage: $tileimage, price: $price, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is LimitedPetData &&
+            (identical(other.docid, docid) ||
+                const DeepCollectionEquality().equals(other.docid, docid)) &&
             (identical(other.petclass, petclass) ||
                 const DeepCollectionEquality()
                     .equals(other.petclass, petclass)) &&
@@ -3709,6 +3721,7 @@ class _$LimitedPetData implements LimitedPetData {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(docid) ^
       const DeepCollectionEquality().hash(petclass) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(breed) ^
@@ -3731,6 +3744,7 @@ class _$LimitedPetData implements LimitedPetData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
+            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -3853,14 +3867,15 @@ class _$LimitedPetData implements LimitedPetData {
     assert(vehicle != null);
     assert(realEstate != null);
     assert(job != null);
-    return pet(petclass, name, breed, gender, animalclass, age, tileimage,
-        price, postedon, addressarea, serviceproviderid);
+    return pet(docid, petclass, name, breed, gender, animalclass, age,
+        tileimage, price, postedon, addressarea, serviceproviderid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
+        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -3975,8 +3990,8 @@ class _$LimitedPetData implements LimitedPetData {
   }) {
     assert(orElse != null);
     if (pet != null) {
-      return pet(petclass, name, breed, gender, animalclass, age, tileimage,
-          price, postedon, addressarea, serviceproviderid);
+      return pet(docid, petclass, name, breed, gender, animalclass, age,
+          tileimage, price, postedon, addressarea, serviceproviderid);
     }
     return orElse();
   }
@@ -4026,7 +4041,8 @@ class _$LimitedPetData implements LimitedPetData {
 
 abstract class LimitedPetData implements LimitedData {
   const factory LimitedPetData(
-      {@JsonKey(name: 'petclass')
+      {String docid,
+      @JsonKey(name: 'petclass')
           String petclass,
       @JsonKey(name: 'name')
           String name,
@@ -4052,6 +4068,7 @@ abstract class LimitedPetData implements LimitedData {
   factory LimitedPetData.fromJson(Map<String, dynamic> json) =
       _$LimitedPetData.fromJson;
 
+  String get docid;
   @JsonKey(name: 'petclass')
   String get petclass;
   @JsonKey(name: 'name')
@@ -4187,6 +4204,7 @@ class _$LimitedPackageData implements LimitedPackageData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
+            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -4316,6 +4334,7 @@ class _$LimitedPackageData implements LimitedPackageData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
+        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -4711,6 +4730,7 @@ class _$LimitedProductData implements LimitedProductData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
+            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -4853,6 +4873,7 @@ class _$LimitedProductData implements LimitedProductData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
+        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -5310,6 +5331,7 @@ class _$LimitedVehicleData implements LimitedVehicleData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
+            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -5440,6 +5462,7 @@ class _$LimitedVehicleData implements LimitedVehicleData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
+        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -5921,6 +5944,7 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
+            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -6063,6 +6087,7 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
+        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -6488,6 +6513,7 @@ class _$LimitedJobData implements LimitedJobData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
+            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -6618,6 +6644,7 @@ class _$LimitedJobData implements LimitedJobData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
+        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')

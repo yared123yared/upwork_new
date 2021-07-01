@@ -19,7 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class PetsDetailPage extends StatefulWidget {
   final String docId;
 
-  PetsDetailPage({this.docId});
+  PetsDetailPage({@required this.docId});
 
   @override
   State<StatefulWidget> createState() {
@@ -73,7 +73,7 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
             return Scaffold(
               key: _key,
               appBar: AppBar(
-                title: Text('Product Details'),
+                title: Text('Pet Details'),
                 leading: IconButton(
                   icon: Icon(Icons.arrow_back, color: Colors.white),
                   onPressed: () => Navigator.of(context).pop(),
@@ -113,11 +113,13 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
                             _renderDescription(),
                             _renderMainInfo(),
                             Padding(
-                              padding: const EdgeInsets.only(top:8.0,left: 20,bottom: 20),
+                              padding: const EdgeInsets.only(
+                                  top: 8.0, left: 20, bottom: 20),
                               child: Text(
                                 "\$ ${_model.price?.toString() ?? ""}",
                                 style: Styles.semiBoldText(
-                                    color: ColorConstants.primaryColor,size: 16),
+                                    color: ColorConstants.primaryColor,
+                                    size: 16),
                               ),
                             ),
                             GroupTitle(

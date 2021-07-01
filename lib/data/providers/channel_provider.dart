@@ -205,10 +205,9 @@ class ChannelsProvider {
   }
 
   Stream<QuerySnapshot> listenToChannelChange({@required String id}) {
-    var date7dayold =
-        DateTime.now().add(new Duration(days: -7));
+    var date7dayold = DateTime.now().add(new Duration(days: -7));
 
-    var greterthanTimestamp =HelpUtil.ConverttoTimeStamp(date7dayold);
+    var greterthanTimestamp = HelpUtil.converttoTimeStamp(date7dayold);
     try {
       return FirebaseFirestore.instance
           .collection("CROOM/$id/MESSAGES")
@@ -303,8 +302,7 @@ class ChannelsProvider {
         return false;
       }
     } catch (e) {
-      if (e is HttpException)
-        print("upload fail ${e.uri} : ${e.message}");
+      if (e is HttpException) print("upload fail ${e.uri} : ${e.message}");
       return false;
     }
   }

@@ -23,7 +23,7 @@ class EntryLogsForm extends StatefulWidget {
   final EntryLogModel entryLogModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   EntryLogsForm({
     @required this.entryLogModel,

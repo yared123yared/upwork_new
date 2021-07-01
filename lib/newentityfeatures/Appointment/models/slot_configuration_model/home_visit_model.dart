@@ -27,44 +27,46 @@ class HomeVisitModel {
   int sunNum;
   int slotDuration;
 
-  Map<int,List<String>> GetTimeSlotInfoForWeek()
-  {
-    Map<int,List<String>>  myval = Map<int,List<String>>();
-    if(monStart !=null && monEnd !=null)
-      myval[1]=HelpUtil.GetTimeSlotForDay(monStart,monEnd,monNum,slotDuration);
+  Map<int, List<String>> GetTimeSlotInfoForWeek() {
+    Map<int, List<String>> myval = Map<int, List<String>>();
+    if (monStart != null && monEnd != null)
+      myval[1] =
+          HelpUtil.getTimeSlotForDay(monStart, monEnd, monNum, slotDuration);
     else
-      myval[1]=[];
-    if(tueStart !=null && tueEnd !=null)
-      myval[2]=HelpUtil.GetTimeSlotForDay(tueStart,tueEnd,tueNum,slotDuration);
+      myval[1] = [];
+    if (tueStart != null && tueEnd != null)
+      myval[2] =
+          HelpUtil.getTimeSlotForDay(tueStart, tueEnd, tueNum, slotDuration);
     else
-      myval[2]=[];
-    if(wedStart !=null && wedEnd !=null)
-      myval[3]=HelpUtil.GetTimeSlotForDay(wedStart,wedEnd,wedNum,slotDuration);
+      myval[2] = [];
+    if (wedStart != null && wedEnd != null)
+      myval[3] =
+          HelpUtil.getTimeSlotForDay(wedStart, wedEnd, wedNum, slotDuration);
     else
-      myval[3]=[];
-    if(thuStart !=null && thuEnd !=null)
-      myval[4]=HelpUtil.GetTimeSlotForDay(thuStart,thuEnd,thuNum,slotDuration);
+      myval[3] = [];
+    if (thuStart != null && thuEnd != null)
+      myval[4] =
+          HelpUtil.getTimeSlotForDay(thuStart, thuEnd, thuNum, slotDuration);
     else
-      myval[4]=[];
+      myval[4] = [];
 
-    if(friStart !=null && friEnd !=null)
-      myval[5]=HelpUtil.GetTimeSlotForDay(friStart,friEnd,friNum,slotDuration);
+    if (friStart != null && friEnd != null)
+      myval[5] =
+          HelpUtil.getTimeSlotForDay(friStart, friEnd, friNum, slotDuration);
     else
-      myval[5]=[];
+      myval[5] = [];
 
-    if(satStart !=null && satEnd !=null)
-      myval[6]=HelpUtil.GetTimeSlotForDay(satStart,satEnd,satNum,slotDuration);
+    if (satStart != null && satEnd != null)
+      myval[6] =
+          HelpUtil.getTimeSlotForDay(satStart, satEnd, satNum, slotDuration);
     else
-      myval[6]=[];
+      myval[6] = [];
 
-
-    if(sunStart !=null && sunEnd !=null)
-      myval[7]=HelpUtil.GetTimeSlotForDay(sunStart,sunEnd,sunNum,slotDuration);
+    if (sunStart != null && sunEnd != null)
+      myval[7] =
+          HelpUtil.getTimeSlotForDay(sunStart, sunEnd, sunNum, slotDuration);
     else
-      myval[7]=[];
-
-
-
+      myval[7] = [];
   }
 
   HomeVisitModel({

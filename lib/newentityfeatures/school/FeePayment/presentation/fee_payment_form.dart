@@ -1,4 +1,3 @@
-
 import 'package:complex/common/helputil.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
@@ -29,7 +28,7 @@ class FeePaymentForm extends StatefulWidget {
   final String entityid;
   final String entitytype;
   final String sessionTerm;
-  final helputil.reloadAction givenreloadaction;
+  final helputil.ReloadAction givenreloadaction;
 
   FeePaymentForm({
     @required this.userRegFeeCollectionModel,

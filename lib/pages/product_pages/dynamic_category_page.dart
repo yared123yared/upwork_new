@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:complex/blocs/bloc_manager.dart';
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
@@ -84,13 +82,13 @@ class _DynamicCategoryPageState extends State<DynamicCategoryPage> {
       initState: (context) {
         _productBloc.add(GetCategoryFieldEvent(filedName: widget.schemaname));
       },
-      child: BlocListener<ProductBloc,ProductState>(
+      child: BlocListener<ProductBloc, ProductState>(
         listener: (context, state) {
           if (state is GetCategoryFieldState) _handleCategoryResponse(state);
           if (state is UpdateCategoryFieldState)
             _handleUpdateCategoryResponse(state);
         },
-        child: BlocBuilder<ProductBloc,ProductState>(
+        child: BlocBuilder<ProductBloc, ProductState>(
           builder: (context, state) {
             return Scaffold(
               key: _key,
@@ -352,7 +350,7 @@ class _EditAddCategoryState extends State<EditAddCategory> {
             title: "Category Name",
             controller: _categoryNameController,
             margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            validate:  Validate.withOption(
+            validate: Validate.withOption(
               isRequired: true,
             ),
           ),
@@ -386,7 +384,8 @@ class _EditAddCategoryState extends State<EditAddCategory> {
                       divisions: 10,
                       labels: _label ?? RangeLabels("0", "0"),
                       activeColor: ColorConstants.primaryColor,
-                      inactiveColor: ColorConstants.primaryColor.withOpacity(0.2),
+                      inactiveColor:
+                          ColorConstants.primaryColor.withOpacity(0.2),
                     ),
                   ],
                 ),
@@ -397,7 +396,7 @@ class _EditAddCategoryState extends State<EditAddCategory> {
             title: "Dynamic Properties ID",
             controller: _dynamicProductIdController,
             margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            validate:  Validate.withOption(
+            validate: Validate.withOption(
               isRequired: true,
               isInt: true,
               isNumber: true,
@@ -468,7 +467,9 @@ class _EditAddCategoryState extends State<EditAddCategory> {
                   if (widget.type == AddEditCategory.addTopLevel) {
                     List<dynamic> _localList = List();
                     for (int i = 0;
-                        i < ((widget.childData['adata'].toList() as List).length);
+                        i <
+                            ((widget.childData['adata'].toList() as List)
+                                .length);
                         i++) {
                       _localList.add(widget.childData['adata'][i]);
                     }

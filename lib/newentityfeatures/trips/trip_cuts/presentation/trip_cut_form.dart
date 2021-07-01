@@ -1,4 +1,3 @@
-
 import 'package:complex/newentityfeatures/trips/widgets/custom_list_item.dart';
 import 'package:complex/newentityfeatures/trips/widgets/day_item.dart';
 import 'package:flow_builder/flow_builder.dart';
@@ -22,7 +21,7 @@ class TripCutForm extends StatefulWidget {
   final TripCut tripCut;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   TripCutForm({
     @required this.tripCut,
@@ -83,9 +82,8 @@ class _TripCutFormState extends State<TripCutForm> {
         _daysList[_chosenDay] = true;
 
         if (tripCut?.startDate != null) {
-          _startDateController.text =
-              HelpUtil.formattedDateToString(
-                  widget.tripCut.startDate, DateTimeMode.DATE);
+          _startDateController.text = HelpUtil.formattedDateToString(
+              widget.tripCut.startDate, DateTimeMode.DATE);
         }
         if (tripCut?.name != null) {
           _tripCutNameController.text = widget.tripCut.name;
@@ -269,7 +267,7 @@ class _TripCutFormState extends State<TripCutForm> {
                                 _startDateController.text =
                                     HelpUtil.formattedDateToString(
                                   date,
-                                      DateTimeMode.DATE,
+                                  DateTimeMode.DATE,
                                 );
                               });
                             });

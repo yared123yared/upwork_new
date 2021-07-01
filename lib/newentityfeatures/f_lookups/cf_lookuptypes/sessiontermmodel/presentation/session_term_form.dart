@@ -21,7 +21,7 @@ class SessionTermForm extends StatefulWidget {
   final ButtonState buttonState;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   SessionTermForm(
       {@required this.sessionTermModel,
       this.buttonState,

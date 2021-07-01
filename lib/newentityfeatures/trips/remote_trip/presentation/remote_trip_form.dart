@@ -24,7 +24,7 @@ class RemoteTripForm extends StatefulWidget {
   final RemoteTripData vrAssignmentModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   RemoteTripForm({
     @required this.vrAssignmentModel,

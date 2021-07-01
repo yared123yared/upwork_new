@@ -17,7 +17,7 @@ class VirtualRoomForm extends StatefulWidget {
   final VirtualRoomModelNewFormat virtualRoomModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   VirtualRoomForm({
     @required this.virtualRoomModel,
@@ -146,14 +146,14 @@ class _VirtualRoomFormState extends State<VirtualRoomForm> {
           }
 
           if (state is itembloc.IsReadyForDetailsPage) {
-              setState(() {
-                buttonState = state.buttonState;
-                rooms = state.rooms;
-                grades = state.grades;
-                schoolOwners = state.schoolOwners;
+            setState(() {
+              buttonState = state.buttonState;
+              rooms = state.rooms;
+              grades = state.grades;
+              schoolOwners = state.schoolOwners;
 
-                _initFiledValue();
-              });
+              _initFiledValue();
+            });
           }
         }, child: BlocBuilder<itembloc.VirtualRoomModelBloc,
             itembloc.VirtualRoomModelState>(builder: (context, state) {

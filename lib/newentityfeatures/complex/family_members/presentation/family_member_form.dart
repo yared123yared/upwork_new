@@ -12,7 +12,7 @@ class FamilyMemberForm extends StatefulWidget {
   final FamilyMember familyMember;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   FamilyMemberForm({
     @required this.familyMember,

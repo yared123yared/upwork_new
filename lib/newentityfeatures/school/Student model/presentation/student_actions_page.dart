@@ -12,7 +12,7 @@ class StudentItemPage extends StatelessWidget {
   final UserRegistrationModel userRegistrationModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   final List<String> sessionTerm;
 
   const StudentItemPage({
@@ -96,7 +96,7 @@ class StudentItemPage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => SessionRegistrationForm(
-                             userRegistrationModel: userRegistrationModel,
+                            userRegistrationModel: userRegistrationModel,
                             entitytype: entitytype,
                             entityid: entityid,
                             givenreloadaction: givenreloadaction,

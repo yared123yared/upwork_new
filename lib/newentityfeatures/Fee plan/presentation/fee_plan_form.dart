@@ -19,7 +19,7 @@ class FeePlanForm extends StatefulWidget {
   final FeePlanModel feePlanModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   FeePlanForm({
     @required this.feePlanModel,

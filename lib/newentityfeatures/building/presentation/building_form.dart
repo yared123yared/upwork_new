@@ -12,7 +12,7 @@ class BuildingForm extends StatefulWidget {
   final BuildingModel buildingModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   BuildingForm(
       {this.buildingModel,
       @required this.entitytype,
@@ -122,15 +122,15 @@ class _BuildingFormState extends State<BuildingForm> {
                       title: "Building Name",
                       controller: _buildingName,
                       autoFocus: true,
-                      validate:  Validate.withOption(isRequired: true),
+                      validate: Validate.withOption(isRequired: true),
                     ),
                     CustomTextField(
                       initialValue: widget.buildingModel?.attachedGate?.length
                           ?.toString(),
                       title: "Attached Gates",
                       controller: _attachedGate,
-                      validate: Validate.withOption(
-                          isRequired: true, isNumber: true),
+                      validate:
+                          Validate.withOption(isRequired: true, isNumber: true),
                     ),
                     CustomAddressPicker(
                       initialValue: widget.buildingModel?.address,

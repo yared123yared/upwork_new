@@ -17,7 +17,7 @@ class FeeItemGroupsModelForm extends StatefulWidget {
   final FeeItemGroupsModel feeItemGroupsModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   FeeItemGroupsModelForm({
     @required this.feeItemGroupsModel,

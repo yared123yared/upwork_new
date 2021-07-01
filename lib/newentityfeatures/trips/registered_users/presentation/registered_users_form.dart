@@ -15,7 +15,7 @@ class RegisteredUsersForm extends StatefulWidget {
   final RegisteredUser registeredUser;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   RegisteredUsersForm({
     @required this.registeredUser,

@@ -27,7 +27,7 @@ class AttachedAssignmentForm extends StatefulWidget {
   final String entitytype;
 
   final cmodel.VrAssignmentModel vrAssignmentModel;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   AttachedAssignmentForm(
       {this.entitytype,

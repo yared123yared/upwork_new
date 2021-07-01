@@ -28,7 +28,7 @@ class ResidentForm extends StatefulWidget {
   final RegistryModel registry;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   final String role;
   final int origintype;
   ResidentForm({
@@ -36,7 +36,7 @@ class ResidentForm extends StatefulWidget {
     @required this.entitytype,
     @required this.entityid,
     @required this.givenreloadaction,
-    @ required this.origintype,
+    @required this.origintype,
     @required this.registry,
     @required this.role,
   });
@@ -272,14 +272,14 @@ class _ResidentFormState extends State<ResidentForm> {
                     CustomTextField(
                       title: "Email address",
                       controller: _emailAddress,
-                      validate: Validate.withOption(
-                          isRequired: true, isEmail: true),
+                      validate:
+                          Validate.withOption(isRequired: true, isEmail: true),
                     ),
                     CustomTextField(
                       title: "Contact Number",
                       controller: _contactNumber,
-                      validate: Validate.withOption(
-                          isRequired: true, isNumber: true),
+                      validate:
+                          Validate.withOption(isRequired: true, isNumber: true),
                     ),
                     Row(
                       children: [

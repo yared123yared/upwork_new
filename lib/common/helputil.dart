@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:injector/injector.dart';
 import 'package:complex/data/repositories/user_repository.dart';
+
 enum DateTimeMode { DATE, TIME, DATETIME }
 
-typedef void reloadAction(bool doreload);
+typedef void ReloadAction(bool doreload);
 
 extension TimeOfDayExtension on TimeOfDay {
   // Ported from org.threeten.bp;
@@ -62,36 +63,29 @@ extension DateTimeExtension on DateTime {
 }
 
 class HelpUtil {
-
-  static List<String> GetTimeSlotForDay(String starttimestr, String endtimestr, int numslots, int slotduration)
-  {
-    try
-    {
-      TimeOfDay starttime   = TimeOfDay(hour:int.parse(starttimestr.split(":")[0]),minute: int.parse(starttimestr.split(":")[1]));
-      TimeOfDay endtime   = TimeOfDay(hour:int.parse(endtimestr.split(":")[0]),minute: int.parse(endtimestr.split(":")[1]));
-      List<String> results=[];
-      while(endtime.compareTo( starttime ) >=0 && slotduration >0)
-      {
+  static List<String> getTimeSlotForDay(
+      String starttimestr, String endtimestr, int numslots, int slotduration) {
+    try {
+      TimeOfDay starttime = TimeOfDay(
+          hour: int.parse(starttimestr.split(":")[0]),
+          minute: int.parse(starttimestr.split(":")[1]));
+      TimeOfDay endtime = TimeOfDay(
+          hour: int.parse(endtimestr.split(":")[0]),
+          minute: int.parse(endtimestr.split(":")[1]));
+      List<String> results = [];
+      while (endtime.compareTo(starttime) >= 0 && slotduration > 0) {
         String s1 = starttime.toString();
-        starttime =starttime.plusMinutes(slotduration);
+        starttime = starttime.plusMinutes(slotduration);
         String s2 = starttime.toString();
-        results.add(s1 + "-"+ s2);
-        numslots=numslots-1;
-
-
+        results.add(s1 + "-" + s2);
+        numslots = numslots - 1;
       }
 
       return results;
-
-    }
-    on Exception catch (_) {
+    } on Exception catch (_) {
       return [];
-
     }
-
-
   }
-
 
   static DateTime toDate({@required int timestamp}) =>
       DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
@@ -100,28 +94,25 @@ class HelpUtil {
     return (ms / 1000).round();
   }
 
-  static UserRepository getUserRepository()
-  {
+  static UserRepository getUserRepository() {
     UserRepository _userRepository = Injector.appInstance.get<UserRepository>();
     return _userRepository;
-
   }
 
-  static UserModel getUserModel()
-  {
+  static UserModel getUserModel() {
     UserRepository _userRepository = Injector.appInstance.get<UserRepository>();
     return _userRepository.getUser();
-
   }
-  static AuthRepository getAuthRepositoryl()
-  {
 
+  static AuthRepository getAuthRepositoryl() {
     return Injector.appInstance.get<AuthRepository>();
   }
-  static int ConverttoTimeStamp(DateTime dt) {
+
+  static int converttoTimeStamp(DateTime dt) {
     var ms = dt.millisecondsSinceEpoch;
     return (ms / 1000).round();
   }
+
   static String formattedDateToString(
       DateTime dateTimeValue, DateTimeMode dateTimeMode) {
     final dateTime = DateFormat('dd-MM-yyyy hh:mm a');
@@ -144,9 +135,9 @@ class HelpUtil {
   }
 
   static DateTime formattedStringToDate(
-      String dateTimeValue,
-      DateTimeMode dateTimeMode,
-      ) {
+    String dateTimeValue,
+    DateTimeMode dateTimeMode,
+  ) {
     final dateTime = DateFormat('dd-MM-yyyy hh:mm a');
     final jusTime = DateFormat('hh:mm a');
     final justDate = DateFormat('dd-MM-yyyy');

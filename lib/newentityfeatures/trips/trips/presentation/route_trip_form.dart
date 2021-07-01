@@ -23,7 +23,7 @@ class RouteTripForm extends StatefulWidget {
   final RouteTripModel routeTripModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   RouteTripForm({
     @required this.routeTripModel,

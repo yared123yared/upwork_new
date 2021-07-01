@@ -18,7 +18,7 @@ class OfferingsByGradeForm extends StatefulWidget {
   final OfferingModelGroup offeringModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
 
   const OfferingsByGradeForm({
     Key key,

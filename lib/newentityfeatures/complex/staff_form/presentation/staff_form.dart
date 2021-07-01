@@ -28,15 +28,14 @@ class StaffFormComplex extends StatefulWidget {
   final StaffModelx staffModel;
   final String entityid;
   final String entitytype;
-  final reloadAction givenreloadaction;
+  final ReloadAction givenreloadaction;
   final int origintype;
-  StaffFormComplex({
-    @required this.staffModel,
-    @required this.givenreloadaction,
-    this.entitytype,
-    this.entityid,
-    this.origintype
-  });
+  StaffFormComplex(
+      {@required this.staffModel,
+      @required this.givenreloadaction,
+      this.entitytype,
+      this.entityid,
+      this.origintype});
 
   // final ButtonState btnState;
   // final List<TimeLineModel> timeline;
@@ -445,8 +444,7 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
             initialValue: widget.staffModel?.timeInterval?.toString(),
             title: "Time Interval",
             controller: _timeInterval,
-            validate:
-                Validate.withOption(isRequired: true, isNumber: true),
+            validate: Validate.withOption(isRequired: true, isNumber: true),
           ),
           CustomSwitchWithTitle(
             title: "Location Update Required?",
