@@ -23,6 +23,7 @@ import 'package:complex/newentityfeatures/ecommerce-admin/views/orders/orders_vi
 import 'package:complex/newentityfeatures/ecommerce-admin/views/trip/trips_view.dart';
 import 'package:complex/newentityfeatures/ecommerce-admin/views/vendor/vendor_view.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
+import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/offerings/presentation/offerings_listview.dart';
 import 'package:complex/newentityfeatures/school/Class%20period/presentation/classperiodmodel_listview.dart';
 import 'package:complex/newentityfeatures/school/Create%20assignment%20form/presentation/createassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Event/presentation/event_page.dart';
@@ -152,7 +153,8 @@ enum DynamicEntityGridState {
   newvirtualroom,
   newteacherassignment,
   newofferingschedule,
-  // newSessionRegistration,
+  // newSessionRegistration,,
+  offeringList,
   newEvent,
   newParentAttendance,
   newParentProgress,
@@ -369,6 +371,7 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.newProgress);
     panelmem.add(DynamicEntityGridState.newvirtualroom);
     panelmem.add(DynamicEntityGridState.newofferingschedule);
+    panelmem.add(DynamicEntityGridState.offeringList);
 
     return panelmem;
   }
@@ -626,7 +629,7 @@ class UiEntityPageStateList {
       // ],
       setupPanel: fillSetupPanelComplex(),
       feesPaymentPanel: [],
-      academicManagerPanel: [],
+      academicManagerPanel: fillAcademicsManagerPanel(),
       academicPanel: [],
       ecomPanel: [],
       //aptPanel: UiSchoolPageStateList.fillAptPanel(),
@@ -779,6 +782,23 @@ class UiSchoolHandler {
                   context,
                   MaterialPageRoute(
                     builder: (context) => FeeItemFormList(
+                      entitytype: getCurEntity().entitytype,
+                      entityid: getCurEntity().entityid,
+                      // mlistbloc: mlistbloc,
+                    ),
+                  ));
+            });
+        break;
+      case DynamicEntityGridState.offeringList:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Offering',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OfferingsFormList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
                       // mlistbloc: mlistbloc,
