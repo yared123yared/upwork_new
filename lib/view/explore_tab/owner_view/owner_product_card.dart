@@ -1,7 +1,10 @@
 import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/view/pet_pages/add_pet_page.dart';
+import 'package:complex/view/product_pages/general_contact_details_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
-class ProductListTileOwner extends StatelessWidget {
+class OwnerProductCard extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String subtitle;
@@ -9,75 +12,7 @@ class ProductListTileOwner extends StatelessWidget {
   final Map<String, String> details;
   final LimitedData data;
 
-  factory ProductListTileOwner.fromLimitedData(LimitedData data) {
-    return data.map(
-        pet: (v) => ProductListTileOwner(
-              data: v,
-              details: {
-                'breed': v.breed,
-                'gender': v.gender,
-                'age': v.age.toString() + 'yrs',
-              },
-              imageUrl: v.tileimage,
-              price: v.price.toString(),
-              subtitle: v.animalclass,
-              title: v.name,
-            ),
-        package: (v) => ProductListTileOwner(
-              data: v,
-              details: {},
-              imageUrl: '',
-              price: '',
-              subtitle: '',
-              title: '',
-            ),
-        product: (v) => ProductListTileOwner(
-              data: v,
-              details: {},
-              imageUrl: '',
-              price: '',
-              subtitle: '',
-              title: '',
-            ),
-        vehicle: (v) => ProductListTileOwner(
-              data: v,
-              details: {
-                'year': v.yearmade.toString(),
-                'type': v.vehicletype,
-                'model': v.model,
-              },
-              imageUrl: v.tileimage,
-              price: v.price.toString(),
-              subtitle: v.yearmade.toString(),
-              title: v.make,
-            ),
-        realEstate: (v) => ProductListTileOwner(
-              data: v,
-              details: {
-                'bedroom': v.numbedroom.toString(),
-                'bathroom': v.numbathroom.toString(),
-                'floor': v.floorNumber.toString(),
-              },
-              imageUrl: v.tileimage,
-              price: v.price.toString() + 'USD /Month',
-              subtitle: v.addressarea.addressinfo,
-              title: v.propertytype,
-            ),
-        job: (v) => ProductListTileOwner(
-              data: v,
-              details: {
-                'job type': v.jobtype,
-                'address':
-                    '${v.addressarea.addressinfo}, ${v.addressarea.village}, ${v.addressarea.state}, ${v.addressarea.country}',
-              },
-              imageUrl: v.companyicon,
-              price: '(' + v.salaryrange + ')',
-              subtitle: v.companyname,
-              title: v.title,
-            ));
-  }
-
-  const ProductListTileOwner({
+  const OwnerProductCard({
     Key key,
     @required this.title,
     @required this.subtitle,
@@ -193,7 +128,9 @@ class ProductListTileOwner extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          _editData(data);
+                        },
                         child: Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 16.0, vertical: 8.0),
@@ -218,6 +155,105 @@ class ProductListTileOwner extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  factory OwnerProductCard.fromLimitedData(LimitedData data) {
+    return data.map(
+        pet: (v) => OwnerProductCard(
+              data: v,
+              details: {
+                'breed': v.breed,
+                'gender': v.gender,
+                'age': v.age.toString() + 'yrs',
+              },
+              imageUrl: v.tileimage,
+              price: v.price.toString(),
+              subtitle: v.animalclass,
+              title: v.name,
+            ),
+        package: (v) => OwnerProductCard(
+              data: v,
+              details: {},
+              imageUrl: '',
+              price: '',
+              subtitle: '',
+              title: '',
+            ),
+        product: (v) => OwnerProductCard(
+              data: v,
+              details: {},
+              imageUrl: '',
+              price: '',
+              subtitle: '',
+              title: '',
+            ),
+        vehicle: (v) => OwnerProductCard(
+              data: v,
+              details: {
+                'year': v.yearmade.toString(),
+                'type': v.vehicletype,
+                'model': v.model,
+              },
+              imageUrl: v.tileimage,
+              price: v.price.toString(),
+              subtitle: v.yearmade.toString(),
+              title: v.make,
+            ),
+        realEstate: (v) => OwnerProductCard(
+              data: v,
+              details: {
+                'bedroom': v.numbedroom.toString(),
+                'bathroom': v.numbathroom.toString(),
+                'floor': v.floorNumber.toString(),
+              },
+              imageUrl: v.tileimage,
+              price: v.price.toString() + 'USD /Month',
+              subtitle: v.addressarea.addressinfo,
+              title: v.propertytype,
+            ),
+        job: (v) => OwnerProductCard(
+              data: v,
+              details: {
+                'job type': v.jobtype,
+                'address':
+                    '${v.addressarea.addressinfo}, ${v.addressarea.village}, ${v.addressarea.state}, ${v.addressarea.country}',
+              },
+              imageUrl: v.companyicon,
+              price: '(' + v.salaryrange + ')',
+              subtitle: v.companyname,
+              title: v.title,
+            ));
+  }
+
+  void _editData(LimitedData data) {
+    data.maybeMap(
+      pet: (pet) {
+        Get.to(() => GeneralContactDetailPage(
+              type: ContactOpenFrom.pet,
+            ));
+      },
+      product: (product) {
+        Get.to(() => GeneralContactDetailPage(
+              type: ContactOpenFrom.product,
+            ));
+      },
+      vehicle: (vehicle) {
+        Get.to(() => GeneralContactDetailPage(
+              type: ContactOpenFrom.vehicle,
+            ));
+      },
+      realEstate: (realEstate) {
+        Get.to(() => GeneralContactDetailPage(
+              type: ContactOpenFrom.addProperty,
+            ));
+      },
+      job: (job) {
+        Get.to(() => GeneralContactDetailPage(
+              type: ContactOpenFrom.job,
+            ));
+      },
+      orElse: () {},
     );
   }
 }
