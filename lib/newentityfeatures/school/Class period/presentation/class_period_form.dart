@@ -1,9 +1,9 @@
 import 'package:complex/common/helputil.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
@@ -144,7 +144,7 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
     return BlocProvider(
       create: (context) => itembloc.ClassPeriodModelBloc()
         ..add(
-          itembloc.getForNewEntry(
+          itembloc.GetForNewEntry(
             entityid: widget.entityid,
             entitytype: widget.entitytype,
           ),
@@ -319,7 +319,7 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
       child: Column(
         children: [
           // for (int i = 0; i < schedules.length; i++)
-          _buildItem(numberPeriod),
+          // _buildItem(numberPeriod),
           CustomActionButton(
             state: ButtonState.idle,
             title: timelineIndex != numPeriods
@@ -358,7 +358,7 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
                   return;
                 } else {
                   BlocProvider.of<itembloc.ClassPeriodModelBloc>(context).add(
-                    itembloc.createItem(
+                    itembloc.CreateItem(
                       item: _scheduleModel,
                       type: _type.text,
                       entityid: widget.entityid,
@@ -374,50 +374,50 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
     );
   }
 
-  Widget _buildItem(int i) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: width * 6),
-      child: Column(
-        children: [
-          CustomTextField(
-            enabled: !edit,
-            initialValue: schedules[i].classPeriodName,
-            title: "Class Period Name",
-            onChange: (text) {
-              setState(() => schedules[i].classPeriodName = text);
-            },
-            controller: controllers[i][0],
-            validate: Validate.withOption(
-              isRequired: true,
-            ),
-          ),
-          CustomDateTimePicker(
-            title: 'Start Date',
-            enabled: true,
-            controller: controllers[i][1],
-            onChange: (value) {
-              setState(() => schedules[i].startTime = value);
-            },
-            dateTime: schedules[i].startTime,
-            autoSync: true,
-            mode: DateTimeMode.DATE,
-            validate: Validate.withOption(isRequired: true),
-          ),
-          CustomDateTimePicker(
-            title: 'End Date',
-            enabled: true,
-            autoSync: true,
-            controller: controllers[i][2],
-            onChange: (value) {
-              setState(() => schedules[i].endTime = value);
-            },
-            dateTime: schedules[i].endTime,
-            mode: DateTimeMode.DATE,
-            validate: Validate.withOption(isRequired: true),
-          ),
-        ],
-      ),
-    );
-    // ));
-  }
+  // Widget _buildItem(int i) {
+  //   return SingleChildScrollView(
+  //     padding: EdgeInsets.symmetric(horizontal: width * 6),
+  //     child: Column(
+  //       children: [
+  //         CustomTextField(
+  //           enabled: !edit,
+  //           initialValue: schedules[i].classPeriodName,
+  //           title: "Class Period Name",
+  //           onChange: (text) {
+  //             setState(() => schedules[i].classPeriodName = text);
+  //           },
+  //           controller: controllers[i][0],
+  //           validate: Validate.withOption(
+  //             isRequired: true,
+  //           ),
+  //         ),
+  //         CustomDateTimePicker(
+  //           title: 'Start Date',
+  //           enabled: true,
+  //           controller: controllers[i][1],
+  //           onChange: (value) {
+  //             setState(() => schedules[i].startTime = value);
+  //           },
+  //           dateTime: schedules[i].startTime,
+  //           autoSync: true,
+  //           mode: DateTimeMode.DATE,
+  //           validate: Validate.withOption(isRequired: true),
+  //         ),
+  //         CustomDateTimePicker(
+  //           title: 'End Date',
+  //           enabled: true,
+  //           autoSync: true,
+  //           controller: controllers[i][2],
+  //           onChange: (value) {
+  //             setState(() => schedules[i].endTime = value);
+  //           },
+  //           dateTime: schedules[i].endTime,
+  //           mode: DateTimeMode.DATE,
+  //           validate: Validate.withOption(isRequired: true),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  //   // ));
+  // }
 }

@@ -69,7 +69,7 @@ abstract class Lookup with _$Lookup {
     @required
         DateTime endDate,
     @JsonKey(name: 'paymentperiodname') @required String paymentPeriodName,
-    @JsonKey(name: 'numdays') @required String numDays,
+    @JsonKey(name: 'numdays') @required int numDays,
   }) = PeriodInfo;
   const factory Lookup.classPeriodInfo({
     @JsonKey(name: 'schedule') @required List<Schedule> schedule,
@@ -88,7 +88,7 @@ abstract class Lookup with _$Lookup {
         toJson: JsonHelper.toJsonTimeStamp)
     @required
         DateTime endTime,
-    @JsonKey(name: 'classperiodinfo') @required String classPeriodInfo,
+    @JsonKey(name: 'classperiodname') @required String classPeriodName,
   }) = Schedule;
 
   factory Lookup.fromJson(Map<String, dynamic> json) => _$LookupFromJson(json);
@@ -116,6 +116,16 @@ abstract class LookupList with _$LookupList {
 
   const factory LookupList.grade(
       {@JsonKey(name: 'grades') @required List<String> list}) = Grades;
+  const factory LookupList.classPeriod(
+      {@JsonKey(name: 'classperiodinfo')
+      @required
+          List<ClassPeriodInfo> list}) = ClassPeriodInfoList;
+
+  const factory LookupList.paymentPeriodInfo(
+      {@JsonKey(name: 'paymentperiodinfo')
+      @required
+          List<PaymentPeriodInfo> list}) = PaymentPeriodInfoList;
+  const factory LookupList.empty() = LookupListEmpty;
 
   factory LookupList.fromJson(Map<String, dynamic> json) =>
       _$LookupListFromJson(json);

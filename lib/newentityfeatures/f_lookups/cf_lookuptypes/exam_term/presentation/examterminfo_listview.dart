@@ -9,16 +9,16 @@ import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/exam_term/lis
     as listbloc;
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/exam_term/presentation/exam_term_form.dart';
 
-class ExamTemInfoList extends StatefulWidget {
+class ExamTermInfoListView extends StatefulWidget {
   final String entityid;
   final String entitytype;
-  ExamTemInfoList({this.entitytype, this.entityid});
+  ExamTermInfoListView({this.entitytype, this.entityid});
 
   @override
-  _ExamTemInfoListState createState() => _ExamTemInfoListState();
+  _ExamTermInfoListViewState createState() => _ExamTermInfoListViewState();
 }
 
-class _ExamTemInfoListState extends State<ExamTemInfoList> {
+class _ExamTermInfoListViewState extends State<ExamTermInfoListView> {
   listbloc.ExamTermInfoListBloc mlistbloc;
 
   void initState() {

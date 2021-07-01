@@ -3,7 +3,7 @@ import 'package:complex/common/widgets/custom_drop_down_list.dart';
 import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/data/styles_colors.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';

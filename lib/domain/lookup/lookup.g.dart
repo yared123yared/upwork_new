@@ -110,7 +110,7 @@ _$PeriodInfo _$_$PeriodInfoFromJson(Map<String, dynamic> json) {
     startDate: JsonHelper.fromJsonTimeStamp(json['startdate'] as Timestamp),
     endDate: JsonHelper.fromJsonTimeStamp(json['enddate'] as Timestamp),
     paymentPeriodName: json['paymentperiodname'] as String,
-    numDays: json['numdays'] as String,
+    numDays: json['numdays'] as int,
   );
 }
 
@@ -160,7 +160,7 @@ _$Schedule _$_$ScheduleFromJson(Map<String, dynamic> json) {
   return _$Schedule(
     startTime: JsonHelper.fromJsonTimeStamp(json['starttime'] as Timestamp),
     endTime: JsonHelper.fromJsonTimeStamp(json['endtime'] as Timestamp),
-    classPeriodInfo: json['classperiodinfo'] as String,
+    classPeriodName: json['classperiodname'] as String,
   );
 }
 
@@ -175,7 +175,7 @@ Map<String, dynamic> _$_$ScheduleToJson(_$Schedule instance) {
 
   writeNotNull('starttime', JsonHelper.toJsonTimeStamp(instance.startTime));
   writeNotNull('endtime', JsonHelper.toJsonTimeStamp(instance.endTime));
-  writeNotNull('classperiodinfo', instance.classPeriodInfo);
+  writeNotNull('classperiodname', instance.classPeriodName);
   return val;
 }
 
@@ -302,3 +302,62 @@ Map<String, dynamic> _$_$GradesToJson(_$Grades instance) {
   writeNotNull('grades', instance.list);
   return val;
 }
+
+_$ClassPeriodInfoList _$_$ClassPeriodInfoListFromJson(
+    Map<String, dynamic> json) {
+  return _$ClassPeriodInfoList(
+    list: (json['classperiodinfo'] as List)
+        ?.map((e) => e == null
+            ? null
+            : ClassPeriodInfo.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
+}
+
+Map<String, dynamic> _$_$ClassPeriodInfoListToJson(
+    _$ClassPeriodInfoList instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(
+      'classperiodinfo', instance.list?.map((e) => e?.toJson())?.toList());
+  return val;
+}
+
+_$PaymentPeriodInfoList _$_$PaymentPeriodInfoListFromJson(
+    Map<String, dynamic> json) {
+  return _$PaymentPeriodInfoList(
+    list: (json['paymentperiodinfo'] as List)
+        ?.map((e) => e == null
+            ? null
+            : PaymentPeriodInfo.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
+}
+
+Map<String, dynamic> _$_$PaymentPeriodInfoListToJson(
+    _$PaymentPeriodInfoList instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(
+      'paymentperiodinfo', instance.list?.map((e) => e?.toJson())?.toList());
+  return val;
+}
+
+_$LookupListEmpty _$_$LookupListEmptyFromJson(Map<String, dynamic> json) {
+  return _$LookupListEmpty();
+}
+
+Map<String, dynamic> _$_$LookupListEmptyToJson(_$LookupListEmpty instance) =>
+    <String, dynamic>{};

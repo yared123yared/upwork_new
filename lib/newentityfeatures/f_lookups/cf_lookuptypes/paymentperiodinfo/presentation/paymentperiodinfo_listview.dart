@@ -1,4 +1,5 @@
 import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -6,8 +7,7 @@ import 'package:complex/common/page/common_list_page_copy.dart';
 
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/paymentperiodinfo/listbloc/bloc.dart'
     as listbloc;
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart'
-    as cmodel;
+
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/paymentperiodinfo/presentation/paymentperiodinfo_itemview.dart';
 
 class PaymentPeriodInfoList extends StatefulWidget {
@@ -22,10 +22,12 @@ class PaymentPeriodInfoList extends StatefulWidget {
 class _PaymentPeriodInfoListState extends State<PaymentPeriodInfoList> {
   listbloc.PaymentPeriodInfoListBloc mlistbloc;
 
+  @override
   void initState() {
     mlistbloc = listbloc.PaymentPeriodInfoListBloc();
-    mlistbloc.add(listbloc.getListData(
+    mlistbloc.add(listbloc.GetListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
+    super.initState();
   }
 
   @override
@@ -37,7 +39,7 @@ class _PaymentPeriodInfoListState extends State<PaymentPeriodInfoList> {
 
   void doreload(bool reloadtype) {
     if (reloadtype) {
-      mlistbloc.add(listbloc.getListData(
+      mlistbloc.add(listbloc.GetListData(
           entitytype: widget.entitytype, entityid: widget.entityid));
     }
   }
@@ -58,7 +60,7 @@ class _PaymentPeriodInfoListState extends State<PaymentPeriodInfoList> {
   }
 
   List<ListStateClass> toCommonListState(
-      List<cmodel.PaymentPeriodInfo> listItems, BuildContext context) {
+      List<PaymentPeriodInfo> listItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
@@ -79,7 +81,7 @@ class _PaymentPeriodInfoListState extends State<PaymentPeriodInfoList> {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
             BlocProvider.of<listbloc.PaymentPeriodInfoListBloc>(context).add(
-                listbloc.deleteItemWithData(
+                listbloc.DeleteItemWithData(
                     entitytype: widget.entitytype,
                     entityid: widget.entitytype,
                     item: listItems[index]));
@@ -153,7 +155,7 @@ class _PaymentPeriodInfoListState extends State<PaymentPeriodInfoList> {
             }
 
             if (state is listbloc.IsListDataLoaded) {
-              List<cmodel.PaymentPeriodInfo> em = state.listdata;
+              List<PaymentPeriodInfo> em = state.listdata;
               return _blocBuilder(context, em);
             }
             return Center(child: Text('Empty'));
@@ -168,7 +170,7 @@ class _PaymentPeriodInfoListState extends State<PaymentPeriodInfoList> {
     );
   }
 
-  Widget _blocBuilder(context, List<cmodel.PaymentPeriodInfo> em) {
+  Widget _blocBuilder(context, List<PaymentPeriodInfo> em) {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [

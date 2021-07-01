@@ -1,8 +1,8 @@
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
 import 'package:complex/common/presentation.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/paymentperiodinfo/itembloc/bloc.dart'
     as itembloc;
@@ -111,7 +111,7 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
         _sessionName.text = widget.paymentPeriodInfo.sessionName;
         _groupName.text = widget.paymentPeriodInfo.grpName;
         _frozen = widget.paymentPeriodInfo.isfrozen;
-        ;
+
         _numperiods.text = widget.paymentPeriodInfo.numperiods.toString();
       });
     }
@@ -122,7 +122,7 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
   void initState() {
     super.initState();
     mbloc = itembloc.PaymentPeriodInfoBloc();
-    mbloc.add(itembloc.getForNewEntry(
+    mbloc.add(itembloc.GetForNewEntry(
         entitytype: widget.entitytype, entityid: widget.entityid));
     _initFiledValue();
   }
@@ -221,7 +221,7 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
           },
         ),
         // ExpansionList(),
-        for (var i = 0; i < periodInfoList.length; i++) buildPeriodInfoInput(i),
+        // for (var i = 0; i < periodInfoList.length; i++) buildPeriodInfoInput(i),
         ListTile(
           title: Text("Add Peroid"),
           trailing: Icon(Icons.add),
@@ -243,13 +243,13 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
                 periodInfo: periodInfoList,
               );
               if (edit) {
-                mbloc.add(itembloc.updateItemWithDiff(
+                mbloc.add(itembloc.UpdateItemWithDiff(
                     newitem: _paymentPeriodInfo,
                     olditem: widget.paymentPeriodInfo,
                     entityid: widget.entityid,
                     entitytype: widget.entitytype));
               } else {
-                mbloc.add(itembloc.createItem(
+                mbloc.add(itembloc.CreateItem(
                     item: _paymentPeriodInfo,
                     entityid: widget.entityid,
                     entitytype: widget.entitytype));
@@ -261,62 +261,62 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
     );
   }
 
-  ExpansionTile buildPeriodInfoInput(int i) {
-    return ExpansionTile(
-      initiallyExpanded: true,
-      title: Text("Period $i"),
-      trailing: IconButton(
-        icon: Icon(Icons.close),
-        onPressed: () => delet(i),
-      ),
-      maintainState: true,
-      children: [
-        CustomTextField(
-          enabled: editable,
-          initialValue: periodInfoList[i].paymentPeriodName,
-          title: "Payment Period Name",
-          onChange: (text) => periodInfoList[i].paymentPeriodName = text,
-          controller: controllers[i * 2],
-          validate: Validate.withOption(
-            isRequired: true,
-          ),
-        ),
-        newentitytimepicker.CustomDateTimePicker(
-          controller: _startDateController,
-          enabled: editable,
-          dateTime: periodInfoList[i].startDate,
-          title: 'Start Date',
-          mode: DateTimeMode.DATE,
-          onChange: (x) => periodInfoList[i].startDate = x,
-        ),
-        newentitytimepicker.CustomDateTimePicker(
-          controller: _endDateController,
-          enabled: editable,
-          dateTime: periodInfoList[i].endDate,
-          title: 'End Date',
-          mode: DateTimeMode.DATE,
-          onChange: (x) => periodInfoList[i].endDate = x,
-        ),
-        newentitytimepicker.CustomDateTimePicker(
-          controller: _dueDateController,
-          enabled: editable,
-          dateTime: periodInfoList[i].dueDate,
-          title: 'Due Date',
-          mode: DateTimeMode.DATE,
-          onChange: (x) => periodInfoList[i].dueDate = x,
-        ),
-        CustomTextField(
-          enabled: editable,
-          title: "Number Of Days",
-          initialValue: periodInfoList[i].numDays.toString(),
-          onChange: (text) => periodInfoList[i].numDays = int.tryParse(text),
-          controller: controllers[i * 2 + 1],
-          validate: Validate.withOption(
-            isRequired: true,
-            isNumber: true,
-          ),
-        ),
-      ],
-    );
-  }
+  // ExpansionTile buildPeriodInfoInput(int i) {
+  //   return ExpansionTile(
+  //     initiallyExpanded: true,
+  //     title: Text("Period $i"),
+  //     trailing: IconButton(
+  //       icon: Icon(Icons.close),
+  //       onPressed: () => delet(i),
+  //     ),
+  //     maintainState: true,
+  //     children: [
+  //       CustomTextField(
+  //         enabled: editable,
+  //         initialValue: periodInfoList[i].paymentPeriodName,
+  //         title: "Payment Period Name",
+  //         onChange: (text) => periodInfoList[i].paymentPeriodName = text,
+  //         controller: controllers[i * 2],
+  //         validate: Validate.withOption(
+  //           isRequired: true,
+  //         ),
+  //       ),
+  //       newentitytimepicker.CustomDateTimePicker(
+  //         controller: _startDateController,
+  //         enabled: editable,
+  //         dateTime: periodInfoList[i].startDate,
+  //         title: 'Start Date',
+  //         mode: DateTimeMode.DATE,
+  //         onChange: (x) => periodInfoList[i].startDate = x,
+  //       ),
+  //       newentitytimepicker.CustomDateTimePicker(
+  //         controller: _endDateController,
+  //         enabled: editable,
+  //         dateTime: periodInfoList[i].endDate,
+  //         title: 'End Date',
+  //         mode: DateTimeMode.DATE,
+  //         onChange: (x) => periodInfoList[i].endDate = x,
+  //       ),
+  //       newentitytimepicker.CustomDateTimePicker(
+  //         controller: _dueDateController,
+  //         enabled: editable,
+  //         dateTime: periodInfoList[i].dueDate,
+  //         title: 'Due Date',
+  //         mode: DateTimeMode.DATE,
+  //         onChange: (x) => periodInfoList[i].dueDate = x,
+  //       ),
+  //       CustomTextField(
+  //         enabled: editable,
+  //         title: "Number Of Days",
+  //         initialValue: periodInfoList[i].numDays.toString(),
+  //         onChange: (text) => periodInfoList[i].numDays = int.tryParse(text),
+  //         controller: controllers[i * 2 + 1],
+  //         validate: Validate.withOption(
+  //           isRequired: true,
+  //           isNumber: true,
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 }

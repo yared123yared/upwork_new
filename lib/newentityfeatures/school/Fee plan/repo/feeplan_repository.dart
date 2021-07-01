@@ -1,6 +1,6 @@
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/gateway/fee_plans_gateway.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';

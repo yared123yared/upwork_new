@@ -1,8 +1,8 @@
 import 'package:complex/common/helputil.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
@@ -326,7 +326,7 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
       child: Column(
         children: [
           // for (var i = 0; i < periodInfoList.length; i++)
-          buildPeriodInfoInput(numberPeriod),
+          // buildPeriodInfoInput(numberPeriod),
           CustomActionButton(
             state: ButtonState.idle,
             title: timelineIndex != numPeriods
@@ -400,60 +400,60 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
     );
   }
 
-  Widget buildPeriodInfoInput(int i) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: width * 6),
-      child: Column(
-        children: [
-          CustomTextField(
-            enabled: editable,
-            initialValue: periodInfoList[i].paymentPeriodName,
-            title: "Payment Period Name",
-            onChange: (text) => periodInfoList[i].paymentPeriodName = text,
-            // controller: controllers[i * 2],
-            controller: controllers[i][0],
-            validate: Validate.withOption(
-              isRequired: true,
-            ),
-          ),
-          CustomDateTimePicker(
-            controller: _startDateController,
-            enabled: editable,
-            dateTime: periodInfoList[i].startDate,
-            title: 'Start Date',
-            mode: DateTimeMode.DATE,
-            onChange: (x) => periodInfoList[i].startDate = x,
-          ),
-          CustomDateTimePicker(
-            controller: _endDateController,
-            enabled: editable,
-            dateTime: periodInfoList[i].endDate,
-            title: 'End Date',
-            mode: DateTimeMode.DATE,
-            onChange: (x) => periodInfoList[i].endDate = x,
-          ),
-          CustomDateTimePicker(
-            controller: _dueDateController,
-            enabled: editable,
-            dateTime: periodInfoList[i].dueDate,
-            title: 'Due Date',
-            mode: DateTimeMode.DATE,
-            onChange: (x) => periodInfoList[i].dueDate = x,
-          ),
-          CustomTextField(
-            enabled: editable,
-            title: "Number Of Days",
-            initialValue: periodInfoList[i].numDays.toString(),
-            onChange: (text) => periodInfoList[i].numDays = int.tryParse(text),
-            // controller: controllers[i * 2 + 1],
-            controller: controllers[i][1],
-            validate: Validate.withOption(
-              isRequired: true,
-              isNumber: true,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget buildPeriodInfoInput(int i) {
+  //   return SingleChildScrollView(
+  //     padding: EdgeInsets.symmetric(horizontal: width * 6),
+  //     child: Column(
+  //       children: [
+  //         CustomTextField(
+  //           enabled: editable,
+  //           initialValue: periodInfoList[i].paymentPeriodName,
+  //           title: "Payment Period Name",
+  //           onChange: (text) => periodInfoList[i].paymentPeriodName = text,
+  //           // controller: controllers[i * 2],
+  //           controller: controllers[i][0],
+  //           validate: Validate.withOption(
+  //             isRequired: true,
+  //           ),
+  //         ),
+  //         CustomDateTimePicker(
+  //           controller: _startDateController,
+  //           enabled: editable,
+  //           dateTime: periodInfoList[i].startDate,
+  //           title: 'Start Date',
+  //           mode: DateTimeMode.DATE,
+  //           onChange: (x) => periodInfoList[i].startDate = x,
+  //         ),
+  //         CustomDateTimePicker(
+  //           controller: _endDateController,
+  //           enabled: editable,
+  //           dateTime: periodInfoList[i].endDate,
+  //           title: 'End Date',
+  //           mode: DateTimeMode.DATE,
+  //           onChange: (x) => periodInfoList[i].endDate = x,
+  //         ),
+  //         CustomDateTimePicker(
+  //           controller: _dueDateController,
+  //           enabled: editable,
+  //           dateTime: periodInfoList[i].dueDate,
+  //           title: 'Due Date',
+  //           mode: DateTimeMode.DATE,
+  //           onChange: (x) => periodInfoList[i].dueDate = x,
+  //         ),
+  //         CustomTextField(
+  //           enabled: editable,
+  //           title: "Number Of Days",
+  //           initialValue: periodInfoList[i].numDays.toString(),
+  //           onChange: (text) => periodInfoList[i].numDays = int.tryParse(text),
+  //           // controller: controllers[i * 2 + 1],
+  //           controller: controllers[i][1],
+  //           validate: Validate.withOption(
+  //             isRequired: true,
+  //             isNumber: true,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

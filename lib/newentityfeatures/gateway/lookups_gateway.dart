@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:complex/newentityfeatures/Models/lookups.dart';
-
 class LookupGateway {
   static Future<List<String>> getFeeItemList(String serviceID) async {
     try {
@@ -248,7 +246,7 @@ class LookupGateway {
         .get()
         .then<List<ClassPeriodInfo>>((x) {
       if (x.data() != null) {
-        return ClassPeriodInfo.listFromData(x.data());
+        return ClassPeriodInfoList.fromJson(x.data()).list;
       } else {
         return [];
       }
@@ -263,7 +261,7 @@ class LookupGateway {
     return await FirebaseFirestore.instance
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
-      'classperiodinfo': classPeriodInfoList.map((e) => e.toData()).toList()
+      'classperiodinfo': classPeriodInfoList.map((e) => e.toJson()).toList()
     });
   }
 
@@ -275,7 +273,7 @@ class LookupGateway {
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
       'classperiodinfo': FieldValue.arrayUnion([
-        classPeriodInfo.toData(),
+        classPeriodInfo.toJson(),
       ])
     });
   }
@@ -288,7 +286,7 @@ class LookupGateway {
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
       'classperiodinfo': FieldValue.arrayUnion([
-        classPeriodInfo.toData(),
+        classPeriodInfo.toJson(),
       ])
     });
   }
@@ -301,7 +299,7 @@ class LookupGateway {
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
       'classperiodinfo': FieldValue.arrayUnion([
-        classPeriodInfo.toData(),
+        classPeriodInfo.toJson(),
       ])
     });
   }
@@ -315,7 +313,7 @@ class LookupGateway {
         .then((x) {
       if (x.data() != null) {
         if (x.data()['paymentperiodinfo'] != null) {
-          return PaymentPeriodInfo.listFromData(x.data()['paymentperiodinfo']);
+          return PaymentPeriodInfoList.fromJson(x.data()).list;
         } else {
           return [];
         }
@@ -331,7 +329,7 @@ class LookupGateway {
     return await FirebaseFirestore.instance
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
-      'paymentperiodinfo': FieldValue.arrayUnion([paymentPeriodInfo.toData()])
+      'paymentperiodinfo': FieldValue.arrayUnion([paymentPeriodInfo.toJson()])
     });
   }
 
@@ -342,7 +340,7 @@ class LookupGateway {
     await FirebaseFirestore.instance
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
-      'paymentperiodinfo': FieldValue.arrayRemove([paymentPeriodInfo.toData()])
+      'paymentperiodinfo': FieldValue.arrayRemove([paymentPeriodInfo.toJson()])
     });
   }
 }

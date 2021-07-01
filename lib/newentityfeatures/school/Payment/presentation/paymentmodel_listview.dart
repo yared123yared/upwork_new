@@ -1,6 +1,7 @@
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
 import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -8,7 +9,6 @@ import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 
 import '../listbloc/bloc.dart' as listbloc;
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import './payment_form.dart';
 
 class PaymentModelListList extends StatefulWidget {

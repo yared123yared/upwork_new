@@ -1,4 +1,5 @@
 import 'package:complex/common/helputil.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 
 import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
@@ -6,7 +7,6 @@ import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';

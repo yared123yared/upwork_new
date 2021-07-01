@@ -108,7 +108,7 @@ class _$LookupTearOff {
           String paymentPeriodName,
       @required
       @JsonKey(name: 'numdays')
-          String numDays}) {
+          int numDays}) {
     return PeriodInfo(
       dueDate: dueDate,
       startDate: startDate,
@@ -137,12 +137,12 @@ class _$LookupTearOff {
       @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endTime,
       @required
-      @JsonKey(name: 'classperiodinfo')
-          String classPeriodInfo}) {
+      @JsonKey(name: 'classperiodname')
+          String classPeriodName}) {
     return Schedule(
       startTime: startTime,
       endTime: endTime,
-      classPeriodInfo: classPeriodInfo,
+      classPeriodName: classPeriodName,
     );
   }
 
@@ -194,7 +194,7 @@ mixin _$Lookup {
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
             @JsonKey(name: 'numdays')
-                String numDays),
+                int numDays),
     @required
         TResult classPeriodInfo(
             @JsonKey(name: 'schedule') List<Schedule> schedule,
@@ -205,8 +205,8 @@ mixin _$Lookup {
                 DateTime startTime,
             @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
-            @JsonKey(name: 'classperiodinfo')
-                String classPeriodInfo),
+            @JsonKey(name: 'classperiodname')
+                String classPeriodName),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -239,7 +239,7 @@ mixin _$Lookup {
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
         @JsonKey(name: 'numdays')
-            String numDays),
+            int numDays),
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
@@ -247,8 +247,8 @@ mixin _$Lookup {
             DateTime startTime,
         @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
-        @JsonKey(name: 'classperiodinfo')
-            String classPeriodInfo),
+        @JsonKey(name: 'classperiodname')
+            String classPeriodName),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -405,7 +405,7 @@ class _$RoomInfo implements RoomInfo {
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
             @JsonKey(name: 'numdays')
-                String numDays),
+                int numDays),
     @required
         TResult classPeriodInfo(
             @JsonKey(name: 'schedule') List<Schedule> schedule,
@@ -416,8 +416,8 @@ class _$RoomInfo implements RoomInfo {
                 DateTime startTime,
             @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
-            @JsonKey(name: 'classperiodinfo')
-                String classPeriodInfo),
+            @JsonKey(name: 'classperiodname')
+                String classPeriodName),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -461,7 +461,7 @@ class _$RoomInfo implements RoomInfo {
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
         @JsonKey(name: 'numdays')
-            String numDays),
+            int numDays),
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
@@ -469,8 +469,8 @@ class _$RoomInfo implements RoomInfo {
             DateTime startTime,
         @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
-        @JsonKey(name: 'classperiodinfo')
-            String classPeriodInfo),
+        @JsonKey(name: 'classperiodname')
+            String classPeriodName),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -661,7 +661,7 @@ class _$ExamTermInfo implements ExamTermInfo {
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
             @JsonKey(name: 'numdays')
-                String numDays),
+                int numDays),
     @required
         TResult classPeriodInfo(
             @JsonKey(name: 'schedule') List<Schedule> schedule,
@@ -672,8 +672,8 @@ class _$ExamTermInfo implements ExamTermInfo {
                 DateTime startTime,
             @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
-            @JsonKey(name: 'classperiodinfo')
-                String classPeriodInfo),
+            @JsonKey(name: 'classperiodname')
+                String classPeriodName),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -717,7 +717,7 @@ class _$ExamTermInfo implements ExamTermInfo {
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
         @JsonKey(name: 'numdays')
-            String numDays),
+            int numDays),
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
@@ -725,8 +725,8 @@ class _$ExamTermInfo implements ExamTermInfo {
             DateTime startTime,
         @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
-        @JsonKey(name: 'classperiodinfo')
-            String classPeriodInfo),
+        @JsonKey(name: 'classperiodname')
+            String classPeriodName),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -959,7 +959,7 @@ class _$SessionTerm implements SessionTerm {
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
             @JsonKey(name: 'numdays')
-                String numDays),
+                int numDays),
     @required
         TResult classPeriodInfo(
             @JsonKey(name: 'schedule') List<Schedule> schedule,
@@ -970,8 +970,8 @@ class _$SessionTerm implements SessionTerm {
                 DateTime startTime,
             @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
-            @JsonKey(name: 'classperiodinfo')
-                String classPeriodInfo),
+            @JsonKey(name: 'classperiodname')
+                String classPeriodName),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1015,7 +1015,7 @@ class _$SessionTerm implements SessionTerm {
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
         @JsonKey(name: 'numdays')
-            String numDays),
+            int numDays),
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
@@ -1023,8 +1023,8 @@ class _$SessionTerm implements SessionTerm {
             DateTime startTime,
         @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
-        @JsonKey(name: 'classperiodinfo')
-            String classPeriodInfo),
+        @JsonKey(name: 'classperiodname')
+            String classPeriodName),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1272,7 +1272,7 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
             @JsonKey(name: 'numdays')
-                String numDays),
+                int numDays),
     @required
         TResult classPeriodInfo(
             @JsonKey(name: 'schedule') List<Schedule> schedule,
@@ -1283,8 +1283,8 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
                 DateTime startTime,
             @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
-            @JsonKey(name: 'classperiodinfo')
-                String classPeriodInfo),
+            @JsonKey(name: 'classperiodname')
+                String classPeriodName),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1329,7 +1329,7 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
         @JsonKey(name: 'numdays')
-            String numDays),
+            int numDays),
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
@@ -1337,8 +1337,8 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
             DateTime startTime,
         @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
-        @JsonKey(name: 'classperiodinfo')
-            String classPeriodInfo),
+        @JsonKey(name: 'classperiodname')
+            String classPeriodName),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1437,7 +1437,7 @@ abstract class $PeriodInfoCopyWith<$Res> {
       @JsonKey(name: 'paymentperiodname')
           String paymentPeriodName,
       @JsonKey(name: 'numdays')
-          String numDays});
+          int numDays});
 }
 
 /// @nodoc
@@ -1465,7 +1465,7 @@ class _$PeriodInfoCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
       paymentPeriodName: paymentPeriodName == freezed
           ? _value.paymentPeriodName
           : paymentPeriodName as String,
-      numDays: numDays == freezed ? _value.numDays : numDays as String,
+      numDays: numDays == freezed ? _value.numDays : numDays as int,
     ));
   }
 }
@@ -1522,7 +1522,7 @@ class _$PeriodInfo implements PeriodInfo {
   final String paymentPeriodName;
   @override
   @JsonKey(name: 'numdays')
-  final String numDays;
+  final int numDays;
 
   @override
   String toString() {
@@ -1600,7 +1600,7 @@ class _$PeriodInfo implements PeriodInfo {
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
             @JsonKey(name: 'numdays')
-                String numDays),
+                int numDays),
     @required
         TResult classPeriodInfo(
             @JsonKey(name: 'schedule') List<Schedule> schedule,
@@ -1611,8 +1611,8 @@ class _$PeriodInfo implements PeriodInfo {
                 DateTime startTime,
             @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
-            @JsonKey(name: 'classperiodinfo')
-                String classPeriodInfo),
+            @JsonKey(name: 'classperiodname')
+                String classPeriodName),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1656,7 +1656,7 @@ class _$PeriodInfo implements PeriodInfo {
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
         @JsonKey(name: 'numdays')
-            String numDays),
+            int numDays),
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
@@ -1664,8 +1664,8 @@ class _$PeriodInfo implements PeriodInfo {
             DateTime startTime,
         @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
-        @JsonKey(name: 'classperiodinfo')
-            String classPeriodInfo),
+        @JsonKey(name: 'classperiodname')
+            String classPeriodName),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1738,7 +1738,7 @@ abstract class PeriodInfo implements Lookup {
           String paymentPeriodName,
       @required
       @JsonKey(name: 'numdays')
-          String numDays}) = _$PeriodInfo;
+          int numDays}) = _$PeriodInfo;
 
   factory PeriodInfo.fromJson(Map<String, dynamic> json) =
       _$PeriodInfo.fromJson;
@@ -1761,7 +1761,7 @@ abstract class PeriodInfo implements Lookup {
   @JsonKey(name: 'paymentperiodname')
   String get paymentPeriodName;
   @JsonKey(name: 'numdays')
-  String get numDays;
+  int get numDays;
   @JsonKey(ignore: true)
   $PeriodInfoCopyWith<PeriodInfo> get copyWith;
 }
@@ -1883,7 +1883,7 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
             @JsonKey(name: 'numdays')
-                String numDays),
+                int numDays),
     @required
         TResult classPeriodInfo(
             @JsonKey(name: 'schedule') List<Schedule> schedule,
@@ -1894,8 +1894,8 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
                 DateTime startTime,
             @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
-            @JsonKey(name: 'classperiodinfo')
-                String classPeriodInfo),
+            @JsonKey(name: 'classperiodname')
+                String classPeriodName),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1939,7 +1939,7 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
         @JsonKey(name: 'numdays')
-            String numDays),
+            int numDays),
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
@@ -1947,8 +1947,8 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
             DateTime startTime,
         @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
-        @JsonKey(name: 'classperiodinfo')
-            String classPeriodInfo),
+        @JsonKey(name: 'classperiodname')
+            String classPeriodName),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2029,8 +2029,8 @@ abstract class $ScheduleCopyWith<$Res> {
           DateTime startTime,
       @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endTime,
-      @JsonKey(name: 'classperiodinfo')
-          String classPeriodInfo});
+      @JsonKey(name: 'classperiodname')
+          String classPeriodName});
 }
 
 /// @nodoc
@@ -2046,15 +2046,15 @@ class _$ScheduleCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
   $Res call({
     Object startTime = freezed,
     Object endTime = freezed,
-    Object classPeriodInfo = freezed,
+    Object classPeriodName = freezed,
   }) {
     return _then(Schedule(
       startTime:
           startTime == freezed ? _value.startTime : startTime as DateTime,
       endTime: endTime == freezed ? _value.endTime : endTime as DateTime,
-      classPeriodInfo: classPeriodInfo == freezed
-          ? _value.classPeriodInfo
-          : classPeriodInfo as String,
+      classPeriodName: classPeriodName == freezed
+          ? _value.classPeriodName
+          : classPeriodName as String,
     ));
   }
 }
@@ -2071,11 +2071,11 @@ class _$Schedule implements Schedule {
       @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.endTime,
       @required
-      @JsonKey(name: 'classperiodinfo')
-          this.classPeriodInfo})
+      @JsonKey(name: 'classperiodname')
+          this.classPeriodName})
       : assert(startTime != null),
         assert(endTime != null),
-        assert(classPeriodInfo != null);
+        assert(classPeriodName != null);
 
   factory _$Schedule.fromJson(Map<String, dynamic> json) =>
       _$_$ScheduleFromJson(json);
@@ -2093,12 +2093,12 @@ class _$Schedule implements Schedule {
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime endTime;
   @override
-  @JsonKey(name: 'classperiodinfo')
-  final String classPeriodInfo;
+  @JsonKey(name: 'classperiodname')
+  final String classPeriodName;
 
   @override
   String toString() {
-    return 'Lookup.schedule(startTime: $startTime, endTime: $endTime, classPeriodInfo: $classPeriodInfo)';
+    return 'Lookup.schedule(startTime: $startTime, endTime: $endTime, classPeriodName: $classPeriodName)';
   }
 
   @override
@@ -2111,9 +2111,9 @@ class _$Schedule implements Schedule {
             (identical(other.endTime, endTime) ||
                 const DeepCollectionEquality()
                     .equals(other.endTime, endTime)) &&
-            (identical(other.classPeriodInfo, classPeriodInfo) ||
+            (identical(other.classPeriodName, classPeriodName) ||
                 const DeepCollectionEquality()
-                    .equals(other.classPeriodInfo, classPeriodInfo)));
+                    .equals(other.classPeriodName, classPeriodName)));
   }
 
   @override
@@ -2121,7 +2121,7 @@ class _$Schedule implements Schedule {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(startTime) ^
       const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(classPeriodInfo);
+      const DeepCollectionEquality().hash(classPeriodName);
 
   @JsonKey(ignore: true)
   @override
@@ -2165,7 +2165,7 @@ class _$Schedule implements Schedule {
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
             @JsonKey(name: 'numdays')
-                String numDays),
+                int numDays),
     @required
         TResult classPeriodInfo(
             @JsonKey(name: 'schedule') List<Schedule> schedule,
@@ -2176,8 +2176,8 @@ class _$Schedule implements Schedule {
                 DateTime startTime,
             @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
-            @JsonKey(name: 'classperiodinfo')
-                String classPeriodInfo),
+            @JsonKey(name: 'classperiodname')
+                String classPeriodName),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -2186,7 +2186,7 @@ class _$Schedule implements Schedule {
     assert(periodInfo != null);
     assert(classPeriodInfo != null);
     assert(schedule != null);
-    return schedule(startTime, endTime, this.classPeriodInfo);
+    return schedule(startTime, endTime, classPeriodName);
   }
 
   @override
@@ -2221,7 +2221,7 @@ class _$Schedule implements Schedule {
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
         @JsonKey(name: 'numdays')
-            String numDays),
+            int numDays),
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
@@ -2229,13 +2229,13 @@ class _$Schedule implements Schedule {
             DateTime startTime,
         @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
-        @JsonKey(name: 'classperiodinfo')
-            String classPeriodInfo),
+        @JsonKey(name: 'classperiodname')
+            String classPeriodName),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (schedule != null) {
-      return schedule(startTime, endTime, this.classPeriodInfo);
+      return schedule(startTime, endTime, classPeriodName);
     }
     return orElse();
   }
@@ -2295,8 +2295,8 @@ abstract class Schedule implements Lookup {
       @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endTime,
       @required
-      @JsonKey(name: 'classperiodinfo')
-          String classPeriodInfo}) = _$Schedule;
+      @JsonKey(name: 'classperiodname')
+          String classPeriodName}) = _$Schedule;
 
   factory Schedule.fromJson(Map<String, dynamic> json) = _$Schedule.fromJson;
 
@@ -2310,8 +2310,8 @@ abstract class Schedule implements Lookup {
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get endTime;
-  @JsonKey(name: 'classperiodinfo')
-  String get classPeriodInfo;
+  @JsonKey(name: 'classperiodname')
+  String get classPeriodName;
   @JsonKey(ignore: true)
   $ScheduleCopyWith<Schedule> get copyWith;
 }
@@ -2330,6 +2330,12 @@ LookupList _$LookupListFromJson(Map<String, dynamic> json) {
       return FeeItems.fromJson(json);
     case 'grade':
       return Grades.fromJson(json);
+    case 'classPeriod':
+      return ClassPeriodInfoList.fromJson(json);
+    case 'paymentPeriodInfo':
+      return PaymentPeriodInfoList.fromJson(json);
+    case 'empty':
+      return LookupListEmpty.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -2387,6 +2393,31 @@ class _$LookupListTearOff {
   }
 
 // ignore: unused_element
+  ClassPeriodInfoList classPeriod(
+      {@required
+      @JsonKey(name: 'classperiodinfo')
+          List<ClassPeriodInfo> list}) {
+    return ClassPeriodInfoList(
+      list: list,
+    );
+  }
+
+// ignore: unused_element
+  PaymentPeriodInfoList paymentPeriodInfo(
+      {@required
+      @JsonKey(name: 'paymentperiodinfo')
+          List<PaymentPeriodInfo> list}) {
+    return PaymentPeriodInfoList(
+      list: list,
+    );
+  }
+
+// ignore: unused_element
+  LookupListEmpty empty() {
+    return const LookupListEmpty();
+  }
+
+// ignore: unused_element
   LookupList fromJson(Map<String, Object> json) {
     return LookupList.fromJson(json);
   }
@@ -2411,6 +2442,13 @@ mixin _$LookupList {
     @required TResult offering(@JsonKey(name: 'subject') List<String> list),
     @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required
+        TResult classPeriod(
+            @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    @required TResult empty(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -2422,6 +2460,11 @@ mixin _$LookupList {
     TResult offering(@JsonKey(name: 'subject') List<String> list),
     TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     TResult grade(@JsonKey(name: 'grades') List<String> list),
+    TResult classPeriod(
+        @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    TResult empty(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -2432,6 +2475,9 @@ mixin _$LookupList {
     @required TResult offering(Offerings value),
     @required TResult feeItem(FeeItems value),
     @required TResult grade(Grades value),
+    @required TResult classPeriod(ClassPeriodInfoList value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    @required TResult empty(LookupListEmpty value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -2441,6 +2487,9 @@ mixin _$LookupList {
     TResult offering(Offerings value),
     TResult feeItem(FeeItems value),
     TResult grade(Grades value),
+    TResult classPeriod(ClassPeriodInfoList value),
+    TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    TResult empty(LookupListEmpty value),
     @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
@@ -2540,6 +2589,13 @@ class _$RoomInfoList implements RoomInfoList {
     @required TResult offering(@JsonKey(name: 'subject') List<String> list),
     @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required
+        TResult classPeriod(
+            @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    @required TResult empty(),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -2547,6 +2603,9 @@ class _$RoomInfoList implements RoomInfoList {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return roomInfoList(list);
   }
 
@@ -2561,6 +2620,11 @@ class _$RoomInfoList implements RoomInfoList {
     TResult offering(@JsonKey(name: 'subject') List<String> list),
     TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     TResult grade(@JsonKey(name: 'grades') List<String> list),
+    TResult classPeriod(
+        @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    TResult empty(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2579,6 +2643,9 @@ class _$RoomInfoList implements RoomInfoList {
     @required TResult offering(Offerings value),
     @required TResult feeItem(FeeItems value),
     @required TResult grade(Grades value),
+    @required TResult classPeriod(ClassPeriodInfoList value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    @required TResult empty(LookupListEmpty value),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -2586,6 +2653,9 @@ class _$RoomInfoList implements RoomInfoList {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return roomInfoList(this);
   }
 
@@ -2598,6 +2668,9 @@ class _$RoomInfoList implements RoomInfoList {
     TResult offering(Offerings value),
     TResult feeItem(FeeItems value),
     TResult grade(Grades value),
+    TResult classPeriod(ClassPeriodInfoList value),
+    TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    TResult empty(LookupListEmpty value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2706,6 +2779,13 @@ class _$ExamTermInfoList implements ExamTermInfoList {
     @required TResult offering(@JsonKey(name: 'subject') List<String> list),
     @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required
+        TResult classPeriod(
+            @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    @required TResult empty(),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -2713,6 +2793,9 @@ class _$ExamTermInfoList implements ExamTermInfoList {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return examTermInfoList(list);
   }
 
@@ -2727,6 +2810,11 @@ class _$ExamTermInfoList implements ExamTermInfoList {
     TResult offering(@JsonKey(name: 'subject') List<String> list),
     TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     TResult grade(@JsonKey(name: 'grades') List<String> list),
+    TResult classPeriod(
+        @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    TResult empty(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2745,6 +2833,9 @@ class _$ExamTermInfoList implements ExamTermInfoList {
     @required TResult offering(Offerings value),
     @required TResult feeItem(FeeItems value),
     @required TResult grade(Grades value),
+    @required TResult classPeriod(ClassPeriodInfoList value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    @required TResult empty(LookupListEmpty value),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -2752,6 +2843,9 @@ class _$ExamTermInfoList implements ExamTermInfoList {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return examTermInfoList(this);
   }
 
@@ -2764,6 +2858,9 @@ class _$ExamTermInfoList implements ExamTermInfoList {
     TResult offering(Offerings value),
     TResult feeItem(FeeItems value),
     TResult grade(Grades value),
+    TResult classPeriod(ClassPeriodInfoList value),
+    TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    TResult empty(LookupListEmpty value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2872,6 +2969,13 @@ class _$SessionTermList implements SessionTermList {
     @required TResult offering(@JsonKey(name: 'subject') List<String> list),
     @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required
+        TResult classPeriod(
+            @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    @required TResult empty(),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -2879,6 +2983,9 @@ class _$SessionTermList implements SessionTermList {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return sessionTermList(list);
   }
 
@@ -2893,6 +3000,11 @@ class _$SessionTermList implements SessionTermList {
     TResult offering(@JsonKey(name: 'subject') List<String> list),
     TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     TResult grade(@JsonKey(name: 'grades') List<String> list),
+    TResult classPeriod(
+        @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    TResult empty(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2911,6 +3023,9 @@ class _$SessionTermList implements SessionTermList {
     @required TResult offering(Offerings value),
     @required TResult feeItem(FeeItems value),
     @required TResult grade(Grades value),
+    @required TResult classPeriod(ClassPeriodInfoList value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    @required TResult empty(LookupListEmpty value),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -2918,6 +3033,9 @@ class _$SessionTermList implements SessionTermList {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return sessionTermList(this);
   }
 
@@ -2930,6 +3048,9 @@ class _$SessionTermList implements SessionTermList {
     TResult offering(Offerings value),
     TResult feeItem(FeeItems value),
     TResult grade(Grades value),
+    TResult classPeriod(ClassPeriodInfoList value),
+    TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    TResult empty(LookupListEmpty value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3035,6 +3156,13 @@ class _$Offerings implements Offerings {
     @required TResult offering(@JsonKey(name: 'subject') List<String> list),
     @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required
+        TResult classPeriod(
+            @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    @required TResult empty(),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -3042,6 +3170,9 @@ class _$Offerings implements Offerings {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return offering(list);
   }
 
@@ -3056,6 +3187,11 @@ class _$Offerings implements Offerings {
     TResult offering(@JsonKey(name: 'subject') List<String> list),
     TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     TResult grade(@JsonKey(name: 'grades') List<String> list),
+    TResult classPeriod(
+        @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    TResult empty(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3074,6 +3210,9 @@ class _$Offerings implements Offerings {
     @required TResult offering(Offerings value),
     @required TResult feeItem(FeeItems value),
     @required TResult grade(Grades value),
+    @required TResult classPeriod(ClassPeriodInfoList value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    @required TResult empty(LookupListEmpty value),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -3081,6 +3220,9 @@ class _$Offerings implements Offerings {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return offering(this);
   }
 
@@ -3093,6 +3235,9 @@ class _$Offerings implements Offerings {
     TResult offering(Offerings value),
     TResult feeItem(FeeItems value),
     TResult grade(Grades value),
+    TResult classPeriod(ClassPeriodInfoList value),
+    TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    TResult empty(LookupListEmpty value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3196,6 +3341,13 @@ class _$FeeItems implements FeeItems {
     @required TResult offering(@JsonKey(name: 'subject') List<String> list),
     @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required
+        TResult classPeriod(
+            @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    @required TResult empty(),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -3203,6 +3355,9 @@ class _$FeeItems implements FeeItems {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return feeItem(list);
   }
 
@@ -3217,6 +3372,11 @@ class _$FeeItems implements FeeItems {
     TResult offering(@JsonKey(name: 'subject') List<String> list),
     TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     TResult grade(@JsonKey(name: 'grades') List<String> list),
+    TResult classPeriod(
+        @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    TResult empty(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3235,6 +3395,9 @@ class _$FeeItems implements FeeItems {
     @required TResult offering(Offerings value),
     @required TResult feeItem(FeeItems value),
     @required TResult grade(Grades value),
+    @required TResult classPeriod(ClassPeriodInfoList value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    @required TResult empty(LookupListEmpty value),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -3242,6 +3405,9 @@ class _$FeeItems implements FeeItems {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return feeItem(this);
   }
 
@@ -3254,6 +3420,9 @@ class _$FeeItems implements FeeItems {
     TResult offering(Offerings value),
     TResult feeItem(FeeItems value),
     TResult grade(Grades value),
+    TResult classPeriod(ClassPeriodInfoList value),
+    TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    TResult empty(LookupListEmpty value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3357,6 +3526,13 @@ class _$Grades implements Grades {
     @required TResult offering(@JsonKey(name: 'subject') List<String> list),
     @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required
+        TResult classPeriod(
+            @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    @required TResult empty(),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -3364,6 +3540,9 @@ class _$Grades implements Grades {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return grade(list);
   }
 
@@ -3378,6 +3557,11 @@ class _$Grades implements Grades {
     TResult offering(@JsonKey(name: 'subject') List<String> list),
     TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
     TResult grade(@JsonKey(name: 'grades') List<String> list),
+    TResult classPeriod(
+        @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    TResult empty(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3396,6 +3580,9 @@ class _$Grades implements Grades {
     @required TResult offering(Offerings value),
     @required TResult feeItem(FeeItems value),
     @required TResult grade(Grades value),
+    @required TResult classPeriod(ClassPeriodInfoList value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    @required TResult empty(LookupListEmpty value),
   }) {
     assert(roomInfoList != null);
     assert(examTermInfoList != null);
@@ -3403,6 +3590,9 @@ class _$Grades implements Grades {
     assert(offering != null);
     assert(feeItem != null);
     assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
     return grade(this);
   }
 
@@ -3415,6 +3605,9 @@ class _$Grades implements Grades {
     TResult offering(Offerings value),
     TResult feeItem(FeeItems value),
     TResult grade(Grades value),
+    TResult classPeriod(ClassPeriodInfoList value),
+    TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    TResult empty(LookupListEmpty value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3440,4 +3633,548 @@ abstract class Grades implements LookupList {
   List<String> get list;
   @JsonKey(ignore: true)
   $GradesCopyWith<Grades> get copyWith;
+}
+
+/// @nodoc
+abstract class $ClassPeriodInfoListCopyWith<$Res> {
+  factory $ClassPeriodInfoListCopyWith(
+          ClassPeriodInfoList value, $Res Function(ClassPeriodInfoList) then) =
+      _$ClassPeriodInfoListCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list});
+}
+
+/// @nodoc
+class _$ClassPeriodInfoListCopyWithImpl<$Res>
+    extends _$LookupListCopyWithImpl<$Res>
+    implements $ClassPeriodInfoListCopyWith<$Res> {
+  _$ClassPeriodInfoListCopyWithImpl(
+      ClassPeriodInfoList _value, $Res Function(ClassPeriodInfoList) _then)
+      : super(_value, (v) => _then(v as ClassPeriodInfoList));
+
+  @override
+  ClassPeriodInfoList get _value => super._value as ClassPeriodInfoList;
+
+  @override
+  $Res call({
+    Object list = freezed,
+  }) {
+    return _then(ClassPeriodInfoList(
+      list: list == freezed ? _value.list : list as List<ClassPeriodInfo>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$ClassPeriodInfoList implements ClassPeriodInfoList {
+  const _$ClassPeriodInfoList(
+      {@required @JsonKey(name: 'classperiodinfo') this.list})
+      : assert(list != null);
+
+  factory _$ClassPeriodInfoList.fromJson(Map<String, dynamic> json) =>
+      _$_$ClassPeriodInfoListFromJson(json);
+
+  @override
+  @JsonKey(name: 'classperiodinfo')
+  final List<ClassPeriodInfo> list;
+
+  @override
+  String toString() {
+    return 'LookupList.classPeriod(list: $list)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ClassPeriodInfoList &&
+            (identical(other.list, list) ||
+                const DeepCollectionEquality().equals(other.list, list)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
+
+  @JsonKey(ignore: true)
+  @override
+  $ClassPeriodInfoListCopyWith<ClassPeriodInfoList> get copyWith =>
+      _$ClassPeriodInfoListCopyWithImpl<ClassPeriodInfoList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    @required
+        TResult examTermInfoList(
+            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    @required
+        TResult sessionTermList(
+            @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    @required TResult offering(@JsonKey(name: 'subject') List<String> list),
+    @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required
+        TResult classPeriod(
+            @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    @required TResult empty(),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
+    return classPeriod(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    TResult examTermInfoList(
+        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    TResult sessionTermList(
+        @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    TResult offering(@JsonKey(name: 'subject') List<String> list),
+    TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    TResult grade(@JsonKey(name: 'grades') List<String> list),
+    TResult classPeriod(
+        @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (classPeriod != null) {
+      return classPeriod(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfoList(RoomInfoList value),
+    @required TResult examTermInfoList(ExamTermInfoList value),
+    @required TResult sessionTermList(SessionTermList value),
+    @required TResult offering(Offerings value),
+    @required TResult feeItem(FeeItems value),
+    @required TResult grade(Grades value),
+    @required TResult classPeriod(ClassPeriodInfoList value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    @required TResult empty(LookupListEmpty value),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
+    return classPeriod(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfoList(RoomInfoList value),
+    TResult examTermInfoList(ExamTermInfoList value),
+    TResult sessionTermList(SessionTermList value),
+    TResult offering(Offerings value),
+    TResult feeItem(FeeItems value),
+    TResult grade(Grades value),
+    TResult classPeriod(ClassPeriodInfoList value),
+    TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    TResult empty(LookupListEmpty value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (classPeriod != null) {
+      return classPeriod(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$ClassPeriodInfoListToJson(this)..['runtimeType'] = 'classPeriod';
+  }
+}
+
+abstract class ClassPeriodInfoList implements LookupList {
+  const factory ClassPeriodInfoList(
+      {@required
+      @JsonKey(name: 'classperiodinfo')
+          List<ClassPeriodInfo> list}) = _$ClassPeriodInfoList;
+
+  factory ClassPeriodInfoList.fromJson(Map<String, dynamic> json) =
+      _$ClassPeriodInfoList.fromJson;
+
+  @JsonKey(name: 'classperiodinfo')
+  List<ClassPeriodInfo> get list;
+  @JsonKey(ignore: true)
+  $ClassPeriodInfoListCopyWith<ClassPeriodInfoList> get copyWith;
+}
+
+/// @nodoc
+abstract class $PaymentPeriodInfoListCopyWith<$Res> {
+  factory $PaymentPeriodInfoListCopyWith(PaymentPeriodInfoList value,
+          $Res Function(PaymentPeriodInfoList) then) =
+      _$PaymentPeriodInfoListCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list});
+}
+
+/// @nodoc
+class _$PaymentPeriodInfoListCopyWithImpl<$Res>
+    extends _$LookupListCopyWithImpl<$Res>
+    implements $PaymentPeriodInfoListCopyWith<$Res> {
+  _$PaymentPeriodInfoListCopyWithImpl(
+      PaymentPeriodInfoList _value, $Res Function(PaymentPeriodInfoList) _then)
+      : super(_value, (v) => _then(v as PaymentPeriodInfoList));
+
+  @override
+  PaymentPeriodInfoList get _value => super._value as PaymentPeriodInfoList;
+
+  @override
+  $Res call({
+    Object list = freezed,
+  }) {
+    return _then(PaymentPeriodInfoList(
+      list: list == freezed ? _value.list : list as List<PaymentPeriodInfo>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$PaymentPeriodInfoList implements PaymentPeriodInfoList {
+  const _$PaymentPeriodInfoList(
+      {@required @JsonKey(name: 'paymentperiodinfo') this.list})
+      : assert(list != null);
+
+  factory _$PaymentPeriodInfoList.fromJson(Map<String, dynamic> json) =>
+      _$_$PaymentPeriodInfoListFromJson(json);
+
+  @override
+  @JsonKey(name: 'paymentperiodinfo')
+  final List<PaymentPeriodInfo> list;
+
+  @override
+  String toString() {
+    return 'LookupList.paymentPeriodInfo(list: $list)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PaymentPeriodInfoList &&
+            (identical(other.list, list) ||
+                const DeepCollectionEquality().equals(other.list, list)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
+
+  @JsonKey(ignore: true)
+  @override
+  $PaymentPeriodInfoListCopyWith<PaymentPeriodInfoList> get copyWith =>
+      _$PaymentPeriodInfoListCopyWithImpl<PaymentPeriodInfoList>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    @required
+        TResult examTermInfoList(
+            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    @required
+        TResult sessionTermList(
+            @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    @required TResult offering(@JsonKey(name: 'subject') List<String> list),
+    @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required
+        TResult classPeriod(
+            @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    @required TResult empty(),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
+    return paymentPeriodInfo(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    TResult examTermInfoList(
+        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    TResult sessionTermList(
+        @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    TResult offering(@JsonKey(name: 'subject') List<String> list),
+    TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    TResult grade(@JsonKey(name: 'grades') List<String> list),
+    TResult classPeriod(
+        @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (paymentPeriodInfo != null) {
+      return paymentPeriodInfo(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfoList(RoomInfoList value),
+    @required TResult examTermInfoList(ExamTermInfoList value),
+    @required TResult sessionTermList(SessionTermList value),
+    @required TResult offering(Offerings value),
+    @required TResult feeItem(FeeItems value),
+    @required TResult grade(Grades value),
+    @required TResult classPeriod(ClassPeriodInfoList value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    @required TResult empty(LookupListEmpty value),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
+    return paymentPeriodInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfoList(RoomInfoList value),
+    TResult examTermInfoList(ExamTermInfoList value),
+    TResult sessionTermList(SessionTermList value),
+    TResult offering(Offerings value),
+    TResult feeItem(FeeItems value),
+    TResult grade(Grades value),
+    TResult classPeriod(ClassPeriodInfoList value),
+    TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    TResult empty(LookupListEmpty value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (paymentPeriodInfo != null) {
+      return paymentPeriodInfo(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$PaymentPeriodInfoListToJson(this)
+      ..['runtimeType'] = 'paymentPeriodInfo';
+  }
+}
+
+abstract class PaymentPeriodInfoList implements LookupList {
+  const factory PaymentPeriodInfoList(
+      {@required
+      @JsonKey(name: 'paymentperiodinfo')
+          List<PaymentPeriodInfo> list}) = _$PaymentPeriodInfoList;
+
+  factory PaymentPeriodInfoList.fromJson(Map<String, dynamic> json) =
+      _$PaymentPeriodInfoList.fromJson;
+
+  @JsonKey(name: 'paymentperiodinfo')
+  List<PaymentPeriodInfo> get list;
+  @JsonKey(ignore: true)
+  $PaymentPeriodInfoListCopyWith<PaymentPeriodInfoList> get copyWith;
+}
+
+/// @nodoc
+abstract class $LookupListEmptyCopyWith<$Res> {
+  factory $LookupListEmptyCopyWith(
+          LookupListEmpty value, $Res Function(LookupListEmpty) then) =
+      _$LookupListEmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LookupListEmptyCopyWithImpl<$Res> extends _$LookupListCopyWithImpl<$Res>
+    implements $LookupListEmptyCopyWith<$Res> {
+  _$LookupListEmptyCopyWithImpl(
+      LookupListEmpty _value, $Res Function(LookupListEmpty) _then)
+      : super(_value, (v) => _then(v as LookupListEmpty));
+
+  @override
+  LookupListEmpty get _value => super._value as LookupListEmpty;
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$LookupListEmpty implements LookupListEmpty {
+  const _$LookupListEmpty();
+
+  factory _$LookupListEmpty.fromJson(Map<String, dynamic> json) =>
+      _$_$LookupListEmptyFromJson(json);
+
+  @override
+  String toString() {
+    return 'LookupList.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LookupListEmpty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    @required
+        TResult examTermInfoList(
+            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    @required
+        TResult sessionTermList(
+            @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    @required TResult offering(@JsonKey(name: 'subject') List<String> list),
+    @required TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    @required TResult grade(@JsonKey(name: 'grades') List<String> list),
+    @required
+        TResult classPeriod(
+            @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    @required TResult empty(),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
+    TResult examTermInfoList(
+        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+    TResult sessionTermList(
+        @JsonKey(name: 'sessionterm') List<SessionTerm> list),
+    TResult offering(@JsonKey(name: 'subject') List<String> list),
+    TResult feeItem(@JsonKey(name: 'feeitemlist') List<String> list),
+    TResult grade(@JsonKey(name: 'grades') List<String> list),
+    TResult classPeriod(
+        @JsonKey(name: 'classperiodinfo') List<ClassPeriodInfo> list),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'paymentperiodinfo') List<PaymentPeriodInfo> list),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfoList(RoomInfoList value),
+    @required TResult examTermInfoList(ExamTermInfoList value),
+    @required TResult sessionTermList(SessionTermList value),
+    @required TResult offering(Offerings value),
+    @required TResult feeItem(FeeItems value),
+    @required TResult grade(Grades value),
+    @required TResult classPeriod(ClassPeriodInfoList value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    @required TResult empty(LookupListEmpty value),
+  }) {
+    assert(roomInfoList != null);
+    assert(examTermInfoList != null);
+    assert(sessionTermList != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    assert(classPeriod != null);
+    assert(paymentPeriodInfo != null);
+    assert(empty != null);
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfoList(RoomInfoList value),
+    TResult examTermInfoList(ExamTermInfoList value),
+    TResult sessionTermList(SessionTermList value),
+    TResult offering(Offerings value),
+    TResult feeItem(FeeItems value),
+    TResult grade(Grades value),
+    TResult classPeriod(ClassPeriodInfoList value),
+    TResult paymentPeriodInfo(PaymentPeriodInfoList value),
+    TResult empty(LookupListEmpty value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LookupListEmptyToJson(this)..['runtimeType'] = 'empty';
+  }
+}
+
+abstract class LookupListEmpty implements LookupList {
+  const factory LookupListEmpty() = _$LookupListEmpty;
+
+  factory LookupListEmpty.fromJson(Map<String, dynamic> json) =
+      _$LookupListEmpty.fromJson;
 }

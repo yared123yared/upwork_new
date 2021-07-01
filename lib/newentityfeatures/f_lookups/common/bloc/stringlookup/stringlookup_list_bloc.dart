@@ -12,13 +12,13 @@ class StringListBloc extends Bloc<StringListEvent, StringListState> {
     if (event is GetListData) {
       yield IsBusy();
 
-      final Either<Failure, List<String>> data =
+      final Either<Failure, FeeItems> data =
           await provider.getFeeItemsList(serviceID: event.entityid);
       // StringRepositoryReturnData ud = await mrepository.getAllStrings(
       //     event.entitytype, event.entityid, event.fieldname);
 
-      yield data.fold(
-          (l) => HasFailure(failure: l), (r) => IsListDataLoaded(listdata: r));
+      yield data.fold((l) => HasFailure(failure: l),
+          (r) => IsListDataLoaded(listdata: r.list));
 
       // if (ud.errortype == -1)
       //   yield IsListDataLoaded(listdata: ud.itemlist);
