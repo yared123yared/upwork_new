@@ -42,10 +42,54 @@ abstract class Lookup with _$Lookup {
         DateTime startDate,
   }) = SessionTerm;
 
-  // const factory Lookup.paymentPeriodInfo() = PaymentPeriodInfo;
-  // const factory Lookup.periodInfo() = PeriodInfo;
-  // const factory Lookup.classPeriodInfo() = ClassPeriodInfo;
-  // const factory Lookup.schedule() = Schedule;
+  const factory Lookup.paymentPeriodInfo({
+    @JsonKey(name: 'grpname') @required String grpName,
+    @JsonKey(name: 'periodinfo') @required List<PeriodInfo> periodInfo,
+    @JsonKey(name: 'sessionname') @required String sessionName,
+    @JsonKey(name: 'isfrozen') @required bool isfrozen,
+    @JsonKey(name: 'numperiods') @required int numperiods,
+  }) = PaymentPeriodInfo;
+  const factory Lookup.periodInfo({
+    @JsonKey(
+        name: "duedate",
+        fromJson: JsonHelper.fromJsonTimeStamp,
+        toJson: JsonHelper.toJsonTimeStamp)
+    @required
+        DateTime dueDate,
+    @JsonKey(
+        name: "startdate",
+        fromJson: JsonHelper.fromJsonTimeStamp,
+        toJson: JsonHelper.toJsonTimeStamp)
+    @required
+        DateTime startDate,
+    @JsonKey(
+        name: "enddate",
+        fromJson: JsonHelper.fromJsonTimeStamp,
+        toJson: JsonHelper.toJsonTimeStamp)
+    @required
+        DateTime endDate,
+    @JsonKey(name: 'paymentperiodname') @required String paymentPeriodName,
+    @JsonKey(name: 'numdays') @required String numDays,
+  }) = PeriodInfo;
+  const factory Lookup.classPeriodInfo({
+    @JsonKey(name: 'schedule') @required List<Schedule> schedule,
+    @JsonKey(name: 'type') @required String type,
+  }) = ClassPeriodInfo;
+  const factory Lookup.schedule({
+    @JsonKey(
+        name: "starttime",
+        fromJson: JsonHelper.fromJsonTimeStamp,
+        toJson: JsonHelper.toJsonTimeStamp)
+    @required
+        DateTime startTime,
+    @JsonKey(
+        name: "endtime",
+        fromJson: JsonHelper.fromJsonTimeStamp,
+        toJson: JsonHelper.toJsonTimeStamp)
+    @required
+        DateTime endTime,
+    @JsonKey(name: 'classperiodinfo') @required String classPeriodInfo,
+  }) = Schedule;
 
   factory Lookup.fromJson(Map<String, dynamic> json) => _$LookupFromJson(json);
 }
@@ -65,7 +109,7 @@ abstract class LookupList with _$LookupList {
       SessionTermList;
 
   const factory LookupList.offering(
-      {@JsonKey(name: 'offerings') @required List<String> list}) = Offerings;
+      {@JsonKey(name: 'subject') @required List<String> list}) = Offerings;
 
   const factory LookupList.feeItem(
       {@JsonKey(name: 'feeitemlist') @required List<String> list}) = FeeItems;

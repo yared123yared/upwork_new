@@ -73,6 +73,112 @@ Map<String, dynamic> _$_$SessionTermToJson(_$SessionTerm instance) {
   return val;
 }
 
+_$PaymentPeriodInfo _$_$PaymentPeriodInfoFromJson(Map<String, dynamic> json) {
+  return _$PaymentPeriodInfo(
+    grpName: json['grpname'] as String,
+    periodInfo: (json['periodinfo'] as List)
+        ?.map((e) =>
+            e == null ? null : PeriodInfo.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    sessionName: json['sessionname'] as String,
+    isfrozen: json['isfrozen'] as bool,
+    numperiods: json['numperiods'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$PaymentPeriodInfoToJson(_$PaymentPeriodInfo instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('grpname', instance.grpName);
+  writeNotNull(
+      'periodinfo', instance.periodInfo?.map((e) => e?.toJson())?.toList());
+  writeNotNull('sessionname', instance.sessionName);
+  writeNotNull('isfrozen', instance.isfrozen);
+  writeNotNull('numperiods', instance.numperiods);
+  return val;
+}
+
+_$PeriodInfo _$_$PeriodInfoFromJson(Map<String, dynamic> json) {
+  return _$PeriodInfo(
+    dueDate: JsonHelper.fromJsonTimeStamp(json['duedate'] as Timestamp),
+    startDate: JsonHelper.fromJsonTimeStamp(json['startdate'] as Timestamp),
+    endDate: JsonHelper.fromJsonTimeStamp(json['enddate'] as Timestamp),
+    paymentPeriodName: json['paymentperiodname'] as String,
+    numDays: json['numdays'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$PeriodInfoToJson(_$PeriodInfo instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('duedate', JsonHelper.toJsonTimeStamp(instance.dueDate));
+  writeNotNull('startdate', JsonHelper.toJsonTimeStamp(instance.startDate));
+  writeNotNull('enddate', JsonHelper.toJsonTimeStamp(instance.endDate));
+  writeNotNull('paymentperiodname', instance.paymentPeriodName);
+  writeNotNull('numdays', instance.numDays);
+  return val;
+}
+
+_$ClassPeriodInfo _$_$ClassPeriodInfoFromJson(Map<String, dynamic> json) {
+  return _$ClassPeriodInfo(
+    schedule: (json['schedule'] as List)
+        ?.map((e) =>
+            e == null ? null : Schedule.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    type: json['type'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$ClassPeriodInfoToJson(_$ClassPeriodInfo instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(
+      'schedule', instance.schedule?.map((e) => e?.toJson())?.toList());
+  writeNotNull('type', instance.type);
+  return val;
+}
+
+_$Schedule _$_$ScheduleFromJson(Map<String, dynamic> json) {
+  return _$Schedule(
+    startTime: JsonHelper.fromJsonTimeStamp(json['starttime'] as Timestamp),
+    endTime: JsonHelper.fromJsonTimeStamp(json['endtime'] as Timestamp),
+    classPeriodInfo: json['classperiodinfo'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$ScheduleToJson(_$Schedule instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('starttime', JsonHelper.toJsonTimeStamp(instance.startTime));
+  writeNotNull('endtime', JsonHelper.toJsonTimeStamp(instance.endTime));
+  writeNotNull('classperiodinfo', instance.classPeriodInfo);
+  return val;
+}
+
 _$RoomInfoList _$_$RoomInfoListFromJson(Map<String, dynamic> json) {
   return _$RoomInfoList(
     list: (json['roominfo'] as List)
@@ -142,7 +248,7 @@ Map<String, dynamic> _$_$SessionTermListToJson(_$SessionTermList instance) {
 
 _$Offerings _$_$OfferingsFromJson(Map<String, dynamic> json) {
   return _$Offerings(
-    list: (json['offerings'] as List)?.map((e) => e as String)?.toList(),
+    list: (json['subject'] as List)?.map((e) => e as String)?.toList(),
   );
 }
 
@@ -155,7 +261,7 @@ Map<String, dynamic> _$_$OfferingsToJson(_$Offerings instance) {
     }
   }
 
-  writeNotNull('offerings', instance.list);
+  writeNotNull('subject', instance.list);
   return val;
 }
 
