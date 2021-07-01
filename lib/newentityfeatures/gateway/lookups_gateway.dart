@@ -12,7 +12,7 @@ class LookupGateway {
           .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
           .get()
           .then((x) {
-        List<String> _feeItems = List<String>();
+        List<String> _feeItems = [];
         if (x.data() != null) {
           if (x.data()['feeitemlist'] != null) {
             _feeItems = List.from(x.data()['feeitemlist']);
@@ -35,7 +35,7 @@ class LookupGateway {
           .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
           .get()
           .then((x) {
-        List<String> _grades = List<String>();
+        List<String> _grades = [];
         if (x.data() != null) {
           if (x.data()['grades'] != null) {
             _grades = List.from(x.data()['grades']);
@@ -69,7 +69,7 @@ class LookupGateway {
           .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
           .get()
           .then((x) {
-        List<String> _subject = List<String>();
+        List<String> _subject = [];
         if (x.data() != null) {
           if (x.data()['subject'] != null) {
             _subject = List.from(x.data()['subject']);

@@ -14,16 +14,26 @@ class _$FailureTearOff {
   const _$FailureTearOff();
 
 // ignore: unused_element
-  LogicalFailure logical(String error) {
+  LogicalFailure logical(
+      {@required String returnType,
+      @required String path,
+      @required String error}) {
     return LogicalFailure(
-      error,
+      returnType: returnType,
+      path: path,
+      error: error,
     );
   }
 
 // ignore: unused_element
-  ExceptionFailure exception(String error) {
+  ExceptionFailure exception(
+      {@required String returnType,
+      @required String path,
+      @required String error}) {
     return ExceptionFailure(
-      error,
+      returnType: returnType,
+      path: path,
+      error: error,
     );
   }
 }
@@ -34,17 +44,19 @@ const $Failure = _$FailureTearOff();
 
 /// @nodoc
 mixin _$Failure {
+  String get returnType;
+  String get path;
   String get error;
 
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult logical(String error),
-    @required TResult exception(String error),
+    @required TResult logical(String returnType, String path, String error),
+    @required TResult exception(String returnType, String path, String error),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult logical(String error),
-    TResult exception(String error),
+    TResult logical(String returnType, String path, String error),
+    TResult exception(String returnType, String path, String error),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -67,7 +79,7 @@ mixin _$Failure {
 abstract class $FailureCopyWith<$Res> {
   factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
       _$FailureCopyWithImpl<$Res>;
-  $Res call({String error});
+  $Res call({String returnType, String path, String error});
 }
 
 /// @nodoc
@@ -80,9 +92,14 @@ class _$FailureCopyWithImpl<$Res> implements $FailureCopyWith<$Res> {
 
   @override
   $Res call({
+    Object returnType = freezed,
+    Object path = freezed,
     Object error = freezed,
   }) {
     return _then(_value.copyWith(
+      returnType:
+          returnType == freezed ? _value.returnType : returnType as String,
+      path: path == freezed ? _value.path : path as String,
       error: error == freezed ? _value.error : error as String,
     ));
   }
@@ -94,7 +111,7 @@ abstract class $LogicalFailureCopyWith<$Res> implements $FailureCopyWith<$Res> {
           LogicalFailure value, $Res Function(LogicalFailure) then) =
       _$LogicalFailureCopyWithImpl<$Res>;
   @override
-  $Res call({String error});
+  $Res call({String returnType, String path, String error});
 }
 
 /// @nodoc
@@ -109,37 +126,58 @@ class _$LogicalFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object returnType = freezed,
+    Object path = freezed,
     Object error = freezed,
   }) {
     return _then(LogicalFailure(
-      error == freezed ? _value.error : error as String,
+      returnType:
+          returnType == freezed ? _value.returnType : returnType as String,
+      path: path == freezed ? _value.path : path as String,
+      error: error == freezed ? _value.error : error as String,
     ));
   }
 }
 
 /// @nodoc
 class _$LogicalFailure implements LogicalFailure {
-  const _$LogicalFailure(this.error) : assert(error != null);
+  const _$LogicalFailure(
+      {@required this.returnType, @required this.path, @required this.error})
+      : assert(returnType != null),
+        assert(path != null),
+        assert(error != null);
 
+  @override
+  final String returnType;
+  @override
+  final String path;
   @override
   final String error;
 
   @override
   String toString() {
-    return 'Failure.logical(error: $error)';
+    return 'Failure.logical(returnType: $returnType, path: $path, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is LogicalFailure &&
+            (identical(other.returnType, returnType) ||
+                const DeepCollectionEquality()
+                    .equals(other.returnType, returnType)) &&
+            (identical(other.path, path) ||
+                const DeepCollectionEquality().equals(other.path, path)) &&
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(returnType) ^
+      const DeepCollectionEquality().hash(path) ^
+      const DeepCollectionEquality().hash(error);
 
   @JsonKey(ignore: true)
   @override
@@ -149,24 +187,24 @@ class _$LogicalFailure implements LogicalFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult logical(String error),
-    @required TResult exception(String error),
+    @required TResult logical(String returnType, String path, String error),
+    @required TResult exception(String returnType, String path, String error),
   }) {
     assert(logical != null);
     assert(exception != null);
-    return logical(error);
+    return logical(returnType, path, error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult logical(String error),
-    TResult exception(String error),
+    TResult logical(String returnType, String path, String error),
+    TResult exception(String returnType, String path, String error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (logical != null) {
-      return logical(error);
+      return logical(returnType, path, error);
     }
     return orElse();
   }
@@ -198,8 +236,15 @@ class _$LogicalFailure implements LogicalFailure {
 }
 
 abstract class LogicalFailure implements Failure {
-  const factory LogicalFailure(String error) = _$LogicalFailure;
+  const factory LogicalFailure(
+      {@required String returnType,
+      @required String path,
+      @required String error}) = _$LogicalFailure;
 
+  @override
+  String get returnType;
+  @override
+  String get path;
   @override
   String get error;
   @override
@@ -214,7 +259,7 @@ abstract class $ExceptionFailureCopyWith<$Res>
           ExceptionFailure value, $Res Function(ExceptionFailure) then) =
       _$ExceptionFailureCopyWithImpl<$Res>;
   @override
-  $Res call({String error});
+  $Res call({String returnType, String path, String error});
 }
 
 /// @nodoc
@@ -229,37 +274,58 @@ class _$ExceptionFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object returnType = freezed,
+    Object path = freezed,
     Object error = freezed,
   }) {
     return _then(ExceptionFailure(
-      error == freezed ? _value.error : error as String,
+      returnType:
+          returnType == freezed ? _value.returnType : returnType as String,
+      path: path == freezed ? _value.path : path as String,
+      error: error == freezed ? _value.error : error as String,
     ));
   }
 }
 
 /// @nodoc
 class _$ExceptionFailure implements ExceptionFailure {
-  const _$ExceptionFailure(this.error) : assert(error != null);
+  const _$ExceptionFailure(
+      {@required this.returnType, @required this.path, @required this.error})
+      : assert(returnType != null),
+        assert(path != null),
+        assert(error != null);
 
+  @override
+  final String returnType;
+  @override
+  final String path;
   @override
   final String error;
 
   @override
   String toString() {
-    return 'Failure.exception(error: $error)';
+    return 'Failure.exception(returnType: $returnType, path: $path, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ExceptionFailure &&
+            (identical(other.returnType, returnType) ||
+                const DeepCollectionEquality()
+                    .equals(other.returnType, returnType)) &&
+            (identical(other.path, path) ||
+                const DeepCollectionEquality().equals(other.path, path)) &&
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(returnType) ^
+      const DeepCollectionEquality().hash(path) ^
+      const DeepCollectionEquality().hash(error);
 
   @JsonKey(ignore: true)
   @override
@@ -269,24 +335,24 @@ class _$ExceptionFailure implements ExceptionFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult logical(String error),
-    @required TResult exception(String error),
+    @required TResult logical(String returnType, String path, String error),
+    @required TResult exception(String returnType, String path, String error),
   }) {
     assert(logical != null);
     assert(exception != null);
-    return exception(error);
+    return exception(returnType, path, error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult logical(String error),
-    TResult exception(String error),
+    TResult logical(String returnType, String path, String error),
+    TResult exception(String returnType, String path, String error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (exception != null) {
-      return exception(error);
+      return exception(returnType, path, error);
     }
     return orElse();
   }
@@ -318,8 +384,15 @@ class _$ExceptionFailure implements ExceptionFailure {
 }
 
 abstract class ExceptionFailure implements Failure {
-  const factory ExceptionFailure(String error) = _$ExceptionFailure;
+  const factory ExceptionFailure(
+      {@required String returnType,
+      @required String path,
+      @required String error}) = _$ExceptionFailure;
 
+  @override
+  String get returnType;
+  @override
+  String get path;
   @override
   String get error;
   @override
