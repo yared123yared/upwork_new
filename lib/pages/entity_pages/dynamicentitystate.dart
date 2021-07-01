@@ -22,6 +22,7 @@ import 'package:complex/newentityfeatures/ecommerce-admin/views/delivery/deliver
 import 'package:complex/newentityfeatures/ecommerce-admin/views/orders/orders_view.dart';
 import 'package:complex/newentityfeatures/ecommerce-admin/views/trip/trips_view.dart';
 import 'package:complex/newentityfeatures/ecommerce-admin/views/vendor/vendor_view.dart';
+import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
 import 'package:complex/newentityfeatures/school/Class%20period/presentation/classperiodmodel_listview.dart';
 import 'package:complex/newentityfeatures/school/Create%20assignment%20form/presentation/createassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Event/presentation/event_page.dart';
@@ -660,10 +661,11 @@ class UiEntityPageStateList {
       // ],
       aptPanel: [],
       setupPanel: fillSetupPanelService(),
-      feesPaymentPanel: [],
+      feesPaymentPanel: fillFeePaymentPanel(),
       academicManagerPanel: fillAcademicsManagerPanel(),
       academicPanel: fillAcademicsPanel(),
       ecomPanel: fillEcomPanel(),
+
       //aptPanel: UiSchoolPageStateList.fillAptPanel(),
       tripManagerpanel: fillTripManagerPanel(),
       tripuserpanel: fillTripUserPanel(),
@@ -741,6 +743,21 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'SessionTerm',
             tapAction: () {});
+        break;
+      case DynamicEntityGridState.FeeItem:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Fee Item',
+            tapAction: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (buildContext) => FeeItemFormList(
+                      entitytype: getCurEntity().entitytype,
+                      entityid: getCurEntity().entityid,
+                    ),
+                  ));
+            });
         break;
       case DynamicEntityGridState.Rooms:
         _customGrid = CustomGridClass(
@@ -1540,6 +1557,22 @@ class UiSchoolHandler {
                   context,
                   MaterialPageRoute(
                     builder: (buildContext) => PaymentModelListList(
+                      entitytype: getCurEntity().entitytype,
+                      entityid: getCurEntity().entityid,
+                    ),
+                  ));
+            });
+        break;
+
+      case DynamicEntityGridState.FeeItem:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Fee Item',
+            tapAction: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (buildContext) => FeeItemFormList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
                     ),
