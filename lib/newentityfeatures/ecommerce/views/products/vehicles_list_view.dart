@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 
 import '../../widgets/product/products_search.dart';
 import '../filters/products_filter.dart';
-import '../cart/cart_view.dart';
 
 class VehiclesListView extends StatefulWidget {
   const VehiclesListView({Key key}) : super(key: key);

@@ -1,12 +1,8 @@
-import 'dart:convert';
-
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/Models/building_model.dart';
-import 'package:complex/newentityfeatures/gateway/vr_assignment_gateway.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
@@ -18,7 +14,6 @@ import 'package:complex/data/models/response/user_response/user_model.dart';
 
 // import '../model/unit_model.dart';
 import 'package:complex/newentityfeatures/Models/unit_model.dart';
-
 
 class UnitModelRepositoryReturnData {
   List<UnitModel> itemlist;

@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/data/models/response/user_response/service_model.dart';
 
-import 'package:complex/data/models/response/user_response/user_model.dart';
-import 'package:complex/data/models/response/user_response/user_model.dart';
 import 'package:complex/data/models/response/user_response/user_service.dart';
 import 'package:complex/newentityfeatures/Models/complexmodel.dart';
 

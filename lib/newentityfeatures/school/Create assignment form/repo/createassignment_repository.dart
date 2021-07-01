@@ -1,21 +1,15 @@
-import 'dart:convert';
-
 import 'package:complex/common/model/button_state.dart';
 
 import 'package:complex/newentityfeatures/gateway/assignment_gateway.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../itembloc/bloc.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/Models/assignment_model.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
-import 'package:complex/newentityfeatures/gateway/vr_assignment_gateway.dart';
 import '../presentation/create_assignment_form.dart';
 
 class CreateAssignmentRepositoryReturnData {

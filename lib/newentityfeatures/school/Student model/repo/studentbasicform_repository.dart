@@ -1,23 +1,16 @@
-import 'dart:convert';
-
 import 'package:complex/common/helputil.dart';
 import 'package:complex/common/model/place.dart';
 import 'package:complex/data/models/request/auth_request/signup_request.dart';
 import 'package:complex/data/models/response/general_response.dart';
 
-import 'package:complex/newentityfeatures/Models/user_reg_fee_collection.dart';
-import 'package:complex/newentityfeatures/Models/user_reg_payment_date.dart';
-import 'package:complex/newentityfeatures/Models/user_session_registration.dart';
 import 'package:complex/newentityfeatures/gateway/user_registration_gateway.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/Models/user_registration_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
-import 'package:complex/newentityfeatures/gateway/vr_assignment_gateway.dart';
 
 class StudentBasicFormModelRepositoryReturnData {
   List<UserRegistrationModel> itemlist;

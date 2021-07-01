@@ -5,9 +5,7 @@ import 'package:complex/newentityfeatures/Models/user_session_registration.dart'
 
 import 'package:equatable/equatable.dart';
 
-import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:complex/newentityfeatures/Models/user_registration_model.dart';
 import 'package:flutter/foundation.dart';
 import '../repo/sessionregistration_repository.dart';
 

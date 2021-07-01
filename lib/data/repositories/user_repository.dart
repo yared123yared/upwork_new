@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
-import 'package:complex/data/models/response/generic_response.dart';
-import 'package:complex/data/models/response/user_response/complex_model.dart';
 import 'package:complex/data/models/response/user_response/user_alerts.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
@@ -15,15 +13,12 @@ UserModel _user;
 class UserRepository {
   ServiceRepository serviceRepository;
 
-
   UserRepository({this.serviceRepository});
 
   ComplexRepository getComplexRepository() {
-
-    ComplexRepository complexRepository  =  Injector.appInstance.get<ComplexRepository>();
-
-
-}
+    ComplexRepository complexRepository =
+        Injector.appInstance.get<ComplexRepository>();
+  }
 
   Map<String, String> getComplexEntityNamesFromUser() {
     return _user.complexNames;

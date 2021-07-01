@@ -1,13 +1,8 @@
-import 'package:complex/common/Colors/colors.dart';
-
 import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
-import 'package:complex/common/widgets/custom_text_field.dart';
-import 'package:get/get.dart';
 
 import '../listbloc/bloc.dart' as listbloc;
 // import '../model/service_request_model.dart' as cmodel;

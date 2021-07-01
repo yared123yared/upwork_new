@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:complex/data/models/response/user_response/user_complex.dart';
-import 'package:complex/data/models/response/user_response/user_model.dart';
 import 'package:complex/data/models/response/user_response/user_service.dart';
 import 'package:meta/meta.dart';
 
@@ -11,6 +10,7 @@ import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/qrcode_model.dart';
 import 'package:complex/common/helputil.dart';
 import 'package:complex/newentityfeatures/Models/family_member.dart';
+
 class ComplexGateway {
   static Future<ComplexModel> getComplex({
     @required UserComplex complex,
@@ -77,13 +77,11 @@ class ComplexGateway {
         'buildingtype': complexModel.buildingType,
         'deviceallocated': complexModel.deviceAllowed,
         'hassecurity': complexModel.hasSecurity,
-        'startdate':
-            HelpUtil.toTimeStamp(dateTime: complexModel.startDate),
+        'startdate': HelpUtil.toTimeStamp(dateTime: complexModel.startDate),
         'enddate': HelpUtil.toTimeStamp(dateTime: complexModel.endDate),
         'isactive': complexModel.isActive,
         'createdby': complexModel.createdBy,
-        'createddatetime':
-        HelpUtil.toTimeStamp(dateTime: DateTime.now()),
+        'createddatetime': HelpUtil.toTimeStamp(dateTime: DateTime.now()),
         //'serversidetimestamp':FieldValue.serverTimestamp(),
       },
       'entitytype': "COMPLEXES",
@@ -124,11 +122,11 @@ class ComplexGateway {
     return docIDList;
   }
 
-  static Future<void> addFamilyMember({
-    @required FamilyMember member,
-    @required bool giveAccess,
-    @required String entitytype ,String entityid
-  }) async {
+  static Future<void> addFamilyMember(
+      {@required FamilyMember member,
+      @required bool giveAccess,
+      @required String entitytype,
+      String entityid}) async {
     // ShareSubscriptionForResidentUnitRequest
     final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
       'ShareSubscriptionForResidentUnitRequestModified',
@@ -156,7 +154,8 @@ class ComplexGateway {
   }
 
   static Future<List<FamilyMember>> getFamilyMembersList({
-    @required String entitytype ,String entityid,
+    @required String entitytype,
+    String entityid,
     @required List<String> units,
     @required String userId,
   }) async {
@@ -167,8 +166,6 @@ class ComplexGateway {
         .then((value) {
       return value.docs.map((e) => FamilyMember.fromJson(e.data())).toList();
     });
-
-
   }
 }
 

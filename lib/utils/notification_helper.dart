@@ -5,7 +5,7 @@ import 'package:complex/blocs/channels_bloc.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/main.dart';
-import 'package:complex/pages/chat_pages/channel_list_page.dart';
+import 'package:complex/view/chat_pages/channel_list_page.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

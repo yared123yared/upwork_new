@@ -1,10 +1,5 @@
-import 'dart:convert';
-
 import 'package:complex/newentityfeatures/trips/repository/repo/vehicle_repository.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
 import 'package:complex/newentityfeatures/trips/model/models/vehicle_model.dart';
 
 class VehicleRegistrationRepositoryReturnData {
@@ -21,7 +16,6 @@ class VehicleRegistrationRepositoryReturnData {
 }
 
 class VehicleRegistrationRepository {
-
   Future<VehicleRegistrationRepositoryReturnData> getAllVehicleRegistrations(
       String entitytype, String entityid) async {
     VehicleRegistrationRepositoryReturnData myreturn =

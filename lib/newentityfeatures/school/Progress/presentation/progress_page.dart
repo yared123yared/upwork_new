@@ -9,7 +9,6 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
-import "package:asuka/asuka.dart" as asuka;
 
 import '../bloc/bloc.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';

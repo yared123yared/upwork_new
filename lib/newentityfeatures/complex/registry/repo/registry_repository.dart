@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 // import 'package:complex/newentityfeatures/complex/repository/gateway/registry_gateway.dart';
 // import 'package:complex/newentityfeatures/complex/repository/gateway/resident_gateway.dart';
 import 'package:complex/data/repositories/user_repository.dart';
@@ -129,18 +127,23 @@ class RegistryModelRepository {
     registryList?.forEach((registry) {
       if (registry.buildingName == buildingName &&
           registry.floorNum == floorNum) {
-        if (originType == 1) { // managerregistryMultiOwner
+        if (originType == 1) {
+          // managerregistryMultiOwner
           newRegistryList.add(registry);
-        } else if (originType == 2) { // managerregistrySingleOwner
+        } else if (originType == 2) {
+          // managerregistrySingleOwner
           newRegistryList.add(registry);
-        } else if (originType == 3) { // newownerresidentregistry
-          if (registry?.ownerUserId == _user.userID || registry?.residentUserId  == _user.userID) {
+        } else if (originType == 3) {
+          // newownerresidentregistry
+          if (registry?.ownerUserId == _user.userID ||
+              registry?.residentUserId == _user.userID) {
             newRegistryList.add(registry);
           }
           if (registry?.ownerUserId == _user.userID) {
             isOwner = true;
           }
-        } else if (originType == 4) { // registrylist
+        } else if (originType == 4) {
+          // registrylist
           if (registry?.ownerUserId == _user.userID) {
             newRegistryList.add(registry);
           }

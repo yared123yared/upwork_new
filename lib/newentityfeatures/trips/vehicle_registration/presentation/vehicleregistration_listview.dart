@@ -1,4 +1,3 @@
-import 'package:complex/common/Colors/colors.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
 import "package:asuka/asuka.dart" as asuka;
@@ -7,12 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
-import 'package:provider/provider.dart';
-import 'package:get/get.dart';
 
-import '../itembloc/bloc.dart' as itembloc;
 import '../listbloc/bloc.dart' as listbloc;
-import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import './vehicle_registration_form.dart';
 import 'package:complex/newentityfeatures/trips/model/models/vehicle_model.dart';
 
@@ -26,7 +21,8 @@ class VehicleRegistrationListList extends StatefulWidget {
       _VehicleRegistrationListListState();
 }
 
-class _VehicleRegistrationListListState extends State<VehicleRegistrationListList> {
+class _VehicleRegistrationListListState
+    extends State<VehicleRegistrationListList> {
   listbloc.VehicleRegistrationListBloc mlistbloc;
   CustomTextFieldController _grade = CustomTextFieldController();
   CustomTextFieldController _sessionterm = CustomTextFieldController();
@@ -147,7 +143,8 @@ class _VehicleRegistrationListListState extends State<VehicleRegistrationListLis
             centerTitle: true,
           ),
           body: BlocListener<listbloc.VehicleRegistrationListBloc,
-              listbloc.VehicleRegistrationListState>(listener: (context, state) {
+                  listbloc.VehicleRegistrationListState>(
+              listener: (context, state) {
             if (state is listbloc.IsDeleted) {
               asuka.showSnackBar(SnackBar(
                 content: Text("Item is deleted"),
@@ -168,7 +165,8 @@ class _VehicleRegistrationListListState extends State<VehicleRegistrationListLis
               });
             }
           }, child: BlocBuilder<listbloc.VehicleRegistrationListBloc,
-              listbloc.VehicleRegistrationListState>(builder: (context, state) {
+                      listbloc.VehicleRegistrationListState>(
+                  builder: (context, state) {
             if (state is listbloc.IsBusy)
               return Center(
                 child: Container(

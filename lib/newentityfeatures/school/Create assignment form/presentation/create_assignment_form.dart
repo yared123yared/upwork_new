@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
@@ -15,12 +14,9 @@ import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
 import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/newentityfeatures/Models/assignment_model.dart';
-import 'package:complex/common/widgets/date_time_picker_newentity.dart'
-    as newentitytimepicker;
 
 import '../itembloc/bloc.dart';
 
-import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 
 enum DynamicSchoolListState {
@@ -629,7 +625,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
   Widget screen2(context) {
     return StatefulBuilder(
       builder: (context, setInnerState) {
-        String _current_qyuestionType = current_qyuestionType;
+        String CurrentQyuestionType = current_qyuestionType;
         return Container(
           margin: EdgeInsets.symmetric(horizontal: width * 6),
           child: Column(
@@ -681,7 +677,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
                                   ),
                                   child: DropdownButton<String>(
                                     underline: Container(),
-                                    value: _current_qyuestionType,
+                                    value: CurrentQyuestionType,
                                     icon: Icon(
                                       Icons.more_horiz,
                                       color: Colors.black,
@@ -694,7 +690,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
                                     onChanged: (String newValue) {
                                       setState(() {
                                         current_qyuestionType = newValue;
-                                        _current_qyuestionType = newValue;
+                                        CurrentQyuestionType = newValue;
                                         _choice1.text = '';
                                         _choice2.text = '';
                                         _choice3.text = '';
@@ -729,7 +725,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
                           // validate: Validate.withOption(isRequired: true),
                           // ),
                           ///this will shown to the student to answer
-                          if (_current_qyuestionType == 'Long')
+                          if (CurrentQyuestionType == 'Long')
                             CustomTextField(
                               title: "Question Answer",
                               controller: _uploadSolution,
@@ -749,7 +745,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
                           //   ),
                           ///just un show the choices when its not required but
                           ///keep it on the try so we can initialize its value
-                          if (_current_qyuestionType == "Multi") ...[
+                          if (CurrentQyuestionType == "Multi") ...[
                             CheckboxListTile(
                               value: chice1Val,
                               onChanged: (value) =>
@@ -840,7 +836,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
                         _choice4?.text
                       ]..removeWhere((element) => element == null),
                       score: int.tryParse(_questionScore.text),
-                      answers: _current_qyuestionType == "Long"
+                      answers: CurrentQyuestionType == "Long"
                           ? [_uploadSolution.text]
                           : [
                               if (chice1Val) _choice1.text,
@@ -851,7 +847,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
                         ..removeWhere(
                           (element) => element == null || element == '',
                         ),
-                      questionType: _current_qyuestionType,
+                      questionType: CurrentQyuestionType,
                       difficultyType: 0,
                     );
                     setState(() {

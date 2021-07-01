@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/product/products_search.dart';
-import '../cart/cart_view.dart';
 
 class JobsListView extends StatefulWidget {
   const JobsListView({Key key}) : super(key: key);

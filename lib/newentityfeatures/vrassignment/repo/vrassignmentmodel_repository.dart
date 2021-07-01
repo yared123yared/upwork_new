@@ -1,17 +1,11 @@
-import 'dart:convert';
-
-import 'package:complex/newentityfeatures/Models/assignment_model.dart';
 import 'package:complex/newentityfeatures/Models/lookups.dart';
-import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/gateway/vr_assignment_gateway.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart'
     as asmyvr;
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 class VrAssignmentModelRepositoryReturnData {

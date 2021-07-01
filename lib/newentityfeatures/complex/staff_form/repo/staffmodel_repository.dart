@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
@@ -7,9 +5,7 @@ import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
 // import 'package:complex/newentityfeatures/complex/repository/repo/user_repository.dart';
 
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';

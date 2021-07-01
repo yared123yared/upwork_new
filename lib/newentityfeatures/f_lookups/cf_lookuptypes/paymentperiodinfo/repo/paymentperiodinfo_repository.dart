@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
 
 class PaymentPeriodInfoRepositoryReturnData {
@@ -9,34 +7,29 @@ class PaymentPeriodInfoRepositoryReturnData {
   int errortype;
   String error;
   List<String> sessionterms;
-	PaymentPeriodInfoRepositoryReturnData()
-	{
-		errortype=2;
-		error="Not Implemented";
-	}
-
+  PaymentPeriodInfoRepositoryReturnData() {
+    errortype = 2;
+    error = "Not Implemented";
+  }
 }
 
 class PaymentPeriodInfoRepository {
   Future<PaymentPeriodInfoRepositoryReturnData> getAllPaymentPeriodInfos(
       String entitytype, String entityid) async {
-	
-	PaymentPeriodInfoRepositoryReturnData myreturn = PaymentPeriodInfoRepositoryReturnData();
-	//Please put your code here
+    PaymentPeriodInfoRepositoryReturnData myreturn =
+        PaymentPeriodInfoRepositoryReturnData();
+    //Please put your code here
 
-	return myreturn;
-  
-  
+    return myreturn;
   }
-
-
 
   Future<PaymentPeriodInfoRepositoryReturnData> createPaymentPeriodInfo(
       PaymentPeriodInfo item, String entitytype, String entityid) async {
-	PaymentPeriodInfoRepositoryReturnData myreturn = PaymentPeriodInfoRepositoryReturnData();
-	//Please put your code here
-    
-	return myreturn;
+    PaymentPeriodInfoRepositoryReturnData myreturn =
+        PaymentPeriodInfoRepositoryReturnData();
+    //Please put your code here
+
+    return myreturn;
   }
 
   Future<PaymentPeriodInfoRepositoryReturnData> updatePaymentPeriodInfo(
@@ -45,22 +38,24 @@ class PaymentPeriodInfoRepository {
   }
 
   Future<PaymentPeriodInfoRepositoryReturnData> updatePaymentPeriodInfoWithDiff(
-      PaymentPeriodInfo newitem,PaymentPeriodInfo olditem, String entitytype, String entityid) async {
+      PaymentPeriodInfo newitem,
+      PaymentPeriodInfo olditem,
+      String entitytype,
+      String entityid) async {
     return null;
   }
-
 
   Future<PaymentPeriodInfoRepositoryReturnData> deletePaymentPeriodInfoWithData(
       PaymentPeriodInfo item, String entitytype, String entityid) async {
     return null;
   }
-  
-    Future<PaymentPeriodInfoRepositoryReturnData> getInitialData(
-       String entitytype, String entityid) async {
-	  
-	  PaymentPeriodInfoRepositoryReturnData myreturn = PaymentPeriodInfoRepositoryReturnData();
-	  myreturn.errortype=-1;
-	//Please put your code here
+
+  Future<PaymentPeriodInfoRepositoryReturnData> getInitialData(
+      String entitytype, String entityid) async {
+    PaymentPeriodInfoRepositoryReturnData myreturn =
+        PaymentPeriodInfoRepositoryReturnData();
+    myreturn.errortype = -1;
+    //Please put your code here
     return myreturn;
   }
 }

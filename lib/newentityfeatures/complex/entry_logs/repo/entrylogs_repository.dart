@@ -1,16 +1,12 @@
-import 'dart:convert';
-
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:complex/newentityfeatures/Models/qrcode_model.dart';
 import 'package:complex/newentityfeatures/Models/entry_logs_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 
 // import 'package:complex/newentityfeatures/Models/user_model.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
 // import 'package:complex/newentityfeatures/complex/repository/repo/user_repository.dart';
-
 
 import 'package:get/get.dart';
 
@@ -72,19 +68,17 @@ class EntryLogsRepository {
 
   Future<EntryLogsEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    EntryLogsEntryData grerror =
-        new EntryLogsEntryData();
+    EntryLogsEntryData grerror = new EntryLogsEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
       bool haveAccess = true;
       String userId = _user.userID;
-      EntryLogsEntryData gr =
-          new EntryLogsEntryData();
+      EntryLogsEntryData gr = new EntryLogsEntryData();
 
-          gr.userId = userId;
-          gr.haveAccess = haveAccess;
+      gr.userId = userId;
+      gr.haveAccess = haveAccess;
       gr.errortype = -1;
       return gr;
     } catch (ex) {}

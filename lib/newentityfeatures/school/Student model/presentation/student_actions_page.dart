@@ -3,7 +3,6 @@ import 'package:complex/newentityfeatures/Models/user_registration_model.dart';
 import 'package:complex/newentityfeatures/school/FeePayment/presentation/feepayment_listview.dart';
 import 'package:complex/newentityfeatures/school/Session%20registration/presentation/session_registration_form.dart';
 import 'package:flutter/material.dart';
-import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/helputil.dart' hide DateTimeMode;
 
 import 'student_basic_form.dart';

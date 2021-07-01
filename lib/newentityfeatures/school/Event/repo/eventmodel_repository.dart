@@ -1,13 +1,8 @@
-import 'dart:convert';
-
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
-import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
-import 'package:complex/newentityfeatures/commonrepo/user_session_reg_repository.dart';
 import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import '../bloc/bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';

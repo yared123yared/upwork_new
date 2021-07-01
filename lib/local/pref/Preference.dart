@@ -18,7 +18,7 @@ class Preference {
   static const IS_PROFILE_VERIFIED = "IS_PROFILE_VERIFIED";
   static const IS_WALK_THROUGH_COMPLETE = "IS_WALK_THROUGH_COMPLETE";
   static const IS_PROFILE_FIRST_VIST = "IS_PROFILE_FIRST_VIST";
-  static String ADDRESS = "address";
+  static const String ADDRESS = "address";
 
   static getInstance() {
     if (_prefHelper == null) _prefHelper = new Preference();

@@ -1,17 +1,7 @@
-import 'dart:convert';
-
 import 'package:complex/newentityfeatures/trips/model/models/route_trip.dart';
-import 'package:complex/newentityfeatures/trips/model/models/routes.dart';
-import 'package:complex/newentityfeatures/trips/repository/repo/route_repository.dart';
 import 'package:complex/newentityfeatures/trips/repository/repo/route_trip_repository.dart';
 import 'package:complex/newentityfeatures/trips/repository/repo/trip_cuts_repository.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
-import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
 import 'package:complex/newentityfeatures/trips/model/models/trip_cut.dart';
 
 class TripCutRepositoryReturnData {

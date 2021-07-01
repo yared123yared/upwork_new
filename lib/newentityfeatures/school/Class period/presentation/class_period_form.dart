@@ -1,7 +1,5 @@
 import 'package:complex/common/helputil.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
-import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
-import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,9 +12,6 @@ import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/helputil.dart' hide DateTimeMode;
 
 import '../itembloc/bloc.dart' as itembloc;
-import '../listbloc/bloc.dart' as listbloc;
-import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
-import 'package:complex/newentityfeatures/Models/offering_model.dart';
 
 class ClassPeriodModelForm extends StatefulWidget {
   final ClassPeriodInfo classPeriodInfo;

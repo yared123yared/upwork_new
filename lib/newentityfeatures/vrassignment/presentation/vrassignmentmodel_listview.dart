@@ -1,34 +1,27 @@
-import 'package:complex/common/Colors/colors.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 
 import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
-import 'package:get/get.dart';
 
-import 'package:complex/newentityfeatures/vrassignment/listbloc/bloc.dart' as listbloc;
-import 'package:complex/newentityfeatures/Models/vrassignment_model.dart' as cmodel;
-import 'package:complex/newentityfeatures/vrassignment/presentation/attach_assignment_form.dart' ;
-
-
-
+import 'package:complex/newentityfeatures/vrassignment/listbloc/bloc.dart'
+    as listbloc;
+import 'package:complex/newentityfeatures/Models/vrassignment_model.dart'
+    as cmodel;
+import 'package:complex/newentityfeatures/vrassignment/presentation/attach_assignment_form.dart';
 
 class AttachAssignmentListList extends StatefulWidget {
-  final String entityid ;
-  final String entitytype ;
-  AttachAssignmentListList({this.entitytype,this.entityid});
+  final String entityid;
+  final String entitytype;
+  AttachAssignmentListList({this.entitytype, this.entityid});
 
   @override
-  _AttachAssignmentListListState createState() => _AttachAssignmentListListState();
+  _AttachAssignmentListListState createState() =>
+      _AttachAssignmentListListState();
 }
-
-
-
-
 
 class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
   listbloc.VrAssignmentModelListBloc mlistbloc;
@@ -36,19 +29,16 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
   CustomTextFieldController _sessionterm = CustomTextFieldController();
   CustomTextFieldController _offering = CustomTextFieldController();
 
-
-
   List<String> gradelist;
   List<String> sessionterm;
   Future<List<String>> offeringgrouplist;
   List<cmodel.VrAssignmentModel> em;
-  Future<List<String>> Function(String,String) offeringModelGroupfunc;
+  Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-
     mlistbloc = new listbloc.VrAssignmentModelListBloc();
-    mlistbloc.add(listbloc.getPreData(entitytype:widget.entitytype,entityid:widget.entityid));
+    mlistbloc.add(listbloc.getPreData(
+        entitytype: widget.entitytype, entityid: widget.entityid));
   }
-
 
   @override
   void dispose() {
@@ -57,32 +47,30 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
     super.dispose();
   }
 
-  void doreload(bool reloadtype)
-  {
-    if(reloadtype)
-    {
-      mlistbloc.add(listbloc.getListData(entitytype:widget.entitytype,entityid:widget.entityid));
+  void doreload(bool reloadtype) {
+    if (reloadtype) {
+      mlistbloc.add(listbloc.getListData(
+          entitytype: widget.entitytype, entityid: widget.entityid));
     }
   }
 
   VoidCallback addButtonActions({
     @required BuildContext context,
-
   }) {
-
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder:(context) =>   AttachedAssignmentForm(vrAssignmentModel: null,entitytype: widget.entitytype,entityid: widget.entityid,givenreloadaction:doreload),
+        builder: (context) => AttachedAssignmentForm(
+            vrAssignmentModel: null,
+            entitytype: widget.entitytype,
+            entityid: widget.entityid,
+            givenreloadaction: doreload),
       ),
     );
   }
 
-
-  List<ListStateClass> toCommonListState(List<cmodel.VrAssignmentModel> listItems,
-      BuildContext context)
-  {
-
+  List<ListStateClass> toCommonListState(
+      List<cmodel.VrAssignmentModel> listItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
@@ -92,28 +80,29 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder:(context) =>   AttachedAssignmentForm(vrAssignmentModel: item,entitytype: widget.entitytype,entityid: widget.entityid,givenreloadaction:doreload),
+              builder: (context) => AttachedAssignmentForm(
+                  vrAssignmentModel: item,
+                  entitytype: widget.entitytype,
+                  entityid: widget.entityid,
+                  givenreloadaction: doreload),
             ),
           );
         },
-        deleteAction: () async{
+        deleteAction: () async {
           bool docancel = await _asyncConfirmDialog(context);
-          if (docancel)
-          {
-            BlocProvider.of<listbloc.VrAssignmentModelListBloc>(context).add(listbloc. deleteItemWithData(entitytype:widget.entitytype,entityid:widget.entitytype,item:listItems[index]));
+          if (docancel) {
+            BlocProvider.of<listbloc.VrAssignmentModelListBloc>(context).add(
+                listbloc.deleteItemWithData(
+                    entitytype: widget.entitytype,
+                    entityid: widget.entitytype,
+                    item: listItems[index]));
           }
-
-
         },
-
-
       ));
     });
 
     return _dynamicList;
   }
-
-
 
   Future<bool> _asyncConfirmDialog(BuildContext context) async {
     return showDialog(
@@ -122,8 +111,7 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Delete Item Confirmation ?'),
-          content: const Text(
-              'This will delete the data.'),
+          content: const Text('This will delete the data.'),
           actions: [
             TextButton(
               child: const Text('CANCEL'),
@@ -143,8 +131,6 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
@@ -154,77 +140,59 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
             title: Text("Attach Assignment List"),
             centerTitle: true,
           ),
-          body:BlocListener<listbloc.VrAssignmentModelListBloc,listbloc.VrAssignmentModelListState>(
-              listener: (context, state) {
+          body: BlocListener<listbloc.VrAssignmentModelListBloc,
+              listbloc.VrAssignmentModelListState>(listener: (context, state) {
+            if (state is listbloc.IsDeleted) {
+              asuka.showSnackBar(SnackBar(
+                content: Text("Item is deleted"),
+              ));
+              doreload(true);
+            }
 
-                if (state is listbloc.IsDeleted) {
-                  asuka.showSnackBar(SnackBar(
-                    content: Text("Item is deleted"),
-                  ));
-                  doreload(true);
-                }
+            if (state is listbloc.IsSearchParaLoaded) {
+              setState(() {
+                gradelist = state.gradelist;
+                sessionterm = state.sessiontermlist;
+                offeringModelGroupfunc = state.offeringModelGroupfunc;
+              });
+            }
+            if (state is listbloc.IsListDataLoaded) {
+              setState(() {
+                em = state.listdata;
+              });
+            }
+          }, child: BlocBuilder<listbloc.VrAssignmentModelListBloc,
+              listbloc.VrAssignmentModelListState>(builder: (context, state) {
+            if (state is listbloc.IsBusy)
+              return Center(
+                child: Container(
+                    width: 20, height: 20, child: CircularProgressIndicator()),
+              );
+            if (state is listbloc.HasLogicalFaliur)
+              return Center(child: Text(state.error));
+            if (state is listbloc.HasExceptionFaliur)
+              return Center(child: Text(state.error));
+            if (state is listbloc.HasExceptionFaliur)
+              return Center(child: Text(state.error));
+            if (state is listbloc.IsDeleted) {
+              return Center(child: Text("Deleted item"));
+            }
+            if (state is listbloc.IsSearchParaLoaded) {
+              return _blocBuilder(context);
+            }
 
-
-                if (state is listbloc.IsSearchParaLoaded) {
-                  setState(()
-                  {
-                    gradelist = state.gradelist;
-                    sessionterm=state.sessiontermlist;
-                    offeringModelGroupfunc=state.offeringModelGroupfunc;
-                  });
-                }
-                if (state is listbloc.IsListDataLoaded) {
-                  setState(()
-                  {
-                    em= state.listdata;
-
-                  });
-                }
-
-
-              },
-              child:BlocBuilder<listbloc.VrAssignmentModelListBloc,listbloc.VrAssignmentModelListState>(builder: (context, state) {
-                if (state is listbloc.IsBusy)
-                  return Center(
-                    child: Container(
-                        width: 20, height: 20, child: CircularProgressIndicator()),
-                  );
-                if (state is listbloc.HasLogicalFaliur)
-                  return Center(child: Text(state.error));
-                if (state is listbloc.HasExceptionFaliur)
-                  return Center(child: Text(state.error));
-                if (state is listbloc.HasExceptionFaliur)
-                  return Center(child: Text(state.error));
-                if (state is listbloc.IsDeleted) {
-                  return Center(child: Text("Deleted item"));
-                }
-                if (state is listbloc.IsSearchParaLoaded) {
-
-
-                  return _blocBuilder(context);
-                }
-
-                if (state is listbloc.IsListDataLoaded) {
-
-
-                  return _blocBuilder(context);
-                }
-                return Center(child: Text('Empty'));
-              }
-              )
-          ),
-          floatingActionButton:  FloatingActionButton.extended(
-            onPressed:    () async{
-
-              addButtonActions(context:context);
-
+            if (state is listbloc.IsListDataLoaded) {
+              return _blocBuilder(context);
+            }
+            return Center(child: Text('Empty'));
+          })),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () async {
+              addButtonActions(context: context);
             },
-
             icon: Icon(Icons.add),
             label: Text("Add New"),
-          )
-
-      ),
+          )),
     );
   }
 
@@ -233,14 +201,12 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
       shrinkWrap: true,
       slivers: [
         SliverToBoxAdapter(
-
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: ExpansionTile(
               title: Text("Select Parameters To Search"),
               children: [
                 CustomDropDownList<String>(
-
                   loadData: () async => sessionterm,
                   shouldReload: true,
                   displayName: (x) => x,
@@ -248,45 +214,38 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
                   title: "SessionTerm",
                 ),
                 CustomDropDownList<String>(
-
                   loadData: () async => gradelist,
                   shouldReload: true,
                   displayName: (x) => x,
                   controller: _grade,
                   title: "Select Grade",
-                  onSelected: (item, index) => setState(()
-                  {
-                    offeringgrouplist = offeringModelGroupfunc(item,widget.entityid);
-
-
-
+                  onSelected: (item, index) => setState(() {
+                    offeringgrouplist =
+                        offeringModelGroupfunc(item, widget.entityid);
                   }),
                 ),
                 CustomDropDownList<String>(
-
-                  loadData: () async => offeringgrouplist==null?[]:offeringgrouplist,
-                  shouldReload: true,
-                  displayName: (x) => x,
-                  controller: _offering,
-                  title: "Select Offering Group",
-                  onSelected: (item, index) {
-                    if(item!=null && item.length >0 )
-                    { setState(()
-                    {
-                    mlistbloc.add(listbloc.getListDataWithSearchParameter(
-                    entitytype: widget.entitytype,
-                    entityid: widget.entityid,offeringmodelgroupname: item,sessionterm:_sessionterm.text));
-                    });
-                    }
-  }
-                ),
-
-
+                    loadData: () async =>
+                        offeringgrouplist == null ? [] : offeringgrouplist,
+                    shouldReload: true,
+                    displayName: (x) => x,
+                    controller: _offering,
+                    title: "Select Offering Group",
+                    onSelected: (item, index) {
+                      if (item != null && item.length > 0) {
+                        setState(() {
+                          mlistbloc.add(listbloc.getListDataWithSearchParameter(
+                              entitytype: widget.entitytype,
+                              entityid: widget.entityid,
+                              offeringmodelgroupname: item,
+                              sessionterm: _sessionterm.text));
+                        });
+                      }
+                    }),
               ],
             ),
           ),
         ),
-
         SliverToBoxAdapter(
             child: CommonListPage(
                 canSearch: false,
@@ -298,12 +257,5 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
     );
   }
 
-
-  void OnSelectedAction(String item, int index)
-  {
-
-  }
-
-
-
+  void OnSelectedAction(String item, int index) {}
 }
