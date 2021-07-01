@@ -83,9 +83,10 @@ class UserRepository {
       _user.defaultServiceModel =
           await serviceRepository.getService(_user.defaultServiceEntity);
     }
-/*
+
+
     else if (_user.defaultType == entityT.complex) {
-      GenericResponse gr =  await getComplexRepository().getComplexDetail(id:_user.defaultComplexEntity.complexID);
+      GenericResponse gr =  await serviceRepository.getComplexDetail(id:_user.defaultComplexEntity.complexID);
       if(gr.success)
         {
           _user.defaultComplexModel =  gr.data as ComplexModel;
@@ -94,6 +95,6 @@ class UserRepository {
         throw Exception("Unable to load message");
     }
 
-*/
+
   }
 }

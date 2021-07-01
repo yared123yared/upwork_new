@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:complex/data/models/response/user_response/complex_model.dart';
 import 'package:complex/data/models/response/user_response/service_model.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
@@ -151,7 +152,11 @@ class ServiceProvider {
 
     return Future.delayed(Duration.zero, () => bn);
   }
-
+  Future<ComplexModel> getComplexDetail({String id}) {
+    return FirebaseFirestore.instance.doc("COMPLEXES/$id").get().then((x) {
+      return ComplexModel.fromData(x.data(), [], id);
+    });
+  }
   Future<void> makeEntityDefault({
     String newEntityId,
     UserModel user,
