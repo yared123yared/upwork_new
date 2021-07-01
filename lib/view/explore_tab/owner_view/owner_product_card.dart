@@ -7,25 +7,26 @@ class ProductListTileOwner extends StatelessWidget {
   final String subtitle;
   final String price;
   final Map<String, String> details;
-  final VoidCallback onTap;
   final LimitedData data;
 
   factory ProductListTileOwner.fromLimitedData(LimitedData data) {
     return data.map(
         pet: (v) => ProductListTileOwner(
               data: v,
-              details: {},
-              imageUrl: '',
-              onTap: () {},
-              price: '',
-              subtitle: '',
-              title: '',
+              details: {
+                'breed': v.breed,
+                'gender': v.gender,
+                'age': v.age.toString() + 'yrs',
+              },
+              imageUrl: v.tileimage,
+              price: v.price.toString(),
+              subtitle: v.animalclass,
+              title: v.name,
             ),
         package: (v) => ProductListTileOwner(
               data: v,
               details: {},
               imageUrl: '',
-              onTap: () {},
               price: '',
               subtitle: '',
               title: '',
@@ -34,37 +35,45 @@ class ProductListTileOwner extends StatelessWidget {
               data: v,
               details: {},
               imageUrl: '',
-              onTap: () {},
               price: '',
               subtitle: '',
               title: '',
             ),
         vehicle: (v) => ProductListTileOwner(
               data: v,
-              details: {},
-              imageUrl: '',
-              onTap: () {},
-              price: '',
-              subtitle: '',
-              title: '',
+              details: {
+                'year': v.yearmade.toString(),
+                'type': v.vehicletype,
+                'model': v.model,
+              },
+              imageUrl: v.tileimage,
+              price: v.price.toString(),
+              subtitle: v.yearmade.toString(),
+              title: v.make,
             ),
         realEstate: (v) => ProductListTileOwner(
               data: v,
-              details: {},
-              imageUrl: '',
-              onTap: () {},
-              price: '',
-              subtitle: '',
-              title: '',
+              details: {
+                'bedroom': v.numbedroom.toString(),
+                'bathroom': v.numbathroom.toString(),
+                'floor': v.floorNumber.toString(),
+              },
+              imageUrl: v.tileimage,
+              price: v.price.toString() + 'USD /Month',
+              subtitle: v.addressarea.addressinfo,
+              title: v.propertytype,
             ),
         job: (v) => ProductListTileOwner(
               data: v,
-              details: {},
-              imageUrl: '',
-              onTap: () {},
-              price: '',
-              subtitle: '',
-              title: '',
+              details: {
+                'job type': v.jobtype,
+                'address':
+                    '${v.addressarea.addressinfo}, ${v.addressarea.village}, ${v.addressarea.state}, ${v.addressarea.country}',
+              },
+              imageUrl: v.companyicon,
+              price: '(' + v.salaryrange + ')',
+              subtitle: v.companyname,
+              title: v.title,
             ));
   }
 
@@ -75,15 +84,13 @@ class ProductListTileOwner extends StatelessWidget {
     @required this.price,
     @required this.details,
     @required this.imageUrl,
-    @required this.onTap,
     @required this.data,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // onTap: () => LimitedData.toDetailsPage(data: jobReqModel),
-      onTap: onTap,
+      onTap: () => LimitedData.toDetailsPage(data: data),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         padding: EdgeInsets.all(16.0),
