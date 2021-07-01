@@ -66,12 +66,12 @@ class RouteTripRepository {
       String entityid,
       String sessionterm,
       String offeringgroup) async {
-    RouteTripRepositoryReturnData grerror = new RouteTripRepositoryReturnData();
+    RouteTripRepositoryReturnData grerror = RouteTripRepositoryReturnData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
-      RouteTripRepositoryReturnData gr = new RouteTripRepositoryReturnData();
+      RouteTripRepositoryReturnData gr = RouteTripRepositoryReturnData();
       gr.errortype = -1;
       return gr;
     } catch (ex) {}

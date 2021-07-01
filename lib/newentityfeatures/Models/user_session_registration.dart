@@ -1,5 +1,6 @@
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
+
 //only to include fields which are allowed to change from UI
 Map<String, dynamic> toUserSessionUpdateData(
     UserSessionRegModel oldData, UserSessionRegModel newData) {
@@ -88,9 +89,9 @@ class UserSessionRegModel {
     return UserSessionRegModel(
         activeSession: activeSession ?? this.activeSession,
         allocatedTransportCost:
-        allocatedTransportCost ?? this.allocatedTransportCost,
+            allocatedTransportCost ?? this.allocatedTransportCost,
         allocatedTransportedRoute:
-        allocatedTransportedRoute ?? this.allocatedTransportedRoute,
+            allocatedTransportedRoute ?? this.allocatedTransportedRoute,
         applicableDiscount: applicableDiscount ?? this.applicableDiscount,
         feePLan: feePLan ?? this.feePLan,
         feePlanPeriodType: feePLanPeriodType ?? this.feePlanPeriodType,
@@ -109,7 +110,7 @@ class UserSessionRegModel {
       activeSession = json['activesession'];
       docID = id;
       if (json['offerings'] != null) {
-        offeringsTaken = List<String>();
+        offeringsTaken = [];
         json['offerings'].forEach((v) {
           offeringsTaken.add(v);
         });
@@ -129,7 +130,7 @@ class UserSessionRegModel {
       isActive = json['isActive'];
       allocatedTransportCost = json['allocatedtransportcost'];
       allocatedTransportedRoute =
-      json['allocatedtransportroute'] == "true" ? true : false;
+          json['allocatedtransportroute'] == "true" ? true : false;
       applicableDiscount = json['applicablediscount'];
       feePLan = json['feeplan'];
       feePlanPeriodType = json['feeplanperiodtype'];
@@ -163,9 +164,9 @@ class UserSessionRegModel {
       "rollnumber": this.rollNumber,
       "offerings": this.offeringsTaken,
       "offeringsschedule": this
-          .offeringSchedules
-          ?.map((offeringSchedule) => offeringSchedule.toJson())
-          ?.toList() ??
+              .offeringSchedules
+              ?.map((offeringSchedule) => offeringSchedule.toJson())
+              ?.toList() ??
           [],
       "isActive": this.isActive,
       "idcardnum": this.idCardNum,

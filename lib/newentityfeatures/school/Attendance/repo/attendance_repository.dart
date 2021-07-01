@@ -31,7 +31,7 @@ class AttendanceModelRepository {
   AuthRepository _authRepository;
 
   Future<AttendanceDataModel> loadData(LoadDataEvent event) async {
-    AttendanceDataModel grerror = new AttendanceDataModel();
+    AttendanceDataModel grerror = AttendanceDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -90,7 +90,7 @@ class AttendanceModelRepository {
   }
 
   Future<AttendanceDataModel> submitData(SubmitDataEvent event) async {
-    AttendanceDataModel grerror = new AttendanceDataModel();
+    AttendanceDataModel grerror = AttendanceDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 

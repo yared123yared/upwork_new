@@ -121,7 +121,7 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
   @override
   void initState() {
     super.initState();
-    mbloc = new itembloc.PaymentPeriodInfoBloc();
+    mbloc = itembloc.PaymentPeriodInfoBloc();
     mbloc.add(itembloc.getForNewEntry(
         entitytype: widget.entitytype, entityid: widget.entityid));
     _initFiledValue();

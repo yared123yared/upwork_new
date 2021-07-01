@@ -1,5 +1,4 @@
-
-class ServiceVehicleModel{
+class ServiceVehicleModel {
   String numberPlate;
   String generatedQrCode;
   bool forAdHocRides;
@@ -71,7 +70,7 @@ class ServiceVehicleModel{
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     List<Map> generalInfoData = [];
     List<Map> identificationDocData = [];
     List<Map> seatTypeData = [];
@@ -175,7 +174,7 @@ class SeatType {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['ordinary'] = this.ordinary;
     data['berth'] = this.berth;
     data['cushioned'] = this.cushioned;
@@ -208,7 +207,7 @@ class GeneralInfo {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['type'] = this.type;
     data['value'] = this.value;
     return data;
@@ -239,7 +238,7 @@ class IdentificationDoc {
     driveLink = data["drivelink"];
   }
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['doctype'] = this.docType;
     data['drivelink'] = this.driveLink;
     return data;

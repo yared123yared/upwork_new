@@ -1,6 +1,6 @@
 String validatePhone(String value) {
   Pattern pattern = r'(^(?:[+0]9)?[0-9]{10}$)';
-  RegExp regex = new RegExp(pattern);
+  RegExp regex = RegExp(pattern);
   if (value.replaceAll('-', "") == null ||
       value.replaceAll('-', "").trim().isEmpty) {
     return "Strings().emptyPhone";
@@ -52,7 +52,7 @@ String validateLastName(String value) {
 String validateEmail(String value) {
   String pattern =
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$';
-  RegExp regExp = new RegExp(pattern);
+  RegExp regExp = RegExp(pattern);
   if (value == null || value.trim().isEmpty) {
     return "Strings().emptyEmail";
   } else if (!regExp.hasMatch(value)) {

@@ -38,7 +38,7 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
 
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.ClassPeriodModelListBloc();
+    mlistbloc = listbloc.ClassPeriodModelListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

@@ -71,7 +71,7 @@ class EndUserRepository {
       String entityid,
       String sessionterm,
       String offeringgroup) async {
-    EndUserRepositoryReturnData grerror = new EndUserRepositoryReturnData();
+    EndUserRepositoryReturnData grerror = EndUserRepositoryReturnData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -82,7 +82,7 @@ class EndUserRepository {
               sessionTerm: sessionterm,
               offering: offeringgroup);
       //Please put your code here
-      EndUserRepositoryReturnData gr = new EndUserRepositoryReturnData();
+      EndUserRepositoryReturnData gr = EndUserRepositoryReturnData();
       gr.errortype = -1;
       gr.itemlist = vrlist;
       return gr;

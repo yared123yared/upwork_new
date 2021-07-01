@@ -32,7 +32,7 @@ class _RouteListListState extends State<RouteListList> {
   List<RouteModel> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.RouteListBloc();
+    mlistbloc = listbloc.RouteListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

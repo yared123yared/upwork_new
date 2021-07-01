@@ -14,7 +14,7 @@ class WriteUsers {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['writeusers'] = this.writeUsers;
     return data;
   }

@@ -135,7 +135,7 @@ class VehicleModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['serviceproviderid'] = this.serviceproviderid;
     data['userid'] = this.userid;
     data['docid'] = this.docid;

@@ -33,7 +33,7 @@ class _RegisteredUsersListListState extends State<RegisteredUsersListList> {
   List<RegisteredUser> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.RegisteredUsersListBloc();
+    mlistbloc = listbloc.RegisteredUsersListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

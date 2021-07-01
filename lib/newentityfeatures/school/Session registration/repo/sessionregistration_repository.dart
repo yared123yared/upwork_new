@@ -74,7 +74,7 @@ class SessionRegistrationRepository {
     String sessionTerm,
     String cardNum,
   ) async {
-    SessionRegistrationEntryData grerror = new SessionRegistrationEntryData();
+    SessionRegistrationEntryData grerror = SessionRegistrationEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -114,7 +114,7 @@ class SessionRegistrationRepository {
         update = true;
       }
 
-      SessionRegistrationEntryData gr = new SessionRegistrationEntryData();
+      SessionRegistrationEntryData gr = SessionRegistrationEntryData();
       gr.errortype = -1;
       gr.update = update;
       gr.virtualRoomList = virtualRoomList;

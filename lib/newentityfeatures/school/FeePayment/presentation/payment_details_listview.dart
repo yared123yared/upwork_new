@@ -35,7 +35,7 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
   FeeData nextPaymentDetailsFeeData;
 
   void initState() {
-    mlistbloc = new listbloc.FeePaymentListBloc();
+    mlistbloc = listbloc.FeePaymentListBloc();
     mlistbloc.add(
       listbloc.getPaymentDetailsListData(
         entitytype: widget.entitytype,

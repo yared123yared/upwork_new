@@ -72,7 +72,7 @@ class UnitModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
 
     json['address'] = this.address;
     json['buildingname'] = this.buildingName;

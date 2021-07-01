@@ -1,5 +1,6 @@
 import 'package:complex/common/helputil.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
+
 class VrAssignmentScoreModel {
   String assignmentId;
   String examTermInfo;
@@ -66,7 +67,7 @@ class VrAssignmentScoreModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['assignmentid'] = this.assignmentId;
     data['examterminfo'] = this.examTermInfo;
@@ -154,7 +155,6 @@ class Choice {
         "text": text,
       };
 }
-
 
 class AnsweredPaper {
   AnsweredPaper({

@@ -32,7 +32,7 @@ class _HandleRelationListListState extends State<HandleRelationListList> {
   List<VrAssignmentModel> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.HandleRelationListBloc();
+    mlistbloc = listbloc.HandleRelationListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

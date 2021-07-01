@@ -18,7 +18,7 @@ class FacebookLoginResponse {
             : null;
 
 /*	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
+		final Map<String, dynamic> data = Map<String, dynamic>();
 		data['name'] = name;
 		data['first_name'] = firstName;
 		data['last_name'] = lastName;

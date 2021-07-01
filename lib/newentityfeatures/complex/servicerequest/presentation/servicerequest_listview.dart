@@ -28,7 +28,7 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
 
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.ServiceRequestModelListBloc();
+    mlistbloc = listbloc.ServiceRequestModelListBloc();
     mlistbloc.add(listbloc.getListDataForServiceRequestType(
       entitytype: widget.entitytype,
       entityid: widget.entityid,

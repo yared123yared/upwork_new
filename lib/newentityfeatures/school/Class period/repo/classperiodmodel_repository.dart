@@ -65,7 +65,7 @@ class ClassPeriodModelRepository {
 
   Future<ClassPeriodDataEntry> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    ClassPeriodDataEntry grerror = new ClassPeriodDataEntry();
+    ClassPeriodDataEntry grerror = ClassPeriodDataEntry();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -83,7 +83,7 @@ class ClassPeriodModelRepository {
       List<FeeItemGroupsModel> feeItemsGroups =
           await _schoolRepo.getFeeItemGroupList(serviceID: entityid);
 
-      ClassPeriodDataEntry gr = new ClassPeriodDataEntry(
+      ClassPeriodDataEntry gr = ClassPeriodDataEntry(
         type: type,
         types: types,
         paymentPeriods: paymentPeriods,

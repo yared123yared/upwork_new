@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:complex/common/helputil.dart';
 
-
 // ignore: must_be_immutable
 class SessionTermModel extends Equatable {
   DateTime endDate;
@@ -49,7 +48,7 @@ class SessionTermModel extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['enddate'] = HelpUtil.toTimeStamp(
       dateTime: this.endDate,
     );
@@ -82,22 +81,25 @@ class PaymentPeriodInfo extends Equatable {
   String sessionName;
   bool isfrozen;
   int numperiods;
-  PaymentPeriodInfo({this.grpName, this.periodInfo, this.sessionName,this.isfrozen,this.numperiods});
+  PaymentPeriodInfo(
+      {this.grpName,
+      this.periodInfo,
+      this.sessionName,
+      this.isfrozen,
+      this.numperiods});
 
-  PaymentPeriodInfo copyWith({
-    String grpName,
-    List<String> periodInfo,
-    String sessionName,
-    bool isfrozen,
-    int numperiods
-  }) {
+  PaymentPeriodInfo copyWith(
+      {String grpName,
+      List<String> periodInfo,
+      String sessionName,
+      bool isfrozen,
+      int numperiods}) {
     return PaymentPeriodInfo(
-        grpName: grpName ?? this.grpName,
-        periodInfo: periodInfo ?? this.periodInfo,
-        sessionName: sessionName ?? this.sessionName,
-        isfrozen :isfrozen??this.isfrozen,
-        numperiods: numperiods??this.numperiods,
-
+      grpName: grpName ?? this.grpName,
+      periodInfo: periodInfo ?? this.periodInfo,
+      sessionName: sessionName ?? this.sessionName,
+      isfrozen: isfrozen ?? this.isfrozen,
+      numperiods: numperiods ?? this.numperiods,
     );
   }
 
@@ -106,8 +108,8 @@ class PaymentPeriodInfo extends Equatable {
 
   PaymentPeriodInfo.fromData(Map<String, dynamic> data) {
     grpName = data["grpname"];
-    isfrozen= data["isfrozen"] ==null ? false:data["isfrozen"];
-    numperiods= data["numperiods"] ==null ? 0:data["numperiods"];
+    isfrozen = data["isfrozen"] == null ? false : data["isfrozen"];
+    numperiods = data["numperiods"] == null ? 0 : data["numperiods"];
     periodInfo = [];
     if (data['periodinfo'] != null) {
       periodInfo = [];
@@ -121,12 +123,12 @@ class PaymentPeriodInfo extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['grpname'] = this.grpName;
     data['periodinfo'] = this.periodInfo.map((e) => e.toData()).toList();
     data['sessionname'] = this.sessionName;
-    data["isfrozen"]=this.isfrozen;
-    data["numperiods"]=this.numperiods;
+    data["isfrozen"] = this.isfrozen;
+    data["numperiods"] = this.numperiods;
     return data;
   }
 
@@ -195,7 +197,7 @@ class PeriodInfo extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data["duedate"] = HelpUtil.toTimeStamp(dateTime: this.dueDate);
     data["enddate"] = HelpUtil.toTimeStamp(dateTime: this.endDate);
@@ -252,7 +254,7 @@ class ClassPeriodInfo extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     List<Map> schedule = [];
     this.schedule.forEach((element) {
       schedule.add(element.toData());
@@ -311,7 +313,7 @@ class Schedule extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data["endtime"] = this.endTime;
     data["starttime"] = this.startTime;
@@ -351,7 +353,7 @@ class ExamTermInfo extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['maintermname'] = this.mainTermName;
     data['subtermname'] = this.subTermName;
@@ -398,7 +400,7 @@ class RoomInfo extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['roomaddr'] = this.roomAddr;
     data['roomname'] = this.roomName;

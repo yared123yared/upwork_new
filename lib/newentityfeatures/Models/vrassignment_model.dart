@@ -112,14 +112,14 @@ class VrAssignmentModel {
     totalQuestion = json['totalquestion'];
     lockedforwrite = json['lockedforwrite'];
     virtualRoom = json['virtualRoom'] ?? id;
-    List<String> vrlist = new List<String>();
+    List<String> vrlist = [];
     if (json['vrlist'] != null) {
       for (String s in json['vrlist']) vrlist.add(s);
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
     json['assignmentid'] = this.assignmentId;
     json['enddate'] = HelpUtil.toTimeStamp(dateTime: this.endDate);
     json['examterminfo'] = this.examTermInfo;
@@ -138,7 +138,7 @@ class VrAssignmentModel {
     json['lockedforwrite'] = this.lockedforwrite;
     json['virtualRoom'] = this.virtualRoom;
     if (vrlist != null) {
-      List<String> mrlist = new List<String>();
+      List<String> mrlist = [];
       for (String s in vrlist) mrlist.add(s);
       json['vrlist'] = mrlist;
     } else

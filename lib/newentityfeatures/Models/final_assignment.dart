@@ -119,7 +119,7 @@ class FinalAssignmentModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['assignmenttitle'] = this.assignmentTitle;
     data['basicinfo'] = this.basicInfo;
@@ -189,7 +189,7 @@ class Question extends Equatable {
     questionType = data["questionType"];
     score = data["Score"];
     if (data['answers'] != null) {
-      answers = List<String>();
+      answers = [];
       data['answers'].forEach((choice) {
         answers.add(choice);
       });
@@ -197,7 +197,7 @@ class Question extends Equatable {
       answers = [];
     }
     if (data['choices'] != null) {
-      choices = List<String>();
+      choices = [];
       data['choices'].forEach((choice) {
         choices.add(choice);
       });

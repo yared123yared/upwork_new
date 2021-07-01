@@ -23,7 +23,7 @@ class _ExamTemInfoListState extends State<ExamTemInfoList> {
   listbloc.ExamTermInfoListBloc mlistbloc;
 
   void initState() {
-    mlistbloc = new listbloc.ExamTermInfoListBloc();
+    mlistbloc = listbloc.ExamTermInfoListBloc();
     mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

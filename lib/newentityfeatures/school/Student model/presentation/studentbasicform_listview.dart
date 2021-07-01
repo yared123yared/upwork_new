@@ -53,7 +53,7 @@ class _StudentBasicFormModelListListState
   void initState() {
     super.initState();
     initSearchFields();
-    mlistbloc = new listbloc.StudentBasicFormModelListBloc();
+    mlistbloc = listbloc.StudentBasicFormModelListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

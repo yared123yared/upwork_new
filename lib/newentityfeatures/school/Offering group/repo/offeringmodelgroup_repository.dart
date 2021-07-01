@@ -73,7 +73,7 @@ class OfferingModelGroupRepository {
 
   Future<OfferingDataEntry> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    OfferingDataEntry grerror = new OfferingDataEntry();
+    OfferingDataEntry grerror = OfferingDataEntry();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -84,7 +84,7 @@ class OfferingModelGroupRepository {
           await _schoolRepo.getListOfSubject(serviceID: entityid);
 
       //Please put your code here
-      OfferingDataEntry gr = new OfferingDataEntry(
+      OfferingDataEntry gr = OfferingDataEntry(
         // buttonState: ButtonState.idle,
         // : event.offeringModelGroup,
         grades: grades,

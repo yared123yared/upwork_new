@@ -13,7 +13,7 @@ class MenuTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
       child: Padding(
         padding: EdgeInsets.only(top: height * 0.5),
         child: Container(

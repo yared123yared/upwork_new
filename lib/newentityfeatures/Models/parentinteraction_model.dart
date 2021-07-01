@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
 
-class ParentInteractionSingleValueListModel{
+class ParentInteractionSingleValueListModel {
   String keyname;
   List<NameValue> data;
   ParentInteractionSingleValueListModel({this.keyname, this.data});
@@ -21,7 +21,7 @@ class ParentInteractionSingleValueListModel{
         keyname = keyname.replaceAll("f_", "");
         data = [];
         if (json['value'] != null) {
-          data = new List<NameValue>();
+          data = List<NameValue>();
           json['value'].forEach((v) {
             data.add(NameValue.fromJson(json: Map<String, dynamic>.from(v)));
           });

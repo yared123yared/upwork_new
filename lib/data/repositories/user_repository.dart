@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
+import 'package:complex/data/models/response/generic_response.dart';
+import 'package:complex/data/models/response/user_response/complex_model.dart';
 import 'package:complex/data/models/response/user_response/user_alerts.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
@@ -77,18 +79,13 @@ class UserRepository {
     if (_user.defaultType == entityT.service) {
       _user.defaultServiceModel =
           await serviceRepository.getService(_user.defaultServiceEntity);
-    }
-/*
-    else if (_user.defaultType == entityT.complex) {
-      GenericResponse gr =  await getComplexRepository().getComplexDetail(id:_user.defaultComplexEntity.complexID);
-      if(gr.success)
-        {
-          _user.defaultComplexModel =  gr.data as ComplexModel;
-        }
-      else
+    } else if (_user.defaultType == entityT.complex) {
+      GenericResponse gr = await serviceRepository.getComplexDetail(
+          id: _user.defaultComplexEntity.complexID);
+      if (gr.success) {
+        _user.defaultComplexModel = gr.data as ComplexModel;
+      } else
         throw Exception("Unable to load message");
     }
-
-*/
   }
 }

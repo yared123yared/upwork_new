@@ -6,6 +6,7 @@ import 'package:complex/newentityfeatures/Models/offering_schedule_model.dart';
 import 'package:complex/newentityfeatures/Models/progress_model.dart';
 import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
 import 'package:complex/common/helputil.dart';
+
 class ProgressGateway {
   static Future submitProgressOfrSch(
       {@required OfferingsScheduleModel offeringsScheduleModel,
@@ -49,8 +50,8 @@ class ProgressGateway {
       } else {
         _progress = ProgressModel.fromJson(json: {
           'kind': kind,
-          'date': HelpUtil.formattedDateToString(
-              DateTime.now(), DateTimeMode.DATE),
+          'date':
+              HelpUtil.formattedDateToString(DateTime.now(), DateTimeMode.DATE),
         }, virtualRoom: virtualRoom);
       }
       return _progress;
@@ -64,8 +65,8 @@ class ProgressGateway {
     @required DateTime dateTime,
     @required String kind,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-    'GenericQueryActionRequest');
+    final HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
     print("CloudFunction " + "end");
     dynamic resp = await callable.call(<String, dynamic>{
       "entitytype": "SERVICEPROVIDERINFO",
@@ -85,7 +86,7 @@ class ProgressGateway {
     //Map<String,dynamic> attendencedata =data['sti'];
     List<ProgressInfo> pio = [];
     if (data['sti'] != null) {
-      pio = new List<ProgressInfo>();
+      pio = List<ProgressInfo>();
       data['sti'].forEach((element) {
         pio.add(
             ProgressInfo.fromJson(data: Map<String, dynamic>.from(element)));
@@ -96,7 +97,7 @@ class ProgressGateway {
             ? data['totalscore']
             : 0;
     //String mkind =data['kind'];
-    promod = new ProgressModel(
+    promod = ProgressModel(
         date: dateTime,
         progressList: pio,
         virtualrooname: virtualroomname,
@@ -135,7 +136,7 @@ class ProgressGateway {
     //Map<String,dynamic> attendencedata =data['sti'];
     List<ProgressInfo> pio = [];
     if (data['sti'] != null) {
-      pio = new List<ProgressInfo>();
+      pio = List<ProgressInfo>();
       data['sti'].forEach((element) {
         pio.add(
             ProgressInfo.fromJson(data: Map<String, dynamic>.from(element)));
@@ -145,7 +146,7 @@ class ProgressGateway {
         data.containsKey('totalscore') && data['totalscore'] != null
             ? data['totalscore']
             : 0;
-    var promod = new ProgressModel(
+    var promod = ProgressModel(
       date: dateTime,
       progressList: pio,
       virtualrooname: null,
@@ -192,7 +193,7 @@ class ProgressGateway {
       @required String sessionTermName,
       @required String serviceID}) async {
     final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-    'SubmitProgressRequest',
+      'SubmitProgressRequest',
     );
     print("CloudFunction " + "end");
     Map<String, dynamic> data = {

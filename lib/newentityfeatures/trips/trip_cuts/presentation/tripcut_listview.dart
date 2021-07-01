@@ -32,7 +32,7 @@ class _TripCutListListState extends State<TripCutListList> {
   List<TripCut> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.TripCutListBloc();
+    mlistbloc = listbloc.TripCutListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

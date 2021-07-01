@@ -23,7 +23,7 @@ class _BuildingModelListListState extends State<BuildingModelListList> {
 
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.BuildingModelListBloc();
+    mlistbloc = listbloc.BuildingModelListBloc();
     mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

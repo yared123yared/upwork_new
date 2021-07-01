@@ -34,7 +34,7 @@ class _StaffModelListListState extends State<StaffModelListList> {
   List<StaffModelx> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.StaffModelListBloc();
+    mlistbloc = listbloc.StaffModelListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

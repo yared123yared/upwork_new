@@ -57,7 +57,7 @@ class ProductModel {
     discountedprice = json['discountedprice'];
     ptype = json['ptype'];
     if (json['dynamicproperties'] != null) {
-      dynamicproperties = new List<Dynamicproperties>();
+      dynamicproperties = List<Dynamicproperties>();
       json['dynamicproperties'].forEach((v) {
         dynamicproperties.add(new Dynamicproperties.fromJson(v));
       });
@@ -68,13 +68,13 @@ class ProductModel {
         ? new Nopackagedata.fromJson(json['nopackagedata'])
         : null;
     if (json['packagedata'] != null) {
-      packagedata = new List<Packagedata>();
+      packagedata = [];
       json['packagedata'].forEach((v) {
         packagedata.add(new Packagedata.fromJson(v));
       });
     }
     if (json['sizeandcolordata'] != null) {
-      sizeandcolordata = new List<Sizeandcolordata>();
+      sizeandcolordata = List<Sizeandcolordata>();
       json['sizeandcolordata'].forEach((v) {
         sizeandcolordata.add(new Sizeandcolordata.fromJson(v));
       });
@@ -88,7 +88,7 @@ class ProductModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['productid'] = this.productid;
     data['title'] = this.title;
     data['description'] = this.description;
@@ -143,7 +143,7 @@ class Dynamicproperties {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['propertyname'] = this.propertyname;
     data['values'] = this.values;
     return data;
@@ -174,7 +174,7 @@ class Nopackagedata {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['unitmeasure'] = this.unitmeasure;
     data['qty'] = this.qty;
     data['priceperunit'] = this.priceperunit;
@@ -220,7 +220,7 @@ class Packagedata {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['packageid'] = this.packageid;
     data['barcodeid'] = this.barcodeid;
     data['title'] = this.title;
@@ -249,16 +249,16 @@ class Sizeandcolordata {
 
   Sizeandcolordata(
       {this.sizecolorid,
-        this.barcodeid,
-        this.sizetype,
-        this.size,
-        this.color,
-        this.price,
-        this.discountedprice,
-        this.tileimage,
-        this.listimages,
-        this.unit,
-        this.inventoryunits});
+      this.barcodeid,
+      this.sizetype,
+      this.size,
+      this.color,
+      this.price,
+      this.discountedprice,
+      this.tileimage,
+      this.listimages,
+      this.unit,
+      this.inventoryunits});
 
   Sizeandcolordata.fromJson(Map<String, dynamic> json) {
     sizecolorid = json['sizecolorid'];
@@ -275,7 +275,7 @@ class Sizeandcolordata {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['sizecolorid'] = this.sizecolorid;
     data['barcodeid'] = this.barcodeid;
     data['sizetype'] = this.sizetype;

@@ -23,7 +23,7 @@ class _FeeItemFormListState extends State<FeeItemFormList> {
 
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.StringListBloc();
+    mlistbloc = listbloc.StringListBloc();
     mlistbloc.add(listbloc.GetListData(
         entitytype: widget.entitytype,
         entityid: widget.entityid,

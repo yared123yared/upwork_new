@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:complex/data/models/response/general_response.dart';
+import 'package:complex/data/models/response/generic_response.dart';
 import 'package:complex/data/models/response/user_response/service_model.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
 import 'package:complex/data/models/response/user_response/user_service.dart';
@@ -40,6 +41,20 @@ class ServiceRepository {
 
   Future<ServiceModel> getUpdatedServiceWithId({@required String serviceID}) =>
       serviceProvider.fetchService(serviceID);
+
+  Future<GenericResponse> getComplexDetail({String id}) async {
+    try {
+      final complexResponse = await serviceProvider.getComplexDetail(id: id);
+      return GenericResponse(
+          success: true, message: "create successfully", data: complexResponse);
+    } on FirebaseFunctionsException catch (e) {
+      print("error : ${e.message}");
+      print("error : ${e.stackTrace}");
+      return GenericResponse(success: false, message: e.stackTrace.toString());
+    } catch (e) {
+      return GenericResponse(success: false, message: "Something went wrong");
+    }
+  }
 
   Future<GeneralResponse> createService(ServiceModel service) async {
     try {

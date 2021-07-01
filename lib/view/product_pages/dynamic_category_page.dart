@@ -506,7 +506,7 @@ class CategoryList {
 
   CategoryList.fromJson(Map<String, dynamic> json) {
     if (json['childcategory'] != null) {
-      childcategory = new List<Childcategory>();
+      childcategory = List<Childcategory>();
       json['childcategory'].forEach((v) {
         childcategory.add(new Childcategory.fromJson(v));
       });
@@ -514,7 +514,7 @@ class CategoryList {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.childcategory != null) {
       data['childcategory'] =
           this.childcategory.map((v) => v.toJson()).toList();
@@ -549,7 +549,7 @@ class Childcategory {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['priceareadependent'] = this.priceareadependent;
     data['imagepath'] = this.imagepath;
     data['pricerange'] = this.pricerange;

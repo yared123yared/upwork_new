@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:collection/collection.dart';
+
 // ignore: must_be_immutable
 class OfferingModelGroup extends Equatable {
   String subject;
@@ -79,7 +80,7 @@ class OfferingModelGroup extends Equatable {
 
   String getKey() {
     if (offeringgroupid == null) {
-      var buffer = new StringBuffer();
+      var buffer = StringBuffer();
       buffer.write(grade);
       buffer.write("@");
       buffer.write(subject);
@@ -100,7 +101,7 @@ class OfferingModelGroup extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
 
     json['subject'] = subject;
     json['group'] = group;
@@ -125,7 +126,7 @@ class OfferingModelGroup extends Equatable {
   }
 }
 
-class TeacherOfferingsAssignment{
+class TeacherOfferingsAssignment {
   String offeringgroupname;
   SchoolOwner primaryOwner;
   List<SchoolOwner> secondaryOwner;
@@ -149,16 +150,14 @@ class TeacherOfferingsAssignment{
     };
   }
 
-  TeacherOfferingsAssignment({
-    this.version,
-    this.primaryOwner,
-    this.offeringgroupname,
-    this.secondaryOwner,
-    this.vrlist,
-    this.grade,
-    this.docID
-  });
-
+  TeacherOfferingsAssignment(
+      {this.version,
+      this.primaryOwner,
+      this.offeringgroupname,
+      this.secondaryOwner,
+      this.vrlist,
+      this.grade,
+      this.docID});
 
   TeacherOfferingsAssignment copyWith(
       {String offeringgroupname,
@@ -176,9 +175,7 @@ class TeacherOfferingsAssignment{
         secondaryOwner: secondaryOwner ?? this.secondaryOwner,
         vrlist: vrlist ?? this.vrlist,
         grade: grade ?? this.grade,
-        docID:docID ?? this.docID
-
-    );
+        docID: docID ?? this.docID);
   }
 
   factory TeacherOfferingsAssignment.fromJson(
@@ -188,7 +185,7 @@ class TeacherOfferingsAssignment{
     return TeacherOfferingsAssignment(
       offeringgroupname: json['ofrgid'],
       version: json['version'],
-        docID:docID,
+      docID: docID,
       vrlist:
           json['vrlist'] != null ? (json['vrlist'] as List).cast<String>() : [],
       grade: json['grade'],
@@ -201,7 +198,7 @@ class TeacherOfferingsAssignment{
               .toList()
           : [],
       // if (json['vrlist'] != null) {
-      //   vrlist = List<String>();
+      //   vrlist = [];
       //   json['vrlist'].forEach((v) {
       //     vrlist.add(v);
       //   });
@@ -222,15 +219,15 @@ class TeacherOfferingsAssignment{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     List<String> listOfvirtualroom = [];
     List<Map> listOfsecondaryowner = [];
-    if (secondaryOwner != null) listOfsecondaryowner = new List<Map>();
+    if (secondaryOwner != null) listOfsecondaryowner = List<Map>();
     secondaryOwner.forEach((element) {
       listOfsecondaryowner.add(element.toData());
     });
 
-    if (vrlist != null) listOfvirtualroom = new List<String>();
+    if (vrlist != null) listOfvirtualroom = [];
     vrlist.forEach((element) {
       listOfvirtualroom.add(element);
     });
@@ -353,7 +350,7 @@ class OfferingWeeklySchedule {
 
   OfferingWeeklySchedule.fromJson(Map<String, dynamic> json, String docID) {
     if (json['vrlist'] != null) {
-      vrlist = List<String>();
+      vrlist = [];
       json['vrlist'].forEach((v) {
         vrlist.add(v);
       });
@@ -377,12 +374,12 @@ class OfferingWeeklySchedule {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
-    List<String> classsch = new List<String>();
+    List<String> classsch = [];
     List<String> listOfvirtualroom = [];
     if (vrlist != null) {
-      listOfvirtualroom = new List<String>();
+      listOfvirtualroom = [];
       vrlist.forEach((element) {
         listOfvirtualroom.add(element);
       });
@@ -416,7 +413,7 @@ class OfferingWeeklySchedule {
   }
 }
 
-class VirtualRoomModelNewFormat{
+class VirtualRoomModelNewFormat {
   String associatedRoom;
   String attendenceType;
   String chatRoomType;
@@ -486,7 +483,7 @@ class VirtualRoomModelNewFormat{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     List<Map> listOfRegisteredId = [];
     List<String> listOfOfferings = [];
     data['associatedroom'] = this.associatedRoom;
@@ -499,7 +496,7 @@ class VirtualRoomModelNewFormat{
     data['primaryowner'] = primaryOwner.toData();
     List<Map> listOfsecondaryowner = [];
     if (secondaryOwnerV != null) {
-      listOfsecondaryowner = new List<Map>();
+      listOfsecondaryowner = List<Map>();
       secondaryOwnerV.forEach((element) {
         listOfsecondaryowner.add(element.toData());
       });
@@ -603,7 +600,7 @@ class EventOfferingKind {
     List<String> m = k.split(';');
     if (m[0] == 'vr') {
       if (m.length == 3) {
-        mk = new EventOfferingKind();
+        mk = EventOfferingKind();
         mk.hasoffering = false;
         mk.kind = "GENERAL";
         mk.vrlist = m[2].replaceAll("@", "").split(',');
@@ -618,7 +615,7 @@ class EventOfferingKind {
     EventOfferingKind mk;
     List<String> m = k.split(';');
     if (m.length == 2) {
-      mk = new EventOfferingKind();
+      mk = EventOfferingKind();
       mk.offering = OfferingModelGroup.fromString(m[0]);
       mk.vrlist = m[1].split('@');
       mk.kind = mk.offering.subject;
@@ -669,7 +666,7 @@ class OfferingKind {
   }
 }
 
-class InstructorOfferingDataModel  {
+class InstructorOfferingDataModel {
   List<AttendenceKind> primaryattendlist;
   List<AttendenceKind> secondaryattendlist;
   List<OfferingKind> primarykindlist;
@@ -684,7 +681,7 @@ class InstructorOfferingDataModel  {
   //Map<String,Map<String,List<String>>> primarygradevirtualroomtovirtualroom;
 
   List<AttendenceKind> getAttendenceKind(String grade, String roletype) {
-    List<AttendenceKind> kind = new List<AttendenceKind>();
+    List<AttendenceKind> kind = List<AttendenceKind>();
     List<AttendenceKind> datasource;
     if (roletype == "PRIMARY") {
       datasource = primaryattendlist;
@@ -706,7 +703,7 @@ class InstructorOfferingDataModel  {
   }
 
   List<OfferingKind> getSubKind(String grade, String roletype) {
-    List<OfferingKind> kind = new List<OfferingKind>();
+    List<OfferingKind> kind = List<OfferingKind>();
     List<OfferingKind> datasource;
     if (roletype == "PRIMARY") {
       datasource = primarykindlist;
@@ -724,10 +721,10 @@ class InstructorOfferingDataModel  {
 
   List<EventOfferingKind> getEvtKind(String grade, String roletype) {
     print("The Grade is here $grade");
-    List<EventOfferingKind> kind = new List<EventOfferingKind>();
+    List<EventOfferingKind> kind = List<EventOfferingKind>();
     List<EventOfferingKind> datasource;
     if (roletype == "PRIMARY") {
-     // print("IS Grade here? ${primaryevtkindlist[0].offering.grade}");
+      // print("IS Grade here? ${primaryevtkindlist[0].offering.grade}");
       datasource = primaryevtkindlist;
     } else {
       datasource = secondaryevtkindlist;
@@ -735,18 +732,14 @@ class InstructorOfferingDataModel  {
     for (EventOfferingKind s in datasource) {
       print("How's grade $grade");
 
-      if(s.vrlist !=null)
-        {
-          for(String mvr in s.vrlist)
-          {
-            if(mvr.contains(grade))
-              {
-                kind.add(s);
-                break;
-              }
+      if (s.vrlist != null) {
+        for (String mvr in s.vrlist) {
+          if (mvr.contains(grade)) {
+            kind.add(s);
+            break;
           }
         }
-
+      }
     }
     return kind;
   }
@@ -758,7 +751,6 @@ class InstructorOfferingDataModel  {
       this.secondarykindlist,
       this.primaryevtkindlist,
       this.secondaryevtkindlist});
-
 
   InstructorOfferingDataModel copyWith({
     List<AttendenceKind> primaryattendlist,
@@ -781,7 +773,7 @@ class InstructorOfferingDataModel  {
   static getListFromElement(dynamic element) {
     List<String> vrlist = [];
     if (element != null) {
-      List<String> vrlist = List<String>();
+      List<String> vrlist = [];
       element.forEach((v) {
         vrlist.add(v);
       });
@@ -811,17 +803,14 @@ class InstructorOfferingDataModel  {
     return vrlist;
   }
 
-
-  static bool checkIfListContainsEventKind(EventOfferingKind e , List<EventOfferingKind>elist)
-  {
-    for(EventOfferingKind ep in elist)
-      {
-        if (ep.kind == e.kind && ListEquality().equals(e.vrlist, ep.vrlist))
-          return true;
-      }
+  static bool checkIfListContainsEventKind(
+      EventOfferingKind e, List<EventOfferingKind> elist) {
+    for (EventOfferingKind ep in elist) {
+      if (ep.kind == e.kind && ListEquality().equals(e.vrlist, ep.vrlist))
+        return true;
+    }
     return false;
   }
-
 
   static void getEventKindListFromElement(
       dynamic element, bool isattendence, List<EventOfferingKind> evtkindlist) {
@@ -830,11 +819,13 @@ class InstructorOfferingDataModel  {
         if (isattendence) {
           EventOfferingKind e =
               EventOfferingKind.getEventOfferingKindFromAttendenceString(v);
-          if (e != null && !checkIfListContainsEventKind(e,evtkindlist)) evtkindlist.add(e);
+          if (e != null && !checkIfListContainsEventKind(e, evtkindlist))
+            evtkindlist.add(e);
         } else {
           EventOfferingKind e =
               EventOfferingKind.getEventOfferingKindFromOfferingString(v);
-          if (e != null  && !checkIfListContainsEventKind(e,evtkindlist)) evtkindlist.add(e);
+          if (e != null && !checkIfListContainsEventKind(e, evtkindlist))
+            evtkindlist.add(e);
         }
       });
     }
@@ -842,8 +833,8 @@ class InstructorOfferingDataModel  {
 
   InstructorOfferingDataModel.fromJson(Map<String, dynamic> json) {
     {
-      primaryevtkindlist = new List<EventOfferingKind>();
-      secondaryevtkindlist = new List<EventOfferingKind>();
+      primaryevtkindlist = List<EventOfferingKind>();
+      secondaryevtkindlist = List<EventOfferingKind>();
 
       if (json.containsKey('patt')) {
         primaryattendlist = getAttendecListFromElement(json['patt']);

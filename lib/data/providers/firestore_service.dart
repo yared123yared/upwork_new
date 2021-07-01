@@ -147,7 +147,7 @@
 //   }
 //
 //   Future<void> updateUserSetting(String userId) async {
-//     Map<String, dynamic> body = new Map<String, dynamic>();
+//     Map<String, dynamic> body = Map<String, dynamic>();
 //     DateTime currentTime = DateTime.now();
 //     if (UserSession.fcmToken != null) body['token'] = UserSession.fcmToken;
 //     body['platform'] = Platform.isIOS ? 'iOS' : 'android';
@@ -161,7 +161,7 @@
 //   Future<Map<String, dynamic>> getNotificationSetting(
 //     String userId,
 //   ) async {
-//     Map<String, dynamic> userSetting = new Map<String, dynamic>();
+//     Map<String, dynamic> userSetting = Map<String, dynamic>();
 //     DocumentSnapshot data = await userSettings
 //         .doc(userId)
 //         .collection("notifications")
@@ -205,7 +205,7 @@
 //         bool chatEnds,
 //         bool newChatInitiated,
 //         bool enableNotification}) {
-//     Map<String, dynamic> body = new Map<String, dynamic>();
+//     Map<String, dynamic> body = Map<String, dynamic>();
 //     if (newChatInitiated != null)
 //       body['notification_push_chat_thread_new'] = newChatInitiated;
 //     if (newMessage != null)

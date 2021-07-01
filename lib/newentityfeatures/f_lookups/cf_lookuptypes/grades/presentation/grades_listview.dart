@@ -22,7 +22,7 @@ class _GradesFormListState extends State<GradesFormList> {
   listbloc.StringListBloc mlistbloc;
 
   void initState() {
-    mlistbloc = new listbloc.StringListBloc();
+    mlistbloc = listbloc.StringListBloc();
     mlistbloc.add(listbloc.GetListData(
         entitytype: widget.entitytype,
         entityid: widget.entityid,

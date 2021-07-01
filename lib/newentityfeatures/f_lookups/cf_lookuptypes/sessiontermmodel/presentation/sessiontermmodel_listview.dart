@@ -25,7 +25,7 @@ class _SessionTermModelListState extends State<SessionTermModelList> {
 
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.SessionTermModelListBloc();
+    mlistbloc = listbloc.SessionTermModelListBloc();
     mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 import 'package:complex/common/helputil.dart';
 import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
 import 'package:complex/newentityfeatures/Models/registered_id_model.dart';
+
 enum Attendancetype { Ofr, Vr }
 
 // ignore: must_be_immutable
@@ -80,7 +81,7 @@ class AttendanceModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     return data;
   }
@@ -148,7 +149,7 @@ class AttendanceInfo extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data["id"] = studentID;
     data["val"] = attendance ? 'P' : 'A';
     if (vr != null) data['vr'] = vr;
@@ -210,7 +211,7 @@ class PersonalizedAttendanceModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     return data;
   }

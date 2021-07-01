@@ -48,8 +48,8 @@ class _ProfilePageState extends State<ProfilePage> {
       Injector.appInstance.get<AuthRepository>();
   final AuthProvider _authProvider = Injector.appInstance.get<AuthProvider>();
   var _key = GlobalKey<ScaffoldState>();
-  List<SimpleEntity> complexNames = new List();
-  List<SimpleEntity> serviceName = new List();
+  List<SimpleEntity> complexNames = List();
+  List<SimpleEntity> serviceName = List();
 
   SocialAuth _socialAuth;
 

@@ -70,11 +70,11 @@ class ChannelModel {
       markForDeletion = data['markfordetetion'];
       if (rightData == 'r') {
         right = ChannelRights.r;
-      } else if (rightData == 'rw' || rightData == 'w' ) {
+      } else if (rightData == 'rw' || rightData == 'w') {
         right = ChannelRights.rw;
       }
       if (data['readusers'] != null) {
-        readUsers = List<String>();
+        readUsers = [];
         data['readusers'].forEach((v) {
           readUsers.add(v);
         });
@@ -88,7 +88,7 @@ class ChannelModel {
       roomType = data['roomtype'];
       version = data['version'];
       if (data['writeusers'] != null) {
-        writeUsers = List<String>();
+        writeUsers = [];
         data['writeusers'].forEach((v) {
           writeUsers.add(v);
         });
@@ -128,7 +128,7 @@ class ChannelModel {
       right = ChannelRights.rw;
     }
     if (data['readusers'] != null) {
-      readUsers = List<String>();
+      readUsers = [];
       data['readusers'].forEach((v) {
         readUsers.add(v);
       });
@@ -142,7 +142,7 @@ class ChannelModel {
     roomType = data['roomtype'];
     version = data['version'];
     if (data['writeusers'] != null) {
-      writeUsers = List<String>();
+      writeUsers = [];
       data['writeusers'].forEach((v) {
         writeUsers.add(v);
       });
@@ -152,7 +152,7 @@ class ChannelModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     List<String> readUsers = [];
     List<String> writeUsers = [];

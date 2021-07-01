@@ -65,7 +65,7 @@ class MessageModel {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['from'] = this.from;
     data['msg'] = this.msg;
@@ -77,7 +77,7 @@ class MessageModel {
   }
 
   Map<String, dynamic> toLocalData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['from'] = this.from;
     data['msg'] = this.msg;
