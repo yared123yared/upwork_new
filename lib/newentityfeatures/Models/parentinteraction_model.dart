@@ -21,7 +21,7 @@ class ParentInteractionSingleValueListModel {
         keyname = keyname.replaceAll("f_", "");
         data = [];
         if (json['value'] != null) {
-          data = List<NameValue>();
+          data = <NameValue>[];
           json['value'].forEach((v) {
             data.add(NameValue.fromJson(json: Map<String, dynamic>.from(v)));
           });

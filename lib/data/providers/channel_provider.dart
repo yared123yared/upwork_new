@@ -43,7 +43,7 @@ class ChannelsProvider {
         mchannellistinfo.entitywithchannellist;
 
     List<String> existingmetachannel = getExistingMetaChannels();
-    List<UserChannelsModel> toremovechannels = List<UserChannelsModel>();
+    List<UserChannelsModel> toremovechannels = [];
     for (String mid in existingmetachannel) {
       for (UserChannelsModel uc in myuserchannelmodellist) {
         if (uc.channel == mid) toremovechannels.add(uc);
@@ -59,7 +59,7 @@ class ChannelsProvider {
       String entityName = channelwithname[curmeta.metaid]; //entitynamemap[]
 
       if (_channels[entityName] == null)
-        _channels[entityName] = List<ChannelModel>();
+        _channels[entityName] = <ChannelModel>[];
 
       List<ChannelModel> chalist = _channels[entityName];
       bool addtolist = true;
@@ -97,11 +97,10 @@ class ChannelsProvider {
   Future<List<ChannelModel>> getChatMetadata(
       {@required List<UserChannelsModel> mylist}) async {
     List<Stream<List<ChannelModel>>> mystreamlist =
-        new List<Stream<List<ChannelModel>>>();
-    List<Stream<QuerySnapshot>> mystreamlist1 =
-        new List<Stream<QuerySnapshot>>();
+        <Stream<List<ChannelModel>>>[];
+    List<Stream<QuerySnapshot>> mystreamlist1 = <Stream<QuerySnapshot>>[];
 
-    List<List<String>> mydocidlist = List<List<String>>();
+    List<List<String>> mydocidlist = <List<String>>[];
     int mcount = 0;
     List<String> mk = [];
     Map<String, UserChannelsModel> mymap = Map<String, UserChannelsModel>();
@@ -123,10 +122,8 @@ class ChannelsProvider {
       futures.add(pk);
     }
 
-    List<Object> mji = List<Object>();
-
     List<dynamic> mresultFuture = await Future.wait(futures);
-    List<ChannelModel> resultdata = List<ChannelModel>();
+    List<ChannelModel> resultdata = <ChannelModel>[];
     for (var qrysnp in mresultFuture) {
       QuerySnapshot qs = qrysnp as QuerySnapshot;
       for (var doc in qs.docs) {
@@ -167,7 +164,7 @@ class ChannelsProvider {
               ));
 
       if (_channels[entityName] == null)
-        _channels[entityName] = List<ChannelModel>();
+        _channels[entityName] = <ChannelModel>[];
 
       List<ChannelModel> chalist = _channels[entityName];
       bool addtolist = true;

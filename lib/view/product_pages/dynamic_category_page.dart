@@ -465,7 +465,7 @@ class _EditAddCategoryState extends State<EditAddCategory> {
                     ],
                   );
                   if (widget.type == AddEditCategory.addTopLevel) {
-                    List<dynamic> _localList = List();
+                    List<dynamic> _localList = [];
                     for (int i = 0;
                         i <
                             ((widget.childData['adata'].toList() as List)
@@ -506,7 +506,7 @@ class CategoryList {
 
   CategoryList.fromJson(Map<String, dynamic> json) {
     if (json['childcategory'] != null) {
-      childcategory = List<Childcategory>();
+      childcategory = <Childcategory>[];
       json['childcategory'].forEach((v) {
         childcategory.add(new Childcategory.fromJson(v));
       });

@@ -222,7 +222,7 @@ class TeacherOfferingsAssignment {
     final Map<String, dynamic> data = Map<String, dynamic>();
     List<String> listOfvirtualroom = [];
     List<Map> listOfsecondaryowner = [];
-    if (secondaryOwner != null) listOfsecondaryowner = List<Map>();
+    if (secondaryOwner != null) listOfsecondaryowner = <Map>[];
     secondaryOwner.forEach((element) {
       listOfsecondaryowner.add(element.toData());
     });
@@ -681,7 +681,7 @@ class InstructorOfferingDataModel {
   //Map<String,Map<String,List<String>>> primarygradevirtualroomtovirtualroom;
 
   List<AttendenceKind> getAttendenceKind(String grade, String roletype) {
-    List<AttendenceKind> kind = List<AttendenceKind>();
+    List<AttendenceKind> kind = [];
     List<AttendenceKind> datasource;
     if (roletype == "PRIMARY") {
       datasource = primaryattendlist;
@@ -703,7 +703,7 @@ class InstructorOfferingDataModel {
   }
 
   List<OfferingKind> getSubKind(String grade, String roletype) {
-    List<OfferingKind> kind = List<OfferingKind>();
+    List<OfferingKind> kind = <OfferingKind>[];
     List<OfferingKind> datasource;
     if (roletype == "PRIMARY") {
       datasource = primarykindlist;
@@ -721,7 +721,7 @@ class InstructorOfferingDataModel {
 
   List<EventOfferingKind> getEvtKind(String grade, String roletype) {
     print("The Grade is here $grade");
-    List<EventOfferingKind> kind = List<EventOfferingKind>();
+    List<EventOfferingKind> kind = [];
     List<EventOfferingKind> datasource;
     if (roletype == "PRIMARY") {
       // print("IS Grade here? ${primaryevtkindlist[0].offering.grade}");
@@ -784,7 +784,7 @@ class InstructorOfferingDataModel {
   static List<AttendenceKind> getAttendecListFromElement(dynamic element) {
     List<AttendenceKind> vrlist = [];
     if (element != null) {
-      vrlist = List<AttendenceKind>();
+      vrlist = [];
       element.forEach((v) {
         vrlist.add(AttendenceKind.fromString(v));
       });
@@ -833,8 +833,8 @@ class InstructorOfferingDataModel {
 
   InstructorOfferingDataModel.fromJson(Map<String, dynamic> json) {
     {
-      primaryevtkindlist = List<EventOfferingKind>();
-      secondaryevtkindlist = List<EventOfferingKind>();
+      primaryevtkindlist = [];
+      secondaryevtkindlist = <EventOfferingKind>[];
 
       if (json.containsKey('patt')) {
         primaryattendlist = getAttendecListFromElement(json['patt']);

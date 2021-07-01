@@ -79,10 +79,10 @@ class UserModel {
   }
 
   ChannelListInfo getChannelList() {
-    List totalresult = List();
+    List totalresult = [];
     ChannelListInfo clinfo = ChannelListInfo();
 
-    clinfo.myuserchannelmodellist = List<UserChannelsModel>();
+    clinfo.myuserchannelmodellist = [];
     clinfo.channelwithname = Map<String, String>();
     clinfo.entitywithchannellist = Map<String, List<String>>();
 

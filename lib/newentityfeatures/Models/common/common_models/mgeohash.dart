@@ -103,7 +103,7 @@ class GeoHasher {
       double middle = 0.0,
       double upper = 90.0,
       int length = 15}) {
-    List<int> ret = List<int>();
+    List<int> ret = <int>[];
 
     for (int i = 0; i < length; i++) {
       if (value >= middle) {
@@ -122,7 +122,7 @@ class GeoHasher {
   /// Converts a List<int> bits into a String geohash
   String _bitsToGeoHash(List<int> bitValue) {
     List<int> remainingBits = List<int>.from(bitValue);
-    List<int> subBits = List<int>();
+    List<int> subBits = <int>[];
     List<String> geoHashList = [];
 
     String subBitsAsString;
@@ -144,8 +144,8 @@ class GeoHasher {
 
   /// Converts a String geohash into List<int> bits
   List<int> _geoHashToBits(String geohash) {
-    List<int> letterNumValue = List<int>();
-    List<int> bitList = List<int>();
+    List<int> letterNumValue = <int>[];
+    List<int> bitList = <int>[];
     geohash.split("").forEach((letter) {
       if (_base32Map[letter] != null) {
         letterNumValue.add(_base32Map[letter]);
@@ -187,7 +187,7 @@ class GeoHasher {
     List<int> latitudeBits = _doubleToBits(
         value: latitude, lower: -90.0, upper: 90.0, length: precision * 5);
 
-    List<int> ret = List<int>();
+    List<int> ret = <int>[];
     for (int i = 0; i < longitudeBits.length; i++) {
       ret.add(longitudeBits[i]);
       ret.add(latitudeBits[i]);
@@ -214,8 +214,8 @@ class GeoHasher {
       throw ArgumentError("Invalid character in GeoHash");
 
     List<int> bits = _geoHashToBits(geohash);
-    List<int> longitudeBits = List<int>();
-    List<int> latitudeBits = List<int>();
+    List<int> longitudeBits = <int>[];
+    List<int> latitudeBits = <int>[];
 
     for (int i = 0; i < bits.length; i++) {
       if (i % 2 == 0 || i == 0) {

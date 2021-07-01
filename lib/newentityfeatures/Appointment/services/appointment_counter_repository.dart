@@ -62,7 +62,7 @@ class AppointmentCounterRepository
    */
 
   List<AppointmentCounterModel> createDummyData(QuerySnapshot snapshot) {
-    List<AppointmentCounterModel> mylist = List<AppointmentCounterModel>();
+    List<AppointmentCounterModel> mylist = <AppointmentCounterModel>[];
     int a = 1;
     a = a + 5;
     return mylist;
@@ -87,9 +87,8 @@ class AppointmentCounterRepository
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return kindlist;
 
-    kindlist = List<AppointmentCounterModel>();
+    kindlist = <AppointmentCounterModel>[];
     for (dynamic d in mdata['lm']) {
-      Map<String, dynamic> m = Map<String, dynamic>.from(d);
       kindlist.add(AppointmentCounterModel.fromData(d));
     }
 

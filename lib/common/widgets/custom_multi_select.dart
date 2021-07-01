@@ -609,7 +609,7 @@ class MultiSelectFormField<V> extends FormField<List<V>> {
             onSaved: onSaved,
             validator: validator,
             autovalidate: autovalidate,
-            initialValue: initialValue ?? List(),
+            initialValue: initialValue ?? [],
             builder: (FormFieldState<List<V>> state) {
               return CustomMultiSelect(
                 state: state,

@@ -178,7 +178,7 @@ mixin AssignmentGateway {
       'AssignmentOperationRequest',
     );
     print("CloudFunction " + "end");
-    List<Map> questiondata = List<Map>();
+    List<Map> questiondata = <Map>[];
     if (assignmentModel.questions != null)
       assignmentModel.questions.forEach((element) {
         questiondata.add(element.toData());
@@ -203,7 +203,7 @@ mixin AssignmentGateway {
       'AssignmentOperationRequest',
     );
     print("CloudFunction " + "end");
-    List<Map> studymaterialdata = List<Map>();
+    List<Map> studymaterialdata = <Map>[];
     if (assignmentModel.studyMaterials != null)
       assignmentModel.studyMaterials.forEach((element) {
         studymaterialdata.add(element.toData());
@@ -271,7 +271,7 @@ mixin AssignmentGateway {
         'AssignmentOperationRequest',
       );
       print("CloudFunction " + "end");
-      List<Map> questiondata = List<Map>();
+      List<Map> questiondata = <Map>[];
       if (assignmentModel.questions != null)
         assignmentModel.questions.forEach((element) {
           questiondata.add(element.toData());
@@ -298,7 +298,7 @@ mixin AssignmentGateway {
         'AssignmentOperationRequest',
       );
       print("CloudFunction " + "end");
-      List<Map> studymaterialdata = List<Map>();
+      List<Map> studymaterialdata = <Map>[];
       if (assignmentModel.studyMaterials != null)
         assignmentModel.studyMaterials.forEach((element) {
           studymaterialdata.add(element.toData());

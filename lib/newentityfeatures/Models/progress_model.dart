@@ -52,7 +52,7 @@ class ProgressModel {
     kind = json['kind'];
     totalScore = json['totalscore'];
     if (virtualRoom.listOfRegisteredId != null) {
-      progressList = List<ProgressInfo>();
+      progressList = <ProgressInfo>[];
       virtualRoom.listOfRegisteredId.forEach((v) {
         progressList.add(ProgressInfo.fromData(data: json, registeredID: v));
       });
@@ -71,7 +71,7 @@ class ProgressModel {
         ? HelpUtil.formattedStringToDate(json['date'], DateTimeMode.DATE)
         : DateTime.now();
     if (json['sti'] != null) {
-      progressList = List<ProgressInfo>();
+      progressList = <ProgressInfo>[];
       json['sti'].forEach((v) {
         progressList.add(ProgressInfo.fromData(data: json, registeredID: v));
       });

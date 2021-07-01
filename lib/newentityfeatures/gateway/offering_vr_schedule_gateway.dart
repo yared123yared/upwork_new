@@ -30,7 +30,7 @@ class OfferingsVrManagementGateway {
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return kindlist;
 
-    kindlist = List<OfferingModelGroup>();
+    kindlist = <OfferingModelGroup>[];
     for (dynamic d in mdata['l'])
       kindlist.add(OfferingModelGroup.fromString(d));
 
@@ -56,7 +56,7 @@ class OfferingsVrManagementGateway {
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return kindlist;
 
-    kindlist = List<OfferingModelGroup>();
+    kindlist = <OfferingModelGroup>[];
     for (dynamic d in mdata['l'])
       kindlist.add(OfferingModelGroup.fromString(d));
 
@@ -105,7 +105,7 @@ class OfferingsVrManagementGateway {
     List<RegisteredIdModel> rm = [];
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return rm;
-    rm = List<RegisteredIdModel>();
+    rm = <RegisteredIdModel>[];
     for (dynamic d in mdata['lm'])
       rm.add(RegisteredIdModel.fromData(data: Map<String, dynamic>.from(d)));
 
@@ -131,7 +131,7 @@ class OfferingsVrManagementGateway {
     List<RegisteredIdModel> rm = [];
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return rm;
-    rm = List<RegisteredIdModel>();
+    rm = <RegisteredIdModel>[];
     for (dynamic d in mdata['lm'])
       rm.add(RegisteredIdModel.fromData(data: Map<String, dynamic>.from(d)));
 
@@ -156,7 +156,7 @@ class OfferingsVrManagementGateway {
     List<SchoolOwner> rm = [];
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return rm;
-    rm = List<SchoolOwner>();
+    rm = <SchoolOwner>[];
     mdata['lm'].forEach((j) {
       rm.add(SchoolOwner.fromData(Map<String, dynamic>.from(j)));
     });
@@ -560,7 +560,7 @@ IDCARD-ATTENDENCE Data
     //Map<String,dynamic> attendencedata =data['sti'];
     List<AttendanceInfo> attendanceList = [];
     if (data['sti'] != null) {
-      attendanceList = List<AttendanceInfo>();
+      attendanceList = <AttendanceInfo>[];
       data['sti'].forEach((element) {
         attendanceList.add(AttendanceInfo.fromDataDB(
             data: Map<String, dynamic>.from(element)));
@@ -601,7 +601,7 @@ IDCARD-ATTENDENCE Data
     //Map<String,dynamic> attendencedata =data['sti'];
     List<AttendanceInfo> attendanceList = [];
     if (data['sti'] != null) {
-      attendanceList = List<AttendanceInfo>();
+      attendanceList = <AttendanceInfo>[];
       data['sti'].forEach((element) {
         attendanceList.add(AttendanceInfo.fromDataDB(
             data: Map<String, dynamic>.from(element)));

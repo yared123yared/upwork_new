@@ -63,7 +63,7 @@ class SessionTermModel extends Equatable {
   static List<SessionTermModel> listFromData(Map<String, dynamic> data) {
     List<SessionTermModel> sessionTerm;
     if (data['sessionterm'] != null) {
-      sessionTerm = List<SessionTermModel>();
+      sessionTerm = <SessionTermModel>[];
       data['sessionterm'].forEach((v) {
         sessionTerm.add(SessionTermModel.fromData(v));
       });
@@ -210,7 +210,7 @@ class PeriodInfo extends Equatable {
   static List<PaymentPeriodInfo> listFromData(Map<String, dynamic> data) {
     List<PaymentPeriodInfo> paymentPeriodInfo;
     if (data['paymentperiodinfo'] != null) {
-      paymentPeriodInfo = List<PaymentPeriodInfo>();
+      paymentPeriodInfo = <PaymentPeriodInfo>[];
       data['paymentperiodinfo'].forEach((v) {
         paymentPeriodInfo.add(PaymentPeriodInfo.fromData(v));
       });
@@ -243,7 +243,7 @@ class ClassPeriodInfo extends Equatable {
 
   ClassPeriodInfo.fromData(Map<String, dynamic> data) {
     if (data['schedule'] != null) {
-      schedule = List<Schedule>();
+      schedule = <Schedule>[];
       data['schedule'].forEach((v) {
         schedule.add(Schedule.fromData(v));
       });
@@ -364,7 +364,7 @@ class ExamTermInfo extends Equatable {
   static List<ExamTermInfo> listFromData(Map<String, dynamic> data) {
     List<ExamTermInfo> examTermInfo;
     if (data['examterminfo'] != null) {
-      examTermInfo = List<ExamTermInfo>();
+      examTermInfo = <ExamTermInfo>[];
       data['examterminfo'].forEach((v) {
         examTermInfo.add(ExamTermInfo.fromData(v));
       });

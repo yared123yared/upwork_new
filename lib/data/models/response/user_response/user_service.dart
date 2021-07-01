@@ -63,9 +63,9 @@ class UserService {
 
   UserService.fromData(Map<String, dynamic> data, String key) {
     serviceID = key;
-    channels = List<UserChannelsModel>();
-    channelsVr = List<UserChannelsModel>();
-    channelsOfr = List<UserChannelsModel>();
+    channels = [];
+    channelsVr = [];
+    channelsOfr = [];
     moduleTypesReq = [];
     moduleTypesReq.add('SCHOOL');
     moduleTypesReq.add('ORDER');
@@ -92,13 +92,13 @@ class UserService {
       });
     }
     if (data['channels_com'] != null) {
-      channelsCom = List<UserChannelsModel>();
+      channelsCom = [];
       data['channels_com'].forEach((v) {
         channelsCom.add(UserChannelsModel.fromData(v, "com"));
       });
     }
     if (data['channels_ven'] != null) {
-      channelsVen = List<UserChannelsModel>();
+      channelsVen = [];
       data['channels_ven'].forEach((v) {
         channelsVen.add(UserChannelsModel.fromData(v, "com"));
       });

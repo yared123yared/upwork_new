@@ -480,7 +480,7 @@ class ServiceModel {
   ) {
     this.serviceID = serviceID;
     if (json['servicetype'] != null) {
-      serviceTypes = List<ServiceType>();
+      serviceTypes = <ServiceType>[];
       json['servicetype'].forEach((type) {
         if (type == 'SCHOOL') {
           serviceTypes.add(ServiceType.School);

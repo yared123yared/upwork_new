@@ -86,7 +86,7 @@ class ProgressGateway {
     //Map<String,dynamic> attendencedata =data['sti'];
     List<ProgressInfo> pio = [];
     if (data['sti'] != null) {
-      pio = List<ProgressInfo>();
+      pio = <ProgressInfo>[];
       data['sti'].forEach((element) {
         pio.add(
             ProgressInfo.fromJson(data: Map<String, dynamic>.from(element)));
@@ -136,7 +136,7 @@ class ProgressGateway {
     //Map<String,dynamic> attendencedata =data['sti'];
     List<ProgressInfo> pio = [];
     if (data['sti'] != null) {
-      pio = List<ProgressInfo>();
+      pio = <ProgressInfo>[];
       data['sti'].forEach((element) {
         pio.add(
             ProgressInfo.fromJson(data: Map<String, dynamic>.from(element)));

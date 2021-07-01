@@ -40,8 +40,8 @@ class _ChatPageState extends State<ChatPage>
   final _messageController = TextEditingController();
   final ScrollController _controller = ScrollController();
   bool valid = true;
-  List<MessageModel> oldMsgList = List();
-  List<MessageModel> msgList = List();
+  List<MessageModel> oldMsgList = [];
+  List<MessageModel> msgList = [];
   ChannelsBloc _bloc;
   ChannelsProvider _channelsProvider =
       Injector.appInstance.get<ChannelsProvider>();

@@ -54,7 +54,7 @@ class AttendanceModel extends Equatable {
         ? HelpUtil.formattedStringToDate(json['date'], DateTimeMode.DATE)
         : DateTime.now();
     if (json['sti'] != null) {
-      attendanceList = List<AttendanceInfo>();
+      attendanceList = <AttendanceInfo>[];
       json['sti'].forEach((v) {
         attendanceList
             .add(AttendanceInfo.fromData(data: json, registeredID: v));
@@ -70,7 +70,7 @@ class AttendanceModel extends Equatable {
         : DateTime.now();
     kind = json['kind'];
     if (virtualRoom.listOfRegisteredId != null) {
-      attendanceList = List<AttendanceInfo>();
+      attendanceList = <AttendanceInfo>[];
       virtualRoom.listOfRegisteredId.forEach((v) {
         attendanceList
             .add(AttendanceInfo.fromData(data: json, registeredID: v));
@@ -200,7 +200,7 @@ class PersonalizedAttendanceModel extends Equatable {
         : DateTime.now();
     kind = json['kind'];
     if (virtualRoom.listOfRegisteredId != null) {
-      attendanceList = List<AttendanceInfo>();
+      attendanceList = <AttendanceInfo>[];
       virtualRoom.listOfRegisteredId.forEach((v) {
         attendanceList
             .add(AttendanceInfo.fromData(data: json, registeredID: v));

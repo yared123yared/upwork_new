@@ -65,7 +65,7 @@ class SessionTermGateway {
     print("CloudFunction " + callable.toString());
     print("CloudFunction " + resp.data.toString());
     print(resp.data);
-    return new List<ParentInteractionSingleValueListModel>();
+    return <ParentInteractionSingleValueListModel>[];
   }
 
   static Future<List<ParentInteractionSingleValueListModel>>
@@ -91,7 +91,7 @@ class SessionTermGateway {
     print("CloudFunction " + callable.toString());
     print("CloudFunction " + resp.data.toString());
     print(resp.data);
-    return new List<ParentInteractionSingleValueListModel>();
+    return <ParentInteractionSingleValueListModel>[];
   }
 
   static Future<void> addSessionTerm(

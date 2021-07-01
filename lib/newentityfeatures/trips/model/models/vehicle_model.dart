@@ -112,7 +112,7 @@ class ServiceVehicleModel {
     }
     forAdHocRides = data['foradhocrides'];
     if (data['generalinfo'] != null) {
-      generalInfo = List<GeneralInfo>();
+      generalInfo = <GeneralInfo>[];
       data['generalinfo'].forEach((v) {
         generalInfo.add(GeneralInfo.fromData(v));
       });
@@ -125,7 +125,7 @@ class ServiceVehicleModel {
     photoLink = data['photolink'];
     registrationNum = data['registrationnum'];
     if (data['seattype'] != null) {
-      seatType = List<SeatType>();
+      seatType = <SeatType>[];
       data['seattype'].forEach((v) {
         seatType.add(SeatType.fromData(v));
       });

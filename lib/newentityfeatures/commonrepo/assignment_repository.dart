@@ -130,7 +130,7 @@ class AssignmentRepository {
   Future<void> setAttachedAssignment({@required String serviceID}) async {
     try {
       _attachedAssignmentList[serviceID] = {};
-      List<VrAssignmentModel> _tempAllAssignment = List<VrAssignmentModel>();
+      List<VrAssignmentModel> _tempAllAssignment = <VrAssignmentModel>[];
       List<SessionTermModel> _sessions =
           await lookup.getSessionTermsList(serviceID: serviceID);
 
@@ -277,7 +277,7 @@ class AssignmentRepository {
   Future<void> setAssignmentScoreList({@required String serviceID}) async {
     _assignmentScoreList[serviceID] = [];
     List<VrAssignmentScoreModel> _tempAllAssignment =
-        List<VrAssignmentScoreModel>();
+        <VrAssignmentScoreModel>[];
     List<SessionTermModel> _sessions =
         await lookup.getSessionTermsList(serviceID: serviceID);
 

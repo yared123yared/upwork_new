@@ -5,7 +5,7 @@ import 'route_main_point.dart';
 
 enum RouteType { Public, Private }
 
-class RouteModel{
+class RouteModel {
   String description;
   RegisteredUser staff;
   String id;
@@ -63,7 +63,7 @@ class RouteModel{
     isRouteReversed = data['isreversed'];
     staff = RegisteredUser.fromJson(data['routemanager']);
     if (data['routemaninpoints'] != null) {
-      mainPoints = List<RouteMainPoints>();
+      mainPoints = <RouteMainPoints>[];
       data['routemaninpoints']
           .forEach((v) => mainPoints.add(RouteMainPoints.fromJson(v)));
     } else {

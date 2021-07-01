@@ -341,8 +341,9 @@ class _PersistentTabViewState extends State<PersistentTabView> {
   void initState() {
     super.initState();
 
-    _contextList = List<BuildContext>(
+    var list = List<BuildContext>(
         widget.items == null ? widget.itemCount ?? 0 : widget.items.length);
+    _contextList = list;
 
     if (widget.controller == null) {
       _controller = PersistentTabController(initialIndex: 0);

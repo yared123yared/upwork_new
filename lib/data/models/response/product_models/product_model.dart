@@ -57,7 +57,7 @@ class ProductModel {
     discountedprice = json['discountedprice'];
     ptype = json['ptype'];
     if (json['dynamicproperties'] != null) {
-      dynamicproperties = List<Dynamicproperties>();
+      dynamicproperties = <Dynamicproperties>[];
       json['dynamicproperties'].forEach((v) {
         dynamicproperties.add(new Dynamicproperties.fromJson(v));
       });
@@ -74,7 +74,7 @@ class ProductModel {
       });
     }
     if (json['sizeandcolordata'] != null) {
-      sizeandcolordata = List<Sizeandcolordata>();
+      sizeandcolordata = <Sizeandcolordata>[];
       json['sizeandcolordata'].forEach((v) {
         sizeandcolordata.add(new Sizeandcolordata.fromJson(v));
       });

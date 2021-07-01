@@ -88,7 +88,7 @@ class AssignmentModel extends Equatable {
     publish = json['publish'];
     grade = json['grade'];
     if (json['history'] != null) {
-      history = List<History>();
+      history = <History>[];
       json['history'].forEach((v) {
         history.add(History.fromData(v));
       });
@@ -99,7 +99,7 @@ class AssignmentModel extends Equatable {
     offering = json['offering'];
     totalQuestion = json['totalquestion'];
     if (totalQuestion != null) {
-      questions = List<Question>();
+      questions = <Question>[];
       for (int i = 1; i <= totalQuestion; i++) {
         if (json["q$i"] != null) {
           questions.add(Question.fromData(json["q$i"]));
@@ -108,7 +108,7 @@ class AssignmentModel extends Equatable {
     } else {
       questions = [];
     }
-    studyMaterials = List<StudyMaterial>();
+    studyMaterials = <StudyMaterial>[];
 
     json.keys.forEach((key) {
       if (key.contains('sm') && json[key] != null) {

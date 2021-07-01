@@ -18,7 +18,7 @@ class EventModel extends Equatable {
   EventModel.fromJson(Map<String, dynamic> json) {
     date = json['date'];
     if (json['hw'] != null) {
-      homeWork = List<HomeWork>();
+      homeWork = <HomeWork>[];
       json['hw'].forEach((v) {
         homeWork.add(HomeWork.fromData(v));
       });

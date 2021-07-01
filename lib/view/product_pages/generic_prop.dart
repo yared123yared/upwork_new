@@ -59,7 +59,7 @@ class _GenericPropertiesState extends State<GenericProperties> {
   List<String> _photos = [];
   var _channelsProvider = Injector.appInstance.get<ChannelsProvider>();
   var _productProvider = Injector.appInstance.get<ProductProvider>();
-  List<String> _categoryIds = List();
+  List<String> _categoryIds = [];
   var _dynamicProperties;
 
   String _category = "";

@@ -85,7 +85,7 @@ class BuildingModel extends Equatable {
 
   static List<BuildingModel> listFromJson(
       List<dynamic> json, List<String> docID) {
-    List<BuildingModel> _list = List<BuildingModel>();
+    List<BuildingModel> _list = <BuildingModel>[];
     if (json != null) {
       json.asMap().forEach((index, j) {
         _list.add(BuildingModel.fromJson(j(), docID[index]));

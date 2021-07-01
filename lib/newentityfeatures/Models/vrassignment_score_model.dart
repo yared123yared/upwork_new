@@ -48,8 +48,8 @@ class VrAssignmentScoreModel {
     // }
 
     type = json['type'];
-    answeredPapers = List<AnsweredPaper>();
-    questions = List<QuestionInfo>();
+    answeredPapers = <AnsweredPaper>[];
+    questions = <QuestionInfo>[];
     json.keys.forEach((key) {
       if (int.tryParse(key) != null) {
         if (json[key] != null) {
@@ -231,7 +231,7 @@ class AnsweredPaper {
         answers: json.containsKey('answers')
             ? List<Answer>.from(json["answers"]
                 .map((x) => Answer.fromMap(Map<String, dynamic>.from(x))))
-            : new List<Answer>(),
+            : <Answer>[],
         submitdate: json.containsKey('submitdate')
             ? HelpUtil.toDate(timestamp: json["submitdate"])
             : new DateTime(1, 1, 1),

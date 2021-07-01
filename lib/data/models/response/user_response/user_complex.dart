@@ -28,7 +28,7 @@ class UserComplex {
   UserComplex.fromData(Map<String, dynamic> data, String key) {
     complexID = key;
     if (data['channels'] != null) {
-      channels =[];
+      channels = [];
       data['channels'].forEach((v) {
         channels.add(UserChannelsModel.fromData(v, "base"));
       });
@@ -66,7 +66,7 @@ class UserComplex {
     //   ownerunits = ownerunits ?? [];
     // }
     if (data['channels_oc'] != null) {
-      channelsOc = List<UserChannelsModel>();
+      channelsOc = [];
       data['channels_oc'].forEach((v) {
         channelsOc.add(UserChannelsModel.fromData(v, "oc"));
       });
