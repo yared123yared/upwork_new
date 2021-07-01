@@ -2,6 +2,7 @@ part of 'bloc.dart';
 
 class StringListBloc extends Bloc<StringListEvent, StringListState> {
   StringRepository mrepository = StringRepository();
+  ILookupProvider provider = LookupProvider();
   StringListBloc() : super(StringListInitialState());
 
   @override
@@ -10,15 +11,21 @@ class StringListBloc extends Bloc<StringListEvent, StringListState> {
   ) async* {
     if (event is GetListData) {
       yield IsBusy();
-      StringRepositoryReturnData ud = await mrepository.getAllStrings(
-          event.entitytype, event.entityid, event.fieldname);
 
-      if (ud.errortype == -1)
-        yield IsListDataLoaded(listdata: ud.itemlist);
-      else if (ud.errortype == 1)
-        yield HasLogicalFaliur(error: ud.error);
-      else
-        yield HasExceptionFaliur(error: ud.error);
+      final Either<Failure, List<String>> data =
+          await provider.getFeeItemsList(serviceID: event.entityid);
+      // StringRepositoryReturnData ud = await mrepository.getAllStrings(
+      //     event.entitytype, event.entityid, event.fieldname);
+
+      yield data.fold(
+          (l) => HasFailure(failure: l), (r) => IsListDataLoaded(listdata: r));
+
+      // if (ud.errortype == -1)
+      //   yield IsListDataLoaded(listdata: ud.itemlist);
+      // else if (ud.errortype == 1)
+      //   yield HasLogicalFaliur(error: ud.error);
+      // else
+      //   yield HasExceptionFaliur(error: ud.error);
     }
 
     if (event is DeleteItemWithData) {

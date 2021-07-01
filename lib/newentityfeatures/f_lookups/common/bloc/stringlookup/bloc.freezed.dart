@@ -712,6 +712,13 @@ class _$StringListStateTearOff {
   }
 
 // ignore: unused_element
+  HasFailure hasFailure({@required Failure failure}) {
+    return HasFailure(
+      failure: failure,
+    );
+  }
+
+// ignore: unused_element
   HasLogicalFaliur hasLogicalFaliur({@required String error}) {
     return HasLogicalFaliur(
       error: error,
@@ -749,6 +756,7 @@ mixin _$StringListState {
     @required TResult isBusy(),
     @required TResult isDeleted(),
     @required TResult isSaved(),
+    @required TResult hasFailure(Failure failure),
     @required TResult hasLogicalFaliur(String error),
     @required TResult hasExceptionFaliur(String error),
     @required TResult isListDataLoaded(List<String> listdata),
@@ -759,6 +767,7 @@ mixin _$StringListState {
     TResult isBusy(),
     TResult isDeleted(),
     TResult isSaved(),
+    TResult hasFailure(Failure failure),
     TResult hasLogicalFaliur(String error),
     TResult hasExceptionFaliur(String error),
     TResult isListDataLoaded(List<String> listdata),
@@ -770,6 +779,7 @@ mixin _$StringListState {
     @required TResult isBusy(IsBusy value),
     @required TResult isDeleted(IsDeleted value),
     @required TResult isSaved(IsSaved value),
+    @required TResult hasFailure(HasFailure value),
     @required TResult hasLogicalFaliur(HasLogicalFaliur value),
     @required TResult hasExceptionFaliur(HasExceptionFaliur value),
     @required TResult isListDataLoaded(IsListDataLoaded value),
@@ -780,6 +790,7 @@ mixin _$StringListState {
     TResult isBusy(IsBusy value),
     TResult isDeleted(IsDeleted value),
     TResult isSaved(IsSaved value),
+    TResult hasFailure(HasFailure value),
     TResult hasLogicalFaliur(HasLogicalFaliur value),
     TResult hasExceptionFaliur(HasExceptionFaliur value),
     TResult isListDataLoaded(IsListDataLoaded value),
@@ -850,6 +861,7 @@ class _$IsBusy with DiagnosticableTreeMixin implements IsBusy {
     @required TResult isBusy(),
     @required TResult isDeleted(),
     @required TResult isSaved(),
+    @required TResult hasFailure(Failure failure),
     @required TResult hasLogicalFaliur(String error),
     @required TResult hasExceptionFaliur(String error),
     @required TResult isListDataLoaded(List<String> listdata),
@@ -858,6 +870,7 @@ class _$IsBusy with DiagnosticableTreeMixin implements IsBusy {
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -871,6 +884,7 @@ class _$IsBusy with DiagnosticableTreeMixin implements IsBusy {
     TResult isBusy(),
     TResult isDeleted(),
     TResult isSaved(),
+    TResult hasFailure(Failure failure),
     TResult hasLogicalFaliur(String error),
     TResult hasExceptionFaliur(String error),
     TResult isListDataLoaded(List<String> listdata),
@@ -890,6 +904,7 @@ class _$IsBusy with DiagnosticableTreeMixin implements IsBusy {
     @required TResult isBusy(IsBusy value),
     @required TResult isDeleted(IsDeleted value),
     @required TResult isSaved(IsSaved value),
+    @required TResult hasFailure(HasFailure value),
     @required TResult hasLogicalFaliur(HasLogicalFaliur value),
     @required TResult hasExceptionFaliur(HasExceptionFaliur value),
     @required TResult isListDataLoaded(IsListDataLoaded value),
@@ -898,6 +913,7 @@ class _$IsBusy with DiagnosticableTreeMixin implements IsBusy {
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -911,6 +927,7 @@ class _$IsBusy with DiagnosticableTreeMixin implements IsBusy {
     TResult isBusy(IsBusy value),
     TResult isDeleted(IsDeleted value),
     TResult isSaved(IsSaved value),
+    TResult hasFailure(HasFailure value),
     TResult hasLogicalFaliur(HasLogicalFaliur value),
     TResult hasExceptionFaliur(HasExceptionFaliur value),
     TResult isListDataLoaded(IsListDataLoaded value),
@@ -974,6 +991,7 @@ class _$IsDeleted with DiagnosticableTreeMixin implements IsDeleted {
     @required TResult isBusy(),
     @required TResult isDeleted(),
     @required TResult isSaved(),
+    @required TResult hasFailure(Failure failure),
     @required TResult hasLogicalFaliur(String error),
     @required TResult hasExceptionFaliur(String error),
     @required TResult isListDataLoaded(List<String> listdata),
@@ -982,6 +1000,7 @@ class _$IsDeleted with DiagnosticableTreeMixin implements IsDeleted {
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -995,6 +1014,7 @@ class _$IsDeleted with DiagnosticableTreeMixin implements IsDeleted {
     TResult isBusy(),
     TResult isDeleted(),
     TResult isSaved(),
+    TResult hasFailure(Failure failure),
     TResult hasLogicalFaliur(String error),
     TResult hasExceptionFaliur(String error),
     TResult isListDataLoaded(List<String> listdata),
@@ -1014,6 +1034,7 @@ class _$IsDeleted with DiagnosticableTreeMixin implements IsDeleted {
     @required TResult isBusy(IsBusy value),
     @required TResult isDeleted(IsDeleted value),
     @required TResult isSaved(IsSaved value),
+    @required TResult hasFailure(HasFailure value),
     @required TResult hasLogicalFaliur(HasLogicalFaliur value),
     @required TResult hasExceptionFaliur(HasExceptionFaliur value),
     @required TResult isListDataLoaded(IsListDataLoaded value),
@@ -1022,6 +1043,7 @@ class _$IsDeleted with DiagnosticableTreeMixin implements IsDeleted {
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1035,6 +1057,7 @@ class _$IsDeleted with DiagnosticableTreeMixin implements IsDeleted {
     TResult isBusy(IsBusy value),
     TResult isDeleted(IsDeleted value),
     TResult isSaved(IsSaved value),
+    TResult hasFailure(HasFailure value),
     TResult hasLogicalFaliur(HasLogicalFaliur value),
     TResult hasExceptionFaliur(HasExceptionFaliur value),
     TResult isListDataLoaded(IsListDataLoaded value),
@@ -1098,6 +1121,7 @@ class _$IsSaved with DiagnosticableTreeMixin implements IsSaved {
     @required TResult isBusy(),
     @required TResult isDeleted(),
     @required TResult isSaved(),
+    @required TResult hasFailure(Failure failure),
     @required TResult hasLogicalFaliur(String error),
     @required TResult hasExceptionFaliur(String error),
     @required TResult isListDataLoaded(List<String> listdata),
@@ -1106,6 +1130,7 @@ class _$IsSaved with DiagnosticableTreeMixin implements IsSaved {
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1119,6 +1144,7 @@ class _$IsSaved with DiagnosticableTreeMixin implements IsSaved {
     TResult isBusy(),
     TResult isDeleted(),
     TResult isSaved(),
+    TResult hasFailure(Failure failure),
     TResult hasLogicalFaliur(String error),
     TResult hasExceptionFaliur(String error),
     TResult isListDataLoaded(List<String> listdata),
@@ -1138,6 +1164,7 @@ class _$IsSaved with DiagnosticableTreeMixin implements IsSaved {
     @required TResult isBusy(IsBusy value),
     @required TResult isDeleted(IsDeleted value),
     @required TResult isSaved(IsSaved value),
+    @required TResult hasFailure(HasFailure value),
     @required TResult hasLogicalFaliur(HasLogicalFaliur value),
     @required TResult hasExceptionFaliur(HasExceptionFaliur value),
     @required TResult isListDataLoaded(IsListDataLoaded value),
@@ -1146,6 +1173,7 @@ class _$IsSaved with DiagnosticableTreeMixin implements IsSaved {
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1159,6 +1187,7 @@ class _$IsSaved with DiagnosticableTreeMixin implements IsSaved {
     TResult isBusy(IsBusy value),
     TResult isDeleted(IsDeleted value),
     TResult isSaved(IsSaved value),
+    TResult hasFailure(HasFailure value),
     TResult hasLogicalFaliur(HasLogicalFaliur value),
     TResult hasExceptionFaliur(HasExceptionFaliur value),
     TResult isListDataLoaded(IsListDataLoaded value),
@@ -1175,6 +1204,177 @@ class _$IsSaved with DiagnosticableTreeMixin implements IsSaved {
 
 abstract class IsSaved implements StringListState {
   const factory IsSaved() = _$IsSaved;
+}
+
+/// @nodoc
+abstract class $HasFailureCopyWith<$Res> {
+  factory $HasFailureCopyWith(
+          HasFailure value, $Res Function(HasFailure) then) =
+      _$HasFailureCopyWithImpl<$Res>;
+  $Res call({Failure failure});
+
+  $FailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class _$HasFailureCopyWithImpl<$Res> extends _$StringListStateCopyWithImpl<$Res>
+    implements $HasFailureCopyWith<$Res> {
+  _$HasFailureCopyWithImpl(HasFailure _value, $Res Function(HasFailure) _then)
+      : super(_value, (v) => _then(v as HasFailure));
+
+  @override
+  HasFailure get _value => super._value as HasFailure;
+
+  @override
+  $Res call({
+    Object failure = freezed,
+  }) {
+    return _then(HasFailure(
+      failure: failure == freezed ? _value.failure : failure as Failure,
+    ));
+  }
+
+  @override
+  $FailureCopyWith<$Res> get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+    return $FailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+class _$HasFailure with DiagnosticableTreeMixin implements HasFailure {
+  const _$HasFailure({@required this.failure}) : assert(failure != null);
+
+  @override
+  final Failure failure;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'StringListState.hasFailure(failure: $failure)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'StringListState.hasFailure'))
+      ..add(DiagnosticsProperty('failure', failure));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is HasFailure &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+
+  @JsonKey(ignore: true)
+  @override
+  $HasFailureCopyWith<HasFailure> get copyWith =>
+      _$HasFailureCopyWithImpl<HasFailure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult isBusy(),
+    @required TResult isDeleted(),
+    @required TResult isSaved(),
+    @required TResult hasFailure(Failure failure),
+    @required TResult hasLogicalFaliur(String error),
+    @required TResult hasExceptionFaliur(String error),
+    @required TResult isListDataLoaded(List<String> listdata),
+    @required TResult initial(),
+  }) {
+    assert(isBusy != null);
+    assert(isDeleted != null);
+    assert(isSaved != null);
+    assert(hasFailure != null);
+    assert(hasLogicalFaliur != null);
+    assert(hasExceptionFaliur != null);
+    assert(isListDataLoaded != null);
+    assert(initial != null);
+    return hasFailure(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult isBusy(),
+    TResult isDeleted(),
+    TResult isSaved(),
+    TResult hasFailure(Failure failure),
+    TResult hasLogicalFaliur(String error),
+    TResult hasExceptionFaliur(String error),
+    TResult isListDataLoaded(List<String> listdata),
+    TResult initial(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (hasFailure != null) {
+      return hasFailure(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult isBusy(IsBusy value),
+    @required TResult isDeleted(IsDeleted value),
+    @required TResult isSaved(IsSaved value),
+    @required TResult hasFailure(HasFailure value),
+    @required TResult hasLogicalFaliur(HasLogicalFaliur value),
+    @required TResult hasExceptionFaliur(HasExceptionFaliur value),
+    @required TResult isListDataLoaded(IsListDataLoaded value),
+    @required TResult initial(StringListInitialState value),
+  }) {
+    assert(isBusy != null);
+    assert(isDeleted != null);
+    assert(isSaved != null);
+    assert(hasFailure != null);
+    assert(hasLogicalFaliur != null);
+    assert(hasExceptionFaliur != null);
+    assert(isListDataLoaded != null);
+    assert(initial != null);
+    return hasFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult isBusy(IsBusy value),
+    TResult isDeleted(IsDeleted value),
+    TResult isSaved(IsSaved value),
+    TResult hasFailure(HasFailure value),
+    TResult hasLogicalFaliur(HasLogicalFaliur value),
+    TResult hasExceptionFaliur(HasExceptionFaliur value),
+    TResult isListDataLoaded(IsListDataLoaded value),
+    TResult initial(StringListInitialState value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (hasFailure != null) {
+      return hasFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class HasFailure implements StringListState {
+  const factory HasFailure({@required Failure failure}) = _$HasFailure;
+
+  Failure get failure;
+  @JsonKey(ignore: true)
+  $HasFailureCopyWith<HasFailure> get copyWith;
 }
 
 /// @nodoc
@@ -1251,6 +1451,7 @@ class _$HasLogicalFaliur
     @required TResult isBusy(),
     @required TResult isDeleted(),
     @required TResult isSaved(),
+    @required TResult hasFailure(Failure failure),
     @required TResult hasLogicalFaliur(String error),
     @required TResult hasExceptionFaliur(String error),
     @required TResult isListDataLoaded(List<String> listdata),
@@ -1259,6 +1460,7 @@ class _$HasLogicalFaliur
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1272,6 +1474,7 @@ class _$HasLogicalFaliur
     TResult isBusy(),
     TResult isDeleted(),
     TResult isSaved(),
+    TResult hasFailure(Failure failure),
     TResult hasLogicalFaliur(String error),
     TResult hasExceptionFaliur(String error),
     TResult isListDataLoaded(List<String> listdata),
@@ -1291,6 +1494,7 @@ class _$HasLogicalFaliur
     @required TResult isBusy(IsBusy value),
     @required TResult isDeleted(IsDeleted value),
     @required TResult isSaved(IsSaved value),
+    @required TResult hasFailure(HasFailure value),
     @required TResult hasLogicalFaliur(HasLogicalFaliur value),
     @required TResult hasExceptionFaliur(HasExceptionFaliur value),
     @required TResult isListDataLoaded(IsListDataLoaded value),
@@ -1299,6 +1503,7 @@ class _$HasLogicalFaliur
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1312,6 +1517,7 @@ class _$HasLogicalFaliur
     TResult isBusy(IsBusy value),
     TResult isDeleted(IsDeleted value),
     TResult isSaved(IsSaved value),
+    TResult hasFailure(HasFailure value),
     TResult hasLogicalFaliur(HasLogicalFaliur value),
     TResult hasExceptionFaliur(HasExceptionFaliur value),
     TResult isListDataLoaded(IsListDataLoaded value),
@@ -1408,6 +1614,7 @@ class _$HasExceptionFaliur
     @required TResult isBusy(),
     @required TResult isDeleted(),
     @required TResult isSaved(),
+    @required TResult hasFailure(Failure failure),
     @required TResult hasLogicalFaliur(String error),
     @required TResult hasExceptionFaliur(String error),
     @required TResult isListDataLoaded(List<String> listdata),
@@ -1416,6 +1623,7 @@ class _$HasExceptionFaliur
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1429,6 +1637,7 @@ class _$HasExceptionFaliur
     TResult isBusy(),
     TResult isDeleted(),
     TResult isSaved(),
+    TResult hasFailure(Failure failure),
     TResult hasLogicalFaliur(String error),
     TResult hasExceptionFaliur(String error),
     TResult isListDataLoaded(List<String> listdata),
@@ -1448,6 +1657,7 @@ class _$HasExceptionFaliur
     @required TResult isBusy(IsBusy value),
     @required TResult isDeleted(IsDeleted value),
     @required TResult isSaved(IsSaved value),
+    @required TResult hasFailure(HasFailure value),
     @required TResult hasLogicalFaliur(HasLogicalFaliur value),
     @required TResult hasExceptionFaliur(HasExceptionFaliur value),
     @required TResult isListDataLoaded(IsListDataLoaded value),
@@ -1456,6 +1666,7 @@ class _$HasExceptionFaliur
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1469,6 +1680,7 @@ class _$HasExceptionFaliur
     TResult isBusy(IsBusy value),
     TResult isDeleted(IsDeleted value),
     TResult isSaved(IsSaved value),
+    TResult hasFailure(HasFailure value),
     TResult hasLogicalFaliur(HasLogicalFaliur value),
     TResult hasExceptionFaliur(HasExceptionFaliur value),
     TResult isListDataLoaded(IsListDataLoaded value),
@@ -1568,6 +1780,7 @@ class _$IsListDataLoaded
     @required TResult isBusy(),
     @required TResult isDeleted(),
     @required TResult isSaved(),
+    @required TResult hasFailure(Failure failure),
     @required TResult hasLogicalFaliur(String error),
     @required TResult hasExceptionFaliur(String error),
     @required TResult isListDataLoaded(List<String> listdata),
@@ -1576,6 +1789,7 @@ class _$IsListDataLoaded
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1589,6 +1803,7 @@ class _$IsListDataLoaded
     TResult isBusy(),
     TResult isDeleted(),
     TResult isSaved(),
+    TResult hasFailure(Failure failure),
     TResult hasLogicalFaliur(String error),
     TResult hasExceptionFaliur(String error),
     TResult isListDataLoaded(List<String> listdata),
@@ -1608,6 +1823,7 @@ class _$IsListDataLoaded
     @required TResult isBusy(IsBusy value),
     @required TResult isDeleted(IsDeleted value),
     @required TResult isSaved(IsSaved value),
+    @required TResult hasFailure(HasFailure value),
     @required TResult hasLogicalFaliur(HasLogicalFaliur value),
     @required TResult hasExceptionFaliur(HasExceptionFaliur value),
     @required TResult isListDataLoaded(IsListDataLoaded value),
@@ -1616,6 +1832,7 @@ class _$IsListDataLoaded
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1629,6 +1846,7 @@ class _$IsListDataLoaded
     TResult isBusy(IsBusy value),
     TResult isDeleted(IsDeleted value),
     TResult isSaved(IsSaved value),
+    TResult hasFailure(HasFailure value),
     TResult hasLogicalFaliur(HasLogicalFaliur value),
     TResult hasExceptionFaliur(HasExceptionFaliur value),
     TResult isListDataLoaded(IsListDataLoaded value),
@@ -1701,6 +1919,7 @@ class _$StringListInitialState
     @required TResult isBusy(),
     @required TResult isDeleted(),
     @required TResult isSaved(),
+    @required TResult hasFailure(Failure failure),
     @required TResult hasLogicalFaliur(String error),
     @required TResult hasExceptionFaliur(String error),
     @required TResult isListDataLoaded(List<String> listdata),
@@ -1709,6 +1928,7 @@ class _$StringListInitialState
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1722,6 +1942,7 @@ class _$StringListInitialState
     TResult isBusy(),
     TResult isDeleted(),
     TResult isSaved(),
+    TResult hasFailure(Failure failure),
     TResult hasLogicalFaliur(String error),
     TResult hasExceptionFaliur(String error),
     TResult isListDataLoaded(List<String> listdata),
@@ -1741,6 +1962,7 @@ class _$StringListInitialState
     @required TResult isBusy(IsBusy value),
     @required TResult isDeleted(IsDeleted value),
     @required TResult isSaved(IsSaved value),
+    @required TResult hasFailure(HasFailure value),
     @required TResult hasLogicalFaliur(HasLogicalFaliur value),
     @required TResult hasExceptionFaliur(HasExceptionFaliur value),
     @required TResult isListDataLoaded(IsListDataLoaded value),
@@ -1749,6 +1971,7 @@ class _$StringListInitialState
     assert(isBusy != null);
     assert(isDeleted != null);
     assert(isSaved != null);
+    assert(hasFailure != null);
     assert(hasLogicalFaliur != null);
     assert(hasExceptionFaliur != null);
     assert(isListDataLoaded != null);
@@ -1762,6 +1985,7 @@ class _$StringListInitialState
     TResult isBusy(IsBusy value),
     TResult isDeleted(IsDeleted value),
     TResult isSaved(IsSaved value),
+    TResult hasFailure(HasFailure value),
     TResult hasLogicalFaliur(HasLogicalFaliur value),
     TResult hasExceptionFaliur(HasExceptionFaliur value),
     TResult isListDataLoaded(IsListDataLoaded value),

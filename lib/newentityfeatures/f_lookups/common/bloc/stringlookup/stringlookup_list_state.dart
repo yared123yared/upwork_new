@@ -5,6 +5,9 @@ abstract class StringListState with _$StringListState {
   const factory StringListState.isBusy() = IsBusy;
   const factory StringListState.isDeleted() = IsDeleted;
   const factory StringListState.isSaved() = IsSaved;
+  const factory StringListState.hasFailure({@required Failure failure}) =
+      HasFailure;
+
   const factory StringListState.hasLogicalFaliur({@required String error}) =
       HasLogicalFaliur;
   const factory StringListState.hasExceptionFaliur({@required String error}) =

@@ -164,12 +164,9 @@ class _GradesFormListState extends State<GradesFormList> {
                 child: Container(
                     width: 20, height: 20, child: CircularProgressIndicator()),
               );
-            if (state is listbloc.HasLogicalFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
+            if (state is listbloc.HasFailure)
+              return Center(child: Text(state.failure.error));
+
             if (state is listbloc.IsDeleted) {
               return Center(child: Text("Deleted item"));
             }
