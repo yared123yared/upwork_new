@@ -41,6 +41,30 @@ class LookupProvider extends ILookupProvider {
   }
 
   @override
+  Future<Either<Failure, ClassPeriodInfoList>> getClassPeriodList(
+      {String serviceID}) async {
+    Either<Failure, ClassPeriodInfoList> response =
+        await ApiHelper("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+            .getDocFromFirestore(fromJson: (json) {
+      return ClassPeriodInfoList.fromJson(json);
+    });
+
+    return response;
+  }
+
+  @override
+  Future<Either<Failure, PaymentPeriodInfoList>> getPaymentPeriodList(
+      {String serviceID}) async {
+    Either<Failure, PaymentPeriodInfoList> response =
+        await ApiHelper("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+            .getDocFromFirestore(fromJson: (json) {
+      return PaymentPeriodInfoList.fromJson(json);
+    });
+
+    return response;
+  }
+
+  @override
   Future<Either<Failure, RoomInfoList>> getRoomsList({String serviceID}) async {
     Either<Failure, RoomInfoList> response =
         await ApiHelper("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
