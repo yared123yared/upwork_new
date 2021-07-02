@@ -50,13 +50,24 @@ class UserRepository {
       _user = UserModel.fromData(userData, userID);
       UserSession.userId = _user.userID;
     }
+    String country ="INDIA";  //use locale or any other mechanism to know country and make it caps to use it in query
+    List<String> locationservers=null;
+
     await Future.wait<void>([
+
+
       FirebaseFirestore.instance.doc("USERS/$userID").get().then((x) {
         /*x.data().forEach((key, value) {
           print("value of $key  =>  $value}");
         });*/
         _user = UserModel.fromData(x.data(), userID);
+
         UserSession.userId = _user.userID;
+      }),
+
+      FirebaseFirestore.instance.doc("ENDUSERLOCATIONSERVERS/$country").get().then((x) {
+        Map<String, dynamic> mdata =x.data();
+        locationservers =mdata !=null && mdata['data'] != null ? List<String>.from(mdata['data'] as List) : [];
       }),
       FirebaseFirestore.instance
           .collection("USERALERTS")
@@ -76,6 +87,8 @@ class UserRepository {
     ]);
 
     UserEntity.setDefaultEntity(_userentity, _user);
+    _user.currentcountry =country;
+    _user.locationservers =locationservers;
     if (_user.defaultType == entityT.service) {
       _user.defaultServiceModel =
           await serviceRepository.getService(_user.defaultServiceEntity);

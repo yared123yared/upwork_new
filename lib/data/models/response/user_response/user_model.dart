@@ -10,6 +10,8 @@ enum moduleT { none, SCHOOL, ORDERS, APPOINTMENT, TRIP }
 
 class UserModel {
   static String get serviceProviderDocumentId => "kF2P9uwiLfYuhYUQbsGK";
+  String currentcountry;
+  List<String> locationservers;
   bool isActive;
   String name;
   String qrCode;

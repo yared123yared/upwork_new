@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/entity/entity_roles.dart';
@@ -26,7 +29,7 @@ class LeaveRequestRepositoryReturnData {
 
 class LeaveRequestRepository {
   NewComplexRepository _complexRepository = Get.find();
-  UserRepository _userRepository = Get.find();
+  UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
 
   Future<LeaveRequestRepositoryReturnData> getAllLeaveRequests(
@@ -34,12 +37,29 @@ class LeaveRequestRepository {
     LeaveRequestRepositoryReturnData myreturn =
         LeaveRequestRepositoryReturnData();
 
-    myreturn.itemlist =
+    List<LeaveRequestModel> leaveRequests =
         await _complexRepository.leaveRequest.getLeaveRequestForAll(
       entitytype: entitytype,
       entityid: entityid,
       user: _user,
     );
+    List<LeaveRequestModel> filteredLeaveRequests = [];
+
+    leaveRequests.forEach((leaveRequest) {
+      DateTime now = DateTime.now();
+      if ((leaveRequest.startDate.difference(now).inDays < 90) &&
+          (leaveRequest.endDate.difference(now).inDays < 90)) {
+        if (originType == 1) {
+          if (leaveRequest.staffID == _user.userID) {
+            filteredLeaveRequests.add(leaveRequest);
+          }
+        } else if (originType == 2) {
+          filteredLeaveRequests.add(leaveRequest);
+        }
+      }
+    });
+
+    myreturn.itemlist = filteredLeaveRequests;
 
     return myreturn;
   }

@@ -14,39 +14,56 @@ class HelperRepository {
 
   static Future<List<String>> offeringModelGroupfunc(
       String grade, String entityid) async {
-    return await _schoolRepo
-        .getKindListForGrade(
-          grade: grade,
-          entitytype: "SERVICEPROVIDERINFO",
-          entityid: entityid,
-        )
-        .then(
-          (value) => value.map((e) => e.offeringgroupid).toList(),
-        );
+    try {
+      return await _schoolRepo
+          .getKindListForGrade(
+            grade: grade,
+            entitytype: "SERVICEPROVIDERINFO",
+            entityid: entityid,
+          )
+          .then(
+            (value) => value.map((e) => e.offeringgroupid).toList(),
+          );
+    } catch (e) {
+      print(e);
+    }
   }
 
   static Future<List<VirtualRoomModelNewFormat>> virtualroomlistfunc(
       String grade, String entityid) async {
-    return await _schoolRepo.getVirtualRoomsList(
-      grade: grade,
-      serviceID: entityid,
-    );
+    try {
+      return await _schoolRepo.getVirtualRoomsList(
+        grade: grade,
+        serviceID: entityid,
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 
   static Future<List<AssignmentModel>> assignmentModellistbyofferinggroupfunc(
       String offeringgroupname, String entityid) async {
-    return await _schoolRepo.assignment.getPublishedAssignmentsByOfferingGroup(
-      offeringgroupname: offeringgroupname,
-      serviceID: entityid,
-    );
+    try {
+      return await _schoolRepo.assignment
+          .getPublishedAssignmentsByOfferingGroup(
+        offeringgroupname: offeringgroupname,
+        serviceID: entityid,
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 
   static Future<List<TeacherOfferingsAssignment>>
       teacherOfferingsAssignmentllistbyofferinggroupfunc(
           String grade, String entityid) async {
-    return await _schoolRepo.getTeacherOfferingsAssignmentListByGrade(
-      grade: grade,
-      serviceID: entityid,
-    );
+    try {
+      return await _schoolRepo.getTeacherOfferingsAssignmentListByGrade(
+        grade: grade,
+        serviceID: entityid,
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 }

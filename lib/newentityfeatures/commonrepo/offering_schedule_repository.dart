@@ -17,26 +17,34 @@ class OfferingScheduleRepository {
       {};
 
   Future<void> setOfferingsSchedule({@required String serviceID}) async {
-    List<SessionTerm> _sessionTermsList =
-        await lookup.getSessionTermsList(serviceID: serviceID);
-    _offeringsSchedule[serviceID] = {};
-    for (SessionTerm session in _sessionTermsList) {
-      List<OfferingsScheduleModel> _tempList =
-          await SessionTermGateway.getOfferingDocList(
-              serviceID, session.termName);
+    try {
+      List<SessionTerm> _sessionTermsList =
+          await lookup.getSessionTermsList(serviceID: serviceID);
+      _offeringsSchedule[serviceID] = {};
+      for (SessionTerm session in _sessionTermsList) {
+        List<OfferingsScheduleModel> _tempList =
+            await SessionTermGateway.getOfferingDocList(
+                serviceID, session.termName);
 
-      _offeringsSchedule[serviceID][session.termName] = _tempList;
-      print(_offeringsSchedule);
+        _offeringsSchedule[serviceID][session.termName] = _tempList;
+        print(_offeringsSchedule);
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
   Future<Map<String, List<OfferingsScheduleModel>>> getOfferingsSchedule(
       {@required String serviceID}) async {
-    if (_offeringsSchedule[serviceID] == null ||
-        _offeringsSchedule[serviceID].length == 0) {
-      await setOfferingsSchedule(serviceID: serviceID);
+    try {
+      if (_offeringsSchedule[serviceID] == null ||
+          _offeringsSchedule[serviceID].length == 0) {
+        await setOfferingsSchedule(serviceID: serviceID);
+      }
+      return _offeringsSchedule[serviceID];
+    } catch (e) {
+      print(e);
     }
-    return _offeringsSchedule[serviceID];
   }
 
   Future<void> addOfferingSchedule({
@@ -44,11 +52,15 @@ class OfferingScheduleRepository {
     @required String sessionID,
     @required OfferingsScheduleModel offeringsScheduleModel,
   }) async {
-    await SessionTermGateway.addOfferingSchedule(
-      serviceID: serviceID,
-      sessionID: sessionID,
-      offeringsScheduleModel: offeringsScheduleModel,
-    );
-    await setOfferingsSchedule(serviceID: serviceID);
+    try {
+      await SessionTermGateway.addOfferingSchedule(
+        serviceID: serviceID,
+        sessionID: sessionID,
+        offeringsScheduleModel: offeringsScheduleModel,
+      );
+      await setOfferingsSchedule(serviceID: serviceID);
+    } catch (e) {
+      print(e);
+    }
   }
 }

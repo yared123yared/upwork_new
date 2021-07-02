@@ -12,37 +12,49 @@ class VirtualRoomsRepository {
   Map<String, Map<String, List<VirtualRoomModel>>> _virtualRooms = {};
 
   Future<void> setVirtualRooms({@required String serviceID}) async {
-    List<SessionTerm> _sessionTermsList = await lookup.getSessionTermsList(
-      serviceID: serviceID,
-    );
-    _virtualRooms[serviceID] = {};
-
-    for (SessionTerm session in _sessionTermsList) {
-      List<VirtualRoomModel> _tempList =
-          await SessionTermGateway.getVirtualRoomList(
-        serviceID,
-        session.termName,
+    try {
+      List<SessionTerm> _sessionTermsList = await lookup.getSessionTermsList(
+        serviceID: serviceID,
       );
-      _virtualRooms[serviceID][session.termName] = _tempList;
+      _virtualRooms[serviceID] = {};
+
+      for (SessionTerm session in _sessionTermsList) {
+        List<VirtualRoomModel> _tempList =
+            await SessionTermGateway.getVirtualRoomList(
+          serviceID,
+          session.termName,
+        );
+        _virtualRooms[serviceID][session.termName] = _tempList;
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
   Future<Map<String, List<VirtualRoomModel>>> getVirtualRooms({
     @required String serviceID,
   }) async {
-    if (_virtualRooms[serviceID] == null ||
-        _virtualRooms[serviceID].length == 0) {
-      await setVirtualRooms(serviceID: serviceID);
+    try {
+      if (_virtualRooms[serviceID] == null ||
+          _virtualRooms[serviceID].length == 0) {
+        await setVirtualRooms(serviceID: serviceID);
+      }
+      return _virtualRooms[serviceID];
+    } catch (e) {
+      print(e);
     }
-    return _virtualRooms[serviceID];
   }
 
   Future<List<RegisteredIdModel>> getVirtualRoomIDList(
       {@required String serviceID,
       @required String termName,
       @required int vRoomIndex}) async {
-    return await getVirtualRooms(serviceID: serviceID)
-        .then((vRooms) => vRooms[termName][vRoomIndex].listOfRegisteredId);
+    try {
+      return await getVirtualRooms(serviceID: serviceID)
+          .then((vRooms) => vRooms[termName][vRoomIndex].listOfRegisteredId);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> addVirtualRooms({
@@ -50,11 +62,15 @@ class VirtualRoomsRepository {
     @required String sessionID,
     @required VirtualRoomModel virtualRoomModel,
   }) async {
-    await SessionTermGateway.addVirtualRoom(
-      serviceID: serviceID,
-      sessionID: sessionID,
-      virtualRoomModel: virtualRoomModel,
-    );
-    await setVirtualRooms(serviceID: serviceID);
+    try {
+      await SessionTermGateway.addVirtualRoom(
+        serviceID: serviceID,
+        sessionID: sessionID,
+        virtualRoomModel: virtualRoomModel,
+      );
+      await setVirtualRooms(serviceID: serviceID);
+    } catch (e) {
+      print(e);
+    }
   }
 }

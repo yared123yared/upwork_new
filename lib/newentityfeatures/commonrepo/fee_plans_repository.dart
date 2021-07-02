@@ -8,42 +8,58 @@ class FeePlansRepository {
   Map<String, List<FeePlanModel>> _feePlanList = {};
 
   Future<void> setFeeIPlanList({@required String serviceID}) async {
-    List<FeePlanModel> _list =
-        await FeePlanGateway.getFeePlanList(serviceID: serviceID);
-    _feePlanList[serviceID] = _list;
+    try {
+      List<FeePlanModel> _list =
+          await FeePlanGateway.getFeePlanList(serviceID: serviceID);
+      _feePlanList[serviceID] = _list;
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<List<FeePlanModel>> getFeePlanList(
       {@required String serviceID}) async {
-    if (_feePlanList[serviceID] == null ||
-        _feePlanList[serviceID].length == 0) {
-      await setFeeIPlanList(serviceID: serviceID);
-    }
+    try {
+      if (_feePlanList[serviceID] == null ||
+          _feePlanList[serviceID].length == 0) {
+        await setFeeIPlanList(serviceID: serviceID);
+      }
 
-    return _feePlanList[serviceID];
+      return _feePlanList[serviceID];
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> addFeePlan({
     FeePlanModel feePlan,
     String serviceID,
   }) async {
-    await FeePlanGateway.addNewFeePlan(
-      feePlan: feePlan,
-      serviceID: serviceID,
-    );
-    await setFeeIPlanList(serviceID: serviceID);
+    try {
+      await FeePlanGateway.addNewFeePlan(
+        feePlan: feePlan,
+        serviceID: serviceID,
+      );
+      await setFeeIPlanList(serviceID: serviceID);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> updateFeePlan({
     FeePlanModel feePlan,
     String serviceID,
   }) async {
-    if (_feePlanList[serviceID] != null || _feePlanList.length != 0) {
-      await FeePlanGateway.updateFeePlan(
-        feePlan: feePlan,
-        serviceID: serviceID,
-      );
+    try {
+      if (_feePlanList[serviceID] != null || _feePlanList.length != 0) {
+        await FeePlanGateway.updateFeePlan(
+          feePlan: feePlan,
+          serviceID: serviceID,
+        );
+      }
+      await setFeeIPlanList(serviceID: serviceID);
+    } catch (e) {
+      print(e);
     }
-    await setFeeIPlanList(serviceID: serviceID);
   }
 }

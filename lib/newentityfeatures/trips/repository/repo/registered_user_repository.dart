@@ -7,34 +7,47 @@ class RegisteredUserRepo {
   static final _firestore = FirebaseFirestore.instance;
 
   static Future<List<RegisteredUser>> registeredUser(String serviceId) async {
-    return _firestore
-        .collection('SERVICEPROVIDERINFO/$serviceId/TripRegisteredUsers')
-        .get()
-        .then(
-          (value) =>
-              value.docs.map((e) => RegisteredUser.fromJson(e.data())).toList(),
-        );
+    try {
+      return _firestore
+          .collection('SERVICEPROVIDERINFO/$serviceId/TripRegisteredUsers')
+          .get()
+          .then(
+            (value) => value.docs
+                .map((e) => RegisteredUser.fromJson(e.data()))
+                .toList(),
+          );
+    } catch (e) {
+      print(e);
+    }
   }
 
   static Future registerUser({
     @required RegisteredUser user,
     @required String serviceId,
   }) {
-    return _firestore
-        .doc(
-          "SERVICEPROVIDERINFO/$serviceId/TripRegisteredUsers/${user.userId}",
-        )
-        .set(user.toJson());
+    try {
+      return _firestore
+          .doc(
+            "SERVICEPROVIDERINFO/$serviceId/TripRegisteredUsers/${user.userId}",
+          )
+          .set(user.toJson());
+    } catch (e) {
+      print(e);
+    }
   }
 
   static Future updateUser({
     @required RegisteredUser user,
     @required String serviceId,
   }) {
-    return _firestore
-        .doc(
-          "SERVICEPROVIDERINFO/$serviceId/TripRegisteredUsers/${user.userId}",
-        )
-        .set(user.toJson());
+    try {
+      return _firestore
+          .doc(
+            "SERVICEPROVIDERINFO/$serviceId/TripRegisteredUsers/${user.userId}",
+          )
+          .set(user.toJson());
+    } catch (e) {
+      print(e);
+    }
   }
 }

@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+
+import 'package:complex/common/helputil.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/complex_vehicle_model.dart';
@@ -28,7 +32,7 @@ class VehicleModelRepositoryReturnData {
 
 class VehicleModelRepository {
   NewComplexRepository _complexRepository = Get.find();
-  UserRepository _userRepository = Get.find();
+  UserRepository _userRepository =  HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
 
   Future<VehicleModelRepositoryReturnData> getAllVehicleModels(

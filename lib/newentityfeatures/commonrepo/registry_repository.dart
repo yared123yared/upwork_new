@@ -7,49 +7,61 @@ import 'package:complex/newentityfeatures/gateway/registry_gateway.dart';
 class RegistryRepository {
   ///has error that the single unit can has only one resident or renter
 
-
-
-
-
-
-
-
-
-
-  Future<List<RegistryModel>> getRegistryList({
-    @required String entitytype ,@required String entityid
-  }) async {
-    return await RegistryGateway.getRegistryList(entitytype:entitytype , entityid:entityid);
+  Future<List<RegistryModel>> getRegistryList(
+      {@required String entitytype, @required String entityid}) async {
+    try {
+      return await RegistryGateway.getRegistryList(
+          entitytype: entitytype, entityid: entityid);
+    } catch (e) {
+      print(e);
+    }
   }
 
-  Future<List<RegistryModel>> getRegistryListForListOfUnits({
-    @required String entitytype ,@required String entityid,@required List<String> unitlist
-
-  }) async {
-    return await RegistryGateway.getRegistryListForListOfUnits(entitytype:entitytype , entityid:entityid,unitlist:unitlist);
+  Future<List<RegistryModel>> getRegistryListForListOfUnits(
+      {@required String entitytype,
+      @required String entityid,
+      @required List<String> unitlist}) async {
+    try {
+      return await RegistryGateway.getRegistryListForListOfUnits(
+          entitytype: entitytype, entityid: entityid, unitlist: unitlist);
+    } catch (e) {
+      print(e);
+    }
   }
 
-  Future<List<RegistryModel>> getRegistryListForBuildingAndFloor({
-    @required String entitytype ,@required String entityid,@required String buildingid,int floor
-
-  }) async {
-    return await RegistryGateway.getRegistryListForBuildingAndFloor(entitytype:entitytype , entityid:entityid,buildingid:buildingid,floor:floor);
+  Future<List<RegistryModel>> getRegistryListForBuildingAndFloor(
+      {@required String entitytype,
+      @required String entityid,
+      @required String buildingid,
+      int floor}) async {
+    try {
+      return await RegistryGateway.getRegistryListForBuildingAndFloor(
+          entitytype: entitytype,
+          entityid: entityid,
+          buildingid: buildingid,
+          floor: floor);
+    } catch (e) {
+      print(e);
+    }
   }
-
-
 
   Future<void> updateRegistry(
       {@required RegistryModel oldRegistry,
       @required RegistryModel newRegistry,
-        @required String entitytype ,@required String entityid,
+      @required String entitytype,
+      @required String entityid,
       @required UserModel userModel,
       @required bool isOwner}) async {
-    await RegistryGateway.updateRegistry(
-        entitytype:entitytype , entityid:entityid,
-        oldRegistry: oldRegistry,
-        newRegistry: newRegistry,
-        isOwner: isOwner,
-        userModel: userModel);
-
+    try {
+      await RegistryGateway.updateRegistry(
+          entitytype: entitytype,
+          entityid: entityid,
+          oldRegistry: oldRegistry,
+          newRegistry: newRegistry,
+          isOwner: isOwner,
+          userModel: userModel);
+    } catch (e) {
+      print(e);
+    }
   }
 }
