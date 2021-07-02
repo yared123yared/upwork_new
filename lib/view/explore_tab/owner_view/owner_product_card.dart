@@ -1,5 +1,5 @@
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
-import 'package:complex/view/pet_pages/add_pet_page.dart';
+import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:complex/view/product_pages/general_contact_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';

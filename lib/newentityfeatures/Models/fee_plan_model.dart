@@ -176,7 +176,7 @@ class FeeData extends Equatable {
         ? HelpUtil.toDate(timestamp: json['startdate'])
         : DateTime.now();
     if (json['feeschedulename'] != null) {
-      feeScheduleName = new List<String>();
+      feeScheduleName = [];
       json['feeschedulename'].forEach((v) {
         feeScheduleName.add((v));
       });
@@ -190,7 +190,7 @@ class FeeData extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['enddate'] = this.endDate;
     data['paymentperiodname'] = this.paymentPeriodName;
     data['totalamount'] = this.totalAmount;
@@ -227,7 +227,7 @@ class DiscountType extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['SIBLING'] = this.sibling;
     data['PARENT'] = this.parent;

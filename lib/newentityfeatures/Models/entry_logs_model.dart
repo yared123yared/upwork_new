@@ -85,7 +85,7 @@ class EntryLogModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['datetime'] = HelpUtil.toTimeStamp(dateTime: this.timeDate);
     data['loggedinsecurity'] = this.loggedInSecurity;

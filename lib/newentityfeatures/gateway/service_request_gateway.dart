@@ -11,7 +11,9 @@ import 'package:complex/newentityfeatures/Models/service_request_model.dart';
 class ServiceRequestGateway {
   static Future<void> addNewServiceRequest({
     @required ServiceRequestModel serviceRequest,
-    @required String entitytype ,String entityid,@required String roletype,
+    @required String entitytype,
+    String entityid,
+    @required String roletype,
     @required String fcmToken,
   }) async {
     final HttpsCallable newServiceRequestCreateRequest =
@@ -23,7 +25,7 @@ class ServiceRequestGateway {
           await newServiceRequestCreateRequest.call(<String, dynamic>{
         'servicerequestdata': toData(
           serviceRequest: serviceRequest,
-          requesterType:roletype,
+          requesterType: roletype,
         ),
         'entitytype': entitytype,
         'entityid': entityid,
@@ -42,12 +44,13 @@ class ServiceRequestGateway {
     }
   }
 
-  static Future<void> updateServiceRequest({
-    @required ServiceRequestModel oldRequest,
-    @required ServiceRequestModel newRequest,
-    @required UserModel user,
-    @required String entitytype ,String entityid,@required String roletype
-  }) async {
+  static Future<void> updateServiceRequest(
+      {@required ServiceRequestModel oldRequest,
+      @required ServiceRequestModel newRequest,
+      @required UserModel user,
+      @required String entitytype,
+      String entityid,
+      @required String roletype}) async {
     final HttpsCallable newServiceRequestCreateRequest =
         FirebaseFunctions.instance.httpsCallable(
       'UpdateServiceRequestRequestModified',
@@ -98,8 +101,7 @@ class ServiceRequestGateway {
       'serviceproviderid': serviceRequest.serviceProviderId,
       'servicerequestormemberuserid':
           serviceRequest.serviceRequestorMemberUserId,
-      'startdate':
-      HelpUtil.toTimeStamp(dateTime: serviceRequest.startDate),
+      'startdate': HelpUtil.toTimeStamp(dateTime: serviceRequest.startDate),
       'enddate': HelpUtil.toTimeStamp(dateTime: serviceRequest.endDate),
       'terminate': serviceRequest.terminate,
       'suspend': serviceRequest.suspend,
@@ -123,7 +125,7 @@ class ServiceRequestGateway {
         'requesterid': newRequest.requesterID,
       if (newRequest.requestedDate != oldRequest.requestedDate)
         'requesteddate':
-        HelpUtil.toTimeStamp(dateTime: newRequest.requestedDate),
+            HelpUtil.toTimeStamp(dateTime: newRequest.requestedDate),
       if (newRequest.correspondingName != oldRequest.correspondingName)
         'correspondingname': newRequest.correspondingName,
       if (newRequest.serviceProviderId != oldRequest.serviceProviderId)
@@ -156,9 +158,9 @@ class ServiceRequestGateway {
   }
 
   static Future<List<ServiceRequestModel>> getAllActiveServiceRequestList(
-      {@required String entitytype ,String entityid}) async {
+      {@required String entitytype, String entityid}) async {
     return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entitytype}/SERVICEREQUESTS")
+        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
         .get()
         .then((x) {
       return ServiceRequestModel.listFromJson(
@@ -169,9 +171,11 @@ class ServiceRequestGateway {
   }
 
   static Future<List<ServiceRequestModel>> getServiceRequestOwnerResident(
-      {@required String entitytype ,String entityid,@required UserModel um}) async {
+      {@required String entitytype,
+      String entityid,
+      @required UserModel um}) async {
     return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entitytype}/SERVICEREQUESTS")
+        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
         .get()
         .then((x) {
       return ServiceRequestModel.listFromJson(
@@ -182,9 +186,11 @@ class ServiceRequestGateway {
   }
 
   static Future<List<ServiceRequestModel>> getServiceRequestStaffSelf(
-      {@required String entitytype ,String entityid,@required UserModel um}) async {
+      {@required String entitytype,
+      String entityid,
+      @required UserModel um}) async {
     return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entitytype}/SERVICEREQUESTS")
+        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
         .get()
         .then((x) {
       return ServiceRequestModel.listFromJson(
@@ -193,8 +199,6 @@ class ServiceRequestGateway {
       );
     });
   }
-
-
 
   static Future<void> responseToAdhocVisitor({
     @required String name,
@@ -229,14 +233,13 @@ class ServiceRequestGateway {
     }
   }
 
-
-
   static Future<List<ServiceRequestModel>> getQRCodeDetails({
-  @required String entitytype ,String entityid,
+    @required String entitytype,
+    String entityid,
     @required String qrCodeID,
   }) async {
     return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entitytype}/SERVICEREQUESTS")
+        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
         .where("generatedqrcode", isEqualTo: qrCodeID)
         .get()
         .then((x) {
@@ -244,21 +247,25 @@ class ServiceRequestGateway {
           x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
     });
   }
+
 //todo : Need to replace it with cloud function
   static Future deleteServiceRequest({
-    @required String entitytype ,String entityid,
+    @required String entitytype,
+    String entityid,
     @required ServiceRequestModel serviceRequest,
   }) async {
     return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entitytype}/SERVICEREQUESTS")
+        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
         .doc(serviceRequest.requestID)
         .delete();
   }
 
   static Future<List<ServiceRequestModel>> getServiceRequestFromQrCode(
-      {@required String code, @required String entitytype ,String entityid}) async {
+      {@required String code,
+      @required String entitytype,
+      String entityid}) async {
     return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entitytype}/SERVICEREQUESTS")
+        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
         .where('generatedqrcode', isEqualTo: code)
         .get()
         .then((x) {

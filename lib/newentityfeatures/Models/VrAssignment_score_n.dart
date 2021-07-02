@@ -20,7 +20,7 @@ class VrAssignmentNScoreModel extends Equatable {
   VrAssignmentNScoreModel.fromJson(Map<String, dynamic> json) {
     text = json['text'];
 
-    answeredPapers = List<AnsweredPaper>();
+    answeredPapers = <AnsweredPaper>[];
 
     json.keys.forEach((key) {
       if (int.tryParse(key) != null) {
@@ -34,7 +34,7 @@ class VrAssignmentNScoreModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     return data;
   }

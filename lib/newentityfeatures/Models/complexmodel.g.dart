@@ -19,16 +19,24 @@ _$_BuildingModel _$_$_BuildingModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_BuildingModelToJson(_$_BuildingModel instance) =>
-    <String, dynamic>{
-      'attachedgate': instance.attachedGate,
-      'buildingid': instance.buildingID,
-      'buildingname': instance.buildingName,
-      'address': instance.address,
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'version': instance.version,
-    };
+Map<String, dynamic> _$_$_BuildingModelToJson(_$_BuildingModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('attachedgate', instance.attachedGate);
+  writeNotNull('buildingid', instance.buildingID);
+  writeNotNull('buildingname', instance.buildingName);
+  writeNotNull('address', instance.address);
+  writeNotNull('latitude', instance.latitude);
+  writeNotNull('longitude', instance.longitude);
+  writeNotNull('version', instance.version);
+  return val;
+}
 
 _$_ComplexVehicleModel _$_$_ComplexVehicleModelFromJson(
     Map<String, dynamic> json) {
@@ -60,32 +68,40 @@ _$_ComplexVehicleModel _$_$_ComplexVehicleModelFromJson(
 }
 
 Map<String, dynamic> _$_$_ComplexVehicleModelToJson(
-        _$_ComplexVehicleModel instance) =>
-    <String, dynamic>{
-      'appuserid': instance.appUserId,
-      'generatedqrcode': instance.generatedQRCode,
-      'generatedqrcodelink': instance.generatedQRCodeLink,
-      'numberplate': instance.numberPlate,
-      'ownername': instance.ownerName,
-      'photolink': instance.photoLink,
-      'registrationnum': instance.registrationNum,
-      'unitaddress': instance.unitAddress,
-      'useremail': instance.userEmail,
-      'username': instance.userName,
-      'vehicletype': instance.vehicleType,
-      'vehicleid': instance.vehicleID,
-      'forstaffid': instance.forstaffid,
-      'forstaffname': instance.forstaffname,
-      'enddate': JsonHelper.toJsonTimeStamp(instance.endDate),
-      'startdate': JsonHelper.toJsonTimeStamp(instance.startDate),
-      'isactivate': instance.isActivate,
-      'ispickanddrop': instance.isPickAndDrop,
-      'isstaff': instance.isStaff,
-      'issubemployee': instance.isSubEmployee,
-      'isvisitor': instance.isVisitor,
-      'terminate': instance.terminate,
-      'userphonenum': instance.userPhoneNum,
-    };
+    _$_ComplexVehicleModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('appuserid', instance.appUserId);
+  writeNotNull('generatedqrcode', instance.generatedQRCode);
+  writeNotNull('generatedqrcodelink', instance.generatedQRCodeLink);
+  writeNotNull('numberplate', instance.numberPlate);
+  writeNotNull('ownername', instance.ownerName);
+  writeNotNull('photolink', instance.photoLink);
+  writeNotNull('registrationnum', instance.registrationNum);
+  writeNotNull('unitaddress', instance.unitAddress);
+  writeNotNull('useremail', instance.userEmail);
+  writeNotNull('username', instance.userName);
+  writeNotNull('vehicletype', instance.vehicleType);
+  writeNotNull('vehicleid', instance.vehicleID);
+  writeNotNull('forstaffid', instance.forstaffid);
+  writeNotNull('forstaffname', instance.forstaffname);
+  writeNotNull('enddate', JsonHelper.toJsonTimeStamp(instance.endDate));
+  writeNotNull('startdate', JsonHelper.toJsonTimeStamp(instance.startDate));
+  writeNotNull('isactivate', instance.isActivate);
+  writeNotNull('ispickanddrop', instance.isPickAndDrop);
+  writeNotNull('isstaff', instance.isStaff);
+  writeNotNull('issubemployee', instance.isSubEmployee);
+  writeNotNull('isvisitor', instance.isVisitor);
+  writeNotNull('terminate', instance.terminate);
+  writeNotNull('userphonenum', instance.userPhoneNum);
+  return val;
+}
 
 _$_EntryLogModel _$_$_EntryLogModelFromJson(Map<String, dynamic> json) {
   return _$_EntryLogModel(
@@ -101,18 +117,26 @@ _$_EntryLogModel _$_$_EntryLogModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_EntryLogModelToJson(_$_EntryLogModel instance) =>
-    <String, dynamic>{
-      'loggedinsecurity': instance.loggedInSecurity,
-      'logtype': instance.logType,
-      'userid': instance.userId,
-      'identity': instance.identity,
-      'servicerequid': instance.servicerequid,
-      'entrytype': instance.entrytype,
-      'logid': instance.logID,
-      'timedate': JsonHelper.toJsonTimeStamp(instance.timeDate),
-      'id': instance.id,
-    };
+Map<String, dynamic> _$_$_EntryLogModelToJson(_$_EntryLogModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('loggedinsecurity', instance.loggedInSecurity);
+  writeNotNull('logtype', instance.logType);
+  writeNotNull('userid', instance.userId);
+  writeNotNull('identity', instance.identity);
+  writeNotNull('servicerequid', instance.servicerequid);
+  writeNotNull('entrytype', instance.entrytype);
+  writeNotNull('logid', instance.logID);
+  writeNotNull('timedate', JsonHelper.toJsonTimeStamp(instance.timeDate));
+  writeNotNull('id', instance.id);
+  return val;
+}
 
 _$_FamilyMember _$_$_FamilyMemberFromJson(Map<String, dynamic> json) {
   return _$_FamilyMember(
@@ -126,16 +150,24 @@ _$_FamilyMember _$_$_FamilyMemberFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_FamilyMemberToJson(_$_FamilyMember instance) =>
-    <String, dynamic>{
-      'userid': instance.userId,
-      'name': instance.name,
-      'email': instance.email,
-      'modelid': instance.modelId,
-      'vehiclenumber': instance.vehiclenumber,
-      'qrcodeimg': instance.qrcodeimg,
-      'vehicleactivate': instance.vehicleactivate,
-    };
+Map<String, dynamic> _$_$_FamilyMemberToJson(_$_FamilyMember instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('userid', instance.userId);
+  writeNotNull('name', instance.name);
+  writeNotNull('email', instance.email);
+  writeNotNull('modelid', instance.modelId);
+  writeNotNull('vehiclenumber', instance.vehiclenumber);
+  writeNotNull('qrcodeimg', instance.qrcodeimg);
+  writeNotNull('vehicleactivate', instance.vehicleactivate);
+  return val;
+}
 
 _$_QRCodeModel _$_$_QRCodeModelFromJson(Map<String, dynamic> json) {
   return _$_QRCodeModel(
@@ -151,18 +183,26 @@ _$_QRCodeModel _$_$_QRCodeModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_QRCodeModelToJson(_$_QRCodeModel instance) =>
-    <String, dynamic>{
-      'entitytpe': instance.entityTpe,
-      'identity': instance.identity,
-      'userid': instance.userid,
-      'residentdetailsid': instance.residentdetailsid,
-      'foruserid': instance.foruserid,
-      'forservicereqid': instance.forservicereqid,
-      'startdate': JsonHelper.toJsonTimeStamp(instance.startdate),
-      'enddate': JsonHelper.toJsonTimeStamp(instance.enddate),
-      'id': instance.id,
-    };
+Map<String, dynamic> _$_$_QRCodeModelToJson(_$_QRCodeModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('entitytpe', instance.entityTpe);
+  writeNotNull('identity', instance.identity);
+  writeNotNull('userid', instance.userid);
+  writeNotNull('residentdetailsid', instance.residentdetailsid);
+  writeNotNull('foruserid', instance.foruserid);
+  writeNotNull('forservicereqid', instance.forservicereqid);
+  writeNotNull('startdate', JsonHelper.toJsonTimeStamp(instance.startdate));
+  writeNotNull('enddate', JsonHelper.toJsonTimeStamp(instance.enddate));
+  writeNotNull('id', instance.id);
+  return val;
+}
 
 _$_RegistryModel _$_$_RegistryModelFromJson(Map<String, dynamic> json) {
   return _$_RegistryModel(
@@ -194,31 +234,43 @@ _$_RegistryModel _$_$_RegistryModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_RegistryModelToJson(_$_RegistryModel instance) =>
-    <String, dynamic>{
-      'ownergroup': instance.ownerGroup,
-      'ownermanagementposition': instance.ownerManagementPosition,
-      'residentmanagementposition': instance.residentManagementPosition,
-      'ownername': instance.ownerName,
-      'ownerpublishedcontact': instance.ownerPublishedContact,
-      'ownertoken': instance.ownerToken,
-      'owneruserid': instance.ownerUserId,
-      'residentname': instance.residentName,
-      'residentpublishedcontact': instance.residentPublishedContact,
-      'residenttoken': instance.residentToken,
-      'residentuserid': instance.residentUserId,
-      'unitaddress': instance.unitAddress,
-      'ownerrecvmsg': instance.ownerRecvMsg,
-      'residentresvmessage': instance.residentResvMessage,
-      'shareownercontactflag': instance.shareownercontactflag,
-      'shareresidentcontactflag': instance.shareresidentcontactflag,
-      'ownerenddate': JsonHelper.toJsonTimeStamp(instance.ownerEndDate),
-      'ownerstartdate': JsonHelper.toJsonTimeStamp(instance.ownerStartDate),
-      'residentstartdate':
-          JsonHelper.toJsonTimeStamp(instance.residentStartDate),
-      'residentenddate': JsonHelper.toJsonTimeStamp(instance.residentEndDate),
-      'version': instance.version,
-    };
+Map<String, dynamic> _$_$_RegistryModelToJson(_$_RegistryModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('ownergroup', instance.ownerGroup);
+  writeNotNull('ownermanagementposition', instance.ownerManagementPosition);
+  writeNotNull(
+      'residentmanagementposition', instance.residentManagementPosition);
+  writeNotNull('ownername', instance.ownerName);
+  writeNotNull('ownerpublishedcontact', instance.ownerPublishedContact);
+  writeNotNull('ownertoken', instance.ownerToken);
+  writeNotNull('owneruserid', instance.ownerUserId);
+  writeNotNull('residentname', instance.residentName);
+  writeNotNull('residentpublishedcontact', instance.residentPublishedContact);
+  writeNotNull('residenttoken', instance.residentToken);
+  writeNotNull('residentuserid', instance.residentUserId);
+  writeNotNull('unitaddress', instance.unitAddress);
+  writeNotNull('ownerrecvmsg', instance.ownerRecvMsg);
+  writeNotNull('residentresvmessage', instance.residentResvMessage);
+  writeNotNull('shareownercontactflag', instance.shareownercontactflag);
+  writeNotNull('shareresidentcontactflag', instance.shareresidentcontactflag);
+  writeNotNull(
+      'ownerenddate', JsonHelper.toJsonTimeStamp(instance.ownerEndDate));
+  writeNotNull(
+      'ownerstartdate', JsonHelper.toJsonTimeStamp(instance.ownerStartDate));
+  writeNotNull('residentstartdate',
+      JsonHelper.toJsonTimeStamp(instance.residentStartDate));
+  writeNotNull(
+      'residentenddate', JsonHelper.toJsonTimeStamp(instance.residentEndDate));
+  writeNotNull('version', instance.version);
+  return val;
+}
 
 _$_ResidentModel _$_$_ResidentModelFromJson(Map<String, dynamic> json) {
   return _$_ResidentModel(
@@ -244,28 +296,36 @@ _$_ResidentModel _$_$_ResidentModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_ResidentModelToJson(_$_ResidentModel instance) =>
-    <String, dynamic>{
-      'appuserid': instance.appUserId,
-      'contactuserid': instance.contactUserId,
-      'contactnumber': instance.contactNumber,
-      'email': instance.email,
-      'firstname': instance.firstName,
-      'lastname': instance.lastName,
-      'managementposition': instance.managementPosition,
-      'publishedcontact': instance.publishedContact,
-      'registeras': instance.registerAs,
-      'unitaddress': instance.unitAddress,
-      'residentid': instance.residentID,
-      'recvmsg': instance.recvmsg,
-      'terminatenow': instance.terminateNow,
-      'publishcontactflag': instance.publishcontactflag,
-      'approvedbymanager': instance.approvedByManager,
-      'approvedbyowner': instance.approvedByOwner,
-      'version': instance.version,
-      'startdate': JsonHelper.toJsonTimeStamp(instance.startDate),
-      'enddate': JsonHelper.toJsonTimeStamp(instance.endDate),
-    };
+Map<String, dynamic> _$_$_ResidentModelToJson(_$_ResidentModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('appuserid', instance.appUserId);
+  writeNotNull('contactuserid', instance.contactUserId);
+  writeNotNull('contactnumber', instance.contactNumber);
+  writeNotNull('email', instance.email);
+  writeNotNull('firstname', instance.firstName);
+  writeNotNull('lastname', instance.lastName);
+  writeNotNull('managementposition', instance.managementPosition);
+  writeNotNull('publishedcontact', instance.publishedContact);
+  writeNotNull('registeras', instance.registerAs);
+  writeNotNull('unitaddress', instance.unitAddress);
+  writeNotNull('residentid', instance.residentID);
+  writeNotNull('recvmsg', instance.recvmsg);
+  writeNotNull('terminatenow', instance.terminateNow);
+  writeNotNull('publishcontactflag', instance.publishcontactflag);
+  writeNotNull('approvedbymanager', instance.approvedByManager);
+  writeNotNull('approvedbyowner', instance.approvedByOwner);
+  writeNotNull('version', instance.version);
+  writeNotNull('startdate', JsonHelper.toJsonTimeStamp(instance.startDate));
+  writeNotNull('enddate', JsonHelper.toJsonTimeStamp(instance.endDate));
+  return val;
+}
 
 _$_ServiceRequestModel _$_$_ServiceRequestModelFromJson(
     Map<String, dynamic> json) {
@@ -301,34 +361,44 @@ _$_ServiceRequestModel _$_$_ServiceRequestModelFromJson(
 }
 
 Map<String, dynamic> _$_$_ServiceRequestModelToJson(
-        _$_ServiceRequestModel instance) =>
-    <String, dynamic>{
-      'adhocvisitorphoto': instance.adHocVisitorPhoto,
-      'correspondingname': instance.correspondingName,
-      'geneartedqrcode': instance.geneartedQrCode,
-      'groupreqname': instance.groupReqName,
-      'notesinstructions': instance.notesInstructions,
-      'phone': instance.phone,
-      'requesterid': instance.requesterID,
-      'requestertype': instance.requesterType,
-      'servicerequestormemberuserid': instance.serviceRequestorMemberUserId,
-      'serviceproviderid': instance.serviceProviderId,
-      'qrcodelink': instance.qrCodeLink,
-      'unitid': instance.unitId,
-      'requestid': instance.requestID,
-      'forstaffid': instance.forstaffid,
-      'forstaffname': instance.forstaffname,
-      'multipleentryallowed': instance.multipleEntryAllowed,
-      'requirenotificationentry': instance.requireNotificationEntry,
-      'suspend': instance.suspend,
-      'terminate': instance.terminate,
-      'forstaff': instance.forstaff,
-      'version': instance.version,
-      'startdate': JsonHelper.toJsonTimeStamp(instance.startDate),
-      'enddate': JsonHelper.toJsonTimeStamp(instance.endDate),
-      'requesteddate': JsonHelper.toJsonTimeStamp(instance.requestedDate),
-      'requesttype': instance.requestType,
-    };
+    _$_ServiceRequestModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('adhocvisitorphoto', instance.adHocVisitorPhoto);
+  writeNotNull('correspondingname', instance.correspondingName);
+  writeNotNull('geneartedqrcode', instance.geneartedQrCode);
+  writeNotNull('groupreqname', instance.groupReqName);
+  writeNotNull('notesinstructions', instance.notesInstructions);
+  writeNotNull('phone', instance.phone);
+  writeNotNull('requesterid', instance.requesterID);
+  writeNotNull('requestertype', instance.requesterType);
+  writeNotNull(
+      'servicerequestormemberuserid', instance.serviceRequestorMemberUserId);
+  writeNotNull('serviceproviderid', instance.serviceProviderId);
+  writeNotNull('qrcodelink', instance.qrCodeLink);
+  writeNotNull('unitid', instance.unitId);
+  writeNotNull('requestid', instance.requestID);
+  writeNotNull('forstaffid', instance.forstaffid);
+  writeNotNull('forstaffname', instance.forstaffname);
+  writeNotNull('multipleentryallowed', instance.multipleEntryAllowed);
+  writeNotNull('requirenotificationentry', instance.requireNotificationEntry);
+  writeNotNull('suspend', instance.suspend);
+  writeNotNull('terminate', instance.terminate);
+  writeNotNull('forstaff', instance.forstaff);
+  writeNotNull('version', instance.version);
+  writeNotNull('startdate', JsonHelper.toJsonTimeStamp(instance.startDate));
+  writeNotNull('enddate', JsonHelper.toJsonTimeStamp(instance.endDate));
+  writeNotNull(
+      'requesteddate', JsonHelper.toJsonTimeStamp(instance.requestedDate));
+  writeNotNull('requesttype', instance.requestType);
+  return val;
+}
 
 _$_UnitModel _$_$_UnitModelFromJson(Map<String, dynamic> json) {
   return _$_UnitModel(
@@ -345,19 +415,27 @@ _$_UnitModel _$_$_UnitModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_UnitModelToJson(_$_UnitModel instance) =>
-    <String, dynamic>{
-      'address': instance.address,
-      'buildingname': instance.buildingName,
-      'channel': instance.channel,
-      'unitid': instance.unitID,
-      'hasowner': instance.hasOwner,
-      'hasresident': instance.hasResident,
-      'flornum': instance.florNum,
-      'numfixedparking': instance.numFixedParking,
-      'numvisitorparking': instance.numVisitorParking,
-      'version': instance.version,
-    };
+Map<String, dynamic> _$_$_UnitModelToJson(_$_UnitModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('address', instance.address);
+  writeNotNull('buildingname', instance.buildingName);
+  writeNotNull('channel', instance.channel);
+  writeNotNull('unitid', instance.unitID);
+  writeNotNull('hasowner', instance.hasOwner);
+  writeNotNull('hasresident', instance.hasResident);
+  writeNotNull('flornum', instance.florNum);
+  writeNotNull('numfixedparking', instance.numFixedParking);
+  writeNotNull('numvisitorparking', instance.numVisitorParking);
+  writeNotNull('version', instance.version);
+  return val;
+}
 
 _$_StaffModel _$_$_StaffModelFromJson(Map<String, dynamic> json) {
   return _$_StaffModel(
@@ -390,30 +468,38 @@ _$_StaffModel _$_$_StaffModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_StaffModelToJson(_$_StaffModel instance) =>
-    <String, dynamic>{
-      'allowedroles': instance.allowedRoles,
-      'serviceoffered': instance.serviceOffered,
-      'addressinfo': instance.addressInfo,
-      'appuserid': instance.appUserId,
-      'basicbio': instance.basicBio,
-      'category': instance.category,
-      'educationalqualification': instance.educationalQualification,
-      'email': instance.email,
-      'name': instance.name,
-      'phonenumstr': instance.phoneNumStr,
-      'photo1': instance.photo1,
-      'staffid': instance.staffID,
-      'virtualroomattached': instance.virtualRoomAttached,
-      'casualleave': instance.casualLeave,
-      'paidleave': instance.paidLeave,
-      'sickleave': instance.sickLeave,
-      'version': instance.version,
-      'timeinterval': instance.timeInterval,
-      'locationupdaterequired': instance.locationUpdateRequired,
-      'showasteammember': instance.showAsTeamMember,
-      'terminate': instance.terminate,
-      'issuspended': instance.isSuspended,
-      'startdate': JsonHelper.toJsonTimeStamp(instance.startDate),
-      'enddate': JsonHelper.toJsonTimeStamp(instance.endDate),
-    };
+Map<String, dynamic> _$_$_StaffModelToJson(_$_StaffModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('allowedroles', instance.allowedRoles);
+  writeNotNull('serviceoffered', instance.serviceOffered);
+  writeNotNull('addressinfo', instance.addressInfo);
+  writeNotNull('appuserid', instance.appUserId);
+  writeNotNull('basicbio', instance.basicBio);
+  writeNotNull('category', instance.category);
+  writeNotNull('educationalqualification', instance.educationalQualification);
+  writeNotNull('email', instance.email);
+  writeNotNull('name', instance.name);
+  writeNotNull('phonenumstr', instance.phoneNumStr);
+  writeNotNull('photo1', instance.photo1);
+  writeNotNull('staffid', instance.staffID);
+  writeNotNull('virtualroomattached', instance.virtualRoomAttached);
+  writeNotNull('casualleave', instance.casualLeave);
+  writeNotNull('paidleave', instance.paidLeave);
+  writeNotNull('sickleave', instance.sickLeave);
+  writeNotNull('version', instance.version);
+  writeNotNull('timeinterval', instance.timeInterval);
+  writeNotNull('locationupdaterequired', instance.locationUpdateRequired);
+  writeNotNull('showasteammember', instance.showAsTeamMember);
+  writeNotNull('terminate', instance.terminate);
+  writeNotNull('issuspended', instance.isSuspended);
+  writeNotNull('startdate', JsonHelper.toJsonTimeStamp(instance.startDate));
+  writeNotNull('enddate', JsonHelper.toJsonTimeStamp(instance.endDate));
+  return val;
+}

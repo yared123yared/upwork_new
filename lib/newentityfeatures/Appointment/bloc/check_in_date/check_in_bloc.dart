@@ -5,9 +5,9 @@ import 'bloc.dart';
 class CheckInBloc extends Bloc<CheckInEvent, List<dynamic>> {
   CheckInBloc(List<dynamic> initialState) : super(initialState);
 
-  List<String> list = new List<String>();
-  List<String> yieldList = new List<String>();
-  List<String> tempList = new List<String>();
+  List<String> list = [];
+  List<String> yieldList = [];
+  List<String> tempList = [];
 
   List<String> get initialState => list;
 

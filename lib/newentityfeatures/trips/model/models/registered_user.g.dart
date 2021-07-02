@@ -25,20 +25,28 @@ _$_RegisteredUser _$_$_RegisteredUserFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_RegisteredUserToJson(_$_RegisteredUser instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-      'userType': instance.userType,
-      'isActive': instance.isActive,
-      'name': instance.name,
-      'phone': instance.phone,
-      'email': instance.email,
-      'guardian1id': instance.guardian1id,
-      'guardian1name': instance.guardian1name,
-      'guardian1phone': instance.guardian1phone,
-      'guardian1email': instance.guardian1email,
-      'guardian2id': instance.guardian2id,
-      'guardian2name': instance.guardian2name,
-      'guardian2phone': instance.guardian2phone,
-      'guardian2email': instance.guardian2email,
-    };
+Map<String, dynamic> _$_$_RegisteredUserToJson(_$_RegisteredUser instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('userId', instance.userId);
+  writeNotNull('userType', instance.userType);
+  writeNotNull('isActive', instance.isActive);
+  writeNotNull('name', instance.name);
+  writeNotNull('phone', instance.phone);
+  writeNotNull('email', instance.email);
+  writeNotNull('guardian1id', instance.guardian1id);
+  writeNotNull('guardian1name', instance.guardian1name);
+  writeNotNull('guardian1phone', instance.guardian1phone);
+  writeNotNull('guardian1email', instance.guardian1email);
+  writeNotNull('guardian2id', instance.guardian2id);
+  writeNotNull('guardian2name', instance.guardian2name);
+  writeNotNull('guardian2phone', instance.guardian2phone);
+  writeNotNull('guardian2email', instance.guardian2email);
+  return val;
+}

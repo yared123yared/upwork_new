@@ -59,7 +59,7 @@ class MultiSelectListDialog<V> extends StatefulWidget
 }
 
 class _MultiSelectListDialogState<V> extends State<MultiSelectListDialog<V>> {
-  List<V> _selectedValues = List<V>();
+  List<V> _selectedValues = [];
   bool _showSearch = false;
   List<MultiSelectItem<V>> _items;
 
@@ -153,7 +153,7 @@ class _MultiSelectListDialogState<V> extends State<MultiSelectListDialog<V>> {
       // ),
       // scrollable: true,
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: widget.cancelText != null
               ? Text(widget.cancelText)
               : Text('CANCEL'),
@@ -161,7 +161,7 @@ class _MultiSelectListDialogState<V> extends State<MultiSelectListDialog<V>> {
             widget._onCancelTap(context, widget.initialSelectedItems);
           },
         ),
-        FlatButton(
+        TextButton(
           child: widget.confirmText != null
               ? Text(widget.confirmText)
               : Text('OK'),
@@ -215,7 +215,7 @@ class MultiSelectChipDialog<V> extends StatefulWidget
 }
 
 class _MultiSelectChipDialogState<V> extends State<MultiSelectChipDialog<V>> {
-  List<V> _selectedValues = List<V>();
+  List<V> _selectedValues = [];
   bool _showSearch = false;
   List<MultiSelectItem<V>> _items;
 
@@ -318,7 +318,7 @@ class _MultiSelectChipDialogState<V> extends State<MultiSelectChipDialog<V>> {
         children: _items.map((item) => _buildItem(item)).toList(),
       ),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: widget.cancelText != null
               ? Text(widget.cancelText)
               : Text('CANCEL'),
@@ -326,7 +326,7 @@ class _MultiSelectChipDialogState<V> extends State<MultiSelectChipDialog<V>> {
             widget._onCancelTap(context, widget.initialSelectedItems);
           },
         ),
-        FlatButton(
+        TextButton(
           child: widget.confirmText != null
               ? Text(widget.confirmText)
               : Text('OK'),
@@ -379,7 +379,7 @@ class CustomMultiSelect<V> extends StatefulWidget {
 }
 
 class _CustomMultiSelectState<V> extends State<CustomMultiSelect<V>> {
-  List<V> _selectedItems = List<V>();
+  List<V> _selectedItems = [];
 
   _showDialog(BuildContext ctx) async {
     await showDialog(
@@ -609,7 +609,7 @@ class MultiSelectFormField<V> extends FormField<List<V>> {
             onSaved: onSaved,
             validator: validator,
             autovalidate: autovalidate,
-            initialValue: initialValue ?? List(),
+            initialValue: initialValue ?? [],
             builder: (FormFieldState<List<V>> state) {
               return CustomMultiSelect(
                 state: state,

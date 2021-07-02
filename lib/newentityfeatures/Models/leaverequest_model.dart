@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:complex/common/helputil.dart';
 
-
 enum LeaveRequestType {
   SICK,
   CASUAL,
@@ -126,7 +125,7 @@ class LeaveRequestModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
 
     json['startdate'] = HelpUtil.toTimeStamp(dateTime: this.startDate);
     json["enddate"] = HelpUtil.toTimeStamp(dateTime: this.endDate);

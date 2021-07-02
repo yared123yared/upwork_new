@@ -34,7 +34,7 @@ class _CreateAssignmentListState extends State<CreateAssignmentList> {
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.CreateAssignmentListBloc();
+    mlistbloc = listbloc.CreateAssignmentListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

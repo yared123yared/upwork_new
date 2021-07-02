@@ -71,7 +71,7 @@ class StudentBasicFormModelRepository {
 
   Future<StudentFormEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    StudentFormEntryData grerror = new StudentFormEntryData();
+    StudentFormEntryData grerror = StudentFormEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -81,7 +81,7 @@ class StudentBasicFormModelRepository {
       List<Place> availablePlaces = await Place.places;
       // bool update;
 
-      StudentFormEntryData gr = new StudentFormEntryData();
+      StudentFormEntryData gr = StudentFormEntryData();
       gr.errortype = -1;
       gr.availablePlaces = availablePlaces;
       gr.formIndex = formIndex;

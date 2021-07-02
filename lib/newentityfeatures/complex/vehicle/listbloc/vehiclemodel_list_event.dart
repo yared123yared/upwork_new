@@ -5,29 +5,29 @@ class VehicleModelListEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class getPreData extends VehicleModelListEvent {
+class GetPreData extends VehicleModelListEvent {
   final String entityid;
   final String entitytype;
-  getPreData({@required this.entityid, @required this.entitytype});
+  GetPreData({@required this.entityid, @required this.entitytype});
   @override
   List<Object> get props => [entityid, entitytype];
 }
 
 //to get listdata
-class getListData extends VehicleModelListEvent {
+class GetListData extends VehicleModelListEvent {
   final String entityid;
   final String entitytype;
-  getListData({@required this.entityid, @required this.entitytype});
+  GetListData({@required this.entityid, @required this.entitytype});
   @override
   List<Object> get props => [entityid, entitytype];
 }
 
-class getListDataWithSearchParameter extends VehicleModelListEvent {
+class GetListDataWithSearchParameter extends VehicleModelListEvent {
   final String entityid;
   final String entitytype;
   final String sessionterm;
   final String offeringmodelgroupname;
-  getListDataWithSearchParameter(
+  GetListDataWithSearchParameter(
       {@required this.entityid,
       @required this.entitytype,
       @required this.sessionterm,
@@ -38,13 +38,13 @@ class getListDataWithSearchParameter extends VehicleModelListEvent {
 }
 
 //We want to delete an item , we will call this method (if we have the complete item data )
-class deleteItemWithData extends VehicleModelListEvent {
+class DeleteItemWithData extends VehicleModelListEvent {
   final ComplexVehicleModel item;
   final int index;
   final String entityid;
   final String entitytype;
 
-  const deleteItemWithData({
+  const DeleteItemWithData({
     @required this.item,
     @required this.index,
     @required this.entityid,

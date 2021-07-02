@@ -48,7 +48,7 @@ class FeeItemGroupsModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
 
     json['schedulename'] = this.scheduleName;
     json['usedbyfeeplan'] = this.usedByFeePlan;
@@ -111,7 +111,7 @@ class FeeItem extends Equatable {
     isProrated = data["isprorated"];
   }
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
     json['amount'] = this.amount;
     json["feeitemname"] = this.feeItemName;
     json["isdiscountapplicable"] = this.isDiscountApplicable;

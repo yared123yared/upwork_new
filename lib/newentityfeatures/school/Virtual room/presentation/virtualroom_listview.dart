@@ -34,7 +34,7 @@ class _VirtualRoomModelListListState extends State<VirtualRoomModelListList> {
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.VirtualRoomModelListBloc();
+    mlistbloc = listbloc.VirtualRoomModelListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

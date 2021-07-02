@@ -24,12 +24,12 @@ class _CreateNewChatLauncherState extends State<CreateNewChatLauncher> {
             createChannel(
               CreateChatRequest(
                 channelowner: _userRepository.getUser().userID,
-                channelownername:"Check Channel",
+                channelownername: "Check Channel",
                 channelownertype: "USER",
                 requestorid: _userRepository.getUser().userID,
                 requestoriginentityid: _userRepository.getUser().userID,
                 requestoriginentitytype: "USER",
-                requestorignatingname:  _userRepository.getUser().name,
+                requestorignatingname: _userRepository.getUser().name,
               ),
             ).then((value) {
               if (value != null) {
@@ -119,7 +119,7 @@ class CreateChatRequest {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['requestorignatingname'] = this.requestorignatingname;
     data['requestoriginentitytype'] = this.requestoriginentitytype;
     data['requestoriginentityid'] = this.requestoriginentityid;

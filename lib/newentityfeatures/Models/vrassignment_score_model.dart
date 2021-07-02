@@ -1,5 +1,6 @@
 import 'package:complex/common/helputil.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
+
 class VrAssignmentScoreModel {
   String assignmentId;
   String examTermInfo;
@@ -47,8 +48,8 @@ class VrAssignmentScoreModel {
     // }
 
     type = json['type'];
-    answeredPapers = List<AnsweredPaper>();
-    questions = List<QuestionInfo>();
+    answeredPapers = <AnsweredPaper>[];
+    questions = <QuestionInfo>[];
     json.keys.forEach((key) {
       if (int.tryParse(key) != null) {
         if (json[key] != null) {
@@ -66,7 +67,7 @@ class VrAssignmentScoreModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['assignmentid'] = this.assignmentId;
     data['examterminfo'] = this.examTermInfo;
@@ -155,7 +156,6 @@ class Choice {
       };
 }
 
-
 class AnsweredPaper {
   AnsweredPaper({
     this.score,
@@ -231,7 +231,7 @@ class AnsweredPaper {
         answers: json.containsKey('answers')
             ? List<Answer>.from(json["answers"]
                 .map((x) => Answer.fromMap(Map<String, dynamic>.from(x))))
-            : new List<Answer>(),
+            : <Answer>[],
         submitdate: json.containsKey('submitdate')
             ? HelpUtil.toDate(timestamp: json["submitdate"])
             : new DateTime(1, 1, 1),

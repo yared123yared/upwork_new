@@ -1,8 +1,8 @@
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
 import 'package:complex/newentityfeatures/Models/assignment_model.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_score_model.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 
 import 'package:complex/newentityfeatures/commonrepo/lookup_repository.dart';
 import 'package:complex/newentityfeatures/commonrepo/virtual_rooms_repository.dart';
@@ -135,11 +135,11 @@ class AssignmentRepository {
   Future<void> setAttachedAssignment({@required String serviceID}) async {
     try {
       _attachedAssignmentList[serviceID] = {};
-      List<VrAssignmentModel> _tempAllAssignment = List<VrAssignmentModel>();
-      List<SessionTermModel> _sessions =
+      List<VrAssignmentModel> _tempAllAssignment = <VrAssignmentModel>[];
+      List<SessionTerm> _sessions =
           await lookup.getSessionTermsList(serviceID: serviceID);
 
-      for (SessionTermModel session in _sessions) {
+      for (SessionTerm session in _sessions) {
         List<VrAssignmentModel> _tempList =
             await VrAssignmentGateway.getVrAssignmentListOffering(
           serviceID: serviceID,
@@ -289,10 +289,10 @@ class AssignmentRepository {
       _assignmentScoreList[serviceID] = [];
       List<VrAssignmentScoreModel> _tempAllAssignment =
           List<VrAssignmentScoreModel>();
-      List<SessionTermModel> _sessions =
+      List<SessionTerm> _sessions =
           await lookup.getSessionTermsList(serviceID: serviceID);
 
-      for (SessionTermModel session in _sessions) {
+      for (SessionTerm session in _sessions) {
         List<VrAssignmentScoreModel> _tempList =
             await VRAssignmentScoreGateway.getVrAssignmentScoreList(
           serviceID: serviceID,

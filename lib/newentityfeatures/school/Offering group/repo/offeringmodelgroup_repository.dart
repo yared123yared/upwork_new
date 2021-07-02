@@ -1,7 +1,6 @@
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
@@ -73,7 +72,7 @@ class OfferingModelGroupRepository {
 
   Future<OfferingDataEntry> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    OfferingDataEntry grerror = new OfferingDataEntry();
+    OfferingDataEntry grerror = OfferingDataEntry();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -84,7 +83,7 @@ class OfferingModelGroupRepository {
           await _schoolRepo.getListOfSubject(serviceID: entityid);
 
       //Please put your code here
-      OfferingDataEntry gr = new OfferingDataEntry(
+      OfferingDataEntry gr = OfferingDataEntry(
         // buttonState: ButtonState.idle,
         // : event.offeringModelGroup,
         grades: grades,

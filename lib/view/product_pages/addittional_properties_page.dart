@@ -194,7 +194,7 @@ class DynamicElementBuilder extends StatefulWidget {
 
 class _DynamicElementBuilderState extends State<DynamicElementBuilder> {
   var _dropDownController = CustomTextFieldController();
-  List<String> _selectedCheckBox = List();
+  List<String> _selectedCheckBox = [];
 
   @override
   void initState() {

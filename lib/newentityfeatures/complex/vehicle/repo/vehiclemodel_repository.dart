@@ -78,7 +78,7 @@ class VehicleModelRepository {
 
   Future<VehicleModelEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    VehicleModelEntryData grerror = new VehicleModelEntryData();
+    VehicleModelEntryData grerror = VehicleModelEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -98,7 +98,7 @@ class VehicleModelRepository {
     );
 
     try {
-      VehicleModelEntryData gr = new VehicleModelEntryData();
+      VehicleModelEntryData gr = VehicleModelEntryData();
       gr.vehicleIndex = null; // TODO
       gr.unitList = unitList;
       gr.staff = staff;

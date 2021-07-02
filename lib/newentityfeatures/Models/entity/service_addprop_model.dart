@@ -326,7 +326,7 @@ class ServiceModelAddProps extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
     json["g_staffcategory"] = g_staffcategory;
     json["g_hassecurity"] = g_hassecurity;
     json["g_hasmaintainence"] = g_hasmaintainence;

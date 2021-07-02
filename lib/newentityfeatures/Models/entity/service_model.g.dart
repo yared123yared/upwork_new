@@ -13,10 +13,19 @@ AreaInfo _$AreaInfoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$AreaInfoToJson(AreaInfo instance) => <String, dynamic>{
-      'districtname': instance.districtname,
-      'areaname': instance.areaname,
-    };
+Map<String, dynamic> _$AreaInfoToJson(AreaInfo instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('districtname', instance.districtname);
+  writeNotNull('areaname', instance.areaname);
+  return val;
+}
 
 SpatialData _$SpatialDataFromJson(Map<String, dynamic> json) {
   return SpatialData(
@@ -32,15 +41,24 @@ SpatialData _$SpatialDataFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$SpatialDataToJson(SpatialData instance) =>
-    <String, dynamic>{
-      'curStatename': instance.curStatename,
-      'lati': instance.lati,
-      'longi': instance.longi,
-      'radius': instance.radius,
-      'statename': instance.statename,
-      'locationname': instance.locationname,
-    };
+Map<String, dynamic> _$SpatialDataToJson(SpatialData instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('curStatename', instance.curStatename);
+  writeNotNull('lati', instance.lati);
+  writeNotNull('longi', instance.longi);
+  writeNotNull('radius', instance.radius);
+  writeNotNull('statename', instance.statename);
+  writeNotNull(
+      'locationname', instance.locationname?.map((e) => e?.toJson())?.toList());
+  return val;
+}
 
 ServiceFilterParameter _$ServiceFilterParameterFromJson(
     Map<String, dynamic> json) {
@@ -58,14 +76,23 @@ ServiceFilterParameter _$ServiceFilterParameterFromJson(
 }
 
 Map<String, dynamic> _$ServiceFilterParameterToJson(
-        ServiceFilterParameter instance) =>
-    <String, dynamic>{
-      'sd': instance.sd,
-      'textsearch': instance.textsearch,
-      'servicetype': instance.servicetype,
-      'serviceofferedselectedvalues': instance.serviceofferedselectedvalues,
-      'offset': instance.offset,
-    };
+    ServiceFilterParameter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('sd', instance.sd?.toJson());
+  writeNotNull('textsearch', instance.textsearch);
+  writeNotNull('servicetype', instance.servicetype);
+  writeNotNull(
+      'serviceofferedselectedvalues', instance.serviceofferedselectedvalues);
+  writeNotNull('offset', instance.offset);
+  return val;
+}
 
 ServiceFilterResultData _$ServiceFilterResultDataFromJson(
     Map<String, dynamic> json) {
@@ -81,12 +108,20 @@ ServiceFilterResultData _$ServiceFilterResultDataFromJson(
 }
 
 Map<String, dynamic> _$ServiceFilterResultDataToJson(
-        ServiceFilterResultData instance) =>
-    <String, dynamic>{
-      'smlist': instance.smlist,
-      'smidlist': instance.smidlist,
-      'totcount': instance.totcount,
-    };
+    ServiceFilterResultData instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('smlist', instance.smlist?.map((e) => e?.toJson())?.toList());
+  writeNotNull('smidlist', instance.smidlist);
+  writeNotNull('totcount', instance.totcount);
+  return val;
+}
 
 LimitedServiceModel _$LimitedServiceModelFromJson(Map<String, dynamic> json) {
   return LimitedServiceModel(
@@ -108,21 +143,28 @@ LimitedServiceModel _$LimitedServiceModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$LimitedServiceModelToJson(
-        LimitedServiceModel instance) =>
-    <String, dynamic>{
-      'address': instance.address,
-      'phone': instance.phone,
-      'email': instance.email,
-      'photo1': instance.photo1,
-      'ratingcount': instance.ratingcount,
-      'totalratings': instance.totalratings,
-      'serviceName': instance.serviceName,
-      'hasapt': instance.hasapt,
-      'servicetype': instance.servicetype,
-      'hasadhoctrips': instance.hasadhoctrips,
-      'hasecom': instance.hasecom,
-      'hasproductcatalog': instance.hasproductcatalog,
-      'timeinfo': instance.timeinfo,
-      'serviceID': instance.serviceID,
-    };
+Map<String, dynamic> _$LimitedServiceModelToJson(LimitedServiceModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('address', instance.address);
+  writeNotNull('phone', instance.phone);
+  writeNotNull('email', instance.email);
+  writeNotNull('photo1', instance.photo1);
+  writeNotNull('ratingcount', instance.ratingcount);
+  writeNotNull('totalratings', instance.totalratings);
+  writeNotNull('serviceName', instance.serviceName);
+  writeNotNull('hasapt', instance.hasapt);
+  writeNotNull('servicetype', instance.servicetype);
+  writeNotNull('hasadhoctrips', instance.hasadhoctrips);
+  writeNotNull('hasecom', instance.hasecom);
+  writeNotNull('hasproductcatalog', instance.hasproductcatalog);
+  writeNotNull('timeinfo', instance.timeinfo);
+  writeNotNull('serviceID', instance.serviceID);
+  return val;
+}

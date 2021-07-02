@@ -1,9 +1,9 @@
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/models/request/auth_request/signup_request.dart';
 import 'package:complex/data/models/response/general_response.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 
 import 'package:complex/newentityfeatures/trips/repository/repo/registered_user_repository.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';

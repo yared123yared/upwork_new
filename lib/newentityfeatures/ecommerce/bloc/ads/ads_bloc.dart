@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import '../../models/states/ads_state.dart';
 import '../../repositories/ads/ads_repository.dart';
 

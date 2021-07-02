@@ -194,7 +194,7 @@ class StaffModelx extends Equatable {
   StaffModelx.fromJson(Map<String, dynamic> json, String docID) {
     staffID = docID;
     if (json['allowedroles'] != null) {
-      allowedRoles = List<String>();
+      allowedRoles = [];
       json['allowedroles'].forEach((v) {
         allowedRoles.add(v);
       });
@@ -203,9 +203,8 @@ class StaffModelx extends Equatable {
     }
 
     if (json['serviceoffered'] != null) {
-      serviceOffered = new List<String>();
-      for(var so in json['serviceoffered'])
-      serviceOffered.add(so.toString());
+      serviceOffered = [];
+      for (var so in json['serviceoffered']) serviceOffered.add(so.toString());
     }
     timeInterval = json['TimeInterval'];
     virtualRoomAttached = json['VirtualRoomAttached'];

@@ -1,3 +1,4 @@
+import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
 import 'package:complex/blocs/auth_bloc.dart';
 import 'package:complex/blocs/channels_bloc.dart';
 import 'package:complex/blocs/complex_bloc.dart';
@@ -14,6 +15,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'data/models/response/auth_response/user_session.dart';
@@ -107,7 +109,9 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
           BlocProvider<StringListBloc>(
             create: (context) => StringListBloc(),
           ),
-
+          BlocProvider<LookupBloc>(
+            create: (context) => LookupBloc(),
+          ),
           // BY ABDERRAHMANE:
           // ECOMMERCE
           BlocProvider<E3_AdsBloc.AdsBloc>(create: (_) => E3_AdsBloc.AdsBloc()),
@@ -140,6 +144,8 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
           ),
           debugShowCheckedModeBanner: false,
           home: SplashPage(),
+           builder: EasyLoading.init(),
+
           /*
           localeResolutionCallback: (locale, _) {
             return locale;

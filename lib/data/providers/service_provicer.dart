@@ -73,7 +73,7 @@ class ServiceProvider {
       Stream<ServiceModel> str =
           serviceCollection.doc(id).snapshots().map((obj) {
         Map data = obj.data();
-        return ServiceModel.fromJson(data, new List<String>(), obj.id);
+        return ServiceModel.fromJson(data, [], obj.id);
       });
       return str;
     } on PlatformException catch (e) {
@@ -137,12 +137,12 @@ class ServiceProvider {
 
   Future<Map<String, List<String>>> getFilterForServiceType(
       String servicetype, UserModel curuser) {
-    Map<String, List<String>> empty = new Map<String, List<String>>();
-    Map<String, List<String>> bn = new Map<String, List<String>>();
+    Map<String, List<String>> empty = Map<String, List<String>>();
+    Map<String, List<String>> bn = Map<String, List<String>>();
     bn["val1"] = null;
     bn["val2"] = null;
     bn["val3"] = null;
-    List<String> sk = new List<String>();
+    List<String> sk = [];
     sk.add("child1");
     sk.add("child2");
     sk.add("child3");
@@ -152,11 +152,13 @@ class ServiceProvider {
 
     return Future.delayed(Duration.zero, () => bn);
   }
+
   Future<ComplexModel> getComplexDetail({String id}) {
     return FirebaseFirestore.instance.doc("COMPLEXES/$id").get().then((x) {
       return ComplexModel.fromData(x.data(), [], id);
     });
   }
+
   Future<void> makeEntityDefault({
     String newEntityId,
     UserModel user,
@@ -174,7 +176,10 @@ class ServiceProvider {
     });
     UserEntity _userentity;
     String mydocid = "USERINFO/" + user.userID;
-    _userentity = await FirebaseFirestore.instance.doc(mydocid).get().then((x) => UserEntity.fromData(x.data()));
+    _userentity = await FirebaseFirestore.instance
+        .doc(mydocid)
+        .get()
+        .then((x) => UserEntity.fromData(x.data()));
 
     UserEntity.setDefaultEntity(_userentity, user);
   }

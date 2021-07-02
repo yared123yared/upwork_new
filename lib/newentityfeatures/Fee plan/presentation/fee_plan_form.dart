@@ -1,4 +1,5 @@
 import 'package:complex/common/helputil.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 
 import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
@@ -6,7 +7,6 @@ import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
@@ -125,7 +125,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
     return BlocProvider(
       create: (context) => itembloc.FeePlanModelBloc()
         ..add(
-          itembloc.getForNewEntry(
+          itembloc.GetForNewEntry(
             entityid: widget.entityid,
             entitytype: widget.entitytype,
           ),
@@ -377,6 +377,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
                   paymentPeriodType: _paymentPeriodType.text,
                   discountType: [_selectedDiscount],
                   feeData: feeData,
+                  grade: '',
                 );
                 if (timelineIndex < (numPeriods - 1)) {
                   setState(() {
@@ -386,7 +387,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
                 } else {
                   if (_update) {
                     BlocProvider.of<itembloc.FeePlanModelBloc>(context).add(
-                      itembloc.updateItem(
+                      itembloc.UpdateItem(
                         item: _feePlanModel,
                         entityid: widget.entityid,
                         entitytype: widget.entitytype,
@@ -394,7 +395,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
                     );
                   } else {
                     BlocProvider.of<itembloc.FeePlanModelBloc>(context).add(
-                      itembloc.createItem(
+                      itembloc.CreateItem(
                         item: _feePlanModel,
                         entityid: widget.entityid,
                         entitytype: widget.entitytype,

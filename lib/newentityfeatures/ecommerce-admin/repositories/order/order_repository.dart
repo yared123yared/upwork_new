@@ -1,4 +1,5 @@
-import '../../../ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
+
 import 'order_provider.dart';
 
 class OrderRepository {

@@ -5,29 +5,29 @@ class FeePlanModelListEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class getPreData extends FeePlanModelListEvent {
+class GetPreData extends FeePlanModelListEvent {
   final String entityid;
   final String entitytype;
-  getPreData({@required this.entityid, @required this.entitytype});
+  GetPreData({@required this.entityid, @required this.entitytype});
   @override
   List<Object> get props => [entityid, entitytype];
 }
 
 //to get listdata
-class getListData extends FeePlanModelListEvent {
+class GetListData extends FeePlanModelListEvent {
   final String entityid;
   final String entitytype;
-  getListData({@required this.entityid, @required this.entitytype});
+  GetListData({@required this.entityid, @required this.entitytype});
   @override
   List<Object> get props => [entityid, entitytype];
 }
 
-class getListDataWithSearchParameter extends FeePlanModelListEvent {
+class GetListDataWithSearchParameter extends FeePlanModelListEvent {
   final String entityid;
   final String entitytype;
   final String sessionterm;
   final String offeringmodelgroupname;
-  getListDataWithSearchParameter(
+  GetListDataWithSearchParameter(
       {@required this.entityid,
       @required this.entitytype,
       @required this.sessionterm,
@@ -38,11 +38,11 @@ class getListDataWithSearchParameter extends FeePlanModelListEvent {
 }
 
 //We want to delete an item , we will call this method (if we have the complete item data )
-class deleteItemWithData extends FeePlanModelListEvent {
+class DeleteItemWithData extends FeePlanModelListEvent {
   final FeePlanModel item;
   final String entityid;
   final String entitytype;
-  const deleteItemWithData({
+  const DeleteItemWithData({
     @required this.item,
     @required this.entityid,
     @required this.entitytype,

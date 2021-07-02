@@ -33,7 +33,7 @@ class _VehicleRelationListListState extends State<VehicleRelationListList> {
   List<Relation> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.VehicleRelationListBloc();
+    mlistbloc = listbloc.VehicleRelationListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

@@ -81,17 +81,17 @@ class UserModel {
   }
 
   ChannelListInfo getChannelList() {
-    List totalresult = new List();
-    ChannelListInfo clinfo = new ChannelListInfo();
+    List totalresult = [];
+    ChannelListInfo clinfo = ChannelListInfo();
 
-    clinfo.myuserchannelmodellist = new List<UserChannelsModel>();
-    clinfo.channelwithname = new Map<String, String>();
+    clinfo.myuserchannelmodellist = [];
+    clinfo.channelwithname = Map<String, String>();
     clinfo.entitywithchannellist = Map<String, List<String>>();
 
     if (services != null) {
       for (UserService service in services) {
         String servname = getNameForEntity("s", service.serviceID);
-        clinfo.entitywithchannellist[servname] = new List<String>();
+        clinfo.entitywithchannellist[servname] = [];
         for (var channel in service.channels) {
           clinfo.myuserchannelmodellist.add(channel);
           clinfo.channelwithname[channel.channel] = servname;
@@ -116,7 +116,7 @@ class UserModel {
     if (complexes != null) {
       for (UserComplex comp in complexes) {
         String compname = getNameForEntity("c", comp.complexID);
-        clinfo.entitywithchannellist[compname] = new List<String>();
+        clinfo.entitywithchannellist[compname] = [];
         for (var channel in comp.channels) {
           clinfo.myuserchannelmodellist.add(channel);
           clinfo.channelwithname[channel.channel] = compname;
@@ -202,8 +202,8 @@ class UserModel {
         }
       }
     });
-    complexNames = new Map<String, String>();
-    serviceProviderNames = new Map<String, String>();
+    complexNames = Map<String, String>();
+    serviceProviderNames = Map<String, String>();
     for (var k in complexes) {
       complexNames[k.complexID] = k.name;
     }
@@ -274,7 +274,7 @@ class IndividualChannels {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['rights'] = this.rights;
     data['channel'] = this.channel;
     data['cname'] = this.cname;

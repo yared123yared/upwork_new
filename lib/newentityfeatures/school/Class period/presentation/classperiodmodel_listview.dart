@@ -3,7 +3,7 @@ import 'package:complex/common/widgets/custom_drop_down_list.dart';
 import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/data/styles_colors.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -38,7 +38,7 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
 
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.ClassPeriodModelListBloc();
+    mlistbloc = listbloc.ClassPeriodModelListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

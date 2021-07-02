@@ -86,7 +86,7 @@ class FamilyMemberRepository {
 
   Future<FamilyEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    FamilyEntryData grerror = new FamilyEntryData();
+    FamilyEntryData grerror = FamilyEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -98,7 +98,7 @@ class FamilyMemberRepository {
           ?.map((unit) => unit.unitID)
           ?.toList();
 
-      FamilyEntryData gr = new FamilyEntryData();
+      FamilyEntryData gr = FamilyEntryData();
 
       gr.models = models;
       gr.errortype = -1;

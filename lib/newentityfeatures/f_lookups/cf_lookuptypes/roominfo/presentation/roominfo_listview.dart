@@ -1,4 +1,5 @@
 import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -6,8 +7,6 @@ import 'package:complex/common/page/common_list_page_copy.dart';
 
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/roominfo/listbloc/bloc.dart'
     as listbloc;
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart'
-    as cmodel;
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/roominfo/presentation/room_form.dart';
 
 class RoomInfoList extends StatefulWidget {
@@ -23,8 +22,8 @@ class _RoomInfoListState extends State<RoomInfoList> {
   listbloc.RoomInfoListBloc mlistbloc;
 
   void initState() {
-    mlistbloc = new listbloc.RoomInfoListBloc();
-    mlistbloc.add(listbloc.getListData(
+    mlistbloc = listbloc.RoomInfoListBloc();
+    mlistbloc.add(listbloc.GetListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }
 
@@ -37,7 +36,7 @@ class _RoomInfoListState extends State<RoomInfoList> {
 
   void doreload(bool reloadtype) {
     if (reloadtype) {
-      mlistbloc.add(listbloc.getListData(
+      mlistbloc.add(listbloc.GetListData(
           entitytype: widget.entitytype, entityid: widget.entityid));
     }
   }
@@ -58,7 +57,7 @@ class _RoomInfoListState extends State<RoomInfoList> {
   }
 
   List<ListStateClass> toCommonListState(
-      List<cmodel.RoomInfo> listItems, BuildContext context) {
+      List<RoomInfo> listItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
@@ -80,7 +79,7 @@ class _RoomInfoListState extends State<RoomInfoList> {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
             BlocProvider.of<listbloc.RoomInfoListBloc>(context).add(
-                listbloc.deleteItemWithData(
+                listbloc.DeleteItemWithData(
                     entitytype: widget.entitytype,
                     entityid: widget.entitytype,
                     item: listItems[index]));
@@ -154,7 +153,7 @@ class _RoomInfoListState extends State<RoomInfoList> {
             }
 
             if (state is listbloc.IsListDataLoaded) {
-              List<cmodel.RoomInfo> em = state.listdata;
+              List<RoomInfo> em = state.listdata;
               return _blocBuilder(context, em);
             }
             return Center(child: Text('Empty'));
@@ -169,7 +168,7 @@ class _RoomInfoListState extends State<RoomInfoList> {
     );
   }
 
-  Widget _blocBuilder(context, List<cmodel.RoomInfo> em) {
+  Widget _blocBuilder(context, List<RoomInfo> em) {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [

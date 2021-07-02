@@ -41,7 +41,7 @@ class _RegistryListListState extends State<RegistryListList> {
   List<String> roles = [];
 
   void initState() {
-    mlistbloc = new listbloc.RegistryModelListBloc();
+    mlistbloc = listbloc.RegistryModelListBloc();
     mlistbloc.add(listbloc.getListData(
       entitytype: widget.entitytype,
       entityid: widget.entityid,

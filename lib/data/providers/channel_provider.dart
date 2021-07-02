@@ -26,7 +26,7 @@ class ChannelsProvider {
   void clearChatRoom() => _channels = {};
 
   List<String> getExistingMetaChannels() {
-    List<String> existingmetachannel = new List<String>();
+    List<String> existingmetachannel = [];
     for (String entityname in _channels.keys) {
       for (var mc in _channels[entityname]) existingmetachannel.add(mc.metaid);
     }
@@ -43,7 +43,7 @@ class ChannelsProvider {
         mchannellistinfo.entitywithchannellist;
 
     List<String> existingmetachannel = getExistingMetaChannels();
-    List<UserChannelsModel> toremovechannels = new List<UserChannelsModel>();
+    List<UserChannelsModel> toremovechannels = [];
     for (String mid in existingmetachannel) {
       for (UserChannelsModel uc in myuserchannelmodellist) {
         if (uc.channel == mid) toremovechannels.add(uc);
@@ -59,7 +59,7 @@ class ChannelsProvider {
       String entityName = channelwithname[curmeta.metaid]; //entitynamemap[]
 
       if (_channels[entityName] == null)
-        _channels[entityName] = List<ChannelModel>();
+        _channels[entityName] = <ChannelModel>[];
 
       List<ChannelModel> chalist = _channels[entityName];
       bool addtolist = true;
@@ -97,18 +97,17 @@ class ChannelsProvider {
   Future<List<ChannelModel>> getChatMetadata(
       {@required List<UserChannelsModel> mylist}) async {
     List<Stream<List<ChannelModel>>> mystreamlist =
-        new List<Stream<List<ChannelModel>>>();
-    List<Stream<QuerySnapshot>> mystreamlist1 =
-        new List<Stream<QuerySnapshot>>();
+        <Stream<List<ChannelModel>>>[];
+    List<Stream<QuerySnapshot>> mystreamlist1 = <Stream<QuerySnapshot>>[];
 
-    List<List<String>> mydocidlist = new List<List<String>>();
+    List<List<String>> mydocidlist = <List<String>>[];
     int mcount = 0;
-    List<String> mk = new List<String>();
-    Map<String, UserChannelsModel> mymap = new Map<String, UserChannelsModel>();
+    List<String> mk = [];
+    Map<String, UserChannelsModel> mymap = Map<String, UserChannelsModel>();
     for (UserChannelsModel ucm in mylist) {
       if (mk.length == 10) {
         mydocidlist.add(mk);
-        mk = new List<String>();
+        mk = [];
       }
       mk.add(ucm.channel);
       if (!mymap.containsKey(ucm.channel)) mymap[ucm.channel] = ucm;
@@ -123,10 +122,8 @@ class ChannelsProvider {
       futures.add(pk);
     }
 
-    List<Object> mji = new List<Object>();
-
     List<dynamic> mresultFuture = await Future.wait(futures);
-    List<ChannelModel> resultdata = new List<ChannelModel>();
+    List<ChannelModel> resultdata = <ChannelModel>[];
     for (var qrysnp in mresultFuture) {
       QuerySnapshot qs = qrysnp as QuerySnapshot;
       for (var doc in qs.docs) {
@@ -167,7 +164,7 @@ class ChannelsProvider {
               ));
 
       if (_channels[entityName] == null)
-        _channels[entityName] = List<ChannelModel>();
+        _channels[entityName] = <ChannelModel>[];
 
       List<ChannelModel> chalist = _channels[entityName];
       bool addtolist = true;

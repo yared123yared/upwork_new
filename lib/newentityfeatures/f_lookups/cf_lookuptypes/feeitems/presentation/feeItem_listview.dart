@@ -12,7 +12,7 @@ import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/blo
 class FeeItemFormList extends StatefulWidget {
   final String entityid;
   final String entitytype;
-  FeeItemFormList({this.entitytype, this.entityid});
+  FeeItemFormList({@required this.entitytype, @required this.entityid});
 
   @override
   _FeeItemFormListState createState() => _FeeItemFormListState();
@@ -23,7 +23,7 @@ class _FeeItemFormListState extends State<FeeItemFormList> {
 
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.StringListBloc();
+    mlistbloc = listbloc.StringListBloc();
     mlistbloc.add(listbloc.GetListData(
         entitytype: widget.entitytype,
         entityid: widget.entityid,

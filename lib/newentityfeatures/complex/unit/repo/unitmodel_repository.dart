@@ -77,12 +77,12 @@ class UnitModelRepository {
 
   Future<UnitModelEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    UnitModelEntryData grerror = new UnitModelEntryData();
+    UnitModelEntryData grerror = UnitModelEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
-      UnitModelEntryData gr = new UnitModelEntryData();
+      UnitModelEntryData gr = UnitModelEntryData();
 
       // if (_complexRepository.getBuildingList(complexID: entityid) == null ||
       //     _complexRepository.getBuildingList(complexID: entityid).length == 0) {

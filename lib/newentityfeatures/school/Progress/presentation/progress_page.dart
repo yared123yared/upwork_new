@@ -1,7 +1,7 @@
 import 'package:complex/common/widgets/custom_app_bar.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/progress_model.dart';
 import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -152,7 +152,7 @@ class _ProgressPageState extends State<ProgressPage> {
                   title: "Select Term",
                   controller: _examterm,
                   loadData: () async => widget.examtermlist,
-                  displayName: (x) => x.ToString(),
+                  displayName: (x) => x.toString(),
                   validate: Validate.withOption(
                     isRequired: true,
                   ),

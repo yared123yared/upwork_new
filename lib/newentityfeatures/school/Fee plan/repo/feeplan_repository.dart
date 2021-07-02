@@ -1,6 +1,6 @@
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/gateway/fee_plans_gateway.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
@@ -67,7 +67,7 @@ class FeePlanModelRepository {
 
   Future<FeePlanEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    FeePlanEntryData grerror = new FeePlanEntryData();
+    FeePlanEntryData grerror = FeePlanEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -86,7 +86,7 @@ class FeePlanModelRepository {
 
       bool editable = true;
 
-      FeePlanEntryData gr = new FeePlanEntryData();
+      FeePlanEntryData gr = FeePlanEntryData();
 
       gr.errortype = -1;
       gr.grades = grades;

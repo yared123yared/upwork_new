@@ -9,7 +9,7 @@ class FeePlanModelListBloc
   Stream<FeePlanModelListState> mapEventToState(
     FeePlanModelListEvent event,
   ) async* {
-    if (event is getListData) {
+    if (event is GetListData) {
       yield IsBusy();
       FeePlanModelRepositoryReturnData ud =
           await mrepository.getInitialData(event.entitytype, event.entityid);
@@ -22,14 +22,11 @@ class FeePlanModelListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is getListDataWithSearchParameter) {
+    if (event is GetListDataWithSearchParameter) {
       yield IsBusy();
       FeePlanModelRepositoryReturnData ud =
-          await mrepository.getFeePlanModelWithOfferingSearch(
-              event.entitytype,
-              event.entityid,
-              event.sessionterm,
-              event.offeringmodelgroupname);
+          await mrepository.getFeePlanModelWithOfferingSearch(event.entitytype,
+              event.entityid, event.sessionterm, event.offeringmodelgroupname);
 
       if (ud.errortype == -1)
         yield IsListDataLoaded(listdata: ud.itemlist);
@@ -39,8 +36,7 @@ class FeePlanModelListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-
-    if (event is getPreData) {
+    if (event is GetPreData) {
       yield IsBusy();
       GenericLookUpDataUsedForRegistration ud = await mrepository
           .getListFormPreLoadData(event.entitytype, event.entityid);
@@ -56,7 +52,7 @@ class FeePlanModelListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is deleteItemWithData) {
+    if (event is DeleteItemWithData) {
       yield IsBusy();
       FeePlanModelRepositoryReturnData ud =
           await mrepository.deleteFeePlanModelWithData(

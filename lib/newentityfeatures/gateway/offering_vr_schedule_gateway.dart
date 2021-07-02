@@ -30,7 +30,7 @@ class OfferingsVrManagementGateway {
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return kindlist;
 
-    kindlist = new List<OfferingModelGroup>();
+    kindlist = <OfferingModelGroup>[];
     for (dynamic d in mdata['l'])
       kindlist.add(OfferingModelGroup.fromString(d));
 
@@ -56,7 +56,7 @@ class OfferingsVrManagementGateway {
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return kindlist;
 
-    kindlist = new List<OfferingModelGroup>();
+    kindlist = <OfferingModelGroup>[];
     for (dynamic d in mdata['l'])
       kindlist.add(OfferingModelGroup.fromString(d));
 
@@ -68,7 +68,7 @@ class OfferingsVrManagementGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    List<String> abc = new List<String>();
+    List<String> abc = [];
     final HttpsCallable callable =
         FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
     print("CloudFunction " + "end");
@@ -91,7 +91,7 @@ class OfferingsVrManagementGateway {
       @required String sessionterm,
       @required String entitytype,
       @required String entityid}) async {
-    List<String> abc = new List<String>();
+    List<String> abc = [];
     final HttpsCallable callable =
         FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
     print("CloudFunction " + "end");
@@ -105,7 +105,7 @@ class OfferingsVrManagementGateway {
     List<RegisteredIdModel> rm = [];
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return rm;
-    rm = new List<RegisteredIdModel>();
+    rm = <RegisteredIdModel>[];
     for (dynamic d in mdata['lm'])
       rm.add(RegisteredIdModel.fromData(data: Map<String, dynamic>.from(d)));
 
@@ -117,7 +117,7 @@ class OfferingsVrManagementGateway {
       @required String sessionterm,
       @required String entitytype,
       @required String entityid}) async {
-    List<String> abc = new List<String>();
+    List<String> abc = [];
     final HttpsCallable callable =
         FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
     print("CloudFunction " + "end");
@@ -131,7 +131,7 @@ class OfferingsVrManagementGateway {
     List<RegisteredIdModel> rm = [];
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return rm;
-    rm = new List<RegisteredIdModel>();
+    rm = <RegisteredIdModel>[];
     for (dynamic d in mdata['lm'])
       rm.add(RegisteredIdModel.fromData(data: Map<String, dynamic>.from(d)));
 
@@ -156,7 +156,7 @@ class OfferingsVrManagementGateway {
     List<SchoolOwner> rm = [];
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return rm;
-    rm = new List<SchoolOwner>();
+    rm = <SchoolOwner>[];
     mdata['lm'].forEach((j) {
       rm.add(SchoolOwner.fromData(Map<String, dynamic>.from(j)));
     });
@@ -375,7 +375,7 @@ IDCARD-ATTENDENCE Data
       for (String s1 in p.keys) {
         String keyname = s1; //json['key'];
         keyname = keyname.replaceAll("f_", "");
-        Map<String, dynamic> data = new Map<String, dynamic>();
+        Map<String, dynamic> data = Map<String, dynamic>();
         mydata[keyname] = data;
         if (p[s1] != null) {
           for (dynamic s2 in p[s1]) {
@@ -419,7 +419,7 @@ IDCARD-ATTENDENCE Data
       for (String s1 in p.keys) {
         String keyname = s1; //json['key'];
         keyname = keyname.replaceAll("f_", "");
-        Map<String, dynamic> data = new Map<String, dynamic>();
+        Map<String, dynamic> data = Map<String, dynamic>();
         mydata[keyname] = data;
         if (p[s1] != null) {
           for (dynamic s2 in p[s1]) {
@@ -464,7 +464,7 @@ IDCARD-ATTENDENCE Data
       for (String s1 in p.keys) {
         String keyname = s1; //json['key'];
         keyname = keyname.replaceAll("f_", "");
-        Map<String, dynamic> data = new Map<String, dynamic>();
+        Map<String, dynamic> data = Map<String, dynamic>();
         mydata[keyname] = data;
         if (p[s1] != null) {
           for (dynamic s2 in p[s1]) {
@@ -560,13 +560,13 @@ IDCARD-ATTENDENCE Data
     //Map<String,dynamic> attendencedata =data['sti'];
     List<AttendanceInfo> attendanceList = [];
     if (data['sti'] != null) {
-      attendanceList = new List<AttendanceInfo>();
+      attendanceList = <AttendanceInfo>[];
       data['sti'].forEach((element) {
         attendanceList.add(AttendanceInfo.fromDataDB(
             data: Map<String, dynamic>.from(element)));
       });
     }
-    _attendanceModel = new AttendanceModel(
+    _attendanceModel = AttendanceModel(
         date: dateTime,
         virtualrooname: virtualroomname,
         atttype: "vr",
@@ -601,13 +601,13 @@ IDCARD-ATTENDENCE Data
     //Map<String,dynamic> attendencedata =data['sti'];
     List<AttendanceInfo> attendanceList = [];
     if (data['sti'] != null) {
-      attendanceList = new List<AttendanceInfo>();
+      attendanceList = <AttendanceInfo>[];
       data['sti'].forEach((element) {
         attendanceList.add(AttendanceInfo.fromDataDB(
             data: Map<String, dynamic>.from(element)));
       });
     }
-    _attendanceModel = new AttendanceModel(
+    _attendanceModel = AttendanceModel(
       date: dateTime,
       offeringname: offeringname,
       atttype: "of",
@@ -821,7 +821,6 @@ IDCARD-ATTENDENCE Data
     String staffid,
   ) async {
     print("SERVICEPROVIDERINFO/$serviceID/STAFFEXTRADATA/$staffid");
-    String bc = "SERVICEPROVIDERINFO/$serviceID/STAFFEXTRADATA/$staffid";
     return await FirebaseFirestore.instance
         .doc("SERVICEPROVIDERINFO/$serviceID/STAFFEXTRADATA/$staffid")
         .get()

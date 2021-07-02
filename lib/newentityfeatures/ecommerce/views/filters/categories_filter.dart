@@ -1,5 +1,5 @@
 import 'package:complex/newentityfeatures/ecommerce/bloc/product/product_bloc.dart';
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -60,14 +60,14 @@ class _CategoriesFilterState extends State<CategoriesFilter> {
                             (e) => ListTile(
                               leading: Checkbox(
                                 value: selectedCategories.contains(
-                                  '${widget.filterData.filterheading[0]}/${subCategory.value}/${e}',
+                                  '${widget.filterData.filterheading[0]}/${subCategory.value}/$e',
                                 ),
                                 onChanged: (v) => onSelectCategory(
-                                  '${widget.filterData.filterheading[0]}/${subCategory.value}/${e}',
+                                  '${widget.filterData.filterheading[0]}/${subCategory.value}/$e',
                                 ),
                               ),
                               onTap: () => onSelectCategory(
-                                '${widget.filterData.filterheading[0]}/${subCategory.value}/${e}',
+                                '${widget.filterData.filterheading[0]}/${subCategory.value}/$e',
                               ),
                               title: Text(e),
                             ),

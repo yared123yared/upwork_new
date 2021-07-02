@@ -1,7 +1,7 @@
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
 import 'package:complex/common/presentation.dart';
 
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/paymentperiodinfo/itembloc/bloc.dart'
@@ -65,7 +65,7 @@ class _PeriodInfoFormState extends State<PeriodInfoForm> {
   @override
   void initState() {
     super.initState();
-    mbloc = new itembloc.PaymentPeriodInfoBloc();
+    mbloc = itembloc.PaymentPeriodInfoBloc();
 
     _initFiledValue();
   }

@@ -35,7 +35,7 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
   List<cmodel.VrAssignmentModel> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.VrAssignmentModelListBloc();
+    mlistbloc = listbloc.VrAssignmentModelListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

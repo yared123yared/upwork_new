@@ -1,6 +1,7 @@
 part of 'bloc.dart';
 
-class ClassPeriodModelBloc extends Bloc<ClassPeriodModelEvent, ClassPeriodModelState> {
+class ClassPeriodModelBloc
+    extends Bloc<ClassPeriodModelEvent, ClassPeriodModelState> {
   ClassPeriodModelRepository mrepository = ClassPeriodModelRepository();
   ClassPeriodModelBloc() : super(ClassPeriodModelState());
 
@@ -8,7 +9,7 @@ class ClassPeriodModelBloc extends Bloc<ClassPeriodModelEvent, ClassPeriodModelS
   Stream<ClassPeriodModelState> mapEventToState(
     ClassPeriodModelEvent event,
   ) async* {
-    if (event is createItem) {
+    if (event is CreateItem) {
       yield IsBusy();
       ClassPeriodModelRepositoryReturnData ud =
           await mrepository.createClassPeriodModel(
@@ -25,7 +26,7 @@ class ClassPeriodModelBloc extends Bloc<ClassPeriodModelEvent, ClassPeriodModelS
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is getForNewEntry) {
+    if (event is GetForNewEntry) {
       yield IsBusy();
       ClassPeriodDataEntry ud = await mrepository.getItemFormNewEntryData(
           event.entitytype, event.entityid);
@@ -45,7 +46,7 @@ class ClassPeriodModelBloc extends Bloc<ClassPeriodModelEvent, ClassPeriodModelS
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is updateItem) {
+    if (event is UpdateItem) {
       yield IsBusy();
       ClassPeriodModelRepositoryReturnData ud = await mrepository
           .updateClassPeriodModel(event.item, event.entitytype, event.entityid);
@@ -58,7 +59,7 @@ class ClassPeriodModelBloc extends Bloc<ClassPeriodModelEvent, ClassPeriodModelS
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is updateItemWithDiff) {
+    if (event is UpdateItemWithDiff) {
       yield IsBusy();
       ClassPeriodModelRepositoryReturnData ud =
           await mrepository.updateClassPeriodModelWithDiff(

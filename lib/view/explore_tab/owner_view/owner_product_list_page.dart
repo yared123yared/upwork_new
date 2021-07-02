@@ -1,10 +1,10 @@
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/view/explore_tab/owner_view/owner_product_card.dart';
 import 'package:flutter/material.dart';
 
-class ProductListView extends StatelessWidget {
+class OwnerProductListPage extends StatelessWidget {
   final List<LimitedData> productList;
-  const ProductListView({Key key, @required this.productList})
+  const OwnerProductListPage({Key key, @required this.productList})
       : super(key: key);
 
   @override

@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:complex/common/helputil.dart';
 
-
 enum ServiceRequestType {
   VISITOR,
   ADHOCVISITOR,
@@ -243,7 +242,7 @@ class ServiceRequestModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
 
     json['serversidetimestamp'] = this.serverSideTimestamp;
     json['startdate'] = HelpUtil.toTimeStamp(dateTime: this.startDate);

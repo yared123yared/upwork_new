@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/Models/parentinteraction_model.dart';
 import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
@@ -14,7 +14,7 @@ import 'package:complex/newentityfeatures/Models/offering_schedule_model.dart';
 import 'package:complex/newentityfeatures/Models/registered_id_model.dart';
 
 class SessionTermGateway {
-  static Future<List<SessionTermModel>> getSessionTerms(
+  static Future<List<SessionTerm>> getSessionTerms(
       {@required String serviceID}) async {
     try {
       return await FirebaseFirestore.instance
@@ -22,7 +22,7 @@ class SessionTermGateway {
           .get()
           .then((x) {
         if (x.data() != null) {
-          return SessionTermModel.listFromData(x.data());
+          return SessionTermList.fromJson(x.data()).list;
         } else {
           return [];
         }
@@ -65,7 +65,7 @@ class SessionTermGateway {
     print("CloudFunction " + callable.toString());
     print("CloudFunction " + resp.data.toString());
     print(resp.data);
-    return new List<ParentInteractionSingleValueListModel>();
+    return <ParentInteractionSingleValueListModel>[];
   }
 
   static Future<List<ParentInteractionSingleValueListModel>>
@@ -91,31 +91,30 @@ class SessionTermGateway {
     print("CloudFunction " + callable.toString());
     print("CloudFunction " + resp.data.toString());
     print(resp.data);
-    return new List<ParentInteractionSingleValueListModel>();
+    return <ParentInteractionSingleValueListModel>[];
   }
 
   static Future<void> addSessionTerm(
-      {@required String serviceID,
-      @required SessionTermModel sessionTerm}) async {
+      {@required String serviceID, @required SessionTerm sessionTerm}) async {
     print("calling add session gateway");
     print(serviceID.toString());
     try {
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
           .update({
-        'sessionterm': FieldValue.arrayUnion([sessionTerm.toData()])
+        'sessionterm': FieldValue.arrayUnion([sessionTerm.toJson()])
       });
     } on Exception {}
   }
 
   static Future<void> deleteSessionTerm({
     @required String serviceID,
-    @required SessionTermModel sessionTerm,
+    @required SessionTerm sessionTerm,
   }) async {
     return await FirebaseFirestore.instance
         .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
         .update({
-      'sessionterm': FieldValue.arrayRemove([sessionTerm.toData()])
+      'sessionterm': FieldValue.arrayRemove([sessionTerm.toJson()])
     });
   }
 
@@ -362,7 +361,7 @@ class SessionTermGateway {
   }
 
   static List<RegisteredIdModel> getRegisterIdList(Map<String, dynamic> json) {
-    List<RegisteredIdModel> mylist = new List<RegisteredIdModel>();
+    List<RegisteredIdModel> mylist = List<RegisteredIdModel>();
     if (json['listofregisteredid'] != null) {
       json['listofregisteredid'].forEach((v) {
         mylist.add(RegisteredIdModel.fromData(data: v));

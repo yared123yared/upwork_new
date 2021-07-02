@@ -63,7 +63,7 @@ class RouteTripModel {
   RouteTripModel.fromJson(
       {@required Map<String, dynamic> json, @required String docId}) {
     // if (json['daysofweek'] != null) {
-    //   dayOfWeek = List<String>();
+    //   dayOfWeek = [];
     //   json['daysofweek'].forEach((v) {
     //     dayOfWeek.add(v);
     //   });
@@ -163,7 +163,7 @@ class DayOfWeek {
 //   dayOfWeek = data["daysofweek"];
 // }
 // Map<String, dynamic> toData() {
-//   final Map<String, dynamic> data = new Map<String, dynamic>();
+//   final Map<String, dynamic> data = Map<String, dynamic>();
 //   data['daysofweek'] = this.dayOfWeek;
 //   return data;
 // }
@@ -190,7 +190,7 @@ class DayOfWeek {
 //     relation = data["relation"];
 //   }
 //   Map<String, dynamic> toData() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     final Map<String, dynamic> data = Map<String, dynamic>();
 //     data['relation'] = this.relation;
 //     return data;
 //   }

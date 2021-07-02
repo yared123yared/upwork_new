@@ -236,7 +236,7 @@ class _ResidentFormState extends State<ResidentForm> {
 
   List<Step> getSteps(BuildContext context) {
     List<Step> steps = [];
-    Step step1 = new Step(
+    Step step1 = Step(
         title: const Text('Name'),
         //subtitle: const Text('Enter your name'),
         isActive: true,
@@ -313,7 +313,7 @@ class _ResidentFormState extends State<ResidentForm> {
           ),
         ));
 
-    Step step2 = new Step(
+    Step step2 = Step(
         title: const Text('Phone'),
         //subtitle: const Text('Subtitle'),
         isActive: true,

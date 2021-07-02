@@ -8,7 +8,7 @@ class FeePlanModelBloc extends Bloc<FeePlanModelEvent, FeePlanModelState> {
   Stream<FeePlanModelState> mapEventToState(
     FeePlanModelEvent event,
   ) async* {
-    if (event is createItem) {
+    if (event is CreateItem) {
       yield IsBusy();
       FeePlanModelRepositoryReturnData ud = await mrepository
           .createFeePlanModel(event.item, event.entitytype, event.entityid);
@@ -20,7 +20,7 @@ class FeePlanModelBloc extends Bloc<FeePlanModelEvent, FeePlanModelState> {
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is getForNewEntry) {
+    if (event is GetForNewEntry) {
       yield IsBusy();
       FeePlanEntryData ud = await mrepository.getItemFormNewEntryData(
           event.entitytype, event.entityid);
@@ -40,7 +40,7 @@ class FeePlanModelBloc extends Bloc<FeePlanModelEvent, FeePlanModelState> {
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is updateItem) {
+    if (event is UpdateItem) {
       yield IsBusy();
       FeePlanModelRepositoryReturnData ud = await mrepository
           .updateFeePlanModel(event.item, event.entitytype, event.entityid);
@@ -53,7 +53,7 @@ class FeePlanModelBloc extends Bloc<FeePlanModelEvent, FeePlanModelState> {
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is updateItemWithDiff) {
+    if (event is UpdateItemWithDiff) {
       yield IsBusy();
       FeePlanModelRepositoryReturnData ud =
           await mrepository.updateFeePlanModelWithDiff(

@@ -41,7 +41,7 @@
 //     if (isReadOnly == null) {
 //       isReadOnly = false;
 //     }
-//     return FlatButton(
+//     return TextButton(
 //       splashColor: C.primaryBlue.withOpacity(0.5),
 //       onPressed: tapAction,
 //       child: Card(

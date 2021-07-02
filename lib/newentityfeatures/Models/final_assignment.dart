@@ -88,7 +88,7 @@ class FinalAssignmentModel extends Equatable {
     grade = json['grade'];
     aid = json['aid'];
     if (json['history'] != null) {
-      history = List<History>();
+      history = <History>[];
       json['history'].forEach((v) {
         history.add(History.fromData(v));
       });
@@ -99,7 +99,7 @@ class FinalAssignmentModel extends Equatable {
     offering = json['offering'];
     totalQuestion = json['totalquestion'];
     if (totalQuestion != null) {
-      questions = List<Question>();
+      questions = <Question>[];
       for (int i = 1; i <= totalQuestion; i++) {
         if (json["q$i"] != null) {
           questions.add(Question.fromData(json["q$i"]));
@@ -108,7 +108,7 @@ class FinalAssignmentModel extends Equatable {
     } else {
       questions = [];
     }
-    studyMaterials = List<StudyMaterial>();
+    studyMaterials = <StudyMaterial>[];
     json.keys.forEach((key) {
       if (key.contains('sm') && json[key] != null) {
         studyMaterials.add(StudyMaterial.fromData(json[key]));
@@ -119,7 +119,7 @@ class FinalAssignmentModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['assignmenttitle'] = this.assignmentTitle;
     data['basicinfo'] = this.basicInfo;
@@ -189,7 +189,7 @@ class Question extends Equatable {
     questionType = data["questionType"];
     score = data["Score"];
     if (data['answers'] != null) {
-      answers = List<String>();
+      answers = [];
       data['answers'].forEach((choice) {
         answers.add(choice);
       });
@@ -197,7 +197,7 @@ class Question extends Equatable {
       answers = [];
     }
     if (data['choices'] != null) {
-      choices = List<String>();
+      choices = [];
       data['choices'].forEach((choice) {
         choices.add(choice);
       });

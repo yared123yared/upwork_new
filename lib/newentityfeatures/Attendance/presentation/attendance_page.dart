@@ -247,7 +247,7 @@ class _AttendancePage extends State<AttendancePage> {
                                 //       fontWeight: FontWeight.w700,
                                 //       color: C.secondaryTextBlue),
                                 // ),
-                                // trailing: FlatButton(
+                                // trailing: TextButton(
                                 //   child: Container(
                                 //     child: Text(
                                 //       user.attendance ? 'Present' : 'Absent',

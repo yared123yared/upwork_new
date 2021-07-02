@@ -24,7 +24,7 @@ class NotificationHelper {
   static getInstance() {
     if (_notificationHelper == null) {
       _firebaseMessaging = FirebaseMessaging();
-      _notificationHelper = new NotificationHelper._();
+      _notificationHelper = NotificationHelper._();
     }
     return _notificationHelper;
   }
@@ -162,7 +162,7 @@ class NotificationHelper {
 
   Future<String> _getDeviceID() async {
     String deviceID;
-    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
 
     try {
       if (Platform.isAndroid) {

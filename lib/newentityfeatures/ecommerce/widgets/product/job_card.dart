@@ -1,4 +1,4 @@
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 

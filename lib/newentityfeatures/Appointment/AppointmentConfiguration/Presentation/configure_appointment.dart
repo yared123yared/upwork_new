@@ -61,7 +61,6 @@ class _ConfigureAppointmentState extends State<ConfigureAppointment> {
       body: BlocBuilder<ServiceBloc, ServiceState>(
         builder: (context, state) {
           return Container();
-          print('--------------------------------------------------');
           /*
           if (state is ServiceLoading) {
             return buildLoading();

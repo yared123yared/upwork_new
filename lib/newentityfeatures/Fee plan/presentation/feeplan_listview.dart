@@ -33,10 +33,10 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.FeePlanModelListBloc();
-    mlistbloc.add(listbloc.getPreData(
+    mlistbloc = listbloc.FeePlanModelListBloc();
+    mlistbloc.add(listbloc.GetPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
-    mlistbloc.add(listbloc.getListData(
+    mlistbloc.add(listbloc.GetListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }
 
@@ -49,7 +49,7 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
 
   void doreload(bool reloadtype) {
     if (reloadtype) {
-      mlistbloc.add(listbloc.getListData(
+      mlistbloc.add(listbloc.GetListData(
           entitytype: widget.entitytype, entityid: widget.entityid));
     }
   }
@@ -92,7 +92,7 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
             BlocProvider.of<listbloc.FeePlanModelListBloc>(context).add(
-                listbloc.deleteItemWithData(
+                listbloc.DeleteItemWithData(
                     entitytype: widget.entitytype,
                     entityid: widget.entitytype,
                     item: listItems[index]));
@@ -234,7 +234,7 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
                     onSelected: (item, index) {
                       if (item != null && item.length > 0) {
                         setState(() {
-                          mlistbloc.add(listbloc.getListDataWithSearchParameter(
+                          mlistbloc.add(listbloc.GetListDataWithSearchParameter(
                               entitytype: widget.entitytype,
                               entityid: widget.entityid,
                               offeringmodelgroupname: item,

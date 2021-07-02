@@ -67,7 +67,7 @@ class RouteRepository {
       String entityid,
       String sessionterm,
       String offeringgroup) async {
-    RouteRepositoryReturnData grerror = new RouteRepositoryReturnData();
+    RouteRepositoryReturnData grerror = RouteRepositoryReturnData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -79,7 +79,7 @@ class RouteRepository {
       //         offering: offeringgroup);
       //Please put your code here
       // gr.itemlist = vrlist;
-      RouteRepositoryReturnData gr = new RouteRepositoryReturnData();
+      RouteRepositoryReturnData gr = RouteRepositoryReturnData();
       gr.errortype = -1;
       return gr;
     } catch (ex) {}

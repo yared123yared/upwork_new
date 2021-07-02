@@ -88,9 +88,9 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
 
   itembloc.ServiceRequestModelBloc mbloc;
 /* 
-  DateTime _startDate = new DateTime(
+  DateTime _startDate = DateTime(
       DateTime.now().year, DateTime.now().month, DateTime.now().day);
-  DateTime _endDate = new DateTime(
+  DateTime _endDate = DateTime(
       DateTime.now().year, DateTime.now().month, DateTime.now().day);
  */
   List<String> serviceTypes = [
@@ -137,7 +137,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
   }
 
   void _initBloc() {
-    mbloc = new itembloc.ServiceRequestModelBloc();
+    mbloc = itembloc.ServiceRequestModelBloc();
     mbloc.add(
       itembloc.getForNewEntry(
         entitytype: widget.entitytype,

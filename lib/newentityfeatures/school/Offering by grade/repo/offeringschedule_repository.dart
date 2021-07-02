@@ -1,5 +1,5 @@
 import 'package:complex/common/model/button_state.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
@@ -67,7 +67,7 @@ class OfferingWeeklyScheduleRepository {
 
   Future<OfferingWeeklyDataEntry> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    OfferingWeeklyDataEntry grerror = new OfferingWeeklyDataEntry();
+    OfferingWeeklyDataEntry grerror = OfferingWeeklyDataEntry();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -97,7 +97,7 @@ class OfferingWeeklyScheduleRepository {
           );
       //
       //Please put your code here
-      OfferingWeeklyDataEntry gr = new OfferingWeeklyDataEntry(
+      OfferingWeeklyDataEntry gr = OfferingWeeklyDataEntry(
         buttonstate: ButtonState.idle,
         offeringsScheduleModel: null,
         rooms: await _schoolRepo.lookup

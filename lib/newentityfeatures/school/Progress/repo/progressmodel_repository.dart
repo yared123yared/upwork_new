@@ -1,5 +1,5 @@
 import 'package:complex/common/model/button_state.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/Models/progress_model.dart';
 import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
@@ -27,7 +27,7 @@ class ProgressModelRepository {
   // UserSessionRegRepository _userRepository;
 
   Future<ProgressDataModel> loadData(LoadDataEvent event) async {
-    ProgressDataModel grerror = new ProgressDataModel();
+    ProgressDataModel grerror = ProgressDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -100,7 +100,7 @@ class ProgressModelRepository {
   }
 
   Future<ProgressDataModel> submitData(SubmitDataEvent event) async {
-    ProgressDataModel grerror = new ProgressDataModel();
+    ProgressDataModel grerror = ProgressDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 

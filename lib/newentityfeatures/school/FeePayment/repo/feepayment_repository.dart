@@ -119,7 +119,7 @@ class FeePaymentRepository {
     String entitytype,
     String entityid,
   ) async {
-    FeePaymentEntryData grerror = new FeePaymentEntryData();
+    FeePaymentEntryData grerror = FeePaymentEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -140,7 +140,7 @@ class FeePaymentRepository {
         staffcategory: 'instructor',
       );
 
-      FeePaymentEntryData gr = new FeePaymentEntryData();
+      FeePaymentEntryData gr = FeePaymentEntryData();
 
       gr.feePlanList = feePlanList;
       gr.userSessionList = users;
@@ -164,7 +164,7 @@ class FeePaymentRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      FeePaymentRepositoryReturnData gr = new FeePaymentRepositoryReturnData();
+      FeePaymentRepositoryReturnData gr = FeePaymentRepositoryReturnData();
       gr.errortype = -1;
       return gr;
     } catch (ex) {}

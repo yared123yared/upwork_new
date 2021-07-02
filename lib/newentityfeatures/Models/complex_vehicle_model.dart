@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:complex/common/helputil.dart';
 
-
-
 // ignore: must_be_immutable
 class ComplexVehicleModel extends Equatable {
   String appUserId;
@@ -158,7 +156,7 @@ class ComplexVehicleModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
     json['appuserid'] = this.appUserId;
     json['enddate'] = HelpUtil.toTimeStamp(dateTime: this.endDate);
     json['generatedqrcode'] = this.generatedQRCode;

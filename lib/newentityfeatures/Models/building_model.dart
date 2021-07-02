@@ -54,7 +54,7 @@ class BuildingModel extends Equatable {
     buildingID = docID;
     address = json['address'];
     if (json['attachedgate'] != null) {
-      attachedGate = List<String>();
+      attachedGate = [];
       json['attachedgate'].forEach((v) {
         attachedGate.add(v);
       });
@@ -67,7 +67,7 @@ class BuildingModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     if (attachedGate != null) {
       data['attachedgate'] = attachedGate;
@@ -85,7 +85,7 @@ class BuildingModel extends Equatable {
 
   static List<BuildingModel> listFromJson(
       List<dynamic> json, List<String> docID) {
-    List<BuildingModel> _list = List<BuildingModel>();
+    List<BuildingModel> _list = <BuildingModel>[];
     if (json != null) {
       json.asMap().forEach((index, j) {
         _list.add(BuildingModel.fromJson(j(), docID[index]));

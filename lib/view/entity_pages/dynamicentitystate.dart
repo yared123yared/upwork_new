@@ -3,6 +3,7 @@ import 'package:complex/common/model/button_state.dart';
 import 'package:complex/common/model/grid_model.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/repositories/user_repository.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Attendance/presentation/attendance_page.dart';
 import 'package:complex/newentityfeatures/Fee%20plan/presentation/feeplan_listview.dart';
 import 'package:complex/newentityfeatures/Models/common_enum_methods.dart';
@@ -23,6 +24,7 @@ import 'package:complex/newentityfeatures/ecommerce-admin/views/orders/orders_vi
 import 'package:complex/newentityfeatures/ecommerce-admin/views/trip/trips_view.dart';
 import 'package:complex/newentityfeatures/ecommerce-admin/views/vendor/vendor_view.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
+import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/offerings/presentation/offerings_listview.dart';
 import 'package:complex/newentityfeatures/school/Class%20period/presentation/classperiodmodel_listview.dart';
 import 'package:complex/newentityfeatures/school/Create%20assignment%20form/presentation/createassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Event/presentation/event_page.dart';
@@ -36,6 +38,7 @@ import 'package:complex/newentityfeatures/school/Student%20model/presentation/st
 import 'package:complex/newentityfeatures/school/Teacher%20assignment/presentation/teacherassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Virtual%20room/presentation/virtualroom_listview.dart';
 import 'package:complex/newentityfeatures/vrassignment/presentation/vrassignmentmodel_listview.dart';
+import 'package:complex/view/entity/school/lookup/lookup_navigation_helper.dart';
 import 'package:complex/view/job_pages/job_detail_page.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
 import 'package:complex/view/product_pages/dynamic_category_page.dart';
@@ -152,7 +155,8 @@ enum DynamicEntityGridState {
   newvirtualroom,
   newteacherassignment,
   newofferingschedule,
-  // newSessionRegistration,
+  // newSessionRegistration,,
+  offeringList,
   newEvent,
   newParentAttendance,
   newParentProgress,
@@ -373,6 +377,7 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.newProgress);
     panelmem.add(DynamicEntityGridState.newvirtualroom);
     panelmem.add(DynamicEntityGridState.newofferingschedule);
+    panelmem.add(DynamicEntityGridState.offeringList);
 
     return panelmem;
   }
@@ -613,7 +618,7 @@ class UiEntityPageStateList {
       brokerpanel: [],
       userclassifiedpanel: UiEntityPageStateList.fillClassifiedUserPanel(),
       productpanel: [],
-      pageState: UiEntityPageStateList.serviceFeaturePageState,
+      pageState: UiEntityPageStateList.serviceFeaturePageState, aptPanel: [],
     );
   }
 
@@ -630,7 +635,7 @@ class UiEntityPageStateList {
       // ],
       setupPanel: fillSetupPanelComplex(),
       feesPaymentPanel: [],
-      academicManagerPanel: [],
+      academicManagerPanel: fillAcademicsManagerPanel(),
       academicPanel: [],
       ecomPanel: [],
       //aptPanel: UiSchoolPageStateList.fillAptPanel(),
@@ -722,13 +727,12 @@ class UiSchoolHandler {
     CurEntity c;
     if (user.defaultType == entityT.complex &&
         user.defaultComplexEntity?.complexID != null) {
-      c = new CurEntity("COMPLEXES", user.defaultComplexEntity.complexID);
+      c = CurEntity("COMPLEXES", user.defaultComplexEntity.complexID);
     } else if (user.defaultType == entityT.service &&
         user.defaultServiceEntity?.serviceID != null) {
-      c = new CurEntity(
-          "SERVICEPROVIDERINFO", user.defaultServiceEntity.serviceID);
+      c = CurEntity("SERVICEPROVIDERINFO", user.defaultServiceEntity.serviceID);
     } else {
-      c = new CurEntity(null, null);
+      c = CurEntity(null, null);
     }
 
     return c;
@@ -749,14 +753,19 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Fee Item',
             tapAction: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (buildContext) => FeeItemFormList(
-                      entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,
-                    ),
-                  ));
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.feeItem(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (buildContext) => FeeItemFormList(
+              //         entitytype: getCurEntity().entitytype,
+              //         entityid: getCurEntity().entityid,
+              //       ),
+              //     ));
             });
         break;
       case DynamicEntityGridState.Rooms:
@@ -783,6 +792,23 @@ class UiSchoolHandler {
                   context,
                   MaterialPageRoute(
                     builder: (context) => FeeItemFormList(
+                      entitytype: getCurEntity().entitytype,
+                      entityid: getCurEntity().entityid,
+                      // mlistbloc: mlistbloc,
+                    ),
+                  ));
+            });
+        break;
+      case DynamicEntityGridState.offeringList:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Offering',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OfferingsFormList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
                       // mlistbloc: mlistbloc,

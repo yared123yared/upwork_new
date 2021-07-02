@@ -32,7 +32,7 @@ class AttendanceModelRepository {
   final String userId = FirebaseAuth.instance.currentUser.uid;
 
   Future<AttendanceDataModel> loadData(LoadDataEvent event) async {
-    AttendanceDataModel grerror = new AttendanceDataModel(
+    AttendanceDataModel grerror = AttendanceDataModel(
         error: '',
         attendanceModel: null,
         errortype: null,
@@ -76,7 +76,7 @@ class AttendanceModelRepository {
   }
 
   Future<AttendanceDataModel> submitData(SubmitDataEvent event) async {
-    AttendanceDataModel grerror = new AttendanceDataModel(
+    AttendanceDataModel grerror = AttendanceDataModel(
         attendanceModel: null,
         error: '',
         errortype: null,

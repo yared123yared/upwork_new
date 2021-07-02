@@ -5,7 +5,7 @@ class DynamicCategoryJson {
 
   DynamicCategoryJson.fromJson(Map<String, dynamic> json) {
     if (json['category_list'] != null) {
-      categoryList = new List<CategoryList>();
+      categoryList = <CategoryList>[];
       json['category_list'].forEach((v) {
         categoryList.add(new CategoryList.fromJson(v));
       });

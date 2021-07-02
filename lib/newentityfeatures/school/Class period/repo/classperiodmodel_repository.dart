@@ -1,6 +1,6 @@
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
@@ -65,7 +65,7 @@ class ClassPeriodModelRepository {
 
   Future<ClassPeriodDataEntry> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    ClassPeriodDataEntry grerror = new ClassPeriodDataEntry();
+    ClassPeriodDataEntry grerror = ClassPeriodDataEntry();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -83,7 +83,7 @@ class ClassPeriodModelRepository {
       List<FeeItemGroupsModel> feeItemsGroups =
           await _schoolRepo.getFeeItemGroupList(serviceID: entityid);
 
-      ClassPeriodDataEntry gr = new ClassPeriodDataEntry(
+      ClassPeriodDataEntry gr = ClassPeriodDataEntry(
         type: type,
         types: types,
         paymentPeriods: paymentPeriods,

@@ -1,11 +1,11 @@
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 
-import 'package:complex/newentityfeatures/Models/lookups.dart';
 import 'package:flutter/cupertino.dart';
 
 class LookupRepository {
-  Map<String, List<SessionTermModel>> _sessionTermsList;
+  Map<String, List<SessionTerm>> _sessionTermsList;
   Map<String, List<String>> _offeringsList;
   Map<String, List<PaymentPeriodInfo>> _paymentPeriodInfoList;
   Map<String, List<String>> _feeItemsList;
@@ -58,11 +58,7 @@ class LookupRepository {
   }) async {
     try {
       await LookupGateway.addFeeItemList(
-        serviceID: serviceID,
-        feeItem: feeItem
-      );
-
-
+          serviceID: serviceID, feeItem: feeItem);
     } catch (e) {
       print(e);
     }
@@ -98,13 +94,11 @@ class LookupRepository {
     }
   }
 
-
-
   //sessionTerm
 
   Future<void> setSessionTermsList({@required String serviceID}) async {
     try {
-      List<SessionTermModel> _list =
+      List<SessionTerm> _list =
           await SessionTermGateway.getSessionTerms(serviceID: serviceID);
       _sessionTermsList[serviceID] = _list;
     } catch (e) {
@@ -113,8 +107,7 @@ class LookupRepository {
   }
 
   Future<void> addSessionTerm(
-      {@required String serviceID,
-      @required SessionTermModel sessionTerm}) async {
+      {@required String serviceID, @required SessionTerm sessionTerm}) async {
     try {
       await SessionTermGateway.addSessionTerm(
           serviceID: serviceID, sessionTerm: sessionTerm);
@@ -125,8 +118,7 @@ class LookupRepository {
   }
 
   Future<void> deleteSessionTerm(
-      {@required String serviceID,
-      @required SessionTermModel sessionTerm}) async {
+      {@required String serviceID, @required SessionTerm sessionTerm}) async {
     try {
       await SessionTermGateway.deleteSessionTerm(
           serviceID: serviceID, sessionTerm: sessionTerm);
@@ -136,7 +128,7 @@ class LookupRepository {
     }
   }
 
-  Future<List<SessionTermModel>> getSessionTermsList(
+  Future<List<SessionTerm>> getSessionTermsList(
       {@required String serviceID}) async {
     try {
       _sessionTermsList = _sessionTermsList ?? {};
@@ -392,7 +384,7 @@ class LookupRepository {
     try {
       if (_feeItemsList == null || _feeItemsList.isEmpty) {
         _feeItemsList[serviceID] =
-        await LookupGateway.getFeeItemList(serviceID);
+            await LookupGateway.getFeeItemList(serviceID);
         return _feeItemsList[serviceID];
       }
     } catch (e) {

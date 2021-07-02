@@ -19,7 +19,8 @@ class AppointmentCounterRepository
   @override
   Stream<AppointmentCounterModel> getAppointmentCounter(
       String serviceId, String ownerId) {
-    Stream<AppointmentCounterModel> appointmentCounter = FirebaseFirestore.instance
+    Stream<AppointmentCounterModel> appointmentCounter = FirebaseFirestore
+        .instance
         .collection('SERVICEPROVIDERINFO')
         .doc(serviceId)
         .collection('APPOINTMENTCOUNTER')
@@ -61,7 +62,7 @@ class AppointmentCounterRepository
    */
 
   List<AppointmentCounterModel> createDummyData(QuerySnapshot snapshot) {
-    List<AppointmentCounterModel> mylist = new List<AppointmentCounterModel>();
+    List<AppointmentCounterModel> mylist = <AppointmentCounterModel>[];
     int a = 1;
     a = a + 5;
     return mylist;
@@ -69,8 +70,8 @@ class AppointmentCounterRepository
 
   Future<List<AppointmentCounterModel>> getCheckInCounterFuture(
       String serviceId, String ownerId, String date, String period) async {
-    final HttpsCallable callable = FirebaseFunctions.instance
-        .httpsCallable('GenericQueryActionRequest');
+    final HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
     print("CloudFunction " + "end");
     List<AppointmentCounterModel> kindlist = [];
     dynamic resp = await callable.call(<String, dynamic>{
@@ -86,9 +87,8 @@ class AppointmentCounterRepository
     Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
     if (mdata['error'] != null) return kindlist;
 
-    kindlist = new List<AppointmentCounterModel>();
+    kindlist = <AppointmentCounterModel>[];
     for (dynamic d in mdata['lm']) {
-      Map<String, dynamic> m = Map<String, dynamic>.from(d);
       kindlist.add(AppointmentCounterModel.fromData(d));
     }
 
@@ -118,7 +118,7 @@ class AppointmentCounterRepository
       }).toList();
 
       if (mk.length == 0) {
-        AppointmentCounterModel acm = new AppointmentCounterModel();
+        AppointmentCounterModel acm = AppointmentCounterModel();
         acm.ownerId = ownerId;
         acm.date = date;
         acm.period = period;

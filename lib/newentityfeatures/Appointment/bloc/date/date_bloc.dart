@@ -5,8 +5,8 @@ import 'date_event.dart';
 class DateBloc extends Bloc<DateEvent, List<dynamic>> {
   DateBloc(List<dynamic> initialState) : super(initialState);
 
-  List<String> list = new List<String>();
-  List<String> tempList = new List<String>();
+  List<String> list = [];
+  List<String> tempList = [];
 
   List<String> get initialState => list;
 

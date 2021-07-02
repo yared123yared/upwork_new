@@ -1,4 +1,4 @@
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'order_state.dart';

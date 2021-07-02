@@ -1,4 +1,4 @@
-import '../../../ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 
 class OrderState {
   int inProgress;

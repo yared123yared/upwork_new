@@ -40,7 +40,7 @@ class _UnitModelListListState extends State<UnitModelListList> {
 
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.UnitModelListBloc();
+    mlistbloc = listbloc.UnitModelListBloc();
     mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }

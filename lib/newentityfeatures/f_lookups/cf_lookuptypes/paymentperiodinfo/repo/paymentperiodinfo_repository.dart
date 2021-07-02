@@ -1,4 +1,4 @@
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 
 class PaymentPeriodInfoRepositoryReturnData {
   List<PaymentPeriodInfo> itemlist;

@@ -8,7 +8,7 @@ class VehicleModelBloc extends Bloc<VehicleModelEvent, VehicleModelState> {
   Stream<VehicleModelState> mapEventToState(
     VehicleModelEvent event,
   ) async* {
-    if (event is createItem) {
+    if (event is CreateItem) {
       yield IsBusy();
       VehicleModelRepositoryReturnData ud = await mrepository
           .createVehicleModel(event.item, event.entitytype, event.entityid);
@@ -20,7 +20,7 @@ class VehicleModelBloc extends Bloc<VehicleModelEvent, VehicleModelState> {
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is getForNewEntry) {
+    if (event is GetForNewEntry) {
       yield IsBusy();
       VehicleModelEntryData ud = await mrepository.getItemFormNewEntryData(
           event.entitytype, event.entityid);
@@ -40,7 +40,7 @@ class VehicleModelBloc extends Bloc<VehicleModelEvent, VehicleModelState> {
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is updateItem) {
+    if (event is UpdateItem) {
       yield IsBusy();
       VehicleModelRepositoryReturnData ud =
           await mrepository.updateVehicleModel(
@@ -54,7 +54,7 @@ class VehicleModelBloc extends Bloc<VehicleModelEvent, VehicleModelState> {
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is updateItemWithDiff) {
+    if (event is UpdateItemWithDiff) {
       yield IsBusy();
       VehicleModelRepositoryReturnData ud =
           await mrepository.updateVehicleModelWithDiff(

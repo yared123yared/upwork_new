@@ -1,14 +1,14 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:meta/meta.dart';
 
 import 'package:complex/newentityfeatures/Models/vrassignment_score_model.dart';
-import 'package:complex/newentityfeatures/Models/lookups.dart';
+
 class VRAssignmentScoreGateway {
   static Future<List<VrAssignmentScoreModel>> getVrAssignmentScoreList(
-      {@required String serviceID,
-      @required SessionTermModel sessionTerm}) async {
+      {@required String serviceID, @required SessionTerm sessionTerm}) async {
     return await FirebaseFirestore.instance
         .collection(
             "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/${sessionTerm.termName}/VRASSIGNMENTSCORE")

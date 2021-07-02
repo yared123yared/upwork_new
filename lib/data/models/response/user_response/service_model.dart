@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:complex/utils/utility.dart';
 
 enum ServiceType { School, Trip, Shop }
@@ -105,7 +106,7 @@ class ServiceModel {
   bool hassecurity;
 
   List<String> getRoles() {
-    List<String> mrolelist = new List<String>();
+    List<String> mrolelist = [];
     mrolelist.add('MANAGER');
     mrolelist.add('STAFF');
     if (hasApt) mrolelist.add('APPOINTMENT_MANAGER');
@@ -124,91 +125,91 @@ class ServiceModel {
   }
 
   ServiceModel({
-     this.timeInterval,
-     this.serviceType,
-     this.version,
-     this.createdBy,
-     this.serviceID,
-     this.roles,
-     this.channel,
-     this.address,
-     this.startDate,
-     this.photo1,
-     this.endDate,
-     this.email,
-     this.category,
-     this.serverSideTimeStamp,
-     this.longitude,
-     this.latitude,
-     this.zipCode,
-     this.state,
-     this.town,
-     this.associatedComplexId,
-     this.associatedComplexName,
-     this.associatedComplexNumber,
-     this.biography,
-     this.extraCost,
-     this.geoHash,
-     this.idRunningNumber,
-     this.independentComplex,
-     this.languages,
-     this.lastUpdateTime,
-     this.phone,
-     this.serviceOffered,
-     this.pointPlacesRunningNumber,
-     this.providePickup,
-     this.providerDelivery,
-     this.rangeInKm,
-     this.rating1Count,
-     this.rating2Count,
-     this.rating3Count,
-     this.rating4Count,
-     this.rating5Count,
-     this.tFri,
-     this.tMon,
-     this.tSat,
-     this.tSun,
-     this.tThu,
-     this.tTue,
-     this.tWed,
-     this.requirePosUpdate,
-     this.routerRunningNumber,
-     this.serviceName,
-     this.serviceTypes,
-     this.tripIdRunningNumber,
-     this.vehicleRunningNumber,
-     this.website,
-     this.subscriptions,
-     this.hasApt,
-     this.hasecom,
-     this.hastrip,
-     this.hasregistration,
-     this.apttype,
-     this.justlisting,
-     this.subdis,
-     this.dis,
-     this.hasRapt,
-     this.hasqapt,
-     this.hasvapt,
-     this.aptpslots,
-     this.hasfscan,
-     this.justlist,
-     this.hasrent,
-     this.hassec,
-     this.onlyallowedregisteredecom,
-     this.requirepaymentecom,
-     this.doinventorymanagement,
-     this.hasfeemanagement,
-     this.requirepaymentapt,
-     this.hasexternalmanagedtrips,
-     this.hasadhoctrips,
-     this.requirecutomerregistration,
-     this.requirepayment,
-     this.requireticketing,
-     this.onlinetripbooking,
-     this.mainatainenceservicerequest,
-     this.hassecurity,
-     this.requirepaymentaptreg,
+    this.timeInterval,
+    this.serviceType,
+    this.version,
+    this.createdBy,
+    this.serviceID,
+    this.roles,
+    this.channel,
+    this.address,
+    this.startDate,
+    this.photo1,
+    this.endDate,
+    this.email,
+    this.category,
+    this.serverSideTimeStamp,
+    this.longitude,
+    this.latitude,
+    this.zipCode,
+    this.state,
+    this.town,
+    this.associatedComplexId,
+    this.associatedComplexName,
+    this.associatedComplexNumber,
+    this.biography,
+    this.extraCost,
+    this.geoHash,
+    this.idRunningNumber,
+    this.independentComplex,
+    this.languages,
+    this.lastUpdateTime,
+    this.phone,
+    this.serviceOffered,
+    this.pointPlacesRunningNumber,
+    this.providePickup,
+    this.providerDelivery,
+    this.rangeInKm,
+    this.rating1Count,
+    this.rating2Count,
+    this.rating3Count,
+    this.rating4Count,
+    this.rating5Count,
+    this.tFri,
+    this.tMon,
+    this.tSat,
+    this.tSun,
+    this.tThu,
+    this.tTue,
+    this.tWed,
+    this.requirePosUpdate,
+    this.routerRunningNumber,
+    this.serviceName,
+    this.serviceTypes,
+    this.tripIdRunningNumber,
+    this.vehicleRunningNumber,
+    this.website,
+    this.subscriptions,
+    this.hasApt,
+    this.hasecom,
+    this.hastrip,
+    this.hasregistration,
+    this.apttype,
+    this.justlisting,
+    this.subdis,
+    this.dis,
+    this.hasRapt,
+    this.hasqapt,
+    this.hasvapt,
+    this.aptpslots,
+    this.hasfscan,
+    this.justlist,
+    this.hasrent,
+    this.hassec,
+    this.onlyallowedregisteredecom,
+    this.requirepaymentecom,
+    this.doinventorymanagement,
+    this.hasfeemanagement,
+    this.requirepaymentapt,
+    this.hasexternalmanagedtrips,
+    this.hasadhoctrips,
+    this.requirecutomerregistration,
+    this.requirepayment,
+    this.requireticketing,
+    this.onlinetripbooking,
+    this.mainatainenceservicerequest,
+    this.hassecurity,
+    this.requirepaymentaptreg,
   });
 
   LimitedServiceModel getLimitedServiceModel() {
@@ -377,8 +378,8 @@ class ServiceModel {
     List<EntityRoles> roles,
   }) {
     return ServiceModel(
-      roles: roles??this.roles,
-      serviceTypes: serviceTypes??this.serviceTypes,
+      roles: roles ?? this.roles,
+      serviceTypes: serviceTypes ?? this.serviceTypes,
       serviceID: serviceID ?? this.serviceID,
       timeInterval: timeInterval ?? this.timeInterval,
       address: address ?? this.address,
@@ -480,7 +481,7 @@ class ServiceModel {
   ) {
     this.serviceID = serviceID;
     if (json['servicetype'] != null) {
-      serviceTypes = List<ServiceType>();
+      serviceTypes = <ServiceType>[];
       json['servicetype'].forEach((type) {
         if (type == 'SCHOOL') {
           serviceTypes.add(ServiceType.School);
@@ -494,7 +495,7 @@ class ServiceModel {
       serviceTypes = [];
     }
     if (userRoles != null) {
-      roles = List<EntityRoles>();
+      roles = [];
       userRoles.forEach((role) {
         if (role == 'staff') {
           roles.add(EntityRoles.Staff);
@@ -514,7 +515,7 @@ class ServiceModel {
       roles = [];
     }
     if (json['servicetype'] != null) {
-      serviceType = List<String>();
+      serviceType = [];
       json['servicetype'].forEach((v) {
         serviceType.add(v);
       });
@@ -523,7 +524,7 @@ class ServiceModel {
     }
 
     if (json['channels'] != null) {
-      channel = List<String>();
+      channel = [];
       json['channels'].forEach((v) {
         channel.add(v);
       });
@@ -531,7 +532,7 @@ class ServiceModel {
       channel = [];
     }
     if (json['languages'] != null) {
-      languages = List<String>();
+      languages = [];
       json['languages'].forEach((v) {
         languages.add(v);
       });
@@ -539,7 +540,7 @@ class ServiceModel {
       languages = [];
     }
     if (json['phone'] != null) {
-      phone = List<String>();
+      phone = [];
       json['phone'].forEach((v) {
         phone.add(v.toString());
       });
@@ -547,7 +548,7 @@ class ServiceModel {
       phone = [];
     }
     if (json['serviceoffered'] != null) {
-      serviceOffered = List<String>();
+      serviceOffered = [];
       json['serviceoffered'].forEach((v) {
         serviceOffered.add(v);
       });
@@ -582,10 +583,10 @@ class ServiceModel {
       photo1 = json['photo1'];
     } else {
       try {
-        photo1 = new String.fromCharCodes(json['photo1'].bytes);
+        photo1 = String.fromCharCodes(json['photo1'].bytes);
       } catch (e) {}
     }
-    //photo1 = new String.fromCharCodes(json['photo1'].bytes);
+    //photo1 = String.fromCharCodes(json['photo1'].bytes);
     // photo1 = null;
     pointPlacesRunningNumber = json['pointplacesrunningnumber'];
     providePickup = json['providepickup'];
@@ -653,7 +654,7 @@ class ServiceModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
 
     List<String> mchannel = [];
     List<String> mlanguage = [];
@@ -782,57 +783,5 @@ class ServiceModel {
     json['uid'] = createdBy;
     json['requirepaymentaptreg'] = requirepaymentaptreg;
     return json;
-  }
-}
-
-class LimitedServiceModel {
-  String address;
-  List<String> phone;
-  String email;
-  String photo1;
-  int ratingCount;
-  int totalRatings;
-  String serviceName;
-  bool hasApt;
-  List<String> serviceType;
-  bool hasAdHocTrips;
-  bool hasEcom;
-  bool hasProductCatalog;
-  String timeInfo;
-  String serviceID;
-
-  LimitedServiceModel({
-    this.serviceID,
-    this.address,
-    this.phone,
-    this.email,
-    this.photo1,
-    this.ratingCount,
-    this.totalRatings,
-    this.serviceName,
-    this.hasApt,
-    this.serviceType,
-    this.hasAdHocTrips,
-    this.hasEcom,
-    this.hasProductCatalog,
-    this.timeInfo,
-  });
-
-  LimitedServiceModel.fromJson(Map json) {
-    serviceID = json['serviceID'] as String;
-    address = json['address'] as String;
-    phone = (json['phone'] as List)?.map((e) => e as String)?.toList();
-    email = json['email'] as String;
-    photo1 = json['photo1'] as String;
-    ratingCount = json['ratingcount'] as int;
-    totalRatings = json['totalratings'] as int;
-    serviceName = json['serviceName'] as String;
-    hasApt = json['hasapt'] as bool;
-    serviceType =
-        (json['servicetype'] as List)?.map((e) => e as String)?.toList();
-    hasAdHocTrips = json['hasadhoctrips'] as bool;
-    hasEcom = json['hasecom'] as bool;
-    hasProductCatalog = json['hasproductcatalog'] as bool;
-    timeInfo = json['timeinfo'] as String;
   }
 }

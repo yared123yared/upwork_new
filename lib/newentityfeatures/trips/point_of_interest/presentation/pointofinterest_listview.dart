@@ -34,7 +34,7 @@ class _PointOfInterestListListState extends State<PointOfInterestListList> {
   List<RoutePointsModel> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
-    mlistbloc = new listbloc.PointOfInterestListBloc();
+    mlistbloc = listbloc.PointOfInterestListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

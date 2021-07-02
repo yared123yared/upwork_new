@@ -6,11 +6,11 @@ class LeaveRequestEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class createItem extends LeaveRequestEvent {
+class CreateItem extends LeaveRequestEvent {
   final LeaveRequestModel item;
   final String entityid;
   final String entitytype;
-  const createItem({
+  const CreateItem({
     @required this.item,
     @required this.entityid,
     @required this.entitytype,
@@ -18,11 +18,11 @@ class createItem extends LeaveRequestEvent {
   List<Object> get() => [item, entityid, entitytype];
 }
 
-class updateItem extends LeaveRequestEvent {
+class UpdateItem extends LeaveRequestEvent {
   final LeaveRequestModel item;
   final String entityid;
   final String entitytype;
-  const updateItem({
+  const UpdateItem({
     @required this.item,
     @required this.entityid,
     @required this.entitytype,
@@ -30,12 +30,12 @@ class updateItem extends LeaveRequestEvent {
   List<Object> get() => [item, entityid, entitytype];
 }
 
-class updateItemWithDiff extends LeaveRequestEvent {
+class UpdateItemWithDiff extends LeaveRequestEvent {
   final LeaveRequestModel newitem;
   final LeaveRequestModel olditem;
   final String entityid;
   final String entitytype;
-  const updateItemWithDiff({
+  const UpdateItemWithDiff({
     @required this.newitem,
     @required this.olditem,
     @required this.entityid,
@@ -46,21 +46,21 @@ class updateItemWithDiff extends LeaveRequestEvent {
 
 //We want to go to details form -  item is selected and we dont have the complete itemdata available , we just have id of the item ,
 //we will call this event, this will load complete item data + any other data needed (may be we have some dropdowns which needs to be populated) ,
-class getAdditionalDataEntryIDAvailable extends LeaveRequestEvent {
+class GetAdditionalDataEntryIDAvailable extends LeaveRequestEvent {
   final String id;
   final String entityid;
   final String entitytype;
-  const getAdditionalDataEntryIDAvailable(
+  const GetAdditionalDataEntryIDAvailable(
       {@required this.id, @required this.entityid, @required this.entitytype});
   List<Object> get() => [id, entityid, entitytype];
 }
 
 //We want to add a new item , it will load any other data needed (may be we have some dropdowns which needs to be populated) , -- for new addition in form which has drop downs
-class getForNewEntry extends LeaveRequestEvent {
+class GetForNewEntry extends LeaveRequestEvent {
   final String entityid;
   final String entitytype;
   final int originType;
-  const getForNewEntry({
+  const GetForNewEntry({
     @required this.entityid,
     @required this.entitytype,
     @required this.originType,

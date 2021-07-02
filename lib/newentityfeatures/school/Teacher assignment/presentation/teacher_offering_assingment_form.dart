@@ -287,7 +287,7 @@ class _TeacherAssignmentModelFormState
             print('add userSession');
 
             if (_validate()) {
-              TeacherOfferingsAssignment toa1 = new TeacherOfferingsAssignment(
+              TeacherOfferingsAssignment toa1 = TeacherOfferingsAssignment(
                 version: 1,
                 primaryOwner: _primaryOwner,
                 secondaryOwner: _secondaryOwners,

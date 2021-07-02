@@ -73,7 +73,7 @@ class SchoolOwner extends Equatable {
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data['display'] = this.display;
     data['id'] = this.id;

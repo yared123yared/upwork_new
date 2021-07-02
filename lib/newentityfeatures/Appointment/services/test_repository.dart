@@ -19,7 +19,7 @@
 //  ///
 //
 //  Future saveImage(Asset asset) async {
-//    var uuid = new Uuid();
+//    var uuid = Uuid();
 //    var imageName = uuid.v4();
 //
 //    String path = asset.name;

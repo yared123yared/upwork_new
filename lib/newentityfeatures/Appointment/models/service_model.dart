@@ -256,7 +256,7 @@
 //      serviceTypes = [];
 //    }
 //    if(userRoles != null){
-//      roles = List<EntityRoles>();
+//      roles = [];
 //      userRoles.forEach((role) {
 //        if(role == 'owner'){roles.add(EntityRoles.Owner);}
 //        else if(role == 'resident'){roles.add(EntityRoles.Resident);}
@@ -267,7 +267,7 @@
 //      roles = [];
 //    }
 //    if (json['servicetype'] != null) {
-//      serviceType = List<String>();
+//      serviceType = [];
 //      json['servicetype'].forEach((v) {
 //        serviceType.add(v);
 //      });
@@ -276,7 +276,7 @@
 //    }
 //
 //    if (json['channels'] != null) {
-//      channel = List<String>();
+//      channel = [];
 //      json['channels'].forEach((v) {
 //        channel.add(v);
 //      });
@@ -284,7 +284,7 @@
 //      channel = [];
 //    }
 //    if (json['languages'] != null) {
-//      languages = List<String>();
+//      languages = [];
 //      json['languages'].forEach((v) {
 //        languages.add(v);
 //      });
@@ -300,7 +300,7 @@
 //      phone = [];
 //    }
 //    if (json['serviceoffered'] != null) {
-//      serviceOffered = List<String>();
+//      serviceOffered = [];
 //      json['serviceoffered'].forEach((v) {
 //        serviceOffered.add(v);
 //      });
@@ -348,7 +348,7 @@
 //  }
 //
 //  Map<String, dynamic> toJson() {
-//    final Map<String, dynamic> json = new Map<String, dynamic>();
+//    final Map<String, dynamic> json = Map<String, dynamic>();
 //
 //    List<String> channel = [];
 //    List<String> language = [];

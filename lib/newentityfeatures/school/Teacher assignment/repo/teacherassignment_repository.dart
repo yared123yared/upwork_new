@@ -65,7 +65,7 @@ class TeacherAssignmentModelRepository {
 
   Future<TeacherEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    TeacherEntryData grerror = new TeacherEntryData();
+    TeacherEntryData grerror = TeacherEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -99,7 +99,7 @@ class TeacherAssignmentModelRepository {
               );
 
       //Please put your code here
-      TeacherEntryData gr = new TeacherEntryData();
+      TeacherEntryData gr = TeacherEntryData();
       gr.errortype = -1;
       gr.grades = grades;
       gr.schoolOwners = schoolOwners;

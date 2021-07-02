@@ -71,14 +71,14 @@ class EntryLogsRepository {
 
   Future<EntryLogsEntryData> getItemFormNewEntryData(
       String entitytype, String entityid) async {
-    EntryLogsEntryData grerror = new EntryLogsEntryData();
+    EntryLogsEntryData grerror = EntryLogsEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
       bool haveAccess = true;
       String userId = _user.userID;
-      EntryLogsEntryData gr = new EntryLogsEntryData();
+      EntryLogsEntryData gr = EntryLogsEntryData();
 
       gr.userId = userId;
       gr.haveAccess = haveAccess;
@@ -93,13 +93,13 @@ class EntryLogsRepository {
       String entityid,
       String sessionterm,
       String offeringgroup) async {
-    EntryLogsRepositoryReturnData grerror = new EntryLogsRepositoryReturnData();
+    EntryLogsRepositoryReturnData grerror = EntryLogsRepositoryReturnData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
       //Please put your code here
-      EntryLogsRepositoryReturnData gr = new EntryLogsRepositoryReturnData();
+      EntryLogsRepositoryReturnData gr = EntryLogsRepositoryReturnData();
       gr.errortype = -1;
       return gr;
     } catch (ex) {}

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:complex/common/helputil.dart';
 
-
 // ignore: must_be_immutable
 class ResidentModel extends Equatable {
   num approvedByManager;
@@ -131,7 +130,7 @@ class ResidentModel extends Equatable {
     recvmsg = json['recvmsg'];
     registerAs = json['registeras'];
     serverSideTimestamp = json['serversidetimestamp'];
-    startDate =HelpUtil. toDate(timestamp: json['startdate']);
+    startDate = HelpUtil.toDate(timestamp: json['startdate']);
     terminateNow = json['tertminatenow'];
     unitAddress = json['unitaddress'];
     version = json['version'];
@@ -139,7 +138,7 @@ class ResidentModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = new Map<String, dynamic>();
+    final Map<String, dynamic> json = Map<String, dynamic>();
     json['version'] = 1;
     json['firstname'] = this.firstName;
     json['lastname'] = this.lastName;

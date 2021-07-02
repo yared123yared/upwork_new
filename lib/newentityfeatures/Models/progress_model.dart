@@ -2,7 +2,8 @@ import 'package:meta/meta.dart';
 import 'package:complex/common/helputil.dart';
 import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
 import 'package:complex/newentityfeatures/Models/registered_id_model.dart';
-class ProgressModel{
+
+class ProgressModel {
   DateTime date;
   String kind;
   int totalScore;
@@ -51,7 +52,7 @@ class ProgressModel{
     kind = json['kind'];
     totalScore = json['totalscore'];
     if (virtualRoom.listOfRegisteredId != null) {
-      progressList = List<ProgressInfo>();
+      progressList = <ProgressInfo>[];
       virtualRoom.listOfRegisteredId.forEach((v) {
         progressList.add(ProgressInfo.fromData(data: json, registeredID: v));
       });
@@ -70,7 +71,7 @@ class ProgressModel{
         ? HelpUtil.formattedStringToDate(json['date'], DateTimeMode.DATE)
         : DateTime.now();
     if (json['sti'] != null) {
-      progressList = List<ProgressInfo>();
+      progressList = <ProgressInfo>[];
       json['sti'].forEach((v) {
         progressList.add(ProgressInfo.fromData(data: json, registeredID: v));
       });
@@ -81,7 +82,7 @@ class ProgressModel{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     return data;
   }
@@ -98,7 +99,7 @@ class ProgressModel{
   }
 }
 
-class ProgressInfo{
+class ProgressInfo {
   int progress;
   String studentID;
   String name;
@@ -112,7 +113,6 @@ class ProgressInfo{
         studentID: studentID ?? this.studentID,
         vr: vr ?? this.vr);
   }
-
 
   ProgressInfo.fromData(
       {@required Map<String, dynamic> data,
@@ -135,7 +135,7 @@ class ProgressInfo{
   }
 
   Map<String, dynamic> toData() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data["val"] = progress;
     data['id'] = studentID;
     if (vr != null) data['vr'] = vr;

@@ -9,10 +9,10 @@ class VehicleModelListBloc
   Stream<VehicleModelListState> mapEventToState(
     VehicleModelListEvent event,
   ) async* {
-    if (event is getListData) {
+    if (event is GetListData) {
       yield IsBusy();
-      VehicleModelRepositoryReturnData ud =
-          await mrepository.getAllVehicleModels(event.entitytype, event.entityid);
+      VehicleModelRepositoryReturnData ud = await mrepository
+          .getAllVehicleModels(event.entitytype, event.entityid);
 
       if (ud.errortype == -1)
         yield IsListDataLoaded(listdata: ud.itemlist);
@@ -22,8 +22,7 @@ class VehicleModelListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-
-    if (event is getPreData) {
+    if (event is GetPreData) {
       yield IsBusy();
       GenericLookUpDataUsedForRegistration ud = await mrepository
           .getListFormPreLoadData(event.entitytype, event.entityid);
@@ -39,7 +38,7 @@ class VehicleModelListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is deleteItemWithData) {
+    if (event is DeleteItemWithData) {
       yield IsBusy();
       VehicleModelRepositoryReturnData ud =
           await mrepository.deleteVehicleModelWithData(

@@ -32,7 +32,7 @@ class ParentInfoModelRepository {
   UserRepository _userRepository = HelpUtil.getUserRepository();
 
   Future<ParentInfoDataModel> viewEvent(ParentViewEvent event) async {
-    ParentInfoDataModel grerror = new ParentInfoDataModel();
+    ParentInfoDataModel grerror = ParentInfoDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -58,7 +58,7 @@ class ParentInfoModelRepository {
 
   Future<ParentInfoDataModel> loadAttendanceData(
       LoadAttendanceDataEvent event) async {
-    ParentInfoDataModel grerror = new ParentInfoDataModel();
+    ParentInfoDataModel grerror = ParentInfoDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -89,7 +89,7 @@ class ParentInfoModelRepository {
   }
 
   Future<ParentInfoDataModel> loadEventData(LoadEventDataEvent event) async {
-    ParentInfoDataModel grerror = new ParentInfoDataModel();
+    ParentInfoDataModel grerror = ParentInfoDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -120,7 +120,7 @@ class ParentInfoModelRepository {
 
   Future<ParentInfoDataModel> loadProgressData(
       LoadProgressDataEvent event) async {
-    ParentInfoDataModel grerror = new ParentInfoDataModel();
+    ParentInfoDataModel grerror = ParentInfoDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -152,7 +152,7 @@ class ParentInfoModelRepository {
 
   Future<AnswerFormDataModel> loadAssignmentScoreData(
       LoadAssignmentsScoreDataEvent event) async {
-    AnswerFormDataModel grerror = new AnswerFormDataModel();
+    AnswerFormDataModel grerror = AnswerFormDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -192,7 +192,7 @@ class ParentInfoModelRepository {
 
   Future<AnswerFormDataModel> loadAssignmentListData(
       LoadAssignmentsListDataEvent event) async {
-    AnswerFormDataModel grerror = new AnswerFormDataModel();
+    AnswerFormDataModel grerror = AnswerFormDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
@@ -232,12 +232,12 @@ class ParentInfoModelRepository {
 
   Future<AnswerFormDataModel> submitScoreForStudent(
       SubmitAnswerForStudentSchoolEvent event) async {
-    AnswerFormDataModel grerror = new AnswerFormDataModel();
+    AnswerFormDataModel grerror = AnswerFormDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
-      AnswerFormDataModel gr = new AnswerFormDataModel();
+      AnswerFormDataModel gr = AnswerFormDataModel();
 
       AnsweredPaper paper = AnsweredPaper(
         answers: event.questions,
@@ -265,12 +265,12 @@ class ParentInfoModelRepository {
 
   Future<AnswerFormDataModel> submitScoreForTeacher(
       SubmitAnswerForTeacherSchoolEvent event) async {
-    AnswerFormDataModel grerror = new AnswerFormDataModel();
+    AnswerFormDataModel grerror = AnswerFormDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
-      AnswerFormDataModel gr = new AnswerFormDataModel();
+      AnswerFormDataModel gr = AnswerFormDataModel();
 
       AnsweredPaper paper = AnsweredPaper(
         answers: event.questions,
@@ -299,12 +299,12 @@ class ParentInfoModelRepository {
   Future<AnswerFormDataModel>
       getVrAssignmentScoreIndependentOfferingForAllStudent(
           SubmitAnswerForTeacherSchoolEvent event) async {
-    AnswerFormDataModel grerror = new AnswerFormDataModel();
+    AnswerFormDataModel grerror = AnswerFormDataModel();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
-      AnswerFormDataModel gr = new AnswerFormDataModel();
+      AnswerFormDataModel gr = AnswerFormDataModel();
 
       var r = await _schoolRepo.assignment
           .getVrAssignmentScoreIndependentOfferingForAllStudent(

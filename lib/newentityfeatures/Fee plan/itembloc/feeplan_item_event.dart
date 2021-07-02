@@ -6,11 +6,11 @@ class FeePlanModelEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class createItem extends FeePlanModelEvent {
+class CreateItem extends FeePlanModelEvent {
   final FeePlanModel item;
   final String entityid;
   final String entitytype;
-  const createItem({
+  const CreateItem({
     @required this.item,
     @required this.entityid,
     @required this.entitytype,
@@ -18,11 +18,11 @@ class createItem extends FeePlanModelEvent {
   List<Object> get() => [item, entityid, entitytype];
 }
 
-class updateItem extends FeePlanModelEvent {
+class UpdateItem extends FeePlanModelEvent {
   final FeePlanModel item;
   final String entityid;
   final String entitytype;
-  const updateItem({
+  const UpdateItem({
     @required this.item,
     @required this.entityid,
     @required this.entitytype,
@@ -30,12 +30,12 @@ class updateItem extends FeePlanModelEvent {
   List<Object> get() => [item, entityid, entitytype];
 }
 
-class updateItemWithDiff extends FeePlanModelEvent {
+class UpdateItemWithDiff extends FeePlanModelEvent {
   final FeePlanModel newitem;
   final FeePlanModel olditem;
   final String entityid;
   final String entitytype;
-  const updateItemWithDiff({
+  const UpdateItemWithDiff({
     @required this.newitem,
     @required this.olditem,
     @required this.entityid,
@@ -46,19 +46,19 @@ class updateItemWithDiff extends FeePlanModelEvent {
 
 //We want to go to details form -  item is selected and we dont have the complete itemdata available , we just have id of the item ,
 //we will call this event, this will load complete item data + any other data needed (may be we have some dropdowns which needs to be populated) ,
-class getAdditionalDataEntryIDAvailable extends FeePlanModelEvent {
+class GetAdditionalDataEntryIDAvailable extends FeePlanModelEvent {
   final String id;
   final String entityid;
   final String entitytype;
-  const getAdditionalDataEntryIDAvailable(
+  const GetAdditionalDataEntryIDAvailable(
       {@required this.id, @required this.entityid, @required this.entitytype});
   List<Object> get() => [id, entityid, entitytype];
 }
 
 //We want to add a new item , it will load any other data needed (may be we have some dropdowns which needs to be populated) , -- for new addition in form which has drop downs
-class getForNewEntry extends FeePlanModelEvent {
+class GetForNewEntry extends FeePlanModelEvent {
   final String entityid;
   final String entitytype;
-  const getForNewEntry({@required this.entityid, @required this.entitytype});
+  const GetForNewEntry({@required this.entityid, @required this.entitytype});
   List<Object> get() => [entityid, entitytype];
 }

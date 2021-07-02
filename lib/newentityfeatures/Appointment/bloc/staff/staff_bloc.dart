@@ -10,7 +10,6 @@ class StaffBloc extends Bloc<StaffEvent, StaffState> {
 
   StaffBloc(this.repository) : super(StaffInitial());
 
-
   @override
   Stream<StaffState> mapEventToState(
     StaffEvent event,
@@ -19,7 +18,7 @@ class StaffBloc extends Bloc<StaffEvent, StaffState> {
     if (event is GetStaffByService) {
       try {
         yield StaffLoading();
-        final StaffRepository repository = new StaffRepository();
+        final StaffRepository repository = StaffRepository();
         Stream<List<StaffModel>> staff = repository.getStaffByService(
             event.serviceName, event.serviceProviderId);
         yield StaffLoaded(staff);
@@ -31,7 +30,7 @@ class StaffBloc extends Bloc<StaffEvent, StaffState> {
     if (event is GetSingleStaff) {
       try {
         yield StaffLoading();
-        final StaffRepository repository = new StaffRepository();
+        final StaffRepository repository = StaffRepository();
         Stream<StaffModel> staff =
             repository.getSingleStaff(event.staffId, event.serviceProviderId);
         yield SingleStaffLoaded(staff);
@@ -43,7 +42,7 @@ class StaffBloc extends Bloc<StaffEvent, StaffState> {
     if (event is GetAllStaff) {
       try {
         yield StaffLoading();
-        final StaffRepository repository = new StaffRepository();
+        final StaffRepository repository = StaffRepository();
         Stream<List<StaffModel>> staff = repository.getStaff(event.serviceId);
         yield CheckInStaffLoaded(staff);
       } on PlatformException {

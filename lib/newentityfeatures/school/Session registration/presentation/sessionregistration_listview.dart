@@ -46,7 +46,7 @@ class _SessionRegistrationListListState
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.SessionRegistrationListBloc();
+    mlistbloc = listbloc.SessionRegistrationListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/roominfo/repo/roominfo_repository.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:complex/newentityfeatures/f_lookups/model/lookups.dart';
 import 'package:flutter/foundation.dart';
 
 part 'roominfo_item_event.dart';

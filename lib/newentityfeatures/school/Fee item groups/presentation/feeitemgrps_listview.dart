@@ -35,7 +35,7 @@ class _FeeItemGroupsModelListListState
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     super.initState();
-    mlistbloc = new listbloc.FeeItemGroupsModelListBloc();
+    mlistbloc = listbloc.FeeItemGroupsModelListBloc();
     mlistbloc.add(listbloc.getPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(
