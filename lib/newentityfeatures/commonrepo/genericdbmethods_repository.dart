@@ -19,6 +19,18 @@ class GenericDBRepository {
 
   static Future<List<LuceneSearchSuggestionData>> GetProductSuggestionsForShopProductsInitiate(String serviceproviderid, String textqry,List<String> serverlist) async
   {
+      if(serverlist.length >0) {
+        String server = serverlist[mrandom.nextInt(serverlist.length - 1)];
+        // Get the http code , if there is error, if http code =404 or 503 , u pick another server and try again
+        GenericDBProvider.GetProductSuggestionsForShopProducts(
+            serviceproviderid, textqry, server);
+        //try again if u get data or other wise raise exception
+
+      }
+      else
+        {
+          //throw new exception
+        }
 
   }
 
