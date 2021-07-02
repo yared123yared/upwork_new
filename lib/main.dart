@@ -1,3 +1,4 @@
+import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
 import 'package:complex/blocs/auth_bloc.dart';
 import 'package:complex/blocs/channels_bloc.dart';
 import 'package:complex/blocs/complex_bloc.dart';
@@ -98,7 +99,9 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
           BlocProvider<StringListBloc>(
             create: (context) => StringListBloc(),
           ),
-
+          BlocProvider<LookupBloc>(
+            create: (context) => LookupBloc(),
+          ),
           // BY ABDERRAHMANE:
           // ECOMMERCE
           BlocProvider<E3_AdsBloc.AdsBloc>(create: (_) => E3_AdsBloc.AdsBloc()),

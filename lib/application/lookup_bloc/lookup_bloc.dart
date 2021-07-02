@@ -23,7 +23,8 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
     yield* event.map(
         getListData: (getListData) async* {
           yield state.copyWith(isLoading: true);
-          yield await getListData.lookupType.map(feeItem: (v) async {
+          LookupState newState =
+              await getListData.lookupType.map(feeItem: (v) async {
             Either<Failure, FeeItems> data =
                 await provider.getFeeItemsList(serviceID: getListData.entityid);
 
@@ -80,6 +81,8 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
                 (l) => state.copyWith(isLoading: false, failure: some(l)),
                 (r) => state.copyWith(isLoading: false, listData: r));
           });
+
+          yield newState;
         },
         deleteItemWithData: (v) async* {},
         createItemData: (v) async* {});
