@@ -1,6 +1,7 @@
 
-import 'package:complex/data/models/response/user_response/locationdependentdata.dart';
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
+
 import 'package:complex/newentityfeatures/ecommerce/models/location_data.dart';
 import 'dart:math';
 

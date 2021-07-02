@@ -1,11 +1,12 @@
 import 'dart:convert';
-import 'package:complex/data/models/response/user_response/locationdependentdata.dart';
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
+
 import 'package:complex/newentityfeatures/ecommerce/models/location_data.dart';
 import 'dart:math';
 
 import 'package:complex/newentityfeatures/ecommerce/models/lucene_search_suggestion_data.dart';
-import 'package:complex/newentityfeatures/gateway/genericdbmethods_gateway.dart';
+
 import 'package:http/http.dart' as http;
 class GenericDBProvider {
 
