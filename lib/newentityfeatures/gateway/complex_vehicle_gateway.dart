@@ -8,16 +8,14 @@ import 'package:meta/meta.dart';
 import 'package:complex/common/helputil.dart';
 import 'package:complex/newentityfeatures/Models/complex_vehicle_model.dart';
 
-
 class ComplexVehicleGateway {
   static Future<List<ComplexVehicleModel>> getVehicleList({
     @required String entitytype,
     @required String entityid,
-
   }) async {
     try {
       return await FirebaseFirestore.instance
-          .collection("${entitytype}/${entityid}/COMPLEXVEHICLEREG")
+          .collection("$entitytype/$entityid/COMPLEXVEHICLEREG")
           .get()
           .then((x) {
         return ComplexVehicleModel.listFromJson(
@@ -31,12 +29,13 @@ class ComplexVehicleGateway {
   }
 
   static Future<List<ComplexVehicleModel>> getMyVehicleList({
-    @required String entitytype ,String entityid,
+    @required String entitytype,
+    String entityid,
     @required List<String> myUnits,
   }) async {
     try {
       return await FirebaseFirestore.instance
-          .collection("${entitytype}/${entityid}/COMPLEXVEHICLEREG")
+          .collection("$entitytype/$entityid/COMPLEXVEHICLEREG")
           .where('unitaddress', whereIn: myUnits)
           .get()
           .then((x) {
@@ -53,7 +52,8 @@ class ComplexVehicleGateway {
   static Future newComplexVehicleCreateRequest(
       {@required ComplexVehicleModel vehicle,
       @required UserModel user,
-        @required String entitytype ,String entityid}) async {
+      @required String entitytype,
+      String entityid}) async {
     final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
       'NewComplexVehicleCreateRequestModified',
     );
@@ -83,7 +83,8 @@ class ComplexVehicleGateway {
   }
 
   static Future<void> updateVehicle(
-      {@required String entitytype ,String entityid,
+      {@required String entitytype,
+      String entityid,
       @required ComplexVehicleModel oldVehicle,
       @required ComplexVehicleModel newVehicle,
       @required UserModel user}) async {
@@ -108,18 +109,15 @@ class ComplexVehicleGateway {
   }
 
   static Future<void> deleteVehicle(
-      {@required String entitytype ,String entityid,
-        @required String numplate,
-
-        @required UserModel user}) async {
+      {@required String entitytype,
+      String entityid,
+      @required String numplate,
+      @required UserModel user}) async {
     final HttpsCallable callable = FirebaseFunctions.instance
         .httpsCallable('ComplexVehicleUpdateRequestModified');
 
-
-
     dynamic resp = await callable.call(<String, dynamic>{
       'byuserid': user.userID,
-
       'numplate': numplate,
       'entitytype': entitytype,
       'entityid': entityid,
@@ -127,7 +125,6 @@ class ComplexVehicleGateway {
     print("CloudFunction " + callable.toString());
     print("CloudFunction " + resp.data.toString());
   }
-
 
   static Map<String, dynamic> toData(
       {@required ComplexVehicleModel vehicle, @required String userID}) {

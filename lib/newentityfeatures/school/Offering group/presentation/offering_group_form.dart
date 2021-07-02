@@ -86,7 +86,7 @@ class _OfferingsByGradeFormState extends State<OfferingsByGradeForm> {
     return BlocProvider<itembloc.OfferingModelGroupBloc>(
       create: (context) => itembloc.OfferingModelGroupBloc()
         ..add(
-          itembloc.getForNewEntry(
+          itembloc.GetForNewEntry(
             entityid: widget.entityid,
             entitytype: widget.entitytype,
           ),
@@ -234,7 +234,7 @@ class _OfferingsByGradeFormState extends State<OfferingsByGradeForm> {
                 );
 
                 BlocProvider.of<itembloc.OfferingModelGroupBloc>(context).add(
-                  itembloc.createItem(
+                  itembloc.CreateItem(
                     item: newOfferingModel,
                     entityid: widget.entityid,
                     entitytype: widget.entitytype,

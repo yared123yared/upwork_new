@@ -1,7 +1,6 @@
 part of 'bloc.dart';
 
-class EntryLogsListBloc
-    extends Bloc<EntryLogsListEvent, EntryLogsListState> {
+class EntryLogsListBloc extends Bloc<EntryLogsListEvent, EntryLogsListState> {
   EntryLogsRepository mrepository = EntryLogsRepository();
   EntryLogsListBloc() : super(EntryLogsListState());
 
@@ -9,7 +8,7 @@ class EntryLogsListBloc
   Stream<EntryLogsListState> mapEventToState(
     EntryLogsListEvent event,
   ) async* {
-    if (event is getListData) {
+    if (event is GetListData) {
       yield IsBusy();
       EntryLogsRepositoryReturnData ud =
           await mrepository.getInitialData(event.entitytype, event.entityid);
@@ -22,14 +21,11 @@ class EntryLogsListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is getListDataWithSearchParameter) {
+    if (event is GetListDataWithSearchParameter) {
       yield IsBusy();
       EntryLogsRepositoryReturnData ud =
-          await mrepository.getEntryLogsWithOfferingSearch(
-              event.entitytype,
-              event.entityid,
-              event.sessionterm,
-              event.offeringmodelgroupname);
+          await mrepository.getEntryLogsWithOfferingSearch(event.entitytype,
+              event.entityid, event.sessionterm, event.offeringmodelgroupname);
 
       if (ud.errortype == -1)
         yield IsListDataLoaded(listdata: ud.itemlist);
@@ -39,7 +35,7 @@ class EntryLogsListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is getPreData) {
+    if (event is GetPreData) {
       yield IsBusy();
       GenericLookUpDataUsedForRegistration ud = await mrepository
           .getListFormPreLoadData(event.entitytype, event.entityid);
@@ -55,7 +51,7 @@ class EntryLogsListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is deleteItemWithData) {
+    if (event is DeleteItemWithData) {
       yield IsBusy();
       EntryLogsRepositoryReturnData ud =
           await mrepository.deleteEntryLogsWithData(

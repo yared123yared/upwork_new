@@ -9,7 +9,7 @@ class FamilyMemberListBloc
   Stream<FamilyMemberListState> mapEventToState(
     FamilyMemberListEvent event,
   ) async* {
-    if (event is getListData) {
+    if (event is GetListData) {
       yield IsBusy();
       FamilyMemberRepositoryReturnData ud =
           await mrepository.getInitialData(event.entitytype, event.entityid);
@@ -22,7 +22,7 @@ class FamilyMemberListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is getListDataWithSearchParameter) {
+    if (event is GetListDataWithSearchParameter) {
       yield IsBusy();
       FamilyMemberRepositoryReturnData ud =
           await mrepository.getFamilyMemberWithOfferingSearch(
@@ -39,7 +39,7 @@ class FamilyMemberListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is getPreData) {
+    if (event is GetPreData) {
       yield IsBusy();
       GenericLookUpDataUsedForRegistration ud = await mrepository
           .getListFormPreLoadData(event.entitytype, event.entityid);
@@ -57,7 +57,7 @@ class FamilyMemberListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is deleteItemWithData) {
+    if (event is DeleteItemWithData) {
       yield IsBusy();
       FamilyMemberRepositoryReturnData ud =
           await mrepository.deleteFamilyMemberWithData(

@@ -1,7 +1,6 @@
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';

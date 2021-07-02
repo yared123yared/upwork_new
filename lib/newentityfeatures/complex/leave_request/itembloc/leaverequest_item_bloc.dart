@@ -1,7 +1,6 @@
 part of 'bloc.dart';
 
-class LeaveRequestBloc
-    extends Bloc<LeaveRequestEvent, LeaveRequestState> {
+class LeaveRequestBloc extends Bloc<LeaveRequestEvent, LeaveRequestState> {
   LeaveRequestRepository mrepository = LeaveRequestRepository();
   LeaveRequestBloc() : super(LeaveRequestState());
 
@@ -9,11 +8,10 @@ class LeaveRequestBloc
   Stream<LeaveRequestState> mapEventToState(
     LeaveRequestEvent event,
   ) async* {
-    if (event is createItem) {
+    if (event is CreateItem) {
       yield IsBusy();
-      LeaveRequestRepositoryReturnData ud =
-          await mrepository.createLeaveRequest(
-              event.item, event.entitytype, event.entityid);
+      LeaveRequestRepositoryReturnData ud = await mrepository
+          .createLeaveRequest(event.item, event.entitytype, event.entityid);
 
       if (ud.errortype == -1)
         yield IsSaved();
@@ -22,10 +20,10 @@ class LeaveRequestBloc
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is getForNewEntry) {
+    if (event is GetForNewEntry) {
       yield IsBusy();
-      LeaveRequestEntryData ud = await mrepository
-          .getItemFormNewEntryData(event.entitytype, event.entityid, event.originType);
+      LeaveRequestEntryData ud = await mrepository.getItemFormNewEntryData(
+          event.entitytype, event.entityid, event.originType);
 
       if (ud.errortype == -1)
         yield IsReadyForDetailsPage(
@@ -40,11 +38,10 @@ class LeaveRequestBloc
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is updateItem) {
+    if (event is UpdateItem) {
       yield IsBusy();
-      LeaveRequestRepositoryReturnData ud =
-          await mrepository.updateLeaveRequest(
-              event.item, event.entitytype, event.entityid);
+      LeaveRequestRepositoryReturnData ud = await mrepository
+          .updateLeaveRequest(event.item, event.entitytype, event.entityid);
 
       if (ud.errortype == -1)
         yield IsSaved();
@@ -54,7 +51,7 @@ class LeaveRequestBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is updateItemWithDiff) {
+    if (event is UpdateItemWithDiff) {
       yield IsBusy();
       LeaveRequestRepositoryReturnData ud =
           await mrepository.updateLeaveRequestWithDiff(

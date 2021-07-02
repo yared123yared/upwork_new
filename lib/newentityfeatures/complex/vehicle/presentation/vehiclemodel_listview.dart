@@ -33,9 +33,9 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     mlistbloc = listbloc.VehicleModelListBloc();
-    mlistbloc.add(listbloc.getPreData(
+    mlistbloc.add(listbloc.GetPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
-    mlistbloc.add(listbloc.getListData(
+    mlistbloc.add(listbloc.GetListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }
 
@@ -48,7 +48,7 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
 
   void doreload(bool reloadtype) {
     if (reloadtype) {
-      mlistbloc.add(listbloc.getListData(
+      mlistbloc.add(listbloc.GetListData(
           entitytype: widget.entitytype, entityid: widget.entityid));
     }
   }
@@ -91,7 +91,7 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
             BlocProvider.of<listbloc.VehicleModelListBloc>(context).add(
-              listbloc.deleteItemWithData(
+              listbloc.DeleteItemWithData(
                 entitytype: widget.entitytype,
                 entityid: widget.entitytype,
                 item: listItems[index],
@@ -236,7 +236,7 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
                     onSelected: (item, index) {
                       if (item != null && item.length > 0) {
                         setState(() {
-                          mlistbloc.add(listbloc.getListDataWithSearchParameter(
+                          mlistbloc.add(listbloc.GetListDataWithSearchParameter(
                               entitytype: widget.entitytype,
                               entityid: widget.entityid,
                               offeringmodelgroupname: item,

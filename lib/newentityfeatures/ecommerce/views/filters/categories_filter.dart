@@ -60,14 +60,14 @@ class _CategoriesFilterState extends State<CategoriesFilter> {
                             (e) => ListTile(
                               leading: Checkbox(
                                 value: selectedCategories.contains(
-                                  '${widget.filterData.filterheading[0]}/${subCategory.value}/${e}',
+                                  '${widget.filterData.filterheading[0]}/${subCategory.value}/$e',
                                 ),
                                 onChanged: (v) => onSelectCategory(
-                                  '${widget.filterData.filterheading[0]}/${subCategory.value}/${e}',
+                                  '${widget.filterData.filterheading[0]}/${subCategory.value}/$e',
                                 ),
                               ),
                               onTap: () => onSelectCategory(
-                                '${widget.filterData.filterheading[0]}/${subCategory.value}/${e}',
+                                '${widget.filterData.filterheading[0]}/${subCategory.value}/$e',
                               ),
                               title: Text(e),
                             ),

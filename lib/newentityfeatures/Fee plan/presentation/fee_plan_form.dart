@@ -125,7 +125,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
     return BlocProvider(
       create: (context) => itembloc.FeePlanModelBloc()
         ..add(
-          itembloc.getForNewEntry(
+          itembloc.GetForNewEntry(
             entityid: widget.entityid,
             entitytype: widget.entitytype,
           ),
@@ -386,7 +386,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
                 } else {
                   if (_update) {
                     BlocProvider.of<itembloc.FeePlanModelBloc>(context).add(
-                      itembloc.updateItem(
+                      itembloc.UpdateItem(
                         item: _feePlanModel,
                         entityid: widget.entityid,
                         entitytype: widget.entitytype,
@@ -394,7 +394,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
                     );
                   } else {
                     BlocProvider.of<itembloc.FeePlanModelBloc>(context).add(
-                      itembloc.createItem(
+                      itembloc.CreateItem(
                         item: _feePlanModel,
                         entityid: widget.entityid,
                         entitytype: widget.entitytype,

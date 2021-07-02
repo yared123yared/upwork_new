@@ -821,7 +821,6 @@ IDCARD-ATTENDENCE Data
     String staffid,
   ) async {
     print("SERVICEPROVIDERINFO/$serviceID/STAFFEXTRADATA/$staffid");
-    String bc = "SERVICEPROVIDERINFO/$serviceID/STAFFEXTRADATA/$staffid";
     return await FirebaseFirestore.instance
         .doc("SERVICEPROVIDERINFO/$serviceID/STAFFEXTRADATA/$staffid")
         .get()

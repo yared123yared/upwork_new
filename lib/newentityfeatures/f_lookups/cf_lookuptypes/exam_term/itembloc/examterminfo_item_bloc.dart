@@ -20,7 +20,7 @@ class ExamTermInfoBloc extends Bloc<ExamTermInfoEvent, ExamTermInfoState> {
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is getForNewEntry) {
+    if (event is GetForNewEntry) {
       yield IsBusy();
       ExamTermInfoRepositoryReturnData ud =
           await mrepository.getInitialData(event.entitytype, event.entityid);
@@ -35,7 +35,7 @@ class ExamTermInfoBloc extends Bloc<ExamTermInfoEvent, ExamTermInfoState> {
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is updateItem) {
+    if (event is UpdateItem) {
       yield IsBusy();
       ExamTermInfoRepositoryReturnData ud = await mrepository
           .updateExamTermInfo(event.item, event.entitytype, event.entityid);
@@ -48,7 +48,7 @@ class ExamTermInfoBloc extends Bloc<ExamTermInfoEvent, ExamTermInfoState> {
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is updateItemWithDiff) {
+    if (event is UpdateItemWithDiff) {
       yield IsBusy();
       ExamTermInfoRepositoryReturnData ud =
           await mrepository.updateExamTermInfoWithDiff(

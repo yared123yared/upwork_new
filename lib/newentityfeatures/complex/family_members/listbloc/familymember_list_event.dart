@@ -5,29 +5,29 @@ class FamilyMemberListEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class getPreData extends FamilyMemberListEvent {
+class GetPreData extends FamilyMemberListEvent {
   final String entityid;
   final String entitytype;
-  getPreData({@required this.entityid, @required this.entitytype});
+  GetPreData({@required this.entityid, @required this.entitytype});
   @override
   List<Object> get props => [entityid, entitytype];
 }
 
 //to get listdata
-class getListData extends FamilyMemberListEvent {
+class GetListData extends FamilyMemberListEvent {
   final String entityid;
   final String entitytype;
-  getListData({@required this.entityid, @required this.entitytype});
+  GetListData({@required this.entityid, @required this.entitytype});
   @override
   List<Object> get props => [entityid, entitytype];
 }
 
-class getListDataWithSearchParameter extends FamilyMemberListEvent {
+class GetListDataWithSearchParameter extends FamilyMemberListEvent {
   final String entityid;
   final String entitytype;
   final List<String> units;
-  
-  getListDataWithSearchParameter({
+
+  GetListDataWithSearchParameter({
     @required this.entityid,
     @required this.entitytype,
     @required this.units,
@@ -37,11 +37,11 @@ class getListDataWithSearchParameter extends FamilyMemberListEvent {
 }
 
 //We want to delete an item , we will call this method (if we have the complete item data )
-class deleteItemWithData extends FamilyMemberListEvent {
+class DeleteItemWithData extends FamilyMemberListEvent {
   final FamilyMember item;
   final String entityid;
   final String entitytype;
-  const deleteItemWithData({
+  const DeleteItemWithData({
     @required this.item,
     @required this.entityid,
     @required this.entitytype,

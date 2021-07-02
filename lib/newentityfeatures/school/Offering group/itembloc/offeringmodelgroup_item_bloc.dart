@@ -9,7 +9,7 @@ class OfferingModelGroupBloc
   Stream<OfferingModelGroupState> mapEventToState(
     OfferingModelGroupEvent event,
   ) async* {
-    if (event is createItem) {
+    if (event is CreateItem) {
       yield IsBusy();
       OfferingModelGroupRepositoryReturnData ud =
           await mrepository.createOfferingModelGroup(
@@ -22,10 +22,10 @@ class OfferingModelGroupBloc
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is getForNewEntry) {
+    if (event is GetForNewEntry) {
       yield IsBusy();
-      OfferingDataEntry ud = await mrepository
-          .getItemFormNewEntryData(event.entitytype, event.entityid);
+      OfferingDataEntry ud = await mrepository.getItemFormNewEntryData(
+          event.entitytype, event.entityid);
 
       if (ud.errortype == -1)
         yield IsReadyForDetailsPage(
@@ -42,7 +42,7 @@ class OfferingModelGroupBloc
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is updateItem) {
+    if (event is UpdateItem) {
       yield IsBusy();
       OfferingModelGroupRepositoryReturnData ud =
           await mrepository.updateOfferingModelGroup(
@@ -56,7 +56,7 @@ class OfferingModelGroupBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is updateItemWithDiff) {
+    if (event is UpdateItemWithDiff) {
       yield IsBusy();
       OfferingModelGroupRepositoryReturnData ud =
           await mrepository.updateOfferingModelGroupWithDiff(

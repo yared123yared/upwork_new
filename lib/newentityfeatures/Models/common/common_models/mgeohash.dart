@@ -23,19 +23,19 @@ class HelperGeoFunctions {
     List<String> result = [];
     double coef = distanceinmeters * 0.0000089;
     double longcoef = cos(latitude * 0.018);
-    double new_lat1 = latitude + coef;
+    double newLat1 = latitude + coef;
 
     // pi / 180 = 0.018
-    double new_long1 = longitude + longcoef;
+    double newLong1 = longitude + longcoef;
 
-    double new_lat2 = latitude - coef;
+    double newLat2 = latitude - coef;
 
     // pi / 180 = 0.018
-    double new_long2 = longitude - longcoef;
+    double newLong2 = longitude - longcoef;
 
-    String s1 = GeoHasher().encode(new_long1, new_lat1, precision: precision);
+    String s1 = GeoHasher().encode(newLong1, newLat1, precision: precision);
 
-    String s2 = GeoHasher().encode(new_long2, new_lat2, precision: precision);
+    String s2 = GeoHasher().encode(newLong2, newLat2, precision: precision);
     int r = s1.compareTo(s2);
     if (r <= 0) {
       result.add(s1);

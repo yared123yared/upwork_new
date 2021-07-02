@@ -113,7 +113,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
     return BlocProvider(
       create: (context) => itembloc.LeaveRequestBloc()
         ..add(
-          itembloc.getForNewEntry(
+          itembloc.GetForNewEntry(
             entityid: widget.entityid,
             entitytype: widget.entitytype,
             originType: widget.origintype,
@@ -260,7 +260,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
               );
               if (_isUpdate) {
                 BlocProvider.of<itembloc.LeaveRequestBloc>(context).add(
-                  itembloc.updateItem(
+                  itembloc.UpdateItem(
                     item: widget.leaveRequestModel.copyWith(
                       leavestatus: LeaveRequestModel.stringToRequestStatus(
                         _requestStatus.text,
@@ -272,7 +272,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
                 );
               } else {
                 BlocProvider.of<itembloc.LeaveRequestBloc>(context).add(
-                  itembloc.createItem(
+                  itembloc.CreateItem(
                     item: _leaveRequestModel,
                     entityid: widget.entityid,
                     entitytype: widget.entitytype,

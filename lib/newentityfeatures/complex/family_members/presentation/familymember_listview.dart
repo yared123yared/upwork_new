@@ -37,7 +37,7 @@ class _FamilyMemberListListState extends State<FamilyMemberListList> {
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     mlistbloc = listbloc.FamilyMemberListBloc();
-    mlistbloc.add(listbloc.getPreData(
+    mlistbloc.add(listbloc.GetPreData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }
 
@@ -50,7 +50,7 @@ class _FamilyMemberListListState extends State<FamilyMemberListList> {
 
   void doreload(bool reloadtype) {
     if (reloadtype) {
-      mlistbloc.add(listbloc.getListData(
+      mlistbloc.add(listbloc.GetListData(
           entitytype: widget.entitytype, entityid: widget.entityid));
     }
   }
@@ -93,7 +93,7 @@ class _FamilyMemberListListState extends State<FamilyMemberListList> {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
             BlocProvider.of<listbloc.FamilyMemberListBloc>(context).add(
-                listbloc.deleteItemWithData(
+                listbloc.DeleteItemWithData(
                     entitytype: widget.entitytype,
                     entityid: widget.entitytype,
                     item: listItems[index]));
@@ -237,7 +237,7 @@ class _FamilyMemberListListState extends State<FamilyMemberListList> {
                       if (item != null && item.length > 0) {
                         setState(() {
                           mlistbloc.add(
-                            listbloc.getListDataWithSearchParameter(
+                            listbloc.GetListDataWithSearchParameter(
                               entitytype: widget.entitytype,
                               entityid: widget.entityid,
                               units: units,

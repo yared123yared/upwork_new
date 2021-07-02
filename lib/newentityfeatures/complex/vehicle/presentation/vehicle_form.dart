@@ -185,7 +185,7 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
     return BlocProvider(
       create: (context) => itembloc.VehicleModelBloc()
         ..add(
-          itembloc.getForNewEntry(
+          itembloc.GetForNewEntry(
             entityid: widget.entityid,
             entitytype: widget.entitytype,
           ),
@@ -328,7 +328,7 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
                   {
                     if (_isUpdate) {
                       BlocProvider.of<itembloc.VehicleModelBloc>(context).add(
-                        itembloc.updateItemWithDiff(
+                        itembloc.UpdateItemWithDiff(
                           newitem: _vehicle,
                           olditem: widget.vehicleModel,
                           vehicleIndex: vehicleIndex,
@@ -344,7 +344,7 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
                       );
                     } else {
                       BlocProvider.of<itembloc.VehicleModelBloc>(context).add(
-                        itembloc.createItem(
+                        itembloc.CreateItem(
                           item: _vehicle,
                           entityid: widget.entityid,
                           entitytype: widget.entitytype,
