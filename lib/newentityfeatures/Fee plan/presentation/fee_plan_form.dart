@@ -377,6 +377,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
                   paymentPeriodType: _paymentPeriodType.text,
                   discountType: [_selectedDiscount],
                   feeData: feeData,
+                  grade: '',
                 );
                 if (timelineIndex < (numPeriods - 1)) {
                   setState(() {

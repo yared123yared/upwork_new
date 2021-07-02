@@ -1,50 +1,26 @@
-import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
+import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart'
     as listbloc;
 
-class FeeItemFormList extends StatefulWidget {
+class FeeItemListPage extends StatefulWidget {
   final String entityid;
   final String entitytype;
-  FeeItemFormList({@required this.entitytype, @required this.entityid});
+  FeeItemListPage({@required this.entitytype, @required this.entityid});
 
   @override
-  _FeeItemFormListState createState() => _FeeItemFormListState();
+  _FeeItemListPageState createState() => _FeeItemListPageState();
 }
 
-class _FeeItemFormListState extends State<FeeItemFormList> {
-  listbloc.StringListBloc mlistbloc;
-
-  void initState() {
-    super.initState();
-    mlistbloc = listbloc.StringListBloc();
-    mlistbloc.add(listbloc.GetListData(
-        entitytype: widget.entitytype,
-        entityid: widget.entityid,
-        fieldname: ''));
-  }
-
-  @override
-  void dispose() {
-    //profileBloc.dispose() cannot call as ProfileBloc class doesn't have dispose method
-    super.dispose();
-  }
-
-  void doreload(bool reloadtype) {
-    if (reloadtype) {
-      mlistbloc.add(listbloc.GetListData(
-          entitytype: widget.entitytype,
-          entityid: widget.entityid,
-          fieldname: ''));
-    }
-  }
-
+class _FeeItemListPageState extends State<FeeItemListPage> {
   Future<String> _addButtonActions(
       BuildContext context, String entitytype, String entityid) async {
     CustomTextFieldController c = CustomTextFieldController();
@@ -137,69 +113,53 @@ class _FeeItemFormListState extends State<FeeItemFormList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: mlistbloc,
-      child: Scaffold(
-          appBar: AppBar(
-            title: Text("FeeItems"),
-            centerTitle: true,
-          ),
-          body: BlocListener<listbloc.StringListBloc, listbloc.StringListState>(
-              listener: (context, state) {
-            if (state is listbloc.IsDeleted) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is deleted"),
-              ));
-              doreload(true);
-            }
-            if (state is listbloc.IsSaved) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is Created/Saved"),
-              ));
-              doreload(true);
-            }
-          }, child: BlocBuilder<listbloc.StringListBloc,
-                  listbloc.StringListState>(builder: (context, state) {
-            if (state is listbloc.IsBusy)
-              return Center(
-                child: Container(
-                    width: 20, height: 20, child: CircularProgressIndicator()),
-              );
-            if (state is listbloc.HasLogicalFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.IsDeleted) {
-              return Center(child: Text("Deleted item"));
-            }
-
-            if (state is listbloc.IsListDataLoaded) {
-              List<String> em = state.listdata;
-              return _blocBuilder(context, em);
-            }
-            return Center(child: Text('Empty'));
-          })),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
-              String returnedval = await _addButtonActions(
-                  context, widget.entitytype, widget.entityid);
-              if (returnedval != "*NOVALUESET*") {
-                BlocProvider.of<listbloc.StringListBloc>(context).add(
-                  listbloc.CreateItem(
-                      item: returnedval,
-                      entitytype: widget.entitytype,
-                      entityid: widget.entityid,
-                      fieldname: "feeitemlist"),
-                );
-              } else {
-                returnedval = "*NOVALUESET*";
-              }
-            },
-            icon: Icon(Icons.add),
-            label: Text("Add New"),
-          )),
+    return BlocConsumer<LookupBloc, LookupState>(
+      listener: (context, state) {
+        state.failure.fold(() {
+          if (state.isLoading) {
+            EasyLoading.show(status: 'Loading..');
+          } else if (state.message.isNotEmpty) {
+            EasyLoading.showInfo(state.message);
+          } else {
+            EasyLoading.dismiss();
+          }
+        },
+            (a) => showDialog(
+                context: context,
+                builder: (context) => ErrorDialogue(failure: a)));
+      },
+      buildWhen: (p, c) => p.listData != c.listData,
+      builder: (context, state) {
+        return state.listData.maybeMap(
+            feeItem: (feeItem) => Scaffold(
+                appBar: AppBar(
+                  title: Text("FeeItems"),
+                  centerTitle: true,
+                ),
+                body: feeItem.list.isNotEmpty
+                    ? _blocBuilder(context, feeItem.list)
+                    : Center(child: Text('Empty')),
+                floatingActionButton: FloatingActionButton.extended(
+                  onPressed: () async {
+                    String returnedval = await _addButtonActions(
+                        context, widget.entitytype, widget.entityid);
+                    if (returnedval != "*NOVALUESET*") {
+                      BlocProvider.of<listbloc.StringListBloc>(context).add(
+                        listbloc.CreateItem(
+                            item: returnedval,
+                            entitytype: widget.entitytype,
+                            entityid: widget.entityid,
+                            fieldname: "feeitemlist"),
+                      );
+                    } else {
+                      returnedval = "*NOVALUESET*";
+                    }
+                  },
+                  icon: Icon(Icons.add),
+                  label: Text("Add New"),
+                )),
+            orElse: () => SizedBox.shrink());
+      },
     );
   }
 

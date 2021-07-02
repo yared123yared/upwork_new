@@ -345,6 +345,7 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
                   grpName: _groupName.text,
                   numperiods: int.parse(_paymentPeriodNumber.text),
                   periodInfo: periodInfoList,
+                  isfrozen: false,
                 );
                 if (timelineIndex < (numPeriods - 1)) {
                   setState(() {

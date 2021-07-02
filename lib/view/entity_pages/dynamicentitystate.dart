@@ -612,7 +612,7 @@ class UiEntityPageStateList {
       brokerpanel: [],
       userclassifiedpanel: UiEntityPageStateList.fillClassifiedUserPanel(),
       productpanel: [],
-      pageState: UiEntityPageStateList.serviceFeaturePageState,
+      pageState: UiEntityPageStateList.serviceFeaturePageState, aptPanel: [],
     );
   }
 

@@ -239,6 +239,8 @@ class _PaymentPeriodInfoFormState extends State<PaymentPeriodInfoForm> {
                 sessionName: _sessionName.text,
                 grpName: _groupName.text,
                 periodInfo: periodInfoList,
+                isfrozen: false,
+                numperiods: 0,
               );
               if (edit) {
                 mbloc.add(itembloc.UpdateItemWithDiff(

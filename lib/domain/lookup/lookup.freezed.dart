@@ -57,7 +57,7 @@ class _$LookupTearOff {
 // ignore: unused_element
   SessionTerm sessionTerm(
       {@required
-      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @required
       @JsonKey(name: 'isactive')
@@ -66,7 +66,7 @@ class _$LookupTearOff {
       @JsonKey(name: 'termname')
           String termName,
       @required
-      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate}) {
     return SessionTerm(
       endDate: endDate,
@@ -95,13 +95,13 @@ class _$LookupTearOff {
 // ignore: unused_element
   PeriodInfo periodInfo(
       {@required
-      @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime dueDate,
       @required
-      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate,
       @required
-      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @required
       @JsonKey(name: 'paymentperiodname')
@@ -131,10 +131,10 @@ class _$LookupTearOff {
 // ignore: unused_element
   Schedule schedule(
       {@required
-      @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startTime,
       @required
-      @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endTime,
       @required
       @JsonKey(name: 'classperiodname')
@@ -168,13 +168,13 @@ mixin _$Lookup {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -185,11 +185,11 @@ mixin _$Lookup {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -201,9 +201,9 @@ mixin _$Lookup {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -215,13 +215,13 @@ mixin _$Lookup {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -230,11 +230,11 @@ mixin _$Lookup {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -243,9 +243,9 @@ mixin _$Lookup {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -379,13 +379,13 @@ class _$RoomInfo implements RoomInfo {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -396,11 +396,11 @@ class _$RoomInfo implements RoomInfo {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -412,9 +412,9 @@ class _$RoomInfo implements RoomInfo {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -437,13 +437,13 @@ class _$RoomInfo implements RoomInfo {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -452,11 +452,11 @@ class _$RoomInfo implements RoomInfo {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -465,9 +465,9 @@ class _$RoomInfo implements RoomInfo {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -635,13 +635,13 @@ class _$ExamTermInfo implements ExamTermInfo {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -652,11 +652,11 @@ class _$ExamTermInfo implements ExamTermInfo {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -668,9 +668,9 @@ class _$ExamTermInfo implements ExamTermInfo {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -693,13 +693,13 @@ class _$ExamTermInfo implements ExamTermInfo {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -708,11 +708,11 @@ class _$ExamTermInfo implements ExamTermInfo {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -721,9 +721,9 @@ class _$ExamTermInfo implements ExamTermInfo {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -805,13 +805,13 @@ abstract class $SessionTermCopyWith<$Res> {
           SessionTerm value, $Res Function(SessionTerm) then) =
       _$SessionTermCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      {@JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @JsonKey(name: 'isactive')
           bool isActive,
       @JsonKey(name: 'termname')
           String termName,
-      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate});
 }
 
@@ -848,7 +848,7 @@ class _$SessionTermCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
 class _$SessionTerm implements SessionTerm {
   const _$SessionTerm(
       {@required
-      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.endDate,
       @required
       @JsonKey(name: 'isactive')
@@ -857,7 +857,7 @@ class _$SessionTerm implements SessionTerm {
       @JsonKey(name: 'termname')
           this.termName,
       @required
-      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.startDate})
       : assert(endDate != null),
         assert(isActive != null),
@@ -869,7 +869,7 @@ class _$SessionTerm implements SessionTerm {
 
   @override
   @JsonKey(
-      name: 'enddate',
+      name: "enddate",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime endDate;
@@ -881,7 +881,7 @@ class _$SessionTerm implements SessionTerm {
   final String termName;
   @override
   @JsonKey(
-      name: 'startdate',
+      name: "startdate",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime startDate;
@@ -933,13 +933,13 @@ class _$SessionTerm implements SessionTerm {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -950,11 +950,11 @@ class _$SessionTerm implements SessionTerm {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -966,9 +966,9 @@ class _$SessionTerm implements SessionTerm {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -991,13 +991,13 @@ class _$SessionTerm implements SessionTerm {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -1006,11 +1006,11 @@ class _$SessionTerm implements SessionTerm {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -1019,9 +1019,9 @@ class _$SessionTerm implements SessionTerm {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -1083,7 +1083,7 @@ class _$SessionTerm implements SessionTerm {
 abstract class SessionTerm implements Lookup {
   const factory SessionTerm(
       {@required
-      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @required
       @JsonKey(name: 'isactive')
@@ -1092,14 +1092,14 @@ abstract class SessionTerm implements Lookup {
       @JsonKey(name: 'termname')
           String termName,
       @required
-      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate}) = _$SessionTerm;
 
   factory SessionTerm.fromJson(Map<String, dynamic> json) =
       _$SessionTerm.fromJson;
 
   @JsonKey(
-      name: 'enddate',
+      name: "enddate",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get endDate;
@@ -1108,7 +1108,7 @@ abstract class SessionTerm implements Lookup {
   @JsonKey(name: 'termname')
   String get termName;
   @JsonKey(
-      name: 'startdate',
+      name: "startdate",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get startDate;
@@ -1246,13 +1246,13 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -1263,11 +1263,11 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -1279,9 +1279,9 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -1305,13 +1305,13 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -1320,11 +1320,11 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -1333,9 +1333,9 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -1428,11 +1428,11 @@ abstract class $PeriodInfoCopyWith<$Res> {
           PeriodInfo value, $Res Function(PeriodInfo) then) =
       _$PeriodInfoCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      {@JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime dueDate,
-      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate,
-      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @JsonKey(name: 'paymentperiodname')
           String paymentPeriodName,
@@ -1476,13 +1476,13 @@ class _$PeriodInfoCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
 class _$PeriodInfo implements PeriodInfo {
   const _$PeriodInfo(
       {@required
-      @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.dueDate,
       @required
-      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.startDate,
       @required
-      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.endDate,
       @required
       @JsonKey(name: 'paymentperiodname')
@@ -1501,19 +1501,19 @@ class _$PeriodInfo implements PeriodInfo {
 
   @override
   @JsonKey(
-      name: 'duedate',
+      name: "duedate",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime dueDate;
   @override
   @JsonKey(
-      name: 'startdate',
+      name: "startdate",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime startDate;
   @override
   @JsonKey(
-      name: 'enddate',
+      name: "enddate",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime endDate;
@@ -1574,13 +1574,13 @@ class _$PeriodInfo implements PeriodInfo {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -1591,11 +1591,11 @@ class _$PeriodInfo implements PeriodInfo {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -1607,9 +1607,9 @@ class _$PeriodInfo implements PeriodInfo {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -1632,13 +1632,13 @@ class _$PeriodInfo implements PeriodInfo {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -1647,11 +1647,11 @@ class _$PeriodInfo implements PeriodInfo {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -1660,9 +1660,9 @@ class _$PeriodInfo implements PeriodInfo {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -1725,13 +1725,13 @@ class _$PeriodInfo implements PeriodInfo {
 abstract class PeriodInfo implements Lookup {
   const factory PeriodInfo(
       {@required
-      @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime dueDate,
       @required
-      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate,
       @required
-      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @required
       @JsonKey(name: 'paymentperiodname')
@@ -1744,17 +1744,17 @@ abstract class PeriodInfo implements Lookup {
       _$PeriodInfo.fromJson;
 
   @JsonKey(
-      name: 'duedate',
+      name: "duedate",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get dueDate;
   @JsonKey(
-      name: 'startdate',
+      name: "startdate",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get startDate;
   @JsonKey(
-      name: 'enddate',
+      name: "enddate",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get endDate;
@@ -1857,13 +1857,13 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -1874,11 +1874,11 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -1890,9 +1890,9 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -1915,13 +1915,13 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -1930,11 +1930,11 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -1943,9 +1943,9 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -2025,9 +2025,9 @@ abstract class $ScheduleCopyWith<$Res> {
   factory $ScheduleCopyWith(Schedule value, $Res Function(Schedule) then) =
       _$ScheduleCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      {@JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startTime,
-      @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endTime,
       @JsonKey(name: 'classperiodname')
           String classPeriodName});
@@ -2065,10 +2065,10 @@ class _$ScheduleCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
 class _$Schedule implements Schedule {
   const _$Schedule(
       {@required
-      @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.startTime,
       @required
-      @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.endTime,
       @required
       @JsonKey(name: 'classperiodname')
@@ -2082,13 +2082,13 @@ class _$Schedule implements Schedule {
 
   @override
   @JsonKey(
-      name: 'starttime',
+      name: "starttime",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime startTime;
   @override
   @JsonKey(
-      name: 'endtime',
+      name: "endtime",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime endTime;
@@ -2139,13 +2139,13 @@ class _$Schedule implements Schedule {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -2156,11 +2156,11 @@ class _$Schedule implements Schedule {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -2172,9 +2172,9 @@ class _$Schedule implements Schedule {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -2197,13 +2197,13 @@ class _$Schedule implements Schedule {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -2212,11 +2212,11 @@ class _$Schedule implements Schedule {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -2225,9 +2225,9 @@ class _$Schedule implements Schedule {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -2289,10 +2289,10 @@ class _$Schedule implements Schedule {
 abstract class Schedule implements Lookup {
   const factory Schedule(
       {@required
-      @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startTime,
       @required
-      @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endTime,
       @required
       @JsonKey(name: 'classperiodname')
@@ -2301,12 +2301,12 @@ abstract class Schedule implements Lookup {
   factory Schedule.fromJson(Map<String, dynamic> json) = _$Schedule.fromJson;
 
   @JsonKey(
-      name: 'starttime',
+      name: "starttime",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get startTime;
   @JsonKey(
-      name: 'endtime',
+      name: "endtime",
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get endTime;
@@ -4177,4 +4177,1117 @@ abstract class LookupListEmpty implements LookupList {
 
   factory LookupListEmpty.fromJson(Map<String, dynamic> json) =
       _$LookupListEmpty.fromJson;
+}
+
+/// @nodoc
+class _$LookupTypeTearOff {
+  const _$LookupTypeTearOff();
+
+// ignore: unused_element
+  _FeeItem feeItem() {
+    return const _FeeItem();
+  }
+
+// ignore: unused_element
+  _Offering offering() {
+    return const _Offering();
+  }
+
+// ignore: unused_element
+  _Grade grade() {
+    return const _Grade();
+  }
+
+// ignore: unused_element
+  _Rooms rooms() {
+    return const _Rooms();
+  }
+
+// ignore: unused_element
+  _ExamTerm examTerm() {
+    return const _ExamTerm();
+  }
+
+// ignore: unused_element
+  _SessionTerm sessionTerm() {
+    return const _SessionTerm();
+  }
+
+// ignore: unused_element
+  _ClassPeriod classPeriod() {
+    return const _ClassPeriod();
+  }
+
+// ignore: unused_element
+  _PaymentPeriod paymentPeriod() {
+    return const _PaymentPeriod();
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $LookupType = _$LookupTypeTearOff();
+
+/// @nodoc
+mixin _$LookupType {
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult feeItem(),
+    @required TResult offering(),
+    @required TResult grade(),
+    @required TResult rooms(),
+    @required TResult examTerm(),
+    @required TResult sessionTerm(),
+    @required TResult classPeriod(),
+    @required TResult paymentPeriod(),
+  });
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult feeItem(),
+    TResult offering(),
+    TResult grade(),
+    TResult rooms(),
+    TResult examTerm(),
+    TResult sessionTerm(),
+    TResult classPeriod(),
+    TResult paymentPeriod(),
+    @required TResult orElse(),
+  });
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult feeItem(_FeeItem value),
+    @required TResult offering(_Offering value),
+    @required TResult grade(_Grade value),
+    @required TResult rooms(_Rooms value),
+    @required TResult examTerm(_ExamTerm value),
+    @required TResult sessionTerm(_SessionTerm value),
+    @required TResult classPeriod(_ClassPeriod value),
+    @required TResult paymentPeriod(_PaymentPeriod value),
+  });
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult feeItem(_FeeItem value),
+    TResult offering(_Offering value),
+    TResult grade(_Grade value),
+    TResult rooms(_Rooms value),
+    TResult examTerm(_ExamTerm value),
+    TResult sessionTerm(_SessionTerm value),
+    TResult classPeriod(_ClassPeriod value),
+    TResult paymentPeriod(_PaymentPeriod value),
+    @required TResult orElse(),
+  });
+}
+
+/// @nodoc
+abstract class $LookupTypeCopyWith<$Res> {
+  factory $LookupTypeCopyWith(
+          LookupType value, $Res Function(LookupType) then) =
+      _$LookupTypeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LookupTypeCopyWithImpl<$Res> implements $LookupTypeCopyWith<$Res> {
+  _$LookupTypeCopyWithImpl(this._value, this._then);
+
+  final LookupType _value;
+  // ignore: unused_field
+  final $Res Function(LookupType) _then;
+}
+
+/// @nodoc
+abstract class _$FeeItemCopyWith<$Res> {
+  factory _$FeeItemCopyWith(_FeeItem value, $Res Function(_FeeItem) then) =
+      __$FeeItemCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$FeeItemCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
+    implements _$FeeItemCopyWith<$Res> {
+  __$FeeItemCopyWithImpl(_FeeItem _value, $Res Function(_FeeItem) _then)
+      : super(_value, (v) => _then(v as _FeeItem));
+
+  @override
+  _FeeItem get _value => super._value as _FeeItem;
+}
+
+/// @nodoc
+class _$_FeeItem implements _FeeItem {
+  const _$_FeeItem();
+
+  @override
+  String toString() {
+    return 'LookupType.feeItem()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _FeeItem);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult feeItem(),
+    @required TResult offering(),
+    @required TResult grade(),
+    @required TResult rooms(),
+    @required TResult examTerm(),
+    @required TResult sessionTerm(),
+    @required TResult classPeriod(),
+    @required TResult paymentPeriod(),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return feeItem();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult feeItem(),
+    TResult offering(),
+    TResult grade(),
+    TResult rooms(),
+    TResult examTerm(),
+    TResult sessionTerm(),
+    TResult classPeriod(),
+    TResult paymentPeriod(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (feeItem != null) {
+      return feeItem();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult feeItem(_FeeItem value),
+    @required TResult offering(_Offering value),
+    @required TResult grade(_Grade value),
+    @required TResult rooms(_Rooms value),
+    @required TResult examTerm(_ExamTerm value),
+    @required TResult sessionTerm(_SessionTerm value),
+    @required TResult classPeriod(_ClassPeriod value),
+    @required TResult paymentPeriod(_PaymentPeriod value),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return feeItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult feeItem(_FeeItem value),
+    TResult offering(_Offering value),
+    TResult grade(_Grade value),
+    TResult rooms(_Rooms value),
+    TResult examTerm(_ExamTerm value),
+    TResult sessionTerm(_SessionTerm value),
+    TResult classPeriod(_ClassPeriod value),
+    TResult paymentPeriod(_PaymentPeriod value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (feeItem != null) {
+      return feeItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FeeItem implements LookupType {
+  const factory _FeeItem() = _$_FeeItem;
+}
+
+/// @nodoc
+abstract class _$OfferingCopyWith<$Res> {
+  factory _$OfferingCopyWith(_Offering value, $Res Function(_Offering) then) =
+      __$OfferingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$OfferingCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
+    implements _$OfferingCopyWith<$Res> {
+  __$OfferingCopyWithImpl(_Offering _value, $Res Function(_Offering) _then)
+      : super(_value, (v) => _then(v as _Offering));
+
+  @override
+  _Offering get _value => super._value as _Offering;
+}
+
+/// @nodoc
+class _$_Offering implements _Offering {
+  const _$_Offering();
+
+  @override
+  String toString() {
+    return 'LookupType.offering()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Offering);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult feeItem(),
+    @required TResult offering(),
+    @required TResult grade(),
+    @required TResult rooms(),
+    @required TResult examTerm(),
+    @required TResult sessionTerm(),
+    @required TResult classPeriod(),
+    @required TResult paymentPeriod(),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return offering();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult feeItem(),
+    TResult offering(),
+    TResult grade(),
+    TResult rooms(),
+    TResult examTerm(),
+    TResult sessionTerm(),
+    TResult classPeriod(),
+    TResult paymentPeriod(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (offering != null) {
+      return offering();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult feeItem(_FeeItem value),
+    @required TResult offering(_Offering value),
+    @required TResult grade(_Grade value),
+    @required TResult rooms(_Rooms value),
+    @required TResult examTerm(_ExamTerm value),
+    @required TResult sessionTerm(_SessionTerm value),
+    @required TResult classPeriod(_ClassPeriod value),
+    @required TResult paymentPeriod(_PaymentPeriod value),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return offering(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult feeItem(_FeeItem value),
+    TResult offering(_Offering value),
+    TResult grade(_Grade value),
+    TResult rooms(_Rooms value),
+    TResult examTerm(_ExamTerm value),
+    TResult sessionTerm(_SessionTerm value),
+    TResult classPeriod(_ClassPeriod value),
+    TResult paymentPeriod(_PaymentPeriod value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (offering != null) {
+      return offering(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Offering implements LookupType {
+  const factory _Offering() = _$_Offering;
+}
+
+/// @nodoc
+abstract class _$GradeCopyWith<$Res> {
+  factory _$GradeCopyWith(_Grade value, $Res Function(_Grade) then) =
+      __$GradeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GradeCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
+    implements _$GradeCopyWith<$Res> {
+  __$GradeCopyWithImpl(_Grade _value, $Res Function(_Grade) _then)
+      : super(_value, (v) => _then(v as _Grade));
+
+  @override
+  _Grade get _value => super._value as _Grade;
+}
+
+/// @nodoc
+class _$_Grade implements _Grade {
+  const _$_Grade();
+
+  @override
+  String toString() {
+    return 'LookupType.grade()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Grade);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult feeItem(),
+    @required TResult offering(),
+    @required TResult grade(),
+    @required TResult rooms(),
+    @required TResult examTerm(),
+    @required TResult sessionTerm(),
+    @required TResult classPeriod(),
+    @required TResult paymentPeriod(),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return grade();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult feeItem(),
+    TResult offering(),
+    TResult grade(),
+    TResult rooms(),
+    TResult examTerm(),
+    TResult sessionTerm(),
+    TResult classPeriod(),
+    TResult paymentPeriod(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (grade != null) {
+      return grade();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult feeItem(_FeeItem value),
+    @required TResult offering(_Offering value),
+    @required TResult grade(_Grade value),
+    @required TResult rooms(_Rooms value),
+    @required TResult examTerm(_ExamTerm value),
+    @required TResult sessionTerm(_SessionTerm value),
+    @required TResult classPeriod(_ClassPeriod value),
+    @required TResult paymentPeriod(_PaymentPeriod value),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return grade(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult feeItem(_FeeItem value),
+    TResult offering(_Offering value),
+    TResult grade(_Grade value),
+    TResult rooms(_Rooms value),
+    TResult examTerm(_ExamTerm value),
+    TResult sessionTerm(_SessionTerm value),
+    TResult classPeriod(_ClassPeriod value),
+    TResult paymentPeriod(_PaymentPeriod value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (grade != null) {
+      return grade(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Grade implements LookupType {
+  const factory _Grade() = _$_Grade;
+}
+
+/// @nodoc
+abstract class _$RoomsCopyWith<$Res> {
+  factory _$RoomsCopyWith(_Rooms value, $Res Function(_Rooms) then) =
+      __$RoomsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$RoomsCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
+    implements _$RoomsCopyWith<$Res> {
+  __$RoomsCopyWithImpl(_Rooms _value, $Res Function(_Rooms) _then)
+      : super(_value, (v) => _then(v as _Rooms));
+
+  @override
+  _Rooms get _value => super._value as _Rooms;
+}
+
+/// @nodoc
+class _$_Rooms implements _Rooms {
+  const _$_Rooms();
+
+  @override
+  String toString() {
+    return 'LookupType.rooms()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Rooms);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult feeItem(),
+    @required TResult offering(),
+    @required TResult grade(),
+    @required TResult rooms(),
+    @required TResult examTerm(),
+    @required TResult sessionTerm(),
+    @required TResult classPeriod(),
+    @required TResult paymentPeriod(),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return rooms();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult feeItem(),
+    TResult offering(),
+    TResult grade(),
+    TResult rooms(),
+    TResult examTerm(),
+    TResult sessionTerm(),
+    TResult classPeriod(),
+    TResult paymentPeriod(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (rooms != null) {
+      return rooms();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult feeItem(_FeeItem value),
+    @required TResult offering(_Offering value),
+    @required TResult grade(_Grade value),
+    @required TResult rooms(_Rooms value),
+    @required TResult examTerm(_ExamTerm value),
+    @required TResult sessionTerm(_SessionTerm value),
+    @required TResult classPeriod(_ClassPeriod value),
+    @required TResult paymentPeriod(_PaymentPeriod value),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return rooms(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult feeItem(_FeeItem value),
+    TResult offering(_Offering value),
+    TResult grade(_Grade value),
+    TResult rooms(_Rooms value),
+    TResult examTerm(_ExamTerm value),
+    TResult sessionTerm(_SessionTerm value),
+    TResult classPeriod(_ClassPeriod value),
+    TResult paymentPeriod(_PaymentPeriod value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (rooms != null) {
+      return rooms(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Rooms implements LookupType {
+  const factory _Rooms() = _$_Rooms;
+}
+
+/// @nodoc
+abstract class _$ExamTermCopyWith<$Res> {
+  factory _$ExamTermCopyWith(_ExamTerm value, $Res Function(_ExamTerm) then) =
+      __$ExamTermCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$ExamTermCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
+    implements _$ExamTermCopyWith<$Res> {
+  __$ExamTermCopyWithImpl(_ExamTerm _value, $Res Function(_ExamTerm) _then)
+      : super(_value, (v) => _then(v as _ExamTerm));
+
+  @override
+  _ExamTerm get _value => super._value as _ExamTerm;
+}
+
+/// @nodoc
+class _$_ExamTerm implements _ExamTerm {
+  const _$_ExamTerm();
+
+  @override
+  String toString() {
+    return 'LookupType.examTerm()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _ExamTerm);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult feeItem(),
+    @required TResult offering(),
+    @required TResult grade(),
+    @required TResult rooms(),
+    @required TResult examTerm(),
+    @required TResult sessionTerm(),
+    @required TResult classPeriod(),
+    @required TResult paymentPeriod(),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return examTerm();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult feeItem(),
+    TResult offering(),
+    TResult grade(),
+    TResult rooms(),
+    TResult examTerm(),
+    TResult sessionTerm(),
+    TResult classPeriod(),
+    TResult paymentPeriod(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (examTerm != null) {
+      return examTerm();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult feeItem(_FeeItem value),
+    @required TResult offering(_Offering value),
+    @required TResult grade(_Grade value),
+    @required TResult rooms(_Rooms value),
+    @required TResult examTerm(_ExamTerm value),
+    @required TResult sessionTerm(_SessionTerm value),
+    @required TResult classPeriod(_ClassPeriod value),
+    @required TResult paymentPeriod(_PaymentPeriod value),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return examTerm(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult feeItem(_FeeItem value),
+    TResult offering(_Offering value),
+    TResult grade(_Grade value),
+    TResult rooms(_Rooms value),
+    TResult examTerm(_ExamTerm value),
+    TResult sessionTerm(_SessionTerm value),
+    TResult classPeriod(_ClassPeriod value),
+    TResult paymentPeriod(_PaymentPeriod value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (examTerm != null) {
+      return examTerm(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExamTerm implements LookupType {
+  const factory _ExamTerm() = _$_ExamTerm;
+}
+
+/// @nodoc
+abstract class _$SessionTermCopyWith<$Res> {
+  factory _$SessionTermCopyWith(
+          _SessionTerm value, $Res Function(_SessionTerm) then) =
+      __$SessionTermCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SessionTermCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
+    implements _$SessionTermCopyWith<$Res> {
+  __$SessionTermCopyWithImpl(
+      _SessionTerm _value, $Res Function(_SessionTerm) _then)
+      : super(_value, (v) => _then(v as _SessionTerm));
+
+  @override
+  _SessionTerm get _value => super._value as _SessionTerm;
+}
+
+/// @nodoc
+class _$_SessionTerm implements _SessionTerm {
+  const _$_SessionTerm();
+
+  @override
+  String toString() {
+    return 'LookupType.sessionTerm()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _SessionTerm);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult feeItem(),
+    @required TResult offering(),
+    @required TResult grade(),
+    @required TResult rooms(),
+    @required TResult examTerm(),
+    @required TResult sessionTerm(),
+    @required TResult classPeriod(),
+    @required TResult paymentPeriod(),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return sessionTerm();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult feeItem(),
+    TResult offering(),
+    TResult grade(),
+    TResult rooms(),
+    TResult examTerm(),
+    TResult sessionTerm(),
+    TResult classPeriod(),
+    TResult paymentPeriod(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sessionTerm != null) {
+      return sessionTerm();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult feeItem(_FeeItem value),
+    @required TResult offering(_Offering value),
+    @required TResult grade(_Grade value),
+    @required TResult rooms(_Rooms value),
+    @required TResult examTerm(_ExamTerm value),
+    @required TResult sessionTerm(_SessionTerm value),
+    @required TResult classPeriod(_ClassPeriod value),
+    @required TResult paymentPeriod(_PaymentPeriod value),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return sessionTerm(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult feeItem(_FeeItem value),
+    TResult offering(_Offering value),
+    TResult grade(_Grade value),
+    TResult rooms(_Rooms value),
+    TResult examTerm(_ExamTerm value),
+    TResult sessionTerm(_SessionTerm value),
+    TResult classPeriod(_ClassPeriod value),
+    TResult paymentPeriod(_PaymentPeriod value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sessionTerm != null) {
+      return sessionTerm(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SessionTerm implements LookupType {
+  const factory _SessionTerm() = _$_SessionTerm;
+}
+
+/// @nodoc
+abstract class _$ClassPeriodCopyWith<$Res> {
+  factory _$ClassPeriodCopyWith(
+          _ClassPeriod value, $Res Function(_ClassPeriod) then) =
+      __$ClassPeriodCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$ClassPeriodCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
+    implements _$ClassPeriodCopyWith<$Res> {
+  __$ClassPeriodCopyWithImpl(
+      _ClassPeriod _value, $Res Function(_ClassPeriod) _then)
+      : super(_value, (v) => _then(v as _ClassPeriod));
+
+  @override
+  _ClassPeriod get _value => super._value as _ClassPeriod;
+}
+
+/// @nodoc
+class _$_ClassPeriod implements _ClassPeriod {
+  const _$_ClassPeriod();
+
+  @override
+  String toString() {
+    return 'LookupType.classPeriod()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _ClassPeriod);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult feeItem(),
+    @required TResult offering(),
+    @required TResult grade(),
+    @required TResult rooms(),
+    @required TResult examTerm(),
+    @required TResult sessionTerm(),
+    @required TResult classPeriod(),
+    @required TResult paymentPeriod(),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return classPeriod();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult feeItem(),
+    TResult offering(),
+    TResult grade(),
+    TResult rooms(),
+    TResult examTerm(),
+    TResult sessionTerm(),
+    TResult classPeriod(),
+    TResult paymentPeriod(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (classPeriod != null) {
+      return classPeriod();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult feeItem(_FeeItem value),
+    @required TResult offering(_Offering value),
+    @required TResult grade(_Grade value),
+    @required TResult rooms(_Rooms value),
+    @required TResult examTerm(_ExamTerm value),
+    @required TResult sessionTerm(_SessionTerm value),
+    @required TResult classPeriod(_ClassPeriod value),
+    @required TResult paymentPeriod(_PaymentPeriod value),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return classPeriod(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult feeItem(_FeeItem value),
+    TResult offering(_Offering value),
+    TResult grade(_Grade value),
+    TResult rooms(_Rooms value),
+    TResult examTerm(_ExamTerm value),
+    TResult sessionTerm(_SessionTerm value),
+    TResult classPeriod(_ClassPeriod value),
+    TResult paymentPeriod(_PaymentPeriod value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (classPeriod != null) {
+      return classPeriod(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClassPeriod implements LookupType {
+  const factory _ClassPeriod() = _$_ClassPeriod;
+}
+
+/// @nodoc
+abstract class _$PaymentPeriodCopyWith<$Res> {
+  factory _$PaymentPeriodCopyWith(
+          _PaymentPeriod value, $Res Function(_PaymentPeriod) then) =
+      __$PaymentPeriodCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$PaymentPeriodCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
+    implements _$PaymentPeriodCopyWith<$Res> {
+  __$PaymentPeriodCopyWithImpl(
+      _PaymentPeriod _value, $Res Function(_PaymentPeriod) _then)
+      : super(_value, (v) => _then(v as _PaymentPeriod));
+
+  @override
+  _PaymentPeriod get _value => super._value as _PaymentPeriod;
+}
+
+/// @nodoc
+class _$_PaymentPeriod implements _PaymentPeriod {
+  const _$_PaymentPeriod();
+
+  @override
+  String toString() {
+    return 'LookupType.paymentPeriod()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _PaymentPeriod);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult feeItem(),
+    @required TResult offering(),
+    @required TResult grade(),
+    @required TResult rooms(),
+    @required TResult examTerm(),
+    @required TResult sessionTerm(),
+    @required TResult classPeriod(),
+    @required TResult paymentPeriod(),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return paymentPeriod();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult feeItem(),
+    TResult offering(),
+    TResult grade(),
+    TResult rooms(),
+    TResult examTerm(),
+    TResult sessionTerm(),
+    TResult classPeriod(),
+    TResult paymentPeriod(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (paymentPeriod != null) {
+      return paymentPeriod();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult feeItem(_FeeItem value),
+    @required TResult offering(_Offering value),
+    @required TResult grade(_Grade value),
+    @required TResult rooms(_Rooms value),
+    @required TResult examTerm(_ExamTerm value),
+    @required TResult sessionTerm(_SessionTerm value),
+    @required TResult classPeriod(_ClassPeriod value),
+    @required TResult paymentPeriod(_PaymentPeriod value),
+  }) {
+    assert(feeItem != null);
+    assert(offering != null);
+    assert(grade != null);
+    assert(rooms != null);
+    assert(examTerm != null);
+    assert(sessionTerm != null);
+    assert(classPeriod != null);
+    assert(paymentPeriod != null);
+    return paymentPeriod(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult feeItem(_FeeItem value),
+    TResult offering(_Offering value),
+    TResult grade(_Grade value),
+    TResult rooms(_Rooms value),
+    TResult examTerm(_ExamTerm value),
+    TResult sessionTerm(_SessionTerm value),
+    TResult classPeriod(_ClassPeriod value),
+    TResult paymentPeriod(_PaymentPeriod value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (paymentPeriod != null) {
+      return paymentPeriod(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PaymentPeriod implements LookupType {
+  const factory _PaymentPeriod() = _$_PaymentPeriod;
 }

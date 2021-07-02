@@ -22,7 +22,7 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
   ) async* {
     yield* event.map(
         getListData: (getListData) async* {
-          yield state.copyWith(isLoading: true);
+          yield state.copyWith(isLoading: true, failure: none());
           LookupState newState =
               await getListData.lookupType.map(feeItem: (v) async {
             Either<Failure, FeeItems> data =

@@ -130,3 +130,15 @@ abstract class LookupList with _$LookupList {
   factory LookupList.fromJson(Map<String, dynamic> json) =>
       _$LookupListFromJson(json);
 }
+
+@freezed
+abstract class LookupType with _$LookupType {
+  const factory LookupType.feeItem() = _FeeItem;
+  const factory LookupType.offering() = _Offering;
+  const factory LookupType.grade() = _Grade;
+  const factory LookupType.rooms() = _Rooms;
+  const factory LookupType.examTerm() = _ExamTerm;
+  const factory LookupType.sessionTerm() = _SessionTerm;
+  const factory LookupType.classPeriod() = _ClassPeriod;
+  const factory LookupType.paymentPeriod() = _PaymentPeriod;
+}

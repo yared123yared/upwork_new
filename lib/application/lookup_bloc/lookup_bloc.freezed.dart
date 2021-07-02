@@ -645,1119 +645,6 @@ abstract class CreateItem implements LookupEvent {
 }
 
 /// @nodoc
-class _$LookupTypeTearOff {
-  const _$LookupTypeTearOff();
-
-// ignore: unused_element
-  _FeeItem feeItem() {
-    return const _FeeItem();
-  }
-
-// ignore: unused_element
-  _Offering offering() {
-    return const _Offering();
-  }
-
-// ignore: unused_element
-  _Grade grade() {
-    return const _Grade();
-  }
-
-// ignore: unused_element
-  _Rooms rooms() {
-    return const _Rooms();
-  }
-
-// ignore: unused_element
-  _ExamTerm examTerm() {
-    return const _ExamTerm();
-  }
-
-// ignore: unused_element
-  _SessionTerm sessionTerm() {
-    return const _SessionTerm();
-  }
-
-// ignore: unused_element
-  _ClassPeriod classPeriod() {
-    return const _ClassPeriod();
-  }
-
-// ignore: unused_element
-  _PaymentPeriod paymentPeriod() {
-    return const _PaymentPeriod();
-  }
-}
-
-/// @nodoc
-// ignore: unused_element
-const $LookupType = _$LookupTypeTearOff();
-
-/// @nodoc
-mixin _$LookupType {
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult feeItem(),
-    @required TResult offering(),
-    @required TResult grade(),
-    @required TResult rooms(),
-    @required TResult examTerm(),
-    @required TResult sessionTerm(),
-    @required TResult classPeriod(),
-    @required TResult paymentPeriod(),
-  });
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult feeItem(),
-    TResult offering(),
-    TResult grade(),
-    TResult rooms(),
-    TResult examTerm(),
-    TResult sessionTerm(),
-    TResult classPeriod(),
-    TResult paymentPeriod(),
-    @required TResult orElse(),
-  });
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult feeItem(_FeeItem value),
-    @required TResult offering(_Offering value),
-    @required TResult grade(_Grade value),
-    @required TResult rooms(_Rooms value),
-    @required TResult examTerm(_ExamTerm value),
-    @required TResult sessionTerm(_SessionTerm value),
-    @required TResult classPeriod(_ClassPeriod value),
-    @required TResult paymentPeriod(_PaymentPeriod value),
-  });
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult feeItem(_FeeItem value),
-    TResult offering(_Offering value),
-    TResult grade(_Grade value),
-    TResult rooms(_Rooms value),
-    TResult examTerm(_ExamTerm value),
-    TResult sessionTerm(_SessionTerm value),
-    TResult classPeriod(_ClassPeriod value),
-    TResult paymentPeriod(_PaymentPeriod value),
-    @required TResult orElse(),
-  });
-}
-
-/// @nodoc
-abstract class $LookupTypeCopyWith<$Res> {
-  factory $LookupTypeCopyWith(
-          LookupType value, $Res Function(LookupType) then) =
-      _$LookupTypeCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$LookupTypeCopyWithImpl<$Res> implements $LookupTypeCopyWith<$Res> {
-  _$LookupTypeCopyWithImpl(this._value, this._then);
-
-  final LookupType _value;
-  // ignore: unused_field
-  final $Res Function(LookupType) _then;
-}
-
-/// @nodoc
-abstract class _$FeeItemCopyWith<$Res> {
-  factory _$FeeItemCopyWith(_FeeItem value, $Res Function(_FeeItem) then) =
-      __$FeeItemCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$FeeItemCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
-    implements _$FeeItemCopyWith<$Res> {
-  __$FeeItemCopyWithImpl(_FeeItem _value, $Res Function(_FeeItem) _then)
-      : super(_value, (v) => _then(v as _FeeItem));
-
-  @override
-  _FeeItem get _value => super._value as _FeeItem;
-}
-
-/// @nodoc
-class _$_FeeItem implements _FeeItem {
-  const _$_FeeItem();
-
-  @override
-  String toString() {
-    return 'LookupType.feeItem()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _FeeItem);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult feeItem(),
-    @required TResult offering(),
-    @required TResult grade(),
-    @required TResult rooms(),
-    @required TResult examTerm(),
-    @required TResult sessionTerm(),
-    @required TResult classPeriod(),
-    @required TResult paymentPeriod(),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return feeItem();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult feeItem(),
-    TResult offering(),
-    TResult grade(),
-    TResult rooms(),
-    TResult examTerm(),
-    TResult sessionTerm(),
-    TResult classPeriod(),
-    TResult paymentPeriod(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (feeItem != null) {
-      return feeItem();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult feeItem(_FeeItem value),
-    @required TResult offering(_Offering value),
-    @required TResult grade(_Grade value),
-    @required TResult rooms(_Rooms value),
-    @required TResult examTerm(_ExamTerm value),
-    @required TResult sessionTerm(_SessionTerm value),
-    @required TResult classPeriod(_ClassPeriod value),
-    @required TResult paymentPeriod(_PaymentPeriod value),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return feeItem(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult feeItem(_FeeItem value),
-    TResult offering(_Offering value),
-    TResult grade(_Grade value),
-    TResult rooms(_Rooms value),
-    TResult examTerm(_ExamTerm value),
-    TResult sessionTerm(_SessionTerm value),
-    TResult classPeriod(_ClassPeriod value),
-    TResult paymentPeriod(_PaymentPeriod value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (feeItem != null) {
-      return feeItem(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FeeItem implements LookupType {
-  const factory _FeeItem() = _$_FeeItem;
-}
-
-/// @nodoc
-abstract class _$OfferingCopyWith<$Res> {
-  factory _$OfferingCopyWith(_Offering value, $Res Function(_Offering) then) =
-      __$OfferingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$OfferingCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
-    implements _$OfferingCopyWith<$Res> {
-  __$OfferingCopyWithImpl(_Offering _value, $Res Function(_Offering) _then)
-      : super(_value, (v) => _then(v as _Offering));
-
-  @override
-  _Offering get _value => super._value as _Offering;
-}
-
-/// @nodoc
-class _$_Offering implements _Offering {
-  const _$_Offering();
-
-  @override
-  String toString() {
-    return 'LookupType.offering()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Offering);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult feeItem(),
-    @required TResult offering(),
-    @required TResult grade(),
-    @required TResult rooms(),
-    @required TResult examTerm(),
-    @required TResult sessionTerm(),
-    @required TResult classPeriod(),
-    @required TResult paymentPeriod(),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return offering();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult feeItem(),
-    TResult offering(),
-    TResult grade(),
-    TResult rooms(),
-    TResult examTerm(),
-    TResult sessionTerm(),
-    TResult classPeriod(),
-    TResult paymentPeriod(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (offering != null) {
-      return offering();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult feeItem(_FeeItem value),
-    @required TResult offering(_Offering value),
-    @required TResult grade(_Grade value),
-    @required TResult rooms(_Rooms value),
-    @required TResult examTerm(_ExamTerm value),
-    @required TResult sessionTerm(_SessionTerm value),
-    @required TResult classPeriod(_ClassPeriod value),
-    @required TResult paymentPeriod(_PaymentPeriod value),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return offering(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult feeItem(_FeeItem value),
-    TResult offering(_Offering value),
-    TResult grade(_Grade value),
-    TResult rooms(_Rooms value),
-    TResult examTerm(_ExamTerm value),
-    TResult sessionTerm(_SessionTerm value),
-    TResult classPeriod(_ClassPeriod value),
-    TResult paymentPeriod(_PaymentPeriod value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (offering != null) {
-      return offering(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Offering implements LookupType {
-  const factory _Offering() = _$_Offering;
-}
-
-/// @nodoc
-abstract class _$GradeCopyWith<$Res> {
-  factory _$GradeCopyWith(_Grade value, $Res Function(_Grade) then) =
-      __$GradeCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$GradeCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
-    implements _$GradeCopyWith<$Res> {
-  __$GradeCopyWithImpl(_Grade _value, $Res Function(_Grade) _then)
-      : super(_value, (v) => _then(v as _Grade));
-
-  @override
-  _Grade get _value => super._value as _Grade;
-}
-
-/// @nodoc
-class _$_Grade implements _Grade {
-  const _$_Grade();
-
-  @override
-  String toString() {
-    return 'LookupType.grade()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Grade);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult feeItem(),
-    @required TResult offering(),
-    @required TResult grade(),
-    @required TResult rooms(),
-    @required TResult examTerm(),
-    @required TResult sessionTerm(),
-    @required TResult classPeriod(),
-    @required TResult paymentPeriod(),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return grade();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult feeItem(),
-    TResult offering(),
-    TResult grade(),
-    TResult rooms(),
-    TResult examTerm(),
-    TResult sessionTerm(),
-    TResult classPeriod(),
-    TResult paymentPeriod(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (grade != null) {
-      return grade();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult feeItem(_FeeItem value),
-    @required TResult offering(_Offering value),
-    @required TResult grade(_Grade value),
-    @required TResult rooms(_Rooms value),
-    @required TResult examTerm(_ExamTerm value),
-    @required TResult sessionTerm(_SessionTerm value),
-    @required TResult classPeriod(_ClassPeriod value),
-    @required TResult paymentPeriod(_PaymentPeriod value),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return grade(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult feeItem(_FeeItem value),
-    TResult offering(_Offering value),
-    TResult grade(_Grade value),
-    TResult rooms(_Rooms value),
-    TResult examTerm(_ExamTerm value),
-    TResult sessionTerm(_SessionTerm value),
-    TResult classPeriod(_ClassPeriod value),
-    TResult paymentPeriod(_PaymentPeriod value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (grade != null) {
-      return grade(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Grade implements LookupType {
-  const factory _Grade() = _$_Grade;
-}
-
-/// @nodoc
-abstract class _$RoomsCopyWith<$Res> {
-  factory _$RoomsCopyWith(_Rooms value, $Res Function(_Rooms) then) =
-      __$RoomsCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$RoomsCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
-    implements _$RoomsCopyWith<$Res> {
-  __$RoomsCopyWithImpl(_Rooms _value, $Res Function(_Rooms) _then)
-      : super(_value, (v) => _then(v as _Rooms));
-
-  @override
-  _Rooms get _value => super._value as _Rooms;
-}
-
-/// @nodoc
-class _$_Rooms implements _Rooms {
-  const _$_Rooms();
-
-  @override
-  String toString() {
-    return 'LookupType.rooms()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Rooms);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult feeItem(),
-    @required TResult offering(),
-    @required TResult grade(),
-    @required TResult rooms(),
-    @required TResult examTerm(),
-    @required TResult sessionTerm(),
-    @required TResult classPeriod(),
-    @required TResult paymentPeriod(),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return rooms();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult feeItem(),
-    TResult offering(),
-    TResult grade(),
-    TResult rooms(),
-    TResult examTerm(),
-    TResult sessionTerm(),
-    TResult classPeriod(),
-    TResult paymentPeriod(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (rooms != null) {
-      return rooms();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult feeItem(_FeeItem value),
-    @required TResult offering(_Offering value),
-    @required TResult grade(_Grade value),
-    @required TResult rooms(_Rooms value),
-    @required TResult examTerm(_ExamTerm value),
-    @required TResult sessionTerm(_SessionTerm value),
-    @required TResult classPeriod(_ClassPeriod value),
-    @required TResult paymentPeriod(_PaymentPeriod value),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return rooms(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult feeItem(_FeeItem value),
-    TResult offering(_Offering value),
-    TResult grade(_Grade value),
-    TResult rooms(_Rooms value),
-    TResult examTerm(_ExamTerm value),
-    TResult sessionTerm(_SessionTerm value),
-    TResult classPeriod(_ClassPeriod value),
-    TResult paymentPeriod(_PaymentPeriod value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (rooms != null) {
-      return rooms(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Rooms implements LookupType {
-  const factory _Rooms() = _$_Rooms;
-}
-
-/// @nodoc
-abstract class _$ExamTermCopyWith<$Res> {
-  factory _$ExamTermCopyWith(_ExamTerm value, $Res Function(_ExamTerm) then) =
-      __$ExamTermCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$ExamTermCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
-    implements _$ExamTermCopyWith<$Res> {
-  __$ExamTermCopyWithImpl(_ExamTerm _value, $Res Function(_ExamTerm) _then)
-      : super(_value, (v) => _then(v as _ExamTerm));
-
-  @override
-  _ExamTerm get _value => super._value as _ExamTerm;
-}
-
-/// @nodoc
-class _$_ExamTerm implements _ExamTerm {
-  const _$_ExamTerm();
-
-  @override
-  String toString() {
-    return 'LookupType.examTerm()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ExamTerm);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult feeItem(),
-    @required TResult offering(),
-    @required TResult grade(),
-    @required TResult rooms(),
-    @required TResult examTerm(),
-    @required TResult sessionTerm(),
-    @required TResult classPeriod(),
-    @required TResult paymentPeriod(),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return examTerm();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult feeItem(),
-    TResult offering(),
-    TResult grade(),
-    TResult rooms(),
-    TResult examTerm(),
-    TResult sessionTerm(),
-    TResult classPeriod(),
-    TResult paymentPeriod(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (examTerm != null) {
-      return examTerm();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult feeItem(_FeeItem value),
-    @required TResult offering(_Offering value),
-    @required TResult grade(_Grade value),
-    @required TResult rooms(_Rooms value),
-    @required TResult examTerm(_ExamTerm value),
-    @required TResult sessionTerm(_SessionTerm value),
-    @required TResult classPeriod(_ClassPeriod value),
-    @required TResult paymentPeriod(_PaymentPeriod value),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return examTerm(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult feeItem(_FeeItem value),
-    TResult offering(_Offering value),
-    TResult grade(_Grade value),
-    TResult rooms(_Rooms value),
-    TResult examTerm(_ExamTerm value),
-    TResult sessionTerm(_SessionTerm value),
-    TResult classPeriod(_ClassPeriod value),
-    TResult paymentPeriod(_PaymentPeriod value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (examTerm != null) {
-      return examTerm(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ExamTerm implements LookupType {
-  const factory _ExamTerm() = _$_ExamTerm;
-}
-
-/// @nodoc
-abstract class _$SessionTermCopyWith<$Res> {
-  factory _$SessionTermCopyWith(
-          _SessionTerm value, $Res Function(_SessionTerm) then) =
-      __$SessionTermCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$SessionTermCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
-    implements _$SessionTermCopyWith<$Res> {
-  __$SessionTermCopyWithImpl(
-      _SessionTerm _value, $Res Function(_SessionTerm) _then)
-      : super(_value, (v) => _then(v as _SessionTerm));
-
-  @override
-  _SessionTerm get _value => super._value as _SessionTerm;
-}
-
-/// @nodoc
-class _$_SessionTerm implements _SessionTerm {
-  const _$_SessionTerm();
-
-  @override
-  String toString() {
-    return 'LookupType.sessionTerm()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SessionTerm);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult feeItem(),
-    @required TResult offering(),
-    @required TResult grade(),
-    @required TResult rooms(),
-    @required TResult examTerm(),
-    @required TResult sessionTerm(),
-    @required TResult classPeriod(),
-    @required TResult paymentPeriod(),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return sessionTerm();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult feeItem(),
-    TResult offering(),
-    TResult grade(),
-    TResult rooms(),
-    TResult examTerm(),
-    TResult sessionTerm(),
-    TResult classPeriod(),
-    TResult paymentPeriod(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (sessionTerm != null) {
-      return sessionTerm();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult feeItem(_FeeItem value),
-    @required TResult offering(_Offering value),
-    @required TResult grade(_Grade value),
-    @required TResult rooms(_Rooms value),
-    @required TResult examTerm(_ExamTerm value),
-    @required TResult sessionTerm(_SessionTerm value),
-    @required TResult classPeriod(_ClassPeriod value),
-    @required TResult paymentPeriod(_PaymentPeriod value),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return sessionTerm(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult feeItem(_FeeItem value),
-    TResult offering(_Offering value),
-    TResult grade(_Grade value),
-    TResult rooms(_Rooms value),
-    TResult examTerm(_ExamTerm value),
-    TResult sessionTerm(_SessionTerm value),
-    TResult classPeriod(_ClassPeriod value),
-    TResult paymentPeriod(_PaymentPeriod value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (sessionTerm != null) {
-      return sessionTerm(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SessionTerm implements LookupType {
-  const factory _SessionTerm() = _$_SessionTerm;
-}
-
-/// @nodoc
-abstract class _$ClassPeriodCopyWith<$Res> {
-  factory _$ClassPeriodCopyWith(
-          _ClassPeriod value, $Res Function(_ClassPeriod) then) =
-      __$ClassPeriodCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$ClassPeriodCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
-    implements _$ClassPeriodCopyWith<$Res> {
-  __$ClassPeriodCopyWithImpl(
-      _ClassPeriod _value, $Res Function(_ClassPeriod) _then)
-      : super(_value, (v) => _then(v as _ClassPeriod));
-
-  @override
-  _ClassPeriod get _value => super._value as _ClassPeriod;
-}
-
-/// @nodoc
-class _$_ClassPeriod implements _ClassPeriod {
-  const _$_ClassPeriod();
-
-  @override
-  String toString() {
-    return 'LookupType.classPeriod()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ClassPeriod);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult feeItem(),
-    @required TResult offering(),
-    @required TResult grade(),
-    @required TResult rooms(),
-    @required TResult examTerm(),
-    @required TResult sessionTerm(),
-    @required TResult classPeriod(),
-    @required TResult paymentPeriod(),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return classPeriod();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult feeItem(),
-    TResult offering(),
-    TResult grade(),
-    TResult rooms(),
-    TResult examTerm(),
-    TResult sessionTerm(),
-    TResult classPeriod(),
-    TResult paymentPeriod(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (classPeriod != null) {
-      return classPeriod();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult feeItem(_FeeItem value),
-    @required TResult offering(_Offering value),
-    @required TResult grade(_Grade value),
-    @required TResult rooms(_Rooms value),
-    @required TResult examTerm(_ExamTerm value),
-    @required TResult sessionTerm(_SessionTerm value),
-    @required TResult classPeriod(_ClassPeriod value),
-    @required TResult paymentPeriod(_PaymentPeriod value),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return classPeriod(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult feeItem(_FeeItem value),
-    TResult offering(_Offering value),
-    TResult grade(_Grade value),
-    TResult rooms(_Rooms value),
-    TResult examTerm(_ExamTerm value),
-    TResult sessionTerm(_SessionTerm value),
-    TResult classPeriod(_ClassPeriod value),
-    TResult paymentPeriod(_PaymentPeriod value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (classPeriod != null) {
-      return classPeriod(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ClassPeriod implements LookupType {
-  const factory _ClassPeriod() = _$_ClassPeriod;
-}
-
-/// @nodoc
-abstract class _$PaymentPeriodCopyWith<$Res> {
-  factory _$PaymentPeriodCopyWith(
-          _PaymentPeriod value, $Res Function(_PaymentPeriod) then) =
-      __$PaymentPeriodCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$PaymentPeriodCopyWithImpl<$Res> extends _$LookupTypeCopyWithImpl<$Res>
-    implements _$PaymentPeriodCopyWith<$Res> {
-  __$PaymentPeriodCopyWithImpl(
-      _PaymentPeriod _value, $Res Function(_PaymentPeriod) _then)
-      : super(_value, (v) => _then(v as _PaymentPeriod));
-
-  @override
-  _PaymentPeriod get _value => super._value as _PaymentPeriod;
-}
-
-/// @nodoc
-class _$_PaymentPeriod implements _PaymentPeriod {
-  const _$_PaymentPeriod();
-
-  @override
-  String toString() {
-    return 'LookupType.paymentPeriod()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _PaymentPeriod);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult feeItem(),
-    @required TResult offering(),
-    @required TResult grade(),
-    @required TResult rooms(),
-    @required TResult examTerm(),
-    @required TResult sessionTerm(),
-    @required TResult classPeriod(),
-    @required TResult paymentPeriod(),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return paymentPeriod();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult feeItem(),
-    TResult offering(),
-    TResult grade(),
-    TResult rooms(),
-    TResult examTerm(),
-    TResult sessionTerm(),
-    TResult classPeriod(),
-    TResult paymentPeriod(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (paymentPeriod != null) {
-      return paymentPeriod();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult feeItem(_FeeItem value),
-    @required TResult offering(_Offering value),
-    @required TResult grade(_Grade value),
-    @required TResult rooms(_Rooms value),
-    @required TResult examTerm(_ExamTerm value),
-    @required TResult sessionTerm(_SessionTerm value),
-    @required TResult classPeriod(_ClassPeriod value),
-    @required TResult paymentPeriod(_PaymentPeriod value),
-  }) {
-    assert(feeItem != null);
-    assert(offering != null);
-    assert(grade != null);
-    assert(rooms != null);
-    assert(examTerm != null);
-    assert(sessionTerm != null);
-    assert(classPeriod != null);
-    assert(paymentPeriod != null);
-    return paymentPeriod(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult feeItem(_FeeItem value),
-    TResult offering(_Offering value),
-    TResult grade(_Grade value),
-    TResult rooms(_Rooms value),
-    TResult examTerm(_ExamTerm value),
-    TResult sessionTerm(_SessionTerm value),
-    TResult classPeriod(_ClassPeriod value),
-    TResult paymentPeriod(_PaymentPeriod value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (paymentPeriod != null) {
-      return paymentPeriod(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _PaymentPeriod implements LookupType {
-  const factory _PaymentPeriod() = _$_PaymentPeriod;
-}
-
-/// @nodoc
 class _$LookupStateTearOff {
   const _$LookupStateTearOff();
 
@@ -1766,11 +653,13 @@ class _$LookupStateTearOff {
       {@required bool isLoading,
       @required bool workDone,
       @required Option<Failure> failure,
+      @required String message,
       @required LookupList listData}) {
     return _LookupState(
       isLoading: isLoading,
       workDone: workDone,
       failure: failure,
+      message: message,
       listData: listData,
     );
   }
@@ -1785,6 +674,7 @@ mixin _$LookupState {
   bool get isLoading;
   bool get workDone;
   Option<Failure> get failure;
+  String get message;
   LookupList get listData;
 
   @JsonKey(ignore: true)
@@ -1800,6 +690,7 @@ abstract class $LookupStateCopyWith<$Res> {
       {bool isLoading,
       bool workDone,
       Option<Failure> failure,
+      String message,
       LookupList listData});
 
   $LookupListCopyWith<$Res> get listData;
@@ -1818,12 +709,14 @@ class _$LookupStateCopyWithImpl<$Res> implements $LookupStateCopyWith<$Res> {
     Object isLoading = freezed,
     Object workDone = freezed,
     Object failure = freezed,
+    Object message = freezed,
     Object listData = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       workDone: workDone == freezed ? _value.workDone : workDone as bool,
       failure: failure == freezed ? _value.failure : failure as Option<Failure>,
+      message: message == freezed ? _value.message : message as String,
       listData: listData == freezed ? _value.listData : listData as LookupList,
     ));
   }
@@ -1850,6 +743,7 @@ abstract class _$LookupStateCopyWith<$Res>
       {bool isLoading,
       bool workDone,
       Option<Failure> failure,
+      String message,
       LookupList listData});
 
   @override
@@ -1871,12 +765,14 @@ class __$LookupStateCopyWithImpl<$Res> extends _$LookupStateCopyWithImpl<$Res>
     Object isLoading = freezed,
     Object workDone = freezed,
     Object failure = freezed,
+    Object message = freezed,
     Object listData = freezed,
   }) {
     return _then(_LookupState(
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       workDone: workDone == freezed ? _value.workDone : workDone as bool,
       failure: failure == freezed ? _value.failure : failure as Option<Failure>,
+      message: message == freezed ? _value.message : message as String,
       listData: listData == freezed ? _value.listData : listData as LookupList,
     ));
   }
@@ -1888,10 +784,12 @@ class _$_LookupState implements _LookupState {
       {@required this.isLoading,
       @required this.workDone,
       @required this.failure,
+      @required this.message,
       @required this.listData})
       : assert(isLoading != null),
         assert(workDone != null),
         assert(failure != null),
+        assert(message != null),
         assert(listData != null);
 
   @override
@@ -1901,11 +799,13 @@ class _$_LookupState implements _LookupState {
   @override
   final Option<Failure> failure;
   @override
+  final String message;
+  @override
   final LookupList listData;
 
   @override
   String toString() {
-    return 'LookupState(isLoading: $isLoading, workDone: $workDone, failure: $failure, listData: $listData)';
+    return 'LookupState(isLoading: $isLoading, workDone: $workDone, failure: $failure, message: $message, listData: $listData)';
   }
 
   @override
@@ -1921,6 +821,9 @@ class _$_LookupState implements _LookupState {
             (identical(other.failure, failure) ||
                 const DeepCollectionEquality()
                     .equals(other.failure, failure)) &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality()
+                    .equals(other.message, message)) &&
             (identical(other.listData, listData) ||
                 const DeepCollectionEquality()
                     .equals(other.listData, listData)));
@@ -1932,6 +835,7 @@ class _$_LookupState implements _LookupState {
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(workDone) ^
       const DeepCollectionEquality().hash(failure) ^
+      const DeepCollectionEquality().hash(message) ^
       const DeepCollectionEquality().hash(listData);
 
   @JsonKey(ignore: true)
@@ -1945,6 +849,7 @@ abstract class _LookupState implements LookupState {
       {@required bool isLoading,
       @required bool workDone,
       @required Option<Failure> failure,
+      @required String message,
       @required LookupList listData}) = _$_LookupState;
 
   @override
@@ -1953,6 +858,8 @@ abstract class _LookupState implements LookupState {
   bool get workDone;
   @override
   Option<Failure> get failure;
+  @override
+  String get message;
   @override
   LookupList get listData;
   @override

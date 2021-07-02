@@ -30,6 +30,7 @@ dependencies:
   flutter_colorpicker: ^0.4.0
   flutter_country_picker: ^0.1.6
   flutter_datetime_picker: ^1.5.1
+  flutter_easyloading: ^3.0.0
   flutter_facebook_login: ^3.0.0
   flutter_keyboard_visibility: ^4.0.6
   flutter_phone_direct_caller: ^2.0.0
