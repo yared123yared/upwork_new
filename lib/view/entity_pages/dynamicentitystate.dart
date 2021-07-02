@@ -3,6 +3,7 @@ import 'package:complex/common/model/button_state.dart';
 import 'package:complex/common/model/grid_model.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/repositories/user_repository.dart';
+import 'package:complex/domain/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Attendance/presentation/attendance_page.dart';
 import 'package:complex/newentityfeatures/Fee%20plan/presentation/feeplan_listview.dart';
 import 'package:complex/newentityfeatures/Models/common_enum_methods.dart';
@@ -37,6 +38,7 @@ import 'package:complex/newentityfeatures/school/Student%20model/presentation/st
 import 'package:complex/newentityfeatures/school/Teacher%20assignment/presentation/teacherassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Virtual%20room/presentation/virtualroom_listview.dart';
 import 'package:complex/newentityfeatures/vrassignment/presentation/vrassignmentmodel_listview.dart';
+import 'package:complex/view/entity/school/lookup/lookup_navigation_helper.dart';
 import 'package:complex/view/job_pages/job_detail_page.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
 import 'package:complex/view/product_pages/dynamic_category_page.dart';
@@ -747,14 +749,19 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Fee Item',
             tapAction: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (buildContext) => FeeItemFormList(
-                      entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,
-                    ),
-                  ));
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.feeItem(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (buildContext) => FeeItemFormList(
+              //         entitytype: getCurEntity().entitytype,
+              //         entityid: getCurEntity().entityid,
+              //       ),
+              //     ));
             });
         break;
       case DynamicEntityGridState.Rooms:
