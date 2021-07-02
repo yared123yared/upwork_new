@@ -1,4 +1,5 @@
 import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,16 +13,16 @@ import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/blo
     as listbloc;
 import 'package:logger/logger.dart';
 
-class GradeListPage extends StatefulWidget {
+class RoomsListPage extends StatefulWidget {
   final String entityid;
   final String entitytype;
-  GradeListPage({@required this.entitytype, @required this.entityid});
+  RoomsListPage({@required this.entitytype, @required this.entityid});
 
   @override
-  _GradeListPageState createState() => _GradeListPageState();
+  _RoomsListPageState createState() => _RoomsListPageState();
 }
 
-class _GradeListPageState extends State<GradeListPage> {
+class _RoomsListPageState extends State<RoomsListPage> {
   Future<String> _addButtonActions(
       BuildContext context, String entitytype, String entityid) async {
     CustomTextFieldController c = CustomTextFieldController();
@@ -32,7 +33,7 @@ class _GradeListPageState extends State<GradeListPage> {
         content: CustomTextField(
           controller: c,
           autoFocus: true,
-          title: 'Grade',
+          title: 'Rooms',
           validate: Validate.withOption(isRequired: true),
         ),
         actions: [
@@ -60,23 +61,23 @@ class _GradeListPageState extends State<GradeListPage> {
   }
 
   List<ListStateClass> toCommonListState(
-      List<String> listItems, BuildContext context) {
+      List<RoomInfo> listItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: item,
+        title: item.roomName,
         tapAction: () {
           //$$$${UPDATENAVIGATIONOREMPTY}
         },
         deleteAction: () async {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
-            BlocProvider.of<listbloc.StringListBloc>(context).add(
-                listbloc.DeleteItemWithData(
-                    entitytype: widget.entitytype,
-                    entityid: widget.entitytype,
-                    item: item,
-                    fieldname: "feeitemlist"));
+            // BlocProvider.of<listbloc.StringListBloc>(context).add(
+            //     listbloc.DeleteItemWithData(
+            //         entitytype: widget.entitytype,
+            //         entityid: widget.entitytype,
+            //         item: item[],
+            //         fieldname: "feeitemlist"));
           }
         },
       ));
@@ -132,13 +133,13 @@ class _GradeListPageState extends State<GradeListPage> {
       buildWhen: (p, c) => p.listData != c.listData,
       builder: (context, state) {
         return state.listData.maybeMap(
-            grade: (grade) => Scaffold(
+            roomInfoList: (rooms) => Scaffold(
                 appBar: AppBar(
-                  title: Text("Grade"),
+                  title: Text("RoomInfo"),
                   centerTitle: true,
                 ),
-                body: grade.list.isNotEmpty
-                    ? _blocBuilder(context, grade.list)
+                body: rooms.list.isNotEmpty
+                    ? _blocBuilder(context, rooms.list)
                     : Center(child: Text('Empty')),
                 floatingActionButton: FloatingActionButton.extended(
                   onPressed: () async {
@@ -169,7 +170,7 @@ class _GradeListPageState extends State<GradeListPage> {
     );
   }
 
-  Widget _blocBuilder(context, List<String> em) {
+  Widget _blocBuilder(context, List<RoomInfo> em) {
     Logger().i(em.length);
     return CustomScrollView(
       shrinkWrap: true,

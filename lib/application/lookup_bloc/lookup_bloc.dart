@@ -40,8 +40,8 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
                 (l) => state.copyWith(isLoading: false, failure: some(l)),
                 (r) => state.copyWith(isLoading: false, listData: r));
           }, grade: (v) async {
-            Either<Failure, ExamTermInfoList> data =
-                await provider.getExamTermList(serviceID: getListData.entityid);
+            Either<Failure, Grades> data =
+                await provider.getGradeList(serviceID: getListData.entityid);
 
             return data.fold(
                 (l) => state.copyWith(isLoading: false, failure: some(l)),

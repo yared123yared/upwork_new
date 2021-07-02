@@ -2,9 +2,12 @@ import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/offerings/presentation/offerings_listview.dart';
+import 'package:complex/view/entity/school/lookup/examTerm_list_page.dart';
 import 'package:complex/view/entity/school/lookup/fee_item_list_page.dart';
 import 'package:complex/view/entity/school/lookup/grade_list_page.dart';
 import 'package:complex/view/entity/school/lookup/offering_list_page.dart';
+import 'package:complex/view/entity/school/lookup/room_list_page.dart';
+import 'package:complex/view/entity/school/lookup/sessionTerm_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
@@ -33,15 +36,15 @@ class LookupNavigationHelper {
                   entityid: entityID,
                   entitytype: entityType,
                 ),
-            rooms: (rooms) => FeeItemFormList(
+            rooms: (rooms) => RoomsListPage(
                   entityid: entityID,
                   entitytype: entityType,
                 ),
-            examTerm: (examTerm) => FeeItemFormList(
+            examTerm: (examTerm) => ExamTermListPage(
                   entityid: entityID,
                   entitytype: entityType,
                 ),
-            sessionTerm: (sessionTerm) => FeeItemFormList(
+            sessionTerm: (sessionTerm) => SessionTermListPage(
                   entityid: entityID,
                   entitytype: entityType,
                 ),
