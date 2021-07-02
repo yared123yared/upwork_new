@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:complex/newentityfeatures/ecommerce/bloc/cart/cart_bloc.dart';
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

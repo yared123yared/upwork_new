@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
-
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 
 class AppointmentModel {
   String id;
@@ -86,8 +86,9 @@ class AppointmentModel {
       assigned: data['assigned'] ?? false,
       period: data['period'] ?? '',
       homeAddress: data['homeAddress'] ?? '',
-
-      mycartprods: data['mycartprods'] != null ?   orderinfomodel.fromJson(data['mycartprods'])       : null,
+      mycartprods: data['mycartprods'] != null
+          ? orderinfomodel.fromJson(data['mycartprods'])
+          : null,
     );
   }
 
@@ -117,9 +118,7 @@ class AppointmentModel {
       "period": period,
       "homeAddress": homeAddress,
       //"mycartprods": mycartprods,
-      "mycartprods": mycartprods != null
-          ? mycartprods.toJson()
-          : null,
+      "mycartprods": mycartprods != null ? mycartprods.toJson() : null,
     }..removeWhere((key, value) => value == null);
   }
 

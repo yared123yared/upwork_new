@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:complex/utils/utility.dart';
 
 enum ServiceType { School, Trip, Shop }
@@ -782,57 +783,5 @@ class ServiceModel {
     json['uid'] = createdBy;
     json['requirepaymentaptreg'] = requirepaymentaptreg;
     return json;
-  }
-}
-
-class LimitedServiceModel {
-  String address;
-  List<String> phone;
-  String email;
-  String photo1;
-  int ratingCount;
-  int totalRatings;
-  String serviceName;
-  bool hasApt;
-  List<String> serviceType;
-  bool hasAdHocTrips;
-  bool hasEcom;
-  bool hasProductCatalog;
-  String timeInfo;
-  String serviceID;
-
-  LimitedServiceModel({
-    this.serviceID,
-    this.address,
-    this.phone,
-    this.email,
-    this.photo1,
-    this.ratingCount,
-    this.totalRatings,
-    this.serviceName,
-    this.hasApt,
-    this.serviceType,
-    this.hasAdHocTrips,
-    this.hasEcom,
-    this.hasProductCatalog,
-    this.timeInfo,
-  });
-
-  LimitedServiceModel.fromJson(Map json) {
-    serviceID = json['serviceID'] as String;
-    address = json['address'] as String;
-    phone = (json['phone'] as List)?.map((e) => e as String)?.toList();
-    email = json['email'] as String;
-    photo1 = json['photo1'] as String;
-    ratingCount = json['ratingcount'] as int;
-    totalRatings = json['totalratings'] as int;
-    serviceName = json['serviceName'] as String;
-    hasApt = json['hasapt'] as bool;
-    serviceType =
-        (json['servicetype'] as List)?.map((e) => e as String)?.toList();
-    hasAdHocTrips = json['hasadhoctrips'] as bool;
-    hasEcom = json['hasecom'] as bool;
-    hasProductCatalog = json['hasproductcatalog'] as bool;
-    timeInfo = json['timeinfo'] as String;
   }
 }

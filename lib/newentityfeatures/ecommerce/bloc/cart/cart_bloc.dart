@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../models/states/cart_state.dart';

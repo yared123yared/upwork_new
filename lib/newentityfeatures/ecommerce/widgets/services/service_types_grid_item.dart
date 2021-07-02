@@ -1,7 +1,7 @@
 //import 'package:complex/features/channels/bloc/bloc.dart';
 import 'package:complex/newentityfeatures/ecommerce/bloc/cart/cart_bloc.dart';
 import 'package:complex/newentityfeatures/ecommerce/bloc/product/product_bloc.dart';
-import 'package:complex/newentityfeatures/ecommerce/models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/jobs_list_view.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/pets_grid_view.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/products_list_view.dart';

@@ -1,3 +1,4 @@
+import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:complex/newentityfeatures/ecommerce/bloc/product/product_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,8 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
         loading: true,
         offset: 0,
       );
-      final services = await _serviceRepository.getServices(
+      final List<LimitedServiceModel> services =
+          await _serviceRepository.getServices(
         productBloc.state.productSearchInformationConfig,
       );
       yield state.copyWith(
@@ -30,7 +32,8 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
         services: [],
         offset: 0,
       );
-      final services = await _serviceRepository.getServices(
+      final List<LimitedServiceModel> services =
+          await _serviceRepository.getServices(
         productBloc.state.productSearchInformationConfig,
         query: event.query,
       );
