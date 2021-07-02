@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:complex/data/api/failure/failure.dart';
+import 'package:complex/domain/core/failure/failure.dart';
+
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/repo/i_lookup_provider.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/repo/stringlookup/lookup_provider.dart';

@@ -418,11 +418,31 @@ _$_ProductFilterResultModel _$_$_ProductFilterResultModelFromJson(
   return _$_ProductFilterResultModel(
     totalcount: json['totalcount'] as int,
     serviceproviderid: json['serviceproviderid'] as String,
-    docwithdata1: json['docwithdata1'] as List,
-    docwithdata2: json['docwithdata2'] as List,
-    docwithdata3: json['docwithdata3'] as List,
-    docwithdata4: json['docwithdata4'] as List,
-    docwithdata5: json['docwithdata5'] as List,
+    docwithdata1: (json['docwithdata1'] as List)
+        ?.map((e) => e == null
+            ? null
+            : LimitedProductData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    docwithdata2: (json['docwithdata2'] as List)
+        ?.map((e) => e == null
+            ? null
+            : LimitedJobData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    docwithdata3: (json['docwithdata3'] as List)
+        ?.map((e) => e == null
+            ? null
+            : LimitedRealEstateData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    docwithdata4: (json['docwithdata4'] as List)
+        ?.map((e) => e == null
+            ? null
+            : LimitedVehicleData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    docwithdata5: (json['docwithdata5'] as List)
+        ?.map((e) => e == null
+            ? null
+            : LimitedPetData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     pidlist: (json['pidlist'] as List)?.map((e) => e as String)?.toList(),
     diminfo: (json['diminfo'] as List)
         ?.map((e) =>
@@ -449,11 +469,16 @@ Map<String, dynamic> _$_$_ProductFilterResultModelToJson(
 
   writeNotNull('totalcount', instance.totalcount);
   writeNotNull('serviceproviderid', instance.serviceproviderid);
-  writeNotNull('docwithdata1', instance.docwithdata1);
-  writeNotNull('docwithdata2', instance.docwithdata2);
-  writeNotNull('docwithdata3', instance.docwithdata3);
-  writeNotNull('docwithdata4', instance.docwithdata4);
-  writeNotNull('docwithdata5', instance.docwithdata5);
+  writeNotNull(
+      'docwithdata1', instance.docwithdata1?.map((e) => e?.toJson())?.toList());
+  writeNotNull(
+      'docwithdata2', instance.docwithdata2?.map((e) => e?.toJson())?.toList());
+  writeNotNull(
+      'docwithdata3', instance.docwithdata3?.map((e) => e?.toJson())?.toList());
+  writeNotNull(
+      'docwithdata4', instance.docwithdata4?.map((e) => e?.toJson())?.toList());
+  writeNotNull(
+      'docwithdata5', instance.docwithdata5?.map((e) => e?.toJson())?.toList());
   writeNotNull('pidlist', instance.pidlist);
   writeNotNull('diminfo', instance.diminfo?.map((e) => e?.toJson())?.toList());
   writeNotNull('catinfo', instance.catinfo?.map((e) => e?.toJson())?.toList());
@@ -533,7 +558,9 @@ _$_ExplorePageAd _$_$_ExplorePageAdFromJson(Map<String, dynamic> json) {
     lm: json['lm'] == null
         ? null
         : LimitedServiceModel.fromJson(json['lm'] as Map<String, dynamic>),
-    lpd: json['lpd'],
+    lpd: json['lpd'] == null
+        ? null
+        : LimitedProductData.fromJson(json['lpd'] as Map<String, dynamic>),
   );
 }
 
@@ -549,7 +576,7 @@ Map<String, dynamic> _$_$_ExplorePageAdToJson(_$_ExplorePageAd instance) {
   writeNotNull('imagepath', instance.imagepath);
   writeNotNull('message', instance.message);
   writeNotNull('lm', instance.lm?.toJson());
-  writeNotNull('lpd', instance.lpd);
+  writeNotNull('lpd', instance.lpd?.toJson());
   return val;
 }
 

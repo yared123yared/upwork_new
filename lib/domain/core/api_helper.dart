@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/domain/core/failure/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-
-import 'failure/failure.dart';
 
 class ApiHelper {
   final FirebaseFirestore _firestoreInstance = FirebaseFirestore.instance;

@@ -17,10 +17,10 @@ _$LimitedPetData _$_$LimitedPetDataFromJson(Map<String, dynamic> json) {
     age: json['age'] as int,
     tileimage: json['tileimage'] as String,
     price: (json['price'] as num)?.toDouble(),
-    postedon: json['postedon'] == null
+    postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
+    addressarea: json['addressarea'] == null
         ? null
-        : DateTime.parse(json['postedon'] as String),
-    addressarea: json['addressarea'],
+        : Addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
     serviceproviderid: json['serviceproviderid'] as String,
   );
 }
@@ -43,8 +43,8 @@ Map<String, dynamic> _$_$LimitedPetDataToJson(_$LimitedPetData instance) {
   writeNotNull('age', instance.age);
   writeNotNull('tileimage', instance.tileimage);
   writeNotNull('price', instance.price);
-  writeNotNull('postedon', instance.postedon?.toIso8601String());
-  writeNotNull('addressarea', instance.addressarea);
+  writeNotNull('postedon', JsonHelper.toJsonTimeStamp(instance.postedon));
+  writeNotNull('addressarea', instance.addressarea?.toJson());
   writeNotNull('serviceproviderid', instance.serviceproviderid);
   return val;
 }
@@ -135,10 +135,10 @@ _$LimitedVehicleData _$_$LimitedVehicleDataFromJson(Map<String, dynamic> json) {
     milage: json['milage'] as int,
     price: (json['price'] as num)?.toDouble(),
     tileimage: json['tileimage'] as String,
-    postedon: json['postedon'] == null
+    postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
+    addressarea: json['addressarea'] == null
         ? null
-        : DateTime.parse(json['postedon'] as String),
-    addressarea: json['addressarea'],
+        : Addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
     serviceproviderid: json['serviceproviderid'] as String,
   );
 }
@@ -162,8 +162,8 @@ Map<String, dynamic> _$_$LimitedVehicleDataToJson(
   writeNotNull('milage', instance.milage);
   writeNotNull('price', instance.price);
   writeNotNull('tileimage', instance.tileimage);
-  writeNotNull('postedon', instance.postedon?.toIso8601String());
-  writeNotNull('addressarea', instance.addressarea);
+  writeNotNull('postedon', JsonHelper.toJsonTimeStamp(instance.postedon));
+  writeNotNull('addressarea', instance.addressarea?.toJson());
   writeNotNull('serviceproviderid', instance.serviceproviderid);
   return val;
 }
@@ -180,10 +180,10 @@ _$LimitedRealEstateData _$_$LimitedRealEstateDataFromJson(
     sqrfootage: json['sqrfootage'] as int,
     floorNumber: json['floorNumber'] as int,
     price: (json['price'] as num)?.toDouble(),
-    addressarea: json['addressarea'],
-    postedon: json['postedon'] == null
+    addressarea: json['addressarea'] == null
         ? null
-        : DateTime.parse(json['postedon'] as String),
+        : Addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
+    postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
     tileimage: json['tileimage'] as String,
     serviceproviderid: json['serviceproviderid'] as String,
   );
@@ -208,8 +208,8 @@ Map<String, dynamic> _$_$LimitedRealEstateDataToJson(
   writeNotNull('sqrfootage', instance.sqrfootage);
   writeNotNull('floorNumber', instance.floorNumber);
   writeNotNull('price', instance.price);
-  writeNotNull('addressarea', instance.addressarea);
-  writeNotNull('postedon', instance.postedon?.toIso8601String());
+  writeNotNull('addressarea', instance.addressarea?.toJson());
+  writeNotNull('postedon', JsonHelper.toJsonTimeStamp(instance.postedon));
   writeNotNull('tileimage', instance.tileimage);
   writeNotNull('serviceproviderid', instance.serviceproviderid);
   return val;
@@ -222,11 +222,11 @@ _$LimitedJobData _$_$LimitedJobDataFromJson(Map<String, dynamic> json) {
     companyname: json['companyname'] as String,
     companyicon: json['companyicon'] as String,
     salaryrange: json['salaryrange'] as String,
-    addressarea: json['addressarea'],
-    jobtype: json['jobtype'] as String,
-    postedon: json['postedon'] == null
+    addressarea: json['addressarea'] == null
         ? null
-        : DateTime.parse(json['postedon'] as String),
+        : Addressmodel.fromJson(json['addressarea'] as Map<String, dynamic>),
+    jobtype: json['jobtype'] as String,
+    postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
   );
 }
 
@@ -244,8 +244,8 @@ Map<String, dynamic> _$_$LimitedJobDataToJson(_$LimitedJobData instance) {
   writeNotNull('companyname', instance.companyname);
   writeNotNull('companyicon', instance.companyicon);
   writeNotNull('salaryrange', instance.salaryrange);
-  writeNotNull('addressarea', instance.addressarea);
+  writeNotNull('addressarea', instance.addressarea?.toJson());
   writeNotNull('jobtype', instance.jobtype);
-  writeNotNull('postedon', instance.postedon?.toIso8601String());
+  writeNotNull('postedon', JsonHelper.toJsonTimeStamp(instance.postedon));
   return val;
 }

@@ -552,6 +552,8 @@ abstract class $LimitedPetDataCopyWith<$Res> {
           Addressmodel addressarea,
       @JsonKey(name: 'serviceproviderid')
           String serviceproviderid});
+
+  $AddressmodelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -598,6 +600,16 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
           ? _value.serviceproviderid
           : serviceproviderid as String,
     ));
+  }
+
+  @override
+  $AddressmodelCopyWith<$Res> get addressarea {
+    if (_value.addressarea == null) {
+      return null;
+    }
+    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
+      return _then(_value.copyWith(addressarea: value));
+    });
   }
 }
 
@@ -2123,6 +2135,8 @@ abstract class $LimitedVehicleDataCopyWith<$Res> {
           Addressmodel addressarea,
       @JsonKey(name: 'serviceproviderid')
           String serviceproviderid});
+
+  $AddressmodelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -2170,6 +2184,16 @@ class _$LimitedVehicleDataCopyWithImpl<$Res>
           ? _value.serviceproviderid
           : serviceproviderid as String,
     ));
+  }
+
+  @override
+  $AddressmodelCopyWith<$Res> get addressarea {
+    if (_value.addressarea == null) {
+      return null;
+    }
+    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
+      return _then(_value.copyWith(addressarea: value));
+    });
   }
 }
 
@@ -2702,6 +2726,8 @@ abstract class $LimitedRealEstateDataCopyWith<$Res> {
           String tileimage,
       @JsonKey(name: 'serviceproviderid')
           String serviceproviderid});
+
+  $AddressmodelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -2757,6 +2783,16 @@ class _$LimitedRealEstateDataCopyWithImpl<$Res>
           ? _value.serviceproviderid
           : serviceproviderid as String,
     ));
+  }
+
+  @override
+  $AddressmodelCopyWith<$Res> get addressarea {
+    if (_value.addressarea == null) {
+      return null;
+    }
+    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
+      return _then(_value.copyWith(addressarea: value));
+    });
   }
 }
 
@@ -3322,6 +3358,8 @@ abstract class $LimitedJobDataCopyWith<$Res> {
           String jobtype,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon});
+
+  $AddressmodelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -3360,6 +3398,16 @@ class _$LimitedJobDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
       jobtype: jobtype == freezed ? _value.jobtype : jobtype as String,
       postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
     ));
+  }
+
+  @override
+  $AddressmodelCopyWith<$Res> get addressarea {
+    if (_value.addressarea == null) {
+      return null;
+    }
+    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
+      return _then(_value.copyWith(addressarea: value));
+    });
   }
 }
 

@@ -1,4 +1,4 @@
-import 'package:complex/data/api/failure/failure.dart';
+import 'package:complex/domain/core/failure/failure.dart';
 import 'package:flutter/material.dart';
 
 class ErrorDialogue extends StatelessWidget {
