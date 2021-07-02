@@ -2,8 +2,12 @@ import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/offerings/presentation/offerings_listview.dart';
+import 'package:complex/view/entity/school/lookup/fee_item_list_page.dart';
+import 'package:complex/view/entity/school/lookup/grade_list_page.dart';
+import 'package:complex/view/entity/school/lookup/offering_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 
 class LookupNavigationHelper {
   LookupNavigationHelper._();
@@ -14,17 +18,18 @@ class LookupNavigationHelper {
       @required String entityID}) {
     // Looku
     // Get.to(page);
+    Logger().i(type.toString());
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => type.map(
-            feeItem: (feeItem) => FeeItemFormList(
+            feeItem: (feeItem) => FeeItemListPage(
                   entityid: entityID,
                   entitytype: entityType,
                 ),
-            offering: (offering) => OfferingsFormList(
+            offering: (offering) => OfferingListPage(
                   entityid: entityID,
                   entitytype: entityType,
                 ),
-            grade: (grade) => FeeItemFormList(
+            grade: (grade) => GradeListPage(
                   entityid: entityID,
                   entitytype: entityType,
                 ),

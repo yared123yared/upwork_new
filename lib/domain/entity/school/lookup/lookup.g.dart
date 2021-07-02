@@ -203,7 +203,7 @@ Map<String, dynamic> _$_$RoomInfoListToJson(_$RoomInfoList instance) {
 
 _$ExamTermInfoList _$_$ExamTermInfoListFromJson(Map<String, dynamic> json) {
   return _$ExamTermInfoList(
-    list: (json['examTermInfo'] as List)
+    list: (json['examterminfo'] as List)
         ?.map((e) =>
             e == null ? null : ExamTermInfo.fromJson(e as Map<String, dynamic>))
         ?.toList(),
@@ -220,7 +220,7 @@ Map<String, dynamic> _$_$ExamTermInfoListToJson(_$ExamTermInfoList instance) {
   }
 
   writeNotNull(
-      'examTermInfo', instance.list?.map((e) => e?.toJson())?.toList());
+      'examterminfo', instance.list?.map((e) => e?.toJson())?.toList());
   return val;
 }
 
