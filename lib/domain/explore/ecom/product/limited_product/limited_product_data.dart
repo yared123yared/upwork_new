@@ -123,3 +123,35 @@ abstract class LimitedData with _$LimitedData {
         job: (v) => Get.to(() => JobDetailPage(docId: "MkWAEblEkuuEnIrNpGlE")));
   }
 }
+
+@freezed
+abstract class LimitedDataList with _$LimitedDataList {
+  const factory LimitedDataList.pet({@required List<LimitedPetData> pets}) =
+      LimitedPetList;
+
+  const factory LimitedDataList.vehicle(
+      {@required List<LimitedVehicleData> vehicles}) = LimitedVehicleList;
+
+  const factory LimitedDataList.realEstate(
+          {@required List<LimitedRealEstateData> properties}) =
+      LimitedRealEstateList;
+
+  const factory LimitedDataList.job({@required List<LimitedJobData> jobs}) =
+      LimitedJobList;
+  const factory LimitedDataList.product(
+      {@required List<LimitedProductData> products}) = LimitedProductList;
+
+  const factory LimitedDataList.empty() = LimitedEmptyList;
+
+  factory LimitedDataList.fromJson(Map<String, dynamic> json) =>
+      _$LimitedDataListFromJson(json);
+}
+
+@freezed
+abstract class LimitedDataType with _$LimitedDataType {
+  const factory LimitedDataType.pet() = _PetType;
+  const factory LimitedDataType.vehicle() = _VehicleType;
+  const factory LimitedDataType.realEstate() = _RealEstateType;
+  const factory LimitedDataType.job() = _JobType;
+  const factory LimitedDataType.product() = _ProductType;
+}

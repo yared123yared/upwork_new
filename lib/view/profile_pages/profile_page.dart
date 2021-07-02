@@ -211,6 +211,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       "There are no Complex/Service you registered in",
                                     ),
                                   ),
+                                buildSelfHeader(),
                                 if (complexNames.isNotEmpty)
                                   buildComplexesListHeaders(),
                                 if (complexNames.isNotEmpty)
@@ -305,6 +306,69 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           )
           .toList(),
+    );
+  }
+
+  Column buildSelfHeader() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Self",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                    color: Colors.grey[600],
+                    fontSize: 18),
+              ),
+              Text(
+                "Primary",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[600],
+                    fontSize: 18),
+              ),
+            ],
+          ),
+        ),
+        ListTile(
+          title: Text('Classified'),
+          // onTap: () {
+          //   print("${_userRepository.getUser().userID} == ");
+          //   _complexProvider.getComplexDetail(id: e.id).then(
+          //     (value) {
+          //       if (value != null) {
+          //         if (_userRepository.getUser().userID == value.createdBy) {
+          //           Navigator.push(
+          //             context,
+          //             NextPageRoute(
+          //               CreateComplexPage(
+          //                 complexModel: ComplexModel(createdBy: e.id),
+          //                 update: true,
+          //               ),
+          //             ),
+          //           );
+          //         } else {
+          //           Utility.showSnackBar(
+          //             key: _key,
+          //             message: "Just complex creator can modify it",
+          //           );
+          //         }
+          //       }
+          //     },
+          //   );
+          // },
+          trailing: Checkbox(
+            activeColor: ColorConstants.primaryColor,
+            value: true,
+            onChanged: (bool value) {},
+          ),
+        )
+      ],
     );
   }
 

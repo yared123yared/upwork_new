@@ -1,4 +1,5 @@
 import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -113,6 +114,11 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
 
   @override
   Widget build(BuildContext context) {
+    // final LookupBloc bloc = BlocProvider.of<LookupBloc>(context)
+    //   ..add(GetListData(
+    //       entityid: widget.entityid,
+    //       entitytype: widget.entitytype,
+    //       lookupType: LookupType.feeItem()));
     return BlocConsumer<LookupBloc, LookupState>(
       listener: (context, state) {
         state.failure.fold(() {
@@ -158,7 +164,12 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
                   icon: Icon(Icons.add),
                   label: Text("Add New"),
                 )),
-            orElse: () => SizedBox.shrink());
+            orElse: () => Scaffold(
+                  appBar: AppBar(
+                    title: Text("FeeItems"),
+                    centerTitle: true,
+                  ),
+                ));
       },
     );
   }

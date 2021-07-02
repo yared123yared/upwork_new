@@ -18,7 +18,7 @@ class LookupNavigationHelper {
       {@required LookupType type,
       @required BuildContext context,
       @required String entityType,
-      @required String entityID}) {
+      @required String entityID}) async {
     // Looku
     // Get.to(page);
     Logger().i(type.toString());
@@ -56,6 +56,8 @@ class LookupNavigationHelper {
                   entityid: entityID,
                   entitytype: entityType,
                 ))));
+
+    await Future.delayed(Duration(milliseconds: 100));
 
     BlocProvider.of<LookupBloc>(context).add(GetListData(
         entityid: entityID, entitytype: entityType, lookupType: type));
