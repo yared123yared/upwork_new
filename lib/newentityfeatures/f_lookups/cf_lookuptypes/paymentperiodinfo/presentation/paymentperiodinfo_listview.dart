@@ -1,5 +1,5 @@
 import "package:asuka/asuka.dart" as asuka;
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';

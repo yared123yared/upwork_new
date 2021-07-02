@@ -3,7 +3,7 @@ import 'package:complex/common/model/button_state.dart';
 import 'package:complex/common/model/grid_model.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/repositories/user_repository.dart';
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Attendance/presentation/attendance_page.dart';
 import 'package:complex/newentityfeatures/Fee%20plan/presentation/feeplan_listview.dart';
 import 'package:complex/newentityfeatures/Models/common_enum_methods.dart';

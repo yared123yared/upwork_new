@@ -1,4 +1,4 @@
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 

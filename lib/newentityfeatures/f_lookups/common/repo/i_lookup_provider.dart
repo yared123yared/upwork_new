@@ -1,5 +1,5 @@
 import 'package:complex/data/api/failure/failure.dart';
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 

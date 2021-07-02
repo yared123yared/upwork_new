@@ -1,4 +1,4 @@
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/offering_schedule_model.dart';
 
 import 'package:complex/newentityfeatures/commonrepo/lookup_repository.dart';

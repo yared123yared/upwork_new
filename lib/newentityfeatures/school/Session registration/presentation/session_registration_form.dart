@@ -1,5 +1,5 @@
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:complex/newentityfeatures/Models/user_registration_model.dart';
 import 'package:complex/newentityfeatures/Models/user_session_registration.dart';

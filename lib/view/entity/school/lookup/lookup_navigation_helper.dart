@@ -1,5 +1,5 @@
 import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/offerings/presentation/offerings_listview.dart';
 import 'package:flutter/material.dart';

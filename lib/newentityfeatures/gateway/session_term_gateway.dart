@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:complex/newentityfeatures/Models/parentinteraction_model.dart';

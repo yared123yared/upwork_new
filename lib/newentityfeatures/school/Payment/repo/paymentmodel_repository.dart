@@ -1,4 +1,4 @@
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

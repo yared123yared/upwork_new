@@ -1,4 +1,4 @@
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/lookup_repository.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,4 +1,4 @@
-import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/view/explore_tab/owner_view/owner_product_card.dart';
 import 'package:flutter/material.dart';
 

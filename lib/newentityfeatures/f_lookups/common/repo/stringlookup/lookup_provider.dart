@@ -1,6 +1,6 @@
 import 'package:complex/data/api/api_helper.dart';
 import 'package:complex/data/api/failure/failure.dart';
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/exam_term/presentation/examterminfo_listview.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/repo/i_lookup_provider.dart';
 import 'package:dartz/dartz.dart';

@@ -1,4 +1,4 @@
-import 'package:complex/domain/lookup/lookup.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 
 class PaymentPeriodInfoRepositoryReturnData {
   List<PaymentPeriodInfo> itemlist;
