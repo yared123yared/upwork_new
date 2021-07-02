@@ -10,28 +10,36 @@ class VehicleRepository {
     @required String serviceId,
     @required String docId,
   }) async {
-    return await FirebaseFirestore.instance
-        .doc(
-          "SERVICEPROVIDERINFO/$serviceId/REGISTEREDVEHICLES/$docId",
-        )
-        .get()
-        .then((x) {
-      print(x.data);
-      return ServiceVehicleModel.fromData(x.data());
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc(
+            "SERVICEPROVIDERINFO/$serviceId/REGISTEREDVEHICLES/$docId",
+          )
+          .get()
+          .then((x) {
+        print(x.data);
+        return ServiceVehicleModel.fromData(x.data());
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   static Future<List<ServiceVehicleModel>> getVehicleList({
     @required String serviceId,
   }) async {
-    return await FirebaseFirestore.instance
-        .collection("SERVICEPROVIDERINFO/$serviceId/REGISTEREDVEHICLES")
-        .get(GetOptions(source: Source.server))
-        .then((x) {
-      return ServiceVehicleModel.listFromData(
-        x.docs.map((d) => d.data()).toList(),
-      );
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection("SERVICEPROVIDERINFO/$serviceId/REGISTEREDVEHICLES")
+          .get(GetOptions(source: Source.server))
+          .then((x) {
+        return ServiceVehicleModel.listFromData(
+          x.docs.map((d) => d.data()).toList(),
+        );
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   static Future addNewVehicle({

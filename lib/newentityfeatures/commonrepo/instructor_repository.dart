@@ -12,14 +12,19 @@ class InstructorRepository {
     @required String serviceID,
     @required String staffID,
   }) async {
-    _instructorData = _instructorData ?? {};
-    _instructorData[serviceID] = _instructorData[serviceID] ?? {};
-    _instructorData[serviceID][staffID] = _instructorData[serviceID][staffID] ??
-        await OfferingsVrManagementGateway.getInstructorScheduleData(
-          serviceID,
-          staffID,
-        );
-    return _instructorData[serviceID][staffID];
+    try {
+      _instructorData = _instructorData ?? {};
+      _instructorData[serviceID] = _instructorData[serviceID] ?? {};
+      _instructorData[serviceID][staffID] =
+          _instructorData[serviceID][staffID] ??
+              await OfferingsVrManagementGateway.getInstructorScheduleData(
+                serviceID,
+                staffID,
+              );
+      return _instructorData[serviceID][staffID];
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<AttendanceModel> getAttendance({
@@ -30,26 +35,30 @@ class InstructorRepository {
     @required DateTime dateTime,
     @required String kind,
   }) async {
-    AttendanceModel att;
-    if (attendanceType == Attendancetype.Ofr) {
-      att = await OfferingsVrManagementGateway.getAttendanceOFR(
-        offeringname: name,
-        sessionTerm: sessionTerm,
-        dateTime: dateTime,
-        kind: kind,
-        serviceID: serviceID,
-      );
-    } else {
-      att = await OfferingsVrManagementGateway.getAttendanceVR(
-        serviceID: serviceID,
-        dateTime: dateTime,
-        sessionTerm: sessionTerm,
-        kind: kind,
-        virtualroomname: name,
-      );
-    }
+    try {
+      AttendanceModel att;
+      if (attendanceType == Attendancetype.Ofr) {
+        att = await OfferingsVrManagementGateway.getAttendanceOFR(
+          offeringname: name,
+          sessionTerm: sessionTerm,
+          dateTime: dateTime,
+          kind: kind,
+          serviceID: serviceID,
+        );
+      } else {
+        att = await OfferingsVrManagementGateway.getAttendanceVR(
+          serviceID: serviceID,
+          dateTime: dateTime,
+          sessionTerm: sessionTerm,
+          kind: kind,
+          virtualroomname: name,
+        );
+      }
 
-    return att;
+      return att;
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future submitAttendance(
@@ -58,18 +67,22 @@ class InstructorRepository {
       @required String name,
       @required String sessionTerm,
       @required String serviceID}) async {
-    if (attendanceType == Attendancetype.Vr) {
-      await OfferingsVrManagementGateway.submitAttendanceVirtualRoom(
-          attendanceModel: attendanceModel,
-          virtualroomname: name,
-          serviceID: serviceID,
-          sessionTermName: sessionTerm);
-    } else {
-      await OfferingsVrManagementGateway.submitAttendanceOfr(
-          attendanceModel: attendanceModel,
-          offeringname: name,
-          serviceID: serviceID,
-          sessionTermName: sessionTerm);
+    try {
+      if (attendanceType == Attendancetype.Vr) {
+        await OfferingsVrManagementGateway.submitAttendanceVirtualRoom(
+            attendanceModel: attendanceModel,
+            virtualroomname: name,
+            serviceID: serviceID,
+            sessionTermName: sessionTerm);
+      } else {
+        await OfferingsVrManagementGateway.submitAttendanceOfr(
+            attendanceModel: attendanceModel,
+            offeringname: name,
+            serviceID: serviceID,
+            sessionTermName: sessionTerm);
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }

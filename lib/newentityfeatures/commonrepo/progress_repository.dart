@@ -14,16 +14,20 @@ class ProgressRepository {
     @required String sessionTerm,
     @required String kind,
   }) async {
-    DateTime now = new DateTime.now();
-    DateTime date = new DateTime(now.year, now.month, now.day);
+    try {
+      DateTime now = new DateTime.now();
+      DateTime date = new DateTime(now.year, now.month, now.day);
 
-    _progressList[serviceID][sessionTerm][virtualRoom][kind] =
-        await ProgressGateway.getProgressVR(
-            virtualroomname: virtualRoom,
-            sessionTerm: sessionTerm,
-            serviceID: serviceID,
-            dateTime: date,
-            kind: kind);
+      _progressList[serviceID][sessionTerm][virtualRoom][kind] =
+          await ProgressGateway.getProgressVR(
+              virtualroomname: virtualRoom,
+              sessionTerm: sessionTerm,
+              serviceID: serviceID,
+              dateTime: date,
+              kind: kind);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> setProgressOFR({
@@ -32,15 +36,19 @@ class ProgressRepository {
     @required String sessionTerm,
     @required String kind,
   }) async {
-    DateTime now = new DateTime.now();
-    DateTime date = new DateTime(now.year, now.month, now.day);
-    _progressList[serviceID][sessionTerm][offeringname][kind] =
-        await ProgressGateway.getProgressOFR(
-            offeringname: offeringname,
-            sessionTerm: sessionTerm,
-            serviceID: serviceID,
-            dateTime: date,
-            kind: kind);
+    try {
+      DateTime now = new DateTime.now();
+      DateTime date = new DateTime(now.year, now.month, now.day);
+      _progressList[serviceID][sessionTerm][offeringname][kind] =
+          await ProgressGateway.getProgressOFR(
+              offeringname: offeringname,
+              sessionTerm: sessionTerm,
+              serviceID: serviceID,
+              dateTime: date,
+              kind: kind);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<ProgressModel> getProgressVR({
@@ -49,18 +57,23 @@ class ProgressRepository {
     @required String sessionTerm,
     @required String kind,
   }) async {
-    _progressList[serviceID] = {};
-    _progressList[serviceID][sessionTerm] = {};
-    _progressList[serviceID][sessionTerm][virtualRoomName] = {};
-    if (_progressList[serviceID][sessionTerm][virtualRoomName][kind] == null) {
-      await setProgressVR(
-        serviceID: serviceID,
-        virtualRoom: virtualRoomName,
-        sessionTerm: sessionTerm,
-        kind: kind,
-      );
+    try {
+      _progressList[serviceID] = {};
+      _progressList[serviceID][sessionTerm] = {};
+      _progressList[serviceID][sessionTerm][virtualRoomName] = {};
+      if (_progressList[serviceID][sessionTerm][virtualRoomName][kind] ==
+          null) {
+        await setProgressVR(
+          serviceID: serviceID,
+          virtualRoom: virtualRoomName,
+          sessionTerm: sessionTerm,
+          kind: kind,
+        );
+      }
+      return _progressList[serviceID][sessionTerm][virtualRoomName][kind];
+    } catch (e) {
+      print(e);
     }
-    return _progressList[serviceID][sessionTerm][virtualRoomName][kind];
   }
 
   Future<ProgressModel> getProgressIndependentOfr({
@@ -69,19 +82,23 @@ class ProgressRepository {
     @required String sessionTerm,
     @required String kind,
   }) async {
-    _progressList[serviceID] = {};
-    _progressList[serviceID][sessionTerm] = {};
-    _progressList[serviceID][sessionTerm][offeringname] = {};
+    try {
+      _progressList[serviceID] = {};
+      _progressList[serviceID][sessionTerm] = {};
+      _progressList[serviceID][sessionTerm][offeringname] = {};
 
-    if (_progressList[serviceID][sessionTerm][offeringname][kind] == null) {
-      await setProgressOFR(
-        serviceID: serviceID,
-        offeringname: offeringname,
-        sessionTerm: sessionTerm,
-        kind: kind,
-      );
+      if (_progressList[serviceID][sessionTerm][offeringname][kind] == null) {
+        await setProgressOFR(
+          serviceID: serviceID,
+          offeringname: offeringname,
+          sessionTerm: sessionTerm,
+          kind: kind,
+        );
+      }
+      return _progressList[serviceID][sessionTerm][offeringname][kind];
+    } catch (e) {
+      print(e);
     }
-    return _progressList[serviceID][sessionTerm][offeringname][kind];
   }
 
   Future<void> submitProgressVirtualRoom(
@@ -89,16 +106,20 @@ class ProgressRepository {
       @required String virtualroomname,
       @required String sessionTermName,
       @required String serviceID}) async {
-    await ProgressGateway.submitProgressVirtualRoom(
-        progressModel: progressModel,
-        virtualroomname: virtualroomname,
-        sessionTermName: sessionTermName,
-        serviceID: serviceID);
-    await setProgressVR(
-        serviceID: serviceID,
-        virtualRoom: virtualroomname,
-        sessionTerm: sessionTermName,
-        kind: progressModel.kind);
+    try {
+      await ProgressGateway.submitProgressVirtualRoom(
+          progressModel: progressModel,
+          virtualroomname: virtualroomname,
+          sessionTermName: sessionTermName,
+          serviceID: serviceID);
+      await setProgressVR(
+          serviceID: serviceID,
+          virtualRoom: virtualroomname,
+          sessionTerm: sessionTermName,
+          kind: progressModel.kind);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> submitProgressIndependentOffering(
@@ -106,15 +127,19 @@ class ProgressRepository {
       @required String offeringname,
       @required String sessionTermName,
       @required String serviceID}) async {
-    await ProgressGateway.submitProgressOfr(
-        progressModel: progressModel,
-        offeringname: offeringname,
-        sessionTermName: sessionTermName,
-        serviceID: serviceID);
-    await setProgressOFR(
-        serviceID: serviceID,
-        offeringname: offeringname,
-        sessionTerm: sessionTermName,
-        kind: progressModel.kind);
+    try {
+      await ProgressGateway.submitProgressOfr(
+          progressModel: progressModel,
+          offeringname: offeringname,
+          sessionTermName: sessionTermName,
+          serviceID: serviceID);
+      await setProgressOFR(
+          serviceID: serviceID,
+          offeringname: offeringname,
+          sessionTerm: sessionTermName,
+          kind: progressModel.kind);
+    } catch (e) {
+      print(e);
+    }
   }
 }
