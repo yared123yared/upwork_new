@@ -3,7 +3,7 @@ import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/main.dart';
-import 'package:complex/newentityfeatures/ecommerce/views/main.dart';
+import 'package:complex/newentityfeatures/ecommerce/views/ecommerce_scren.dart';
 import 'package:complex/common/bottom_bar/persistent-tab-view.dart';
 import 'package:complex/utils/log_print.dart';
 import 'package:complex/utils/notification_helper.dart';

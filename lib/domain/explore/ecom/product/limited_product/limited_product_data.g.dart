@@ -249,3 +249,132 @@ Map<String, dynamic> _$_$LimitedJobDataToJson(_$LimitedJobData instance) {
   writeNotNull('postedon', JsonHelper.toJsonTimeStamp(instance.postedon));
   return val;
 }
+
+_$LimitedPetList _$_$LimitedPetListFromJson(Map<String, dynamic> json) {
+  return _$LimitedPetList(
+    pets: (json['pets'] as List)
+        ?.map((e) => e == null
+            ? null
+            : LimitedPetData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
+}
+
+Map<String, dynamic> _$_$LimitedPetListToJson(_$LimitedPetList instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('pets', instance.pets?.map((e) => e?.toJson())?.toList());
+  return val;
+}
+
+_$LimitedVehicleList _$_$LimitedVehicleListFromJson(Map<String, dynamic> json) {
+  return _$LimitedVehicleList(
+    vehicles: (json['vehicles'] as List)
+        ?.map((e) => e == null
+            ? null
+            : LimitedVehicleData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
+}
+
+Map<String, dynamic> _$_$LimitedVehicleListToJson(
+    _$LimitedVehicleList instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(
+      'vehicles', instance.vehicles?.map((e) => e?.toJson())?.toList());
+  return val;
+}
+
+_$LimitedRealEstateList _$_$LimitedRealEstateListFromJson(
+    Map<String, dynamic> json) {
+  return _$LimitedRealEstateList(
+    properties: (json['properties'] as List)
+        ?.map((e) => e == null
+            ? null
+            : LimitedRealEstateData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
+}
+
+Map<String, dynamic> _$_$LimitedRealEstateListToJson(
+    _$LimitedRealEstateList instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(
+      'properties', instance.properties?.map((e) => e?.toJson())?.toList());
+  return val;
+}
+
+_$LimitedJobList _$_$LimitedJobListFromJson(Map<String, dynamic> json) {
+  return _$LimitedJobList(
+    jobs: (json['jobs'] as List)
+        ?.map((e) => e == null
+            ? null
+            : LimitedJobData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
+}
+
+Map<String, dynamic> _$_$LimitedJobListToJson(_$LimitedJobList instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('jobs', instance.jobs?.map((e) => e?.toJson())?.toList());
+  return val;
+}
+
+_$LimitedProductList _$_$LimitedProductListFromJson(Map<String, dynamic> json) {
+  return _$LimitedProductList(
+    products: (json['products'] as List)
+        ?.map((e) => e == null
+            ? null
+            : LimitedProductData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
+}
+
+Map<String, dynamic> _$_$LimitedProductListToJson(
+    _$LimitedProductList instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(
+      'products', instance.products?.map((e) => e?.toJson())?.toList());
+  return val;
+}
+
+_$LimitedEmptyList _$_$LimitedEmptyListFromJson(Map<String, dynamic> json) {
+  return _$LimitedEmptyList();
+}
+
+Map<String, dynamic> _$_$LimitedEmptyListToJson(_$LimitedEmptyList instance) =>
+    <String, dynamic>{};

@@ -16,6 +16,10 @@ class _EntityPage extends State<EntityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Entity"),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: EntityPageItems(
           entityRoleState: UiEntityPageStateList.getroleToFeatureMap(),
