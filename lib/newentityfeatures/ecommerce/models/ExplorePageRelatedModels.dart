@@ -28,6 +28,7 @@ abstract class DimData with _$DimData {
 //require keysetting
 }
 
+
 @freezed
 abstract class DimItem with _$DimItem {
   factory DimItem({

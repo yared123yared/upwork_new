@@ -39,6 +39,7 @@ import 'package:complex/newentityfeatures/ecommerce-admin/bloc/store-product/sto
     as E3_StoreProductBloc;
 
 import 'newentityfeatures/commonrepo/complex_repository.dart';
+import 'newentityfeatures/commonrepo/genericdbmethods_repository.dart';
 import 'newentityfeatures/commonrepo/school_repository.dart';
 
 void main() {
@@ -46,6 +47,7 @@ void main() {
   Firebase.initializeApp().then((value) {
     Get.lazyPut(() => NewSchoolRepository());
     Get.lazyPut(() => NewComplexRepository());
+    Get.lazyPut(() => GenericDBRepository());
     var instance = FirebaseMessaging();
     instance.configure(onLaunch: onLaunch);
     // FirebaseMessaging.onBackgroundMessage(onLaunch);
@@ -138,9 +140,12 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
           ),
           debugShowCheckedModeBanner: false,
           home: SplashPage(),
+          /*
           localeResolutionCallback: (locale, _) {
             return locale;
           },
+
+           */
         ),
       ),
     );
