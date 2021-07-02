@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:complex/view/job_pages/job_detail_page.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
@@ -9,6 +10,13 @@ import 'package:get/route_manager.dart';
 
 part 'limited_product_data.freezed.dart';
 part 'limited_product_data.g.dart';
+
+class JsonHelper {
+  static DateTime fromJsonTimeStamp(Timestamp val) =>
+      DateTime.fromMillisecondsSinceEpoch(val.millisecondsSinceEpoch);
+  static Timestamp toJsonTimeStamp(DateTime time) =>
+      Timestamp.fromMillisecondsSinceEpoch(time.millisecondsSinceEpoch);
+}
 
 @freezed
 abstract class LimitedData with _$LimitedData {
