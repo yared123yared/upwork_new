@@ -1,4 +1,5 @@
-import 'package:complex/data/models/response/product_models/property_model.dart';
+import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
 
 class JobModel {
   String docid;
@@ -16,7 +17,7 @@ class JobModel {
   bool arefreshersallowed;
   int minyearexperience;
   String worktype;
-  Contactdetails contactdetails;
+  ContactDetails contactdetails;
 
   JobModel({
     this.docid,
@@ -54,7 +55,7 @@ class JobModel {
     minyearexperience = json['minyearexperience'];
     worktype = json['worktype'];
     contactdetails = json['contactdetails'] != null
-        ? Contactdetails.fromJson(json['contactdetails'])
+        ? ContactDetails.fromJson(json['contactdetails'])
         : null;
   }
 

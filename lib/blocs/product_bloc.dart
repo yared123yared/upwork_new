@@ -2,12 +2,13 @@ import 'package:bloc/bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/general_response.dart';
 import 'package:complex/data/models/response/generic_response.dart';
-import 'package:complex/data/models/response/product_models/job_model.dart';
-import 'package:complex/data/models/response/product_models/pet_model.dart';
-import 'package:complex/data/models/response/product_models/product_model.dart';
-import 'package:complex/data/models/response/product_models/property_model.dart';
-import 'package:complex/data/models/response/product_models/vehicle_model.dart';
+
 import 'package:complex/data/repositories/product_repository.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/pet_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 

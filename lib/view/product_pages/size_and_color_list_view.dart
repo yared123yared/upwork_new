@@ -1,12 +1,12 @@
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
-import 'package:complex/data/models/response/product_models/product_model.dart';
 import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_dropdown.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
 import 'package:complex/view/product_pages/size_color_detail_view.dart';
 import 'package:complex/utils/next_page_routing.dart';

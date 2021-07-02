@@ -10,14 +10,14 @@ import 'package:complex/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class ContactDetails extends StatefulWidget {
+class ContactDetailsForm extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _ContactDetailsState();
+    return _ContactDetailsFormState();
   }
 }
 
-class _ContactDetailsState extends State<ContactDetails> {
+class _ContactDetailsFormState extends State<ContactDetailsForm> {
   bool _emailShare = true;
   bool _phoneShare = true;
   bool _addressShare = true;

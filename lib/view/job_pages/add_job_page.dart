@@ -1,8 +1,6 @@
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
-import 'package:complex/data/models/response/product_models/job_model.dart';
-import 'package:complex/data/models/response/product_models/property_model.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
@@ -10,6 +8,8 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
+import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
 import 'package:complex/utils/utility.dart';
@@ -20,7 +20,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injector/injector.dart';
 
 class AddJobPage extends StatefulWidget {
-  final Contactdetails contactDetail;
+  final ContactDetails contactDetail;
 
   AddJobPage(this.contactDetail);
 

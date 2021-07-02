@@ -3,11 +3,12 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
-import 'package:complex/data/models/response/product_models/job_model.dart';
-import 'package:complex/data/models/response/product_models/pet_model.dart';
-import 'package:complex/data/models/response/product_models/product_model.dart';
-import 'package:complex/data/models/response/product_models/property_model.dart';
-import 'package:complex/data/models/response/product_models/vehicle_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/pet_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
+
 import 'package:complex/utils/log_print.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
