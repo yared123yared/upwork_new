@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -25,7 +28,7 @@ class EntryLogsRepositoryReturnData {
 
 class EntryLogsRepository {
   NewComplexRepository _complexRepository = Get.find();
-  UserRepository _userRepository = Get.find();
+  UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
 
   Future<EntryLogsRepositoryReturnData> getAllEntryLogss(

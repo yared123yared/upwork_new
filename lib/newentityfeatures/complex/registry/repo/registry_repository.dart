@@ -1,5 +1,6 @@
 // import 'package:complex/newentityfeatures/complex/repository/gateway/registry_gateway.dart';
 // import 'package:complex/newentityfeatures/complex/repository/gateway/resident_gateway.dart';
+import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/tempmodelforcomplex.dart';
@@ -34,7 +35,7 @@ class RegistryModelRepositoryReturnData {
 
 class RegistryModelRepository {
   NewComplexRepository _complexRepository = Get.find();
-  UserRepository _userRepository = Get.find();
+  UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
 
   Future<RegistryModelRepositoryReturnData> getAllRegistryModels(

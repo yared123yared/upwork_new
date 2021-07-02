@@ -214,7 +214,7 @@ class UiEntityPageStateList {
     List<String> rlist = _userRepository.getUser().defaultComplexEntity.roles;
     if (rlist == null ||
         rlist.length == 0 ||
-        _userRepository.getUser().defaultServiceEntity.isEmployee ==
+        _userRepository.getUser().defaultComplexEntity.isEmployee ==
             false) // rlist will be null or with
       return false;
     for (String s in allowedroles) {
@@ -245,6 +245,10 @@ class UiEntityPageStateList {
 
   static bool checkifServiceHasSecurity() {
     return _userRepository.getUser().defaultServiceModel.hassec;
+  }
+
+  static bool checkifComplexeHasSecurity() {
+    return _userRepository.getUser().defaultComplexModel.hasSecurity;
   }
 
   static bool checkifServiceHasFeeScan() {
@@ -487,8 +491,8 @@ class UiEntityPageStateList {
 
     panelmem.add(DynamicEntityGridState.selfstaff);
     panelmem.add(DynamicEntityGridState.newStaffRegistry);
-    if (checkifServiceHasSecurity())
-      panelmem.add(DynamicEntityGridState.newServiceRequest);
+    if (checkifComplexeHasSecurity())
+      panelmem.add(DynamicEntityGridState.selfstaffservicerequest);
 
     panelmem.add(DynamicEntityGridState.selfleaverequest);
     return panelmem;
@@ -510,8 +514,8 @@ class UiEntityPageStateList {
   static List<DynamicEntityGridState> fillSecurityPaneComplex() {
     List<DynamicEntityGridState> panelmem = [];
     List<String> allowedrolesI = ["SECURITY", "MANAGER"];
-    bool ismanagerOrImOrI = checkRoleWithEmployeeCheckInService(allowedrolesI);
-    bool hassec = checkifServiceHasSecurity();
+    bool ismanagerOrImOrI = checkRoleWithEmployeeCheckInComplex(allowedrolesI);
+    bool hassec = checkifComplexeHasSecurity();
     if (ismanagerOrImOrI == false || hassec == false) {
       return panelmem;
     }
@@ -797,7 +801,7 @@ class UiSchoolHandler {
       case DynamicEntityGridState.selfstaff:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
-            title: 'SessionTerm',
+            title: 'My Information',
             tapAction: () {});
         break;
 
@@ -940,7 +944,7 @@ class UiSchoolHandler {
       case DynamicEntityGridState.newownerresidentservicerequest:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
-            title: 'newservicerequest',
+            title: 'My Service Request',
             tapAction: () {
               Navigator.push(
                   context,
@@ -1873,8 +1877,12 @@ class UiSchoolHandler {
         // TODO: Handle this case.
         break;
       case DynamicEntityGridState.ComplexQRScan:
-        // TODO: Handle this case.
-        break;
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'QR Scan Empty',
+            tapAction: () {
+
+            });        break;
       case DynamicEntityGridState.ExamTerm:
         // TODO: Handle this case.
         break;

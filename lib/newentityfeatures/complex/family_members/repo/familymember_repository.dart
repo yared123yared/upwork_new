@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/family_member.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
@@ -25,7 +28,7 @@ class FamilyMemberRepositoryReturnData {
 
 class FamilyMemberRepository {
   NewComplexRepository _complexRepository = Get.find();
-  UserRepository _userRepository = Get.find();
+  UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
 
   Future<FamilyMemberRepositoryReturnData> getAllFamilyMembers(

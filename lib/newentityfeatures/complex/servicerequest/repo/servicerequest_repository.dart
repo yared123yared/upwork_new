@@ -1,6 +1,10 @@
+import 'dart:convert';
+
+import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
+import 'package:complex/newentityfeatures/gateway/staff_gateway.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +45,7 @@ class ServiceRequestModelRepositoryReturnData {
 
 class ServiceRequestModelRepository {
   NewComplexRepository _complexRepository = Get.find();
-  UserRepository _userRepository = Get.find();
+  UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
   FirebaseMessaging _firebaseMessaging = Get.find();
 
@@ -71,6 +75,7 @@ class ServiceRequestModelRepository {
       userModel: _user,
     );
     List<ServiceRequestModel> filteredServices = [];
+
 
     if (originType == 1) {
       // managerregistryMultiOwner

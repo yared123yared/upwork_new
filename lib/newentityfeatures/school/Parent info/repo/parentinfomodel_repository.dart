@@ -29,7 +29,7 @@ class ParentInfoModelRepositoryReturnData {
 
 class ParentInfoModelRepository {
   NewSchoolRepository _schoolRepo = Get.find();
-  UserRepository _userRepository = Get.find();
+  UserRepository _userRepository = HelpUtil.getUserRepository();
 
   Future<ParentInfoDataModel> viewEvent(ParentViewEvent event) async {
     ParentInfoDataModel grerror = new ParentInfoDataModel();

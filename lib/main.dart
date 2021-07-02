@@ -38,15 +38,22 @@ import 'package:complex/newentityfeatures/ecommerce-admin/bloc/delivery/delivery
 import 'package:complex/newentityfeatures/ecommerce-admin/bloc/store-product/store_product_bloc.dart'
     as E3_StoreProductBloc;
 
+import 'newentityfeatures/commonrepo/complex_repository.dart';
+import 'newentityfeatures/commonrepo/school_repository.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp().then((value) {
+    Get.lazyPut(() => NewSchoolRepository());
+    Get.lazyPut(() => NewComplexRepository());
     var instance = FirebaseMessaging();
     instance.configure(onLaunch: onLaunch);
     // FirebaseMessaging.onBackgroundMessage(onLaunch);
     setupDependencyInjections();
     runApp(MyApp());
   });
+
+
 }
 
 Future<void> onLaunch(Map<String, dynamic> message) async {

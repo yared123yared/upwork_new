@@ -34,6 +34,10 @@ class CustomGridPanel extends StatelessWidget {
           shrinkWrap: true,
           crossAxisCount: 3,
           children: customGridList.map((gridClass) {
+            if(gridClass==null)
+              {
+                print("found null");
+              }
             return GestureDetector(
               onTap: gridClass.tapAction,
               child: Container(
