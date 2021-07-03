@@ -19,6 +19,6 @@ abstract class ILookupProvider {
       {@required String serviceID});
   Future<Either<Failure, PaymentPeriodInfoList>> getPaymentPeriodList(
       {@required String serviceID});
-  Future<Either<Failure, FeeItems>> createFeeItemsList(
-      {@required String serviceID});
+  Future<Either<Failure, Unit>> createFeeItemsList(
+      {@required String serviceID, @required FeeItems feeItem});
 }
