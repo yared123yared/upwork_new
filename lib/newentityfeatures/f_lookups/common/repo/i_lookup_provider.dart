@@ -19,6 +19,38 @@ abstract class ILookupProvider {
       {@required String serviceID});
   Future<Either<Failure, PaymentPeriodInfoList>> getPaymentPeriodList(
       {@required String serviceID});
-  Future<Either<Failure, Unit>> createFeeItemsList(
-      {@required String serviceID, @required FeeItems feeItem});
+  Future<Option<Failure>> createFeeItem(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> deleteFeeItem(
+      {@required String serviceID, @required String feeItem});
+
+  Future<Option<Failure>> createGrade(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> deleteDeleteGrade(
+      {@required String serviceID, @required String feeItem});
+
+  Future<Option<Failure>> createOfferingItem(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> deleteOfferingItem(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> createRoomItem(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> deleteRoomItem(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> createExamTerm(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> deleteExamTerm(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> createSessionTerm(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> deleteSessionTerm(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> createClassPeriod(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> deleteClassPeriod(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> createPaymentPeriod(
+      {@required String serviceID, @required String feeItem});
+  Future<Option<Failure>> deletePaymentPeriod(
+      {@required String serviceID, @required String feeItem});
 }

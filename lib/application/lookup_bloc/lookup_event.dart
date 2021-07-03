@@ -17,10 +17,4 @@ abstract class LookupEvent with _$LookupEvent {
     @required String entityid,
     @required String entitytype,
   }) = CreateItem;
-
-  const factory LookupEvent.createFeeItemData({
-    @required FeeItems item,
-    @required String entityid,
-    @required String entitytype,
-  }) = FeeItem;
 }

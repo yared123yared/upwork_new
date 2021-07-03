@@ -48,18 +48,6 @@ class _$LookupEventTearOff {
       entitytype: entitytype,
     );
   }
-
-// ignore: unused_element
-  FeeItem createFeeItemData(
-      {@required FeeItems item,
-      @required String entityid,
-      @required String entitytype}) {
-    return FeeItem(
-      item: item,
-      entityid: entityid,
-      entitytype: entitytype,
-    );
-  }
 }
 
 /// @nodoc
@@ -81,9 +69,6 @@ mixin _$LookupEvent {
             Lookup item, String entityid, String entitytype),
     @required
         TResult createItemData(Lookup item, String entityid, String entitytype),
-    @required
-        TResult createFeeItemData(
-            FeeItems item, String entityid, String entitytype),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -91,8 +76,6 @@ mixin _$LookupEvent {
         String entityid, String entitytype, LookupType lookupType),
     TResult deleteItemWithData(Lookup item, String entityid, String entitytype),
     TResult createItemData(Lookup item, String entityid, String entitytype),
-    TResult createFeeItemData(
-        FeeItems item, String entityid, String entitytype),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -100,14 +83,12 @@ mixin _$LookupEvent {
     @required TResult getListData(GetListData value),
     @required TResult deleteItemWithData(DeleteItemWithData value),
     @required TResult createItemData(CreateItem value),
-    @required TResult createFeeItemData(FeeItem value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult getListData(GetListData value),
     TResult deleteItemWithData(DeleteItemWithData value),
     TResult createItemData(CreateItem value),
-    TResult createFeeItemData(FeeItem value),
     @required TResult orElse(),
   });
 
@@ -252,14 +233,10 @@ class _$GetListData implements GetListData {
             Lookup item, String entityid, String entitytype),
     @required
         TResult createItemData(Lookup item, String entityid, String entitytype),
-    @required
-        TResult createFeeItemData(
-            FeeItems item, String entityid, String entitytype),
   }) {
     assert(getListData != null);
     assert(deleteItemWithData != null);
     assert(createItemData != null);
-    assert(createFeeItemData != null);
     return getListData(entityid, entitytype, lookupType);
   }
 
@@ -270,8 +247,6 @@ class _$GetListData implements GetListData {
         String entityid, String entitytype, LookupType lookupType),
     TResult deleteItemWithData(Lookup item, String entityid, String entitytype),
     TResult createItemData(Lookup item, String entityid, String entitytype),
-    TResult createFeeItemData(
-        FeeItems item, String entityid, String entitytype),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -287,12 +262,10 @@ class _$GetListData implements GetListData {
     @required TResult getListData(GetListData value),
     @required TResult deleteItemWithData(DeleteItemWithData value),
     @required TResult createItemData(CreateItem value),
-    @required TResult createFeeItemData(FeeItem value),
   }) {
     assert(getListData != null);
     assert(deleteItemWithData != null);
     assert(createItemData != null);
-    assert(createFeeItemData != null);
     return getListData(this);
   }
 
@@ -302,7 +275,6 @@ class _$GetListData implements GetListData {
     TResult getListData(GetListData value),
     TResult deleteItemWithData(DeleteItemWithData value),
     TResult createItemData(CreateItem value),
-    TResult createFeeItemData(FeeItem value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -434,14 +406,10 @@ class _$DeleteItemWithData implements DeleteItemWithData {
             Lookup item, String entityid, String entitytype),
     @required
         TResult createItemData(Lookup item, String entityid, String entitytype),
-    @required
-        TResult createFeeItemData(
-            FeeItems item, String entityid, String entitytype),
   }) {
     assert(getListData != null);
     assert(deleteItemWithData != null);
     assert(createItemData != null);
-    assert(createFeeItemData != null);
     return deleteItemWithData(item, entityid, entitytype);
   }
 
@@ -452,8 +420,6 @@ class _$DeleteItemWithData implements DeleteItemWithData {
         String entityid, String entitytype, LookupType lookupType),
     TResult deleteItemWithData(Lookup item, String entityid, String entitytype),
     TResult createItemData(Lookup item, String entityid, String entitytype),
-    TResult createFeeItemData(
-        FeeItems item, String entityid, String entitytype),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -469,12 +435,10 @@ class _$DeleteItemWithData implements DeleteItemWithData {
     @required TResult getListData(GetListData value),
     @required TResult deleteItemWithData(DeleteItemWithData value),
     @required TResult createItemData(CreateItem value),
-    @required TResult createFeeItemData(FeeItem value),
   }) {
     assert(getListData != null);
     assert(deleteItemWithData != null);
     assert(createItemData != null);
-    assert(createFeeItemData != null);
     return deleteItemWithData(this);
   }
 
@@ -484,7 +448,6 @@ class _$DeleteItemWithData implements DeleteItemWithData {
     TResult getListData(GetListData value),
     TResult deleteItemWithData(DeleteItemWithData value),
     TResult createItemData(CreateItem value),
-    TResult createFeeItemData(FeeItem value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -613,14 +576,10 @@ class _$CreateItem implements CreateItem {
             Lookup item, String entityid, String entitytype),
     @required
         TResult createItemData(Lookup item, String entityid, String entitytype),
-    @required
-        TResult createFeeItemData(
-            FeeItems item, String entityid, String entitytype),
   }) {
     assert(getListData != null);
     assert(deleteItemWithData != null);
     assert(createItemData != null);
-    assert(createFeeItemData != null);
     return createItemData(item, entityid, entitytype);
   }
 
@@ -631,8 +590,6 @@ class _$CreateItem implements CreateItem {
         String entityid, String entitytype, LookupType lookupType),
     TResult deleteItemWithData(Lookup item, String entityid, String entitytype),
     TResult createItemData(Lookup item, String entityid, String entitytype),
-    TResult createFeeItemData(
-        FeeItems item, String entityid, String entitytype),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -648,12 +605,10 @@ class _$CreateItem implements CreateItem {
     @required TResult getListData(GetListData value),
     @required TResult deleteItemWithData(DeleteItemWithData value),
     @required TResult createItemData(CreateItem value),
-    @required TResult createFeeItemData(FeeItem value),
   }) {
     assert(getListData != null);
     assert(deleteItemWithData != null);
     assert(createItemData != null);
-    assert(createFeeItemData != null);
     return createItemData(this);
   }
 
@@ -663,7 +618,6 @@ class _$CreateItem implements CreateItem {
     TResult getListData(GetListData value),
     TResult deleteItemWithData(DeleteItemWithData value),
     TResult createItemData(CreateItem value),
-    TResult createFeeItemData(FeeItem value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -688,172 +642,6 @@ abstract class CreateItem implements LookupEvent {
   @override
   @JsonKey(ignore: true)
   $CreateItemCopyWith<CreateItem> get copyWith;
-}
-
-/// @nodoc
-abstract class $FeeItemCopyWith<$Res> implements $LookupEventCopyWith<$Res> {
-  factory $FeeItemCopyWith(FeeItem value, $Res Function(FeeItem) then) =
-      _$FeeItemCopyWithImpl<$Res>;
-  @override
-  $Res call({FeeItems item, String entityid, String entitytype});
-}
-
-/// @nodoc
-class _$FeeItemCopyWithImpl<$Res> extends _$LookupEventCopyWithImpl<$Res>
-    implements $FeeItemCopyWith<$Res> {
-  _$FeeItemCopyWithImpl(FeeItem _value, $Res Function(FeeItem) _then)
-      : super(_value, (v) => _then(v as FeeItem));
-
-  @override
-  FeeItem get _value => super._value as FeeItem;
-
-  @override
-  $Res call({
-    Object item = freezed,
-    Object entityid = freezed,
-    Object entitytype = freezed,
-  }) {
-    return _then(FeeItem(
-      item: item == freezed ? _value.item : item as FeeItems,
-      entityid: entityid == freezed ? _value.entityid : entityid as String,
-      entitytype:
-          entitytype == freezed ? _value.entitytype : entitytype as String,
-    ));
-  }
-}
-
-/// @nodoc
-class _$FeeItem implements FeeItem {
-  const _$FeeItem(
-      {@required this.item, @required this.entityid, @required this.entitytype})
-      : assert(item != null),
-        assert(entityid != null),
-        assert(entitytype != null);
-
-  @override
-  final FeeItems item;
-  @override
-  final String entityid;
-  @override
-  final String entitytype;
-
-  @override
-  String toString() {
-    return 'LookupEvent.createFeeItemData(item: $item, entityid: $entityid, entitytype: $entitytype)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is FeeItem &&
-            (identical(other.item, item) ||
-                const DeepCollectionEquality().equals(other.item, item)) &&
-            (identical(other.entityid, entityid) ||
-                const DeepCollectionEquality()
-                    .equals(other.entityid, entityid)) &&
-            (identical(other.entitytype, entitytype) ||
-                const DeepCollectionEquality()
-                    .equals(other.entitytype, entitytype)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(item) ^
-      const DeepCollectionEquality().hash(entityid) ^
-      const DeepCollectionEquality().hash(entitytype);
-
-  @JsonKey(ignore: true)
-  @override
-  $FeeItemCopyWith<FeeItem> get copyWith =>
-      _$FeeItemCopyWithImpl<FeeItem>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult getListData(
-            String entityid, String entitytype, LookupType lookupType),
-    @required
-        TResult deleteItemWithData(
-            Lookup item, String entityid, String entitytype),
-    @required
-        TResult createItemData(Lookup item, String entityid, String entitytype),
-    @required
-        TResult createFeeItemData(
-            FeeItems item, String entityid, String entitytype),
-  }) {
-    assert(getListData != null);
-    assert(deleteItemWithData != null);
-    assert(createItemData != null);
-    assert(createFeeItemData != null);
-    return createFeeItemData(item, entityid, entitytype);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult getListData(
-        String entityid, String entitytype, LookupType lookupType),
-    TResult deleteItemWithData(Lookup item, String entityid, String entitytype),
-    TResult createItemData(Lookup item, String entityid, String entitytype),
-    TResult createFeeItemData(
-        FeeItems item, String entityid, String entitytype),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (createFeeItemData != null) {
-      return createFeeItemData(item, entityid, entitytype);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult getListData(GetListData value),
-    @required TResult deleteItemWithData(DeleteItemWithData value),
-    @required TResult createItemData(CreateItem value),
-    @required TResult createFeeItemData(FeeItem value),
-  }) {
-    assert(getListData != null);
-    assert(deleteItemWithData != null);
-    assert(createItemData != null);
-    assert(createFeeItemData != null);
-    return createFeeItemData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult getListData(GetListData value),
-    TResult deleteItemWithData(DeleteItemWithData value),
-    TResult createItemData(CreateItem value),
-    TResult createFeeItemData(FeeItem value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (createFeeItemData != null) {
-      return createFeeItemData(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FeeItem implements LookupEvent {
-  const factory FeeItem(
-      {@required FeeItems item,
-      @required String entityid,
-      @required String entitytype}) = _$FeeItem;
-
-  FeeItems get item;
-  @override
-  String get entityid;
-  @override
-  String get entitytype;
-  @override
-  @JsonKey(ignore: true)
-  $FeeItemCopyWith<FeeItem> get copyWith;
 }
 
 /// @nodoc

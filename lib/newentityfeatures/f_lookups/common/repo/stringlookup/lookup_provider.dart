@@ -1,14 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/domain/core/api_helper.dart';
 import 'package:complex/domain/core/failure/failure.dart';
 
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/repo/i_lookup_provider.dart';
 import 'package:dartz/dartz.dart';
-import 'package:logger/logger.dart';
 
 class LookupProvider extends ILookupProvider {
-  final FirebaseFirestore _firestoreInstance = FirebaseFirestore.instance;
+  String lookupEndPoint(String serviceID) =>
+      "SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST";
   @override
   Future<Either<Failure, FeeItems>> getFeeItemsList({String serviceID}) async {
     Either<Failure, FeeItems> response =
@@ -103,27 +102,152 @@ class LookupProvider extends ILookupProvider {
   }
 
   @override
-  Future<Either<Failure, Unit>> createFeeItemsList(
-      {String serviceID, FeeItems feeItem}) async {
-    try {
-      await _firestoreInstance
-          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-          .update(feeItem.toJson());
-      return right(unit);
-    } on FirebaseException catch (e) {
-      LogicalFailure failure = LogicalFailure(
-          returnType: "errorType",
-          path: "SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST",
-          error: e.toString());
-      Logger().e(failure.toString());
-      return left(failure);
-    } catch (e) {
-      ExceptionFailure failure = ExceptionFailure(
-          returnType: "",
-          path: "SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST",
-          error: e.toString());
-      Logger().e(failure.toString());
-      return left(failure);
-    }
+  Future<Option<Failure>> createFeeItem(
+      {String serviceID, String feeItem}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .addItemsInDocArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [feeItem]);
+
+    return response;
+  }
+
+  @override
+  Future<Option<Failure>> deleteFeeItem(
+      {String serviceID, String feeItem}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .removeItemsFromDocsArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [feeItem]);
+
+    return response;
+  }
+
+  @override
+  Future<Option<Failure>> createClassPeriod(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> createExamTerm(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> createGrade(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> createOfferingItem(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> createPaymentPeriod(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> createRoomItem(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> createSessionTerm(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> deleteClassPeriod(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> deleteDeleteGrade(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> deleteExamTerm(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> deleteOfferingItem(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> deletePaymentPeriod(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> deleteRoomItem(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
+  }
+
+  @override
+  Future<Option<Failure>> deleteSessionTerm(
+      {String serviceID, String feeItem}) async {
+    return some(ExceptionFailure(
+        returnType: 'not implemented',
+        path: 'not implemented',
+        error: 'not implemented'));
   }
 }
