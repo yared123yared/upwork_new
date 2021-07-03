@@ -1,5 +1,6 @@
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
+import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
 import 'package:complex/view/product_pages/general_contact_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -25,7 +26,7 @@ class OwnerProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => LimitedData.toDetailsPage(data: data),
+      onTap: () => EcomNavigationHelper.of(context).toDetailsPage(data: data),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         padding: EdgeInsets.all(16.0),

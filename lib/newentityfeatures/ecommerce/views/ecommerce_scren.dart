@@ -90,8 +90,8 @@ class _ECommerceScreenState extends State<ECommerceScreen> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
-            EcomNavigationHelper.toListPage(
-                type: LimitedDataType.realEstate(), context: context);
+            EcomNavigationHelper.of(context)
+                .toListPage(type: LimitedDataType.realEstate());
           },
           icon: Icon(Icons.medical_services_outlined),
           label: Text("Test RealEstate"),

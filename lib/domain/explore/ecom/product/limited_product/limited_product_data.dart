@@ -1,12 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
-import 'package:complex/view/job_pages/job_detail_page.dart';
-import 'package:complex/view/pet_pages/pets_detail_page.dart';
-import 'package:complex/view/property/property_detail_page.dart';
-import 'package:complex/view/vehicle/vehicle_detail_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get/route_manager.dart';
 
 part 'limited_product_data.freezed.dart';
 part 'limited_product_data.g.dart';
@@ -106,22 +101,6 @@ abstract class LimitedData with _$LimitedData {
 
   factory LimitedData.fromJson(Map<String, dynamic> json) =>
       _$LimitedDataFromJson(json);
-
-  static void toDetailsPage({@required LimitedData data}) {
-    data.map(
-        pet: (v) => Get.to(() => PetsDetailPage(docId: "MJtvMr9arqpepKVncqp5")),
-        package: (v) {
-          print(v.toString());
-        },
-        product: (v) {
-          print(v.toString());
-        },
-        vehicle: (v) =>
-            Get.to(() => VehicleDetailPage(docId: "6iknU0qt28LnJQYkHOzn")),
-        realEstate: (v) =>
-            Get.to(() => PropertyDetailPage(docId: "8iH7vo7wtzroFcHRN6Av")),
-        job: (v) => Get.to(() => JobDetailPage(docId: "MkWAEblEkuuEnIrNpGlE")));
-  }
 }
 
 @freezed

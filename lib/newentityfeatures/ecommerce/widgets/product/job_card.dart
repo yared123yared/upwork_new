@@ -1,4 +1,5 @@
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
+import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -13,7 +14,8 @@ class JobCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => LimitedData.toDetailsPage(data: jobReqModel),
+      onTap: () => EcomNavigationHelper.of(context).toDetailsPage(
+          data: jobReqModel), //LimitedData.toDetailsPage(data: jobReqModel),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         padding: EdgeInsets.all(16.0),

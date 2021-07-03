@@ -1,4 +1,5 @@
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
+import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
 import 'package:flutter/material.dart';
 
 class PetCard extends StatelessWidget {
@@ -12,7 +13,8 @@ class PetCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => LimitedData.toDetailsPage(data: petModel),
+      onTap: () =>
+          EcomNavigationHelper.of(context).toDetailsPage(data: petModel),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,

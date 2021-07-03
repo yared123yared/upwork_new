@@ -1,5 +1,5 @@
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
-import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
+import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -10,7 +10,8 @@ class VehicleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => LimitedData.toDetailsPage(data: vehicleModel),
+      onTap: () =>
+          EcomNavigationHelper.of(context).toDetailsPage(data: vehicleModel),
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
