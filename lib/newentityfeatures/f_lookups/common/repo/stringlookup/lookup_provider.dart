@@ -184,12 +184,12 @@ class LookupProvider extends ILookupProvider {
 
   @override
   Future<Option<Failure>> createRoomItem(
-      {String serviceID, RoomInfo rooms}) async {
+      {String serviceID, RoomInfo room}) async {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'feeitemlist',
-            elements: [rooms.toString()]);
+            elements: [room.toString()]);
 
     return response;
   }
@@ -266,12 +266,12 @@ class LookupProvider extends ILookupProvider {
 
   @override
   Future<Option<Failure>> deleteRoomItem(
-      {String serviceID, RoomInfo rooms}) async {
+      {String serviceID, RoomInfo room}) async {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'feeitemlist',
-            elements: [rooms.toString()]);
+            elements: [room.toString()]);
 
     return response;
   }

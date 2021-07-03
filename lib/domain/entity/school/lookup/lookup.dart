@@ -141,4 +141,13 @@ abstract class LookupType with _$LookupType {
   const factory LookupType.sessionTerm() = _SessionTerm;
   const factory LookupType.classPeriod() = _ClassPeriod;
   const factory LookupType.paymentPeriod() = _PaymentPeriod;
+
+  factory LookupType.from(Lookup lookup) => lookup.map(
+      roomInfo: (roomInfo) => LookupType.rooms(),
+      examTermInfo: (examTermInfo) => LookupType.examTerm(),
+      sessionTerm: (sessionTerm) => LookupType.sessionTerm(),
+      paymentPeriodInfo: (paymentPeriodInfo) => LookupType.paymentPeriod(),
+      periodInfo: (periodInfo) => LookupType.paymentPeriod(),
+      classPeriodInfo: (classPeriodInfo) => LookupType.classPeriod(),
+      schedule: (schedule) => LookupType.classPeriod());
 }

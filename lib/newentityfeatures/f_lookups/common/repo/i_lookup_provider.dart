@@ -34,9 +34,9 @@ abstract class ILookupProvider {
   Future<Option<Failure>> deleteOfferingItem(
       {@required String serviceID, @required String offering});
   Future<Option<Failure>> createRoomItem(
-      {@required String serviceID, @required RoomInfo rooms});
+      {@required String serviceID, @required RoomInfo room});
   Future<Option<Failure>> deleteRoomItem(
-      {@required String serviceID, @required RoomInfo rooms});
+      {@required String serviceID, @required RoomInfo room});
   Future<Option<Failure>> createExamTerm(
       {@required String serviceID, @required ExamTermInfo examTerm});
   Future<Option<Failure>> deleteExamTerm(

@@ -6,6 +6,7 @@ import 'package:complex/domain/core/failure/failure.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/repo/i_lookup_provider.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/repo/stringlookup/lookup_provider.dart';
+import 'package:complex/newentityfeatures/trips/end_user/listbloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -87,25 +88,45 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
       },
       deleteItemWithData: (deleteItemWithData) async* {
         yield state.copyWith(isLoading: true, failure: none());
-        final Option<Failure> response = deleteItemWithData.item.map(
-            roomInfo: (roomInfo) {},
+        final Option<Failure> response = await deleteItemWithData.item.map(
+            roomInfo: (roomInfo) => provider.deleteRoomItem(
+                serviceID: deleteItemWithData.entityid, room: roomInfo),
             examTermInfo: (examTermInfo) {},
             sessionTerm: (sessionTerm) {},
             paymentPeriodInfo: (paymentPeriodInfo) {},
             periodInfo: (periodInfo) {},
             classPeriodInfo: (classPeriodInfo) {},
             schedule: (schedule) {});
+
+        response.fold(() {
+          add(LookupEvent.getListData(
+              entityid: deleteItemWithData.entityid,
+              entitytype: deleteItemWithData.entitytype,
+              lookupType: LookupType.from(deleteItemWithData.item)));
+        }, (a) {
+          state.copyWith(isLoading: false, failure: some(a));
+        });
       },
       createItemData: (createItem) async* {
         yield state.copyWith(isLoading: true, failure: none());
-        final Option<Failure> response = createItem.item.map(
-            roomInfo: (roomInfo) {},
+        final Option<Failure> response = await createItem.item.map(
+            roomInfo: (roomInfo) => provider.createRoomItem(
+                serviceID: createItem.entityid, room: roomInfo),
             examTermInfo: (examTermInfo) {},
             sessionTerm: (sessionTerm) {},
             paymentPeriodInfo: (paymentPeriodInfo) {},
             periodInfo: (periodInfo) {},
             classPeriodInfo: (classPeriodInfo) {},
             schedule: (schedule) {});
+
+        response.fold(() {
+          add(LookupEvent.getListData(
+              entityid: createItem.entityid,
+              entitytype: createItem.entitytype,
+              lookupType: LookupType.from(createItem.item)));
+        }, (a) {
+          state.copyWith(isLoading: false, failure: some(a));
+        });
       },
     );
   }
