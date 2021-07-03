@@ -63,21 +63,65 @@ class ApiHelper {
     }
   }
 
-  Future<Either<Failure, Unit>> removeDocFromFirestore(
-      {String errorType = ''}) async {
+  Future<Option<Failure>> removeDocFromFirestore(
+      {@required String errorType}) async {
     try {
       await _firestoreInstance.doc(endPoint).delete();
-      return right(unit);
+      return none();
     } on FirebaseException catch (e) {
       LogicalFailure failure = LogicalFailure(
           returnType: errorType, path: endPoint, error: e.toString());
       Logger().e(failure.toString());
-      return left(failure);
+      return some(failure);
     } catch (e) {
       ExceptionFailure failure = ExceptionFailure(
           returnType: errorType, path: endPoint, error: e.toString());
       Logger().e(failure.toString());
-      return left(failure);
+      return some(failure);
+    }
+  }
+
+  Future<Option<Failure>> removeItemsFromDocsArrayFirestore(
+      {@required String errorType,
+      @required String fieldName,
+      @required List<dynamic> elements}) async {
+    try {
+      await _firestoreInstance
+          .doc(endPoint)
+          .update({fieldName: FieldValue.arrayRemove(elements)});
+      return none();
+    } on FirebaseException catch (e) {
+      LogicalFailure failure = LogicalFailure(
+          returnType: errorType, path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    } catch (e) {
+      ExceptionFailure failure = ExceptionFailure(
+          returnType: errorType, path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    }
+  }
+
+  Future<Option<Failure>> addItemsInDocArrayFirestore(
+      {@required String errorType,
+      @required String fieldName,
+      @required List<dynamic> elements}) async {
+    try {
+      await _firestoreInstance
+          .doc(endPoint)
+          .update({fieldName: FieldValue.arrayUnion(elements)});
+      return none();
+    } on FirebaseException catch (e) {
+      LogicalFailure failure = LogicalFailure(
+          returnType: errorType, path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    } catch (e) {
+      ExceptionFailure failure = ExceptionFailure(
+          returnType: errorType, path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
     }
   }
 }
