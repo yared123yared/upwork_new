@@ -25,32 +25,34 @@ abstract class ILookupProvider {
       {@required String serviceID, @required String feeItem});
 
   Future<Option<Failure>> createGrade(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required String grade});
   Future<Option<Failure>> deleteDeleteGrade(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required String grade});
 
   Future<Option<Failure>> createOfferingItem(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required String offering});
   Future<Option<Failure>> deleteOfferingItem(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required String offering});
   Future<Option<Failure>> createRoomItem(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required RoomInfo rooms});
   Future<Option<Failure>> deleteRoomItem(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required RoomInfo rooms});
   Future<Option<Failure>> createExamTerm(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required ExamTermInfo examTerm});
   Future<Option<Failure>> deleteExamTerm(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required ExamTermInfo examTerm});
   Future<Option<Failure>> createSessionTerm(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required SessionTerm sessionTerm});
   Future<Option<Failure>> deleteSessionTerm(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required SessionTerm sessionTerm});
   Future<Option<Failure>> createClassPeriod(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required ClassPeriodInfo classPeriodInfo});
   Future<Option<Failure>> deleteClassPeriod(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID, @required ClassPeriodInfo classPeriodInfo});
   Future<Option<Failure>> createPaymentPeriod(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID,
+      @required PaymentPeriodInfo paymentPeriodInfo});
   Future<Option<Failure>> deletePaymentPeriod(
-      {@required String serviceID, @required String feeItem});
+      {@required String serviceID,
+      @required PaymentPeriodInfo paymentPeriodInfo});
 }
