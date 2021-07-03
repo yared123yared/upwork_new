@@ -1,8 +1,9 @@
 import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
+import 'package:complex/newentityfeatures/ecommerce/bloc/product/product_bloc.dart';
 import 'package:complex/newentityfeatures/shared-ecommerce/widgets/error-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../bloc/product/product_bloc.dart';
+
 import 'service_group_item.dart';
 
 class ServiceGroupHorizontalList extends StatelessWidget {

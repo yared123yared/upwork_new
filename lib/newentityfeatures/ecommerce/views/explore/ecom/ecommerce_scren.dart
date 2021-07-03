@@ -1,7 +1,7 @@
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/newentityfeatures/ecommerce/bloc/product/product_bloc.dart';
 import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
-import 'package:complex/newentityfeatures/ecommerce/widgets/services/service_types_grid.dart';
+import 'package:complex/newentityfeatures/ecommerce/views/explore/ecom/widget/services/classified_category_list.dart';
 import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +9,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 
-import '../widgets/ads/ads_carousel.dart';
-import '../widgets/home-widgets/lcoation_widget.dart';
-import '../widgets/services/service_group_horizontal_list.dart';
+import '../../../widgets/ads/ads_carousel.dart';
+import '../../../widgets/home-widgets/lcoation_widget.dart';
+import 'widget/services/service_group_horizontal_list.dart';
+import 'widget/services/service_types_grid.dart';
 
 class ECommerceScreen extends StatefulWidget {
   const ECommerceScreen({Key key}) : super(key: key);
@@ -77,24 +78,18 @@ class _ECommerceScreenState extends State<ECommerceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-          child: ListView(
-            children: [
-              AdsCarousel(),
-              LocationWidget(),
-              ServiceTypesGrid(),
-              ServiceGroupHorizontalList(),
-              AdsCarousel(),
-            ],
-          ),
+      body: SafeArea(
+        child: ListView(
+          children: [
+            AdsCarousel(),
+            LocationWidget(),
+            ServiceTypesGrid(),
+            ServiceGroupHorizontalList(),
+            ClassifiedCategoryList(),
+            AdsCarousel(),
+          ],
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () async {
-            EcomNavigationHelper.of(context)
-                .toListPage(type: EcomProductType.job());
-          },
-          icon: Icon(Icons.medical_services_outlined),
-          label: Text("Test Job List"),
-        ));
+      ),
+    );
   }
 }

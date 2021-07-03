@@ -2,6 +2,7 @@
 import 'package:complex/newentityfeatures/ecommerce/bloc/cart/cart_bloc.dart';
 import 'package:complex/newentityfeatures/ecommerce/bloc/product/product_bloc.dart';
 import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
+import 'package:complex/newentityfeatures/ecommerce/views/filters/service_filter.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/jobs_list_view.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/pets_grid_view.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/products_list_view.dart';
@@ -12,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import '../../views/filters/service_filter.dart';
 
 class ServiceTypesGridItem extends StatelessWidget {
   final ServiceType serviceType;

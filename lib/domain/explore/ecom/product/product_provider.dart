@@ -50,8 +50,50 @@ class ProductProvider {
             userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
             type: 'job');
 
-    Logger().i('getting job');
-    Logger().i(response);
+    return response;
+  }
+
+  Future<Either<Failure, CompletePetList>> getCompletePetList() async {
+    Either<Failure, CompletePetList> response =
+        await _helperFunction<CompletePetList>(
+            fromListData: (listJson) =>
+                CompletePetList.fromJson({'pets': listJson}),
+            userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
+            type: 'pet');
+
+    return response;
+  }
+
+  Future<Either<Failure, CompleteVehicleList>> getCompleteVehicleList() async {
+    Either<Failure, CompleteVehicleList> response =
+        await _helperFunction<CompleteVehicleList>(
+            fromListData: (listJson) =>
+                CompleteVehicleList.fromJson({'vehicles': listJson}),
+            userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
+            type: 'vehicle');
+
+    return response;
+  }
+
+  Future<Either<Failure, CompleteRealEstateList>>
+      getCompleteRealEstateList() async {
+    Either<Failure, CompleteRealEstateList> response =
+        await _helperFunction<CompleteRealEstateList>(
+            fromListData: (listJson) =>
+                CompleteRealEstateList.fromJson({'properties': listJson}),
+            userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
+            type: 'realestate');
+
+    return response;
+  }
+
+  Future<Either<Failure, CompleteProductList>> getCompleteProductList() async {
+    Either<Failure, CompleteProductList> response =
+        await _helperFunction<CompleteProductList>(
+            fromListData: (listJson) =>
+                CompleteProductList.fromJson({'products': listJson}),
+            userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
+            type: 'product');
 
     return response;
   }
