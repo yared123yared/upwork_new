@@ -43,14 +43,19 @@ class OwnerProductCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              imageUrl,
-              width: 48,
-              height: 48,
-              fit: BoxFit.cover,
-              errorBuilder: (context, obj, stck) => SizedBox(
-                width: 48,
-                height: 48,
+            Container(
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
+              clipBehavior: Clip.hardEdge,
+              child: Image.network(
+                imageUrl,
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+                errorBuilder: (context, obj, stck) => SizedBox(
+                  width: 48,
+                  height: 48,
+                ),
               ),
             ),
             SizedBox(width: 16),
@@ -62,91 +67,112 @@ class OwnerProductCard extends StatelessWidget {
                     title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 20,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  SizedBox(height: 6),
+                  // SizedBox(height: 6),
                   Text(
                     subtitle,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 14,
-                      color: Theme.of(context).primaryColor,
+                      color: Colors.grey,
                     ),
                   ),
-                  SizedBox(height: 6),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.attach_money_rounded,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      SizedBox(width: 4),
-                      Text(
-                        price,
-                        style: Theme.of(context).textTheme.bodyText2.copyWith(
-                              color: Color(0xff666666),
-                            ),
-                      ),
-                    ],
+                  SizedBox(
+                    width: 200,
+                    child: Column(
+                        children: List<Row>.from(details
+                            .map((key, value) => MapEntry(
+                                key,
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      key,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      value,
+                                      // maxLines: 1,
+                                    )
+                                  ],
+                                )))
+                            .values
+                            .toList())),
                   ),
                   SizedBox(height: 4),
-                  Column(
-                      children: List<Text>.from(details
-                          .map((key, value) => MapEntry(
-                              key,
-                              Row(
-                                children: [
-                                  Text(key),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(value)
-                                ],
-                              )))
-                          .values
-                          .toList())),
-                  SizedBox(height: 4),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 8.0),
-                          decoration: BoxDecoration(
-                            color: Colors.redAccent,
-                            borderRadius: BorderRadius.circular(32),
-                          ),
-                          child: Text(
-                            'Delete',
-                            style:
-                                Theme.of(context).textTheme.bodyText1.copyWith(
-                                      color: Colors.white,
-                                    ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          _editData(data);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 8.0),
-                          decoration: BoxDecoration(
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.attach_money_rounded,
                             color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.circular(32),
                           ),
-                          child: Text(
-                            'Edit',
+                          Text(
+                            price,
                             style:
-                                Theme.of(context).textTheme.bodyText1.copyWith(
-                                      color: Colors.white,
+                                Theme.of(context).textTheme.bodyText2.copyWith(
+                                      color: Color(0xff666666),
                                     ),
                           ),
-                        ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.0, vertical: 8.0),
+                              decoration: BoxDecoration(
+                                color: Colors.redAccent,
+                                borderRadius: BorderRadius.circular(32),
+                              ),
+                              child: Text(
+                                'Delete',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    .copyWith(
+                                      color: Colors.white,
+                                    ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              _editData(data);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.0, vertical: 8.0),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(32),
+                              ),
+                              child: Text(
+                                'Edit',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    .copyWith(
+                                      color: Colors.white,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -196,10 +222,9 @@ class OwnerProductCard extends StatelessWidget {
         job: (v) => OwnerProductCard(
               data: v,
               details: {
-                'min year exp': v.data.minyearexperience.toString(),
                 'job type': v.data.worktype,
                 'address':
-                    '${v.data.contactdetails.address.addressline}, ${v.data.contactdetails.address.district}, ${v.data.contactdetails.address.state}, ${v.data.contactdetails.address.country}',
+                    '${v.data.contactdetails.address.addressline},${v.data.contactdetails.address.district},${v.data.contactdetails.address.state},${v.data.contactdetails.address.country}',
               },
               imageUrl: v.data.companylogo,
               price: '(${v.data.minsalaryrange} - ${v.data.maxsalaryrange})',

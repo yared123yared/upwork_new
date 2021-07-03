@@ -49,8 +49,8 @@ class _$ContactDetailsDataTearOff {
       {@required String country,
       @required String state,
       @required String district,
-      @required String townVillage,
-      @required String areaSector,
+      @required @JsonKey(name: 'town_village') String townVillage,
+      @required @JsonKey(name: 'area_sector') String areaSector,
       @required String societyname,
       @required String addressline,
       @required double latitude,
@@ -89,8 +89,8 @@ mixin _$ContactDetailsData {
             String country,
             String state,
             String district,
-            String townVillage,
-            String areaSector,
+            @JsonKey(name: 'town_village') String townVillage,
+            @JsonKey(name: 'area_sector') String areaSector,
             String societyname,
             String addressline,
             double latitude,
@@ -104,8 +104,8 @@ mixin _$ContactDetailsData {
         String country,
         String state,
         String district,
-        String townVillage,
-        String areaSector,
+        @JsonKey(name: 'town_village') String townVillage,
+        @JsonKey(name: 'area_sector') String areaSector,
         String societyname,
         String addressline,
         double latitude,
@@ -288,8 +288,8 @@ class _$ContactDetails implements ContactDetails {
             String country,
             String state,
             String district,
-            String townVillage,
-            String areaSector,
+            @JsonKey(name: 'town_village') String townVillage,
+            @JsonKey(name: 'area_sector') String areaSector,
             String societyname,
             String addressline,
             double latitude,
@@ -310,8 +310,8 @@ class _$ContactDetails implements ContactDetails {
         String country,
         String state,
         String district,
-        String townVillage,
-        String areaSector,
+        @JsonKey(name: 'town_village') String townVillage,
+        @JsonKey(name: 'area_sector') String areaSector,
         String societyname,
         String addressline,
         double latitude,
@@ -389,8 +389,8 @@ abstract class $AddressCopyWith<$Res> {
       {String country,
       String state,
       String district,
-      String townVillage,
-      String areaSector,
+      @JsonKey(name: 'town_village') String townVillage,
+      @JsonKey(name: 'area_sector') String areaSector,
       String societyname,
       String addressline,
       double latitude,
@@ -444,8 +444,8 @@ class _$Address implements Address {
       {@required this.country,
       @required this.state,
       @required this.district,
-      @required this.townVillage,
-      @required this.areaSector,
+      @required @JsonKey(name: 'town_village') this.townVillage,
+      @required @JsonKey(name: 'area_sector') this.areaSector,
       @required this.societyname,
       @required this.addressline,
       @required this.latitude,
@@ -470,8 +470,10 @@ class _$Address implements Address {
   @override
   final String district;
   @override
+  @JsonKey(name: 'town_village')
   final String townVillage;
   @override
+  @JsonKey(name: 'area_sector')
   final String areaSector;
   @override
   final String societyname;
@@ -547,8 +549,8 @@ class _$Address implements Address {
             String country,
             String state,
             String district,
-            String townVillage,
-            String areaSector,
+            @JsonKey(name: 'town_village') String townVillage,
+            @JsonKey(name: 'area_sector') String areaSector,
             String societyname,
             String addressline,
             double latitude,
@@ -569,8 +571,8 @@ class _$Address implements Address {
         String country,
         String state,
         String district,
-        String townVillage,
-        String areaSector,
+        @JsonKey(name: 'town_village') String townVillage,
+        @JsonKey(name: 'area_sector') String areaSector,
         String societyname,
         String addressline,
         double latitude,
@@ -621,8 +623,8 @@ abstract class Address implements ContactDetailsData {
       {@required String country,
       @required String state,
       @required String district,
-      @required String townVillage,
-      @required String areaSector,
+      @required @JsonKey(name: 'town_village') String townVillage,
+      @required @JsonKey(name: 'area_sector') String areaSector,
       @required String societyname,
       @required String addressline,
       @required double latitude,
@@ -633,7 +635,9 @@ abstract class Address implements ContactDetailsData {
   String get country;
   String get state;
   String get district;
+  @JsonKey(name: 'town_village')
   String get townVillage;
+  @JsonKey(name: 'area_sector')
   String get areaSector;
   String get societyname;
   String get addressline;

@@ -276,14 +276,14 @@ _$_JobData _$_$_JobDataFromJson(Map<String, dynamic> json) {
         : ContactDetails.fromJson(
             json['contactdetails'] as Map<String, dynamic>),
     description: json['description'] as String,
-    educationqualification: json['educationqualification'] as String,
+    educationqualification: json['educationqualification'] as String ?? 'N/A',
     isparttime: json['isparttime'] as bool,
-    listingownertype: json['listingownertype'] as String ?? 'OWNER',
+    listingownertype: json['listingownertype'] as String ?? 'N/A',
     maxsalaryrange: json['maxsalaryrange'] as int,
     minsalaryrange: json['minsalaryrange'] as int,
     minyearexperience: json['minyearexperience'] as int,
     title: json['title'] as String,
-    worktype: json['worktype'] as String ?? '',
+    worktype: json['worktype'] as String ?? 'N/A',
   );
 }
 

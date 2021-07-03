@@ -44,8 +44,8 @@ _$Address _$_$AddressFromJson(Map<String, dynamic> json) {
     country: json['country'] as String,
     state: json['state'] as String,
     district: json['district'] as String,
-    townVillage: json['townVillage'] as String,
-    areaSector: json['areaSector'] as String,
+    townVillage: json['town_village'] as String,
+    areaSector: json['area_sector'] as String,
     societyname: json['societyname'] as String,
     addressline: json['addressline'] as String,
     latitude: (json['latitude'] as num)?.toDouble(),
@@ -65,8 +65,8 @@ Map<String, dynamic> _$_$AddressToJson(_$Address instance) {
   writeNotNull('country', instance.country);
   writeNotNull('state', instance.state);
   writeNotNull('district', instance.district);
-  writeNotNull('townVillage', instance.townVillage);
-  writeNotNull('areaSector', instance.areaSector);
+  writeNotNull('town_village', instance.townVillage);
+  writeNotNull('area_sector', instance.areaSector);
   writeNotNull('societyname', instance.societyname);
   writeNotNull('addressline', instance.addressline);
   writeNotNull('latitude', instance.latitude);

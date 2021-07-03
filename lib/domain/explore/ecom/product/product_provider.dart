@@ -48,7 +48,10 @@ class ProductProvider {
             fromListData: (listJson) =>
                 CompleteJobList.fromJson({'jobs': listJson}),
             userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
-            type: 'realestate');
+            type: 'job');
+
+    Logger().i('getting job');
+    Logger().i(response);
 
     return response;
   }

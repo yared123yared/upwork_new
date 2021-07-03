@@ -8,14 +8,14 @@ abstract class JobData with _$JobData {
     @required String companyname,
     @required ContactDetails contactdetails,
     @required String description,
-    @required String educationqualification,
+    @JsonKey(defaultValue: 'N/A') @required String educationqualification,
     @required bool isparttime,
-    @JsonKey(defaultValue: 'OWNER') @required String listingownertype,
+    @JsonKey(defaultValue: 'N/A') @required String listingownertype,
     @required int maxsalaryrange,
     @required int minsalaryrange,
     @required int minyearexperience,
     @required String title,
-    @JsonKey(defaultValue: '') @required String worktype,
+    @JsonKey(defaultValue: 'N/A') @required String worktype,
   }) = _JobData;
 
   factory JobData.fromJson(Map<String, dynamic> json) =>

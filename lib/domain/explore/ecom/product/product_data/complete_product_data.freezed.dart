@@ -2801,14 +2801,14 @@ class _$JobDataTearOff {
       @required String companyname,
       @required ContactDetails contactdetails,
       @required String description,
-      @required String educationqualification,
+      @required @JsonKey(defaultValue: 'N/A') String educationqualification,
       @required bool isparttime,
-      @required @JsonKey(defaultValue: 'OWNER') String listingownertype,
+      @required @JsonKey(defaultValue: 'N/A') String listingownertype,
       @required int maxsalaryrange,
       @required int minsalaryrange,
       @required int minyearexperience,
       @required String title,
-      @required @JsonKey(defaultValue: '') String worktype}) {
+      @required @JsonKey(defaultValue: 'N/A') String worktype}) {
     return _JobData(
       arefreshersallowed: arefreshersallowed,
       companylogo: companylogo,
@@ -2843,15 +2843,16 @@ mixin _$JobData {
   String get companyname;
   ContactDetails get contactdetails;
   String get description;
+  @JsonKey(defaultValue: 'N/A')
   String get educationqualification;
   bool get isparttime;
-  @JsonKey(defaultValue: 'OWNER')
+  @JsonKey(defaultValue: 'N/A')
   String get listingownertype;
   int get maxsalaryrange;
   int get minsalaryrange;
   int get minyearexperience;
   String get title;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: 'N/A')
   String get worktype;
 
   Map<String, dynamic> toJson();
@@ -2869,14 +2870,14 @@ abstract class $JobDataCopyWith<$Res> {
       String companyname,
       ContactDetails contactdetails,
       String description,
-      String educationqualification,
+      @JsonKey(defaultValue: 'N/A') String educationqualification,
       bool isparttime,
-      @JsonKey(defaultValue: 'OWNER') String listingownertype,
+      @JsonKey(defaultValue: 'N/A') String listingownertype,
       int maxsalaryrange,
       int minsalaryrange,
       int minyearexperience,
       String title,
-      @JsonKey(defaultValue: '') String worktype});
+      @JsonKey(defaultValue: 'N/A') String worktype});
 }
 
 /// @nodoc
@@ -2950,14 +2951,14 @@ abstract class _$JobDataCopyWith<$Res> implements $JobDataCopyWith<$Res> {
       String companyname,
       ContactDetails contactdetails,
       String description,
-      String educationqualification,
+      @JsonKey(defaultValue: 'N/A') String educationqualification,
       bool isparttime,
-      @JsonKey(defaultValue: 'OWNER') String listingownertype,
+      @JsonKey(defaultValue: 'N/A') String listingownertype,
       int maxsalaryrange,
       int minsalaryrange,
       int minyearexperience,
       String title,
-      @JsonKey(defaultValue: '') String worktype});
+      @JsonKey(defaultValue: 'N/A') String worktype});
 }
 
 /// @nodoc
@@ -3031,14 +3032,14 @@ class _$_JobData implements _JobData {
       @required this.companyname,
       @required this.contactdetails,
       @required this.description,
-      @required this.educationqualification,
+      @required @JsonKey(defaultValue: 'N/A') this.educationqualification,
       @required this.isparttime,
-      @required @JsonKey(defaultValue: 'OWNER') this.listingownertype,
+      @required @JsonKey(defaultValue: 'N/A') this.listingownertype,
       @required this.maxsalaryrange,
       @required this.minsalaryrange,
       @required this.minyearexperience,
       @required this.title,
-      @required @JsonKey(defaultValue: '') this.worktype})
+      @required @JsonKey(defaultValue: 'N/A') this.worktype})
       : assert(arefreshersallowed != null),
         assert(companylogo != null),
         assert(companyname != null),
@@ -3067,11 +3068,12 @@ class _$_JobData implements _JobData {
   @override
   final String description;
   @override
+  @JsonKey(defaultValue: 'N/A')
   final String educationqualification;
   @override
   final bool isparttime;
   @override
-  @JsonKey(defaultValue: 'OWNER')
+  @JsonKey(defaultValue: 'N/A')
   final String listingownertype;
   @override
   final int maxsalaryrange;
@@ -3082,7 +3084,7 @@ class _$_JobData implements _JobData {
   @override
   final String title;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: 'N/A')
   final String worktype;
 
   @override
@@ -3169,14 +3171,14 @@ abstract class _JobData implements JobData {
       @required String companyname,
       @required ContactDetails contactdetails,
       @required String description,
-      @required String educationqualification,
+      @required @JsonKey(defaultValue: 'N/A') String educationqualification,
       @required bool isparttime,
-      @required @JsonKey(defaultValue: 'OWNER') String listingownertype,
+      @required @JsonKey(defaultValue: 'N/A') String listingownertype,
       @required int maxsalaryrange,
       @required int minsalaryrange,
       @required int minyearexperience,
       @required String title,
-      @required @JsonKey(defaultValue: '') String worktype}) = _$_JobData;
+      @required @JsonKey(defaultValue: 'N/A') String worktype}) = _$_JobData;
 
   factory _JobData.fromJson(Map<String, dynamic> json) = _$_JobData.fromJson;
 
@@ -3191,11 +3193,12 @@ abstract class _JobData implements JobData {
   @override
   String get description;
   @override
+  @JsonKey(defaultValue: 'N/A')
   String get educationqualification;
   @override
   bool get isparttime;
   @override
-  @JsonKey(defaultValue: 'OWNER')
+  @JsonKey(defaultValue: 'N/A')
   String get listingownertype;
   @override
   int get maxsalaryrange;
@@ -3206,7 +3209,7 @@ abstract class _JobData implements JobData {
   @override
   String get title;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: 'N/A')
   String get worktype;
   @override
   @JsonKey(ignore: true)
