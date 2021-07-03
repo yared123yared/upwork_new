@@ -42,12 +42,13 @@ class ProductProvider {
     }
   }
 
-  Future<Either<Failure, CompleteJob>> getRealEstateList() async {
-    Either<Failure, CompleteJob> response = await _helperFunction<CompleteJob>(
-        fromListData: (listJson) =>
-            CompleteJob.fromJson({'properties': listJson}),
-        userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
-        type: 'realestate');
+  Future<Either<Failure, CompleteJobList>> getCompleteJobsList() async {
+    Either<Failure, CompleteJobList> response =
+        await _helperFunction<CompleteJobList>(
+            fromListData: (listJson) =>
+                CompleteJobList.fromJson({'jobs': listJson}),
+            userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
+            type: 'realestate');
 
     return response;
   }

@@ -15,11 +15,11 @@ CompleteProductData _$CompleteProductDataFromJson(Map<String, dynamic> json) {
     case 'job':
       return CompleteJob.fromJson(json);
     case 'pet':
-      return CompleteJob.fromJson(json);
+      return CompletePet.fromJson(json);
     case 'vehicle':
-      return CompleteJob.fromJson(json);
+      return CompleteVehicle.fromJson(json);
     case 'product':
-      return CompleteJob.fromJson(json);
+      return CompleteProduct.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -42,16 +42,12 @@ class _$CompleteProductDataTearOff {
           String serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          String userId,
-      @required
-      @JsonKey(name: 'adata')
-          JobData data}) {
+          String userId}) {
     return CompleteRealEstate(
       docId: docId,
       dt: dt,
       serviceId: serviceId,
       userId: userId,
-      data: data,
     );
   }
 
@@ -67,17 +63,21 @@ class _$CompleteProductDataTearOff {
           String serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          String userId}) {
+          String userId,
+      @required
+      @JsonKey(name: 'adata')
+          JobData data}) {
     return CompleteJob(
       docId: docId,
       dt: dt,
       serviceId: serviceId,
       userId: userId,
+      data: data,
     );
   }
 
 // ignore: unused_element
-  CompleteJob pet(
+  CompletePet pet(
       {@required
       @JsonKey(name: 'docid')
           String docId,
@@ -89,7 +89,7 @@ class _$CompleteProductDataTearOff {
       @required
       @JsonKey(name: 'userid', defaultValue: '')
           String userId}) {
-    return CompleteJob(
+    return CompletePet(
       docId: docId,
       dt: dt,
       serviceId: serviceId,
@@ -98,7 +98,7 @@ class _$CompleteProductDataTearOff {
   }
 
 // ignore: unused_element
-  CompleteJob vehicle(
+  CompleteVehicle vehicle(
       {@required
       @JsonKey(name: 'docid')
           String docId,
@@ -110,7 +110,7 @@ class _$CompleteProductDataTearOff {
       @required
       @JsonKey(name: 'userid', defaultValue: '')
           String userId}) {
-    return CompleteJob(
+    return CompleteVehicle(
       docId: docId,
       dt: dt,
       serviceId: serviceId,
@@ -119,7 +119,7 @@ class _$CompleteProductDataTearOff {
   }
 
 // ignore: unused_element
-  CompleteJob product(
+  CompleteProduct product(
       {@required
       @JsonKey(name: 'docid')
           String docId,
@@ -131,7 +131,7 @@ class _$CompleteProductDataTearOff {
       @required
       @JsonKey(name: 'userid', defaultValue: '')
           String userId}) {
-    return CompleteJob(
+    return CompleteProduct(
       docId: docId,
       dt: dt,
       serviceId: serviceId,
@@ -169,9 +169,7 @@ mixin _$CompleteProductData {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId,
-            @JsonKey(name: 'adata')
-                JobData data),
+                String userId),
     @required
         TResult job(
             @JsonKey(name: 'docid')
@@ -180,7 +178,9 @@ mixin _$CompleteProductData {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId),
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
     @required
         TResult pet(
             @JsonKey(name: 'docid')
@@ -215,13 +215,13 @@ mixin _$CompleteProductData {
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId,
-        @JsonKey(name: 'adata') JobData data),
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
     TResult job(
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId),
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
     TResult pet(
         @JsonKey(name: 'docid') String docId,
         String dt,
@@ -243,17 +243,17 @@ mixin _$CompleteProductData {
   TResult map<TResult extends Object>({
     @required TResult realEstate(CompleteRealEstate value),
     @required TResult job(CompleteJob value),
-    @required TResult pet(CompleteJob value),
-    @required TResult vehicle(CompleteJob value),
-    @required TResult product(CompleteJob value),
+    @required TResult pet(CompletePet value),
+    @required TResult vehicle(CompleteVehicle value),
+    @required TResult product(CompleteProduct value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult realEstate(CompleteRealEstate value),
     TResult job(CompleteJob value),
-    TResult pet(CompleteJob value),
-    TResult vehicle(CompleteJob value),
-    TResult product(CompleteJob value),
+    TResult pet(CompletePet value),
+    TResult vehicle(CompleteVehicle value),
+    TResult product(CompleteProduct value),
     @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
@@ -309,10 +309,7 @@ abstract class $CompleteRealEstateCopyWith<$Res>
       {@JsonKey(name: 'docid') String docId,
       String dt,
       @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-      @JsonKey(name: 'userid', defaultValue: '') String userId,
-      @JsonKey(name: 'adata') JobData data});
-
-  $JobDataCopyWith<$Res> get data;
+      @JsonKey(name: 'userid', defaultValue: '') String userId});
 }
 
 /// @nodoc
@@ -332,25 +329,13 @@ class _$CompleteRealEstateCopyWithImpl<$Res>
     Object dt = freezed,
     Object serviceId = freezed,
     Object userId = freezed,
-    Object data = freezed,
   }) {
     return _then(CompleteRealEstate(
       docId: docId == freezed ? _value.docId : docId as String,
       dt: dt == freezed ? _value.dt : dt as String,
       serviceId: serviceId == freezed ? _value.serviceId : serviceId as String,
       userId: userId == freezed ? _value.userId : userId as String,
-      data: data == freezed ? _value.data : data as JobData,
     ));
-  }
-
-  @override
-  $JobDataCopyWith<$Res> get data {
-    if (_value.data == null) {
-      return null;
-    }
-    return $JobDataCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
-    });
   }
 }
 
@@ -369,15 +354,11 @@ class _$CompleteRealEstate implements CompleteRealEstate {
           this.serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          this.userId,
-      @required
-      @JsonKey(name: 'adata')
-          this.data})
+          this.userId})
       : assert(docId != null),
         assert(dt != null),
         assert(serviceId != null),
-        assert(userId != null),
-        assert(data != null);
+        assert(userId != null);
 
   factory _$CompleteRealEstate.fromJson(Map<String, dynamic> json) =>
       _$_$CompleteRealEstateFromJson(json);
@@ -393,13 +374,10 @@ class _$CompleteRealEstate implements CompleteRealEstate {
   @override
   @JsonKey(name: 'userid', defaultValue: '')
   final String userId;
-  @override
-  @JsonKey(name: 'adata')
-  final JobData data;
 
   @override
   String toString() {
-    return 'CompleteProductData.realEstate(docId: $docId, dt: $dt, serviceId: $serviceId, userId: $userId, data: $data)';
+    return 'CompleteProductData.realEstate(docId: $docId, dt: $dt, serviceId: $serviceId, userId: $userId)';
   }
 
   @override
@@ -414,9 +392,7 @@ class _$CompleteRealEstate implements CompleteRealEstate {
                 const DeepCollectionEquality()
                     .equals(other.serviceId, serviceId)) &&
             (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+                const DeepCollectionEquality().equals(other.userId, userId)));
   }
 
   @override
@@ -425,8 +401,7 @@ class _$CompleteRealEstate implements CompleteRealEstate {
       const DeepCollectionEquality().hash(docId) ^
       const DeepCollectionEquality().hash(dt) ^
       const DeepCollectionEquality().hash(serviceId) ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(data);
+      const DeepCollectionEquality().hash(userId);
 
   @JsonKey(ignore: true)
   @override
@@ -444,9 +419,7 @@ class _$CompleteRealEstate implements CompleteRealEstate {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId,
-            @JsonKey(name: 'adata')
-                JobData data),
+                String userId),
     @required
         TResult job(
             @JsonKey(name: 'docid')
@@ -455,7 +428,9 @@ class _$CompleteRealEstate implements CompleteRealEstate {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId),
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
     @required
         TResult pet(
             @JsonKey(name: 'docid')
@@ -489,7 +464,7 @@ class _$CompleteRealEstate implements CompleteRealEstate {
     assert(pet != null);
     assert(vehicle != null);
     assert(product != null);
-    return realEstate(docId, dt, serviceId, userId, data);
+    return realEstate(docId, dt, serviceId, userId);
   }
 
   @override
@@ -499,13 +474,13 @@ class _$CompleteRealEstate implements CompleteRealEstate {
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId,
-        @JsonKey(name: 'adata') JobData data),
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
     TResult job(
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId),
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
     TResult pet(
         @JsonKey(name: 'docid') String docId,
         String dt,
@@ -525,7 +500,7 @@ class _$CompleteRealEstate implements CompleteRealEstate {
   }) {
     assert(orElse != null);
     if (realEstate != null) {
-      return realEstate(docId, dt, serviceId, userId, data);
+      return realEstate(docId, dt, serviceId, userId);
     }
     return orElse();
   }
@@ -535,9 +510,9 @@ class _$CompleteRealEstate implements CompleteRealEstate {
   TResult map<TResult extends Object>({
     @required TResult realEstate(CompleteRealEstate value),
     @required TResult job(CompleteJob value),
-    @required TResult pet(CompleteJob value),
-    @required TResult vehicle(CompleteJob value),
-    @required TResult product(CompleteJob value),
+    @required TResult pet(CompletePet value),
+    @required TResult vehicle(CompleteVehicle value),
+    @required TResult product(CompleteProduct value),
   }) {
     assert(realEstate != null);
     assert(job != null);
@@ -552,9 +527,9 @@ class _$CompleteRealEstate implements CompleteRealEstate {
   TResult maybeMap<TResult extends Object>({
     TResult realEstate(CompleteRealEstate value),
     TResult job(CompleteJob value),
-    TResult pet(CompleteJob value),
-    TResult vehicle(CompleteJob value),
-    TResult product(CompleteJob value),
+    TResult pet(CompletePet value),
+    TResult vehicle(CompleteVehicle value),
+    TResult product(CompleteProduct value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -582,10 +557,7 @@ abstract class CompleteRealEstate implements CompleteProductData {
           String serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          String userId,
-      @required
-      @JsonKey(name: 'adata')
-          JobData data}) = _$CompleteRealEstate;
+          String userId}) = _$CompleteRealEstate;
 
   factory CompleteRealEstate.fromJson(Map<String, dynamic> json) =
       _$CompleteRealEstate.fromJson;
@@ -601,8 +573,6 @@ abstract class CompleteRealEstate implements CompleteProductData {
   @override
   @JsonKey(name: 'userid', defaultValue: '')
   String get userId;
-  @JsonKey(name: 'adata')
-  JobData get data;
   @override
   @JsonKey(ignore: true)
   $CompleteRealEstateCopyWith<CompleteRealEstate> get copyWith;
@@ -619,7 +589,10 @@ abstract class $CompleteJobCopyWith<$Res>
       {@JsonKey(name: 'docid') String docId,
       String dt,
       @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-      @JsonKey(name: 'userid', defaultValue: '') String userId});
+      @JsonKey(name: 'userid', defaultValue: '') String userId,
+      @JsonKey(name: 'adata') JobData data});
+
+  $JobDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -639,13 +612,25 @@ class _$CompleteJobCopyWithImpl<$Res>
     Object dt = freezed,
     Object serviceId = freezed,
     Object userId = freezed,
+    Object data = freezed,
   }) {
     return _then(CompleteJob(
       docId: docId == freezed ? _value.docId : docId as String,
       dt: dt == freezed ? _value.dt : dt as String,
       serviceId: serviceId == freezed ? _value.serviceId : serviceId as String,
       userId: userId == freezed ? _value.userId : userId as String,
+      data: data == freezed ? _value.data : data as JobData,
     ));
+  }
+
+  @override
+  $JobDataCopyWith<$Res> get data {
+    if (_value.data == null) {
+      return null;
+    }
+    return $JobDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
   }
 }
 
@@ -664,11 +649,15 @@ class _$CompleteJob implements CompleteJob {
           this.serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          this.userId})
+          this.userId,
+      @required
+      @JsonKey(name: 'adata')
+          this.data})
       : assert(docId != null),
         assert(dt != null),
         assert(serviceId != null),
-        assert(userId != null);
+        assert(userId != null),
+        assert(data != null);
 
   factory _$CompleteJob.fromJson(Map<String, dynamic> json) =>
       _$_$CompleteJobFromJson(json);
@@ -684,10 +673,13 @@ class _$CompleteJob implements CompleteJob {
   @override
   @JsonKey(name: 'userid', defaultValue: '')
   final String userId;
+  @override
+  @JsonKey(name: 'adata')
+  final JobData data;
 
   @override
   String toString() {
-    return 'CompleteProductData.job(docId: $docId, dt: $dt, serviceId: $serviceId, userId: $userId)';
+    return 'CompleteProductData.job(docId: $docId, dt: $dt, serviceId: $serviceId, userId: $userId, data: $data)';
   }
 
   @override
@@ -702,7 +694,9 @@ class _$CompleteJob implements CompleteJob {
                 const DeepCollectionEquality()
                     .equals(other.serviceId, serviceId)) &&
             (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
@@ -711,7 +705,8 @@ class _$CompleteJob implements CompleteJob {
       const DeepCollectionEquality().hash(docId) ^
       const DeepCollectionEquality().hash(dt) ^
       const DeepCollectionEquality().hash(serviceId) ^
-      const DeepCollectionEquality().hash(userId);
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(data);
 
   @JsonKey(ignore: true)
   @override
@@ -729,9 +724,7 @@ class _$CompleteJob implements CompleteJob {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId,
-            @JsonKey(name: 'adata')
-                JobData data),
+                String userId),
     @required
         TResult job(
             @JsonKey(name: 'docid')
@@ -740,7 +733,9 @@ class _$CompleteJob implements CompleteJob {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId),
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
     @required
         TResult pet(
             @JsonKey(name: 'docid')
@@ -774,7 +769,7 @@ class _$CompleteJob implements CompleteJob {
     assert(pet != null);
     assert(vehicle != null);
     assert(product != null);
-    return job(docId, dt, serviceId, userId);
+    return job(docId, dt, serviceId, userId, data);
   }
 
   @override
@@ -784,13 +779,13 @@ class _$CompleteJob implements CompleteJob {
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId,
-        @JsonKey(name: 'adata') JobData data),
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
     TResult job(
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId),
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
     TResult pet(
         @JsonKey(name: 'docid') String docId,
         String dt,
@@ -810,7 +805,7 @@ class _$CompleteJob implements CompleteJob {
   }) {
     assert(orElse != null);
     if (job != null) {
-      return job(docId, dt, serviceId, userId);
+      return job(docId, dt, serviceId, userId, data);
     }
     return orElse();
   }
@@ -820,9 +815,9 @@ class _$CompleteJob implements CompleteJob {
   TResult map<TResult extends Object>({
     @required TResult realEstate(CompleteRealEstate value),
     @required TResult job(CompleteJob value),
-    @required TResult pet(CompleteJob value),
-    @required TResult vehicle(CompleteJob value),
-    @required TResult product(CompleteJob value),
+    @required TResult pet(CompletePet value),
+    @required TResult vehicle(CompleteVehicle value),
+    @required TResult product(CompleteProduct value),
   }) {
     assert(realEstate != null);
     assert(job != null);
@@ -837,9 +832,9 @@ class _$CompleteJob implements CompleteJob {
   TResult maybeMap<TResult extends Object>({
     TResult realEstate(CompleteRealEstate value),
     TResult job(CompleteJob value),
-    TResult pet(CompleteJob value),
-    TResult vehicle(CompleteJob value),
-    TResult product(CompleteJob value),
+    TResult pet(CompletePet value),
+    TResult vehicle(CompleteVehicle value),
+    TResult product(CompleteProduct value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -867,7 +862,10 @@ abstract class CompleteJob implements CompleteProductData {
           String serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          String userId}) = _$CompleteJob;
+          String userId,
+      @required
+      @JsonKey(name: 'adata')
+          JobData data}) = _$CompleteJob;
 
   factory CompleteJob.fromJson(Map<String, dynamic> json) =
       _$CompleteJob.fromJson;
@@ -883,17 +881,19 @@ abstract class CompleteJob implements CompleteProductData {
   @override
   @JsonKey(name: 'userid', defaultValue: '')
   String get userId;
+  @JsonKey(name: 'adata')
+  JobData get data;
   @override
   @JsonKey(ignore: true)
   $CompleteJobCopyWith<CompleteJob> get copyWith;
 }
 
 /// @nodoc
-abstract class $CompleteJobCopyWith<$Res>
+abstract class $CompletePetCopyWith<$Res>
     implements $CompleteProductDataCopyWith<$Res> {
-  factory $CompleteJobCopyWith(
-          CompleteJob value, $Res Function(CompleteJob) then) =
-      _$CompleteJobCopyWithImpl<$Res>;
+  factory $CompletePetCopyWith(
+          CompletePet value, $Res Function(CompletePet) then) =
+      _$CompletePetCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'docid') String docId,
@@ -903,15 +903,15 @@ abstract class $CompleteJobCopyWith<$Res>
 }
 
 /// @nodoc
-class _$CompleteJobCopyWithImpl<$Res>
+class _$CompletePetCopyWithImpl<$Res>
     extends _$CompleteProductDataCopyWithImpl<$Res>
-    implements $CompleteJobCopyWith<$Res> {
-  _$CompleteJobCopyWithImpl(
-      CompleteJob _value, $Res Function(CompleteJob) _then)
-      : super(_value, (v) => _then(v as CompleteJob));
+    implements $CompletePetCopyWith<$Res> {
+  _$CompletePetCopyWithImpl(
+      CompletePet _value, $Res Function(CompletePet) _then)
+      : super(_value, (v) => _then(v as CompletePet));
 
   @override
-  CompleteJob get _value => super._value as CompleteJob;
+  CompletePet get _value => super._value as CompletePet;
 
   @override
   $Res call({
@@ -920,7 +920,7 @@ class _$CompleteJobCopyWithImpl<$Res>
     Object serviceId = freezed,
     Object userId = freezed,
   }) {
-    return _then(CompleteJob(
+    return _then(CompletePet(
       docId: docId == freezed ? _value.docId : docId as String,
       dt: dt == freezed ? _value.dt : dt as String,
       serviceId: serviceId == freezed ? _value.serviceId : serviceId as String,
@@ -932,8 +932,8 @@ class _$CompleteJobCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$CompleteJob implements CompleteJob {
-  const _$CompleteJob(
+class _$CompletePet implements CompletePet {
+  const _$CompletePet(
       {@required
       @JsonKey(name: 'docid')
           this.docId,
@@ -950,8 +950,8 @@ class _$CompleteJob implements CompleteJob {
         assert(serviceId != null),
         assert(userId != null);
 
-  factory _$CompleteJob.fromJson(Map<String, dynamic> json) =>
-      _$_$CompleteJobFromJson(json);
+  factory _$CompletePet.fromJson(Map<String, dynamic> json) =>
+      _$_$CompletePetFromJson(json);
 
   @override
   @JsonKey(name: 'docid')
@@ -973,7 +973,7 @@ class _$CompleteJob implements CompleteJob {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CompleteJob &&
+        (other is CompletePet &&
             (identical(other.docId, docId) ||
                 const DeepCollectionEquality().equals(other.docId, docId)) &&
             (identical(other.dt, dt) ||
@@ -995,8 +995,8 @@ class _$CompleteJob implements CompleteJob {
 
   @JsonKey(ignore: true)
   @override
-  $CompleteJobCopyWith<CompleteJob> get copyWith =>
-      _$CompleteJobCopyWithImpl<CompleteJob>(this, _$identity);
+  $CompletePetCopyWith<CompletePet> get copyWith =>
+      _$CompletePetCopyWithImpl<CompletePet>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1009,9 +1009,7 @@ class _$CompleteJob implements CompleteJob {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId,
-            @JsonKey(name: 'adata')
-                JobData data),
+                String userId),
     @required
         TResult job(
             @JsonKey(name: 'docid')
@@ -1020,7 +1018,9 @@ class _$CompleteJob implements CompleteJob {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId),
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
     @required
         TResult pet(
             @JsonKey(name: 'docid')
@@ -1064,13 +1064,13 @@ class _$CompleteJob implements CompleteJob {
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId,
-        @JsonKey(name: 'adata') JobData data),
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
     TResult job(
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId),
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
     TResult pet(
         @JsonKey(name: 'docid') String docId,
         String dt,
@@ -1100,9 +1100,9 @@ class _$CompleteJob implements CompleteJob {
   TResult map<TResult extends Object>({
     @required TResult realEstate(CompleteRealEstate value),
     @required TResult job(CompleteJob value),
-    @required TResult pet(CompleteJob value),
-    @required TResult vehicle(CompleteJob value),
-    @required TResult product(CompleteJob value),
+    @required TResult pet(CompletePet value),
+    @required TResult vehicle(CompleteVehicle value),
+    @required TResult product(CompleteProduct value),
   }) {
     assert(realEstate != null);
     assert(job != null);
@@ -1117,9 +1117,9 @@ class _$CompleteJob implements CompleteJob {
   TResult maybeMap<TResult extends Object>({
     TResult realEstate(CompleteRealEstate value),
     TResult job(CompleteJob value),
-    TResult pet(CompleteJob value),
-    TResult vehicle(CompleteJob value),
-    TResult product(CompleteJob value),
+    TResult pet(CompletePet value),
+    TResult vehicle(CompleteVehicle value),
+    TResult product(CompleteProduct value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1131,12 +1131,12 @@ class _$CompleteJob implements CompleteJob {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$CompleteJobToJson(this)..['runtimeType'] = 'pet';
+    return _$_$CompletePetToJson(this)..['runtimeType'] = 'pet';
   }
 }
 
-abstract class CompleteJob implements CompleteProductData {
-  const factory CompleteJob(
+abstract class CompletePet implements CompleteProductData {
+  const factory CompletePet(
       {@required
       @JsonKey(name: 'docid')
           String docId,
@@ -1147,10 +1147,10 @@ abstract class CompleteJob implements CompleteProductData {
           String serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          String userId}) = _$CompleteJob;
+          String userId}) = _$CompletePet;
 
-  factory CompleteJob.fromJson(Map<String, dynamic> json) =
-      _$CompleteJob.fromJson;
+  factory CompletePet.fromJson(Map<String, dynamic> json) =
+      _$CompletePet.fromJson;
 
   @override
   @JsonKey(name: 'docid')
@@ -1165,15 +1165,15 @@ abstract class CompleteJob implements CompleteProductData {
   String get userId;
   @override
   @JsonKey(ignore: true)
-  $CompleteJobCopyWith<CompleteJob> get copyWith;
+  $CompletePetCopyWith<CompletePet> get copyWith;
 }
 
 /// @nodoc
-abstract class $CompleteJobCopyWith<$Res>
+abstract class $CompleteVehicleCopyWith<$Res>
     implements $CompleteProductDataCopyWith<$Res> {
-  factory $CompleteJobCopyWith(
-          CompleteJob value, $Res Function(CompleteJob) then) =
-      _$CompleteJobCopyWithImpl<$Res>;
+  factory $CompleteVehicleCopyWith(
+          CompleteVehicle value, $Res Function(CompleteVehicle) then) =
+      _$CompleteVehicleCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'docid') String docId,
@@ -1183,15 +1183,15 @@ abstract class $CompleteJobCopyWith<$Res>
 }
 
 /// @nodoc
-class _$CompleteJobCopyWithImpl<$Res>
+class _$CompleteVehicleCopyWithImpl<$Res>
     extends _$CompleteProductDataCopyWithImpl<$Res>
-    implements $CompleteJobCopyWith<$Res> {
-  _$CompleteJobCopyWithImpl(
-      CompleteJob _value, $Res Function(CompleteJob) _then)
-      : super(_value, (v) => _then(v as CompleteJob));
+    implements $CompleteVehicleCopyWith<$Res> {
+  _$CompleteVehicleCopyWithImpl(
+      CompleteVehicle _value, $Res Function(CompleteVehicle) _then)
+      : super(_value, (v) => _then(v as CompleteVehicle));
 
   @override
-  CompleteJob get _value => super._value as CompleteJob;
+  CompleteVehicle get _value => super._value as CompleteVehicle;
 
   @override
   $Res call({
@@ -1200,7 +1200,7 @@ class _$CompleteJobCopyWithImpl<$Res>
     Object serviceId = freezed,
     Object userId = freezed,
   }) {
-    return _then(CompleteJob(
+    return _then(CompleteVehicle(
       docId: docId == freezed ? _value.docId : docId as String,
       dt: dt == freezed ? _value.dt : dt as String,
       serviceId: serviceId == freezed ? _value.serviceId : serviceId as String,
@@ -1212,8 +1212,8 @@ class _$CompleteJobCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$CompleteJob implements CompleteJob {
-  const _$CompleteJob(
+class _$CompleteVehicle implements CompleteVehicle {
+  const _$CompleteVehicle(
       {@required
       @JsonKey(name: 'docid')
           this.docId,
@@ -1230,8 +1230,8 @@ class _$CompleteJob implements CompleteJob {
         assert(serviceId != null),
         assert(userId != null);
 
-  factory _$CompleteJob.fromJson(Map<String, dynamic> json) =>
-      _$_$CompleteJobFromJson(json);
+  factory _$CompleteVehicle.fromJson(Map<String, dynamic> json) =>
+      _$_$CompleteVehicleFromJson(json);
 
   @override
   @JsonKey(name: 'docid')
@@ -1253,7 +1253,7 @@ class _$CompleteJob implements CompleteJob {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CompleteJob &&
+        (other is CompleteVehicle &&
             (identical(other.docId, docId) ||
                 const DeepCollectionEquality().equals(other.docId, docId)) &&
             (identical(other.dt, dt) ||
@@ -1275,8 +1275,8 @@ class _$CompleteJob implements CompleteJob {
 
   @JsonKey(ignore: true)
   @override
-  $CompleteJobCopyWith<CompleteJob> get copyWith =>
-      _$CompleteJobCopyWithImpl<CompleteJob>(this, _$identity);
+  $CompleteVehicleCopyWith<CompleteVehicle> get copyWith =>
+      _$CompleteVehicleCopyWithImpl<CompleteVehicle>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1289,9 +1289,7 @@ class _$CompleteJob implements CompleteJob {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId,
-            @JsonKey(name: 'adata')
-                JobData data),
+                String userId),
     @required
         TResult job(
             @JsonKey(name: 'docid')
@@ -1300,7 +1298,9 @@ class _$CompleteJob implements CompleteJob {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId),
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
     @required
         TResult pet(
             @JsonKey(name: 'docid')
@@ -1344,13 +1344,13 @@ class _$CompleteJob implements CompleteJob {
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId,
-        @JsonKey(name: 'adata') JobData data),
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
     TResult job(
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId),
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
     TResult pet(
         @JsonKey(name: 'docid') String docId,
         String dt,
@@ -1380,9 +1380,9 @@ class _$CompleteJob implements CompleteJob {
   TResult map<TResult extends Object>({
     @required TResult realEstate(CompleteRealEstate value),
     @required TResult job(CompleteJob value),
-    @required TResult pet(CompleteJob value),
-    @required TResult vehicle(CompleteJob value),
-    @required TResult product(CompleteJob value),
+    @required TResult pet(CompletePet value),
+    @required TResult vehicle(CompleteVehicle value),
+    @required TResult product(CompleteProduct value),
   }) {
     assert(realEstate != null);
     assert(job != null);
@@ -1397,9 +1397,9 @@ class _$CompleteJob implements CompleteJob {
   TResult maybeMap<TResult extends Object>({
     TResult realEstate(CompleteRealEstate value),
     TResult job(CompleteJob value),
-    TResult pet(CompleteJob value),
-    TResult vehicle(CompleteJob value),
-    TResult product(CompleteJob value),
+    TResult pet(CompletePet value),
+    TResult vehicle(CompleteVehicle value),
+    TResult product(CompleteProduct value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1411,12 +1411,12 @@ class _$CompleteJob implements CompleteJob {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$CompleteJobToJson(this)..['runtimeType'] = 'vehicle';
+    return _$_$CompleteVehicleToJson(this)..['runtimeType'] = 'vehicle';
   }
 }
 
-abstract class CompleteJob implements CompleteProductData {
-  const factory CompleteJob(
+abstract class CompleteVehicle implements CompleteProductData {
+  const factory CompleteVehicle(
       {@required
       @JsonKey(name: 'docid')
           String docId,
@@ -1427,10 +1427,10 @@ abstract class CompleteJob implements CompleteProductData {
           String serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          String userId}) = _$CompleteJob;
+          String userId}) = _$CompleteVehicle;
 
-  factory CompleteJob.fromJson(Map<String, dynamic> json) =
-      _$CompleteJob.fromJson;
+  factory CompleteVehicle.fromJson(Map<String, dynamic> json) =
+      _$CompleteVehicle.fromJson;
 
   @override
   @JsonKey(name: 'docid')
@@ -1445,15 +1445,15 @@ abstract class CompleteJob implements CompleteProductData {
   String get userId;
   @override
   @JsonKey(ignore: true)
-  $CompleteJobCopyWith<CompleteJob> get copyWith;
+  $CompleteVehicleCopyWith<CompleteVehicle> get copyWith;
 }
 
 /// @nodoc
-abstract class $CompleteJobCopyWith<$Res>
+abstract class $CompleteProductCopyWith<$Res>
     implements $CompleteProductDataCopyWith<$Res> {
-  factory $CompleteJobCopyWith(
-          CompleteJob value, $Res Function(CompleteJob) then) =
-      _$CompleteJobCopyWithImpl<$Res>;
+  factory $CompleteProductCopyWith(
+          CompleteProduct value, $Res Function(CompleteProduct) then) =
+      _$CompleteProductCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'docid') String docId,
@@ -1463,15 +1463,15 @@ abstract class $CompleteJobCopyWith<$Res>
 }
 
 /// @nodoc
-class _$CompleteJobCopyWithImpl<$Res>
+class _$CompleteProductCopyWithImpl<$Res>
     extends _$CompleteProductDataCopyWithImpl<$Res>
-    implements $CompleteJobCopyWith<$Res> {
-  _$CompleteJobCopyWithImpl(
-      CompleteJob _value, $Res Function(CompleteJob) _then)
-      : super(_value, (v) => _then(v as CompleteJob));
+    implements $CompleteProductCopyWith<$Res> {
+  _$CompleteProductCopyWithImpl(
+      CompleteProduct _value, $Res Function(CompleteProduct) _then)
+      : super(_value, (v) => _then(v as CompleteProduct));
 
   @override
-  CompleteJob get _value => super._value as CompleteJob;
+  CompleteProduct get _value => super._value as CompleteProduct;
 
   @override
   $Res call({
@@ -1480,7 +1480,7 @@ class _$CompleteJobCopyWithImpl<$Res>
     Object serviceId = freezed,
     Object userId = freezed,
   }) {
-    return _then(CompleteJob(
+    return _then(CompleteProduct(
       docId: docId == freezed ? _value.docId : docId as String,
       dt: dt == freezed ? _value.dt : dt as String,
       serviceId: serviceId == freezed ? _value.serviceId : serviceId as String,
@@ -1492,8 +1492,8 @@ class _$CompleteJobCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$CompleteJob implements CompleteJob {
-  const _$CompleteJob(
+class _$CompleteProduct implements CompleteProduct {
+  const _$CompleteProduct(
       {@required
       @JsonKey(name: 'docid')
           this.docId,
@@ -1510,8 +1510,8 @@ class _$CompleteJob implements CompleteJob {
         assert(serviceId != null),
         assert(userId != null);
 
-  factory _$CompleteJob.fromJson(Map<String, dynamic> json) =>
-      _$_$CompleteJobFromJson(json);
+  factory _$CompleteProduct.fromJson(Map<String, dynamic> json) =>
+      _$_$CompleteProductFromJson(json);
 
   @override
   @JsonKey(name: 'docid')
@@ -1533,7 +1533,7 @@ class _$CompleteJob implements CompleteJob {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CompleteJob &&
+        (other is CompleteProduct &&
             (identical(other.docId, docId) ||
                 const DeepCollectionEquality().equals(other.docId, docId)) &&
             (identical(other.dt, dt) ||
@@ -1555,8 +1555,8 @@ class _$CompleteJob implements CompleteJob {
 
   @JsonKey(ignore: true)
   @override
-  $CompleteJobCopyWith<CompleteJob> get copyWith =>
-      _$CompleteJobCopyWithImpl<CompleteJob>(this, _$identity);
+  $CompleteProductCopyWith<CompleteProduct> get copyWith =>
+      _$CompleteProductCopyWithImpl<CompleteProduct>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1569,9 +1569,7 @@ class _$CompleteJob implements CompleteJob {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId,
-            @JsonKey(name: 'adata')
-                JobData data),
+                String userId),
     @required
         TResult job(
             @JsonKey(name: 'docid')
@@ -1580,7 +1578,9 @@ class _$CompleteJob implements CompleteJob {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId),
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
     @required
         TResult pet(
             @JsonKey(name: 'docid')
@@ -1624,13 +1624,13 @@ class _$CompleteJob implements CompleteJob {
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId,
-        @JsonKey(name: 'adata') JobData data),
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
     TResult job(
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId),
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
     TResult pet(
         @JsonKey(name: 'docid') String docId,
         String dt,
@@ -1660,9 +1660,9 @@ class _$CompleteJob implements CompleteJob {
   TResult map<TResult extends Object>({
     @required TResult realEstate(CompleteRealEstate value),
     @required TResult job(CompleteJob value),
-    @required TResult pet(CompleteJob value),
-    @required TResult vehicle(CompleteJob value),
-    @required TResult product(CompleteJob value),
+    @required TResult pet(CompletePet value),
+    @required TResult vehicle(CompleteVehicle value),
+    @required TResult product(CompleteProduct value),
   }) {
     assert(realEstate != null);
     assert(job != null);
@@ -1677,9 +1677,9 @@ class _$CompleteJob implements CompleteJob {
   TResult maybeMap<TResult extends Object>({
     TResult realEstate(CompleteRealEstate value),
     TResult job(CompleteJob value),
-    TResult pet(CompleteJob value),
-    TResult vehicle(CompleteJob value),
-    TResult product(CompleteJob value),
+    TResult pet(CompletePet value),
+    TResult vehicle(CompleteVehicle value),
+    TResult product(CompleteProduct value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1691,12 +1691,12 @@ class _$CompleteJob implements CompleteJob {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$CompleteJobToJson(this)..['runtimeType'] = 'product';
+    return _$_$CompleteProductToJson(this)..['runtimeType'] = 'product';
   }
 }
 
-abstract class CompleteJob implements CompleteProductData {
-  const factory CompleteJob(
+abstract class CompleteProduct implements CompleteProductData {
+  const factory CompleteProduct(
       {@required
       @JsonKey(name: 'docid')
           String docId,
@@ -1707,10 +1707,10 @@ abstract class CompleteJob implements CompleteProductData {
           String serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          String userId}) = _$CompleteJob;
+          String userId}) = _$CompleteProduct;
 
-  factory CompleteJob.fromJson(Map<String, dynamic> json) =
-      _$CompleteJob.fromJson;
+  factory CompleteProduct.fromJson(Map<String, dynamic> json) =
+      _$CompleteProduct.fromJson;
 
   @override
   @JsonKey(name: 'docid')
@@ -1725,7 +1725,1065 @@ abstract class CompleteJob implements CompleteProductData {
   String get userId;
   @override
   @JsonKey(ignore: true)
-  $CompleteJobCopyWith<CompleteJob> get copyWith;
+  $CompleteProductCopyWith<CompleteProduct> get copyWith;
+}
+
+CompleteProductDataList _$CompleteProductDataListFromJson(
+    Map<String, dynamic> json) {
+  switch (json['runtimeType'] as String) {
+    case 'pet':
+      return CompletePetList.fromJson(json);
+    case 'vehicle':
+      return CompleteVehicleList.fromJson(json);
+    case 'realEstate':
+      return CompleteRealEstateList.fromJson(json);
+    case 'job':
+      return CompleteJobList.fromJson(json);
+    case 'product':
+      return LimitedProductList.fromJson(json);
+    case 'empty':
+      return CompleteProductDataEmptyList.fromJson(json);
+
+    default:
+      throw FallThroughError();
+  }
+}
+
+/// @nodoc
+class _$CompleteProductDataListTearOff {
+  const _$CompleteProductDataListTearOff();
+
+// ignore: unused_element
+  CompletePetList pet({@required List<CompletePet> pets}) {
+    return CompletePetList(
+      pets: pets,
+    );
+  }
+
+// ignore: unused_element
+  CompleteVehicleList vehicle({@required List<CompleteVehicle> vehicles}) {
+    return CompleteVehicleList(
+      vehicles: vehicles,
+    );
+  }
+
+// ignore: unused_element
+  CompleteRealEstateList realEstate(
+      {@required List<CompleteRealEstate> properties}) {
+    return CompleteRealEstateList(
+      properties: properties,
+    );
+  }
+
+// ignore: unused_element
+  CompleteJobList job({@required List<CompleteJob> jobs}) {
+    return CompleteJobList(
+      jobs: jobs,
+    );
+  }
+
+// ignore: unused_element
+  LimitedProductList product({@required List<CompleteProduct> products}) {
+    return LimitedProductList(
+      products: products,
+    );
+  }
+
+// ignore: unused_element
+  CompleteProductDataEmptyList empty() {
+    return const CompleteProductDataEmptyList();
+  }
+
+// ignore: unused_element
+  CompleteProductDataList fromJson(Map<String, Object> json) {
+    return CompleteProductDataList.fromJson(json);
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $CompleteProductDataList = _$CompleteProductDataListTearOff();
+
+/// @nodoc
+mixin _$CompleteProductDataList {
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<CompletePet> pets),
+    @required TResult vehicle(List<CompleteVehicle> vehicles),
+    @required TResult realEstate(List<CompleteRealEstate> properties),
+    @required TResult job(List<CompleteJob> jobs),
+    @required TResult product(List<CompleteProduct> products),
+    @required TResult empty(),
+  });
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<CompletePet> pets),
+    TResult vehicle(List<CompleteVehicle> vehicles),
+    TResult realEstate(List<CompleteRealEstate> properties),
+    TResult job(List<CompleteJob> jobs),
+    TResult product(List<CompleteProduct> products),
+    TResult empty(),
+    @required TResult orElse(),
+  });
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(CompletePetList value),
+    @required TResult vehicle(CompleteVehicleList value),
+    @required TResult realEstate(CompleteRealEstateList value),
+    @required TResult job(CompleteJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(CompleteProductDataEmptyList value),
+  });
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(CompletePetList value),
+    TResult vehicle(CompleteVehicleList value),
+    TResult realEstate(CompleteRealEstateList value),
+    TResult job(CompleteJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(CompleteProductDataEmptyList value),
+    @required TResult orElse(),
+  });
+  Map<String, dynamic> toJson();
+}
+
+/// @nodoc
+abstract class $CompleteProductDataListCopyWith<$Res> {
+  factory $CompleteProductDataListCopyWith(CompleteProductDataList value,
+          $Res Function(CompleteProductDataList) then) =
+      _$CompleteProductDataListCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CompleteProductDataListCopyWithImpl<$Res>
+    implements $CompleteProductDataListCopyWith<$Res> {
+  _$CompleteProductDataListCopyWithImpl(this._value, this._then);
+
+  final CompleteProductDataList _value;
+  // ignore: unused_field
+  final $Res Function(CompleteProductDataList) _then;
+}
+
+/// @nodoc
+abstract class $CompletePetListCopyWith<$Res> {
+  factory $CompletePetListCopyWith(
+          CompletePetList value, $Res Function(CompletePetList) then) =
+      _$CompletePetListCopyWithImpl<$Res>;
+  $Res call({List<CompletePet> pets});
+}
+
+/// @nodoc
+class _$CompletePetListCopyWithImpl<$Res>
+    extends _$CompleteProductDataListCopyWithImpl<$Res>
+    implements $CompletePetListCopyWith<$Res> {
+  _$CompletePetListCopyWithImpl(
+      CompletePetList _value, $Res Function(CompletePetList) _then)
+      : super(_value, (v) => _then(v as CompletePetList));
+
+  @override
+  CompletePetList get _value => super._value as CompletePetList;
+
+  @override
+  $Res call({
+    Object pets = freezed,
+  }) {
+    return _then(CompletePetList(
+      pets: pets == freezed ? _value.pets : pets as List<CompletePet>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$CompletePetList implements CompletePetList {
+  const _$CompletePetList({@required this.pets}) : assert(pets != null);
+
+  factory _$CompletePetList.fromJson(Map<String, dynamic> json) =>
+      _$_$CompletePetListFromJson(json);
+
+  @override
+  final List<CompletePet> pets;
+
+  @override
+  String toString() {
+    return 'CompleteProductDataList.pet(pets: $pets)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CompletePetList &&
+            (identical(other.pets, pets) ||
+                const DeepCollectionEquality().equals(other.pets, pets)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(pets);
+
+  @JsonKey(ignore: true)
+  @override
+  $CompletePetListCopyWith<CompletePetList> get copyWith =>
+      _$CompletePetListCopyWithImpl<CompletePetList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<CompletePet> pets),
+    @required TResult vehicle(List<CompleteVehicle> vehicles),
+    @required TResult realEstate(List<CompleteRealEstate> properties),
+    @required TResult job(List<CompleteJob> jobs),
+    @required TResult product(List<CompleteProduct> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return pet(pets);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<CompletePet> pets),
+    TResult vehicle(List<CompleteVehicle> vehicles),
+    TResult realEstate(List<CompleteRealEstate> properties),
+    TResult job(List<CompleteJob> jobs),
+    TResult product(List<CompleteProduct> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pet != null) {
+      return pet(pets);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(CompletePetList value),
+    @required TResult vehicle(CompleteVehicleList value),
+    @required TResult realEstate(CompleteRealEstateList value),
+    @required TResult job(CompleteJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(CompleteProductDataEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return pet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(CompletePetList value),
+    TResult vehicle(CompleteVehicleList value),
+    TResult realEstate(CompleteRealEstateList value),
+    TResult job(CompleteJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(CompleteProductDataEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pet != null) {
+      return pet(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$CompletePetListToJson(this)..['runtimeType'] = 'pet';
+  }
+}
+
+abstract class CompletePetList implements CompleteProductDataList {
+  const factory CompletePetList({@required List<CompletePet> pets}) =
+      _$CompletePetList;
+
+  factory CompletePetList.fromJson(Map<String, dynamic> json) =
+      _$CompletePetList.fromJson;
+
+  List<CompletePet> get pets;
+  @JsonKey(ignore: true)
+  $CompletePetListCopyWith<CompletePetList> get copyWith;
+}
+
+/// @nodoc
+abstract class $CompleteVehicleListCopyWith<$Res> {
+  factory $CompleteVehicleListCopyWith(
+          CompleteVehicleList value, $Res Function(CompleteVehicleList) then) =
+      _$CompleteVehicleListCopyWithImpl<$Res>;
+  $Res call({List<CompleteVehicle> vehicles});
+}
+
+/// @nodoc
+class _$CompleteVehicleListCopyWithImpl<$Res>
+    extends _$CompleteProductDataListCopyWithImpl<$Res>
+    implements $CompleteVehicleListCopyWith<$Res> {
+  _$CompleteVehicleListCopyWithImpl(
+      CompleteVehicleList _value, $Res Function(CompleteVehicleList) _then)
+      : super(_value, (v) => _then(v as CompleteVehicleList));
+
+  @override
+  CompleteVehicleList get _value => super._value as CompleteVehicleList;
+
+  @override
+  $Res call({
+    Object vehicles = freezed,
+  }) {
+    return _then(CompleteVehicleList(
+      vehicles: vehicles == freezed
+          ? _value.vehicles
+          : vehicles as List<CompleteVehicle>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$CompleteVehicleList implements CompleteVehicleList {
+  const _$CompleteVehicleList({@required this.vehicles})
+      : assert(vehicles != null);
+
+  factory _$CompleteVehicleList.fromJson(Map<String, dynamic> json) =>
+      _$_$CompleteVehicleListFromJson(json);
+
+  @override
+  final List<CompleteVehicle> vehicles;
+
+  @override
+  String toString() {
+    return 'CompleteProductDataList.vehicle(vehicles: $vehicles)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CompleteVehicleList &&
+            (identical(other.vehicles, vehicles) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicles, vehicles)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(vehicles);
+
+  @JsonKey(ignore: true)
+  @override
+  $CompleteVehicleListCopyWith<CompleteVehicleList> get copyWith =>
+      _$CompleteVehicleListCopyWithImpl<CompleteVehicleList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<CompletePet> pets),
+    @required TResult vehicle(List<CompleteVehicle> vehicles),
+    @required TResult realEstate(List<CompleteRealEstate> properties),
+    @required TResult job(List<CompleteJob> jobs),
+    @required TResult product(List<CompleteProduct> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return vehicle(vehicles);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<CompletePet> pets),
+    TResult vehicle(List<CompleteVehicle> vehicles),
+    TResult realEstate(List<CompleteRealEstate> properties),
+    TResult job(List<CompleteJob> jobs),
+    TResult product(List<CompleteProduct> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (vehicle != null) {
+      return vehicle(vehicles);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(CompletePetList value),
+    @required TResult vehicle(CompleteVehicleList value),
+    @required TResult realEstate(CompleteRealEstateList value),
+    @required TResult job(CompleteJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(CompleteProductDataEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return vehicle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(CompletePetList value),
+    TResult vehicle(CompleteVehicleList value),
+    TResult realEstate(CompleteRealEstateList value),
+    TResult job(CompleteJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(CompleteProductDataEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (vehicle != null) {
+      return vehicle(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$CompleteVehicleListToJson(this)..['runtimeType'] = 'vehicle';
+  }
+}
+
+abstract class CompleteVehicleList implements CompleteProductDataList {
+  const factory CompleteVehicleList(
+      {@required List<CompleteVehicle> vehicles}) = _$CompleteVehicleList;
+
+  factory CompleteVehicleList.fromJson(Map<String, dynamic> json) =
+      _$CompleteVehicleList.fromJson;
+
+  List<CompleteVehicle> get vehicles;
+  @JsonKey(ignore: true)
+  $CompleteVehicleListCopyWith<CompleteVehicleList> get copyWith;
+}
+
+/// @nodoc
+abstract class $CompleteRealEstateListCopyWith<$Res> {
+  factory $CompleteRealEstateListCopyWith(CompleteRealEstateList value,
+          $Res Function(CompleteRealEstateList) then) =
+      _$CompleteRealEstateListCopyWithImpl<$Res>;
+  $Res call({List<CompleteRealEstate> properties});
+}
+
+/// @nodoc
+class _$CompleteRealEstateListCopyWithImpl<$Res>
+    extends _$CompleteProductDataListCopyWithImpl<$Res>
+    implements $CompleteRealEstateListCopyWith<$Res> {
+  _$CompleteRealEstateListCopyWithImpl(CompleteRealEstateList _value,
+      $Res Function(CompleteRealEstateList) _then)
+      : super(_value, (v) => _then(v as CompleteRealEstateList));
+
+  @override
+  CompleteRealEstateList get _value => super._value as CompleteRealEstateList;
+
+  @override
+  $Res call({
+    Object properties = freezed,
+  }) {
+    return _then(CompleteRealEstateList(
+      properties: properties == freezed
+          ? _value.properties
+          : properties as List<CompleteRealEstate>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$CompleteRealEstateList implements CompleteRealEstateList {
+  const _$CompleteRealEstateList({@required this.properties})
+      : assert(properties != null);
+
+  factory _$CompleteRealEstateList.fromJson(Map<String, dynamic> json) =>
+      _$_$CompleteRealEstateListFromJson(json);
+
+  @override
+  final List<CompleteRealEstate> properties;
+
+  @override
+  String toString() {
+    return 'CompleteProductDataList.realEstate(properties: $properties)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CompleteRealEstateList &&
+            (identical(other.properties, properties) ||
+                const DeepCollectionEquality()
+                    .equals(other.properties, properties)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(properties);
+
+  @JsonKey(ignore: true)
+  @override
+  $CompleteRealEstateListCopyWith<CompleteRealEstateList> get copyWith =>
+      _$CompleteRealEstateListCopyWithImpl<CompleteRealEstateList>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<CompletePet> pets),
+    @required TResult vehicle(List<CompleteVehicle> vehicles),
+    @required TResult realEstate(List<CompleteRealEstate> properties),
+    @required TResult job(List<CompleteJob> jobs),
+    @required TResult product(List<CompleteProduct> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return realEstate(properties);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<CompletePet> pets),
+    TResult vehicle(List<CompleteVehicle> vehicles),
+    TResult realEstate(List<CompleteRealEstate> properties),
+    TResult job(List<CompleteJob> jobs),
+    TResult product(List<CompleteProduct> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (realEstate != null) {
+      return realEstate(properties);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(CompletePetList value),
+    @required TResult vehicle(CompleteVehicleList value),
+    @required TResult realEstate(CompleteRealEstateList value),
+    @required TResult job(CompleteJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(CompleteProductDataEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return realEstate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(CompletePetList value),
+    TResult vehicle(CompleteVehicleList value),
+    TResult realEstate(CompleteRealEstateList value),
+    TResult job(CompleteJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(CompleteProductDataEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (realEstate != null) {
+      return realEstate(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$CompleteRealEstateListToJson(this)
+      ..['runtimeType'] = 'realEstate';
+  }
+}
+
+abstract class CompleteRealEstateList implements CompleteProductDataList {
+  const factory CompleteRealEstateList(
+          {@required List<CompleteRealEstate> properties}) =
+      _$CompleteRealEstateList;
+
+  factory CompleteRealEstateList.fromJson(Map<String, dynamic> json) =
+      _$CompleteRealEstateList.fromJson;
+
+  List<CompleteRealEstate> get properties;
+  @JsonKey(ignore: true)
+  $CompleteRealEstateListCopyWith<CompleteRealEstateList> get copyWith;
+}
+
+/// @nodoc
+abstract class $CompleteJobListCopyWith<$Res> {
+  factory $CompleteJobListCopyWith(
+          CompleteJobList value, $Res Function(CompleteJobList) then) =
+      _$CompleteJobListCopyWithImpl<$Res>;
+  $Res call({List<CompleteJob> jobs});
+}
+
+/// @nodoc
+class _$CompleteJobListCopyWithImpl<$Res>
+    extends _$CompleteProductDataListCopyWithImpl<$Res>
+    implements $CompleteJobListCopyWith<$Res> {
+  _$CompleteJobListCopyWithImpl(
+      CompleteJobList _value, $Res Function(CompleteJobList) _then)
+      : super(_value, (v) => _then(v as CompleteJobList));
+
+  @override
+  CompleteJobList get _value => super._value as CompleteJobList;
+
+  @override
+  $Res call({
+    Object jobs = freezed,
+  }) {
+    return _then(CompleteJobList(
+      jobs: jobs == freezed ? _value.jobs : jobs as List<CompleteJob>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$CompleteJobList implements CompleteJobList {
+  const _$CompleteJobList({@required this.jobs}) : assert(jobs != null);
+
+  factory _$CompleteJobList.fromJson(Map<String, dynamic> json) =>
+      _$_$CompleteJobListFromJson(json);
+
+  @override
+  final List<CompleteJob> jobs;
+
+  @override
+  String toString() {
+    return 'CompleteProductDataList.job(jobs: $jobs)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CompleteJobList &&
+            (identical(other.jobs, jobs) ||
+                const DeepCollectionEquality().equals(other.jobs, jobs)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(jobs);
+
+  @JsonKey(ignore: true)
+  @override
+  $CompleteJobListCopyWith<CompleteJobList> get copyWith =>
+      _$CompleteJobListCopyWithImpl<CompleteJobList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<CompletePet> pets),
+    @required TResult vehicle(List<CompleteVehicle> vehicles),
+    @required TResult realEstate(List<CompleteRealEstate> properties),
+    @required TResult job(List<CompleteJob> jobs),
+    @required TResult product(List<CompleteProduct> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return job(jobs);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<CompletePet> pets),
+    TResult vehicle(List<CompleteVehicle> vehicles),
+    TResult realEstate(List<CompleteRealEstate> properties),
+    TResult job(List<CompleteJob> jobs),
+    TResult product(List<CompleteProduct> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (job != null) {
+      return job(jobs);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(CompletePetList value),
+    @required TResult vehicle(CompleteVehicleList value),
+    @required TResult realEstate(CompleteRealEstateList value),
+    @required TResult job(CompleteJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(CompleteProductDataEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return job(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(CompletePetList value),
+    TResult vehicle(CompleteVehicleList value),
+    TResult realEstate(CompleteRealEstateList value),
+    TResult job(CompleteJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(CompleteProductDataEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (job != null) {
+      return job(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$CompleteJobListToJson(this)..['runtimeType'] = 'job';
+  }
+}
+
+abstract class CompleteJobList implements CompleteProductDataList {
+  const factory CompleteJobList({@required List<CompleteJob> jobs}) =
+      _$CompleteJobList;
+
+  factory CompleteJobList.fromJson(Map<String, dynamic> json) =
+      _$CompleteJobList.fromJson;
+
+  List<CompleteJob> get jobs;
+  @JsonKey(ignore: true)
+  $CompleteJobListCopyWith<CompleteJobList> get copyWith;
+}
+
+/// @nodoc
+abstract class $LimitedProductListCopyWith<$Res> {
+  factory $LimitedProductListCopyWith(
+          LimitedProductList value, $Res Function(LimitedProductList) then) =
+      _$LimitedProductListCopyWithImpl<$Res>;
+  $Res call({List<CompleteProduct> products});
+}
+
+/// @nodoc
+class _$LimitedProductListCopyWithImpl<$Res>
+    extends _$CompleteProductDataListCopyWithImpl<$Res>
+    implements $LimitedProductListCopyWith<$Res> {
+  _$LimitedProductListCopyWithImpl(
+      LimitedProductList _value, $Res Function(LimitedProductList) _then)
+      : super(_value, (v) => _then(v as LimitedProductList));
+
+  @override
+  LimitedProductList get _value => super._value as LimitedProductList;
+
+  @override
+  $Res call({
+    Object products = freezed,
+  }) {
+    return _then(LimitedProductList(
+      products: products == freezed
+          ? _value.products
+          : products as List<CompleteProduct>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$LimitedProductList implements LimitedProductList {
+  const _$LimitedProductList({@required this.products})
+      : assert(products != null);
+
+  factory _$LimitedProductList.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedProductListFromJson(json);
+
+  @override
+  final List<CompleteProduct> products;
+
+  @override
+  String toString() {
+    return 'CompleteProductDataList.product(products: $products)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LimitedProductList &&
+            (identical(other.products, products) ||
+                const DeepCollectionEquality()
+                    .equals(other.products, products)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(products);
+
+  @JsonKey(ignore: true)
+  @override
+  $LimitedProductListCopyWith<LimitedProductList> get copyWith =>
+      _$LimitedProductListCopyWithImpl<LimitedProductList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<CompletePet> pets),
+    @required TResult vehicle(List<CompleteVehicle> vehicles),
+    @required TResult realEstate(List<CompleteRealEstate> properties),
+    @required TResult job(List<CompleteJob> jobs),
+    @required TResult product(List<CompleteProduct> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return product(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<CompletePet> pets),
+    TResult vehicle(List<CompleteVehicle> vehicles),
+    TResult realEstate(List<CompleteRealEstate> properties),
+    TResult job(List<CompleteJob> jobs),
+    TResult product(List<CompleteProduct> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (product != null) {
+      return product(products);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(CompletePetList value),
+    @required TResult vehicle(CompleteVehicleList value),
+    @required TResult realEstate(CompleteRealEstateList value),
+    @required TResult job(CompleteJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(CompleteProductDataEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return product(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(CompletePetList value),
+    TResult vehicle(CompleteVehicleList value),
+    TResult realEstate(CompleteRealEstateList value),
+    TResult job(CompleteJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(CompleteProductDataEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (product != null) {
+      return product(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LimitedProductListToJson(this)..['runtimeType'] = 'product';
+  }
+}
+
+abstract class LimitedProductList implements CompleteProductDataList {
+  const factory LimitedProductList({@required List<CompleteProduct> products}) =
+      _$LimitedProductList;
+
+  factory LimitedProductList.fromJson(Map<String, dynamic> json) =
+      _$LimitedProductList.fromJson;
+
+  List<CompleteProduct> get products;
+  @JsonKey(ignore: true)
+  $LimitedProductListCopyWith<LimitedProductList> get copyWith;
+}
+
+/// @nodoc
+abstract class $CompleteProductDataEmptyListCopyWith<$Res> {
+  factory $CompleteProductDataEmptyListCopyWith(
+          CompleteProductDataEmptyList value,
+          $Res Function(CompleteProductDataEmptyList) then) =
+      _$CompleteProductDataEmptyListCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CompleteProductDataEmptyListCopyWithImpl<$Res>
+    extends _$CompleteProductDataListCopyWithImpl<$Res>
+    implements $CompleteProductDataEmptyListCopyWith<$Res> {
+  _$CompleteProductDataEmptyListCopyWithImpl(
+      CompleteProductDataEmptyList _value,
+      $Res Function(CompleteProductDataEmptyList) _then)
+      : super(_value, (v) => _then(v as CompleteProductDataEmptyList));
+
+  @override
+  CompleteProductDataEmptyList get _value =>
+      super._value as CompleteProductDataEmptyList;
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$CompleteProductDataEmptyList implements CompleteProductDataEmptyList {
+  const _$CompleteProductDataEmptyList();
+
+  factory _$CompleteProductDataEmptyList.fromJson(Map<String, dynamic> json) =>
+      _$_$CompleteProductDataEmptyListFromJson(json);
+
+  @override
+  String toString() {
+    return 'CompleteProductDataList.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is CompleteProductDataEmptyList);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<CompletePet> pets),
+    @required TResult vehicle(List<CompleteVehicle> vehicles),
+    @required TResult realEstate(List<CompleteRealEstate> properties),
+    @required TResult job(List<CompleteJob> jobs),
+    @required TResult product(List<CompleteProduct> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<CompletePet> pets),
+    TResult vehicle(List<CompleteVehicle> vehicles),
+    TResult realEstate(List<CompleteRealEstate> properties),
+    TResult job(List<CompleteJob> jobs),
+    TResult product(List<CompleteProduct> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(CompletePetList value),
+    @required TResult vehicle(CompleteVehicleList value),
+    @required TResult realEstate(CompleteRealEstateList value),
+    @required TResult job(CompleteJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(CompleteProductDataEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(CompletePetList value),
+    TResult vehicle(CompleteVehicleList value),
+    TResult realEstate(CompleteRealEstateList value),
+    TResult job(CompleteJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(CompleteProductDataEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$CompleteProductDataEmptyListToJson(this)
+      ..['runtimeType'] = 'empty';
+  }
+}
+
+abstract class CompleteProductDataEmptyList implements CompleteProductDataList {
+  const factory CompleteProductDataEmptyList() = _$CompleteProductDataEmptyList;
+
+  factory CompleteProductDataEmptyList.fromJson(Map<String, dynamic> json) =
+      _$CompleteProductDataEmptyList.fromJson;
 }
 
 JobData _$JobDataFromJson(Map<String, dynamic> json) {

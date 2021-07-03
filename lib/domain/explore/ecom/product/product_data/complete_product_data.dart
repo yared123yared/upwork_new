@@ -17,21 +17,17 @@ abstract class CompleteProductData with _$CompleteProductData {
     @required
         String serviceId,
     @JsonKey(name: 'userid', defaultValue: '') @required String userId,
-    @JsonKey(name: 'adata') @required JobData data,
   }) = CompleteRealEstate;
 
-  const factory CompleteProductData.job(
-      {@JsonKey(name: 'docid')
-      @required
-          String docId,
-      @required
-          String dt,
-      @JsonKey(name: 'serviceproviderid', defaultValue: '')
-      @required
-          String serviceId,
-      @JsonKey(name: 'userid', defaultValue: '')
-      @required
-          String userId}) = CompleteJob;
+  const factory CompleteProductData.job({
+    @JsonKey(name: 'docid') @required String docId,
+    @required String dt,
+    @JsonKey(name: 'serviceproviderid', defaultValue: '')
+    @required
+        String serviceId,
+    @JsonKey(name: 'userid', defaultValue: '') @required String userId,
+    @JsonKey(name: 'adata') @required JobData data,
+  }) = CompleteJob;
 
   const factory CompleteProductData.pet(
       {@JsonKey(name: 'docid')
@@ -88,7 +84,7 @@ abstract class CompleteProductDataList with _$CompleteProductDataList {
   const factory CompleteProductDataList.job(
       {@required List<CompleteJob> jobs}) = CompleteJobList;
   const factory CompleteProductDataList.product(
-      {@required List<LimitedProductData> products}) = LimitedProductList;
+      {@required List<CompleteProduct> products}) = LimitedProductList;
 
   const factory CompleteProductDataList.empty() = CompleteProductDataEmptyList;
 

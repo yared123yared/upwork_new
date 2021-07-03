@@ -4914,8 +4914,8 @@ abstract class LimitedEmptyList implements LimitedDataList {
 }
 
 /// @nodoc
-class _$LimitedDataTypeTearOff {
-  const _$LimitedDataTypeTearOff();
+class _$EcomProductTypeTearOff {
+  const _$EcomProductTypeTearOff();
 
 // ignore: unused_element
   _PetType pet() {
@@ -4945,10 +4945,10 @@ class _$LimitedDataTypeTearOff {
 
 /// @nodoc
 // ignore: unused_element
-const $LimitedDataType = _$LimitedDataTypeTearOff();
+const $EcomProductType = _$EcomProductTypeTearOff();
 
 /// @nodoc
-mixin _$LimitedDataType {
+mixin _$EcomProductType {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult pet(),
@@ -4986,20 +4986,20 @@ mixin _$LimitedDataType {
 }
 
 /// @nodoc
-abstract class $LimitedDataTypeCopyWith<$Res> {
-  factory $LimitedDataTypeCopyWith(
-          LimitedDataType value, $Res Function(LimitedDataType) then) =
-      _$LimitedDataTypeCopyWithImpl<$Res>;
+abstract class $EcomProductTypeCopyWith<$Res> {
+  factory $EcomProductTypeCopyWith(
+          EcomProductType value, $Res Function(EcomProductType) then) =
+      _$EcomProductTypeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LimitedDataTypeCopyWithImpl<$Res>
-    implements $LimitedDataTypeCopyWith<$Res> {
-  _$LimitedDataTypeCopyWithImpl(this._value, this._then);
+class _$EcomProductTypeCopyWithImpl<$Res>
+    implements $EcomProductTypeCopyWith<$Res> {
+  _$EcomProductTypeCopyWithImpl(this._value, this._then);
 
-  final LimitedDataType _value;
+  final EcomProductType _value;
   // ignore: unused_field
-  final $Res Function(LimitedDataType) _then;
+  final $Res Function(EcomProductType) _then;
 }
 
 /// @nodoc
@@ -5009,7 +5009,7 @@ abstract class _$PetTypeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$PetTypeCopyWithImpl<$Res> extends _$LimitedDataTypeCopyWithImpl<$Res>
+class __$PetTypeCopyWithImpl<$Res> extends _$EcomProductTypeCopyWithImpl<$Res>
     implements _$PetTypeCopyWith<$Res> {
   __$PetTypeCopyWithImpl(_PetType _value, $Res Function(_PetType) _then)
       : super(_value, (v) => _then(v as _PetType));
@@ -5024,7 +5024,7 @@ class _$_PetType implements _PetType {
 
   @override
   String toString() {
-    return 'LimitedDataType.pet()';
+    return 'EcomProductType.pet()';
   }
 
   @override
@@ -5104,7 +5104,7 @@ class _$_PetType implements _PetType {
   }
 }
 
-abstract class _PetType implements LimitedDataType {
+abstract class _PetType implements EcomProductType {
   const factory _PetType() = _$_PetType;
 }
 
@@ -5117,7 +5117,7 @@ abstract class _$VehicleTypeCopyWith<$Res> {
 
 /// @nodoc
 class __$VehicleTypeCopyWithImpl<$Res>
-    extends _$LimitedDataTypeCopyWithImpl<$Res>
+    extends _$EcomProductTypeCopyWithImpl<$Res>
     implements _$VehicleTypeCopyWith<$Res> {
   __$VehicleTypeCopyWithImpl(
       _VehicleType _value, $Res Function(_VehicleType) _then)
@@ -5133,7 +5133,7 @@ class _$_VehicleType implements _VehicleType {
 
   @override
   String toString() {
-    return 'LimitedDataType.vehicle()';
+    return 'EcomProductType.vehicle()';
   }
 
   @override
@@ -5213,7 +5213,7 @@ class _$_VehicleType implements _VehicleType {
   }
 }
 
-abstract class _VehicleType implements LimitedDataType {
+abstract class _VehicleType implements EcomProductType {
   const factory _VehicleType() = _$_VehicleType;
 }
 
@@ -5226,7 +5226,7 @@ abstract class _$RealEstateTypeCopyWith<$Res> {
 
 /// @nodoc
 class __$RealEstateTypeCopyWithImpl<$Res>
-    extends _$LimitedDataTypeCopyWithImpl<$Res>
+    extends _$EcomProductTypeCopyWithImpl<$Res>
     implements _$RealEstateTypeCopyWith<$Res> {
   __$RealEstateTypeCopyWithImpl(
       _RealEstateType _value, $Res Function(_RealEstateType) _then)
@@ -5242,7 +5242,7 @@ class _$_RealEstateType implements _RealEstateType {
 
   @override
   String toString() {
-    return 'LimitedDataType.realEstate()';
+    return 'EcomProductType.realEstate()';
   }
 
   @override
@@ -5322,7 +5322,7 @@ class _$_RealEstateType implements _RealEstateType {
   }
 }
 
-abstract class _RealEstateType implements LimitedDataType {
+abstract class _RealEstateType implements EcomProductType {
   const factory _RealEstateType() = _$_RealEstateType;
 }
 
@@ -5333,7 +5333,7 @@ abstract class _$JobTypeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$JobTypeCopyWithImpl<$Res> extends _$LimitedDataTypeCopyWithImpl<$Res>
+class __$JobTypeCopyWithImpl<$Res> extends _$EcomProductTypeCopyWithImpl<$Res>
     implements _$JobTypeCopyWith<$Res> {
   __$JobTypeCopyWithImpl(_JobType _value, $Res Function(_JobType) _then)
       : super(_value, (v) => _then(v as _JobType));
@@ -5348,7 +5348,7 @@ class _$_JobType implements _JobType {
 
   @override
   String toString() {
-    return 'LimitedDataType.job()';
+    return 'EcomProductType.job()';
   }
 
   @override
@@ -5428,7 +5428,7 @@ class _$_JobType implements _JobType {
   }
 }
 
-abstract class _JobType implements LimitedDataType {
+abstract class _JobType implements EcomProductType {
   const factory _JobType() = _$_JobType;
 }
 
@@ -5441,7 +5441,7 @@ abstract class _$ProductTypeCopyWith<$Res> {
 
 /// @nodoc
 class __$ProductTypeCopyWithImpl<$Res>
-    extends _$LimitedDataTypeCopyWithImpl<$Res>
+    extends _$EcomProductTypeCopyWithImpl<$Res>
     implements _$ProductTypeCopyWith<$Res> {
   __$ProductTypeCopyWithImpl(
       _ProductType _value, $Res Function(_ProductType) _then)
@@ -5457,7 +5457,7 @@ class _$_ProductType implements _ProductType {
 
   @override
   String toString() {
-    return 'LimitedDataType.product()';
+    return 'EcomProductType.product()';
   }
 
   @override
@@ -5537,6 +5537,6 @@ class _$_ProductType implements _ProductType {
   }
 }
 
-abstract class _ProductType implements LimitedDataType {
+abstract class _ProductType implements EcomProductType {
   const factory _ProductType() = _$_ProductType;
 }

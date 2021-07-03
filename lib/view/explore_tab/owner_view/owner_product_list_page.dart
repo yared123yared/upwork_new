@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class OwnerProductListPage extends StatelessWidget {
-  final LimitedDataType type;
+  final EcomProductType type;
   const OwnerProductListPage({Key key, @required this.type}) : super(key: key);
 
   @override

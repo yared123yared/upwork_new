@@ -23,30 +23,32 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
     yield* event.map(get: (get) async* {
       yield ProductListState.initial().copyWith(isLoading: true);
       final ProductListState finalState = await get.type.map(pet: (pet) async {
-        Either<Failure, CompleteJob> data = await provider.getRealEstateList();
+        Either<Failure, CompleteJobList> data =
+            await provider.getCompleteJobsList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, vehicle: (vehicle) async {
-        Either<Failure, CompleteJob> data = await provider.getRealEstateList();
+        Either<Failure, CompleteJobList> data =
+            await provider.getCompleteJobsList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, realEstate: (realEstate) async {
-        Either<Failure, LimitedRealEstateList> data =
-            await provider.getRealEstateList();
+        Either<Failure, CompleteJobList> data =
+            await provider.getCompleteJobsList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, job: (job) async {
-        Either<Failure, LimitedRealEstateList> data =
-            await provider.getRealEstateList();
+        Either<Failure, CompleteJobList> data =
+            await provider.getCompleteJobsList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, product: (product) async {
-        Either<Failure, LimitedRealEstateList> data =
-            await provider.getRealEstateList();
+        Either<Failure, CompleteJobList> data =
+            await provider.getCompleteJobsList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));

@@ -1,5 +1,4 @@
-import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
-import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
 import 'package:complex/view/product_pages/general_contact_details_page.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,7 @@ class OwnerProductCard extends StatelessWidget {
   final String subtitle;
   final String price;
   final Map<String, String> details;
-  final LimitedData data;
+  final CompleteProductData data;
 
   const OwnerProductCard({
     Key key,
@@ -26,7 +25,8 @@ class OwnerProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => EcomNavigationHelper.of(context).toDetailsPage(data: data),
+      onTap: () =>
+          EcomNavigationHelper.of(context).completeToDetailsPage(data: data),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         padding: EdgeInsets.all(16.0),
@@ -159,21 +159,9 @@ class OwnerProductCard extends StatelessWidget {
     );
   }
 
-  factory OwnerProductCard.fromLimitedData(LimitedData data) {
+  factory OwnerProductCard.fromLimitedData(CompleteProductData data) {
     return data.map(
         pet: (v) => OwnerProductCard(
-              data: v,
-              details: {
-                'breed': v.breed,
-                'gender': v.gender,
-                'age': v.age.toString() + 'yrs',
-              },
-              imageUrl: v.tileimage,
-              price: v.price.toString(),
-              subtitle: v.animalclass,
-              title: v.name,
-            ),
-        package: (v) => OwnerProductCard(
               data: v,
               details: {},
               imageUrl: '',
@@ -191,43 +179,36 @@ class OwnerProductCard extends StatelessWidget {
             ),
         vehicle: (v) => OwnerProductCard(
               data: v,
-              details: {
-                'year': v.yearmade.toString(),
-                'type': v.vehicletype,
-                'model': v.model,
-              },
-              imageUrl: v.tileimage,
-              price: v.price.toString(),
-              subtitle: v.yearmade.toString(),
-              title: v.make,
+              details: {},
+              imageUrl: '',
+              price: '',
+              subtitle: '',
+              title: '',
             ),
         realEstate: (v) => OwnerProductCard(
               data: v,
-              details: {
-                'bedroom': v.numbedroom.toString(),
-                'bathroom': v.numbathroom.toString(),
-                'floor': v.floorNumber.toString(),
-              },
-              imageUrl: v.tileimage,
-              price: v.price.toString() + 'USD /Month',
-              subtitle: v.addressarea.addressinfo,
-              title: v.propertytype,
+              details: {},
+              imageUrl: '',
+              price: '',
+              subtitle: '',
+              title: '',
             ),
         job: (v) => OwnerProductCard(
               data: v,
               details: {
-                'job type': v.jobtype,
+                'min year exp': v.data.minyearexperience.toString(),
+                'job type': v.data.worktype,
                 'address':
-                    '${v.addressarea.addressinfo}, ${v.addressarea.village}, ${v.addressarea.state}, ${v.addressarea.country}',
+                    '${v.data.contactdetails.address.addressline}, ${v.data.contactdetails.address.district}, ${v.data.contactdetails.address.state}, ${v.data.contactdetails.address.country}',
               },
-              imageUrl: v.companyicon,
-              price: '(' + v.salaryrange + ')',
-              subtitle: v.companyname,
-              title: v.title,
+              imageUrl: v.data.companylogo,
+              price: '(${v.data.minsalaryrange} - ${v.data.maxsalaryrange})',
+              subtitle: v.data.companyname,
+              title: v.data.title,
             ));
   }
 
-  void _editData(LimitedData data) {
+  void _editData(CompleteProductData data) {
     data.maybeMap(
       pet: (pet) {
         Get.to(() => GeneralContactDetailPage(

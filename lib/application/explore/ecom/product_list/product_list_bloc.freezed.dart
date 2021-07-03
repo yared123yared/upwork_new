@@ -14,7 +14,7 @@ class _$ProductListEventTearOff {
   const _$ProductListEventTearOff();
 
 // ignore: unused_element
-  _GetProductList get({@required LimitedDataType type}) {
+  _GetProductList get({@required EcomProductType type}) {
     return _GetProductList(
       type: type,
     );
@@ -27,15 +27,15 @@ const $ProductListEvent = _$ProductListEventTearOff();
 
 /// @nodoc
 mixin _$ProductListEvent {
-  LimitedDataType get type;
+  EcomProductType get type;
 
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult get(LimitedDataType type),
+    @required TResult get(EcomProductType type),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult get(LimitedDataType type),
+    TResult get(EcomProductType type),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -57,9 +57,9 @@ abstract class $ProductListEventCopyWith<$Res> {
   factory $ProductListEventCopyWith(
           ProductListEvent value, $Res Function(ProductListEvent) then) =
       _$ProductListEventCopyWithImpl<$Res>;
-  $Res call({LimitedDataType type});
+  $Res call({EcomProductType type});
 
-  $LimitedDataTypeCopyWith<$Res> get type;
+  $EcomProductTypeCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -76,16 +76,16 @@ class _$ProductListEventCopyWithImpl<$Res>
     Object type = freezed,
   }) {
     return _then(_value.copyWith(
-      type: type == freezed ? _value.type : type as LimitedDataType,
+      type: type == freezed ? _value.type : type as EcomProductType,
     ));
   }
 
   @override
-  $LimitedDataTypeCopyWith<$Res> get type {
+  $EcomProductTypeCopyWith<$Res> get type {
     if (_value.type == null) {
       return null;
     }
-    return $LimitedDataTypeCopyWith<$Res>(_value.type, (value) {
+    return $EcomProductTypeCopyWith<$Res>(_value.type, (value) {
       return _then(_value.copyWith(type: value));
     });
   }
@@ -98,10 +98,10 @@ abstract class _$GetProductListCopyWith<$Res>
           _GetProductList value, $Res Function(_GetProductList) then) =
       __$GetProductListCopyWithImpl<$Res>;
   @override
-  $Res call({LimitedDataType type});
+  $Res call({EcomProductType type});
 
   @override
-  $LimitedDataTypeCopyWith<$Res> get type;
+  $EcomProductTypeCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -120,7 +120,7 @@ class __$GetProductListCopyWithImpl<$Res>
     Object type = freezed,
   }) {
     return _then(_GetProductList(
-      type: type == freezed ? _value.type : type as LimitedDataType,
+      type: type == freezed ? _value.type : type as EcomProductType,
     ));
   }
 }
@@ -130,7 +130,7 @@ class _$_GetProductList implements _GetProductList {
   const _$_GetProductList({@required this.type}) : assert(type != null);
 
   @override
-  final LimitedDataType type;
+  final EcomProductType type;
 
   @override
   String toString() {
@@ -157,7 +157,7 @@ class _$_GetProductList implements _GetProductList {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult get(LimitedDataType type),
+    @required TResult get(EcomProductType type),
   }) {
     assert(get != null);
     return get(type);
@@ -166,7 +166,7 @@ class _$_GetProductList implements _GetProductList {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult get(LimitedDataType type),
+    TResult get(EcomProductType type),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -200,11 +200,11 @@ class _$_GetProductList implements _GetProductList {
 }
 
 abstract class _GetProductList implements ProductListEvent {
-  const factory _GetProductList({@required LimitedDataType type}) =
+  const factory _GetProductList({@required EcomProductType type}) =
       _$_GetProductList;
 
   @override
-  LimitedDataType get type;
+  EcomProductType get type;
   @override
   @JsonKey(ignore: true)
   _$GetProductListCopyWith<_GetProductList> get copyWith;
@@ -220,7 +220,7 @@ class _$ProductListStateTearOff {
       @required bool workDone,
       @required Option<Failure> failure,
       @required String message,
-      @required LimitedDataList listData}) {
+      @required CompleteProductDataList listData}) {
     return _ProductListState(
       isLoading: isLoading,
       workDone: workDone,
@@ -241,7 +241,7 @@ mixin _$ProductListState {
   bool get workDone;
   Option<Failure> get failure;
   String get message;
-  LimitedDataList get listData;
+  CompleteProductDataList get listData;
 
   @JsonKey(ignore: true)
   $ProductListStateCopyWith<ProductListState> get copyWith;
@@ -257,9 +257,9 @@ abstract class $ProductListStateCopyWith<$Res> {
       bool workDone,
       Option<Failure> failure,
       String message,
-      LimitedDataList listData});
+      CompleteProductDataList listData});
 
-  $LimitedDataListCopyWith<$Res> get listData;
+  $CompleteProductDataListCopyWith<$Res> get listData;
 }
 
 /// @nodoc
@@ -284,17 +284,18 @@ class _$ProductListStateCopyWithImpl<$Res>
       workDone: workDone == freezed ? _value.workDone : workDone as bool,
       failure: failure == freezed ? _value.failure : failure as Option<Failure>,
       message: message == freezed ? _value.message : message as String,
-      listData:
-          listData == freezed ? _value.listData : listData as LimitedDataList,
+      listData: listData == freezed
+          ? _value.listData
+          : listData as CompleteProductDataList,
     ));
   }
 
   @override
-  $LimitedDataListCopyWith<$Res> get listData {
+  $CompleteProductDataListCopyWith<$Res> get listData {
     if (_value.listData == null) {
       return null;
     }
-    return $LimitedDataListCopyWith<$Res>(_value.listData, (value) {
+    return $CompleteProductDataListCopyWith<$Res>(_value.listData, (value) {
       return _then(_value.copyWith(listData: value));
     });
   }
@@ -312,10 +313,10 @@ abstract class _$ProductListStateCopyWith<$Res>
       bool workDone,
       Option<Failure> failure,
       String message,
-      LimitedDataList listData});
+      CompleteProductDataList listData});
 
   @override
-  $LimitedDataListCopyWith<$Res> get listData;
+  $CompleteProductDataListCopyWith<$Res> get listData;
 }
 
 /// @nodoc
@@ -342,8 +343,9 @@ class __$ProductListStateCopyWithImpl<$Res>
       workDone: workDone == freezed ? _value.workDone : workDone as bool,
       failure: failure == freezed ? _value.failure : failure as Option<Failure>,
       message: message == freezed ? _value.message : message as String,
-      listData:
-          listData == freezed ? _value.listData : listData as LimitedDataList,
+      listData: listData == freezed
+          ? _value.listData
+          : listData as CompleteProductDataList,
     ));
   }
 }
@@ -371,7 +373,7 @@ class _$_ProductListState implements _ProductListState {
   @override
   final String message;
   @override
-  final LimitedDataList listData;
+  final CompleteProductDataList listData;
 
   @override
   String toString() {
@@ -420,7 +422,7 @@ abstract class _ProductListState implements ProductListState {
       @required bool workDone,
       @required Option<Failure> failure,
       @required String message,
-      @required LimitedDataList listData}) = _$_ProductListState;
+      @required CompleteProductDataList listData}) = _$_ProductListState;
 
   @override
   bool get isLoading;
@@ -431,7 +433,7 @@ abstract class _ProductListState implements ProductListState {
   @override
   String get message;
   @override
-  LimitedDataList get listData;
+  CompleteProductDataList get listData;
   @override
   @JsonKey(ignore: true)
   _$ProductListStateCopyWith<_ProductListState> get copyWith;

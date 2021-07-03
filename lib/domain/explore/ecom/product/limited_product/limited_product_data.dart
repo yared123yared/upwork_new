@@ -127,10 +127,10 @@ abstract class LimitedDataList with _$LimitedDataList {
 }
 
 @freezed
-abstract class LimitedDataType with _$LimitedDataType {
-  const factory LimitedDataType.pet() = _PetType;
-  const factory LimitedDataType.vehicle() = _VehicleType;
-  const factory LimitedDataType.realEstate() = _RealEstateType;
-  const factory LimitedDataType.job() = _JobType;
-  const factory LimitedDataType.product() = _ProductType;
+abstract class EcomProductType with _$EcomProductType {
+  const factory EcomProductType.pet() = _PetType;
+  const factory EcomProductType.vehicle() = _VehicleType;
+  const factory EcomProductType.realEstate() = _RealEstateType;
+  const factory EcomProductType.job() = _JobType;
+  const factory EcomProductType.product() = _ProductType;
 }

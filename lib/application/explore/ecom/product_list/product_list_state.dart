@@ -7,13 +7,13 @@ abstract class ProductListState with _$ProductListState {
     @required bool workDone,
     @required Option<Failure> failure,
     @required String message,
-    @required LimitedDataList listData,
+    @required CompleteProductDataList listData,
   }) = _ProductListState;
 
   factory ProductListState.initial() => _ProductListState(
       failure: none(),
       isLoading: false,
-      listData: LimitedEmptyList(),
+      listData: CompleteProductDataList.empty(),
       workDone: false,
       message: '');
 }
