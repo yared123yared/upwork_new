@@ -140,9 +140,12 @@ enum DynamicEntityGridState {
   managerregistrySingleOwner,
   managerregistryMultiOwner,
   registrylist,
+  rooms,
+  examTerm,
+  sessionTerm,
 
   securityservicerequest,
-  grade,
+  gradelist,
   SessionTerm,
   Rooms,
   ExamTerm,
@@ -376,7 +379,10 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.newvirtualroom);
     panelmem.add(DynamicEntityGridState.newofferingschedule);
     panelmem.add(DynamicEntityGridState.offeringList);
-    panelmem.add(DynamicEntityGridState.grade);
+    panelmem.add(DynamicEntityGridState.gradelist);
+    panelmem.add(DynamicEntityGridState.rooms);
+    panelmem.add(DynamicEntityGridState.examTerm);
+    panelmem.add(DynamicEntityGridState.sessionTerm);
 
     return panelmem;
   }
@@ -807,7 +813,7 @@ class UiSchoolHandler {
                   entityID: getCurEntity().entityid);
             });
         break;
-      case DynamicEntityGridState.grade:
+      case DynamicEntityGridState.gradelist:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
             title: 'Grade',
@@ -815,6 +821,45 @@ class UiSchoolHandler {
               // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
               LookupNavigationHelper.toListPage(
                   type: LookupType.grade(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
+            });
+        break;
+      case DynamicEntityGridState.rooms:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Rooms',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.rooms(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
+            });
+        break;
+      case DynamicEntityGridState.examTerm:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Exam Term',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.examTerm(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
+            });
+        break;
+      case DynamicEntityGridState.sessionTerm:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Session Term',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.sessionTerm(),
                   context: context,
                   entityType: getCurEntity().entitytype,
                   entityID: getCurEntity().entityid);
