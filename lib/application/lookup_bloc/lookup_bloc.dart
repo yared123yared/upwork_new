@@ -91,12 +91,26 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
         final Option<Failure> response = await deleteItemWithData.item.map(
             roomInfo: (roomInfo) => provider.deleteRoomItem(
                 serviceID: deleteItemWithData.entityid, room: roomInfo),
-            examTermInfo: (examTermInfo) {},
-            sessionTerm: (sessionTerm) {},
-            paymentPeriodInfo: (paymentPeriodInfo) {},
-            periodInfo: (periodInfo) {},
-            classPeriodInfo: (classPeriodInfo) {},
-            schedule: (schedule) {});
+            examTermInfo: (examTermInfo) => provider.deleteExamTerm(
+                serviceID: deleteItemWithData.entityid, examTerm: examTermInfo),
+            sessionTerm: (sessionTerm) => provider.deleteSessionTerm(
+                serviceID: deleteItemWithData.entityid,
+                sessionTerm: sessionTerm),
+            paymentPeriodInfo: (paymentPeriodInfo) =>
+                provider.deletePaymentPeriod(
+                    serviceID: deleteItemWithData.entityid,
+                    paymentPeriodInfo: paymentPeriodInfo),
+            periodInfo: (periodInfo) => none(),
+            classPeriodInfo: (classPeriodInfo) => provider.deleteClassPeriod(
+                serviceID: deleteItemWithData.entityid,
+                classPeriodInfo: classPeriodInfo),
+            schedule: (schedule) => none(),
+            feeItem: (feeItem) => provider.deleteFeeItem(
+                serviceID: deleteItemWithData.entityid,
+                feeItem: feeItem.feeItem),
+            offering: (offering) => provider.deleteOfferingItem(
+                serviceID: deleteItemWithData.entityid,
+                offering: offering.offering));
 
         response.fold(() {
           add(LookupEvent.getListData(
@@ -110,14 +124,25 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
       createItemData: (createItem) async* {
         yield state.copyWith(isLoading: true, failure: none());
         final Option<Failure> response = await createItem.item.map(
-            roomInfo: (roomInfo) => provider.createRoomItem(
-                serviceID: createItem.entityid, room: roomInfo),
-            examTermInfo: (examTermInfo) {},
-            sessionTerm: (sessionTerm) {},
-            paymentPeriodInfo: (paymentPeriodInfo) {},
-            periodInfo: (periodInfo) {},
-            classPeriodInfo: (classPeriodInfo) {},
-            schedule: (schedule) {});
+          roomInfo: (roomInfo) => provider.createRoomItem(
+              serviceID: createItem.entityid, room: roomInfo),
+          examTermInfo: (examTermInfo) => provider.createExamTerm(
+              serviceID: createItem.entityid, examTerm: examTermInfo),
+          sessionTerm: (sessionTerm) => provider.createSessionTerm(
+              serviceID: createItem.entityid, sessionTerm: sessionTerm),
+          paymentPeriodInfo: (paymentPeriodInfo) =>
+              provider.createPaymentPeriod(
+                  serviceID: createItem.entityid,
+                  paymentPeriodInfo: paymentPeriodInfo),
+          periodInfo: (periodInfo) => none(),
+          classPeriodInfo: (classPeriodInfo) => provider.createClassPeriod(
+              serviceID: createItem.entityid, classPeriodInfo: classPeriodInfo),
+          schedule: (schedule) => none(),
+          feeItem: (fee) => provider.createFeeItem(
+              serviceID: createItem.entityid, feeItem: fee.feeItem),
+          offering: (offering) => provider.createOfferingItem(
+              serviceID: createItem.entityid, offering: offering.offering),
+        );
 
         response.fold(() {
           add(LookupEvent.getListData(
