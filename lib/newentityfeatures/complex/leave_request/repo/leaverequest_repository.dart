@@ -34,34 +34,45 @@ class LeaveRequestRepository {
 
   Future<LeaveRequestRepositoryReturnData> getAllLeaveRequests(
       String entitytype, String entityid, int originType) async {
-    LeaveRequestRepositoryReturnData myreturn =
-        LeaveRequestRepositoryReturnData();
+    LeaveRequestRepositoryReturnData grerror =
+        new LeaveRequestRepositoryReturnData();
+    grerror.errortype = -2;
+    grerror.error = "UNknown exception has occured";
+    try {
+      LeaveRequestRepositoryReturnData myreturn =
+          LeaveRequestRepositoryReturnData();
 
-    List<LeaveRequestModel> leaveRequests =
-        await _complexRepository.leaveRequest.getLeaveRequestForAll(
-      entitytype: entitytype,
-      entityid: entityid,
-      user: _user,
-    );
-    List<LeaveRequestModel> filteredLeaveRequests = [];
+      List<LeaveRequestModel> leaveRequests =
+          await _complexRepository.leaveRequest.getLeaveRequestForAll(
+        entitytype: entitytype,
+        entityid: entityid,
+        user: _user,
+      );
+      List<LeaveRequestModel> filteredLeaveRequests = [];
 
-    leaveRequests.forEach((leaveRequest) {
-      DateTime now = DateTime.now();
-      if ((leaveRequest.startDate.difference(now).inDays < 90) &&
-          (leaveRequest.endDate.difference(now).inDays < 90)) {
-        if (originType == 1) {
-          if (leaveRequest.staffID == _user.userID) {
+      leaveRequests.forEach((leaveRequest) {
+        DateTime now = DateTime.now();
+        if ((leaveRequest.startDate.difference(now).inDays < 90) &&
+            (leaveRequest.endDate.difference(now).inDays < 90)) {
+          if (originType == 1) {
+            if (leaveRequest.staffID == _user.userID) {
+              filteredLeaveRequests.add(leaveRequest);
+            }
+          } else if (originType == 2) {
             filteredLeaveRequests.add(leaveRequest);
           }
-        } else if (originType == 2) {
-          filteredLeaveRequests.add(leaveRequest);
         }
-      }
-    });
+      });
 
-    myreturn.itemlist = filteredLeaveRequests;
-
-    return myreturn;
+      myreturn.itemlist = filteredLeaveRequests;
+      myreturn.errortype = -1;
+      return myreturn;
+    } catch (ex) {
+      grerror.errortype = -2;
+      print(ex.toString());
+      grerror.error = "UNknown exception has occured";
+    }
+    return grerror;
   }
 
   Future<GenericLookUpDataUsedForRegistration> getListFormPreLoadData(
