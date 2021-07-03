@@ -127,127 +127,164 @@ class LookupProvider extends ILookupProvider {
 
   @override
   Future<Option<Failure>> createClassPeriod(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, ClassPeriodInfo classPeriodInfo}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .addItemsInDocArrayFirestore(
+            errorType: 'Class period',
+            fieldName: 'class period info',
+            elements: [classPeriodInfo.toString()]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> createExamTerm(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, ExamTermInfo examTerm}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .addItemsInDocArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [examTerm.toString()]);
+
+    return response;
   }
 
   @override
-  Future<Option<Failure>> createGrade(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+  Future<Option<Failure>> createGrade({String serviceID, String grade}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .addItemsInDocArrayFirestore(
+            errorType: 'Fee Item', fieldName: 'feeitemlist', elements: [grade]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> createOfferingItem(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, String offering}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .addItemsInDocArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [offering]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> createPaymentPeriod(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, PaymentPeriodInfo paymentPeriodInfo}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .addItemsInDocArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [paymentPeriodInfo.toString()]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> createRoomItem(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, RoomInfo rooms}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .addItemsInDocArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [rooms.toString()]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> createSessionTerm(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, SessionTerm sessionTerm}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .addItemsInDocArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [sessionTerm.toString()]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> deleteClassPeriod(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, ClassPeriodInfo classPeriodInfo}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .removeItemsFromDocsArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [classPeriodInfo.toString()]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> deleteDeleteGrade(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, String grade}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .removeItemsFromDocsArrayFirestore(
+            errorType: 'Fee Item', fieldName: 'feeitemlist', elements: [grade]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> deleteExamTerm(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, ExamTermInfo examTerm}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .removeItemsFromDocsArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [examTerm.toString()]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> deleteOfferingItem(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, String offering}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .removeItemsFromDocsArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [offering]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> deletePaymentPeriod(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, PaymentPeriodInfo paymentPeriodInfo}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .removeItemsFromDocsArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [paymentPeriodInfo.toString()]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> deleteRoomItem(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, RoomInfo rooms}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .removeItemsFromDocsArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [rooms.toString()]);
+
+    return response;
   }
 
   @override
   Future<Option<Failure>> deleteSessionTerm(
-      {String serviceID, String feeItem}) async {
-    return some(ExceptionFailure(
-        returnType: 'not implemented',
-        path: 'not implemented',
-        error: 'not implemented'));
+      {String serviceID, SessionTerm sessionTerm}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .removeItemsFromDocsArrayFirestore(
+            errorType: 'Fee Item',
+            fieldName: 'feeitemlist',
+            elements: [sessionTerm.toString()]);
+
+    return response;
   }
 }
