@@ -9,8 +9,6 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
-import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart'
-    as listbloc;
 
 class FeeItemListPage extends StatefulWidget {
   final String entityid;
@@ -71,12 +69,10 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
         deleteAction: () async {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
-            BlocProvider.of<listbloc.StringListBloc>(context).add(
-                listbloc.DeleteItemWithData(
-                    entitytype: widget.entitytype,
-                    entityid: widget.entitytype,
-                    item: item,
-                    fieldname: "feeitemlist"));
+            BlocProvider.of<LookupBloc>(context).add(DeleteItemWithData(
+                item: FeeItem(feeItem: item),
+                entityid: widget.entityid,
+                entitytype: widget.entitytype));
           }
         },
       ));
@@ -114,11 +110,6 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final LookupBloc bloc = BlocProvider.of<LookupBloc>(context)
-    //   ..add(GetListData(
-    //       entityid: widget.entityid,
-    //       entitytype: widget.entitytype,
-    //       lookupType: LookupType.feeItem()));
     return BlocConsumer<LookupBloc, LookupState>(
       listener: (context, state) {
         state.failure.fold(() {
@@ -150,12 +141,11 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
                     String returnedval = await _addButtonActions(
                         context, widget.entitytype, widget.entityid);
                     if (returnedval != "*NOVALUESET*") {
-                      BlocProvider.of<listbloc.StringListBloc>(context).add(
-                        listbloc.CreateItem(
-                            item: returnedval,
-                            entitytype: widget.entitytype,
+                      BlocProvider.of<LookupBloc>(context).add(
+                        CreateItem(
+                            item: FeeItem(feeItem: returnedval),
                             entityid: widget.entityid,
-                            fieldname: "feeitemlist"),
+                            entitytype: widget.entitytype),
                       );
                     } else {
                       returnedval = "*NOVALUESET*";
