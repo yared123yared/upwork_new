@@ -45,7 +45,7 @@ _$Address _$_$AddressFromJson(Map<String, dynamic> json) {
     state: json['state'] as String,
     district: json['district'] as String,
     townVillage: json['town_village'] as String,
-    areaSector: json['area_sector'] as String,
+    areaSector: json['area_sector'] as String ?? 'N/A',
     societyname: json['societyname'] as String,
     addressline: json['addressline'] as String,
     latitude: (json['latitude'] as num)?.toDouble(),

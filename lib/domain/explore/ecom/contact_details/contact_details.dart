@@ -19,7 +19,9 @@ abstract class ContactDetailsData with _$ContactDetailsData {
     @required String state,
     @required String district,
     @JsonKey(name: 'town_village') @required String townVillage,
-    @JsonKey(name: 'area_sector') @required String areaSector,
+    @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+    @required
+        String areaSector,
     @required String societyname,
     @required String addressline,
     @required double latitude,

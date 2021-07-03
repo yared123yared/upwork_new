@@ -1,4 +1,4 @@
-import 'package:complex/view/product_pages/contact_details.dart';
+import 'package:complex/view/product_pages/contact_details_form.dart';
 import 'package:complex/view/product_pages/package_detail_view.dart';
 import 'package:complex/view/product_pages/package_list_view.dart';
 import 'package:complex/view/product_pages/size_and_color_list_view.dart';
