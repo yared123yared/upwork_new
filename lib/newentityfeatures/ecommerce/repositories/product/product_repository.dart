@@ -1,9 +1,9 @@
 import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 
-import '../../providers/product/product_provider.dart';
+import '../../providers/product/product_static_data_provider.dart';
 
 class ProductRepository {
-  final _productProvider = ProductProvider();
+  final _productProvider = ProductStaticDataProvider();
 
   Future<List<String>> getStates() async {
     return await _productProvider.fetchStates();

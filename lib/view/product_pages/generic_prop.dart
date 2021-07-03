@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
-import 'package:complex/data/providers/product_provider.dart';
+import 'package:complex/data/providers/product_provider_old.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_dropdown.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
@@ -58,7 +58,7 @@ class _GenericPropertiesState extends State<GenericProperties> {
   bool _isLoading = true;
   List<String> _photos = [];
   var _channelsProvider = Injector.appInstance.get<ChannelsProvider>();
-  var _productProvider = Injector.appInstance.get<ProductProvider>();
+  var _productProvider = Injector.appInstance.get<ProductProviderOld>();
   List<String> _categoryIds = [];
   var _dynamicProperties;
 

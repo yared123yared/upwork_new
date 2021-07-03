@@ -1,4 +1,4 @@
-import 'package:complex/data/providers/product_provider.dart';
+import 'package:complex/data/providers/product_provider_old.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
 import 'package:complex/utils/resource/colors.dart';
@@ -9,14 +9,14 @@ class SelectCategoryPage extends StatefulWidget {
   final String documentname;
   final String serviceProviderId;
 
-  SelectCategoryPage({this.documentname,this.serviceProviderId});
+  SelectCategoryPage({this.documentname, this.serviceProviderId});
 
   @override
   _SelectCategoryPageState createState() => _SelectCategoryPageState();
 }
 
 class _SelectCategoryPageState extends State<SelectCategoryPage> {
-  var _productProvider = Injector.appInstance.get<ProductProvider>();
+  var _productProvider = Injector.appInstance.get<ProductProviderOld>();
   List<String> _showList = [];
   var _isLoading = true;
 
@@ -24,14 +24,15 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
   void initState() {
     super.initState();
     _productProvider
-        .getCategory(levelName: widget.serviceProviderId != null
-        ? "SERVICEPROVIDERINFO/${widget.serviceProviderId}/PRODUCTCATEGORYINFO/${widget.documentname}"
-        : "PRODUCTCATEGORYINFO/${widget.documentname}")
+        .getCategory(
+            levelName: widget.serviceProviderId != null
+                ? "SERVICEPROVIDERINFO/${widget.serviceProviderId}/PRODUCTCATEGORYINFO/${widget.documentname}"
+                : "PRODUCTCATEGORYINFO/${widget.documentname}")
         .then((result) {
       if (result != null) {
         List<String> _data = result['data'].cast<String>();
         _showList.addAll(_data);
-      }else{
+      } else {
         Navigator.pop(context, widget.documentname);
       }
       setState(() {
@@ -76,15 +77,16 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
               _isLoading = true;
             });
             _productProvider
-                .getCategory(levelName:widget.serviceProviderId != null
-                ? "SERVICEPROVIDERINFO/${widget.serviceProviderId}/PRODUCTCATEGORYINFO/${_showList[index]}"
-                : "PRODUCTCATEGORYINFO/${_showList[index]}")
+                .getCategory(
+                    levelName: widget.serviceProviderId != null
+                        ? "SERVICEPROVIDERINFO/${widget.serviceProviderId}/PRODUCTCATEGORYINFO/${_showList[index]}"
+                        : "PRODUCTCATEGORYINFO/${_showList[index]}")
                 .then((result) {
               if (result != null) {
                 List<String> _data = result['data'].cast<String>();
                 _showList.clear();
                 _showList.addAll(_data);
-              }else{
+              } else {
                 Navigator.pop(context, _showList[index]);
               }
               setState(() {

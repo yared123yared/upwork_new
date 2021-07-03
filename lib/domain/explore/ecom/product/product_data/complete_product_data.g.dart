@@ -12,6 +12,9 @@ _$CompleteRealEstate _$_$CompleteRealEstateFromJson(Map<String, dynamic> json) {
     dt: json['dt'] as String,
     serviceId: json['serviceproviderid'] as String ?? '',
     userId: json['userid'] as String ?? '',
+    data: json['adata'] == null
+        ? null
+        : JobData.fromJson(json['adata'] as Map<String, dynamic>),
   );
 }
 
@@ -29,6 +32,33 @@ Map<String, dynamic> _$_$CompleteRealEstateToJson(
   writeNotNull('dt', instance.dt);
   writeNotNull('serviceproviderid', instance.serviceId);
   writeNotNull('userid', instance.userId);
+  writeNotNull('adata', instance.data?.toJson());
+  return val;
+}
+
+_$CompleteJob _$_$CompleteJobFromJson(Map<String, dynamic> json) {
+  return _$CompleteJob(
+    docId: json['docid'] as String,
+    dt: json['dt'] as String,
+    serviceId: json['serviceproviderid'] as String ?? '',
+    userId: json['userid'] as String ?? '',
+  )..hashCode = json['hashCode'] as int;
+}
+
+Map<String, dynamic> _$_$CompleteJobToJson(_$CompleteJob instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('docid', instance.docId);
+  writeNotNull('dt', instance.dt);
+  writeNotNull('serviceproviderid', instance.serviceId);
+  writeNotNull('userid', instance.userId);
+  writeNotNull('hashCode', instance.hashCode);
   return val;
 }
 

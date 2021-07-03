@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/domain/core/failure/failure.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-
-import 'limited_product/limited_product_data.dart';
 
 class ProductProvider {
   final FirebaseFirestore _firestoreInstance = FirebaseFirestore.instance;
@@ -43,13 +42,12 @@ class ProductProvider {
     }
   }
 
-  Future<Either<Failure, LimitedRealEstateList>> getRealEstateList() async {
-    Either<Failure, LimitedRealEstateList> response =
-        await _helperFunction<LimitedRealEstateList>(
-            fromListData: (listJson) =>
-                LimitedRealEstateList.fromJson({'properties': listJson}),
-            userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
-            type: 'realestate');
+  Future<Either<Failure, CompleteJob>> getRealEstateList() async {
+    Either<Failure, CompleteJob> response = await _helperFunction<CompleteJob>(
+        fromListData: (listJson) =>
+            CompleteJob.fromJson({'properties': listJson}),
+        userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
+        type: 'realestate');
 
     return response;
   }

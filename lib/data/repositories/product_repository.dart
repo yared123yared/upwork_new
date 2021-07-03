@@ -1,6 +1,6 @@
 import 'package:complex/data/models/response/general_response.dart';
 import 'package:complex/data/models/response/generic_response.dart';
-import 'package:complex/data/providers/product_provider.dart';
+import 'package:complex/data/providers/product_provider_old.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/pet_model.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
@@ -8,7 +8,7 @@ import 'package:complex/domain/explore/ecom/product/product_data/property_model.
 import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
 
 class ProductRepository {
-  final ProductProvider productProvider;
+  final ProductProviderOld productProvider;
 
   ProductRepository({this.productProvider});
 

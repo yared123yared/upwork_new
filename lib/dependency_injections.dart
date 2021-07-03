@@ -10,7 +10,7 @@ import 'package:injector/injector.dart';
 
 import 'data/api/api_service.dart';
 import 'data/providers/auth_provider.dart';
-import 'data/providers/product_provider.dart';
+import 'data/providers/product_provider_old.dart';
 import 'data/repositories/auth_repository.dart';
 import 'data/repositories/product_repository.dart';
 
@@ -47,15 +47,15 @@ void _authRepositoryDI(Injector injector) {
 }
 
 void _productProviderDI(Injector injector) {
-  injector.registerDependency<ProductProvider>(() {
+  injector.registerDependency<ProductProviderOld>(() {
     var api = injector.get<ApiService>();
-    return ProductProvider(api: api);
+    return ProductProviderOld(api: api);
   });
 }
 
 void _productRepositoryDI(Injector injector) {
   injector.registerDependency<ProductRepository>(() {
-    var userProvider = injector.get<ProductProvider>();
+    var userProvider = injector.get<ProductProviderOld>();
     return ProductRepository(productProvider: userProvider);
   });
 }

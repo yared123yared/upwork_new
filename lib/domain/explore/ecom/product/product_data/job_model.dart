@@ -1,5 +1,4 @@
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
 
 class JobModel {
   String docid;

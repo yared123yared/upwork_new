@@ -2,7 +2,7 @@ import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
-import 'package:complex/data/providers/product_provider.dart';
+import 'package:complex/data/providers/product_provider_old.dart';
 import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_dropdown.dart';
@@ -51,7 +51,7 @@ class _AddPetPageState extends State<AddPetPage> {
   var _key = GlobalKey<ScaffoldState>();
   ProductBloc _productBloc;
   var _isOwner = true;
-  var _productProvider = Injector.appInstance.get<ProductProvider>();
+  var _productProvider = Injector.appInstance.get<ProductProviderOld>();
   List<String> _petList = [];
   List<String> _breed = [];
 

@@ -2,7 +2,7 @@ import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
-import 'package:complex/data/providers/product_provider.dart';
+import 'package:complex/data/providers/product_provider_old.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
 import 'package:complex/main.dart';
@@ -46,7 +46,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
   CustomTextFieldController _txtMilage = CustomTextFieldController();
   CustomTextFieldController _txtExteriorColor = CustomTextFieldController();
   CustomTextFieldController _txtInteriorColor = CustomTextFieldController();
-  var _productProvider = Injector.appInstance.get<ProductProvider>();
+  var _productProvider = Injector.appInstance.get<ProductProviderOld>();
   List<String> _makeList = [];
   List<String> _modelList = [];
   String _vehicleType = '';

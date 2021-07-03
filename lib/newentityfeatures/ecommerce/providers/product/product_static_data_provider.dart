@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 
-class ProductProvider {
+class ProductStaticDataProvider {
   Future<List> fetchProducts() async {
     await Future.delayed(Duration(seconds: 1));
     return data['servicelistshop'];

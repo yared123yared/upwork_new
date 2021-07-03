@@ -14,6 +14,12 @@ CompleteProductData _$CompleteProductDataFromJson(Map<String, dynamic> json) {
       return CompleteRealEstate.fromJson(json);
     case 'job':
       return CompleteJob.fromJson(json);
+    case 'pet':
+      return CompleteJob.fromJson(json);
+    case 'vehicle':
+      return CompleteJob.fromJson(json);
+    case 'product':
+      return CompleteJob.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -36,8 +42,33 @@ class _$CompleteProductDataTearOff {
           String serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          String userId}) {
+          String userId,
+      @required
+      @JsonKey(name: 'adata')
+          JobData data}) {
     return CompleteRealEstate(
+      docId: docId,
+      dt: dt,
+      serviceId: serviceId,
+      userId: userId,
+      data: data,
+    );
+  }
+
+// ignore: unused_element
+  CompleteJob job(
+      {@required
+      @JsonKey(name: 'docid')
+          String docId,
+      @required
+          String dt,
+      @required
+      @JsonKey(name: 'serviceproviderid', defaultValue: '')
+          String serviceId,
+      @required
+      @JsonKey(name: 'userid', defaultValue: '')
+          String userId}) {
+    return CompleteJob(
       docId: docId,
       dt: dt,
       serviceId: serviceId,
@@ -46,7 +77,49 @@ class _$CompleteProductDataTearOff {
   }
 
 // ignore: unused_element
-  CompleteJob job(
+  CompleteJob pet(
+      {@required
+      @JsonKey(name: 'docid')
+          String docId,
+      @required
+          String dt,
+      @required
+      @JsonKey(name: 'serviceproviderid', defaultValue: '')
+          String serviceId,
+      @required
+      @JsonKey(name: 'userid', defaultValue: '')
+          String userId}) {
+    return CompleteJob(
+      docId: docId,
+      dt: dt,
+      serviceId: serviceId,
+      userId: userId,
+    );
+  }
+
+// ignore: unused_element
+  CompleteJob vehicle(
+      {@required
+      @JsonKey(name: 'docid')
+          String docId,
+      @required
+          String dt,
+      @required
+      @JsonKey(name: 'serviceproviderid', defaultValue: '')
+          String serviceId,
+      @required
+      @JsonKey(name: 'userid', defaultValue: '')
+          String userId}) {
+    return CompleteJob(
+      docId: docId,
+      dt: dt,
+      serviceId: serviceId,
+      userId: userId,
+    );
+  }
+
+// ignore: unused_element
+  CompleteJob product(
       {@required
       @JsonKey(name: 'docid')
           String docId,
@@ -96,9 +169,38 @@ mixin _$CompleteProductData {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId),
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
     @required
         TResult job(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult pet(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult product(
             @JsonKey(name: 'docid')
                 String docId,
             String dt,
@@ -113,8 +215,24 @@ mixin _$CompleteProductData {
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId),
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
     TResult job(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult pet(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult vehicle(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult product(
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
@@ -125,11 +243,17 @@ mixin _$CompleteProductData {
   TResult map<TResult extends Object>({
     @required TResult realEstate(CompleteRealEstate value),
     @required TResult job(CompleteJob value),
+    @required TResult pet(CompleteJob value),
+    @required TResult vehicle(CompleteJob value),
+    @required TResult product(CompleteJob value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult realEstate(CompleteRealEstate value),
     TResult job(CompleteJob value),
+    TResult pet(CompleteJob value),
+    TResult vehicle(CompleteJob value),
+    TResult product(CompleteJob value),
     @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
@@ -185,7 +309,10 @@ abstract class $CompleteRealEstateCopyWith<$Res>
       {@JsonKey(name: 'docid') String docId,
       String dt,
       @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-      @JsonKey(name: 'userid', defaultValue: '') String userId});
+      @JsonKey(name: 'userid', defaultValue: '') String userId,
+      @JsonKey(name: 'adata') JobData data});
+
+  $JobDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -205,13 +332,25 @@ class _$CompleteRealEstateCopyWithImpl<$Res>
     Object dt = freezed,
     Object serviceId = freezed,
     Object userId = freezed,
+    Object data = freezed,
   }) {
     return _then(CompleteRealEstate(
       docId: docId == freezed ? _value.docId : docId as String,
       dt: dt == freezed ? _value.dt : dt as String,
       serviceId: serviceId == freezed ? _value.serviceId : serviceId as String,
       userId: userId == freezed ? _value.userId : userId as String,
+      data: data == freezed ? _value.data : data as JobData,
     ));
+  }
+
+  @override
+  $JobDataCopyWith<$Res> get data {
+    if (_value.data == null) {
+      return null;
+    }
+    return $JobDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
   }
 }
 
@@ -230,11 +369,15 @@ class _$CompleteRealEstate implements CompleteRealEstate {
           this.serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          this.userId})
+          this.userId,
+      @required
+      @JsonKey(name: 'adata')
+          this.data})
       : assert(docId != null),
         assert(dt != null),
         assert(serviceId != null),
-        assert(userId != null);
+        assert(userId != null),
+        assert(data != null);
 
   factory _$CompleteRealEstate.fromJson(Map<String, dynamic> json) =>
       _$_$CompleteRealEstateFromJson(json);
@@ -250,10 +393,13 @@ class _$CompleteRealEstate implements CompleteRealEstate {
   @override
   @JsonKey(name: 'userid', defaultValue: '')
   final String userId;
+  @override
+  @JsonKey(name: 'adata')
+  final JobData data;
 
   @override
   String toString() {
-    return 'CompleteProductData.realEstate(docId: $docId, dt: $dt, serviceId: $serviceId, userId: $userId)';
+    return 'CompleteProductData.realEstate(docId: $docId, dt: $dt, serviceId: $serviceId, userId: $userId, data: $data)';
   }
 
   @override
@@ -268,7 +414,9 @@ class _$CompleteRealEstate implements CompleteRealEstate {
                 const DeepCollectionEquality()
                     .equals(other.serviceId, serviceId)) &&
             (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
@@ -277,7 +425,8 @@ class _$CompleteRealEstate implements CompleteRealEstate {
       const DeepCollectionEquality().hash(docId) ^
       const DeepCollectionEquality().hash(dt) ^
       const DeepCollectionEquality().hash(serviceId) ^
-      const DeepCollectionEquality().hash(userId);
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(data);
 
   @JsonKey(ignore: true)
   @override
@@ -295,9 +444,38 @@ class _$CompleteRealEstate implements CompleteRealEstate {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId),
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
     @required
         TResult job(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult pet(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult product(
             @JsonKey(name: 'docid')
                 String docId,
             String dt,
@@ -308,7 +486,10 @@ class _$CompleteRealEstate implements CompleteRealEstate {
   }) {
     assert(realEstate != null);
     assert(job != null);
-    return realEstate(docId, dt, serviceId, userId);
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(product != null);
+    return realEstate(docId, dt, serviceId, userId, data);
   }
 
   @override
@@ -318,8 +499,24 @@ class _$CompleteRealEstate implements CompleteRealEstate {
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId),
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
     TResult job(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult pet(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult vehicle(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult product(
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
@@ -328,7 +525,7 @@ class _$CompleteRealEstate implements CompleteRealEstate {
   }) {
     assert(orElse != null);
     if (realEstate != null) {
-      return realEstate(docId, dt, serviceId, userId);
+      return realEstate(docId, dt, serviceId, userId, data);
     }
     return orElse();
   }
@@ -338,9 +535,15 @@ class _$CompleteRealEstate implements CompleteRealEstate {
   TResult map<TResult extends Object>({
     @required TResult realEstate(CompleteRealEstate value),
     @required TResult job(CompleteJob value),
+    @required TResult pet(CompleteJob value),
+    @required TResult vehicle(CompleteJob value),
+    @required TResult product(CompleteJob value),
   }) {
     assert(realEstate != null);
     assert(job != null);
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(product != null);
     return realEstate(this);
   }
 
@@ -349,6 +552,9 @@ class _$CompleteRealEstate implements CompleteRealEstate {
   TResult maybeMap<TResult extends Object>({
     TResult realEstate(CompleteRealEstate value),
     TResult job(CompleteJob value),
+    TResult pet(CompleteJob value),
+    TResult vehicle(CompleteJob value),
+    TResult product(CompleteJob value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -376,7 +582,10 @@ abstract class CompleteRealEstate implements CompleteProductData {
           String serviceId,
       @required
       @JsonKey(name: 'userid', defaultValue: '')
-          String userId}) = _$CompleteRealEstate;
+          String userId,
+      @required
+      @JsonKey(name: 'adata')
+          JobData data}) = _$CompleteRealEstate;
 
   factory CompleteRealEstate.fromJson(Map<String, dynamic> json) =
       _$CompleteRealEstate.fromJson;
@@ -392,6 +601,8 @@ abstract class CompleteRealEstate implements CompleteProductData {
   @override
   @JsonKey(name: 'userid', defaultValue: '')
   String get userId;
+  @JsonKey(name: 'adata')
+  JobData get data;
   @override
   @JsonKey(ignore: true)
   $CompleteRealEstateCopyWith<CompleteRealEstate> get copyWith;
@@ -518,9 +729,38 @@ class _$CompleteJob implements CompleteJob {
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
                 String serviceId,
             @JsonKey(name: 'userid', defaultValue: '')
-                String userId),
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
     @required
         TResult job(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult pet(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult product(
             @JsonKey(name: 'docid')
                 String docId,
             String dt,
@@ -531,6 +771,9 @@ class _$CompleteJob implements CompleteJob {
   }) {
     assert(realEstate != null);
     assert(job != null);
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(product != null);
     return job(docId, dt, serviceId, userId);
   }
 
@@ -541,8 +784,24 @@ class _$CompleteJob implements CompleteJob {
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
-        @JsonKey(name: 'userid', defaultValue: '') String userId),
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
     TResult job(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult pet(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult vehicle(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult product(
         @JsonKey(name: 'docid') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
@@ -561,9 +820,15 @@ class _$CompleteJob implements CompleteJob {
   TResult map<TResult extends Object>({
     @required TResult realEstate(CompleteRealEstate value),
     @required TResult job(CompleteJob value),
+    @required TResult pet(CompleteJob value),
+    @required TResult vehicle(CompleteJob value),
+    @required TResult product(CompleteJob value),
   }) {
     assert(realEstate != null);
     assert(job != null);
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(product != null);
     return job(this);
   }
 
@@ -572,6 +837,9 @@ class _$CompleteJob implements CompleteJob {
   TResult maybeMap<TResult extends Object>({
     TResult realEstate(CompleteRealEstate value),
     TResult job(CompleteJob value),
+    TResult pet(CompleteJob value),
+    TResult vehicle(CompleteJob value),
+    TResult product(CompleteJob value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -584,6 +852,846 @@ class _$CompleteJob implements CompleteJob {
   @override
   Map<String, dynamic> toJson() {
     return _$_$CompleteJobToJson(this)..['runtimeType'] = 'job';
+  }
+}
+
+abstract class CompleteJob implements CompleteProductData {
+  const factory CompleteJob(
+      {@required
+      @JsonKey(name: 'docid')
+          String docId,
+      @required
+          String dt,
+      @required
+      @JsonKey(name: 'serviceproviderid', defaultValue: '')
+          String serviceId,
+      @required
+      @JsonKey(name: 'userid', defaultValue: '')
+          String userId}) = _$CompleteJob;
+
+  factory CompleteJob.fromJson(Map<String, dynamic> json) =
+      _$CompleteJob.fromJson;
+
+  @override
+  @JsonKey(name: 'docid')
+  String get docId;
+  @override
+  String get dt;
+  @override
+  @JsonKey(name: 'serviceproviderid', defaultValue: '')
+  String get serviceId;
+  @override
+  @JsonKey(name: 'userid', defaultValue: '')
+  String get userId;
+  @override
+  @JsonKey(ignore: true)
+  $CompleteJobCopyWith<CompleteJob> get copyWith;
+}
+
+/// @nodoc
+abstract class $CompleteJobCopyWith<$Res>
+    implements $CompleteProductDataCopyWith<$Res> {
+  factory $CompleteJobCopyWith(
+          CompleteJob value, $Res Function(CompleteJob) then) =
+      _$CompleteJobCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: 'docid') String docId,
+      String dt,
+      @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+      @JsonKey(name: 'userid', defaultValue: '') String userId});
+}
+
+/// @nodoc
+class _$CompleteJobCopyWithImpl<$Res>
+    extends _$CompleteProductDataCopyWithImpl<$Res>
+    implements $CompleteJobCopyWith<$Res> {
+  _$CompleteJobCopyWithImpl(
+      CompleteJob _value, $Res Function(CompleteJob) _then)
+      : super(_value, (v) => _then(v as CompleteJob));
+
+  @override
+  CompleteJob get _value => super._value as CompleteJob;
+
+  @override
+  $Res call({
+    Object docId = freezed,
+    Object dt = freezed,
+    Object serviceId = freezed,
+    Object userId = freezed,
+  }) {
+    return _then(CompleteJob(
+      docId: docId == freezed ? _value.docId : docId as String,
+      dt: dt == freezed ? _value.dt : dt as String,
+      serviceId: serviceId == freezed ? _value.serviceId : serviceId as String,
+      userId: userId == freezed ? _value.userId : userId as String,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$CompleteJob implements CompleteJob {
+  const _$CompleteJob(
+      {@required
+      @JsonKey(name: 'docid')
+          this.docId,
+      @required
+          this.dt,
+      @required
+      @JsonKey(name: 'serviceproviderid', defaultValue: '')
+          this.serviceId,
+      @required
+      @JsonKey(name: 'userid', defaultValue: '')
+          this.userId})
+      : assert(docId != null),
+        assert(dt != null),
+        assert(serviceId != null),
+        assert(userId != null);
+
+  factory _$CompleteJob.fromJson(Map<String, dynamic> json) =>
+      _$_$CompleteJobFromJson(json);
+
+  @override
+  @JsonKey(name: 'docid')
+  final String docId;
+  @override
+  final String dt;
+  @override
+  @JsonKey(name: 'serviceproviderid', defaultValue: '')
+  final String serviceId;
+  @override
+  @JsonKey(name: 'userid', defaultValue: '')
+  final String userId;
+
+  @override
+  String toString() {
+    return 'CompleteProductData.pet(docId: $docId, dt: $dt, serviceId: $serviceId, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CompleteJob &&
+            (identical(other.docId, docId) ||
+                const DeepCollectionEquality().equals(other.docId, docId)) &&
+            (identical(other.dt, dt) ||
+                const DeepCollectionEquality().equals(other.dt, dt)) &&
+            (identical(other.serviceId, serviceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceId, serviceId)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(docId) ^
+      const DeepCollectionEquality().hash(dt) ^
+      const DeepCollectionEquality().hash(serviceId) ^
+      const DeepCollectionEquality().hash(userId);
+
+  @JsonKey(ignore: true)
+  @override
+  $CompleteJobCopyWith<CompleteJob> get copyWith =>
+      _$CompleteJobCopyWithImpl<CompleteJob>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult realEstate(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
+    @required
+        TResult job(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult pet(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult product(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+  }) {
+    assert(realEstate != null);
+    assert(job != null);
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(product != null);
+    return pet(docId, dt, serviceId, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult realEstate(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
+    TResult job(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult pet(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult vehicle(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult product(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pet != null) {
+      return pet(docId, dt, serviceId, userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult realEstate(CompleteRealEstate value),
+    @required TResult job(CompleteJob value),
+    @required TResult pet(CompleteJob value),
+    @required TResult vehicle(CompleteJob value),
+    @required TResult product(CompleteJob value),
+  }) {
+    assert(realEstate != null);
+    assert(job != null);
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(product != null);
+    return pet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult realEstate(CompleteRealEstate value),
+    TResult job(CompleteJob value),
+    TResult pet(CompleteJob value),
+    TResult vehicle(CompleteJob value),
+    TResult product(CompleteJob value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pet != null) {
+      return pet(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$CompleteJobToJson(this)..['runtimeType'] = 'pet';
+  }
+}
+
+abstract class CompleteJob implements CompleteProductData {
+  const factory CompleteJob(
+      {@required
+      @JsonKey(name: 'docid')
+          String docId,
+      @required
+          String dt,
+      @required
+      @JsonKey(name: 'serviceproviderid', defaultValue: '')
+          String serviceId,
+      @required
+      @JsonKey(name: 'userid', defaultValue: '')
+          String userId}) = _$CompleteJob;
+
+  factory CompleteJob.fromJson(Map<String, dynamic> json) =
+      _$CompleteJob.fromJson;
+
+  @override
+  @JsonKey(name: 'docid')
+  String get docId;
+  @override
+  String get dt;
+  @override
+  @JsonKey(name: 'serviceproviderid', defaultValue: '')
+  String get serviceId;
+  @override
+  @JsonKey(name: 'userid', defaultValue: '')
+  String get userId;
+  @override
+  @JsonKey(ignore: true)
+  $CompleteJobCopyWith<CompleteJob> get copyWith;
+}
+
+/// @nodoc
+abstract class $CompleteJobCopyWith<$Res>
+    implements $CompleteProductDataCopyWith<$Res> {
+  factory $CompleteJobCopyWith(
+          CompleteJob value, $Res Function(CompleteJob) then) =
+      _$CompleteJobCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: 'docid') String docId,
+      String dt,
+      @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+      @JsonKey(name: 'userid', defaultValue: '') String userId});
+}
+
+/// @nodoc
+class _$CompleteJobCopyWithImpl<$Res>
+    extends _$CompleteProductDataCopyWithImpl<$Res>
+    implements $CompleteJobCopyWith<$Res> {
+  _$CompleteJobCopyWithImpl(
+      CompleteJob _value, $Res Function(CompleteJob) _then)
+      : super(_value, (v) => _then(v as CompleteJob));
+
+  @override
+  CompleteJob get _value => super._value as CompleteJob;
+
+  @override
+  $Res call({
+    Object docId = freezed,
+    Object dt = freezed,
+    Object serviceId = freezed,
+    Object userId = freezed,
+  }) {
+    return _then(CompleteJob(
+      docId: docId == freezed ? _value.docId : docId as String,
+      dt: dt == freezed ? _value.dt : dt as String,
+      serviceId: serviceId == freezed ? _value.serviceId : serviceId as String,
+      userId: userId == freezed ? _value.userId : userId as String,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$CompleteJob implements CompleteJob {
+  const _$CompleteJob(
+      {@required
+      @JsonKey(name: 'docid')
+          this.docId,
+      @required
+          this.dt,
+      @required
+      @JsonKey(name: 'serviceproviderid', defaultValue: '')
+          this.serviceId,
+      @required
+      @JsonKey(name: 'userid', defaultValue: '')
+          this.userId})
+      : assert(docId != null),
+        assert(dt != null),
+        assert(serviceId != null),
+        assert(userId != null);
+
+  factory _$CompleteJob.fromJson(Map<String, dynamic> json) =>
+      _$_$CompleteJobFromJson(json);
+
+  @override
+  @JsonKey(name: 'docid')
+  final String docId;
+  @override
+  final String dt;
+  @override
+  @JsonKey(name: 'serviceproviderid', defaultValue: '')
+  final String serviceId;
+  @override
+  @JsonKey(name: 'userid', defaultValue: '')
+  final String userId;
+
+  @override
+  String toString() {
+    return 'CompleteProductData.vehicle(docId: $docId, dt: $dt, serviceId: $serviceId, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CompleteJob &&
+            (identical(other.docId, docId) ||
+                const DeepCollectionEquality().equals(other.docId, docId)) &&
+            (identical(other.dt, dt) ||
+                const DeepCollectionEquality().equals(other.dt, dt)) &&
+            (identical(other.serviceId, serviceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceId, serviceId)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(docId) ^
+      const DeepCollectionEquality().hash(dt) ^
+      const DeepCollectionEquality().hash(serviceId) ^
+      const DeepCollectionEquality().hash(userId);
+
+  @JsonKey(ignore: true)
+  @override
+  $CompleteJobCopyWith<CompleteJob> get copyWith =>
+      _$CompleteJobCopyWithImpl<CompleteJob>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult realEstate(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
+    @required
+        TResult job(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult pet(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult product(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+  }) {
+    assert(realEstate != null);
+    assert(job != null);
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(product != null);
+    return vehicle(docId, dt, serviceId, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult realEstate(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
+    TResult job(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult pet(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult vehicle(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult product(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (vehicle != null) {
+      return vehicle(docId, dt, serviceId, userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult realEstate(CompleteRealEstate value),
+    @required TResult job(CompleteJob value),
+    @required TResult pet(CompleteJob value),
+    @required TResult vehicle(CompleteJob value),
+    @required TResult product(CompleteJob value),
+  }) {
+    assert(realEstate != null);
+    assert(job != null);
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(product != null);
+    return vehicle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult realEstate(CompleteRealEstate value),
+    TResult job(CompleteJob value),
+    TResult pet(CompleteJob value),
+    TResult vehicle(CompleteJob value),
+    TResult product(CompleteJob value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (vehicle != null) {
+      return vehicle(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$CompleteJobToJson(this)..['runtimeType'] = 'vehicle';
+  }
+}
+
+abstract class CompleteJob implements CompleteProductData {
+  const factory CompleteJob(
+      {@required
+      @JsonKey(name: 'docid')
+          String docId,
+      @required
+          String dt,
+      @required
+      @JsonKey(name: 'serviceproviderid', defaultValue: '')
+          String serviceId,
+      @required
+      @JsonKey(name: 'userid', defaultValue: '')
+          String userId}) = _$CompleteJob;
+
+  factory CompleteJob.fromJson(Map<String, dynamic> json) =
+      _$CompleteJob.fromJson;
+
+  @override
+  @JsonKey(name: 'docid')
+  String get docId;
+  @override
+  String get dt;
+  @override
+  @JsonKey(name: 'serviceproviderid', defaultValue: '')
+  String get serviceId;
+  @override
+  @JsonKey(name: 'userid', defaultValue: '')
+  String get userId;
+  @override
+  @JsonKey(ignore: true)
+  $CompleteJobCopyWith<CompleteJob> get copyWith;
+}
+
+/// @nodoc
+abstract class $CompleteJobCopyWith<$Res>
+    implements $CompleteProductDataCopyWith<$Res> {
+  factory $CompleteJobCopyWith(
+          CompleteJob value, $Res Function(CompleteJob) then) =
+      _$CompleteJobCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: 'docid') String docId,
+      String dt,
+      @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+      @JsonKey(name: 'userid', defaultValue: '') String userId});
+}
+
+/// @nodoc
+class _$CompleteJobCopyWithImpl<$Res>
+    extends _$CompleteProductDataCopyWithImpl<$Res>
+    implements $CompleteJobCopyWith<$Res> {
+  _$CompleteJobCopyWithImpl(
+      CompleteJob _value, $Res Function(CompleteJob) _then)
+      : super(_value, (v) => _then(v as CompleteJob));
+
+  @override
+  CompleteJob get _value => super._value as CompleteJob;
+
+  @override
+  $Res call({
+    Object docId = freezed,
+    Object dt = freezed,
+    Object serviceId = freezed,
+    Object userId = freezed,
+  }) {
+    return _then(CompleteJob(
+      docId: docId == freezed ? _value.docId : docId as String,
+      dt: dt == freezed ? _value.dt : dt as String,
+      serviceId: serviceId == freezed ? _value.serviceId : serviceId as String,
+      userId: userId == freezed ? _value.userId : userId as String,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$CompleteJob implements CompleteJob {
+  const _$CompleteJob(
+      {@required
+      @JsonKey(name: 'docid')
+          this.docId,
+      @required
+          this.dt,
+      @required
+      @JsonKey(name: 'serviceproviderid', defaultValue: '')
+          this.serviceId,
+      @required
+      @JsonKey(name: 'userid', defaultValue: '')
+          this.userId})
+      : assert(docId != null),
+        assert(dt != null),
+        assert(serviceId != null),
+        assert(userId != null);
+
+  factory _$CompleteJob.fromJson(Map<String, dynamic> json) =>
+      _$_$CompleteJobFromJson(json);
+
+  @override
+  @JsonKey(name: 'docid')
+  final String docId;
+  @override
+  final String dt;
+  @override
+  @JsonKey(name: 'serviceproviderid', defaultValue: '')
+  final String serviceId;
+  @override
+  @JsonKey(name: 'userid', defaultValue: '')
+  final String userId;
+
+  @override
+  String toString() {
+    return 'CompleteProductData.product(docId: $docId, dt: $dt, serviceId: $serviceId, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CompleteJob &&
+            (identical(other.docId, docId) ||
+                const DeepCollectionEquality().equals(other.docId, docId)) &&
+            (identical(other.dt, dt) ||
+                const DeepCollectionEquality().equals(other.dt, dt)) &&
+            (identical(other.serviceId, serviceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceId, serviceId)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(docId) ^
+      const DeepCollectionEquality().hash(dt) ^
+      const DeepCollectionEquality().hash(serviceId) ^
+      const DeepCollectionEquality().hash(userId);
+
+  @JsonKey(ignore: true)
+  @override
+  $CompleteJobCopyWith<CompleteJob> get copyWith =>
+      _$CompleteJobCopyWithImpl<CompleteJob>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult realEstate(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId,
+            @JsonKey(name: 'adata')
+                JobData data),
+    @required
+        TResult job(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult pet(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult vehicle(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+    @required
+        TResult product(
+            @JsonKey(name: 'docid')
+                String docId,
+            String dt,
+            @JsonKey(name: 'serviceproviderid', defaultValue: '')
+                String serviceId,
+            @JsonKey(name: 'userid', defaultValue: '')
+                String userId),
+  }) {
+    assert(realEstate != null);
+    assert(job != null);
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(product != null);
+    return product(docId, dt, serviceId, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult realEstate(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId,
+        @JsonKey(name: 'adata') JobData data),
+    TResult job(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult pet(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult vehicle(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    TResult product(
+        @JsonKey(name: 'docid') String docId,
+        String dt,
+        @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
+        @JsonKey(name: 'userid', defaultValue: '') String userId),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (product != null) {
+      return product(docId, dt, serviceId, userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult realEstate(CompleteRealEstate value),
+    @required TResult job(CompleteJob value),
+    @required TResult pet(CompleteJob value),
+    @required TResult vehicle(CompleteJob value),
+    @required TResult product(CompleteJob value),
+  }) {
+    assert(realEstate != null);
+    assert(job != null);
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(product != null);
+    return product(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult realEstate(CompleteRealEstate value),
+    TResult job(CompleteJob value),
+    TResult pet(CompleteJob value),
+    TResult vehicle(CompleteJob value),
+    TResult product(CompleteJob value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (product != null) {
+      return product(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$CompleteJobToJson(this)..['runtimeType'] = 'product';
   }
 }
 

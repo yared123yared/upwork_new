@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:complex/domain/core/failure/failure.dart';
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_provider.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -22,14 +23,12 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
     yield* event.map(get: (get) async* {
       yield ProductListState.initial().copyWith(isLoading: true);
       final ProductListState finalState = await get.type.map(pet: (pet) async {
-        Either<Failure, LimitedRealEstateList> data =
-            await provider.getRealEstateList();
+        Either<Failure, CompleteJob> data = await provider.getRealEstateList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, vehicle: (vehicle) async {
-        Either<Failure, LimitedRealEstateList> data =
-            await provider.getRealEstateList();
+        Either<Failure, CompleteJob> data = await provider.getRealEstateList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
