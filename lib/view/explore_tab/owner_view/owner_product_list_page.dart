@@ -22,10 +22,13 @@ class OwnerProductListPage extends StatelessWidget {
           } else {
             EasyLoading.dismiss();
           }
-        },
-            (a) => showDialog(
-                context: context,
-                builder: (context) => ErrorDialogue(failure: a)));
+        }, (a) {
+          EasyLoading.dismiss();
+
+          showDialog(
+              context: context,
+              builder: (context) => ErrorDialogue(failure: a));
+        });
       },
       builder: (context, state) {
         return Scaffold(
