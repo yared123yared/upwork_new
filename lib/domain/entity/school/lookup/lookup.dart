@@ -91,6 +91,10 @@ abstract class Lookup with _$Lookup {
     @JsonKey(name: 'classperiodname') @required String classPeriodName,
   }) = Schedule;
 
+  const factory Lookup.offering({@required String offering}) = Offering;
+
+  const factory Lookup.feeItem({@required String feeItem}) = FeeItem;
+
   factory Lookup.fromJson(Map<String, dynamic> json) => _$LookupFromJson(json);
 }
 
@@ -149,5 +153,7 @@ abstract class LookupType with _$LookupType {
       paymentPeriodInfo: (paymentPeriodInfo) => LookupType.paymentPeriod(),
       periodInfo: (periodInfo) => LookupType.paymentPeriod(),
       classPeriodInfo: (classPeriodInfo) => LookupType.classPeriod(),
-      schedule: (schedule) => LookupType.classPeriod());
+      schedule: (schedule) => LookupType.classPeriod(),
+      feeItem: (feeItem) => LookupType.feeItem(),
+      offering: (offering) => LookupType.offering());
 }

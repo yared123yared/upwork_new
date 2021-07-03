@@ -179,6 +179,44 @@ Map<String, dynamic> _$_$ScheduleToJson(_$Schedule instance) {
   return val;
 }
 
+_$Offering _$_$OfferingFromJson(Map<String, dynamic> json) {
+  return _$Offering(
+    offering: json['offering'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$OfferingToJson(_$Offering instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('offering', instance.offering);
+  return val;
+}
+
+_$FeeItem _$_$FeeItemFromJson(Map<String, dynamic> json) {
+  return _$FeeItem(
+    feeItem: json['feeItem'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$FeeItemToJson(_$FeeItem instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('feeItem', instance.feeItem);
+  return val;
+}
+
 _$RoomInfoList _$_$RoomInfoListFromJson(Map<String, dynamic> json) {
   return _$RoomInfoList(
     list: (json['roominfo'] as List)
