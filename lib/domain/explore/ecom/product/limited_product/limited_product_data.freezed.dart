@@ -3859,3 +3859,1684 @@ abstract class LimitedJobData implements LimitedData {
   @JsonKey(ignore: true)
   $LimitedJobDataCopyWith<LimitedJobData> get copyWith;
 }
+
+LimitedDataList _$LimitedDataListFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType'] as String) {
+    case 'pet':
+      return LimitedPetList.fromJson(json);
+    case 'vehicle':
+      return LimitedVehicleList.fromJson(json);
+    case 'realEstate':
+      return LimitedRealEstateList.fromJson(json);
+    case 'job':
+      return LimitedJobList.fromJson(json);
+    case 'product':
+      return LimitedProductList.fromJson(json);
+    case 'empty':
+      return LimitedEmptyList.fromJson(json);
+
+    default:
+      throw FallThroughError();
+  }
+}
+
+/// @nodoc
+class _$LimitedDataListTearOff {
+  const _$LimitedDataListTearOff();
+
+// ignore: unused_element
+  LimitedPetList pet({@required List<LimitedPetData> pets}) {
+    return LimitedPetList(
+      pets: pets,
+    );
+  }
+
+// ignore: unused_element
+  LimitedVehicleList vehicle({@required List<LimitedVehicleData> vehicles}) {
+    return LimitedVehicleList(
+      vehicles: vehicles,
+    );
+  }
+
+// ignore: unused_element
+  LimitedRealEstateList realEstate(
+      {@required List<LimitedRealEstateData> properties}) {
+    return LimitedRealEstateList(
+      properties: properties,
+    );
+  }
+
+// ignore: unused_element
+  LimitedJobList job({@required List<LimitedJobData> jobs}) {
+    return LimitedJobList(
+      jobs: jobs,
+    );
+  }
+
+// ignore: unused_element
+  LimitedProductList product({@required List<LimitedProductData> products}) {
+    return LimitedProductList(
+      products: products,
+    );
+  }
+
+// ignore: unused_element
+  LimitedEmptyList empty() {
+    return const LimitedEmptyList();
+  }
+
+// ignore: unused_element
+  LimitedDataList fromJson(Map<String, Object> json) {
+    return LimitedDataList.fromJson(json);
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $LimitedDataList = _$LimitedDataListTearOff();
+
+/// @nodoc
+mixin _$LimitedDataList {
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<LimitedPetData> pets),
+    @required TResult vehicle(List<LimitedVehicleData> vehicles),
+    @required TResult realEstate(List<LimitedRealEstateData> properties),
+    @required TResult job(List<LimitedJobData> jobs),
+    @required TResult product(List<LimitedProductData> products),
+    @required TResult empty(),
+  });
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<LimitedPetData> pets),
+    TResult vehicle(List<LimitedVehicleData> vehicles),
+    TResult realEstate(List<LimitedRealEstateData> properties),
+    TResult job(List<LimitedJobData> jobs),
+    TResult product(List<LimitedProductData> products),
+    TResult empty(),
+    @required TResult orElse(),
+  });
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetList value),
+    @required TResult vehicle(LimitedVehicleList value),
+    @required TResult realEstate(LimitedRealEstateList value),
+    @required TResult job(LimitedJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(LimitedEmptyList value),
+  });
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetList value),
+    TResult vehicle(LimitedVehicleList value),
+    TResult realEstate(LimitedRealEstateList value),
+    TResult job(LimitedJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(LimitedEmptyList value),
+    @required TResult orElse(),
+  });
+  Map<String, dynamic> toJson();
+}
+
+/// @nodoc
+abstract class $LimitedDataListCopyWith<$Res> {
+  factory $LimitedDataListCopyWith(
+          LimitedDataList value, $Res Function(LimitedDataList) then) =
+      _$LimitedDataListCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LimitedDataListCopyWithImpl<$Res>
+    implements $LimitedDataListCopyWith<$Res> {
+  _$LimitedDataListCopyWithImpl(this._value, this._then);
+
+  final LimitedDataList _value;
+  // ignore: unused_field
+  final $Res Function(LimitedDataList) _then;
+}
+
+/// @nodoc
+abstract class $LimitedPetListCopyWith<$Res> {
+  factory $LimitedPetListCopyWith(
+          LimitedPetList value, $Res Function(LimitedPetList) then) =
+      _$LimitedPetListCopyWithImpl<$Res>;
+  $Res call({List<LimitedPetData> pets});
+}
+
+/// @nodoc
+class _$LimitedPetListCopyWithImpl<$Res>
+    extends _$LimitedDataListCopyWithImpl<$Res>
+    implements $LimitedPetListCopyWith<$Res> {
+  _$LimitedPetListCopyWithImpl(
+      LimitedPetList _value, $Res Function(LimitedPetList) _then)
+      : super(_value, (v) => _then(v as LimitedPetList));
+
+  @override
+  LimitedPetList get _value => super._value as LimitedPetList;
+
+  @override
+  $Res call({
+    Object pets = freezed,
+  }) {
+    return _then(LimitedPetList(
+      pets: pets == freezed ? _value.pets : pets as List<LimitedPetData>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$LimitedPetList implements LimitedPetList {
+  const _$LimitedPetList({@required this.pets}) : assert(pets != null);
+
+  factory _$LimitedPetList.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedPetListFromJson(json);
+
+  @override
+  final List<LimitedPetData> pets;
+
+  @override
+  String toString() {
+    return 'LimitedDataList.pet(pets: $pets)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LimitedPetList &&
+            (identical(other.pets, pets) ||
+                const DeepCollectionEquality().equals(other.pets, pets)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(pets);
+
+  @JsonKey(ignore: true)
+  @override
+  $LimitedPetListCopyWith<LimitedPetList> get copyWith =>
+      _$LimitedPetListCopyWithImpl<LimitedPetList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<LimitedPetData> pets),
+    @required TResult vehicle(List<LimitedVehicleData> vehicles),
+    @required TResult realEstate(List<LimitedRealEstateData> properties),
+    @required TResult job(List<LimitedJobData> jobs),
+    @required TResult product(List<LimitedProductData> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return pet(pets);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<LimitedPetData> pets),
+    TResult vehicle(List<LimitedVehicleData> vehicles),
+    TResult realEstate(List<LimitedRealEstateData> properties),
+    TResult job(List<LimitedJobData> jobs),
+    TResult product(List<LimitedProductData> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pet != null) {
+      return pet(pets);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetList value),
+    @required TResult vehicle(LimitedVehicleList value),
+    @required TResult realEstate(LimitedRealEstateList value),
+    @required TResult job(LimitedJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(LimitedEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return pet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetList value),
+    TResult vehicle(LimitedVehicleList value),
+    TResult realEstate(LimitedRealEstateList value),
+    TResult job(LimitedJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(LimitedEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pet != null) {
+      return pet(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LimitedPetListToJson(this)..['runtimeType'] = 'pet';
+  }
+}
+
+abstract class LimitedPetList implements LimitedDataList {
+  const factory LimitedPetList({@required List<LimitedPetData> pets}) =
+      _$LimitedPetList;
+
+  factory LimitedPetList.fromJson(Map<String, dynamic> json) =
+      _$LimitedPetList.fromJson;
+
+  List<LimitedPetData> get pets;
+  @JsonKey(ignore: true)
+  $LimitedPetListCopyWith<LimitedPetList> get copyWith;
+}
+
+/// @nodoc
+abstract class $LimitedVehicleListCopyWith<$Res> {
+  factory $LimitedVehicleListCopyWith(
+          LimitedVehicleList value, $Res Function(LimitedVehicleList) then) =
+      _$LimitedVehicleListCopyWithImpl<$Res>;
+  $Res call({List<LimitedVehicleData> vehicles});
+}
+
+/// @nodoc
+class _$LimitedVehicleListCopyWithImpl<$Res>
+    extends _$LimitedDataListCopyWithImpl<$Res>
+    implements $LimitedVehicleListCopyWith<$Res> {
+  _$LimitedVehicleListCopyWithImpl(
+      LimitedVehicleList _value, $Res Function(LimitedVehicleList) _then)
+      : super(_value, (v) => _then(v as LimitedVehicleList));
+
+  @override
+  LimitedVehicleList get _value => super._value as LimitedVehicleList;
+
+  @override
+  $Res call({
+    Object vehicles = freezed,
+  }) {
+    return _then(LimitedVehicleList(
+      vehicles: vehicles == freezed
+          ? _value.vehicles
+          : vehicles as List<LimitedVehicleData>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$LimitedVehicleList implements LimitedVehicleList {
+  const _$LimitedVehicleList({@required this.vehicles})
+      : assert(vehicles != null);
+
+  factory _$LimitedVehicleList.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedVehicleListFromJson(json);
+
+  @override
+  final List<LimitedVehicleData> vehicles;
+
+  @override
+  String toString() {
+    return 'LimitedDataList.vehicle(vehicles: $vehicles)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LimitedVehicleList &&
+            (identical(other.vehicles, vehicles) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicles, vehicles)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(vehicles);
+
+  @JsonKey(ignore: true)
+  @override
+  $LimitedVehicleListCopyWith<LimitedVehicleList> get copyWith =>
+      _$LimitedVehicleListCopyWithImpl<LimitedVehicleList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<LimitedPetData> pets),
+    @required TResult vehicle(List<LimitedVehicleData> vehicles),
+    @required TResult realEstate(List<LimitedRealEstateData> properties),
+    @required TResult job(List<LimitedJobData> jobs),
+    @required TResult product(List<LimitedProductData> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return vehicle(vehicles);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<LimitedPetData> pets),
+    TResult vehicle(List<LimitedVehicleData> vehicles),
+    TResult realEstate(List<LimitedRealEstateData> properties),
+    TResult job(List<LimitedJobData> jobs),
+    TResult product(List<LimitedProductData> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (vehicle != null) {
+      return vehicle(vehicles);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetList value),
+    @required TResult vehicle(LimitedVehicleList value),
+    @required TResult realEstate(LimitedRealEstateList value),
+    @required TResult job(LimitedJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(LimitedEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return vehicle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetList value),
+    TResult vehicle(LimitedVehicleList value),
+    TResult realEstate(LimitedRealEstateList value),
+    TResult job(LimitedJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(LimitedEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (vehicle != null) {
+      return vehicle(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LimitedVehicleListToJson(this)..['runtimeType'] = 'vehicle';
+  }
+}
+
+abstract class LimitedVehicleList implements LimitedDataList {
+  const factory LimitedVehicleList(
+      {@required List<LimitedVehicleData> vehicles}) = _$LimitedVehicleList;
+
+  factory LimitedVehicleList.fromJson(Map<String, dynamic> json) =
+      _$LimitedVehicleList.fromJson;
+
+  List<LimitedVehicleData> get vehicles;
+  @JsonKey(ignore: true)
+  $LimitedVehicleListCopyWith<LimitedVehicleList> get copyWith;
+}
+
+/// @nodoc
+abstract class $LimitedRealEstateListCopyWith<$Res> {
+  factory $LimitedRealEstateListCopyWith(LimitedRealEstateList value,
+          $Res Function(LimitedRealEstateList) then) =
+      _$LimitedRealEstateListCopyWithImpl<$Res>;
+  $Res call({List<LimitedRealEstateData> properties});
+}
+
+/// @nodoc
+class _$LimitedRealEstateListCopyWithImpl<$Res>
+    extends _$LimitedDataListCopyWithImpl<$Res>
+    implements $LimitedRealEstateListCopyWith<$Res> {
+  _$LimitedRealEstateListCopyWithImpl(
+      LimitedRealEstateList _value, $Res Function(LimitedRealEstateList) _then)
+      : super(_value, (v) => _then(v as LimitedRealEstateList));
+
+  @override
+  LimitedRealEstateList get _value => super._value as LimitedRealEstateList;
+
+  @override
+  $Res call({
+    Object properties = freezed,
+  }) {
+    return _then(LimitedRealEstateList(
+      properties: properties == freezed
+          ? _value.properties
+          : properties as List<LimitedRealEstateData>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$LimitedRealEstateList implements LimitedRealEstateList {
+  const _$LimitedRealEstateList({@required this.properties})
+      : assert(properties != null);
+
+  factory _$LimitedRealEstateList.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedRealEstateListFromJson(json);
+
+  @override
+  final List<LimitedRealEstateData> properties;
+
+  @override
+  String toString() {
+    return 'LimitedDataList.realEstate(properties: $properties)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LimitedRealEstateList &&
+            (identical(other.properties, properties) ||
+                const DeepCollectionEquality()
+                    .equals(other.properties, properties)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(properties);
+
+  @JsonKey(ignore: true)
+  @override
+  $LimitedRealEstateListCopyWith<LimitedRealEstateList> get copyWith =>
+      _$LimitedRealEstateListCopyWithImpl<LimitedRealEstateList>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<LimitedPetData> pets),
+    @required TResult vehicle(List<LimitedVehicleData> vehicles),
+    @required TResult realEstate(List<LimitedRealEstateData> properties),
+    @required TResult job(List<LimitedJobData> jobs),
+    @required TResult product(List<LimitedProductData> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return realEstate(properties);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<LimitedPetData> pets),
+    TResult vehicle(List<LimitedVehicleData> vehicles),
+    TResult realEstate(List<LimitedRealEstateData> properties),
+    TResult job(List<LimitedJobData> jobs),
+    TResult product(List<LimitedProductData> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (realEstate != null) {
+      return realEstate(properties);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetList value),
+    @required TResult vehicle(LimitedVehicleList value),
+    @required TResult realEstate(LimitedRealEstateList value),
+    @required TResult job(LimitedJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(LimitedEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return realEstate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetList value),
+    TResult vehicle(LimitedVehicleList value),
+    TResult realEstate(LimitedRealEstateList value),
+    TResult job(LimitedJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(LimitedEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (realEstate != null) {
+      return realEstate(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LimitedRealEstateListToJson(this)
+      ..['runtimeType'] = 'realEstate';
+  }
+}
+
+abstract class LimitedRealEstateList implements LimitedDataList {
+  const factory LimitedRealEstateList(
+          {@required List<LimitedRealEstateData> properties}) =
+      _$LimitedRealEstateList;
+
+  factory LimitedRealEstateList.fromJson(Map<String, dynamic> json) =
+      _$LimitedRealEstateList.fromJson;
+
+  List<LimitedRealEstateData> get properties;
+  @JsonKey(ignore: true)
+  $LimitedRealEstateListCopyWith<LimitedRealEstateList> get copyWith;
+}
+
+/// @nodoc
+abstract class $LimitedJobListCopyWith<$Res> {
+  factory $LimitedJobListCopyWith(
+          LimitedJobList value, $Res Function(LimitedJobList) then) =
+      _$LimitedJobListCopyWithImpl<$Res>;
+  $Res call({List<LimitedJobData> jobs});
+}
+
+/// @nodoc
+class _$LimitedJobListCopyWithImpl<$Res>
+    extends _$LimitedDataListCopyWithImpl<$Res>
+    implements $LimitedJobListCopyWith<$Res> {
+  _$LimitedJobListCopyWithImpl(
+      LimitedJobList _value, $Res Function(LimitedJobList) _then)
+      : super(_value, (v) => _then(v as LimitedJobList));
+
+  @override
+  LimitedJobList get _value => super._value as LimitedJobList;
+
+  @override
+  $Res call({
+    Object jobs = freezed,
+  }) {
+    return _then(LimitedJobList(
+      jobs: jobs == freezed ? _value.jobs : jobs as List<LimitedJobData>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$LimitedJobList implements LimitedJobList {
+  const _$LimitedJobList({@required this.jobs}) : assert(jobs != null);
+
+  factory _$LimitedJobList.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedJobListFromJson(json);
+
+  @override
+  final List<LimitedJobData> jobs;
+
+  @override
+  String toString() {
+    return 'LimitedDataList.job(jobs: $jobs)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LimitedJobList &&
+            (identical(other.jobs, jobs) ||
+                const DeepCollectionEquality().equals(other.jobs, jobs)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(jobs);
+
+  @JsonKey(ignore: true)
+  @override
+  $LimitedJobListCopyWith<LimitedJobList> get copyWith =>
+      _$LimitedJobListCopyWithImpl<LimitedJobList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<LimitedPetData> pets),
+    @required TResult vehicle(List<LimitedVehicleData> vehicles),
+    @required TResult realEstate(List<LimitedRealEstateData> properties),
+    @required TResult job(List<LimitedJobData> jobs),
+    @required TResult product(List<LimitedProductData> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return job(jobs);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<LimitedPetData> pets),
+    TResult vehicle(List<LimitedVehicleData> vehicles),
+    TResult realEstate(List<LimitedRealEstateData> properties),
+    TResult job(List<LimitedJobData> jobs),
+    TResult product(List<LimitedProductData> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (job != null) {
+      return job(jobs);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetList value),
+    @required TResult vehicle(LimitedVehicleList value),
+    @required TResult realEstate(LimitedRealEstateList value),
+    @required TResult job(LimitedJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(LimitedEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return job(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetList value),
+    TResult vehicle(LimitedVehicleList value),
+    TResult realEstate(LimitedRealEstateList value),
+    TResult job(LimitedJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(LimitedEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (job != null) {
+      return job(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LimitedJobListToJson(this)..['runtimeType'] = 'job';
+  }
+}
+
+abstract class LimitedJobList implements LimitedDataList {
+  const factory LimitedJobList({@required List<LimitedJobData> jobs}) =
+      _$LimitedJobList;
+
+  factory LimitedJobList.fromJson(Map<String, dynamic> json) =
+      _$LimitedJobList.fromJson;
+
+  List<LimitedJobData> get jobs;
+  @JsonKey(ignore: true)
+  $LimitedJobListCopyWith<LimitedJobList> get copyWith;
+}
+
+/// @nodoc
+abstract class $LimitedProductListCopyWith<$Res> {
+  factory $LimitedProductListCopyWith(
+          LimitedProductList value, $Res Function(LimitedProductList) then) =
+      _$LimitedProductListCopyWithImpl<$Res>;
+  $Res call({List<LimitedProductData> products});
+}
+
+/// @nodoc
+class _$LimitedProductListCopyWithImpl<$Res>
+    extends _$LimitedDataListCopyWithImpl<$Res>
+    implements $LimitedProductListCopyWith<$Res> {
+  _$LimitedProductListCopyWithImpl(
+      LimitedProductList _value, $Res Function(LimitedProductList) _then)
+      : super(_value, (v) => _then(v as LimitedProductList));
+
+  @override
+  LimitedProductList get _value => super._value as LimitedProductList;
+
+  @override
+  $Res call({
+    Object products = freezed,
+  }) {
+    return _then(LimitedProductList(
+      products: products == freezed
+          ? _value.products
+          : products as List<LimitedProductData>,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$LimitedProductList implements LimitedProductList {
+  const _$LimitedProductList({@required this.products})
+      : assert(products != null);
+
+  factory _$LimitedProductList.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedProductListFromJson(json);
+
+  @override
+  final List<LimitedProductData> products;
+
+  @override
+  String toString() {
+    return 'LimitedDataList.product(products: $products)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LimitedProductList &&
+            (identical(other.products, products) ||
+                const DeepCollectionEquality()
+                    .equals(other.products, products)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(products);
+
+  @JsonKey(ignore: true)
+  @override
+  $LimitedProductListCopyWith<LimitedProductList> get copyWith =>
+      _$LimitedProductListCopyWithImpl<LimitedProductList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<LimitedPetData> pets),
+    @required TResult vehicle(List<LimitedVehicleData> vehicles),
+    @required TResult realEstate(List<LimitedRealEstateData> properties),
+    @required TResult job(List<LimitedJobData> jobs),
+    @required TResult product(List<LimitedProductData> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return product(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<LimitedPetData> pets),
+    TResult vehicle(List<LimitedVehicleData> vehicles),
+    TResult realEstate(List<LimitedRealEstateData> properties),
+    TResult job(List<LimitedJobData> jobs),
+    TResult product(List<LimitedProductData> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (product != null) {
+      return product(products);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetList value),
+    @required TResult vehicle(LimitedVehicleList value),
+    @required TResult realEstate(LimitedRealEstateList value),
+    @required TResult job(LimitedJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(LimitedEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return product(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetList value),
+    TResult vehicle(LimitedVehicleList value),
+    TResult realEstate(LimitedRealEstateList value),
+    TResult job(LimitedJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(LimitedEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (product != null) {
+      return product(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LimitedProductListToJson(this)..['runtimeType'] = 'product';
+  }
+}
+
+abstract class LimitedProductList implements LimitedDataList {
+  const factory LimitedProductList(
+      {@required List<LimitedProductData> products}) = _$LimitedProductList;
+
+  factory LimitedProductList.fromJson(Map<String, dynamic> json) =
+      _$LimitedProductList.fromJson;
+
+  List<LimitedProductData> get products;
+  @JsonKey(ignore: true)
+  $LimitedProductListCopyWith<LimitedProductList> get copyWith;
+}
+
+/// @nodoc
+abstract class $LimitedEmptyListCopyWith<$Res> {
+  factory $LimitedEmptyListCopyWith(
+          LimitedEmptyList value, $Res Function(LimitedEmptyList) then) =
+      _$LimitedEmptyListCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LimitedEmptyListCopyWithImpl<$Res>
+    extends _$LimitedDataListCopyWithImpl<$Res>
+    implements $LimitedEmptyListCopyWith<$Res> {
+  _$LimitedEmptyListCopyWithImpl(
+      LimitedEmptyList _value, $Res Function(LimitedEmptyList) _then)
+      : super(_value, (v) => _then(v as LimitedEmptyList));
+
+  @override
+  LimitedEmptyList get _value => super._value as LimitedEmptyList;
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$LimitedEmptyList implements LimitedEmptyList {
+  const _$LimitedEmptyList();
+
+  factory _$LimitedEmptyList.fromJson(Map<String, dynamic> json) =>
+      _$_$LimitedEmptyListFromJson(json);
+
+  @override
+  String toString() {
+    return 'LimitedDataList.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LimitedEmptyList);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(List<LimitedPetData> pets),
+    @required TResult vehicle(List<LimitedVehicleData> vehicles),
+    @required TResult realEstate(List<LimitedRealEstateData> properties),
+    @required TResult job(List<LimitedJobData> jobs),
+    @required TResult product(List<LimitedProductData> products),
+    @required TResult empty(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(List<LimitedPetData> pets),
+    TResult vehicle(List<LimitedVehicleData> vehicles),
+    TResult realEstate(List<LimitedRealEstateData> properties),
+    TResult job(List<LimitedJobData> jobs),
+    TResult product(List<LimitedProductData> products),
+    TResult empty(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(LimitedPetList value),
+    @required TResult vehicle(LimitedVehicleList value),
+    @required TResult realEstate(LimitedRealEstateList value),
+    @required TResult job(LimitedJobList value),
+    @required TResult product(LimitedProductList value),
+    @required TResult empty(LimitedEmptyList value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    assert(empty != null);
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(LimitedPetList value),
+    TResult vehicle(LimitedVehicleList value),
+    TResult realEstate(LimitedRealEstateList value),
+    TResult job(LimitedJobList value),
+    TResult product(LimitedProductList value),
+    TResult empty(LimitedEmptyList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LimitedEmptyListToJson(this)..['runtimeType'] = 'empty';
+  }
+}
+
+abstract class LimitedEmptyList implements LimitedDataList {
+  const factory LimitedEmptyList() = _$LimitedEmptyList;
+
+  factory LimitedEmptyList.fromJson(Map<String, dynamic> json) =
+      _$LimitedEmptyList.fromJson;
+}
+
+/// @nodoc
+class _$LimitedDataTypeTearOff {
+  const _$LimitedDataTypeTearOff();
+
+// ignore: unused_element
+  _PetType pet() {
+    return const _PetType();
+  }
+
+// ignore: unused_element
+  _VehicleType vehicle() {
+    return const _VehicleType();
+  }
+
+// ignore: unused_element
+  _RealEstateType realEstate() {
+    return const _RealEstateType();
+  }
+
+// ignore: unused_element
+  _JobType job() {
+    return const _JobType();
+  }
+
+// ignore: unused_element
+  _ProductType product() {
+    return const _ProductType();
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $LimitedDataType = _$LimitedDataTypeTearOff();
+
+/// @nodoc
+mixin _$LimitedDataType {
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(),
+    @required TResult vehicle(),
+    @required TResult realEstate(),
+    @required TResult job(),
+    @required TResult product(),
+  });
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(),
+    TResult vehicle(),
+    TResult realEstate(),
+    TResult job(),
+    TResult product(),
+    @required TResult orElse(),
+  });
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(_PetType value),
+    @required TResult vehicle(_VehicleType value),
+    @required TResult realEstate(_RealEstateType value),
+    @required TResult job(_JobType value),
+    @required TResult product(_ProductType value),
+  });
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(_PetType value),
+    TResult vehicle(_VehicleType value),
+    TResult realEstate(_RealEstateType value),
+    TResult job(_JobType value),
+    TResult product(_ProductType value),
+    @required TResult orElse(),
+  });
+}
+
+/// @nodoc
+abstract class $LimitedDataTypeCopyWith<$Res> {
+  factory $LimitedDataTypeCopyWith(
+          LimitedDataType value, $Res Function(LimitedDataType) then) =
+      _$LimitedDataTypeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LimitedDataTypeCopyWithImpl<$Res>
+    implements $LimitedDataTypeCopyWith<$Res> {
+  _$LimitedDataTypeCopyWithImpl(this._value, this._then);
+
+  final LimitedDataType _value;
+  // ignore: unused_field
+  final $Res Function(LimitedDataType) _then;
+}
+
+/// @nodoc
+abstract class _$PetTypeCopyWith<$Res> {
+  factory _$PetTypeCopyWith(_PetType value, $Res Function(_PetType) then) =
+      __$PetTypeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$PetTypeCopyWithImpl<$Res> extends _$LimitedDataTypeCopyWithImpl<$Res>
+    implements _$PetTypeCopyWith<$Res> {
+  __$PetTypeCopyWithImpl(_PetType _value, $Res Function(_PetType) _then)
+      : super(_value, (v) => _then(v as _PetType));
+
+  @override
+  _PetType get _value => super._value as _PetType;
+}
+
+/// @nodoc
+class _$_PetType implements _PetType {
+  const _$_PetType();
+
+  @override
+  String toString() {
+    return 'LimitedDataType.pet()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _PetType);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(),
+    @required TResult vehicle(),
+    @required TResult realEstate(),
+    @required TResult job(),
+    @required TResult product(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    return pet();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(),
+    TResult vehicle(),
+    TResult realEstate(),
+    TResult job(),
+    TResult product(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pet != null) {
+      return pet();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(_PetType value),
+    @required TResult vehicle(_VehicleType value),
+    @required TResult realEstate(_RealEstateType value),
+    @required TResult job(_JobType value),
+    @required TResult product(_ProductType value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    return pet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(_PetType value),
+    TResult vehicle(_VehicleType value),
+    TResult realEstate(_RealEstateType value),
+    TResult job(_JobType value),
+    TResult product(_ProductType value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pet != null) {
+      return pet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PetType implements LimitedDataType {
+  const factory _PetType() = _$_PetType;
+}
+
+/// @nodoc
+abstract class _$VehicleTypeCopyWith<$Res> {
+  factory _$VehicleTypeCopyWith(
+          _VehicleType value, $Res Function(_VehicleType) then) =
+      __$VehicleTypeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$VehicleTypeCopyWithImpl<$Res>
+    extends _$LimitedDataTypeCopyWithImpl<$Res>
+    implements _$VehicleTypeCopyWith<$Res> {
+  __$VehicleTypeCopyWithImpl(
+      _VehicleType _value, $Res Function(_VehicleType) _then)
+      : super(_value, (v) => _then(v as _VehicleType));
+
+  @override
+  _VehicleType get _value => super._value as _VehicleType;
+}
+
+/// @nodoc
+class _$_VehicleType implements _VehicleType {
+  const _$_VehicleType();
+
+  @override
+  String toString() {
+    return 'LimitedDataType.vehicle()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _VehicleType);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(),
+    @required TResult vehicle(),
+    @required TResult realEstate(),
+    @required TResult job(),
+    @required TResult product(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    return vehicle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(),
+    TResult vehicle(),
+    TResult realEstate(),
+    TResult job(),
+    TResult product(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (vehicle != null) {
+      return vehicle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(_PetType value),
+    @required TResult vehicle(_VehicleType value),
+    @required TResult realEstate(_RealEstateType value),
+    @required TResult job(_JobType value),
+    @required TResult product(_ProductType value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    return vehicle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(_PetType value),
+    TResult vehicle(_VehicleType value),
+    TResult realEstate(_RealEstateType value),
+    TResult job(_JobType value),
+    TResult product(_ProductType value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (vehicle != null) {
+      return vehicle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _VehicleType implements LimitedDataType {
+  const factory _VehicleType() = _$_VehicleType;
+}
+
+/// @nodoc
+abstract class _$RealEstateTypeCopyWith<$Res> {
+  factory _$RealEstateTypeCopyWith(
+          _RealEstateType value, $Res Function(_RealEstateType) then) =
+      __$RealEstateTypeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$RealEstateTypeCopyWithImpl<$Res>
+    extends _$LimitedDataTypeCopyWithImpl<$Res>
+    implements _$RealEstateTypeCopyWith<$Res> {
+  __$RealEstateTypeCopyWithImpl(
+      _RealEstateType _value, $Res Function(_RealEstateType) _then)
+      : super(_value, (v) => _then(v as _RealEstateType));
+
+  @override
+  _RealEstateType get _value => super._value as _RealEstateType;
+}
+
+/// @nodoc
+class _$_RealEstateType implements _RealEstateType {
+  const _$_RealEstateType();
+
+  @override
+  String toString() {
+    return 'LimitedDataType.realEstate()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _RealEstateType);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(),
+    @required TResult vehicle(),
+    @required TResult realEstate(),
+    @required TResult job(),
+    @required TResult product(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    return realEstate();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(),
+    TResult vehicle(),
+    TResult realEstate(),
+    TResult job(),
+    TResult product(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (realEstate != null) {
+      return realEstate();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(_PetType value),
+    @required TResult vehicle(_VehicleType value),
+    @required TResult realEstate(_RealEstateType value),
+    @required TResult job(_JobType value),
+    @required TResult product(_ProductType value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    return realEstate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(_PetType value),
+    TResult vehicle(_VehicleType value),
+    TResult realEstate(_RealEstateType value),
+    TResult job(_JobType value),
+    TResult product(_ProductType value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (realEstate != null) {
+      return realEstate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RealEstateType implements LimitedDataType {
+  const factory _RealEstateType() = _$_RealEstateType;
+}
+
+/// @nodoc
+abstract class _$JobTypeCopyWith<$Res> {
+  factory _$JobTypeCopyWith(_JobType value, $Res Function(_JobType) then) =
+      __$JobTypeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$JobTypeCopyWithImpl<$Res> extends _$LimitedDataTypeCopyWithImpl<$Res>
+    implements _$JobTypeCopyWith<$Res> {
+  __$JobTypeCopyWithImpl(_JobType _value, $Res Function(_JobType) _then)
+      : super(_value, (v) => _then(v as _JobType));
+
+  @override
+  _JobType get _value => super._value as _JobType;
+}
+
+/// @nodoc
+class _$_JobType implements _JobType {
+  const _$_JobType();
+
+  @override
+  String toString() {
+    return 'LimitedDataType.job()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _JobType);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(),
+    @required TResult vehicle(),
+    @required TResult realEstate(),
+    @required TResult job(),
+    @required TResult product(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    return job();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(),
+    TResult vehicle(),
+    TResult realEstate(),
+    TResult job(),
+    TResult product(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (job != null) {
+      return job();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(_PetType value),
+    @required TResult vehicle(_VehicleType value),
+    @required TResult realEstate(_RealEstateType value),
+    @required TResult job(_JobType value),
+    @required TResult product(_ProductType value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    return job(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(_PetType value),
+    TResult vehicle(_VehicleType value),
+    TResult realEstate(_RealEstateType value),
+    TResult job(_JobType value),
+    TResult product(_ProductType value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (job != null) {
+      return job(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _JobType implements LimitedDataType {
+  const factory _JobType() = _$_JobType;
+}
+
+/// @nodoc
+abstract class _$ProductTypeCopyWith<$Res> {
+  factory _$ProductTypeCopyWith(
+          _ProductType value, $Res Function(_ProductType) then) =
+      __$ProductTypeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$ProductTypeCopyWithImpl<$Res>
+    extends _$LimitedDataTypeCopyWithImpl<$Res>
+    implements _$ProductTypeCopyWith<$Res> {
+  __$ProductTypeCopyWithImpl(
+      _ProductType _value, $Res Function(_ProductType) _then)
+      : super(_value, (v) => _then(v as _ProductType));
+
+  @override
+  _ProductType get _value => super._value as _ProductType;
+}
+
+/// @nodoc
+class _$_ProductType implements _ProductType {
+  const _$_ProductType();
+
+  @override
+  String toString() {
+    return 'LimitedDataType.product()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _ProductType);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult pet(),
+    @required TResult vehicle(),
+    @required TResult realEstate(),
+    @required TResult job(),
+    @required TResult product(),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    return product();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult pet(),
+    TResult vehicle(),
+    TResult realEstate(),
+    TResult job(),
+    TResult product(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (product != null) {
+      return product();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult pet(_PetType value),
+    @required TResult vehicle(_VehicleType value),
+    @required TResult realEstate(_RealEstateType value),
+    @required TResult job(_JobType value),
+    @required TResult product(_ProductType value),
+  }) {
+    assert(pet != null);
+    assert(vehicle != null);
+    assert(realEstate != null);
+    assert(job != null);
+    assert(product != null);
+    return product(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult pet(_PetType value),
+    TResult vehicle(_VehicleType value),
+    TResult realEstate(_RealEstateType value),
+    TResult job(_JobType value),
+    TResult product(_ProductType value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (product != null) {
+      return product(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ProductType implements LimitedDataType {
+  const factory _ProductType() = _$_ProductType;
+}

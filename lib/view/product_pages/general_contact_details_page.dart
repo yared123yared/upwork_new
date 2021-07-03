@@ -1,7 +1,7 @@
-import 'package:complex/data/models/response/product_models/property_model.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_switch.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
+import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
 import 'package:complex/view/job_pages/add_job_page.dart';
 import 'package:complex/view/pet_pages/add_pet_page.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
@@ -109,7 +109,7 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
                       message:
                           "Please enable location for better accessibility");
                 } else if (_validate()) {
-                  Contactdetails _contactDetail = Contactdetails(
+                  ContactDetails _contactDetail = ContactDetails(
                       name: _nameController.text.trim(),
                       phonenum: _phoneController.text.trim(),
                       sharephone: _phoneShare,

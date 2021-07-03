@@ -101,7 +101,7 @@ abstract class LookupList with _$LookupList {
       RoomInfoList;
 
   const factory LookupList.examTermInfoList(
-          {@JsonKey(name: 'examTermInfo') @required List<ExamTermInfo> list}) =
+          {@JsonKey(name: 'examterminfo') @required List<ExamTermInfo> list}) =
       ExamTermInfoList;
 
   const factory LookupList.sessionTermList(

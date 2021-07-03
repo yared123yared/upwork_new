@@ -1,4 +1,3 @@
-import 'package:complex/data/models/response/product_models/product_model.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/data/providers/product_provider.dart';
 import 'package:complex/common/widgets/custom_button.dart';
@@ -7,6 +6,7 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
 import 'package:complex/view/product_pages/package_list_view.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/utility.dart';

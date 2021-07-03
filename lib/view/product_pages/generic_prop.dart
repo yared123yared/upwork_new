@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:complex/data/models/response/auth_response/user_session.dart';
-import 'package:complex/data/models/response/product_models/product_model.dart';
-import 'package:complex/data/models/response/product_models/property_model.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/data/providers/product_provider.dart';
 import 'package:complex/common/widgets/custom_button.dart';
@@ -11,6 +9,8 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
+import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
 import 'package:complex/view/product_pages/addittional_properties_page.dart';
 import 'package:complex/view/product_pages/select_category_page.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
@@ -26,7 +26,7 @@ import 'package:injector/injector.dart';
 class GenericProperties extends StatefulWidget {
   final bool withUnitPrice;
   final String serviceProviderId;
-  final Contactdetails contactDetails;
+  final ContactDetails contactDetails;
   final ProductType productType;
   final bool isService;
   final String serviceId;

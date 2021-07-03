@@ -11,28 +11,29 @@ import 'package:get/get.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart'
     as listbloc;
+import 'package:logger/logger.dart';
 
-class FeeItemListPage extends StatefulWidget {
+class SessionTermListPage extends StatefulWidget {
   final String entityid;
   final String entitytype;
-  FeeItemListPage({@required this.entitytype, @required this.entityid});
+  SessionTermListPage({@required this.entitytype, @required this.entityid});
 
   @override
-  _FeeItemListPageState createState() => _FeeItemListPageState();
+  _SessionTermListPageState createState() => _SessionTermListPageState();
 }
 
-class _FeeItemListPageState extends State<FeeItemListPage> {
+class _SessionTermListPageState extends State<SessionTermListPage> {
   Future<String> _addButtonActions(
       BuildContext context, String entitytype, String entityid) async {
     CustomTextFieldController c = CustomTextFieldController();
     Future<String> sb = Get.generalDialog<String>(
         pageBuilder: (context, animation, secondaryAnimation) {
       return AlertDialog(
-        title: Text('Enter the FeeItem Name'),
+        title: Text('Enter the Offering Name'),
         content: CustomTextField(
           controller: c,
           autoFocus: true,
-          title: 'FeeItem',
+          title: 'Exam Term',
           validate: Validate.withOption(isRequired: true),
         ),
         actions: [
@@ -60,23 +61,23 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
   }
 
   List<ListStateClass> toCommonListState(
-      List<String> listItems, BuildContext context) {
+      List<SessionTerm> listItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: item,
+        title: item.termName,
         tapAction: () {
           //$$$${UPDATENAVIGATIONOREMPTY}
         },
         deleteAction: () async {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
-            BlocProvider.of<listbloc.StringListBloc>(context).add(
-                listbloc.DeleteItemWithData(
-                    entitytype: widget.entitytype,
-                    entityid: widget.entitytype,
-                    item: item,
-                    fieldname: "feeitemlist"));
+            // BlocProvider.of<listbloc.StringListBloc>(context).add(
+            //     listbloc.DeleteItemWithData(
+            //         entitytype: widget.entitytype,
+            //         entityid: widget.entitytype,
+            //         item: item[],
+            //         fieldname: "feeitemlist"));
           }
         },
       ));
@@ -114,11 +115,6 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final LookupBloc bloc = BlocProvider.of<LookupBloc>(context)
-    //   ..add(GetListData(
-    //       entityid: widget.entityid,
-    //       entitytype: widget.entitytype,
-    //       lookupType: LookupType.feeItem()));
     return BlocConsumer<LookupBloc, LookupState>(
       listener: (context, state) {
         state.failure.fold(() {
@@ -137,13 +133,13 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
       buildWhen: (p, c) => p.listData != c.listData,
       builder: (context, state) {
         return state.listData.maybeMap(
-            feeItem: (feeItem) => Scaffold(
+            sessionTermList: (sessionTerm) => Scaffold(
                 appBar: AppBar(
-                  title: Text("FeeItems"),
+                  title: Text("Exam Term Info"),
                   centerTitle: true,
                 ),
-                body: feeItem.list.isNotEmpty
-                    ? _blocBuilder(context, feeItem.list)
+                body: sessionTerm.list.isNotEmpty
+                    ? _blocBuilder(context, sessionTerm.list)
                     : Center(child: Text('Empty')),
                 floatingActionButton: FloatingActionButton.extended(
                   onPressed: () async {
@@ -166,7 +162,7 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
                 )),
             orElse: () => Scaffold(
                   appBar: AppBar(
-                    title: Text("FeeItems"),
+                    title: Text("Grades"),
                     centerTitle: true,
                   ),
                 ));
@@ -174,7 +170,8 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
     );
   }
 
-  Widget _blocBuilder(context, List<String> em) {
+  Widget _blocBuilder(context, List<SessionTerm> em) {
+    Logger().i(em.length);
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [
@@ -182,8 +179,8 @@ class _FeeItemListPageState extends State<FeeItemListPage> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "FeeItems",
-                dynamicListState: "FeeItems",
+                appBarTitle: "grade",
+                dynamicListState: "Grade",
                 listItems:
                     em != null ? toCommonListState(em, context) : Container())),
       ],

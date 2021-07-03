@@ -1,6 +1,6 @@
-import 'package:complex/data/models/response/product_models/property_model.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
+import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
 import 'package:complex/view/product_pages/generic_prop.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/resource/colors.dart';
@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 enum ProductType { noPackage, package, multiColor, mySpecial }
 
 class SelectProductType extends StatefulWidget {
-  final Contactdetails contactDetail;
+  final ContactDetails contactDetail;
   final bool isService;
   final String serviceId;
   final String serviceProviderId;

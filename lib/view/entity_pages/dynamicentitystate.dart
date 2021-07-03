@@ -38,7 +38,9 @@ import 'package:complex/newentityfeatures/school/Student%20model/presentation/st
 import 'package:complex/newentityfeatures/school/Teacher%20assignment/presentation/teacherassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Virtual%20room/presentation/virtualroom_listview.dart';
 import 'package:complex/newentityfeatures/vrassignment/presentation/vrassignmentmodel_listview.dart';
+import 'package:complex/view/entity/school/lookup/fee_item_list_page.dart';
 import 'package:complex/view/entity/school/lookup/lookup_navigation_helper.dart';
+import 'package:complex/view/entity/school/lookup/offering_list_page.dart';
 import 'package:complex/view/job_pages/job_detail_page.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
 import 'package:complex/view/product_pages/dynamic_category_page.dart';
@@ -138,9 +140,12 @@ enum DynamicEntityGridState {
   managerregistrySingleOwner,
   managerregistryMultiOwner,
   registrylist,
+  rooms,
+  examTerm,
+  sessionTerm,
 
   securityservicerequest,
-
+  gradelist,
   SessionTerm,
   Rooms,
   ExamTerm,
@@ -378,6 +383,10 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.newvirtualroom);
     panelmem.add(DynamicEntityGridState.newofferingschedule);
     panelmem.add(DynamicEntityGridState.offeringList);
+    panelmem.add(DynamicEntityGridState.gradelist);
+    panelmem.add(DynamicEntityGridState.rooms);
+    panelmem.add(DynamicEntityGridState.examTerm);
+    panelmem.add(DynamicEntityGridState.sessionTerm);
 
     return panelmem;
   }
@@ -788,15 +797,11 @@ class UiSchoolHandler {
             title: 'Fee Item',
             tapAction: () {
               // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FeeItemFormList(
-                      entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,
-                      // mlistbloc: mlistbloc,
-                    ),
-                  ));
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.feeItem(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
             });
         break;
       case DynamicEntityGridState.offeringList:
@@ -805,15 +810,63 @@ class UiSchoolHandler {
             title: 'Offering',
             tapAction: () {
               // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OfferingsFormList(
-                      entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,
-                      // mlistbloc: mlistbloc,
-                    ),
-                  ));
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.offering(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
+            });
+        break;
+      case DynamicEntityGridState.gradelist:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Grade',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.grade(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
+            });
+        break;
+      case DynamicEntityGridState.rooms:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Rooms',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.rooms(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
+            });
+        break;
+      case DynamicEntityGridState.examTerm:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Exam Term',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.examTerm(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
+            });
+        break;
+      case DynamicEntityGridState.sessionTerm:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Session Term',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.sessionTerm(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
             });
         break;
 

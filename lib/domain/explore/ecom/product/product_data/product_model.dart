@@ -1,4 +1,5 @@
-import 'package:complex/data/models/response/product_models/property_model.dart';
+import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
 
 class ProductModel {
   String productid;
@@ -18,7 +19,7 @@ class ProductModel {
   List<Packagedata> packagedata;
   List<Sizeandcolordata> sizeandcolordata;
   Null custompackagedata;
-  Contactdetails addressarea;
+  ContactDetails addressarea;
   String serviceproviderid;
   String userid;
 
@@ -81,7 +82,7 @@ class ProductModel {
     }
     custompackagedata = json['custompackagedata'];
     addressarea = json['addressarea'] != null
-        ? Contactdetails.fromJson(json['addressarea'])
+        ? ContactDetails.fromJson(json['addressarea'])
         : null;
     serviceproviderid = json['serviceproviderid'];
     userid = json['userid'];

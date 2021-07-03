@@ -1,4 +1,5 @@
-import 'package:complex/data/models/response/product_models/property_model.dart';
+import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
 
 class PetModel {
   String docid;
@@ -20,7 +21,7 @@ class PetModel {
   int milkqty;
   int price;
   int creationdate;
-  Contactdetails contactdetails;
+  ContactDetails contactdetails;
 
   PetModel({
     this.docid,
@@ -67,7 +68,7 @@ class PetModel {
     price = json['price'];
     creationdate = json['creationdate'];
     contactdetails = json['contactdetails'] != null
-        ? Contactdetails.fromJson(json['contactdetails'])
+        ? ContactDetails.fromJson(json['contactdetails'])
         : null;
   }
 

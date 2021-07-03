@@ -2356,7 +2356,7 @@ class _$LookupListTearOff {
 
 // ignore: unused_element
   ExamTermInfoList examTermInfoList(
-      {@required @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list}) {
+      {@required @JsonKey(name: 'examterminfo') List<ExamTermInfo> list}) {
     return ExamTermInfoList(
       list: list,
     );
@@ -2435,7 +2435,7 @@ mixin _$LookupList {
         TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     @required
         TResult examTermInfoList(
-            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+            @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     @required
         TResult sessionTermList(
             @JsonKey(name: 'sessionterm') List<SessionTerm> list),
@@ -2454,7 +2454,7 @@ mixin _$LookupList {
   TResult maybeWhen<TResult extends Object>({
     TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     TResult examTermInfoList(
-        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+        @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     TResult sessionTermList(
         @JsonKey(name: 'sessionterm') List<SessionTerm> list),
     TResult offering(@JsonKey(name: 'subject') List<String> list),
@@ -2582,7 +2582,7 @@ class _$RoomInfoList implements RoomInfoList {
         TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     @required
         TResult examTermInfoList(
-            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+            @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     @required
         TResult sessionTermList(
             @JsonKey(name: 'sessionterm') List<SessionTerm> list),
@@ -2614,7 +2614,7 @@ class _$RoomInfoList implements RoomInfoList {
   TResult maybeWhen<TResult extends Object>({
     TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     TResult examTermInfoList(
-        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+        @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     TResult sessionTermList(
         @JsonKey(name: 'sessionterm') List<SessionTerm> list),
     TResult offering(@JsonKey(name: 'subject') List<String> list),
@@ -2705,7 +2705,7 @@ abstract class $ExamTermInfoListCopyWith<$Res> {
   factory $ExamTermInfoListCopyWith(
           ExamTermInfoList value, $Res Function(ExamTermInfoList) then) =
       _$ExamTermInfoListCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'examTermInfo') List<ExamTermInfo> list});
+  $Res call({@JsonKey(name: 'examterminfo') List<ExamTermInfo> list});
 }
 
 /// @nodoc
@@ -2733,14 +2733,14 @@ class _$ExamTermInfoListCopyWithImpl<$Res>
 
 /// @nodoc
 class _$ExamTermInfoList implements ExamTermInfoList {
-  const _$ExamTermInfoList({@required @JsonKey(name: 'examTermInfo') this.list})
+  const _$ExamTermInfoList({@required @JsonKey(name: 'examterminfo') this.list})
       : assert(list != null);
 
   factory _$ExamTermInfoList.fromJson(Map<String, dynamic> json) =>
       _$_$ExamTermInfoListFromJson(json);
 
   @override
-  @JsonKey(name: 'examTermInfo')
+  @JsonKey(name: 'examterminfo')
   final List<ExamTermInfo> list;
 
   @override
@@ -2772,7 +2772,7 @@ class _$ExamTermInfoList implements ExamTermInfoList {
         TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     @required
         TResult examTermInfoList(
-            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+            @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     @required
         TResult sessionTermList(
             @JsonKey(name: 'sessionterm') List<SessionTerm> list),
@@ -2804,7 +2804,7 @@ class _$ExamTermInfoList implements ExamTermInfoList {
   TResult maybeWhen<TResult extends Object>({
     TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     TResult examTermInfoList(
-        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+        @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     TResult sessionTermList(
         @JsonKey(name: 'sessionterm') List<SessionTerm> list),
     TResult offering(@JsonKey(name: 'subject') List<String> list),
@@ -2879,13 +2879,13 @@ class _$ExamTermInfoList implements ExamTermInfoList {
 
 abstract class ExamTermInfoList implements LookupList {
   const factory ExamTermInfoList(
-          {@required @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list}) =
+          {@required @JsonKey(name: 'examterminfo') List<ExamTermInfo> list}) =
       _$ExamTermInfoList;
 
   factory ExamTermInfoList.fromJson(Map<String, dynamic> json) =
       _$ExamTermInfoList.fromJson;
 
-  @JsonKey(name: 'examTermInfo')
+  @JsonKey(name: 'examterminfo')
   List<ExamTermInfo> get list;
   @JsonKey(ignore: true)
   $ExamTermInfoListCopyWith<ExamTermInfoList> get copyWith;
@@ -2962,7 +2962,7 @@ class _$SessionTermList implements SessionTermList {
         TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     @required
         TResult examTermInfoList(
-            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+            @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     @required
         TResult sessionTermList(
             @JsonKey(name: 'sessionterm') List<SessionTerm> list),
@@ -2994,7 +2994,7 @@ class _$SessionTermList implements SessionTermList {
   TResult maybeWhen<TResult extends Object>({
     TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     TResult examTermInfoList(
-        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+        @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     TResult sessionTermList(
         @JsonKey(name: 'sessionterm') List<SessionTerm> list),
     TResult offering(@JsonKey(name: 'subject') List<String> list),
@@ -3149,7 +3149,7 @@ class _$Offerings implements Offerings {
         TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     @required
         TResult examTermInfoList(
-            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+            @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     @required
         TResult sessionTermList(
             @JsonKey(name: 'sessionterm') List<SessionTerm> list),
@@ -3181,7 +3181,7 @@ class _$Offerings implements Offerings {
   TResult maybeWhen<TResult extends Object>({
     TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     TResult examTermInfoList(
-        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+        @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     TResult sessionTermList(
         @JsonKey(name: 'sessionterm') List<SessionTerm> list),
     TResult offering(@JsonKey(name: 'subject') List<String> list),
@@ -3334,7 +3334,7 @@ class _$FeeItems implements FeeItems {
         TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     @required
         TResult examTermInfoList(
-            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+            @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     @required
         TResult sessionTermList(
             @JsonKey(name: 'sessionterm') List<SessionTerm> list),
@@ -3366,7 +3366,7 @@ class _$FeeItems implements FeeItems {
   TResult maybeWhen<TResult extends Object>({
     TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     TResult examTermInfoList(
-        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+        @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     TResult sessionTermList(
         @JsonKey(name: 'sessionterm') List<SessionTerm> list),
     TResult offering(@JsonKey(name: 'subject') List<String> list),
@@ -3519,7 +3519,7 @@ class _$Grades implements Grades {
         TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     @required
         TResult examTermInfoList(
-            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+            @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     @required
         TResult sessionTermList(
             @JsonKey(name: 'sessionterm') List<SessionTerm> list),
@@ -3551,7 +3551,7 @@ class _$Grades implements Grades {
   TResult maybeWhen<TResult extends Object>({
     TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     TResult examTermInfoList(
-        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+        @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     TResult sessionTermList(
         @JsonKey(name: 'sessionterm') List<SessionTerm> list),
     TResult offering(@JsonKey(name: 'subject') List<String> list),
@@ -3708,7 +3708,7 @@ class _$ClassPeriodInfoList implements ClassPeriodInfoList {
         TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     @required
         TResult examTermInfoList(
-            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+            @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     @required
         TResult sessionTermList(
             @JsonKey(name: 'sessionterm') List<SessionTerm> list),
@@ -3740,7 +3740,7 @@ class _$ClassPeriodInfoList implements ClassPeriodInfoList {
   TResult maybeWhen<TResult extends Object>({
     TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     TResult examTermInfoList(
-        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+        @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     TResult sessionTermList(
         @JsonKey(name: 'sessionterm') List<SessionTerm> list),
     TResult offering(@JsonKey(name: 'subject') List<String> list),
@@ -3901,7 +3901,7 @@ class _$PaymentPeriodInfoList implements PaymentPeriodInfoList {
         TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     @required
         TResult examTermInfoList(
-            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+            @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     @required
         TResult sessionTermList(
             @JsonKey(name: 'sessionterm') List<SessionTerm> list),
@@ -3933,7 +3933,7 @@ class _$PaymentPeriodInfoList implements PaymentPeriodInfoList {
   TResult maybeWhen<TResult extends Object>({
     TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     TResult examTermInfoList(
-        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+        @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     TResult sessionTermList(
         @JsonKey(name: 'sessionterm') List<SessionTerm> list),
     TResult offering(@JsonKey(name: 'subject') List<String> list),
@@ -4068,7 +4068,7 @@ class _$LookupListEmpty implements LookupListEmpty {
         TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     @required
         TResult examTermInfoList(
-            @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+            @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     @required
         TResult sessionTermList(
             @JsonKey(name: 'sessionterm') List<SessionTerm> list),
@@ -4100,7 +4100,7 @@ class _$LookupListEmpty implements LookupListEmpty {
   TResult maybeWhen<TResult extends Object>({
     TResult roomInfoList(@JsonKey(name: 'roominfo') List<RoomInfo> list),
     TResult examTermInfoList(
-        @JsonKey(name: 'examTermInfo') List<ExamTermInfo> list),
+        @JsonKey(name: 'examterminfo') List<ExamTermInfo> list),
     TResult sessionTermList(
         @JsonKey(name: 'sessionterm') List<SessionTerm> list),
     TResult offering(@JsonKey(name: 'subject') List<String> list),

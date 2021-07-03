@@ -48,7 +48,7 @@ class _ProductMainPageState extends State<ProductMainPage> {
         ),
         onTap: () {
           if (index == 0) {
-            Navigator.push(context, NextPageRoute(ContactDetails()));
+            Navigator.push(context, NextPageRoute(ContactDetailsForm()));
           }
           if (index == 1) {
             // Navigator.push(context, NextPageRoute(GenericProperties(withUnitPrice: true)));

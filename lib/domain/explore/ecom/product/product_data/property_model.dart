@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
 
 class PropertyModel {
   String docid;
@@ -38,7 +39,7 @@ class PropertyModel {
   String description;
   String listingownertype;
   int price;
-  Contactdetails contactdetails;
+  ContactDetails contactdetails;
 
   PropertyModel({
     this.docid,
@@ -127,7 +128,7 @@ class PropertyModel {
     listingownertype = json['listingownertype'];
     price = json['price'];
     contactdetails = json['contactdetails'] != null
-        ? Contactdetails.fromJson(json['contactdetails'])
+        ? ContactDetails.fromJson(json['contactdetails'])
         : null;
   }
 
@@ -173,99 +174,6 @@ class PropertyModel {
     if (this.contactdetails != null) {
       data['contactdetails'] = this.contactdetails.toJson();
     }
-    return data;
-  }
-}
-
-class Contactdetails {
-  String name;
-  String phonenum;
-  bool sharephone;
-  String email;
-  bool shareemail;
-  Address address;
-  bool shareaddress;
-
-  Contactdetails(
-      {this.name,
-      this.phonenum,
-      this.sharephone,
-      this.email,
-      this.shareemail,
-      this.address,
-      this.shareaddress});
-
-  Contactdetails.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    phonenum = json['phonenum'];
-    sharephone = json['sharephone'];
-    email = json['email'];
-    shareemail = json['shareemail'];
-    address =
-        json['address'] != null ? new Address.fromJson(json['address']) : null;
-    shareaddress = json['shareaddress'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['name'] = this.name;
-    data['phonenum'] = this.phonenum;
-    data['sharephone'] = this.sharephone;
-    data['email'] = this.email;
-    data['shareemail'] = this.shareemail;
-    if (this.address != null) {
-      data['address'] = this.address.toJson();
-    }
-    data['shareaddress'] = this.shareaddress;
-    return data;
-  }
-}
-
-class Address {
-  String country;
-  String state;
-  String district;
-  String townVillage;
-  String areaSector;
-  String societyname;
-  String addressline;
-  double latitude;
-  double longitude;
-
-  Address(
-      {this.country,
-      this.state,
-      this.district,
-      this.townVillage,
-      this.areaSector,
-      this.societyname,
-      this.addressline,
-      this.latitude,
-      this.longitude});
-
-  Address.fromJson(Map<String, dynamic> json) {
-    country = json['country'];
-    state = json['state'];
-    district = json['district'];
-    townVillage = json['town_village'];
-    areaSector = json['area_sector'];
-    societyname = json['societyname'];
-    addressline = json['addressline'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['country'] = this.country;
-    data['state'] = this.state;
-    data['district'] = this.district;
-    data['town_village'] = this.townVillage;
-    data['area_sector'] = this.areaSector;
-    data['societyname'] = this.societyname;
-    data['addressline'] = this.addressline;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
     return data;
   }
 }

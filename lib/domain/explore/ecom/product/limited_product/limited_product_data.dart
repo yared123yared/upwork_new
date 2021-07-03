@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:complex/view/job_pages/job_detail_page.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
@@ -9,6 +10,13 @@ import 'package:get/route_manager.dart';
 
 part 'limited_product_data.freezed.dart';
 part 'limited_product_data.g.dart';
+
+class JsonHelper {
+  static DateTime fromJsonTimeStamp(Timestamp val) =>
+      DateTime.fromMillisecondsSinceEpoch(val.millisecondsSinceEpoch);
+  static Timestamp toJsonTimeStamp(DateTime time) =>
+      Timestamp.fromMillisecondsSinceEpoch(time.millisecondsSinceEpoch);
+}
 
 @freezed
 abstract class LimitedData with _$LimitedData {
@@ -114,4 +122,36 @@ abstract class LimitedData with _$LimitedData {
             Get.to(() => PropertyDetailPage(docId: "8iH7vo7wtzroFcHRN6Av")),
         job: (v) => Get.to(() => JobDetailPage(docId: "MkWAEblEkuuEnIrNpGlE")));
   }
+}
+
+@freezed
+abstract class LimitedDataList with _$LimitedDataList {
+  const factory LimitedDataList.pet({@required List<LimitedPetData> pets}) =
+      LimitedPetList;
+
+  const factory LimitedDataList.vehicle(
+      {@required List<LimitedVehicleData> vehicles}) = LimitedVehicleList;
+
+  const factory LimitedDataList.realEstate(
+          {@required List<LimitedRealEstateData> properties}) =
+      LimitedRealEstateList;
+
+  const factory LimitedDataList.job({@required List<LimitedJobData> jobs}) =
+      LimitedJobList;
+  const factory LimitedDataList.product(
+      {@required List<LimitedProductData> products}) = LimitedProductList;
+
+  const factory LimitedDataList.empty() = LimitedEmptyList;
+
+  factory LimitedDataList.fromJson(Map<String, dynamic> json) =>
+      _$LimitedDataListFromJson(json);
+}
+
+@freezed
+abstract class LimitedDataType with _$LimitedDataType {
+  const factory LimitedDataType.pet() = _PetType;
+  const factory LimitedDataType.vehicle() = _VehicleType;
+  const factory LimitedDataType.realEstate() = _RealEstateType;
+  const factory LimitedDataType.job() = _JobType;
+  const factory LimitedDataType.product() = _ProductType;
 }

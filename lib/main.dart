@@ -1,3 +1,4 @@
+import 'package:complex/application/explore/ecom/product_list/product_list_bloc.dart';
 import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
 import 'package:complex/blocs/auth_bloc.dart';
 import 'package:complex/blocs/channels_bloc.dart';
@@ -111,6 +112,10 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
           ),
           BlocProvider<LookupBloc>(
             create: (context) => LookupBloc(),
+          ),
+
+          BlocProvider<ProductListBloc>(
+            create: (context) => ProductListBloc(),
           ),
           // BY ABDERRAHMANE:
           // ECOMMERCE

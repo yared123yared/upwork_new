@@ -1,9 +1,10 @@
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
-import 'package:complex/data/models/response/product_models/property_model.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/data/repositories/user_repository.dart';
+import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
 import 'package:complex/main.dart';
 import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
@@ -25,7 +26,7 @@ import 'package:injector/injector.dart';
 import 'package:intl/intl.dart';
 
 class AddPropertyPage extends StatefulWidget {
-  final Contactdetails contactDetail;
+  final ContactDetails contactDetail;
 
   AddPropertyPage(this.contactDetail);
 

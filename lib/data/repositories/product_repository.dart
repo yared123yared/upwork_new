@@ -1,11 +1,11 @@
 import 'package:complex/data/models/response/general_response.dart';
 import 'package:complex/data/models/response/generic_response.dart';
-import 'package:complex/data/models/response/product_models/job_model.dart';
-import 'package:complex/data/models/response/product_models/pet_model.dart';
-import 'package:complex/data/models/response/product_models/product_model.dart';
-import 'package:complex/data/models/response/product_models/property_model.dart';
-import 'package:complex/data/models/response/product_models/vehicle_model.dart';
 import 'package:complex/data/providers/product_provider.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/pet_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
 
 class ProductRepository {
   final ProductProvider productProvider;

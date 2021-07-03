@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:complex/data/models/response/product_models/property_model.dart';
+import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
 
 class VehicleModel {
   String serviceproviderid;
@@ -41,7 +42,7 @@ class VehicleModel {
   bool automaticclimatecontrol;
   bool rearacvents;
   bool remotetrunkopener;
-  Contactdetails contactdetails;
+  ContactDetails contactdetails;
 
   VehicleModel({
     this.serviceproviderid,
@@ -130,7 +131,7 @@ class VehicleModel {
     rearacvents = json['rearacvents'];
     remotetrunkopener = json['remotetrunkopener'];
     contactdetails = json['contactdetails'] != null
-        ? new Contactdetails.fromJson(json['contactdetails'])
+        ? ContactDetails.fromJson(json['contactdetails'])
         : null;
   }
 
