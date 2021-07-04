@@ -90,6 +90,7 @@ flutter:
     - assets/icons/order/
     - assets/images/tileimages/L1/
     - assets/images/tileimages/L2/
+    - assets/other_util/zip_codes.json
 
 fonts:
   - family: Merriweather

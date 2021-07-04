@@ -1,6 +1,7 @@
 import 'package:complex/blocs/service_bloc.dart';
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/api/api_service.dart';
+import 'package:complex/data/data.dart';
 import 'package:complex/data/models/response/user_response/service_model.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/main.dart';
@@ -69,6 +70,37 @@ class _CreateServicePageState extends State<CreateServicePage> {
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now();
 
+  bool isMobile;
+  bool locationShared;
+  bool currentLocation;
+
+  CustomTextFieldController _areaOrSector = CustomTextFieldController();
+  CustomTextFieldController _societyName = CustomTextFieldController();
+
+  Map<String, bool> _daysList = {
+    'sun': false,
+    'mon': false,
+    'tue': false,
+    'wed': false,
+    'thu': false,
+    'fri': false,
+    'sat': false
+  };
+  // tFri = json['t_fri'];
+  // tMon = json['t_mon'];
+  // tSat = json['t_sat'];
+  // tSun = json['t_sun'];
+  // tThu = json['t_thu'];
+  // tTue = json['t_tue'];
+  // tWed = json['t_wed'];
+
+  String _chosenDay;
+
+  // String workTime;
+  // String lunchTime;
+  CustomTextFieldController _workTime = CustomTextFieldController();
+  CustomTextFieldController _lunchTime = CustomTextFieldController();
+
   bool hasAppointment;
   bool hasrapt;
   bool hasqapt;
@@ -116,30 +148,36 @@ class _CreateServicePageState extends State<CreateServicePage> {
       if (!_photo.isValid) valid = false;
       if (!_serviceName.isValid) valid = false;
       if (!_serviceType.isValid) valid = false;
-      if (!_serviceOffered.isValid) valid = false;
-      if (!_mPhone.isValid) valid = false;
-      if (!_mLanguage.isValid) valid = false;
-      if (!_timeInterval.isValid) valid = false;
+      // if (!_serviceOffered.isValid) valid = false;
+      // if (!_mLanguage.isValid) valid = false;
+      // if (!_timeInterval.isValid) valid = false;
     } else if (currentIndex == 2) {
+      // if (!_mPhone.isValid) valid = false;
+      if (!_email.isValid) valid = false;
+
       if (!_state.isValid) valid = false;
       if (!_town.isValid) valid = false;
       if (!_zipCode.isValid) valid = false;
+      if (!_areaOrSector.isValid) valid = false;
+      if (!_societyName.isValid) valid = false;
       if (!_address.isValid) valid = false;
-      if (!_geoHash.isValid) valid = false;
-      if (!_latitude.isValid) valid = false;
-      if (!_longitude.isValid) valid = false;
+      // if (!_geoHash.isValid) valid = false;
+      //   if (!_latitude.isValid) valid = false;
+      //   if (!_longitude.isValid) valid = false;
     } else if (currentIndex == 3) {
-      if (!_biography.isValid) valid = false;
-      if (!_category.isValid) valid = false;
-      if (!_email.isValid) valid = false;
-      if (_startDate.isAfter(_endDate)) {
-        Utility.showSnackBar(
-            key: _key, message: "Start Date must be before end date");
-        valid = false;
-      }
-    } else if (currentIndex == 4) {
-      if (hasAppointment && !aptpslots.isValid) valid = false;
-      if (hasAppointment && !apttype.isValid) valid = false;
+      if (!_workTime.isValid) valid = false;
+      if (!_lunchTime.isValid) valid = false;
+
+      //   if (!_biography.isValid) valid = false;
+      //   if (!_category.isValid) valid = false;
+      //   if (_startDate.isAfter(_endDate)) {
+      //     Utility.showSnackBar(
+      //         key: _key, message: "Start Date must be before end date");
+      //     valid = false;
+      //   }
+      // } else if (currentIndex == 4) {
+      //   if (hasAppointment && !aptpslots.isValid) valid = false;
+      //   if (hasAppointment && !apttype.isValid) valid = false;
     }
     return valid;
   }
@@ -147,6 +185,13 @@ class _CreateServicePageState extends State<CreateServicePage> {
   ///this do the init of the switchs
   ///the custom text fields has its owen initvalue parameter
   Future _initFilledValid() async {
+    // _chosenDay = widget.serviceModel?.tm;
+    // _daysList[_chosenDay] = true;
+
+    isMobile = widget.serviceModel?.mainatainenceservicerequest ?? false;
+    locationShared = widget.serviceModel?.mainatainenceservicerequest ?? false;
+    currentLocation = widget.serviceModel?.mainatainenceservicerequest ?? false;
+
     hasAppointment = widget.serviceModel?.hasApt ?? false;
     hasrapt = widget.serviceModel?.hasRapt ?? false;
     hasqapt = widget.serviceModel?.hasqapt ?? false;
@@ -339,103 +384,169 @@ class _CreateServicePageState extends State<CreateServicePage> {
                 body: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  child: ListView(
-                    controller: controller,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    children: <Widget>[
-                      Center(child: _progress()),
-                      _firstStep(),
-                      _secondStep(),
-                      _thirstStep(),
-                      _fourthStep(),
-                      CustomButton(
-                        text: currentIndex < 4
-                            ? "Next"
-                            : widget.update
-                                ? "Update"
-                                : "Add",
-                        borderColor: ColorConstants.primaryColor,
-                        onTap: () async {
-                          if (_validate()) {
-                            if (currentIndex == 1) {
-                              setState(() {
-                                currentIndex = 2;
-                              });
-                            } else if (currentIndex == 2) {
-                              setState(() {
-                                currentIndex = 3;
-                              });
-                            } else if (currentIndex == 3) {
-                              setState(() {
-                                currentIndex = 4;
-                              });
-                            } else if (currentIndex == 4) {
-                              ServiceModel _serviceModel;
-                              _serviceModel = widget.serviceModel.copyWith(
-                                createdBy: _userRepository.getUser().userID,
-                                serviceName: _serviceName.text,
-                                serviceType: [_serviceType.text],
-                                serviceOffered: [_serviceOffered.text],
-                                phone: [_mPhone.text],
-                                photo1: _photo.text,
-                                languages: [_mLanguage.text],
-                                timeInterval:
-                                    double.tryParse(_timeInterval.text),
-                                state: _state.text,
-                                town: _town.text,
-                                zipCode: double.parse(_zipCode.text),
-                                address: _address.text,
-                                geoHash: _geoHash.text,
-                                latitude: double.parse(_latitude.text),
-                                longitude: double.parse(_longitude.text),
-                                biography: _biography.text,
-                                category: _category.text,
-                                email: _email.text,
-                                startDate: _startDate,
-                                endDate: _endDate,
-                                hasapt: hasAppointment,
-                                hasrapt: hasrapt,
-                                hasqapt: hasqapt,
-                                hasvapt: hasvapt,
-                                aptpslots: int.tryParse(aptpslots.text ?? ""),
-                                apttype: apttype.text,
-                                hasecom: hasecom,
-                                justlisting: justlisting,
-                                hasrent: hasrent,
-                                onlyallowedregisteredecom:
-                                    onlyallowedregisteredecom,
-                                requirepaymentecom: requirepaymentecom,
-                                doinventorymanagement: doinventorymanagement,
-                                hasregistration: hasregistration,
-                                hasfeemanagement: hasfeemanagement,
-                                hasfscan: hasfscan,
-                                requirepaymentapt: requirepaymentapt,
-                                hastrip: hastrip,
-                                hasexternalmanagedtrips:
-                                    hasexternalmanagedtrips,
-                                hasadhoctrips: hasadhoctrips,
-                                requirecutomerregistration:
-                                    requirecutomerregistration,
-                                requirepayment: requirepayment,
-                                requireticketing: requireticketing,
-                                onlinetripbooking: onlinetripbooking,
-                                mainatainenceservicerequest:
-                                    mainatainenceservicerequest,
-                                hassecurity: hassecurity,
-                                requirepaymentaptreg: requirepaymentaptreg,
-                              );
-                              if (widget.update) {
-                                _serviceBloc.add(
-                                  UpdateServiceEvent(request: _serviceModel),
-                                );
-                              } else {
-                                _serviceBloc.add(
-                                  CreateServiceEvent(request: _serviceModel),
-                                );
-                              }
-                            }
-                          }
-                        },
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ListView(
+                          controller: controller,
+                          children: <Widget>[
+                            // Center(child: _progress()),
+                            _firstStep(),
+                            screen2(),
+                            screen3(),
+                            screen4(),
+                            screen5(),
+                            screen6(),
+                            screen7(),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15.0),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (currentIndex > 1)
+                              Expanded(
+                                // width: double.infinity,
+                                child: CustomButton(
+                                  text: "Back",
+                                  borderColor: ColorConstants.primaryColor,
+                                  onTap: () {
+                                    setState(() {
+                                      currentIndex--;
+                                    });
+                                  },
+                                ),
+                              ),
+                            SizedBox(width: 15.0),
+                            Expanded(
+                              // width: double.infinity,
+                              child: CustomButton(
+                                buttonColor: ColorConstants.primaryColor,
+                                borderColor: ColorConstants.white,
+                                text: currentIndex < 7
+                                    ? "Next"
+                                    : widget.update
+                                        ? "Update"
+                                        : "Add",
+                                onTap: () async {
+                                  if (_validate()) {
+                                    if (currentIndex < 7) {
+                                      setState(() {
+                                        currentIndex++;
+                                      });
+                                      //   setState(() {
+                                      //     currentIndex = 2;
+                                      //   });
+                                      // } else if (currentIndex == 2) {
+                                      //   setState(() {
+                                      //     currentIndex = 3;
+                                      //   });
+                                      // } else if (currentIndex == 3) {
+                                      //   setState(() {
+                                      //     currentIndex = 4;
+                                      //   });
+                                    } else if (currentIndex == 6) {
+                                      ServiceModel _serviceModel;
+                                      _serviceModel =
+                                          widget.serviceModel.copyWith(
+                                        createdBy:
+                                            _userRepository.getUser().userID,
+                                        serviceName: _serviceName.text,
+                                        serviceType: [_serviceType.text],
+                                        serviceOffered: [_serviceOffered.text],
+                                        phone: [_mPhone.text],
+                                        photo1: _photo.text,
+                                        languages: [_mLanguage.text],
+                                        timeInterval:
+                                            double.tryParse(_timeInterval.text),
+                                        state: _state.text,
+                                        town: _town.text,
+                                        zipCode: double.parse(_zipCode.text),
+                                        address: _address.text,
+                                        geoHash: _geoHash.text,
+                                        latitude: double.parse(_latitude.text),
+                                        longitude:
+                                            double.parse(_longitude.text),
+                                        biography: _biography.text,
+                                        category: _category.text,
+                                        email: _email.text,
+                                        startDate: _startDate,
+                                        endDate: _endDate,
+                                        hasapt: hasAppointment,
+                                        hasrapt: hasrapt,
+                                        hasqapt: hasqapt,
+                                        hasvapt: hasvapt,
+                                        aptpslots:
+                                            int.tryParse(aptpslots.text ?? ""),
+                                        apttype: apttype.text,
+                                        hasecom: hasecom,
+                                        justlisting: justlisting,
+                                        hasrent: hasrent,
+                                        onlyallowedregisteredecom:
+                                            onlyallowedregisteredecom,
+                                        requirepaymentecom: requirepaymentecom,
+                                        doinventorymanagement:
+                                            doinventorymanagement,
+                                        hasregistration: hasregistration,
+                                        hasfeemanagement: hasfeemanagement,
+                                        hasfscan: hasfscan,
+                                        requirepaymentapt: requirepaymentapt,
+                                        hastrip: hastrip,
+                                        hasexternalmanagedtrips:
+                                            hasexternalmanagedtrips,
+                                        hasadhoctrips: hasadhoctrips,
+                                        requirecutomerregistration:
+                                            requirecutomerregistration,
+                                        requirepayment: requirepayment,
+                                        requireticketing: requireticketing,
+                                        onlinetripbooking: onlinetripbooking,
+                                        mainatainenceservicerequest:
+                                            mainatainenceservicerequest,
+                                        hassecurity: hassecurity,
+                                        requirepaymentaptreg:
+                                            requirepaymentaptreg,
+                                        t_fri: _daysList,
+                                        t_mon: _daysList,
+                                        t_sat: _daysList,
+                                        t_sun: _daysList,
+                                        t_thu: _daysList,
+                                        t_tue: _daysList,
+                                        t_wed: _daysList,
+                                        // t_fri: _daysList["fri"],
+                                        // t_mon: _daysList["mon"],
+                                        // t_sat: _daysList["sat"],
+                                        // t_sun: _daysList["sun"],
+                                        // t_thu: _daysList["thu"],
+                                        // t_tue: _daysList["tue"],
+                                        // t_wed: _daysList["wed"],
+
+                                        // isMobile: isMobile,
+                                        // locationShared: locationShared,
+                                        // areaname: _areaOrSector,
+                                        // societyName: _societyName,
+                                      );
+                                      if (widget.update) {
+                                        _serviceBloc.add(
+                                          UpdateServiceEvent(
+                                              request: _serviceModel),
+                                        );
+                                      } else {
+                                        _serviceBloc.add(
+                                          CreateServiceEvent(
+                                              request: _serviceModel),
+                                        );
+                                      }
+                                    }
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -457,24 +568,83 @@ class _CreateServicePageState extends State<CreateServicePage> {
     super.didUpdateWidget(oldWidget);
   }
 
+  // Widget customSwitch({
+  //   String title,
+  //   bool isEnabled = true,
+  //   void Function(bool) onChange,
+  // }) {
+  //   return Row(
+  //     children: [
+  //       Text(
+  //         title ?? "Has Security ?",
+  //         style: Styles.lightText(size: 16),
+  //       ),
+  //       Spacer(),
+  //       CupertinoSwitch(
+  //         onChanged: onChange ?? (e) {},
+  //         value: isEnabled,
+  //         activeColor: ColorConstants.primaryColor,
+  //       ),
+  //     ],
+  //   );
+  // }
   Widget customSwitch({
     String title,
     bool isEnabled = true,
     void Function(bool) onChange,
+    // bool value,
   }) {
-    return Row(
-      children: [
-        Text(
-          title ?? "Has Security ?",
-          style: Styles.lightText(size: 16),
-        ),
-        Spacer(),
-        CupertinoSwitch(
-          onChanged: onChange ?? (e) {},
-          value: isEnabled,
-          activeColor: ColorConstants.primaryColor,
-        ),
-      ],
+    return SizedBox(
+      width: double.infinity,
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        alignment: WrapAlignment.spaceBetween,
+
+        // spacing: double.infinity,
+        // runAlignment: WrapAlignment.end,
+
+        children: [
+          Expanded(
+            child: Text(
+              title ?? "Has Security ?",
+              style: Styles.lightText(size: 16),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Spacer(),
+              // Expanded(child: SizedBox.expand()),
+              Radio<bool>(
+                groupValue: isEnabled,
+                onChanged: onChange ?? (e) {},
+                value: true,
+                activeColor: ColorConstants.primaryColor,
+              ),
+              Text(
+                "Yes",
+                style: Styles.lightText(size: 12),
+              ),
+              Radio<bool>(
+                groupValue: isEnabled,
+                onChanged: onChange ?? (e) {},
+                value: false,
+                activeColor: ColorConstants.primaryColor,
+              ),
+              Text(
+                "No",
+                style: Styles.lightText(size: 12),
+              ),
+            ],
+          ),
+          // CupertinoSwitch(
+          //   onChanged: onChange ?? (e) {},
+          //   value: isEnabled,
+          //   activeColor: ColorConstants.primaryColor,
+          // ),
+        ],
+      ),
     );
   }
 
@@ -536,7 +706,9 @@ class _CreateServicePageState extends State<CreateServicePage> {
               isRequired: true,
             ),
           ),
-          CustomTextField(
+          CustomDropDownList<String>(
+            displayName: (x) => x,
+            loadData: () async => serviceType,
             initialValue: widget.serviceModel?.serviceType?.first,
             title: "Service Type",
             controller: _serviceType,
@@ -544,6 +716,56 @@ class _CreateServicePageState extends State<CreateServicePage> {
               isRequired: true,
             ),
           ),
+          customSwitch(
+            title: 'Are you mobile?',
+            isEnabled: isMobile,
+            onChange: (value) => setState(() => isMobile = value),
+          ),
+          customSwitch(
+            title: 'Share location?',
+            isEnabled: locationShared,
+            onChange: (value) => setState(() => locationShared = value),
+          ),
+
+          /*  CustomDropDownList<String>(
+            initialValue: widget.serviceModel?.serviceOffered?.first,
+            title: "Service Offered",
+            controller: _serviceOffered,
+            loadData: () async => serviceOffered.toList(),
+            displayName: (x) => x,
+            validate: Validate.withOption(isRequired: true),
+          ),
+          customSwitch(
+            title: 'Has Registration',
+            isEnabled: hasregistration,
+            onChange: (value) => setState(() => hasregistration = value),
+          ),
+          CustomTextField(
+            initialValue: widget.serviceModel?.timeInterval?.toString(),
+            title: "Time Interval",
+            controller: _timeInterval,
+            validate: Validate.withOption(isRequired: true, isNumber: true),
+          ),
+          CustomDropDownList<String>(
+            initialValue: widget.serviceModel?.languages?.first,
+            title: "Language",
+            controller: _mLanguage,
+            loadData: () async => languages.toList(),
+            displayName: (x) => x,
+            validate: Validate.withOption(isRequired: true), 
+          ),
+          */
+        ],
+      ),
+    );
+  }
+
+  Widget screen2() {
+    // Service Contact Details
+    return Visibility(
+      visible: currentIndex == 2,
+      child: Column(
+        children: [
           CustomTextField(
             initialValue: widget.serviceModel?.phone?.first,
             title: "Phone",
@@ -554,63 +776,66 @@ class _CreateServicePageState extends State<CreateServicePage> {
             ),
           ),
           CustomTextField(
-            initialValue: widget.serviceModel?.timeInterval?.toString(),
-            title: "Time Interval",
-            controller: _timeInterval,
-            validate: Validate.withOption(isRequired: true, isNumber: true),
+            initialValue: widget.serviceModel?.email,
+            title: "Email",
+            controller: _email,
+            validate: Validate.withOption(
+              isRequired: true,
+              isEmail: true,
+            ),
           ),
-          CustomDropDownList<String>(
-            initialValue: widget.serviceModel?.serviceOffered?.first,
-            title: "Service Offered",
-            controller: _serviceOffered,
-            loadData: () async => serviceOffered.toList(),
-            displayName: (x) => x,
-            validate: Validate.withOption(isRequired: true),
-          ),
-          CustomDropDownList<String>(
-            initialValue: widget.serviceModel?.languages?.first,
-            title: "Language",
-            controller: _mLanguage,
-            loadData: () async => languages.toList(),
-            displayName: (x) => x,
-            validate: Validate.withOption(isRequired: true),
-          ),
-        ],
-      ),
-    );
-  }
+          customSwitch(
+            title: 'Use current location',
+            isEnabled: currentLocation,
+            onChange: (value) {
+              setState(() {
+                currentLocation = value;
 
-  Widget _secondStep() {
-    return Visibility(
-      visible: currentIndex == 2,
-      child: Column(
-        children: [
-          CustomAddressPicker(
-            controller: _address,
-            displayData: (data) => data.address,
-            initialPosition: widget.serviceModel.latitude == null ||
-                    widget.serviceModel.longitude == null
-                ? null
-                : LatLng(
-                    widget.serviceModel.latitude,
-                    widget.serviceModel.longitude,
-                  ),
-            initialValue: widget.serviceModel?.address,
-            title: "Address",
-            onPickLocation: (result) {
-              _state.text = result.state;
-              _town.text = result.town;
-              _zipCode.text = result.zipCode;
-              _address.text = result.address;
-              _geoHash.text = result.geoHash;
-              _latitude.text = result.latitude?.toString();
-              _longitude.text = result.longitude?.toString();
+                LatLng location = LatLng(
+                  widget.serviceModel.latitude,
+                  widget.serviceModel.longitude,
+                );
+                PickedLocation result = PickedLocation(
+                  // id: result.placeId,
+                  // address: result.formattedAddress,
+                  latitude: location.latitude,
+                  longitude: location.longitude,
+                );
+                _state.text = result.state;
+                _town.text = result.town;
+                _zipCode.text = result.zipCode;
+                _address.text = result.address;
+              });
             },
-            validate: Validate.withOption(isRequired: true, maxLength: 250),
           ),
+
+          // CustomAddressPicker(
+          //   controller: _address,
+          //   displayData: (data) => data.address,
+          //   initialPosition: widget.serviceModel.latitude == null ||
+          //           widget.serviceModel.longitude == null
+          //       ? null
+          //       : LatLng(
+          //           widget.serviceModel.latitude,
+          //           widget.serviceModel.longitude,
+          //         ),
+          //   initialValue: widget.serviceModel?.address,
+          //   title: "Address",
+          //   onPickLocation: (result) {
+          //     _state.text = result.state;
+          //     _town.text = result.town;
+          //     _zipCode.text = result.zipCode;
+          //     _address.text = result.address;
+          //     _geoHash.text = result.geoHash;
+          //     _latitude.text = result.latitude?.toString();
+          //     _longitude.text = result.longitude?.toString();
+          //   },
+          //   validate: Validate.withOption(isRequired: true, maxLength: 250),
+          // ),
           CustomDropDownList<String>(
             initialValue: widget.serviceModel?.state,
-            title: "State",
+            // title: "State",
+            title: "Select your state",
             controller: _state,
             displayName: (data) => data,
             loadData: () async =>
@@ -620,7 +845,8 @@ class _CreateServicePageState extends State<CreateServicePage> {
           ),
           CustomDropDownList<String>(
             initialValue: widget.serviceModel?.town,
-            title: "Town",
+            // title: "Town",
+            title: "Select your District",
             controller: _town,
             displayName: (data) => data,
             onSelected: (value, index) => setState(() {}),
@@ -636,7 +862,8 @@ class _CreateServicePageState extends State<CreateServicePage> {
           ),
           CustomDropDownList<String>(
             initialValue: widget.serviceModel?.zipCode?.toString(),
-            title: "Zip Code",
+            // title: "Zip Code",
+            title: "Select your Village",
             controller: _zipCode,
             displayName: (data) => data,
             shouldReload: true,
@@ -649,6 +876,33 @@ class _CreateServicePageState extends State<CreateServicePage> {
               isRequired: true,
             ),
           ),
+          CustomTextField(
+            initialValue: widget.serviceModel?.serviceName,
+            title: "Area/Sector",
+            controller: _areaOrSector,
+            validate: Validate.withOption(
+              isRequired: true,
+            ),
+          ),
+          CustomTextField(
+            initialValue: widget.serviceModel?.serviceName,
+            title: "Society Name",
+            controller: _societyName,
+            validate: Validate.withOption(
+              isRequired: true,
+            ),
+          ),
+
+          CustomTextField(
+            initialValue: widget.serviceModel?.address,
+            title: "Address Line 1",
+            controller: _address,
+            validate: Validate.withOption(
+              isRequired: true,
+            ),
+          ),
+
+/* 
           CustomTextField(
             enabled: false,
             initialValue: widget.serviceModel?.geoHash,
@@ -675,12 +929,393 @@ class _CreateServicePageState extends State<CreateServicePage> {
             validate: Validate.withOption(
               isRequired: true,
             ),
+          ), */
+        ],
+      ),
+    );
+  }
+
+  Widget screen3() {
+    // Edit Housers
+    return Visibility(
+      visible: currentIndex == 3,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Open/Close Time",
+            textAlign: TextAlign.left,
+            style: Styles.semiBoldText(size: 20),
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 120.0),
+                child: Icon(Icons.watch_later_outlined),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: 12.0,
+                    right: 4.0,
+                    bottom: 12.0,
+                    left: 12.0,
+                  ),
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Card(
+                        child: Row(
+                          children: List.generate(
+                            _daysList.length,
+                            (index) {
+                              return GestureDetector(
+                                  onTap: () {
+                                    String selectedDay =
+                                        _daysList.keys.toList()[index];
+                                    _daysList.forEach((day, value) {
+                                      if (day != selectedDay) {
+                                        _daysList[day] = false;
+                                      } else {
+                                        setState(() {
+                                          _daysList[day] = !_daysList[day];
+                                        });
+                                      }
+                                    });
+                                  },
+                                  child: DayItem(
+                                    dayName: _daysList.keys.toList()[index],
+                                    isSelected:
+                                        _daysList.values.toList()[index],
+                                    // _daysList.keys.toList()[index] == _chosenDay,
+                                  ));
+                            },
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 25.0),
+                      Text(
+                        "Work Time",
+                        style: Styles.semiBoldText(size: 16),
+                      ),
+                      CustomTextField(
+                        // initialValue: widget.serviceModel?.serviceName,
+                        // title: "Work Time",
+                        title: "",
+                        margin: EdgeInsets.only(bottom: 24.0),
+                        controller: _workTime,
+                        validate: Validate.withOption(
+                          isRequired: true,
+                        ),
+                      ),
+                      /*  
+                      CustomDateTimePicker(
+                        controller: _startDateController,
+                        dateTime: _startDate,
+                        title: 'Start Date',
+                        mode: DateTimeMode.TIME,
+                        onChange: (x) => _startDate = x,
+                      ), 
+                      */
+                      Text(
+                        "Lunch Time",
+                        style: Styles.semiBoldText(size: 16),
+                      ),
+                      CustomTextField(
+                        // initialValue: widget.serviceModel?.serviceName,
+                        title: "",
+                        margin: EdgeInsets.only(bottom: 24.0),
+                        controller: _lunchTime,
+                        validate: Validate.withOption(
+                          isRequired: true,
+                        ),
+                      ),
+                      /*      
+                      CustomDateTimePicker(
+                        controller: _endDateController,
+                        dateTime: _endDate,
+                        title: 'End Date',
+                        mode: DateTimeMode.TIME,
+                        onChange: (x) => _endDate = x,
+                      ), 
+                      */
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
     );
   }
 
+  Widget screen4() {
+    // Appointment
+    return Visibility(
+      visible: currentIndex == 4,
+      child: Column(
+        children: [
+          customSwitch(
+            // title: 'Has Appointment',
+            title: 'Do you want to give appointment?',
+            isEnabled: hasAppointment,
+            onChange: (value) => setState(() => hasAppointment = value),
+          ),
+          Visibility(
+            visible: hasAppointment,
+            child: customSwitch(
+              // title: 'Has regular Appointment',
+              title:
+                  'Do you want to give fixed time appointment for home visit?',
+              isEnabled: hasrapt,
+              onChange: (value) => setState(() => hasrapt = value),
+            ),
+          ),
+          Visibility(
+            visible: hasAppointment,
+            child: customSwitch(
+              // title: 'Has q Appointment',
+              title: 'Do you want to give Fixed time appointment for shop?',
+              isEnabled: hasqapt,
+              onChange: (value) => setState(() => hasqapt = value),
+            ),
+          ),
+          customSwitch(
+            // title: 'Has visit to Home',
+            title: 'Do you want to give Check In (queue) for Shop?',
+            isEnabled: hasvapt,
+            onChange: (value) => setState(() => hasvapt = value),
+          ),
+          customSwitch(
+            title:
+                'Do you want to give option to select Staff member (providing services)',
+            isEnabled: hasvapt,
+            onChange: (value) => setState(() => hasvapt = value),
+          ),
+          // Visibility(
+          //   visible: hasAppointment,
+          //   child: CustomTextField(
+          //     initialValue: widget.serviceModel?.aptpslots?.toString(),
+          //     controller: aptpslots,
+          //     title: 'Appointment slots',
+          //     validate: Validate.withOption(isRequired: true, isNumber: true),
+          //   ),
+          // ),
+          // Visibility(
+          //   visible: hasAppointment,
+          //   child: CustomDropDownList<String>(
+          //     initialValue: widget.serviceModel?.apttype,
+          //     title: 'Appointment type',
+          //     displayName: (data) => data,
+          //     loadData: () async => ["PERSTORE", "PEREMPLOYEE"],
+          //     controller: apttype,
+          //     validate: Validate.withOption(isRequired: true),
+          //   ),
+          // ),
+        ],
+      ),
+    );
+  }
+
+  Widget screen5() {
+    // E-commerce
+    return Visibility(
+      visible: currentIndex == 5,
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          customSwitch(
+            // title: 'Has Ecom',
+            title: 'Will you to sell products?',
+            isEnabled: hasecom,
+            onChange: (value) => setState(() => hasecom = value),
+          ),
+          Visibility(
+            visible: hasecom,
+            child: customSwitch(
+              // title: 'Just Listing',
+              title: 'Do you need shopping cart?',
+              isEnabled: justlisting,
+              onChange: (value) => setState(() => justlisting = value),
+            ),
+          ),
+          // Visibility(
+          //   visible: hasecom,
+          //   child: customSwitch(
+          //     title: 'Has Rent',
+          //     isEnabled: hasrent,
+          //     onChange: (value) => setState(() => hasrent = value),
+          //   ),
+          // ),
+          // Visibility(
+          //   visible: hasecom,
+          //   child: customSwitch(
+          //     title: 'Only allowen Registered Ecommerce',
+          //     isEnabled: onlyallowedregisteredecom,
+          //     onChange: (value) =>
+          //         setState(() => onlyallowedregisteredecom = value),
+          //   ),
+          // ),
+          Visibility(
+            visible: hasecom && justlisting,
+            child: customSwitch(
+              // title: 'Require Payment Ecommerce',
+              title: 'Payment gateway',
+              isEnabled: requirepaymentecom,
+              onChange: (value) => setState(() => requirepaymentecom = value),
+            ),
+          ),
+          Visibility(
+            visible: hasecom && justlisting,
+            child: customSwitch(
+              // title: 'Do Inentory Management',
+              title: 'Manage inventory',
+              isEnabled: doinventorymanagement,
+              onChange: (value) =>
+                  setState(() => doinventorymanagement = value),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget screen6() {
+    // Transportation
+    return Visibility(
+      visible: currentIndex == 6,
+      child: Column(
+        children: [
+          customSwitch(
+            // title: 'Has Trip',
+            title: 'Do you want to manage transport?',
+            isEnabled: hastrip,
+            onChange: (value) => setState(() => hastrip = value),
+          ),
+          Visibility(
+            visible: hastrip,
+            child: customSwitch(
+              // title: 'Has External trip Management',
+              title: 'Do you require trip management?',
+              isEnabled: hasexternalmanagedtrips,
+              onChange: (value) =>
+                  setState(() => hasexternalmanagedtrips = value),
+            ),
+          ),
+          // Visibility(
+          //   visible: hastrip,
+          //   child: customSwitch(
+          //     title: 'Has Adhoc Trips',
+          //     isEnabled: hasadhoctrips,
+          //     onChange: (value) => setState(() => hasadhoctrips = value),
+          //   ),
+          // ),
+          // Visibility(
+          //   visible: hastrip,
+          //   child: customSwitch(
+          //     title: 'Require Customer Registration',
+          //     isEnabled: requirecutomerregistration,
+          //     onChange: (value) =>
+          //         setState(() => requirecutomerregistration = value),
+          //   ),
+          // ),
+          // Visibility(
+          //   visible: hastrip,
+          //   child: customSwitch(
+          //     title: 'Require Payment',
+          //     isEnabled: requirepayment,
+          //     onChange: (value) => setState(() => requirepayment = value),
+          //   ),
+          // ),
+          Visibility(
+            visible: hastrip && hasexternalmanagedtrips,
+            child: customSwitch(
+              // title: 'Require Tickiting',
+              title: 'Do you want to provide ticketing?',
+              isEnabled: requireticketing,
+              onChange: (value) => setState(() => requireticketing = value),
+            ),
+          ),
+          Visibility(
+            // ?bool 2
+            visible: hastrip,
+            child: customSwitch(
+              // title: 'Online Trip Booking',
+              title: 'Do you want to provide booking as appointment?',
+              isEnabled: onlinetripbooking,
+              onChange: (value) => setState(() => onlinetripbooking = value),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget screen7() {
+    // Registration
+    return Visibility(
+      visible: currentIndex == 7,
+      child: Column(
+        children: [
+          customSwitch(
+            // title: 'Has Registration',
+            title: 'Do you want to need registration of your client?',
+            isEnabled: hasregistration,
+            onChange: (value) => setState(() => hasregistration = value),
+          ),
+          Visibility(
+            visible: hasregistration,
+            child: customSwitch(
+              // title: 'Has fee management',
+              title: 'Do you require fee management?',
+              isEnabled: hasfeemanagement,
+              onChange: (value) => setState(() => hasfeemanagement = value),
+            ),
+          ),
+          Visibility(
+            visible: hasregistration && hasfeemanagement,
+            child: customSwitch(
+              // title: 'Has fee scan',
+              title:
+                  'Do you require QR Code scanning to know fee payment status?',
+              isEnabled: hasfscan,
+              onChange: (value) => setState(() => hasfscan = value),
+            ),
+          ),
+          Visibility(
+            // bool 1
+            visible: hasregistration,
+            child: customSwitch(
+              // title: 'Do you want to provide transport to students/user?',
+              title: 'Do you want to provide transport to students/user??',
+              isEnabled: hasfscan,
+              onChange: (value) => setState(() => hasfscan = value),
+            ),
+          ),
+          // Visibility(
+          //   visible: hasregistration,
+          //   child: customSwitch(
+          //     title: 'Require Payment',
+          //     isEnabled: requirepaymentapt,
+          //     onChange: (value) => setState(() => requirepaymentapt = value),
+          //   ),
+          // ),
+        ],
+      ),
+    );
+  }
+/* 
+  Widget _secondStep() {
+    return Visibility(
+      visible: currentIndex == 2,
+      child: Column(
+        children: [
+    );
+  }
   Widget _thirstStep() {
     return Visibility(
       visible: currentIndex == 3,
@@ -699,15 +1334,6 @@ class _CreateServicePageState extends State<CreateServicePage> {
             title: "Category",
             controller: _category,
             validate: Validate.withOption(isRequired: true),
-          ),
-          CustomTextField(
-            initialValue: widget.serviceModel?.email,
-            title: "Email",
-            controller: _email,
-            validate: Validate.withOption(
-              isRequired: true,
-              isEmail: true,
-            ),
           ),
           CustomDateTimePicker(
             controller: _startDateController,
@@ -738,183 +1364,6 @@ class _CreateServicePageState extends State<CreateServicePage> {
       child: Column(
         children: [
           customSwitch(
-            title: 'Has Appointment',
-            isEnabled: hasAppointment,
-            onChange: (value) => setState(() => hasAppointment = value),
-          ),
-          Visibility(
-            visible: hasAppointment,
-            child: customSwitch(
-              title: 'Has regular Appointment',
-              isEnabled: hasrapt,
-              onChange: (value) => setState(() => hasrapt = value),
-            ),
-          ),
-          Visibility(
-            visible: hasAppointment,
-            child: customSwitch(
-              title: 'Has q Appointment',
-              isEnabled: hasqapt,
-              onChange: (value) => setState(() => hasqapt = value),
-            ),
-          ),
-          customSwitch(
-            title: 'Has visit to Home',
-            isEnabled: hasvapt,
-            onChange: (value) => setState(() => hasvapt = value),
-          ),
-          Visibility(
-            visible: hasAppointment,
-            child: CustomTextField(
-              initialValue: widget.serviceModel?.aptpslots?.toString(),
-              controller: aptpslots,
-              title: 'Appointment slots',
-              validate: Validate.withOption(isRequired: true, isNumber: true),
-            ),
-          ),
-          Visibility(
-            visible: hasAppointment,
-            child: CustomDropDownList<String>(
-              initialValue: widget.serviceModel?.apttype,
-              title: 'Appointment type',
-              displayName: (data) => data,
-              loadData: () async => ["PERSTORE", "PEREMPLOYEE"],
-              controller: apttype,
-              validate: Validate.withOption(isRequired: true),
-            ),
-          ),
-          customSwitch(
-            title: 'Has Ecom',
-            isEnabled: hasecom,
-            onChange: (value) => setState(() => hasecom = value),
-          ),
-          Visibility(
-            visible: hasecom,
-            child: customSwitch(
-              title: 'Just Listing',
-              isEnabled: justlisting,
-              onChange: (value) => setState(() => justlisting = value),
-            ),
-          ),
-          Visibility(
-            visible: hasecom,
-            child: customSwitch(
-              title: 'Has Rent',
-              isEnabled: hasrent,
-              onChange: (value) => setState(() => hasrent = value),
-            ),
-          ),
-          Visibility(
-            visible: hasecom,
-            child: customSwitch(
-              title: 'Only allowen Registered Ecommerce',
-              isEnabled: onlyallowedregisteredecom,
-              onChange: (value) =>
-                  setState(() => onlyallowedregisteredecom = value),
-            ),
-          ),
-          Visibility(
-            visible: hasecom,
-            child: customSwitch(
-              title: 'Require Payment Ecommerce',
-              isEnabled: requirepaymentecom,
-              onChange: (value) => setState(() => requirepaymentecom = value),
-            ),
-          ),
-          Visibility(
-            visible: hasecom,
-            child: customSwitch(
-              title: 'Do Inentory Management',
-              isEnabled: doinventorymanagement,
-              onChange: (value) =>
-                  setState(() => doinventorymanagement = value),
-            ),
-          ),
-          customSwitch(
-            title: 'Has Registration',
-            isEnabled: hasregistration,
-            onChange: (value) => setState(() => hasregistration = value),
-          ),
-          Visibility(
-            visible: hasregistration,
-            child: customSwitch(
-              title: 'Has fee management',
-              isEnabled: hasfeemanagement,
-              onChange: (value) => setState(() => hasfeemanagement = value),
-            ),
-          ),
-          Visibility(
-            visible: hasregistration,
-            child: customSwitch(
-              title: 'Has fee scan',
-              isEnabled: hasfscan,
-              onChange: (value) => setState(() => hasfscan = value),
-            ),
-          ),
-          Visibility(
-            visible: hasregistration,
-            child: customSwitch(
-              title: 'Require Payment',
-              isEnabled: requirepaymentapt,
-              onChange: (value) => setState(() => requirepaymentapt = value),
-            ),
-          ),
-          customSwitch(
-            title: 'Has Trip',
-            isEnabled: hastrip,
-            onChange: (value) => setState(() => hastrip = value),
-          ),
-          Visibility(
-            visible: hastrip,
-            child: customSwitch(
-              title: 'Has External trip Management',
-              isEnabled: hasexternalmanagedtrips,
-              onChange: (value) =>
-                  setState(() => hasexternalmanagedtrips = value),
-            ),
-          ),
-          Visibility(
-            visible: hastrip,
-            child: customSwitch(
-              title: 'Has Adhoc Trips',
-              isEnabled: hasadhoctrips,
-              onChange: (value) => setState(() => hasadhoctrips = value),
-            ),
-          ),
-          Visibility(
-            visible: hastrip,
-            child: customSwitch(
-              title: 'Require Customer Registration',
-              isEnabled: requirecutomerregistration,
-              onChange: (value) =>
-                  setState(() => requirecutomerregistration = value),
-            ),
-          ),
-          Visibility(
-            visible: hastrip,
-            child: customSwitch(
-              title: 'Require Payment',
-              isEnabled: requirepayment,
-              onChange: (value) => setState(() => requirepayment = value),
-            ),
-          ),
-          Visibility(
-            visible: hastrip,
-            child: customSwitch(
-              title: 'Require Tickiting',
-              isEnabled: requireticketing,
-              onChange: (value) => setState(() => requireticketing = value),
-            ),
-          ),
-          Visibility(
-            visible: hastrip,
-            child: customSwitch(
-              title: 'Online Trip Booking',
-              isEnabled: onlinetripbooking,
-              onChange: (value) => setState(() => onlinetripbooking = value),
-            ),
-          ),
-          customSwitch(
             title: "mainatainence service request",
             isEnabled: mainatainenceservicerequest,
             onChange: (value) =>
@@ -932,6 +1381,35 @@ class _CreateServicePageState extends State<CreateServicePage> {
           ),
           Utility.size(height: 50),
         ],
+      ),
+    );
+  }
+ */
+}
+
+class DayItem extends StatelessWidget {
+  final String dayName;
+  final bool isSelected;
+
+  const DayItem({this.dayName, this.isSelected = false});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color:
+              isSelected ? ColorConstants.primaryColor /* Colors.blue */ : null,
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10))),
+      width: width * 10.79,
+      height: height * 10.79,
+      alignment: Alignment.center,
+      child: Text(
+        dayName.replaceFirst(dayName[0], dayName[0].toUpperCase()),
+        style: tileSubTitle.copyWith(
+            color: isSelected ? Colors.white : Colors.black,
+            fontWeight: FontWeight.w500,
+            fontSize: 14),
       ),
     );
   }
