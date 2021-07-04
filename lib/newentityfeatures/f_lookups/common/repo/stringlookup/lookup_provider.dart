@@ -132,7 +132,7 @@ class LookupProvider extends ILookupProvider {
         .addItemsInDocArrayFirestore(
             errorType: 'Class period',
             fieldName: 'classperiodinfo',
-            elements: [classPeriodInfo.toJson()]);
+            elements: [classPeriodInfo.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -144,7 +144,7 @@ class LookupProvider extends ILookupProvider {
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'examterminfo',
-            elements: [examTerm.toJson()]);
+            elements: [examTerm.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -175,7 +175,7 @@ class LookupProvider extends ILookupProvider {
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'feeitemlist',
-            elements: [paymentPeriodInfo..toJson()]);
+            elements: [paymentPeriodInfo.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -187,7 +187,7 @@ class LookupProvider extends ILookupProvider {
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'roominfo',
-            elements: [room.toJson()]);
+            elements: [room.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -199,7 +199,7 @@ class LookupProvider extends ILookupProvider {
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'sessionterm',
-            elements: [sessionTerm.toJson()]);
+            elements: [sessionTerm.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -211,7 +211,7 @@ class LookupProvider extends ILookupProvider {
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'feeitemlist',
-            elements: [classPeriodInfo.toJson()]);
+            elements: [classPeriodInfo.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -233,7 +233,7 @@ class LookupProvider extends ILookupProvider {
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'examterminfo',
-            elements: [examTerm.toJson()]);
+            elements: [examTerm.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -255,7 +255,7 @@ class LookupProvider extends ILookupProvider {
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'feeitemlist',
-            elements: [paymentPeriodInfo.toJson()]);
+            elements: [paymentPeriodInfo.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -267,7 +267,7 @@ class LookupProvider extends ILookupProvider {
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'roominfo',
-            elements: [room.toJson()]);
+            elements: [room.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -279,7 +279,7 @@ class LookupProvider extends ILookupProvider {
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'sessionterm',
-            elements: [sessionTerm.toJson()]);
+            elements: [sessionTerm.toJson()..remove('runtimeType')]);
 
     return response;
   }
