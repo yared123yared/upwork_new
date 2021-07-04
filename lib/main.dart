@@ -53,12 +53,11 @@ void main() {
     Get.lazyPut(() => GenericDBRepository());
     var instance = FirebaseMessaging();
     instance.configure(onLaunch: onLaunch);
+    Get.lazyPut(() => instance);
     // FirebaseMessaging.onBackgroundMessage(onLaunch);
     setupDependencyInjections();
     runApp(MyApp());
   });
-
-
 }
 
 Future<void> onLaunch(Map<String, dynamic> message) async {
@@ -149,7 +148,7 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
           ),
           debugShowCheckedModeBanner: false,
           home: SplashPage(),
-           builder: EasyLoading.init(),
+          builder: EasyLoading.init(),
 
           /*
           localeResolutionCallback: (locale, _) {
