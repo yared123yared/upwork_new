@@ -101,7 +101,7 @@ class RegistryModelRepository {
     RegistryModelRepositoryReturnData myreturn =
         RegistryModelRepositoryReturnData();
 
-    var _complexModel = await _complexRepository.getComplexAsync(
+    ComplexModel _complexModel = await _complexRepository.getComplexAsync(
       complex: _user.defaultComplexEntity,
     );
 
@@ -190,6 +190,7 @@ class RegistryModelRepository {
       residentRequest: item,
       userModel: _user,
       entitytype: entitytype,
+      entityid: entityid,
     );
     myreturn.errortype = -1;
     return myreturn;
@@ -210,11 +211,13 @@ class RegistryModelRepository {
       residentRequest: item,
       userModel: _user,
       entitytype: entitytype,
+      entityid: entityid,
     );
 
     await _complexRepository.removeResident(
       entitytype: entitytype,
       unitadress: item.unitAddress,
+      entityid: entityid,
       isOwner: isOwner,
       userModel: _user,
     );
@@ -271,6 +274,7 @@ class RegistryModelRepository {
       unitadress: item.unitAddress,
       isOwner: isOwner,
       userModel: _user,
+      entityid: entityid,
     );
     // RegistryGateway.deleteRegistry(
     //   complexModel: complexModel,
@@ -297,7 +301,7 @@ class RegistryModelRepository {
       String entitytype, String entityid, RegistryModel registry) async {
     RegistryEntryData myreturn = RegistryEntryData();
 
-    var _complexModel = await _complexRepository.getComplexAsync(
+    ComplexModel _complexModel = await _complexRepository.getComplexAsync(
       complex: _user.defaultComplexEntity,
     );
 

@@ -12,20 +12,10 @@ class RegistryModelBloc extends Bloc<RegistryModelEvent, RegistryModelState> {
       yield IsBusy();
       RegistryModelRepositoryReturnData ud =
           await mrepository.createRegistryModelViaResidentModel(
-              event.item, event.entitytype, event.entityid);
-
-      if (ud.errortype == -1)
-        yield IsSaved();
-      else if (ud.errortype == 1)
-        yield HasLogicalFaliur(error: ud.error);
-      else
-        yield HasExceptionFaliur(error: ud.error);
-    }
-    if (event is createRegistryViaResidentModel) {
-      yield IsBusy();
-      RegistryModelRepositoryReturnData ud =
-          await mrepository.createRegistryModelViaResidentModel(
-              event.item, event.entitytype, event.entityid);
+        event.item,
+        event.entitytype,
+        event.entityid,
+      );
 
       if (ud.errortype == -1)
         yield IsSaved();
@@ -37,8 +27,8 @@ class RegistryModelBloc extends Bloc<RegistryModelEvent, RegistryModelState> {
 
     if (event is getForNewEntry) {
       yield IsBusy();
-      RegistryEntryData ud =
-          await mrepository.getInitialData(event.entitytype, event.entityid, event.registry);
+      RegistryEntryData ud = await mrepository.getInitialData(
+          event.entitytype, event.entityid, event.registry);
 
       if (ud.errortype == -1)
         yield IsReadyForDetailsPage(
@@ -58,8 +48,8 @@ class RegistryModelBloc extends Bloc<RegistryModelEvent, RegistryModelState> {
     }
     if (event is updateResident) {
       yield IsBusy();
-      RegistryModelRepositoryReturnData ud = await mrepository
-          .updateResident(event.item, event.entitytype, event.entityid);
+      RegistryModelRepositoryReturnData ud = await mrepository.updateResident(
+          event.item, event.entitytype, event.entityid);
 
       if (ud.errortype == -1)
         yield IsSaved();
