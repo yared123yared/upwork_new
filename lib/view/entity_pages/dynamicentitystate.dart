@@ -4,6 +4,7 @@ import 'package:complex/common/model/grid_model.dart';
 import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
+import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/newentityfeatures/Attendance/presentation/attendance_page.dart';
 import 'package:complex/newentityfeatures/Fee%20plan/presentation/feeplan_listview.dart';
 import 'package:complex/newentityfeatures/Models/common_enum_methods.dart';
@@ -41,6 +42,7 @@ import 'package:complex/newentityfeatures/vrassignment/presentation/vrassignment
 import 'package:complex/view/entity/school/lookup/fee_item_list_page.dart';
 import 'package:complex/view/entity/school/lookup/lookup_navigation_helper.dart';
 import 'package:complex/view/entity/school/lookup/offering_list_page.dart';
+import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
 import 'package:complex/view/job_pages/job_detail_page.dart';
 import 'package:complex/view/medical_pages/case_view.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
@@ -1790,13 +1792,8 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Pet/FarmAnimals',
             tapAction: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (buildContext) => GeneralContactDetailPage(
-                      type: ContactOpenFrom.pet,
-                    ),
-                  ));
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.pet());
             });
         break;
       case DynamicEntityGridState.classifiedjob:
@@ -1804,13 +1801,8 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Job',
             tapAction: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (buildContext) => GeneralContactDetailPage(
-                      type: ContactOpenFrom.job,
-                    ),
-                  ));
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.job());
             });
         break;
       case DynamicEntityGridState.classifiedvehicle:
@@ -1818,11 +1810,8 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Vehicle',
             tapAction: () {
-              Navigator.push(
-                  context,
-                  NextPageRoute(GeneralContactDetailPage(
-                    type: ContactOpenFrom.vehicle,
-                  )));
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.vehicle());
             });
         break;
       case DynamicEntityGridState.brokerclassifiedvehicle:
@@ -1830,13 +1819,8 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Vehicle',
             tapAction: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (buildContext) => GeneralContactDetailPage(
-                      type: ContactOpenFrom.vehicle,
-                    ),
-                  ));
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.vehicle());
             });
         break;
 
@@ -1845,13 +1829,8 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Real Estate',
             tapAction: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (buildContext) => GeneralContactDetailPage(
-                      type: ContactOpenFrom.addProperty,
-                    ),
-                  ));
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.realEstate());
             });
         break;
       case DynamicEntityGridState.classifiedrealestate:
@@ -1859,13 +1838,8 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Real Estate',
             tapAction: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (buildContext) => GeneralContactDetailPage(
-                      type: ContactOpenFrom.addProperty,
-                    ),
-                  ));
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.realEstate());
             });
         break;
 
@@ -1903,14 +1877,8 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Classified Product',
             tapAction: () {
-              Navigator.push(
-                  context,
-                  NextPageRoute(GeneralContactDetailPage(
-                    type: ContactOpenFrom.product,
-                    isService: false,
-                    serviceProviderId: "ABC",
-                    serviceId: "BCD",
-                  )));
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.product());
             });
         break;
       case DynamicEntityGridState.neworder:

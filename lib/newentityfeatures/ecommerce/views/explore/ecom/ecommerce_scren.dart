@@ -85,7 +85,7 @@ class _ECommerceScreenState extends State<ECommerceScreen> {
             LocationWidget(),
             ServiceTypesGrid(),
             ServiceGroupHorizontalList(),
-            ClassifiedCategoryList(),
+            // ClassifiedCategoryList(),
             AdsCarousel(),
           ],
         ),
