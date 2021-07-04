@@ -10,13 +10,13 @@ _$ContactDetails _$_$ContactDetailsFromJson(Map<String, dynamic> json) {
   return _$ContactDetails(
     name: json['name'] as String,
     phonenum: json['phonenum'] as String,
-    sharephone: json['sharephone'] as bool,
+    sharephone: json['sharephone'] as bool ?? false,
     email: json['email'] as String,
-    shareemail: json['shareemail'] as bool,
+    shareemail: json['shareemail'] as bool ?? false,
     address: json['address'] == null
         ? null
         : Address.fromJson(json['address'] as Map<String, dynamic>),
-    shareaddress: json['shareaddress'] as bool,
+    shareaddress: json['shareaddress'] as bool ?? false,
   );
 }
 
@@ -46,8 +46,8 @@ _$Address _$_$AddressFromJson(Map<String, dynamic> json) {
     district: json['district'] as String,
     townVillage: json['town_village'] as String,
     areaSector: json['area_sector'] as String ?? 'N/A',
-    societyname: json['societyname'] as String,
-    addressline: json['addressline'] as String,
+    societyname: json['societyname'] as String ?? 'N/A',
+    addressline: json['addressline'] as String ?? 'N/A',
     latitude: (json['latitude'] as num)?.toDouble(),
     longitude: (json['longitude'] as num)?.toDouble(),
   );

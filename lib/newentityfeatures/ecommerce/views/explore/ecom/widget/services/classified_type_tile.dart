@@ -1,47 +1,16 @@
-import 'package:complex/newentityfeatures/ecommerce/bloc/product/product_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:animate_do/animate_do.dart';
 
-import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
-import 'package:get/get.dart';
-
-class ServiceGroupItem extends StatelessWidget {
-  final ServiceGroup serviceGroup;
-  final int index;
-  final int selected;
-  const ServiceGroupItem({
+class ClassifiedTypeTile extends StatelessWidget {
+  final String typeName;
+  final String imageUrl;
+  final VoidCallback onTap;
+  const ClassifiedTypeTile({
     Key key,
-    @required this.serviceGroup,
-    this.selected,
-    this.index,
+    @required this.typeName,
+    @required this.imageUrl,
+    @required this.onTap,
   }) : super(key: key);
-
-  void selectProduct(BuildContext context) {
-    // if (serviceGroup.type != 'shop') {
-    //   Get.context.read<ProductBloc>().add(ServiceSelected(null));
-    //   final type = serviceGroup.type;
-    //   Navigator.of(context).push(
-    //     MaterialPageRoute(
-    //       builder: (_) => BlocProvider(
-    //         create: (_) => CartBloc(),
-    //         child: type == 'vehicle'
-    //             ? VehiclesListView()
-    //             : type == 'realestate'
-    //                 ? RealEstatesListView()
-    //                 : type == 'job'
-    //                     ? JobsListView()
-    //                     : type == 'pet'
-    //                         ? PetsGridView()
-    //                         : ProductsListView(),
-    //       ),
-    //     ),
-    //   );
-    //   return;
-    // }
-    if (selected != index)
-      Get.context.read<ProductBloc>().add(ServiceGroupSelected(index));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +23,15 @@ class ServiceGroupItem extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
-            if (selected == index)
-              BoxShadow(
-                color: Color(0x33000000),
-                blurRadius: 8,
-              ),
+            // if (selected == index)
+            BoxShadow(
+              color: Color(0x33000000),
+              blurRadius: 8,
+            ),
           ],
         ),
         child: GestureDetector(
-          onTap: () => selectProduct(context),
+          onTap: onTap,
           child: ClipRRect(
             child: AnimatedContainer(
               duration: Duration(milliseconds: 200),
@@ -71,8 +40,8 @@ class ServiceGroupItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  width: selected == index ? 4 : 0,
-                  color: Theme.of(context).primaryColor,
+                  width: 4,
+                  color: Colors.red[400],
                 ),
               ),
               child: ClipRRect(
@@ -82,10 +51,10 @@ class ServiceGroupItem extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
-                      height: 120,
+                      height: 110,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage(serviceGroup.icon),
+                          image: NetworkImage(imageUrl),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -94,10 +63,10 @@ class ServiceGroupItem extends StatelessWidget {
                       child: Container(
                         // width: 120,
                         // height: 24.0 - (selected == index ? 4 : 0),
-                        color: Theme.of(context).primaryColor,
+                        color: Colors.red[400],
                         child: Center(
                           child: Text(
-                            serviceGroup.sectionname,
+                            typeName,
                             style: TextStyle(color: Colors.white, fontSize: 12),
                             textAlign: TextAlign.center,
                           ),

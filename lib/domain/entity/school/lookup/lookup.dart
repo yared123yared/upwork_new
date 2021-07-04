@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sembast/timestamp.dart';
+
+import '../../json_helper.dart';
 
 part 'lookup.freezed.dart';
 part 'lookup.g.dart';
-
-class JsonHelper {
-  static DateTime fromJsonTimeStamp(Timestamp val) =>
-      DateTime.fromMillisecondsSinceEpoch(val.millisecondsSinceEpoch);
-  static Timestamp toJsonTimeStamp(DateTime time) =>
-      Timestamp.fromMillisecondsSinceEpoch(time.millisecondsSinceEpoch);
-}
 
 @freezed
 abstract class Lookup with _$Lookup {

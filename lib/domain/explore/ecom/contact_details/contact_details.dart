@@ -7,11 +7,11 @@ abstract class ContactDetailsData with _$ContactDetailsData {
   const factory ContactDetailsData({
     @required String name,
     @required String phonenum,
-    @required bool sharephone,
+    @JsonKey(defaultValue: false) @required bool sharephone,
     @required String email,
-    @required bool shareemail,
+    @JsonKey(defaultValue: false) @required bool shareemail,
     @required Address address,
-    @required bool shareaddress,
+    @JsonKey(defaultValue: false) @required bool shareaddress,
   }) = ContactDetails;
 
   const factory ContactDetailsData.address({
@@ -20,10 +20,11 @@ abstract class ContactDetailsData with _$ContactDetailsData {
     @required String district,
     @JsonKey(name: 'town_village') @required String townVillage,
     @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+    @JsonKey(defaultValue: 'N/A')
     @required
         String areaSector,
-    @required String societyname,
-    @required String addressline,
+    @JsonKey(defaultValue: 'N/A') @required String societyname,
+    @JsonKey(defaultValue: 'N/A') @required String addressline,
     @required double latitude,
     @required double longitude,
   }) = Address;
