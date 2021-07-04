@@ -131,7 +131,7 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
             errorType: 'Class period',
-            fieldName: 'class period info',
+            fieldName: 'classperiodinfo',
             elements: [classPeriodInfo.toJson()]);
 
     return response;
@@ -143,7 +143,7 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
+            fieldName: 'examterminfo',
             elements: [examTerm.toJson()]);
 
     return response;
@@ -153,7 +153,7 @@ class LookupProvider extends ILookupProvider {
   Future<Option<Failure>> createGrade({String serviceID, String grade}) async {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
-            errorType: 'Fee Item', fieldName: 'feeitemlist', elements: [grade]);
+            errorType: 'Fee Item', fieldName: 'grades', elements: [grade]);
 
     return response;
   }
@@ -163,9 +163,7 @@ class LookupProvider extends ILookupProvider {
       {String serviceID, String offering}) async {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
-            errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
-            elements: [offering]);
+            errorType: 'Fee Item', fieldName: 'subject', elements: [offering]);
 
     return response;
   }
@@ -188,7 +186,7 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
+            fieldName: 'roominfo',
             elements: [room.toJson()]);
 
     return response;
@@ -200,7 +198,7 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
+            fieldName: 'sessionterm',
             elements: [sessionTerm.toJson()]);
 
     return response;
@@ -223,7 +221,7 @@ class LookupProvider extends ILookupProvider {
       {String serviceID, String grade}) async {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
-            errorType: 'Fee Item', fieldName: 'feeitemlist', elements: [grade]);
+            errorType: 'Fee Item', fieldName: 'grades', elements: [grade]);
 
     return response;
   }
@@ -234,7 +232,7 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
+            fieldName: 'examterminfo',
             elements: [examTerm.toJson()]);
 
     return response;
@@ -245,9 +243,7 @@ class LookupProvider extends ILookupProvider {
       {String serviceID, String offering}) async {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
-            errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
-            elements: [offering]);
+            errorType: 'Fee Item', fieldName: 'subject', elements: [offering]);
 
     return response;
   }
@@ -270,7 +266,7 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
+            fieldName: 'roominfo',
             elements: [room.toJson()]);
 
     return response;
@@ -282,7 +278,7 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
+            fieldName: 'sessionterm',
             elements: [sessionTerm.toJson()]);
 
     return response;

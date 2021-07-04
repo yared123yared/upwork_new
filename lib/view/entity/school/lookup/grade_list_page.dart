@@ -1,4 +1,5 @@
 import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,12 +72,10 @@ class _GradeListPageState extends State<GradeListPage> {
         deleteAction: () async {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
-            BlocProvider.of<listbloc.StringListBloc>(context).add(
-                listbloc.DeleteItemWithData(
-                    entitytype: widget.entitytype,
-                    entityid: widget.entitytype,
-                    item: item,
-                    fieldname: "feeitemlist"));
+            BlocProvider.of<LookupBloc>(context).add(DeleteItemWithData(
+                item: Grade(grades: item),
+                entityid: widget.entityid,
+                entitytype: widget.entitytype));
           }
         },
       ));
@@ -145,12 +144,11 @@ class _GradeListPageState extends State<GradeListPage> {
                     String returnedval = await _addButtonActions(
                         context, widget.entitytype, widget.entityid);
                     if (returnedval != "*NOVALUESET*") {
-                      BlocProvider.of<listbloc.StringListBloc>(context).add(
-                        listbloc.CreateItem(
-                            item: returnedval,
-                            entitytype: widget.entitytype,
+                      BlocProvider.of<LookupBloc>(context).add(
+                        CreateItem(
+                            item: Grade(grades: returnedval),
                             entityid: widget.entityid,
-                            fieldname: "feeitemlist"),
+                            entitytype: widget.entitytype),
                       );
                     } else {
                       returnedval = "*NOVALUESET*";

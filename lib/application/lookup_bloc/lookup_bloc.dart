@@ -109,7 +109,9 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
                 feeItem: feeItem.feeItem),
             offering: (offering) => provider.deleteOfferingItem(
                 serviceID: deleteItemWithData.entityid,
-                offering: offering.offering));
+                offering: offering.offering),
+            grade: (grade) => provider.deleteDeleteGrade(
+                serviceID: deleteItemWithData.entityid, grade: grade.grades));
 
         response.fold(() {
           add(LookupEvent.getListData(
@@ -123,25 +125,27 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
       createItemData: (createItem) async* {
         yield state.copyWith(isLoading: true, failure: none());
         final Option<Failure> response = await createItem.item.map(
-          roomInfo: (roomInfo) => provider.createRoomItem(
-              serviceID: createItem.entityid, room: roomInfo),
-          examTermInfo: (examTermInfo) => provider.createExamTerm(
-              serviceID: createItem.entityid, examTerm: examTermInfo),
-          sessionTerm: (sessionTerm) => provider.createSessionTerm(
-              serviceID: createItem.entityid, sessionTerm: sessionTerm),
-          paymentPeriodInfo: (paymentPeriodInfo) =>
-              provider.createPaymentPeriod(
-                  serviceID: createItem.entityid,
-                  paymentPeriodInfo: paymentPeriodInfo),
-          periodInfo: (periodInfo) => none(),
-          classPeriodInfo: (classPeriodInfo) => provider.createClassPeriod(
-              serviceID: createItem.entityid, classPeriodInfo: classPeriodInfo),
-          schedule: (schedule) => none(),
-          feeItem: (fee) => provider.createFeeItem(
-              serviceID: createItem.entityid, feeItem: fee.feeItem),
-          offering: (offering) => provider.createOfferingItem(
-              serviceID: createItem.entityid, offering: offering.offering),
-        );
+            roomInfo: (roomInfo) => provider.createRoomItem(
+                serviceID: createItem.entityid, room: roomInfo),
+            examTermInfo: (examTermInfo) => provider.createExamTerm(
+                serviceID: createItem.entityid, examTerm: examTermInfo),
+            sessionTerm: (sessionTerm) => provider.createSessionTerm(
+                serviceID: createItem.entityid, sessionTerm: sessionTerm),
+            paymentPeriodInfo: (paymentPeriodInfo) =>
+                provider.createPaymentPeriod(
+                    serviceID: createItem.entityid,
+                    paymentPeriodInfo: paymentPeriodInfo),
+            periodInfo: (periodInfo) => none(),
+            classPeriodInfo: (classPeriodInfo) => provider.createClassPeriod(
+                serviceID: createItem.entityid,
+                classPeriodInfo: classPeriodInfo),
+            schedule: (schedule) => none(),
+            feeItem: (fee) => provider.createFeeItem(
+                serviceID: createItem.entityid, feeItem: fee.feeItem),
+            offering: (offering) => provider.createOfferingItem(
+                serviceID: createItem.entityid, offering: offering.offering),
+            grade: (grade) => provider.createGrade(
+                serviceID: createItem.entityid, grade: grade.grades));
 
         response.fold(() {
           add(LookupEvent.getListData(

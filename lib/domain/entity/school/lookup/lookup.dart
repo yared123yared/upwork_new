@@ -95,6 +95,8 @@ abstract class Lookup with _$Lookup {
 
   const factory Lookup.feeItem({@required String feeItem}) = FeeItem;
 
+  const factory Lookup.grade({@required String grades}) = Grade;
+
   factory Lookup.fromJson(Map<String, dynamic> json) => _$LookupFromJson(json);
 }
 
@@ -155,5 +157,6 @@ abstract class LookupType with _$LookupType {
       classPeriodInfo: (classPeriodInfo) => LookupType.classPeriod(),
       schedule: (schedule) => LookupType.classPeriod(),
       feeItem: (feeItem) => LookupType.feeItem(),
-      offering: (offering) => LookupType.offering());
+      offering: (offering) => LookupType.offering(),
+      grade: (grades) => LookupType.grade());
 }

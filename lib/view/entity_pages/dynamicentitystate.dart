@@ -42,6 +42,7 @@ import 'package:complex/view/entity/school/lookup/fee_item_list_page.dart';
 import 'package:complex/view/entity/school/lookup/lookup_navigation_helper.dart';
 import 'package:complex/view/entity/school/lookup/offering_list_page.dart';
 import 'package:complex/view/job_pages/job_detail_page.dart';
+import 'package:complex/view/medical_pages/case_view.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
 import 'package:complex/view/product_pages/dynamic_category_page.dart';
 import 'package:complex/view/product_pages/general_contact_details_page.dart';
@@ -143,6 +144,7 @@ enum DynamicEntityGridState {
   rooms,
   examTerm,
   sessionTerm,
+  caseView,
 
   securityservicerequest,
   gradelist,
@@ -387,6 +389,7 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.rooms);
     panelmem.add(DynamicEntityGridState.examTerm);
     panelmem.add(DynamicEntityGridState.sessionTerm);
+    panelmem.add(DynamicEntityGridState.caseView);
 
     return panelmem;
   }
@@ -854,6 +857,19 @@ class UiSchoolHandler {
                   context: context,
                   entityType: getCurEntity().entitytype,
                   entityID: getCurEntity().entityid);
+            });
+        break;
+      case DynamicEntityGridState.caseView:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Case View',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (buildContext) => CaseView(),
+                  ));
             });
         break;
       case DynamicEntityGridState.sessionTerm:
@@ -1959,9 +1975,8 @@ class UiSchoolHandler {
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
             title: 'QR Scan Empty',
-            tapAction: () {
-
-            });        break;
+            tapAction: () {});
+        break;
       case DynamicEntityGridState.ExamTerm:
         // TODO: Handle this case.
         break;
