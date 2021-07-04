@@ -1,11 +1,11 @@
 import 'package:complex/newentityfeatures/ecommerce/bloc/cart/cart_bloc.dart';
 import 'package:complex/newentityfeatures/ecommerce/bloc/product/product_bloc.dart';
-import 'package:complex/newentityfeatures/ecommerce/widgets/product/pet_card.dart';
+import 'package:complex/newentityfeatures/ecommerce/views/explore/ecom/widget/product/pet_card.dart';
+import 'package:complex/newentityfeatures/ecommerce/views/explore/ecom/widget/product/products_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-import '../../widgets/product/products_search.dart';
 import '../filters/products_filter.dart';
 
 class PetsGridView extends StatefulWidget {

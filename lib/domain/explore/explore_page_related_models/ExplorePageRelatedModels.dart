@@ -1,16 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/domain/entity/json_helper.dart';
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
+import 'package:complex/newentityfeatures/Models/complexmodel.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'ExplorePageRelatedModels.freezed.dart';
 part 'ExplorePageRelatedModels.g.dart';
-
-class JsonHelper {
-  static DateTime fromJsonTimeStamp(Timestamp val) =>
-      DateTime.fromMillisecondsSinceEpoch(val.millisecondsSinceEpoch);
-  static Timestamp toJsonTimeStamp(DateTime time) =>
-      Timestamp.fromMillisecondsSinceEpoch(time.millisecondsSinceEpoch);
-}
 
 @freezed
 abstract class DimData with _$DimData {
@@ -22,7 +17,6 @@ abstract class DimData with _$DimData {
       _$DimDataFromJson(json);
 //require keysetting
 }
-
 
 @freezed
 abstract class DimItem with _$DimItem {

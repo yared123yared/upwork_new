@@ -64,7 +64,7 @@ class OwnerProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    title,
+                    title ?? 'N/A',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -98,7 +98,7 @@ class OwnerProductCard extends StatelessWidget {
                                       width: 5,
                                     ),
                                     Text(
-                                      value,
+                                      value ?? '',
                                       // maxLines: 1,
                                     )
                                   ],
@@ -205,19 +205,27 @@ class OwnerProductCard extends StatelessWidget {
             ),
         vehicle: (v) => OwnerProductCard(
               data: v,
-              details: {},
-              imageUrl: '',
-              price: '',
-              subtitle: '',
-              title: '',
+              details: {
+                'year': v.data.yearbuild.toString(),
+                'type': v.data.vehicletype,
+                'model': v.data.model,
+              },
+              imageUrl: v.data.tileimage,
+              price: v.data.price.toString(),
+              subtitle: v.data.make,
+              title: v.data.title,
             ),
         realEstate: (v) => OwnerProductCard(
               data: v,
-              details: {},
-              imageUrl: '',
-              price: '',
-              subtitle: '',
-              title: '',
+              details: {
+                'bedroom': v.data.numrooms.toString(),
+                'bathroom': v.data.numbath.toString(),
+                'space': v.data.sqfeetarea.toString(),
+              },
+              imageUrl: v.data.tileimage,
+              price: v.data.price.toString(),
+              subtitle: v.data.contactdetails.address.addressline,
+              title: v.data.propertytype,
             ),
         job: (v) => OwnerProductCard(
               data: v,
@@ -264,3 +272,72 @@ class OwnerProductCard extends StatelessWidget {
     );
   }
 }
+
+
+//  factory OwnerProductCardx.fromLimitedData(LimitedData data) {
+//     return data.map(
+//         pet: (v) => OwnerProductCard(
+//               data: v,
+//               details: {
+//                 'breed': v.breed,
+//                 'gender': v.gender,
+//                 'age': v.age.toString() + 'yrs',
+//               },
+//               imageUrl: v.tileimage,
+//               price: v.price.toString(),
+//               subtitle: v.animalclass,
+//               title: v.name,
+//             ),
+//         package: (v) => OwnerProductCard(
+//               data: v,
+//               details: {},
+//               imageUrl: '',
+//               price: '',
+//               subtitle: '',
+//               title: '',
+//             ),
+//         product: (v) => OwnerProductCard(
+//               data: v,
+//               details: {},
+//               imageUrl: '',
+//               price: '',
+//               subtitle: '',
+//               title: '',
+//             ),
+        // vehicle: (v) => OwnerProductCard(
+        //       data: v,
+        //       details: {
+        //         'year': v.yearmade.toString(),
+        //         'type': v.vehicletype,
+        //         'model': v.model,
+        //       },
+        //       imageUrl: v.tileimage,
+        //       price: v.price.toString(),
+        //       subtitle: v.yearmade.toString(),
+        //       title: v.make,
+        //     ),
+        // realEstate: (v) => OwnerProductCard(
+        //       data: v,
+        //       details: {
+        //         'bedroom': v.numbedroom.toString(),
+        //         'bathroom': v.numbathroom.toString(),
+        //         'floor': v.floorNumber.toString(),
+        //       },
+        //       imageUrl: v.tileimage,
+        //       price: v.price.toString() + 'USD /Month',
+        //       subtitle: v.addressarea.addressinfo,
+        //       title: v.propertytype,
+        //     ),
+//         job: (v) => OwnerProductCard(
+//               data: v,
+//               details: {
+//                 'job type': v.jobtype,
+//                 'address':
+//                     '${v.addressarea.addressinfo}, ${v.addressarea.village}, ${v.addressarea.state}, ${v.addressarea.country}',
+//               },
+//               imageUrl: v.companyicon,
+//               price: '(' + v.salaryrange + ')',
+//               subtitle: v.companyname,
+//               title: v.title,
+//             ));
+//   }

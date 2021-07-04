@@ -23,20 +23,20 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
     yield* event.map(get: (get) async* {
       yield ProductListState.initial().copyWith(isLoading: true);
       final ProductListState finalState = await get.type.map(pet: (pet) async {
-        Either<Failure, CompleteJobList> data =
-            await provider.getCompleteJobsList();
+        Either<Failure, CompletePetList> data =
+            await provider.getCompletePetList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, vehicle: (vehicle) async {
-        Either<Failure, CompleteJobList> data =
-            await provider.getCompleteJobsList();
+        Either<Failure, CompleteVehicleList> data =
+            await provider.getCompleteVehicleList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, realEstate: (realEstate) async {
-        Either<Failure, CompleteJobList> data =
-            await provider.getCompleteJobsList();
+        Either<Failure, CompleteRealEstateList> data =
+            await provider.getCompleteRealEstateList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
@@ -47,8 +47,8 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, product: (product) async {
-        Either<Failure, CompleteJobList> data =
-            await provider.getCompleteJobsList();
+        Either<Failure, CompleteProductList> data =
+            await provider.getCompleteProductList();
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));

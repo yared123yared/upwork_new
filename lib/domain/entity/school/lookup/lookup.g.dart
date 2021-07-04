@@ -217,6 +217,25 @@ Map<String, dynamic> _$_$FeeItemToJson(_$FeeItem instance) {
   return val;
 }
 
+_$Grade _$_$GradeFromJson(Map<String, dynamic> json) {
+  return _$Grade(
+    grades: json['grades'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$GradeToJson(_$Grade instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('grades', instance.grades);
+  return val;
+}
+
 _$RoomInfoList _$_$RoomInfoListFromJson(Map<String, dynamic> json) {
   return _$RoomInfoList(
     list: (json['roominfo'] as List)

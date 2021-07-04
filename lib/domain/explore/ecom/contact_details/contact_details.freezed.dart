@@ -28,11 +28,11 @@ class _$ContactDetailsDataTearOff {
   ContactDetails call(
       {@required String name,
       @required String phonenum,
-      @required bool sharephone,
+      @required @JsonKey(defaultValue: false) bool sharephone,
       @required String email,
-      @required bool shareemail,
+      @required @JsonKey(defaultValue: false) bool shareemail,
       @required Address address,
-      @required bool shareaddress}) {
+      @required @JsonKey(defaultValue: false) bool shareaddress}) {
     return ContactDetails(
       name: name,
       phonenum: phonenum,
@@ -57,10 +57,13 @@ class _$ContactDetailsDataTearOff {
           String townVillage,
       @required
       @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+      @JsonKey(defaultValue: 'N/A')
           String areaSector,
       @required
+      @JsonKey(defaultValue: 'N/A')
           String societyname,
       @required
+      @JsonKey(defaultValue: 'N/A')
           String addressline,
       @required
           double latitude,
@@ -93,8 +96,14 @@ const $ContactDetailsData = _$ContactDetailsDataTearOff();
 mixin _$ContactDetailsData {
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(String name, String phonenum, bool sharephone,
-        String email, bool shareemail, Address address, bool shareaddress), {
+    TResult $default(
+        String name,
+        String phonenum,
+        @JsonKey(defaultValue: false) bool sharephone,
+        String email,
+        @JsonKey(defaultValue: false) bool shareemail,
+        Address address,
+        @JsonKey(defaultValue: false) bool shareaddress), {
     @required
         TResult address(
             String country,
@@ -103,24 +112,38 @@ mixin _$ContactDetailsData {
             @JsonKey(name: 'town_village')
                 String townVillage,
             @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+            @JsonKey(defaultValue: 'N/A')
                 String areaSector,
-            String societyname,
-            String addressline,
+            @JsonKey(defaultValue: 'N/A')
+                String societyname,
+            @JsonKey(defaultValue: 'N/A')
+                String addressline,
             double latitude,
             double longitude),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(String name, String phonenum, bool sharephone,
-        String email, bool shareemail, Address address, bool shareaddress), {
+    TResult $default(
+        String name,
+        String phonenum,
+        @JsonKey(defaultValue: false) bool sharephone,
+        String email,
+        @JsonKey(defaultValue: false) bool shareemail,
+        Address address,
+        @JsonKey(defaultValue: false) bool shareaddress), {
     TResult address(
         String country,
         String state,
         String district,
-        @JsonKey(name: 'town_village') String townVillage,
-        @JsonKey(name: 'area_sector', defaultValue: 'N/A') String areaSector,
-        String societyname,
-        String addressline,
+        @JsonKey(name: 'town_village')
+            String townVillage,
+        @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+        @JsonKey(defaultValue: 'N/A')
+            String areaSector,
+        @JsonKey(defaultValue: 'N/A')
+            String societyname,
+        @JsonKey(defaultValue: 'N/A')
+            String addressline,
         double latitude,
         double longitude),
     @required TResult orElse(),
@@ -164,11 +187,11 @@ abstract class $ContactDetailsCopyWith<$Res> {
   $Res call(
       {String name,
       String phonenum,
-      bool sharephone,
+      @JsonKey(defaultValue: false) bool sharephone,
       String email,
-      bool shareemail,
+      @JsonKey(defaultValue: false) bool shareemail,
       Address address,
-      bool shareaddress});
+      @JsonKey(defaultValue: false) bool shareaddress});
 }
 
 /// @nodoc
@@ -214,11 +237,11 @@ class _$ContactDetails implements ContactDetails {
   const _$ContactDetails(
       {@required this.name,
       @required this.phonenum,
-      @required this.sharephone,
+      @required @JsonKey(defaultValue: false) this.sharephone,
       @required this.email,
-      @required this.shareemail,
+      @required @JsonKey(defaultValue: false) this.shareemail,
       @required this.address,
-      @required this.shareaddress})
+      @required @JsonKey(defaultValue: false) this.shareaddress})
       : assert(name != null),
         assert(phonenum != null),
         assert(sharephone != null),
@@ -235,14 +258,17 @@ class _$ContactDetails implements ContactDetails {
   @override
   final String phonenum;
   @override
+  @JsonKey(defaultValue: false)
   final bool sharephone;
   @override
   final String email;
   @override
+  @JsonKey(defaultValue: false)
   final bool shareemail;
   @override
   final Address address;
   @override
+  @JsonKey(defaultValue: false)
   final bool shareaddress;
 
   @override
@@ -294,8 +320,14 @@ class _$ContactDetails implements ContactDetails {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(String name, String phonenum, bool sharephone,
-        String email, bool shareemail, Address address, bool shareaddress), {
+    TResult $default(
+        String name,
+        String phonenum,
+        @JsonKey(defaultValue: false) bool sharephone,
+        String email,
+        @JsonKey(defaultValue: false) bool shareemail,
+        Address address,
+        @JsonKey(defaultValue: false) bool shareaddress), {
     @required
         TResult address(
             String country,
@@ -304,9 +336,12 @@ class _$ContactDetails implements ContactDetails {
             @JsonKey(name: 'town_village')
                 String townVillage,
             @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+            @JsonKey(defaultValue: 'N/A')
                 String areaSector,
-            String societyname,
-            String addressline,
+            @JsonKey(defaultValue: 'N/A')
+                String societyname,
+            @JsonKey(defaultValue: 'N/A')
+                String addressline,
             double latitude,
             double longitude),
   }) {
@@ -319,16 +354,27 @@ class _$ContactDetails implements ContactDetails {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(String name, String phonenum, bool sharephone,
-        String email, bool shareemail, Address address, bool shareaddress), {
+    TResult $default(
+        String name,
+        String phonenum,
+        @JsonKey(defaultValue: false) bool sharephone,
+        String email,
+        @JsonKey(defaultValue: false) bool shareemail,
+        Address address,
+        @JsonKey(defaultValue: false) bool shareaddress), {
     TResult address(
         String country,
         String state,
         String district,
-        @JsonKey(name: 'town_village') String townVillage,
-        @JsonKey(name: 'area_sector', defaultValue: 'N/A') String areaSector,
-        String societyname,
-        String addressline,
+        @JsonKey(name: 'town_village')
+            String townVillage,
+        @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+        @JsonKey(defaultValue: 'N/A')
+            String areaSector,
+        @JsonKey(defaultValue: 'N/A')
+            String societyname,
+        @JsonKey(defaultValue: 'N/A')
+            String addressline,
         double latitude,
         double longitude),
     @required TResult orElse(),
@@ -374,23 +420,27 @@ class _$ContactDetails implements ContactDetails {
 
 abstract class ContactDetails implements ContactDetailsData {
   const factory ContactDetails(
-      {@required String name,
-      @required String phonenum,
-      @required bool sharephone,
-      @required String email,
-      @required bool shareemail,
-      @required Address address,
-      @required bool shareaddress}) = _$ContactDetails;
+          {@required String name,
+          @required String phonenum,
+          @required @JsonKey(defaultValue: false) bool sharephone,
+          @required String email,
+          @required @JsonKey(defaultValue: false) bool shareemail,
+          @required Address address,
+          @required @JsonKey(defaultValue: false) bool shareaddress}) =
+      _$ContactDetails;
 
   factory ContactDetails.fromJson(Map<String, dynamic> json) =
       _$ContactDetails.fromJson;
 
   String get name;
   String get phonenum;
+  @JsonKey(defaultValue: false)
   bool get sharephone;
   String get email;
+  @JsonKey(defaultValue: false)
   bool get shareemail;
   Address get address;
+  @JsonKey(defaultValue: false)
   bool get shareaddress;
   @JsonKey(ignore: true)
   $ContactDetailsCopyWith<ContactDetails> get copyWith;
@@ -404,10 +454,15 @@ abstract class $AddressCopyWith<$Res> {
       {String country,
       String state,
       String district,
-      @JsonKey(name: 'town_village') String townVillage,
-      @JsonKey(name: 'area_sector', defaultValue: 'N/A') String areaSector,
-      String societyname,
-      String addressline,
+      @JsonKey(name: 'town_village')
+          String townVillage,
+      @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+      @JsonKey(defaultValue: 'N/A')
+          String areaSector,
+      @JsonKey(defaultValue: 'N/A')
+          String societyname,
+      @JsonKey(defaultValue: 'N/A')
+          String addressline,
       double latitude,
       double longitude});
 }
@@ -467,10 +522,13 @@ class _$Address implements Address {
           this.townVillage,
       @required
       @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+      @JsonKey(defaultValue: 'N/A')
           this.areaSector,
       @required
+      @JsonKey(defaultValue: 'N/A')
           this.societyname,
       @required
+      @JsonKey(defaultValue: 'N/A')
           this.addressline,
       @required
           this.latitude,
@@ -500,10 +558,13 @@ class _$Address implements Address {
   final String townVillage;
   @override
   @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+  @JsonKey(defaultValue: 'N/A')
   final String areaSector;
   @override
+  @JsonKey(defaultValue: 'N/A')
   final String societyname;
   @override
+  @JsonKey(defaultValue: 'N/A')
   final String addressline;
   @override
   final double latitude;
@@ -568,8 +629,14 @@ class _$Address implements Address {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(String name, String phonenum, bool sharephone,
-        String email, bool shareemail, Address address, bool shareaddress), {
+    TResult $default(
+        String name,
+        String phonenum,
+        @JsonKey(defaultValue: false) bool sharephone,
+        String email,
+        @JsonKey(defaultValue: false) bool shareemail,
+        Address address,
+        @JsonKey(defaultValue: false) bool shareaddress), {
     @required
         TResult address(
             String country,
@@ -578,9 +645,12 @@ class _$Address implements Address {
             @JsonKey(name: 'town_village')
                 String townVillage,
             @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+            @JsonKey(defaultValue: 'N/A')
                 String areaSector,
-            String societyname,
-            String addressline,
+            @JsonKey(defaultValue: 'N/A')
+                String societyname,
+            @JsonKey(defaultValue: 'N/A')
+                String addressline,
             double latitude,
             double longitude),
   }) {
@@ -593,16 +663,27 @@ class _$Address implements Address {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(String name, String phonenum, bool sharephone,
-        String email, bool shareemail, Address address, bool shareaddress), {
+    TResult $default(
+        String name,
+        String phonenum,
+        @JsonKey(defaultValue: false) bool sharephone,
+        String email,
+        @JsonKey(defaultValue: false) bool shareemail,
+        Address address,
+        @JsonKey(defaultValue: false) bool shareaddress), {
     TResult address(
         String country,
         String state,
         String district,
-        @JsonKey(name: 'town_village') String townVillage,
-        @JsonKey(name: 'area_sector', defaultValue: 'N/A') String areaSector,
-        String societyname,
-        String addressline,
+        @JsonKey(name: 'town_village')
+            String townVillage,
+        @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+        @JsonKey(defaultValue: 'N/A')
+            String areaSector,
+        @JsonKey(defaultValue: 'N/A')
+            String societyname,
+        @JsonKey(defaultValue: 'N/A')
+            String addressline,
         double latitude,
         double longitude),
     @required TResult orElse(),
@@ -659,10 +740,13 @@ abstract class Address implements ContactDetailsData {
           String townVillage,
       @required
       @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+      @JsonKey(defaultValue: 'N/A')
           String areaSector,
       @required
+      @JsonKey(defaultValue: 'N/A')
           String societyname,
       @required
+      @JsonKey(defaultValue: 'N/A')
           String addressline,
       @required
           double latitude,
@@ -677,8 +761,11 @@ abstract class Address implements ContactDetailsData {
   @JsonKey(name: 'town_village')
   String get townVillage;
   @JsonKey(name: 'area_sector', defaultValue: 'N/A')
+  @JsonKey(defaultValue: 'N/A')
   String get areaSector;
+  @JsonKey(defaultValue: 'N/A')
   String get societyname;
+  @JsonKey(defaultValue: 'N/A')
   String get addressline;
   double get latitude;
   double get longitude;

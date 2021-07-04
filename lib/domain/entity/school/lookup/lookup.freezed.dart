@@ -28,6 +28,8 @@ Lookup _$LookupFromJson(Map<String, dynamic> json) {
       return Offering.fromJson(json);
     case 'feeItem':
       return FeeItem.fromJson(json);
+    case 'grade':
+      return Grade.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -165,6 +167,13 @@ class _$LookupTearOff {
   }
 
 // ignore: unused_element
+  Grade grade({@required String grades}) {
+    return Grade(
+      grades: grades,
+    );
+  }
+
+// ignore: unused_element
   Lookup fromJson(Map<String, Object> json) {
     return Lookup.fromJson(json);
   }
@@ -227,6 +236,7 @@ mixin _$Lookup {
                 String classPeriodName),
     @required TResult offering(String offering),
     @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -271,6 +281,7 @@ mixin _$Lookup {
             String classPeriodName),
     TResult offering(String offering),
     TResult feeItem(String feeItem),
+    TResult grade(String grades),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -284,6 +295,7 @@ mixin _$Lookup {
     @required TResult schedule(Schedule value),
     @required TResult offering(Offering value),
     @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -296,6 +308,7 @@ mixin _$Lookup {
     TResult schedule(Schedule value),
     TResult offering(Offering value),
     TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
     @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
@@ -446,6 +459,7 @@ class _$RoomInfo implements RoomInfo {
                 String classPeriodName),
     @required TResult offering(String offering),
     @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -456,6 +470,7 @@ class _$RoomInfo implements RoomInfo {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return roomInfo(roomAddr, roomName);
   }
 
@@ -503,6 +518,7 @@ class _$RoomInfo implements RoomInfo {
             String classPeriodName),
     TResult offering(String offering),
     TResult feeItem(String feeItem),
+    TResult grade(String grades),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -524,6 +540,7 @@ class _$RoomInfo implements RoomInfo {
     @required TResult schedule(Schedule value),
     @required TResult offering(Offering value),
     @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -534,6 +551,7 @@ class _$RoomInfo implements RoomInfo {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return roomInfo(this);
   }
 
@@ -549,6 +567,7 @@ class _$RoomInfo implements RoomInfo {
     TResult schedule(Schedule value),
     TResult offering(Offering value),
     TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -714,6 +733,7 @@ class _$ExamTermInfo implements ExamTermInfo {
                 String classPeriodName),
     @required TResult offering(String offering),
     @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -724,6 +744,7 @@ class _$ExamTermInfo implements ExamTermInfo {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return examTermInfo(mainTermName, subTermName);
   }
 
@@ -771,6 +792,7 @@ class _$ExamTermInfo implements ExamTermInfo {
             String classPeriodName),
     TResult offering(String offering),
     TResult feeItem(String feeItem),
+    TResult grade(String grades),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -792,6 +814,7 @@ class _$ExamTermInfo implements ExamTermInfo {
     @required TResult schedule(Schedule value),
     @required TResult offering(Offering value),
     @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -802,6 +825,7 @@ class _$ExamTermInfo implements ExamTermInfo {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return examTermInfo(this);
   }
 
@@ -817,6 +841,7 @@ class _$ExamTermInfo implements ExamTermInfo {
     TResult schedule(Schedule value),
     TResult offering(Offering value),
     TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1024,6 +1049,7 @@ class _$SessionTerm implements SessionTerm {
                 String classPeriodName),
     @required TResult offering(String offering),
     @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1034,6 +1060,7 @@ class _$SessionTerm implements SessionTerm {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return sessionTerm(endDate, isActive, termName, startDate);
   }
 
@@ -1081,6 +1108,7 @@ class _$SessionTerm implements SessionTerm {
             String classPeriodName),
     TResult offering(String offering),
     TResult feeItem(String feeItem),
+    TResult grade(String grades),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1102,6 +1130,7 @@ class _$SessionTerm implements SessionTerm {
     @required TResult schedule(Schedule value),
     @required TResult offering(Offering value),
     @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1112,6 +1141,7 @@ class _$SessionTerm implements SessionTerm {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return sessionTerm(this);
   }
 
@@ -1127,6 +1157,7 @@ class _$SessionTerm implements SessionTerm {
     TResult schedule(Schedule value),
     TResult offering(Offering value),
     TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1349,6 +1380,7 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
                 String classPeriodName),
     @required TResult offering(String offering),
     @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1359,6 +1391,7 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return paymentPeriodInfo(
         grpName, this.periodInfo, sessionName, isfrozen, numperiods);
   }
@@ -1407,6 +1440,7 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
             String classPeriodName),
     TResult offering(String offering),
     TResult feeItem(String feeItem),
+    TResult grade(String grades),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1429,6 +1463,7 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
     @required TResult schedule(Schedule value),
     @required TResult offering(Offering value),
     @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1439,6 +1474,7 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return paymentPeriodInfo(this);
   }
 
@@ -1454,6 +1490,7 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
     TResult schedule(Schedule value),
     TResult offering(Offering value),
     TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1689,6 +1726,7 @@ class _$PeriodInfo implements PeriodInfo {
                 String classPeriodName),
     @required TResult offering(String offering),
     @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1699,6 +1737,7 @@ class _$PeriodInfo implements PeriodInfo {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return periodInfo(dueDate, startDate, endDate, paymentPeriodName, numDays);
   }
 
@@ -1746,6 +1785,7 @@ class _$PeriodInfo implements PeriodInfo {
             String classPeriodName),
     TResult offering(String offering),
     TResult feeItem(String feeItem),
+    TResult grade(String grades),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1768,6 +1808,7 @@ class _$PeriodInfo implements PeriodInfo {
     @required TResult schedule(Schedule value),
     @required TResult offering(Offering value),
     @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1778,6 +1819,7 @@ class _$PeriodInfo implements PeriodInfo {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return periodInfo(this);
   }
 
@@ -1793,6 +1835,7 @@ class _$PeriodInfo implements PeriodInfo {
     TResult schedule(Schedule value),
     TResult offering(Offering value),
     TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1984,6 +2027,7 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
                 String classPeriodName),
     @required TResult offering(String offering),
     @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -1994,6 +2038,7 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return classPeriodInfo(this.schedule, type);
   }
 
@@ -2041,6 +2086,7 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
             String classPeriodName),
     TResult offering(String offering),
     TResult feeItem(String feeItem),
+    TResult grade(String grades),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2062,6 +2108,7 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
     @required TResult schedule(Schedule value),
     @required TResult offering(Offering value),
     @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -2072,6 +2119,7 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return classPeriodInfo(this);
   }
 
@@ -2087,6 +2135,7 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
     TResult schedule(Schedule value),
     TResult offering(Offering value),
     TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2278,6 +2327,7 @@ class _$Schedule implements Schedule {
                 String classPeriodName),
     @required TResult offering(String offering),
     @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -2288,6 +2338,7 @@ class _$Schedule implements Schedule {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return schedule(startTime, endTime, classPeriodName);
   }
 
@@ -2335,6 +2386,7 @@ class _$Schedule implements Schedule {
             String classPeriodName),
     TResult offering(String offering),
     TResult feeItem(String feeItem),
+    TResult grade(String grades),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2356,6 +2408,7 @@ class _$Schedule implements Schedule {
     @required TResult schedule(Schedule value),
     @required TResult offering(Offering value),
     @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -2366,6 +2419,7 @@ class _$Schedule implements Schedule {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return schedule(this);
   }
 
@@ -2381,6 +2435,7 @@ class _$Schedule implements Schedule {
     TResult schedule(Schedule value),
     TResult offering(Offering value),
     TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2539,6 +2594,7 @@ class _$Offering implements Offering {
                 String classPeriodName),
     @required TResult offering(String offering),
     @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -2549,6 +2605,7 @@ class _$Offering implements Offering {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return offering(this.offering);
   }
 
@@ -2596,6 +2653,7 @@ class _$Offering implements Offering {
             String classPeriodName),
     TResult offering(String offering),
     TResult feeItem(String feeItem),
+    TResult grade(String grades),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2617,6 +2675,7 @@ class _$Offering implements Offering {
     @required TResult schedule(Schedule value),
     @required TResult offering(Offering value),
     @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -2627,6 +2686,7 @@ class _$Offering implements Offering {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return offering(this);
   }
 
@@ -2642,6 +2702,7 @@ class _$Offering implements Offering {
     TResult schedule(Schedule value),
     TResult offering(Offering value),
     TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2779,6 +2840,7 @@ class _$FeeItem implements FeeItem {
                 String classPeriodName),
     @required TResult offering(String offering),
     @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -2789,6 +2851,7 @@ class _$FeeItem implements FeeItem {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return feeItem(this.feeItem);
   }
 
@@ -2836,6 +2899,7 @@ class _$FeeItem implements FeeItem {
             String classPeriodName),
     TResult offering(String offering),
     TResult feeItem(String feeItem),
+    TResult grade(String grades),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2857,6 +2921,7 @@ class _$FeeItem implements FeeItem {
     @required TResult schedule(Schedule value),
     @required TResult offering(Offering value),
     @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
   }) {
     assert(roomInfo != null);
     assert(examTermInfo != null);
@@ -2867,6 +2932,7 @@ class _$FeeItem implements FeeItem {
     assert(schedule != null);
     assert(offering != null);
     assert(feeItem != null);
+    assert(grade != null);
     return feeItem(this);
   }
 
@@ -2882,6 +2948,7 @@ class _$FeeItem implements FeeItem {
     TResult schedule(Schedule value),
     TResult offering(Offering value),
     TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2905,6 +2972,252 @@ abstract class FeeItem implements Lookup {
   String get feeItem;
   @JsonKey(ignore: true)
   $FeeItemCopyWith<FeeItem> get copyWith;
+}
+
+/// @nodoc
+abstract class $GradeCopyWith<$Res> {
+  factory $GradeCopyWith(Grade value, $Res Function(Grade) then) =
+      _$GradeCopyWithImpl<$Res>;
+  $Res call({String grades});
+}
+
+/// @nodoc
+class _$GradeCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
+    implements $GradeCopyWith<$Res> {
+  _$GradeCopyWithImpl(Grade _value, $Res Function(Grade) _then)
+      : super(_value, (v) => _then(v as Grade));
+
+  @override
+  Grade get _value => super._value as Grade;
+
+  @override
+  $Res call({
+    Object grades = freezed,
+  }) {
+    return _then(Grade(
+      grades: grades == freezed ? _value.grades : grades as String,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$Grade implements Grade {
+  const _$Grade({@required this.grades}) : assert(grades != null);
+
+  factory _$Grade.fromJson(Map<String, dynamic> json) =>
+      _$_$GradeFromJson(json);
+
+  @override
+  final String grades;
+
+  @override
+  String toString() {
+    return 'Lookup.grade(grades: $grades)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Grade &&
+            (identical(other.grades, grades) ||
+                const DeepCollectionEquality().equals(other.grades, grades)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(grades);
+
+  @JsonKey(ignore: true)
+  @override
+  $GradeCopyWith<Grade> get copyWith =>
+      _$GradeCopyWithImpl<Grade>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult roomInfo(@JsonKey(name: 'roomaddr') String roomAddr,
+            @JsonKey(name: 'roomname') String roomName),
+    @required
+        TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
+            @JsonKey(name: 'subtermname') String subTermName),
+    @required
+        TResult sessionTerm(
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime endDate,
+            @JsonKey(name: 'isactive')
+                bool isActive,
+            @JsonKey(name: 'termname')
+                String termName,
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime startDate),
+    @required
+        TResult paymentPeriodInfo(
+            @JsonKey(name: 'grpname') String grpName,
+            @JsonKey(name: 'periodinfo') List<PeriodInfo> periodInfo,
+            @JsonKey(name: 'sessionname') String sessionName,
+            @JsonKey(name: 'isfrozen') bool isfrozen,
+            @JsonKey(name: 'numperiods') int numperiods),
+    @required
+        TResult periodInfo(
+            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime dueDate,
+            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime startDate,
+            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime endDate,
+            @JsonKey(name: 'paymentperiodname')
+                String paymentPeriodName,
+            @JsonKey(name: 'numdays')
+                int numDays),
+    @required
+        TResult classPeriodInfo(
+            @JsonKey(name: 'schedule') List<Schedule> schedule,
+            @JsonKey(name: 'type') String type),
+    @required
+        TResult schedule(
+            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime startTime,
+            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+                DateTime endTime,
+            @JsonKey(name: 'classperiodname')
+                String classPeriodName),
+    @required TResult offering(String offering),
+    @required TResult feeItem(String feeItem),
+    @required TResult grade(String grades),
+  }) {
+    assert(roomInfo != null);
+    assert(examTermInfo != null);
+    assert(sessionTerm != null);
+    assert(paymentPeriodInfo != null);
+    assert(periodInfo != null);
+    assert(classPeriodInfo != null);
+    assert(schedule != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return grade(grades);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult roomInfo(@JsonKey(name: 'roomaddr') String roomAddr,
+        @JsonKey(name: 'roomname') String roomName),
+    TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
+        @JsonKey(name: 'subtermname') String subTermName),
+    TResult sessionTerm(
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime endDate,
+        @JsonKey(name: 'isactive')
+            bool isActive,
+        @JsonKey(name: 'termname')
+            String termName,
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime startDate),
+    TResult paymentPeriodInfo(
+        @JsonKey(name: 'grpname') String grpName,
+        @JsonKey(name: 'periodinfo') List<PeriodInfo> periodInfo,
+        @JsonKey(name: 'sessionname') String sessionName,
+        @JsonKey(name: 'isfrozen') bool isfrozen,
+        @JsonKey(name: 'numperiods') int numperiods),
+    TResult periodInfo(
+        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime dueDate,
+        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime startDate,
+        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime endDate,
+        @JsonKey(name: 'paymentperiodname')
+            String paymentPeriodName,
+        @JsonKey(name: 'numdays')
+            int numDays),
+    TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
+        @JsonKey(name: 'type') String type),
+    TResult schedule(
+        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime startTime,
+        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            DateTime endTime,
+        @JsonKey(name: 'classperiodname')
+            String classPeriodName),
+    TResult offering(String offering),
+    TResult feeItem(String feeItem),
+    TResult grade(String grades),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (grade != null) {
+      return grade(grades);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult roomInfo(RoomInfo value),
+    @required TResult examTermInfo(ExamTermInfo value),
+    @required TResult sessionTerm(SessionTerm value),
+    @required TResult paymentPeriodInfo(PaymentPeriodInfo value),
+    @required TResult periodInfo(PeriodInfo value),
+    @required TResult classPeriodInfo(ClassPeriodInfo value),
+    @required TResult schedule(Schedule value),
+    @required TResult offering(Offering value),
+    @required TResult feeItem(FeeItem value),
+    @required TResult grade(Grade value),
+  }) {
+    assert(roomInfo != null);
+    assert(examTermInfo != null);
+    assert(sessionTerm != null);
+    assert(paymentPeriodInfo != null);
+    assert(periodInfo != null);
+    assert(classPeriodInfo != null);
+    assert(schedule != null);
+    assert(offering != null);
+    assert(feeItem != null);
+    assert(grade != null);
+    return grade(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult roomInfo(RoomInfo value),
+    TResult examTermInfo(ExamTermInfo value),
+    TResult sessionTerm(SessionTerm value),
+    TResult paymentPeriodInfo(PaymentPeriodInfo value),
+    TResult periodInfo(PeriodInfo value),
+    TResult classPeriodInfo(ClassPeriodInfo value),
+    TResult schedule(Schedule value),
+    TResult offering(Offering value),
+    TResult feeItem(FeeItem value),
+    TResult grade(Grade value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (grade != null) {
+      return grade(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$GradeToJson(this)..['runtimeType'] = 'grade';
+  }
+}
+
+abstract class Grade implements Lookup {
+  const factory Grade({@required String grades}) = _$Grade;
+
+  factory Grade.fromJson(Map<String, dynamic> json) = _$Grade.fromJson;
+
+  String get grades;
+  @JsonKey(ignore: true)
+  $GradeCopyWith<Grade> get copyWith;
 }
 
 LookupList _$LookupListFromJson(Map<String, dynamic> json) {

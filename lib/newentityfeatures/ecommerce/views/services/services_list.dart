@@ -1,18 +1,18 @@
 import 'package:complex/newentityfeatures/ecommerce/bloc/cart/cart_bloc.dart';
 import 'package:complex/newentityfeatures/ecommerce/bloc/product/product_bloc.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/categories/service_categories.dart';
+import 'package:complex/newentityfeatures/ecommerce/views/explore/ecom/widget/product/products_search.dart';
+import 'package:complex/newentityfeatures/ecommerce/views/explore/ecom/widget/services/service_list_tile.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/jobs_list_view.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/products_list_view.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/realestates_list_view.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/vehicles_list_view.dart';
 import 'package:complex/newentityfeatures/ecommerce/views/products/pets_grid_view.dart';
-import 'package:complex/newentityfeatures/ecommerce/widgets/product/products_search.dart';
 import 'package:complex/newentityfeatures/shared-ecommerce/widgets/error-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-import '../../widgets/services/service_list_tile.dart';
 import '../../bloc/service/service_bloc.dart';
 
 class ServiceListView extends StatefulWidget {

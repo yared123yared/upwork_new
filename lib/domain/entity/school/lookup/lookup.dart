@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:sembast/timestamp.dart';
+
+import '../../json_helper.dart';
 
 part 'lookup.freezed.dart';
 part 'lookup.g.dart';
-
-class JsonHelper {
-  static DateTime fromJsonTimeStamp(Timestamp val) =>
-      DateTime.fromMillisecondsSinceEpoch(val.millisecondsSinceEpoch);
-  static Timestamp toJsonTimeStamp(DateTime time) =>
-      Timestamp.fromMillisecondsSinceEpoch(time.millisecondsSinceEpoch);
-}
 
 @freezed
 abstract class Lookup with _$Lookup {
@@ -95,6 +89,8 @@ abstract class Lookup with _$Lookup {
 
   const factory Lookup.feeItem({@required String feeItem}) = FeeItem;
 
+  const factory Lookup.grade({@required String grades}) = Grade;
+
   factory Lookup.fromJson(Map<String, dynamic> json) => _$LookupFromJson(json);
 }
 
@@ -155,5 +151,6 @@ abstract class LookupType with _$LookupType {
       classPeriodInfo: (classPeriodInfo) => LookupType.classPeriod(),
       schedule: (schedule) => LookupType.classPeriod(),
       feeItem: (feeItem) => LookupType.feeItem(),
-      offering: (offering) => LookupType.offering());
+      offering: (offering) => LookupType.offering(),
+      grade: (grades) => LookupType.grade());
 }

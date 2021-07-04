@@ -131,8 +131,8 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
             errorType: 'Class period',
-            fieldName: 'class period info',
-            elements: [classPeriodInfo.toJson()]);
+            fieldName: 'classperiodinfo',
+            elements: [classPeriodInfo.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -143,8 +143,8 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
-            elements: [examTerm.toJson()]);
+            fieldName: 'examterminfo',
+            elements: [examTerm.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -153,7 +153,7 @@ class LookupProvider extends ILookupProvider {
   Future<Option<Failure>> createGrade({String serviceID, String grade}) async {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
-            errorType: 'Fee Item', fieldName: 'feeitemlist', elements: [grade]);
+            errorType: 'Fee Item', fieldName: 'grades', elements: [grade]);
 
     return response;
   }
@@ -163,9 +163,7 @@ class LookupProvider extends ILookupProvider {
       {String serviceID, String offering}) async {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
-            errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
-            elements: [offering]);
+            errorType: 'Fee Item', fieldName: 'subject', elements: [offering]);
 
     return response;
   }
@@ -177,7 +175,7 @@ class LookupProvider extends ILookupProvider {
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'feeitemlist',
-            elements: [paymentPeriodInfo..toJson()]);
+            elements: [paymentPeriodInfo.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -188,8 +186,8 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
-            elements: [room.toJson()]);
+            fieldName: 'roominfo',
+            elements: [room.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -200,8 +198,8 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .addItemsInDocArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
-            elements: [sessionTerm.toJson()]);
+            fieldName: 'sessionterm',
+            elements: [sessionTerm.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -213,7 +211,7 @@ class LookupProvider extends ILookupProvider {
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'feeitemlist',
-            elements: [classPeriodInfo.toJson()]);
+            elements: [classPeriodInfo.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -223,7 +221,7 @@ class LookupProvider extends ILookupProvider {
       {String serviceID, String grade}) async {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
-            errorType: 'Fee Item', fieldName: 'feeitemlist', elements: [grade]);
+            errorType: 'Fee Item', fieldName: 'grades', elements: [grade]);
 
     return response;
   }
@@ -234,8 +232,8 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
-            elements: [examTerm.toJson()]);
+            fieldName: 'examterminfo',
+            elements: [examTerm.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -245,9 +243,7 @@ class LookupProvider extends ILookupProvider {
       {String serviceID, String offering}) async {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
-            errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
-            elements: [offering]);
+            errorType: 'Fee Item', fieldName: 'subject', elements: [offering]);
 
     return response;
   }
@@ -259,7 +255,7 @@ class LookupProvider extends ILookupProvider {
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
             fieldName: 'feeitemlist',
-            elements: [paymentPeriodInfo.toJson()]);
+            elements: [paymentPeriodInfo.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -270,8 +266,8 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
-            elements: [room.toJson()]);
+            fieldName: 'roominfo',
+            elements: [room.toJson()..remove('runtimeType')]);
 
     return response;
   }
@@ -282,8 +278,8 @@ class LookupProvider extends ILookupProvider {
     final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
         .removeItemsFromDocsArrayFirestore(
             errorType: 'Fee Item',
-            fieldName: 'feeitemlist',
-            elements: [sessionTerm.toJson()]);
+            fieldName: 'sessionterm',
+            elements: [sessionTerm.toJson()..remove('runtimeType')]);
 
     return response;
   }
