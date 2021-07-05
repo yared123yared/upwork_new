@@ -112,6 +112,18 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
   }
 
   void _initFiledValue() {
+    if (widget.origintype == 1) {
+      enabled = widget.serviceRequestModel == null ? true : false;
+      Future.delayed(Duration(milliseconds: 80), () {
+        _requestType.text = "ADHOCVISITOR";
+      });
+    } else if (widget.origintype == 2) {
+      _isStaff = true;
+      serviceTypes = [];
+    } else if (widget.origintype == 3) {
+      _isStaff = false;
+    }
+
     if (widget.serviceRequestModel != null) {
       _isUpdate = true;
       _startDate = widget.serviceRequestModel.startDate;
@@ -183,16 +195,6 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
             units = state.units;
             stafflist = state.stafflist;
             buildinglist = state.buildinglist;
-
-            if (widget.origintype == 1) {
-              enabled = false;
-              _requestType.text = "ADHOCVISITOR";
-            } else if (widget.origintype == 2) {
-              _isStaff = true;
-              serviceTypes = [];
-            } else if (widget.origintype == 3) {
-              _isStaff = false;
-            }
 
             _initFiledValue();
           }
@@ -307,7 +309,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                   ),
                 CustomDropDownList(
                   title: "Request Type",
-                  enabled: widget.origintype == 1,
+                  enabled: widget.origintype != 1,
                   controller: _requestType,
                   initialValue:
                       widget?.serviceRequestModel?.requestType.toString(),
