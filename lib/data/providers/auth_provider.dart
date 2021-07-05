@@ -30,9 +30,11 @@ class AuthProvider {
     );
   }
 
+
   Future<void> signOut() async {
     return await _firebaseAuth.signOut();
   }
+
 
   Future<bool> isSignedIn() async {
     final currentUser = _firebaseAuth.currentUser;
@@ -77,6 +79,38 @@ class AuthProvider {
       print(e);
     }
   }
+
+  Future<String> userProfileCreationRequestwithreturnval({SignUpRequest signUpModel}) async {
+    final HttpsCallable userProfileCreationRequest =
+    FirebaseFunctions.instance.httpsCallable(
+      'UserProfileCreationRequest',
+    );
+    try {
+      final HttpsCallableResult result =
+      await userProfileCreationRequest.call(<String, dynamic>{
+        'email': signUpModel.email,
+        'username': signUpModel.username,
+        'phonenum': signUpModel.phoneNum,
+        'defaultpassword': signUpModel.password,
+        'requesttype': signUpModel.requestType,
+
+      });
+      print("result ${result.data}");
+      Map<String, dynamic> mdata = Map<String, dynamic>.from(result.data);
+      if (mdata['error'] != null) return null;
+      return mdata['id'];
+
+    } on FirebaseFunctionsException catch (e) {
+      print('caught firebase functions exception');
+      print(e.code);
+      print(e.message);
+      print(e.details);
+    } catch (e) {
+      print('caught generic exception');
+      print(e);
+    }
+  }
+
 
   Future<int> updateProfile({
     String name,

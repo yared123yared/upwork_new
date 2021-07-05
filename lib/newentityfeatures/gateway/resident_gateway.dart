@@ -19,14 +19,14 @@ class ResidentGateway {
       password: "secretPassword",
       username: resident.firstName,
       email: resident.email,
-      phoneNum: resident.contactNumber,requestType: "PROFILE"
+      phoneNum: resident.contactNumber,requestType: "CHECKANDCREATE"
     );
 
     String _userID =null;
     var authrepository = HelpUtil.getAuthRepositoryl();
-    GeneralResponse gr = await authrepository.createUserForRequest(request:_signUpModel);
+    GeneralResponseWithUserId gr = await authrepository.createUserForRequest_for(request:_signUpModel);
     if(gr.success)
-      _userID=_signUpModel.userId;
+      _userID=gr.userid;
 
 
 
@@ -60,6 +60,7 @@ class ResidentGateway {
         return e;
       }
     } else {
+      //throw error
       print("not getting user id");
     }
   }

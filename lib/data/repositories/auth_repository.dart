@@ -59,7 +59,18 @@ class AuthRepository {
     }
   }
 
+  Future<GeneralResponseWithUserId> createUserForRequest_for({SignUpRequest request}) async {
+    try {
 
+      String userid=await authProvider.userProfileCreationRequestwithreturnval(signUpModel: request);
+      return GeneralResponseWithUserId(message: "SignUp Success", success: true,userid:userid );
+    } on FirebaseAuthException catch (e) {
+      return GeneralResponseWithUserId(message: e.message, success: false);
+    } catch (e) {
+      return GeneralResponseWithUserId(
+          message: "SignUp fail please try after sometime", success: false);
+    }
+  }
 
   Future<GeneralResponse> createUser({SignUpRequest request}) async {
     try {
