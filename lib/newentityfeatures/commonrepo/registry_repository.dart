@@ -42,6 +42,7 @@ class RegistryRepository {
           floor: floor);
     } catch (e) {
       print(e);
+      return e;
     }
   }
 

@@ -36,6 +36,18 @@ class getListData extends RegistryModelListEvent {
   List<Object> get props => [entityid, entitytype, entitytype];
 }
 
+class getPreData extends RegistryModelListEvent {
+  final String entityid;
+  final String entitytype;
+
+  getPreData({
+    @required this.entityid,
+    @required this.entitytype,
+  });
+  @override
+  List<Object> get props => [entityid, entitytype];
+}
+
 //We want to delete an item , we will call this method (if we have the complete item data )
 class deleteItemWithData extends RegistryModelListEvent {
   final RegistryModel item;

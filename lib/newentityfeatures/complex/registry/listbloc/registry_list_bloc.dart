@@ -4,7 +4,7 @@ class RegistryModelListBloc
     extends Bloc<RegistryModelListEvent, RegistryModelListState> {
   RegistryModelRepository mrepository = RegistryModelRepository();
   RegistryModelListBloc() : super(RegistryModelListState());
-
+  BuildingModelRepository brepository = BuildingModelRepository();
   @override
   Stream<RegistryModelListState> mapEventToState(
     RegistryModelListEvent event,
@@ -47,6 +47,19 @@ class RegistryModelListBloc
           listdata: ud.itemlist,
           roles: ud.listviewData.roles,
         );
+      else if (ud.errortype == 1)
+        yield HasLogicalFaliur(error: ud.error);
+      else
+        yield HasExceptionFaliur(error: ud.error);
+    }
+
+    if (event is getPreData) {
+      yield IsBusy();
+      BuildingModelRepositoryReturnData ud = await brepository
+          .getAllBuildingModels(event.entityid, event.entitytype);
+
+      if (ud.errortype == -1)
+        yield IsBuildingListDataLoaded(buildinglistdata: ud.itemlist);
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
       else
