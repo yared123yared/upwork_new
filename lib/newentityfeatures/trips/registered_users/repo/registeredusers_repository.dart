@@ -135,32 +135,32 @@ class RegisteredUsersRepository {
         email: item.guardian1email,
         username: item.guardian1name,
         phoneNum: item.guardian1phone,
-        password: "defultPassword",
+        password: "secretPassword",
         requestType: "PROFILE");
 
     SignUpRequest _signUpModel2 = SignUpRequest(
         email: item.guardian2email,
         username: item.guardian2name,
         phoneNum: item.guardian2phone,
-        password: "defultPassword",
-        requestType: "PROFILE");
+        password: "secretPassword",
+        requestType: "CHECKANDCREATE");
 
     var authrepository = HelpUtil.getAuthRepositoryl();
-    GeneralResponse gr =
-        await authrepository.createUserForRequest(request: _signUpModel);
-    if (gr.success) guardian1Id = _signUpModel.userId;
-    gr = await authrepository.createUserForRequest(request: _signUpModel2);
-    if (gr.success) guardian2Id = _signUpModel.userId;
+    GeneralResponseWithUserId gr =
+        await authrepository.createUserForRequest_for(request: _signUpModel);
+    if (gr.success) guardian1Id = gr.userid;
+    gr = await authrepository.createUserForRequest_for(request: _signUpModel2);
+    if (gr.success) guardian2Id = gr.userid;
 
     if (item.email != null) {
       SignUpRequest _signUpModel3 = SignUpRequest(
         email: item.email,
         username: item.name,
         phoneNum: null,
-        password: "defultPassword",
+        password: "secretPassword",requestType: "CHECKANDCREATE"
       );
-      gr = await authrepository.createUserForRequest(request: _signUpModel3);
-      if (gr.success) appuserid = _signUpModel.userId;
+      gr = await authrepository.createUserForRequest_for(request: _signUpModel3);
+      if (gr.success) appuserid = gr.userid;
     }
 
     var user = item.copyWith(
@@ -187,31 +187,31 @@ class RegisteredUsersRepository {
         username: item.guardian1name,
         phoneNum: item.guardian1phone,
         password: "defultPassword",
-        requestType: "PROFILE");
+        requestType: "CHECKANDCREATE");
 
     SignUpRequest _signUpModel2 = SignUpRequest(
         email: item.guardian2email,
         username: item.guardian2name,
         phoneNum: item.guardian2phone,
         password: "defultPassword",
-        requestType: "PROFILE");
+        requestType: "CHECKANDCREATE");
 
     var authrepository = HelpUtil.getAuthRepositoryl();
-    GeneralResponse gr =
-        await authrepository.createUserForRequest(request: _signUpModel);
-    if (gr.success) guardian1Id = _signUpModel.userId;
-    gr = await authrepository.createUserForRequest(request: _signUpModel2);
-    if (gr.success) guardian2Id = _signUpModel.userId;
+    GeneralResponseWithUserId gr =
+        await authrepository.createUserForRequest_for(request: _signUpModel);
+    if (gr.success) guardian1Id = gr.userid;
+    gr = await authrepository.createUserForRequest_for(request: _signUpModel2);
+    if (gr.success) guardian2Id = gr.userid;
 
     if (item.email != null) {
       SignUpRequest _signUpModel3 = SignUpRequest(
         email: item.email,
         username: item.name,
         phoneNum: null,
-        password: "defultPassword",
+        password: "defultPassword",requestType: "CHECKANDCREATE"
       );
-      gr = await authrepository.createUserForRequest(request: _signUpModel3);
-      if (gr.success) appuserid = _signUpModel.userId;
+      gr = await authrepository.createUserForRequest_for(request: _signUpModel3);
+      if (gr.success) appuserid = gr.userid;
     }
 
     var user = item.copyWith(

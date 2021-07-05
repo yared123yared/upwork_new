@@ -38,13 +38,13 @@ class ComplexStaffGateway {
         password: "secretPassword",
         username: staffModel.name,
         email: staffModel.email,
-        phoneNum: staffModel.phoneNumStr,
-        requestType: "PROFILE");
+        phoneNum: staffModel.phoneNumStr,requestType: "CHECKANDCREATE"
+        );
     String _userID = null;
     var authrepository = HelpUtil.getAuthRepositoryl();
-    GeneralResponse gr =
-        await authrepository.createUserForRequest(request: _signUpModel);
-    if (gr.success) _userID = _signUpModel.userId;
+    GeneralResponseWithUserId gr =
+        await authrepository.createUserForRequest_for(request: _signUpModel);
+    if (gr.success) _userID = gr.userid;
 
     print(json.encode(staffModel.toJson()));
     print('processing user id is: $_userID');
