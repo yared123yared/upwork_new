@@ -62,6 +62,12 @@ class ServiceModel {
   Map tWed;
   Map subscriptions;
 
+  bool isMobile;
+  bool locationShared;
+  bool hasStudentUserTransport;
+  bool hasCheckInShop;
+  bool hasStaffServices;
+
   ///wither has appointment or not
   bool hasApt;
   bool hasRapt; // has regular appointment
@@ -189,6 +195,12 @@ class ServiceModel {
     this.subdis,
     this.dis,
     this.hasRapt,
+    this.isMobile,
+    this.locationShared,
+    this.hasStudentUserTransport,
+    this.hasCheckInShop,
+    this.hasStaffServices,
+    
     this.hasqapt,
     this.hasvapt,
     this.aptpslots,
@@ -282,6 +294,11 @@ class ServiceModel {
         subdis,
         dis,
         hasRapt,
+        isMobile,
+        locationShared,
+        hasStudentUserTransport,
+        hasCheckInShop,
+        hasStaffServices,
         hasqapt,
         hasvapt,
         aptpslots,
@@ -353,6 +370,11 @@ class ServiceModel {
     String subdis,
     String dis,
     bool hasrapt,
+    bool isMobile,
+    bool locationShared,
+    bool hasStudentUserTransport,
+    bool hasCheckInShop,
+    bool hasStaffServices,
     bool hasqapt,
     bool hasvapt,
     int aptpslots,
@@ -445,6 +467,12 @@ class ServiceModel {
       subdis: subdis ?? this.subdis,
       dis: dis ?? this.dis,
       hasRapt: hasrapt ?? this.hasRapt,
+      isMobile: isMobile ?? this.isMobile,
+      locationShared: locationShared ?? this.locationShared,
+      hasStudentUserTransport:
+          hasStudentUserTransport ?? this.hasStudentUserTransport,
+      hasCheckInShop: hasCheckInShop ?? this.hasCheckInShop,
+      hasStaffServices: hasStaffServices ?? this.hasStaffServices,
       hasqapt: hasqapt ?? this.hasqapt,
       hasvapt: hasvapt ?? this.hasvapt,
       aptpslots: aptpslots ?? this.aptpslots,
@@ -629,6 +657,17 @@ class ServiceModel {
     subdis = json["subdis"] == null ? "" : json["subdis"];
     dis = json["dis"] == null ? "" : json["dis"];
     hasRapt = json["hasrapt"] == null ? false : json["hasrapt"];
+    isMobile = json["isMobile"] == null ? false : json["isMobile"];
+    locationShared =
+        json["locationShared"] == null ? false : json["locationShared"];
+    hasStudentUserTransport = json["hasStudentUserTransport"] == null
+        ? false
+        : json["hasStudentUserTransport"];
+    hasCheckInShop =
+        json["hasCheckInShop"] == null ? false : json["hasCheckInShop"];
+    hasStaffServices =
+        json["hasStaffServices"] == null ? false : json["hasStaffServices"];
+
     hasqapt = json["hasqapt"] == null ? false : json["hasqapt"];
     hasvapt = json["hasvapt"] == null ? false : json["hasvapt"];
     aptpslots = json["aptpslots"] == null ? null : json["aptpslots"];
@@ -749,6 +788,11 @@ class ServiceModel {
     json["subdis"] = subdis;
     json["dis"] = dis;
     json["hasrapt"] = hasRapt;
+    json["isMobile"] = isMobile;
+    json["locationShared"] = locationShared;
+    json["hasStudentUserTransport"] = hasStudentUserTransport;
+    json["hasCheckInShop"] = hasCheckInShop;
+    json["hasStaffServices"] = hasStaffServices;
     json["hasqapt"] = hasqapt;
     json["hasvapt"] = hasvapt;
     json["aptpslots"] = aptpslots;

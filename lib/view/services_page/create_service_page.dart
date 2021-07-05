@@ -20,6 +20,8 @@ import 'package:complex/utils/utility.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:injector/injector.dart';
 import 'package:provider/provider.dart';
@@ -57,9 +59,9 @@ class _CreateServicePageState extends State<CreateServicePage> {
   CustomTextFieldController _photo = CustomTextFieldController();
   CustomTextFieldController _serviceName = CustomTextFieldController();
   CustomTextFieldController _serviceType = CustomTextFieldController();
-  CustomTextFieldController _town = CustomTextFieldController();
+  CustomTextFieldController _district = CustomTextFieldController();
   CustomTextFieldController _state = CustomTextFieldController();
-  CustomTextFieldController _zipCode = CustomTextFieldController();
+  CustomTextFieldController _village = CustomTextFieldController();
   CustomTextFieldController _latitude = CustomTextFieldController();
   CustomTextFieldController _longitude = CustomTextFieldController();
   CustomTextFieldController _startDateController = CustomTextFieldController();
@@ -72,34 +74,77 @@ class _CreateServicePageState extends State<CreateServicePage> {
 
   bool isMobile;
   bool locationShared;
-  bool currentLocation;
+  bool currentLocation = false;
 
   CustomTextFieldController _areaOrSector = CustomTextFieldController();
   CustomTextFieldController _societyName = CustomTextFieldController();
 
-  Map<String, bool> _daysList = {
-    'sun': false,
-    'mon': false,
-    'tue': false,
-    'wed': false,
-    'thu': false,
-    'fri': false,
-    'sat': false
+  Map<String, Map<String, dynamic>> _daysList = {
+    'sun': {
+      "edited": false,
+      "completed": false,
+      "workTime": "",
+      "lunchTime": "",
+    },
+    'mon': {
+      "edited": false,
+      "completed": false,
+      "workTime": "",
+      "lunchTime": "",
+    },
+    'tue': {
+      "edited": false,
+      "completed": false,
+      "workTime": "",
+      "lunchTime": "",
+    },
+    'wed': {
+      "edited": false,
+      "completed": false,
+      "workTime": "",
+      "lunchTime": "",
+    },
+    'thu': {
+      "edited": false,
+      "completed": false,
+      "workTime": "",
+      "lunchTime": "",
+    },
+    'fri': {
+      "edited": false,
+      "completed": false,
+      "workTime": "",
+      "lunchTime": "",
+    },
+    'sat': {
+      "edited": false,
+      "completed": false,
+      "workTime": "",
+      "lunchTime": "",
+    }
   };
-  // tFri = json['t_fri'];
-  // tMon = json['t_mon'];
-  // tSat = json['t_sat'];
-  // tSun = json['t_sun'];
-  // tThu = json['t_thu'];
-  // tTue = json['t_tue'];
-  // tWed = json['t_wed'];
 
-  String _chosenDay;
+  // Map<String, bool> _daysList = {
+  //   'sun': false,
+  //   'mon': false,
+  //   'tue': false,
+  //   'wed': false,
+  //   'thu': false,
+  //   'fri': false,
+  //   'sat': false
+  // };
+
+  String _chosenDay = "sun";
+  // int _chosenDayIndex = 0;
 
   // String workTime;
   // String lunchTime;
   CustomTextFieldController _workTime = CustomTextFieldController();
   CustomTextFieldController _lunchTime = CustomTextFieldController();
+  bool hasCheckInShop;
+  bool hasStaffServices;
+
+  bool hasStudentUserTransport;
 
   bool hasAppointment;
   bool hasrapt;
@@ -152,12 +197,12 @@ class _CreateServicePageState extends State<CreateServicePage> {
       // if (!_mLanguage.isValid) valid = false;
       // if (!_timeInterval.isValid) valid = false;
     } else if (currentIndex == 2) {
-      // if (!_mPhone.isValid) valid = false;
+      if (!_mPhone.isValid) valid = false;
       if (!_email.isValid) valid = false;
 
       if (!_state.isValid) valid = false;
-      if (!_town.isValid) valid = false;
-      if (!_zipCode.isValid) valid = false;
+      if (!_district.isValid) valid = false;
+      if (!_village.isValid) valid = false;
       if (!_areaOrSector.isValid) valid = false;
       if (!_societyName.isValid) valid = false;
       if (!_address.isValid) valid = false;
@@ -165,8 +210,12 @@ class _CreateServicePageState extends State<CreateServicePage> {
       //   if (!_latitude.isValid) valid = false;
       //   if (!_longitude.isValid) valid = false;
     } else if (currentIndex == 3) {
-      if (!_workTime.isValid) valid = false;
-      if (!_lunchTime.isValid) valid = false;
+      for (var i = 0; i < 7; i++) {
+        _workTime.text = _daysList.values.toList()[i]["workTime"];
+        _lunchTime.text = _daysList.values.toList()[i]["lunchTime"];
+        if (!_workTime.isValid) valid = false;
+        if (!_lunchTime.isValid) valid = false;
+      }
 
       //   if (!_biography.isValid) valid = false;
       //   if (!_category.isValid) valid = false;
@@ -185,12 +234,13 @@ class _CreateServicePageState extends State<CreateServicePage> {
   ///this do the init of the switchs
   ///the custom text fields has its owen initvalue parameter
   Future _initFilledValid() async {
-    // _chosenDay = widget.serviceModel?.tm;
-    // _daysList[_chosenDay] = true;
-
-    isMobile = widget.serviceModel?.mainatainenceservicerequest ?? false;
-    locationShared = widget.serviceModel?.mainatainenceservicerequest ?? false;
-    currentLocation = widget.serviceModel?.mainatainenceservicerequest ?? false;
+    isMobile = widget.serviceModel?.isMobile ?? false;
+    locationShared = widget.serviceModel?.locationShared ?? false;
+    // currentLocation = widget.serviceModel?.currentLocation ?? false;
+    hasStudentUserTransport =
+        widget.serviceModel?.hasStudentUserTransport ?? false;
+    hasCheckInShop = widget.serviceModel?.hasCheckInShop ?? false;
+    hasStaffServices = widget.serviceModel?.hasStaffServices ?? false;
 
     hasAppointment = widget.serviceModel?.hasApt ?? false;
     hasrapt = widget.serviceModel?.hasRapt ?? false;
@@ -449,10 +499,11 @@ class _CreateServicePageState extends State<CreateServicePage> {
                                       //   setState(() {
                                       //     currentIndex = 4;
                                       //   });
-                                    } else if (currentIndex == 6) {
+                                    } else if (currentIndex == 7) {
                                       ServiceModel _serviceModel;
-                                      _serviceModel =
-                                          widget.serviceModel.copyWith(
+                                      _serviceModel = (widget.serviceModel ??
+                                              ServiceModel())
+                                          .copyWith(
                                         createdBy:
                                             _userRepository.getUser().userID,
                                         serviceName: _serviceName.text,
@@ -461,27 +512,27 @@ class _CreateServicePageState extends State<CreateServicePage> {
                                         phone: [_mPhone.text],
                                         photo1: _photo.text,
                                         languages: [_mLanguage.text],
-                                        timeInterval:
-                                            double.tryParse(_timeInterval.text),
+                                        // timeInterval:
+                                        //     double.tryParse(_timeInterval.text),
                                         state: _state.text,
-                                        town: _town.text,
-                                        zipCode: double.parse(_zipCode.text),
+                                        town: _district.text,
+                                        zipCode: double.parse(_village.text),
                                         address: _address.text,
-                                        geoHash: _geoHash.text,
-                                        latitude: double.parse(_latitude.text),
-                                        longitude:
-                                            double.parse(_longitude.text),
-                                        biography: _biography.text,
-                                        category: _category.text,
+                                        // geoHash: _geoHash.text,
+                                        // latitude: double.parse(_latitude.text),
+                                        // longitude:
+                                        //     double.parse(_longitude.text),
+                                        // biography: _biography.text,
+                                        // category: _category.text,
                                         email: _email.text,
-                                        startDate: _startDate,
-                                        endDate: _endDate,
+                                        // startDate: _startDate,
+                                        // endDate: _endDate,
                                         hasapt: hasAppointment,
                                         hasrapt: hasrapt,
                                         hasqapt: hasqapt,
                                         hasvapt: hasvapt,
-                                        aptpslots:
-                                            int.tryParse(aptpslots.text ?? ""),
+                                        // aptpslots:
+                                        //     int.tryParse(aptpslots.text ?? ""),
                                         apttype: apttype.text,
                                         hasecom: hasecom,
                                         justlisting: justlisting,
@@ -509,25 +560,19 @@ class _CreateServicePageState extends State<CreateServicePage> {
                                         hassecurity: hassecurity,
                                         requirepaymentaptreg:
                                             requirepaymentaptreg,
-                                        t_fri: _daysList,
-                                        t_mon: _daysList,
-                                        t_sat: _daysList,
-                                        t_sun: _daysList,
-                                        t_thu: _daysList,
-                                        t_tue: _daysList,
-                                        t_wed: _daysList,
-                                        // t_fri: _daysList["fri"],
-                                        // t_mon: _daysList["mon"],
-                                        // t_sat: _daysList["sat"],
-                                        // t_sun: _daysList["sun"],
-                                        // t_thu: _daysList["thu"],
-                                        // t_tue: _daysList["tue"],
-                                        // t_wed: _daysList["wed"],
-
-                                        // isMobile: isMobile,
-                                        // locationShared: locationShared,
-                                        // areaname: _areaOrSector,
-                                        // societyName: _societyName,
+                                        t_fri: _daysList["fri"],
+                                        t_mon: _daysList["mon"],
+                                        t_sat: _daysList["sat"],
+                                        t_sun: _daysList["sun"],
+                                        t_thu: _daysList["thu"],
+                                        t_tue: _daysList["tue"],
+                                        t_wed: _daysList["wed"],
+                                        isMobile: isMobile,
+                                        locationShared: locationShared,
+                                        hasStudentUserTransport:
+                                            hasStudentUserTransport,
+                                        hasCheckInShop: hasCheckInShop,
+                                        hasStaffServices: hasStaffServices,
                                       );
                                       if (widget.update) {
                                         _serviceBloc.add(
@@ -788,52 +833,20 @@ class _CreateServicePageState extends State<CreateServicePage> {
             title: 'Use current location',
             isEnabled: currentLocation,
             onChange: (value) {
-              setState(() {
-                currentLocation = value;
-
-                LatLng location = LatLng(
-                  widget.serviceModel.latitude,
-                  widget.serviceModel.longitude,
-                );
-                PickedLocation result = PickedLocation(
-                  // id: result.placeId,
-                  // address: result.formattedAddress,
-                  latitude: location.latitude,
-                  longitude: location.longitude,
-                );
-                _state.text = result.state;
-                _town.text = result.town;
-                _zipCode.text = result.zipCode;
-                _address.text = result.address;
-              });
+              if (value == true) {
+                setState(() {
+                  _determinePosition();
+                });
+              } else {
+                setState(() {
+                  currentLocation = false;
+                });
+              }
             },
           ),
-
-          // CustomAddressPicker(
-          //   controller: _address,
-          //   displayData: (data) => data.address,
-          //   initialPosition: widget.serviceModel.latitude == null ||
-          //           widget.serviceModel.longitude == null
-          //       ? null
-          //       : LatLng(
-          //           widget.serviceModel.latitude,
-          //           widget.serviceModel.longitude,
-          //         ),
-          //   initialValue: widget.serviceModel?.address,
-          //   title: "Address",
-          //   onPickLocation: (result) {
-          //     _state.text = result.state;
-          //     _town.text = result.town;
-          //     _zipCode.text = result.zipCode;
-          //     _address.text = result.address;
-          //     _geoHash.text = result.geoHash;
-          //     _latitude.text = result.latitude?.toString();
-          //     _longitude.text = result.longitude?.toString();
-          //   },
-          //   validate: Validate.withOption(isRequired: true, maxLength: 250),
-          // ),
           CustomDropDownList<String>(
             initialValue: widget.serviceModel?.state,
+            enabled: !currentLocation,
             // title: "State",
             title: "Select your state",
             controller: _state,
@@ -845,9 +858,10 @@ class _CreateServicePageState extends State<CreateServicePage> {
           ),
           CustomDropDownList<String>(
             initialValue: widget.serviceModel?.town,
+            enabled: !currentLocation,
             // title: "Town",
             title: "Select your District",
-            controller: _town,
+            controller: _district,
             displayName: (data) => data,
             onSelected: (value, index) => setState(() {}),
             shouldReload: true,
@@ -862,13 +876,14 @@ class _CreateServicePageState extends State<CreateServicePage> {
           ),
           CustomDropDownList<String>(
             initialValue: widget.serviceModel?.zipCode?.toString(),
+            enabled: !currentLocation,
             // title: "Zip Code",
             title: "Select your Village",
-            controller: _zipCode,
+            controller: _village,
             displayName: (data) => data,
             shouldReload: true,
             loadData: () async => widget.places
-                .where((e) => e.district == _town.text)
+                .where((e) => e.district == _district.text)
                 .map((e) => e.zipCode)
                 .toSet()
                 .toList(),
@@ -878,11 +893,12 @@ class _CreateServicePageState extends State<CreateServicePage> {
           ),
           CustomTextField(
             initialValue: widget.serviceModel?.serviceName,
+            enabled: !currentLocation,
             title: "Area/Sector",
             controller: _areaOrSector,
             validate: Validate.withOption(
-              isRequired: true,
-            ),
+                // isRequired: true,
+                ),
           ),
           CustomTextField(
             initialValue: widget.serviceModel?.serviceName,
@@ -892,7 +908,6 @@ class _CreateServicePageState extends State<CreateServicePage> {
               isRequired: true,
             ),
           ),
-
           CustomTextField(
             initialValue: widget.serviceModel?.address,
             title: "Address Line 1",
@@ -969,27 +984,54 @@ class _CreateServicePageState extends State<CreateServicePage> {
                       Card(
                         child: Row(
                           children: List.generate(
-                            _daysList.length,
+                            7,
                             (index) {
                               return GestureDetector(
                                   onTap: () {
                                     String selectedDay =
                                         _daysList.keys.toList()[index];
-                                    _daysList.forEach((day, value) {
-                                      if (day != selectedDay) {
-                                        _daysList[day] = false;
+                                    setState(() {
+                                      if (_workTime.isValid &&
+                                          _lunchTime.isValid) {
+                                        _daysList[_chosenDay]["completed"] =
+                                            true;
                                       } else {
-                                        setState(() {
-                                          _daysList[day] = !_daysList[day];
-                                        });
+                                        _daysList[_chosenDay]["edited"] = true;
                                       }
+
+                                      _chosenDay = selectedDay;
+                                      // _chosenDayIndex = index;
+                                      _daysList[selectedDay]["edited"] = true;
+                                      _workTime.text = _daysList[_chosenDay]
+                                              ["workTime"] ??
+                                          "";
+                                      _lunchTime.text = _daysList[_chosenDay]
+                                              ["lunchTime"] ??
+                                          "";
+                                      // _daysList[selectedDay] =
+                                      //     !_daysList[selectedDay];
                                     });
+                                    // setInnerState(() {});
+                                    // _daysList.forEach((day, value) {
+                                    //   if (day != selectedDay) {
+                                    //     _daysList[day] = false;
+                                    //   } else {
+                                    //     setState(() {
+                                    //       _daysList[day] = !_daysList[day];
+                                    //     });
+                                    //   }
+                                    // });
                                   },
                                   child: DayItem(
                                     dayName: _daysList.keys.toList()[index],
                                     isSelected:
-                                        _daysList.values.toList()[index],
-                                    // _daysList.keys.toList()[index] == _chosenDay,
+                                        _daysList.keys.toList()[index] ==
+                                            _chosenDay,
+                                    isEdited: _daysList.values.toList()[index]
+                                        ["edited"],
+                                    isCompleted: _daysList.values
+                                        .toList()[index]["completed"],
+                                    // _daysList.values.toList()[index],
                                   ));
                             },
                           ),
@@ -1002,10 +1044,14 @@ class _CreateServicePageState extends State<CreateServicePage> {
                       ),
                       CustomTextField(
                         // initialValue: widget.serviceModel?.serviceName,
-                        // title: "Work Time",
-                        title: "",
+                        title: "Work Time",
                         margin: EdgeInsets.only(bottom: 24.0),
                         controller: _workTime,
+                        onChange: (text) {
+                          setState(() {
+                            _daysList[_chosenDay]["workTime"] = text;
+                          });
+                        },
                         validate: Validate.withOption(
                           isRequired: true,
                         ),
@@ -1025,9 +1071,14 @@ class _CreateServicePageState extends State<CreateServicePage> {
                       ),
                       CustomTextField(
                         // initialValue: widget.serviceModel?.serviceName,
-                        title: "",
+                        title: "Lunch Time",
                         margin: EdgeInsets.only(bottom: 24.0),
                         controller: _lunchTime,
+                        onChange: (text) {
+                          setState(() {
+                            _daysList[_chosenDay]["lunchTime"] = text;
+                          });
+                        },
                         validate: Validate.withOption(
                           isRequired: true,
                         ),
@@ -1086,14 +1137,14 @@ class _CreateServicePageState extends State<CreateServicePage> {
           customSwitch(
             // title: 'Has visit to Home',
             title: 'Do you want to give Check In (queue) for Shop?',
-            isEnabled: hasvapt,
-            onChange: (value) => setState(() => hasvapt = value),
+            isEnabled: hasCheckInShop,
+            onChange: (value) => setState(() => hasCheckInShop = value),
           ),
           customSwitch(
             title:
                 'Do you want to give option to select Staff member (providing services)',
-            isEnabled: hasvapt,
-            onChange: (value) => setState(() => hasvapt = value),
+            isEnabled: hasStaffServices,
+            onChange: (value) => setState(() => hasStaffServices = value),
           ),
           // Visibility(
           //   visible: hasAppointment,
@@ -1292,8 +1343,9 @@ class _CreateServicePageState extends State<CreateServicePage> {
             child: customSwitch(
               // title: 'Do you want to provide transport to students/user?',
               title: 'Do you want to provide transport to students/user??',
-              isEnabled: hasfscan,
-              onChange: (value) => setState(() => hasfscan = value),
+              isEnabled: hasStudentUserTransport,
+              onChange: (value) =>
+                  setState(() => hasStudentUserTransport = value),
             ),
           ),
           // Visibility(
@@ -1308,6 +1360,7 @@ class _CreateServicePageState extends State<CreateServicePage> {
       ),
     );
   }
+
 /* 
   Widget _secondStep() {
     return Visibility(
@@ -1385,19 +1438,58 @@ class _CreateServicePageState extends State<CreateServicePage> {
     );
   }
  */
+  Future<Position> _determinePosition() async {
+    try {
+      Utility.permissionCheckForMap();
+      Position position = await Geolocator.getCurrentPosition();
+      if (position != null) {
+        currentLocation = true;
+        List<Placemark> addresses = await placemarkFromCoordinates(
+            position.latitude, position.longitude);
+        Placemark address = addresses.first;
+        print(address.toJson());
+        _state.text = address.administrativeArea;
+        _district.text = address.subAdministrativeArea;
+        _village.text = address.locality;
+        _areaOrSector.text = address.subLocality;
+      } else {
+        currentLocation = false;
+      }
+      setState(() {});
+    } catch (e) {
+      if (e is LocationServiceDisabledException) {
+        Utility.showSnackBar(key: _key, message: e.toString());
+        setState(() {
+          currentLocation = false;
+        });
+      }
+    }
+  }
 }
 
 class DayItem extends StatelessWidget {
   final String dayName;
   final bool isSelected;
+  final bool isEdited;
+  final bool isCompleted;
 
-  const DayItem({this.dayName, this.isSelected = false});
+  const DayItem({
+    this.dayName,
+    this.isSelected = false,
+    this.isEdited = false,
+    this.isCompleted = false,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color:
-              isSelected ? ColorConstants.primaryColor /* Colors.blue */ : null,
+          color: isSelected
+              ? ColorConstants.primaryColor /* Colors.blue */
+              : isCompleted
+                  ? ColorConstants.primaryColor.withOpacity(0.65)
+                  : isEdited
+                      ? ColorConstants.red
+                      : null,
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10))),
@@ -1407,7 +1499,9 @@ class DayItem extends StatelessWidget {
       child: Text(
         dayName.replaceFirst(dayName[0], dayName[0].toUpperCase()),
         style: tileSubTitle.copyWith(
-            color: isSelected ? Colors.white : Colors.black,
+            color: isSelected || isEdited || isCompleted
+                ? Colors.white
+                : Colors.black,
             fontWeight: FontWeight.w500,
             fontSize: 14),
       ),
