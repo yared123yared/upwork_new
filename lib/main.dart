@@ -150,6 +150,7 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
           home: SplashPage(),
           builder: EasyLoading.init(),
 
+
           /*
           localeResolutionCallback: (locale, _) {
             return locale;
