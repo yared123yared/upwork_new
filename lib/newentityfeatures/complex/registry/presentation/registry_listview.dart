@@ -252,8 +252,10 @@ class _RegistryListListState extends State<RegistryListList> {
 
             if (state.buildinglistdata != null) {
               list = Map();
+              blist = Map();
               state.buildinglistdata.forEach((registry) {
                 if (!buildings.contains(registry.buildingName)) {
+
                   buildings.add(registry.buildingName);
                 }
 
@@ -270,7 +272,7 @@ class _RegistryListListState extends State<RegistryListList> {
                 innerList?.add(registry);
 
                 blist[registry.buildingName] = {
-                  //  registry.numfloor: innerList,
+                    registry.buildingName: innerList,
                 };
               });
             }
@@ -314,7 +316,7 @@ class _RegistryListListState extends State<RegistryListList> {
                   loadData: () async => buildings,
                   onSelected: (value, index) {
                     setState(() {
-                      floors = list[value].keys.toList();
+                      floors = blist[value].keys.toList();
                     });
                   },
                 ),
