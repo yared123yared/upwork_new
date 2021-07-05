@@ -17,6 +17,10 @@ class RegistryRepository {
     }
   }
 
+
+
+
+
   Future<List<RegistryModel>> getRegistryListForListOfUnits(
       {@required String entitytype,
       @required String entityid,
@@ -45,6 +49,42 @@ class RegistryRepository {
       return e;
     }
   }
+
+  Future<List<RegistryModel>> getRegistryListDataByListOfUnits(
+      {@required String entitytype,
+        @required String entityid,
+        @required List<String> unitlist,
+        int floor}) async {
+    try {
+      return await RegistryGateway.getRegistryListForListOfUnits(
+          entitytype: entitytype,
+          entityid: entityid,
+          unitlist: unitlist,
+          );
+    } catch (e) {
+      print(e);
+      return e;
+    }
+  }
+
+  Future<RegistryModel> getRegistryListDataByUnitId(
+      {@required String entitytype,
+        @required String entityid,
+        @required String unitid,
+        int floor}) async {
+    try {
+      return await RegistryGateway.getRegistryListForUnitId(
+        entitytype: entitytype,
+        entityid: entityid,
+        unitid: unitid,
+      );
+    } catch (e) {
+      print(e);
+      return e;
+    }
+  }
+
+
 
   Future<void> updateRegistry(
       {@required RegistryModel oldRegistry,

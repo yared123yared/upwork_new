@@ -10,7 +10,7 @@ class getListDataByBuildingAndFloor extends RegistryModelListEvent {
   final String entitytype;
   final int originType;
   final String buildingName;
-  final String floorNum;
+  final int floorNum;
   getListDataByBuildingAndFloor({
     @required this.entityid,
     @required this.entitytype,
@@ -22,6 +22,44 @@ class getListDataByBuildingAndFloor extends RegistryModelListEvent {
   List<Object> get props =>
       [entityid, entitytype, originType, buildingName, floorNum];
 }
+
+class getListDataByListOfUnits extends RegistryModelListEvent {
+  final String entityid;
+  final String entitytype;
+  final int originType;
+  final List<String> unitlist;
+
+  getListDataByListOfUnits({
+    @required this.entityid,
+    @required this.entitytype,
+    @required this.originType,
+    @required this.unitlist,
+
+  });
+  @override
+  List<Object> get props =>
+      [entityid, entitytype, originType, unitlist];
+}
+
+
+class getListDataByUnitId extends RegistryModelListEvent {
+  final String entityid;
+  final String entitytype;
+  final int originType;
+  final String unitid;
+
+  getListDataByUnitId({
+    @required this.entityid,
+    @required this.entitytype,
+    @required this.originType,
+    @required this.unitid,
+
+  });
+  @override
+  List<Object> get props =>
+      [entityid, entitytype, originType, unitid];
+}
+
 
 //to get listdata
 class getListData extends RegistryModelListEvent {

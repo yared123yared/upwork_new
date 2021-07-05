@@ -24,6 +24,7 @@ class RegistryGateway {
       {@required String entitytype ,@required String entityid,@required String buildingid,int floor}) async {
     return await FirebaseFirestore.instance
         .collection("${entitytype}/${entityid}/REGISTRY")
+        .where("bldf", isEqualTo: buildingid+"@"+floor.toString())
         .get()
         .then((x) {
       print(x.docs);
@@ -31,10 +32,25 @@ class RegistryGateway {
     });
   }
 
+
+  static Future<RegistryModel> getRegistryListForUnitId(
+      {@required String entitytype ,@required String entityid,@required String unitid}) async {
+    return await FirebaseFirestore.instance
+        .doc("${entitytype}/${entityid}/REGISTRY/${unitid}")
+
+        .get()
+        .then((x) {
+
+      return RegistryModel.fromJson(x.data());
+    });
+  }
+
+
   static Future<List<RegistryModel>> getRegistryListForListOfUnits(
       {@required String entitytype ,@required String entityid,@required List<String> unitlist}) async {
     return await FirebaseFirestore.instance
         .collection("${entitytype}/${entityid}/REGISTRY")
+        .where(FieldPath.documentId, whereIn: unitlist)
         .get()
         .then((x) {
       print(x.docs);

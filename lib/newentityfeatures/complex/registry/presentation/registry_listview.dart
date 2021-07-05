@@ -346,7 +346,7 @@ class _RegistryListListState extends State<RegistryListList> {
                         entitytype: widget.entitytype,
                         originType: widget.origintype,
                         buildingName: _building.text,
-                        floorNum: _floor.text,
+                        floorNum: int.parse(_floor.text),
                       ),
                     );
                   },
