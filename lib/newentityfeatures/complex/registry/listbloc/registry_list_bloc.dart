@@ -56,7 +56,7 @@ class RegistryModelListBloc
     if (event is getPreData) {
       yield IsBusy();
       BuildingModelRepositoryReturnData ud = await brepository
-          .getAllBuildingModels(event.entityid, event.entitytype);
+          .getAllBuildingModels( event.entitytype,event.entityid,);
 
       if (ud.errortype == -1)
         yield IsBuildingListDataLoaded(buildinglistdata: ud.itemlist);

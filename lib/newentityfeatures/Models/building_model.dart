@@ -69,7 +69,7 @@ class BuildingModel extends Equatable {
     latitude = json['latitude'];
     longitude = json['longitude'];
     version = json['version'];
-    numfloor :json['numfloor'];
+    numfloor =json['numfloor'];
   }
 
   Map<String, dynamic> toJson() {
