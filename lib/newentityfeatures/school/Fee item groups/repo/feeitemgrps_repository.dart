@@ -1,8 +1,14 @@
+import 'package:complex/domain/core/failure/failure.dart';
+import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
+import 'package:complex/newentityfeatures/f_lookups/common/repo/i_lookup_provider.dart';
+import 'package:complex/newentityfeatures/f_lookups/common/repo/stringlookup/lookup_provider.dart';
 import 'package:complex/newentityfeatures/gateway/fee_item_groups_gateway.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +27,7 @@ class FeeItemGroupsModelRepositoryReturnData {
 
 class FeeItemGroupsModelRepository {
   NewSchoolRepository _schoolRepo = Get.find();
-
+  ILookupProvider provider = LookupProvider();
   Future<FeeItemGroupsModelRepositoryReturnData> getAllFeeItemGroupsModels(
       String entitytype, String entityid) async {
     FeeItemGroupsModelRepositoryReturnData myreturn =
@@ -75,6 +81,11 @@ class FeeItemGroupsModelRepository {
         serviceID: entityid,
       );
 
+      Either<Failure, FeeItems> data =
+          await provider.getFeeItemsList(serviceID: entityid);
+      List<String> feelistData = [];
+      data.fold((l) => EasyLoading(), (r) => (feelistData = r.list));
+
       // List<String> sessiontermlist =
       //     await _schoolRepo.lookup.getSessionStringList(
       //   serviceID: entityid,
@@ -89,6 +100,7 @@ class FeeItemGroupsModelRepository {
           new GenericLookUpDataUsedForRegistration();
       gr.errortype = -1;
       gr.grades = grades;
+      gr.feeitemlist = feelistData;
 
       // gr.sessionterm = sessiontermlist;
       // gr.examtermlist = examtermlist;

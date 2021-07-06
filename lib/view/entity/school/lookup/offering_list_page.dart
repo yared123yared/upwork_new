@@ -9,8 +9,8 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
-import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart'
-    as listbloc;
+// import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart'
+//     as listbloc;
 
 class OfferingListPage extends StatefulWidget {
   final String entityid;
@@ -156,7 +156,12 @@ class _OfferingListPageState extends State<OfferingListPage> {
                   icon: Icon(Icons.add),
                   label: Text("Add New"),
                 )),
-            orElse: () => SizedBox.shrink());
+            orElse: () => Scaffold(
+                  appBar: AppBar(
+                    title: Text("Problem"),
+                    centerTitle: true,
+                  ),
+                ));
       },
     );
   }

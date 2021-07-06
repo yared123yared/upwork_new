@@ -36,6 +36,7 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
 
   List<FeeItem> _feeItems = [];
   List<String> grades;
+  List<String> feeItemName;
 
   ///each item in in the fee items needs three controllers
   List<CustomTextFieldController> _controllers = [];
@@ -120,7 +121,7 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
 
           if (state is itembloc.IsReadyForDetailsPage) {
             grades = state.grades;
-
+            feeItemName = state.feeitem;
             // _initFiledValue();
           }
         }, child: BlocBuilder<itembloc.FeeItemGroupsModelBloc,
@@ -225,13 +226,22 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
         ),
         title: Text("Fee Item $i"),
         children: [
-          CustomTextField(
-            title: "Fee Item Name",
-            initialValue: _feeItems[i].feeItemName,
+          CustomDropDownList<String>(
+            loadData: () async => feeItemName,
+            displayName: (x) => x,
+            shouldReload: true,
             controller: _controllers[i * 3],
-            onChange: (text) => _feeItems[i].feeItemName = text,
+            title: "Fee Item Name",
             validate: Validate.withOption(isRequired: true),
+            onSelected: (value, index) => _feeItems[i].feeItemName = value,
           ),
+          // CustomTextField(
+          //   title: "Fee Item Name",
+          //   initialValue: _feeItems[i].feeItemName,
+          //   controller: _controllers[i * 3],
+          //   onChange: (text) => _feeItems[i].feeItemName = text,
+          //   validate: Validate.withOption(isRequired: true),
+          // ),
           CustomTextField(
             title: "Amount",
             controller: _controllers[i * 3 + 1],
