@@ -2,6 +2,7 @@ import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_switch.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/view/job_pages/add_job_page.dart';
 import 'package:complex/view/pet_pages/add_pet_page.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
@@ -20,6 +21,7 @@ enum ContactOpenFrom { addProperty, vehicle, pet, product, job }
 
 class GeneralContactDetailPage extends StatefulWidget {
   final ContactOpenFrom type;
+  final CompleteProductData productData;
   final bool isService;
   final String serviceId;
   final String serviceProviderId;
@@ -27,6 +29,7 @@ class GeneralContactDetailPage extends StatefulWidget {
   GeneralContactDetailPage(
       {this.type,
       this.serviceId,
+      this.productData,
       this.isService = false,
       this.serviceProviderId});
 
@@ -42,7 +45,7 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
   bool _nameShare = true;
   bool _addressShare = true;
   bool _locationValue = false;
-
+  ContactDetails initContactDetails = null;
   CustomTextFieldController _nameController = CustomTextFieldController();
   CustomTextFieldController _emailController = CustomTextFieldController();
   CustomTextFieldController _areaSectorController = CustomTextFieldController();
@@ -57,6 +60,17 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
   CustomTextFieldController _phoneController = CustomTextFieldController();
   Placemark _address;
   var _key = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    initContactDetails = widget.productData?.map(
+        realEstate: (realEstate) => realEstate.data.contactdetails,
+        job: (job) => job.data.contactdetails,
+        pet: (pet) => pet.data.contactdetails,
+        vehicle: (vehicle) => vehicle.data.contactdetails,
+        product: (product) => null);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +96,8 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
         child: Column(
           children: [
-            _renderTextField('Name', _nameController),
+            _renderTextField('Name', _nameController,
+                initialValue: initContactDetails.name),
             _renderNameShare(),
             _renderTextField('Phone', _phoneController, isPhone: true),
             _renderPhoneShare(),
@@ -177,9 +192,10 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
   }
 
   Widget _renderTextField(String text, CustomTextFieldController controller,
-      {bool isPhone = false}) {
+      {bool isPhone = false, String initialValue}) {
     return CustomTextField(
       title: text,
+      initialValue: initialValue,
       controller: controller,
       validate: Validate.withOption(
         isRequired: true,
@@ -346,7 +362,9 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
   }
 
   Widget _renderCheckBox(
-      {@required bool checkValue, @required Function onChange}) {
+      {@required bool checkValue,
+      @required Function onChange,
+      bool initialValue}) {
     return Row(
       children: [
         _renderCheckBoxArea('Yes', checkValue, () {
