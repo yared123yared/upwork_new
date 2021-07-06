@@ -116,16 +116,16 @@ class ProductProvider {
       'realestatemodel': null,
     };
     data.map(
-        realEstate: (realEstate) => productAction.update(
-            'realestatemodel', (value) => realEstate.data.toJson()),
-        job: (job) => productAction.update(
-            'jobrequestmodel', (value) => job.data.toJson()),
-        pet: (pet) =>
-            productAction.update('petmodel', (value) => pet.data.toJson()),
-        vehicle: (vehicle) => productAction.update(
-            'vehiclemodel', (value) => vehicle.data.toJson()),
-        product: (product) => productAction.update(
-            'productmodel', (value) => product.data.toJson()));
+        realEstate: (realEstate) => productAction.update('realestatemodel',
+            (value) => realEstate.data.toJson()..remove('runtimeType')),
+        job: (job) => productAction.update('jobrequestmodel',
+            (value) => job.data.toJson()..remove('runtimeType')),
+        pet: (pet) => productAction.update(
+            'petmodel', (value) => pet.data.toJson()..remove('runtimeType')),
+        vehicle: (vehicle) => productAction.update('vehiclemodel',
+            (value) => vehicle.data.toJson()..remove('runtimeType')),
+        product: (product) => productAction.update('productmodel',
+            (value) => product.data.toJson()..remove('runtimeType')));
 
     final Option<Failure> response = await ApiHelper(ApiHelper.dgOcnEp)
         .httpPost<CompleteProductData>(data.toJson());

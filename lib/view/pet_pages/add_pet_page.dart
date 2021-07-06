@@ -477,6 +477,9 @@ class _AddPetPageState extends State<AddPetPage> {
           vaccinated: false,
         ),
       );
+      _productBloc.add(
+        ProductOwnerEvent.update(productData: newPet),
+      );
     } else {
       newPet = CompletePet(
           docId: '',
@@ -501,10 +504,9 @@ class _AddPetPageState extends State<AddPetPage> {
             petname: _descriptionController.text.trim(),
             vaccinated: false,
           ));
+      _productBloc.add(
+        ProductOwnerEvent.add(productData: newPet),
+      );
     }
-
-    _productBloc.add(
-      ProductOwnerEvent.add(productData: newPet),
-    );
   }
 }

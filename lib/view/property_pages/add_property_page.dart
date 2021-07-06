@@ -1665,6 +1665,10 @@ class _AddPropertyPage extends State<AddPropertyPage> {
             haslift: _amenities.contains("Lift"),
             imagelist: _photos,
           ));
+
+      _productBloc.add(
+        ProductOwnerEvent.update(productData: newRealEstate),
+      );
     } else {
       newRealEstate = CompleteRealEstate(
           docId: '',
@@ -1701,10 +1705,10 @@ class _AddPropertyPage extends State<AddPropertyPage> {
             haslift: _amenities.contains("Lift"),
             imagelist: _photos,
           ));
-    }
 
-    _productBloc.add(
-      ProductOwnerEvent.add(productData: newRealEstate),
-    );
+      _productBloc.add(
+        ProductOwnerEvent.add(productData: newRealEstate),
+      );
+    }
   }
 }
