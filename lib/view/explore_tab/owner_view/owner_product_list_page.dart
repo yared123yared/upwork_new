@@ -45,28 +45,28 @@ class OwnerProductListPage extends StatelessWidget {
             return ListView.builder(
                 itemCount: pet.pets.length,
                 itemBuilder: (context, index) =>
-                    OwnerProductCard.fromLimitedData(pet.pets[index]));
+                    OwnerProductCard.fromCompleteData(pet.pets[index]));
           }, vehicle: (vehicle) {
             return ListView.builder(
                 itemCount: vehicle.vehicles.length,
                 itemBuilder: (context, index) =>
-                    OwnerProductCard.fromLimitedData(vehicle.vehicles[index]));
+                    OwnerProductCard.fromCompleteData(vehicle.vehicles[index]));
           }, realEstate: (realEstate) {
             return ListView.builder(
                 itemCount: realEstate.properties.length,
                 itemBuilder: (context, index) =>
-                    OwnerProductCard.fromLimitedData(
+                    OwnerProductCard.fromCompleteData(
                         realEstate.properties[index]));
           }, job: (job) {
             return ListView.builder(
                 itemCount: job.jobs.length,
                 itemBuilder: (context, index) =>
-                    OwnerProductCard.fromLimitedData(job.jobs[index]));
+                    OwnerProductCard.fromCompleteData(job.jobs[index]));
           }, product: (product) {
             return ListView.builder(
                 itemCount: product.products.length,
                 itemBuilder: (context, index) =>
-                    OwnerProductCard.fromLimitedData(product.products[index]));
+                    OwnerProductCard.fromCompleteData(product.products[index]));
           }, empty: (empty) {
             return Center(
               child: Text('Empty'),

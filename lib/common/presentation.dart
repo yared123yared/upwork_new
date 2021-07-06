@@ -8,7 +8,6 @@ export 'widgets/custom_action_button.dart';
 export 'widgets/custom_address_picker.dart';
 export 'widgets/custom_alert_dialog.dart';
 export 'widgets/custom_card.dart';
-export 'widgets/custom_color_picker.dart';
 export 'widgets/custom_date_picker.dart';
 export 'widgets/custom_drop_down_list.dart';
 //export 'widgets/custom_drop_down_list.dart';

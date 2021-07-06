@@ -5,7 +5,7 @@ import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart
 import 'package:complex/view/job_pages/add_job_page.dart';
 import 'package:complex/view/pet_pages/add_pet_page.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
-import 'package:complex/view/property/add_property_page.dart';
+import 'package:complex/view/property_pages/add_property_page.dart';
 import 'package:complex/view/vehicle/vehicle_create_page.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/resource/colors.dart';
