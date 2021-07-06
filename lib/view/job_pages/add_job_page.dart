@@ -1,8 +1,7 @@
+import 'package:complex/application/explore/ecom/product_owner/product_owner_bloc.dart';
 import 'package:complex/blocs/product_bloc.dart';
-import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
-import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
@@ -13,18 +12,19 @@ import 'package:complex/domain/explore/ecom/product/product_data/complete_produc
 import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
-import 'package:complex/utils/utility.dart';
+import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:injector/injector.dart';
 
 class AddJobPage extends StatefulWidget {
   final ContactDetails contactDetail;
   final CompleteJob completeJob;
 
-  AddJobPage(this.contactDetail,{this.completeJob});
+  AddJobPage(this.contactDetail, {this.completeJob});
 
   @override
   State<StatefulWidget> createState() {
@@ -49,68 +49,51 @@ class _AddJobPageState extends State<AddJobPage> {
   double get screenWidth => MediaQuery.of(context).size.width;
 
   double get gridWidth => (screenWidth - 70) / 4;
-  ProductBloc _productBloc;
-  var _isOwner = true;
-
-  void _handleAddPetResponse(AddNewJobState state) {
-    switch (state.apiState) {
-      case ApiStatus.LOADING:
-        _isLoading = true;
-        break;
-      case ApiStatus.SUCCESS:
-        _isLoading = false;
-        AlertsWidget.alertWithOkBtn(
-          context: context,
-          onOkClick: () {
-            Navigator.pop(context);
-            Navigator.pop(context);
-          },
-          text: state.response.message,
-        );
-        break;
-      case ApiStatus.ERROR:
-        _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
-        break;
-      case ApiStatus.INITIAL:
-        break;
-    }
-  }
+  ProductOwnerBloc _productBloc;
 
   @override
   Widget build(BuildContext context) {
-    _productBloc = BlocProvider.of<ProductBloc>(context);
-    return BlocListener<ProductBloc, ProductState>(
-      listener: (context, state) {
-        if (state is AddNewJobState) _handleAddPetResponse(state);
-      },
-      child: BlocBuilder<ProductBloc, ProductState>(
-        builder: (context, state) {
-          return Scaffold(
-            key: _key,
-            appBar: AppBar(
-              title: Text('Generic Properties'),
-              leading: IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.white),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
-                ),
-              ),
-              backgroundColor: ColorConstants.greenColor,
-            ),
-            body: ScreenWithLoader(
-              isLoading: _isLoading,
-              body: SingleChildScrollView(
-                child: _renderForm(),
-              ),
-            ),
-          );
+    _productBloc = BlocProvider.of<ProductOwnerBloc>(context);
+    return BlocListener<ProductOwnerBloc, ProductOwnerState>(
+        listener: (context, state) {
+          state.failure.fold(() {
+            if (state.isLoading) {
+              EasyLoading.show(status: 'Loading..');
+            } else if (state.message.isNotEmpty) {
+              EasyLoading.showInfo(state.message);
+            } else {
+              EasyLoading.dismiss();
+            }
+          }, (a) {
+            EasyLoading.dismiss();
+
+            showDialog(
+                context: context,
+                builder: (context) => ErrorDialogue(failure: a));
+          });
         },
-      ),
-    );
+        child: Scaffold(
+          key: _key,
+          appBar: AppBar(
+            title: Text('Generic Properties'),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(20),
+              ),
+            ),
+            backgroundColor: ColorConstants.greenColor,
+          ),
+          body: ScreenWithLoader(
+            isLoading: _isLoading,
+            body: SingleChildScrollView(
+              child: _renderForm(),
+            ),
+          ),
+        ));
   }
 
   Widget _renderForm() {
@@ -330,25 +313,54 @@ class _AddJobPageState extends State<AddJobPage> {
   }
 
   _onRegisterClick() {
-    JobModel _jobModel = JobModel(
-      contactdetails: widget.contactDetail,
-      listingownertype: null,
-      title: _title.text.trim(),
-      description: _jd.text.trim(),
-      docid: null,
-      serviceproviderid: null,
-      userid: UserSession.userId,
-      arefreshersallowed: _isFresherAllowed,
-      companylogo: _photo,
-      companyname: _companyName.text.trim(),
-      educationqualification: null,
-      isparttime: _isPartTime,
-      maxsalaryrange: int.parse(_maxValue.text.trim()),
-      minsalaryrange: int.parse(_minValue.text.trim()),
-      minyearexperience: int.parse(_yearExperience.text.trim()),
-      worktype: null,
+    CompleteJob newJob;
+
+    if (widget.completeJob != null) {
+      newJob = widget.completeJob.copyWith(
+          docId: '',
+          dt: 'job',
+          serviceId: '',
+          userId: UserSession.userId,
+          data: widget.completeJob.data.copyWith(
+            contactdetails: widget.contactDetail,
+            listingownertype: null,
+            title: _title.text.trim(),
+            description: _jd.text.trim(),
+            arefreshersallowed: _isFresherAllowed,
+            companylogo: _photo,
+            companyname: _companyName.text.trim(),
+            educationqualification: '',
+            isparttime: _isPartTime,
+            maxsalaryrange: int.parse(_maxValue.text.trim()),
+            minsalaryrange: int.parse(_minValue.text.trim()),
+            minyearexperience: int.parse(_yearExperience.text.trim()),
+            worktype: '',
+          ));
+    } else {
+      newJob = CompleteJob(
+          docId: '',
+          dt: 'job',
+          serviceId: '',
+          userId: UserSession.userId,
+          data: JobData(
+            contactdetails: widget.contactDetail,
+            listingownertype: null,
+            title: _title.text.trim(),
+            description: _jd.text.trim(),
+            arefreshersallowed: _isFresherAllowed,
+            companylogo: _photo,
+            companyname: _companyName.text.trim(),
+            educationqualification: '',
+            isparttime: _isPartTime,
+            maxsalaryrange: int.parse(_maxValue.text.trim()),
+            minsalaryrange: int.parse(_minValue.text.trim()),
+            minyearexperience: int.parse(_yearExperience.text.trim()),
+            worktype: '',
+          ));
+    }
+
+    _productBloc.add(
+      ProductOwnerEvent.add(productData: newJob),
     );
-    _productBloc
-        .add(AddNewJobEvent(model: _jobModel, userId: UserSession.userId));
   }
 }
