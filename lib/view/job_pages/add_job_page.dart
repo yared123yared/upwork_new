@@ -99,16 +99,26 @@ class _AddJobPageState extends State<AddJobPage> {
   Widget _renderForm() {
     return Column(
       children: [
-        _renderTextField("Title", _title,initialValue: widget.completeJob?.data?.title),
-        _renderTextField("Job Description", _jd,initialValue: widget.completeJob?.data?.description),
-        _renderTextField("Company Name", _companyName,initialValue: widget.completeJob?.data?.companyname),
-        _renderPartTime(),//TODO kousik
+        _renderTextField("Title", _title,
+            initialValue: widget.completeJob?.data?.title),
+        _renderTextField("Job Description", _jd,
+            initialValue: widget.completeJob?.data?.description),
+        _renderTextField("Company Name", _companyName,
+            initialValue: widget.completeJob?.data?.companyname),
+        _renderPartTime(), //TODO kousik
         GroupTitle(text: 'Salary Range'),
-        _renderTextField("Min Value", _minValue, isInt: true,initialValue: widget.completeJob?.data?.minsalaryrange?.toString()),
-        _renderTextField("Max Value", _maxValue, isInt: true,initialValue: widget.completeJob?.data?.maxsalaryrange?.toString()),
+        _renderTextField("Min Value", _minValue,
+            isInt: true,
+            initialValue: widget.completeJob?.data?.minsalaryrange?.toString()),
+        _renderTextField("Max Value", _maxValue,
+            isInt: true,
+            initialValue: widget.completeJob?.data?.maxsalaryrange?.toString()),
         GroupTitle(text: 'Education Qualification'),
         _renderIsMilkingNow(),
-        _renderTextField("Year of Experience", _yearExperience, isInt: true,initialValue: widget.completeJob?.data?.minyearexperience?.toString()),
+        _renderTextField("Year of Experience", _yearExperience,
+            isInt: true,
+            initialValue:
+                widget.completeJob?.data?.minyearexperience?.toString()),
         GroupTitle(text: 'Upload (Company Logo/Photo)'),
         _renderPhotosGrid(),
         Padding(
@@ -233,11 +243,11 @@ class _AddJobPageState extends State<AddJobPage> {
   }
 
   Widget _renderTextField(String text, CustomTextFieldController controller,
-      {bool isInt = false,@required String initialValue}) {
+      {bool isInt = false, @required String initialValue}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: CustomTextField(
-        initialValue: widget.completeJob?.toString(),
+        initialValue: initialValue,
         title: text,
         controller: controller,
         validate: Validate.withOption(

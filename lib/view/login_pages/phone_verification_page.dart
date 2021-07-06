@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_country_picker/country.dart';
 import 'package:flutter_country_picker/flutter_country_picker.dart';
-import 'package:provider/provider.dart';
 
 import '../../main.dart';
 
@@ -29,7 +28,6 @@ class PhoneVerificationPage extends StatefulWidget {
 class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
   final CustomTextFieldController controller = CustomTextFieldController();
   Country country = Country.IN;
-  AuthBloc _authBloc;
   bool _isLoading = false;
   var _key = GlobalKey<ScaffoldState>();
 
@@ -38,7 +36,6 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
   @override
   Widget build(BuildContext context) {
     Application(context);
-    _authBloc = Provider.of<AuthBloc>(context);
     return BlocListener<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
         if (state is LoginState) _handleVerifyStateLogin(state);
