@@ -185,7 +185,7 @@ class OwnerProductCard extends StatelessWidget {
     );
   }
 
-  factory OwnerProductCard.fromLimitedData(CompleteProductData data) {
+  factory OwnerProductCard.fromCompleteData(CompleteProductData data) {
     return data.map(
         pet: (v) => OwnerProductCard(
               data: v,

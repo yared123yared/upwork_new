@@ -25,7 +25,6 @@ import 'package:complex/newentityfeatures/ecommerce-admin/views/orders/orders_vi
 import 'package:complex/newentityfeatures/ecommerce-admin/views/trip/trips_view.dart';
 import 'package:complex/newentityfeatures/ecommerce-admin/views/vendor/vendor_view.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
-import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/offerings/presentation/offerings_listview.dart';
 import 'package:complex/newentityfeatures/school/Class%20period/presentation/classperiodmodel_listview.dart';
 import 'package:complex/newentityfeatures/school/Create%20assignment%20form/presentation/createassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Event/presentation/event_page.dart';
@@ -39,16 +38,14 @@ import 'package:complex/newentityfeatures/school/Student%20model/presentation/st
 import 'package:complex/newentityfeatures/school/Teacher%20assignment/presentation/teacherassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Virtual%20room/presentation/virtualroom_listview.dart';
 import 'package:complex/newentityfeatures/vrassignment/presentation/vrassignmentmodel_listview.dart';
-import 'package:complex/view/entity/school/lookup/fee_item_list_page.dart';
 import 'package:complex/view/entity/school/lookup/lookup_navigation_helper.dart';
-import 'package:complex/view/entity/school/lookup/offering_list_page.dart';
 import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
 import 'package:complex/view/job_pages/job_detail_page.dart';
 import 'package:complex/view/medical_pages/case_view.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
 import 'package:complex/view/product_pages/dynamic_category_page.dart';
 import 'package:complex/view/product_pages/general_contact_details_page.dart';
-import 'package:complex/view/property/property_detail_page.dart';
+import 'package:complex/view/property_pages/property_detail_page.dart';
 import 'package:complex/view/vehicle/vehicle_detail_page.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:flutter/material.dart';

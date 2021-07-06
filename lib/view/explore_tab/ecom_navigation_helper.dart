@@ -4,7 +4,7 @@ import 'package:complex/domain/explore/ecom/product/product_data/complete_produc
 import 'package:complex/view/explore_tab/owner_view/owner_product_list_page.dart';
 import 'package:complex/view/job_pages/job_detail_page.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
-import 'package:complex/view/property/property_detail_page.dart';
+import 'package:complex/view/property_pages/property_detail_page.dart';
 import 'package:complex/view/vehicle/vehicle_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
