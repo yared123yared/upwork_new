@@ -4,6 +4,7 @@ import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
 import 'package:complex/main.dart';
 import 'package:complex/common/widgets/alerts_widget.dart';
@@ -27,8 +28,8 @@ import 'package:intl/intl.dart';
 
 class AddPropertyPage extends StatefulWidget {
   final ContactDetails contactDetail;
-
-  AddPropertyPage(this.contactDetail);
+  final CompleteRealEstate realEstate;
+  AddPropertyPage(this.contactDetail, {this.realEstate});
 
   _AddPropertyPage createState() => _AddPropertyPage();
 }
@@ -277,6 +278,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                         icon: Icons.title,
                         title: "Title",
                         controller: _title,
+                        initialValue: widget.realEstate?.data?.title,
                         validate: Validate.withOption(
                           isRequired: true,
                         ),

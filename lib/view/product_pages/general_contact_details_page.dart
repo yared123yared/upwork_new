@@ -97,9 +97,12 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
         child: Column(
           children: [
             _renderTextField('Name', _nameController,
-                initialValue: initContactDetails.name),
+                initialValue: initContactDetails?.name),
+
+            // TODO KOUSIK
             _renderNameShare(),
-            _renderTextField('Phone', _phoneController, isPhone: true),
+            _renderTextField('Phone', _phoneController,
+                isPhone: true, initialValue: initContactDetails?.phonenum),
             _renderPhoneShare(),
             _renderTextField('Email', _emailController),
             _renderEmailShare(),
