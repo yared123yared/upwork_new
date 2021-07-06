@@ -27,83 +27,80 @@ class ComplexStaffGateway {
     }
   }
 
-  static List<StaffModel> getStaffModelList(QuerySnapshot x) {
-    List<StaffModel> mylist = [];
-    for (QueryDocumentSnapshot y in x.docs) {
-      Map a = y.data();
 
-      a.putIfAbsent("id", () => y.id);
-      StaffModel s = StaffModel.fromJson(a);
-      mylist.add(s);
-    }
+  static List<StaffModel> getStaffModelList(QuerySnapshot x)
+  {
+    List<StaffModel> mylist=[];
+    for(QueryDocumentSnapshot y in x.docs)
+      {
+        Map a =y.data();
+
+        a.putIfAbsent("id", () => y.id);
+        StaffModel s = StaffModel.fromJson(a);
+        mylist.add(s);
+
+      }
     return mylist;
+
   }
 
+
   static Future<void> newStaffRequest(
-      {StaffModel staffModel, String entityid, String entitytype}) async {
-    try {
-      SignUpRequest _signUpModel = SignUpRequest(
-          password: "secretPassword",
-          username: staffModel.name,
-          email: staffModel.email,
-          phoneNum: staffModel.phoneNumStr,
-          requestType: "PROFILE");
+      {StaffModel staffModel, String entityid,String entitytype}) async {
 
-      String _userID = null;
-      var authrepository = HelpUtil.getAuthRepositoryl();
-      GeneralResponse gr =
-          await authrepository.createUserForRequest(request: _signUpModel);
-      if (gr.success) _userID = _signUpModel.userId;
+    SignUpRequest _signUpModel = SignUpRequest(
+      password: "secretPassword",
+      username: staffModel.name,
+      email: staffModel.email,
+      phoneNum: staffModel.phoneNumStr,requestType: "PROFILE"
+    );
 
-      print(json.encode(staffModel.toJson()));
-      print('processing user id is: $_userID');
-      if (_userID != null) {
-        final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-          'NewStaffCreateRequestModified',
-        );
-        staffModel.copyWith(appUserId: _userID);
+    String _userID =null;
+    var authrepository = HelpUtil.getAuthRepositoryl();
+    GeneralResponse gr = await authrepository.createUserForRequest(request:_signUpModel);
+    if(gr.success)
+      _userID=_signUpModel.userId;
 
-        print(staffModel.toJson());
-        dynamic resp = await callable.call(<String, dynamic>{
-          'staffdata': staffModel.toJson(),
-          'entitytype': entitytype,
-          'staffid': _userID,
-          // 'byuserid': userModel.userID,
-          'entityid': entityid,
-        });
-        print("CloudFunction " + callable.toString());
-        print("CloudFunction " + resp.data.toString());
-      } else {
-        print("malfunction");
-      }
-    } catch (e) {
-      print(e);
-      throw e;
+
+    print(json.encode(staffModel.toJson()));
+    print('processing user id is: $_userID');
+    if (_userID != null) {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'NewStaffCreateRequestModified',
+      );
+      staffModel.copyWith(appUserId:_userID);
+
+      print(staffModel.toJson());
+      dynamic resp = await callable.call(<String, dynamic>{
+        'staffdata': staffModel.toJson(),
+        'entitytype': entitytype,
+        'staffid': _userID,
+        // 'byuserid': userModel.userID,
+        'entityid': entityid,
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } else {
+      print("malfunction");
     }
   }
 
   static Future<void> updateStaffRequest(
       {@required StaffModel oldStaff,
-      @required StaffModel newStaff,
-      @required String entityid,
-      @required String entitytype,
-      @required UserModel userModel}) async {
-    try {
-      final HttpsCallable callable = FirebaseFunctions.instance
-          .httpsCallable('StaffUpdateRequestModified');
+      @required StaffModel newStaff,@required String entityid,@required String entitytype,
 
-      dynamic resp = await callable.call(<String, dynamic>{
-        'olddata': oldStaff.toJson(),
-        'newdata': toComplexStaffUpdateData(oldStaff, newStaff),
-        'entitytype': entitytype,
-        'staffid': oldStaff.appUserId,
-        'byuserid': userModel.userID,
-        'entityid': entityid,
-      });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+      @required UserModel userModel}) async {
+    final HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('StaffUpdateRequestModified');
+
+    dynamic resp = await callable.call(<String, dynamic>{
+      'olddata': oldStaff.toJson(),
+      'newdata': toComplexStaffUpdateData(oldStaff, newStaff),
+      'entitytype': entitytype,
+      'staffid': oldStaff.appUserId,
+      'byuserid': userModel.userID,
+      'entityid': entityid,
+    });
   }
 
   static Map<String, dynamic> toComplexStaffUpdateData(
@@ -156,10 +153,10 @@ class ComplexStaffGateway {
     };
   }
 
+
   static Future<dynamic> deleteStaffRequest(
       {@required StaffModel staffModel,
-      @required String entityid,
-      @required String entitytype,
+  @required String entityid,@required String entitytype,
       @required UserModel userModel}) async {
     final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
       'StaffDeleteRequestModified',
@@ -175,8 +172,8 @@ class ComplexStaffGateway {
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
       return resp.data;
-    } catch (e) {
-      return {'error': e};
+    }catch(e){
+      return {'error':e};
     }
   }
 }

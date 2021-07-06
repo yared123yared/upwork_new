@@ -159,60 +159,58 @@ class ServiceRequestGateway {
 
   static Future<List<ServiceRequestModel>> getAllActiveServiceRequestList(
       {@required String entitytype, String entityid}) async {
-    try {
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
-          .get()
-          .then((x) {
-        return ServiceRequestModel.listFromJson(
-          x.docs.map((d) => d.data).toList(),
-          x.docs.map((d) => d.id).toList(),
-        );
-      });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+    DateTime now = new DateTime.now();
+    DateTime date = new DateTime(now.year, now.month, now.day);
+
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+        .where("endDate",isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
+        .get()
+        .then((x) {
+      return ServiceRequestModel.listFromJson(
+        x.docs.map((d) => d.data).toList(),
+        x.docs.map((d) => d.id).toList(),
+      );
+    });
   }
 
-  static Future<List<ServiceRequestModel>> getServiceRequestOwnerResident(
+  static Future<List<ServiceRequestModel>> getAllServiceRequestModelsForListOfUnits(
       {@required String entitytype,
       String entityid,
-      @required UserModel um}) async {
-    try {
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
-          .get()
-          .then((x) {
-        return ServiceRequestModel.listFromJson(
-          x.docs.map((d) => d.data).toList(),
-          x.docs.map((d) => d.id).toList(),
-        );
-      });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+      @required List<String> residentunitlist}) async {
+    DateTime now = new DateTime.now();
+    DateTime date = new DateTime(now.year, now.month, now.day);
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+        .where("unitId", whereIn: residentunitlist)
+        .where("endDate",isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
+        .get()
+        .then((x) {
+      return ServiceRequestModel.listFromJson(
+        x.docs.map((d) => d.data).toList(),
+        x.docs.map((d) => d.id).toList(),
+      );
+    });
   }
 
   static Future<List<ServiceRequestModel>> getServiceRequestStaffSelf(
       {@required String entitytype,
       String entityid,
-      @required UserModel um}) async {
-    try {
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
-          .get()
-          .then((x) {
-        return ServiceRequestModel.listFromJson(
-          x.docs.map((d) => d.data).toList(),
-          x.docs.map((d) => d.id).toList(),
-        );
-      });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+      @required String um}) async {
+    DateTime now = new DateTime.now();
+    DateTime date = new DateTime(now.year, now.month, now.day);
+
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+        .where("forstaffid", isEqualTo: um)
+        .where("endDate",isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
+        .get()
+        .then((x) {
+      return ServiceRequestModel.listFromJson(
+        x.docs.map((d) => d.data).toList(),
+        x.docs.map((d) => d.id).toList(),
+      );
+    });
   }
 
   static Future<void> responseToAdhocVisitor({

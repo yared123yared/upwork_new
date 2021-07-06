@@ -59,13 +59,7 @@ class ServiceRequestModelRepository {
     );
 
     List<String> roles;
-    if (_complexModel.roles.contains(EntityRoles.Manager)) {
-      roles = ["manager"];
-    } else if (_complexModel.roles.contains(EntityRoles.Owner)) {
-      roles = ["owner"];
-    } else if (_complexModel.roles.contains(EntityRoles.Resident)) {
-      roles = ["resident"];
-    }
+
 
     // List<String> role = _complexModel.stringRoles;
     List<ServiceRequestModel> services =
@@ -76,33 +70,12 @@ class ServiceRequestModelRepository {
     );
     List<ServiceRequestModel> filteredServices = [];
 
-    if (originType == 1) {
-      // managerregistryMultiOwner
-      filteredServices = services;
-    } else if (originType == 2) {
-      // managerregistrySingleOwner
-      // only show servicerequest created by this staff memeber
-      services.forEach((service) {
-        if (service.unitId == _user.userID) {
-          filteredServices.add(service);
-        }
-      });
-    } else if (originType == 3) {
-      // newownerresidentregistry
-      // show servicerequest only corresponding to unitid present in userprofile
-      services.forEach((service) {
-        if (service.unitId == _user.userID) {
-          filteredServices.add(service);
-        }
-      });
-    }
 
-    myreturn.itemlist = filteredServices;
+    myreturn.itemlist = services;
 
-    bool isStaff = _complexModel.roles.contains(EntityRoles.Staff) ||
-        _complexModel.roles.contains(EntityRoles.Manager);
 
-    myreturn.isStaff = isStaff;
+
+
 
     // myreturn.itemlist = await _complexRepository.getServiceRequestList(
     //   complexID: entityid,
@@ -113,37 +86,85 @@ class ServiceRequestModelRepository {
     return myreturn;
   }
 
-  Future<ServiceRequestModelRepositoryReturnData>
-      getAllServiceRequestModelsForRequestype(
-          String entitytype, String entityid, requestType) async {
+
+  Future<ServiceRequestModelRepositoryReturnData> getAllServiceRequestModelsForStaffId(
+      String entitytype, String entityid, int originType,String staffid) async {
     ServiceRequestModelRepositoryReturnData myreturn =
-        ServiceRequestModelRepositoryReturnData();
+    ServiceRequestModelRepositoryReturnData();
 
-    ComplexModel _complexModel = await _complexRepository.getComplexAsync(
-      complex: _user.defaultComplexEntity,
-    );
 
-    myreturn.itemlist = await _complexRepository.getServiceRequestOwnerResident(
+
+    List<String> roles;
+
+
+    // List<String> role = _complexModel.stringRoles;
+    List<ServiceRequestModel> services =
+    await _complexRepository.getServiceRequestStaffSelf(
       entitytype: entitytype,
       entityid: entityid,
-      userModel: _user,
+      userid: staffid,
     );
-    //  getAllActiveServiceRequestList(
-    //   entitytype: entitytype,
-    //   entityid: entityid,
-    //   userModel: _user,
+    List<ServiceRequestModel> filteredServices = [];
+
+
+    myreturn.itemlist = services;
+
+
+
+
+
+    // myreturn.itemlist = await _complexRepository.getServiceRequestList(
+    //   complexID: entityid,
     // );
 
-    // await _complexRepository.getServiceRequestList(complexID: entityid);
-
-    bool isStaff = _complexModel.roles.contains(EntityRoles.Staff) ||
-        _complexModel.roles.contains(EntityRoles.Manager);
-
-    myreturn.isStaff = isStaff;
-
     myreturn.errortype = -1;
+
     return myreturn;
   }
+
+
+  Future<ServiceRequestModelRepositoryReturnData> getAllServiceRequestModelsForListOfUnits(
+      String entitytype, String entityid, int originType,List<String> residentunitlist) async {
+    ServiceRequestModelRepositoryReturnData myreturn =
+    ServiceRequestModelRepositoryReturnData();
+
+
+
+    List<String> roles;
+
+
+    // List<String> role = _complexModel.stringRoles;
+    List<ServiceRequestModel> services =
+    await _complexRepository.getAllServiceRequestModelsForListOfUnits(
+      entitytype: entitytype,
+      entityid: entityid,
+      residentunitlist: residentunitlist,
+    );
+    List<ServiceRequestModel> filteredServices = [];
+
+
+    myreturn.itemlist = services;
+
+
+
+
+
+    // myreturn.itemlist = await _complexRepository.getServiceRequestList(
+    //   complexID: entityid,
+    // );
+
+    myreturn.errortype = -1;
+
+    return myreturn;
+  }
+
+
+
+
+
+
+
+
 
   Future<ServiceRequestModelRepositoryReturnData> createServiceRequestModel(
       ServiceRequestModel item, String entitytype, String entityid) async {

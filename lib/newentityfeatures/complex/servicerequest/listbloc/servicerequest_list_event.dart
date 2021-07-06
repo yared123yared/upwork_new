@@ -14,6 +14,74 @@ class getListData extends ServiceRequestModelListEvent {
   @override
   List<Object> get props => [entityid, entitytype, originType];
 }
+class getPreData extends ServiceRequestModelListEvent {
+  final String entityid;
+  final String entitytype;
+
+  getPreData({
+    @required this.entityid,
+    @required this.entitytype,
+  });
+  @override
+  List<Object> get props => [entityid, entitytype];
+}
+
+class getListDataByBuildingAndFloor extends ServiceRequestModelListEvent {
+  final String entityid;
+  final String entitytype;
+  final int originType;
+  final String buildingName;
+  final int floorNum;
+  getListDataByBuildingAndFloor({
+    @required this.entityid,
+    @required this.entitytype,
+    @required this.originType,
+    @required this.buildingName,
+    @required this.floorNum,
+  });
+  @override
+  List<Object> get props =>
+      [entityid, entitytype, originType, buildingName, floorNum];
+}
+
+class getListDataByListOfUnits extends ServiceRequestModelListEvent {
+  final String entityid;
+  final String entitytype;
+  final int originType;
+  final List<String> unitlist;
+
+  getListDataByListOfUnits({
+    @required this.entityid,
+    @required this.entitytype,
+    @required this.originType,
+    @required this.unitlist,
+
+  });
+  @override
+  List<Object> get props =>
+      [entityid, entitytype, originType, unitlist];
+}
+
+
+class getListDataByUnitId extends ServiceRequestModelListEvent {
+  final String entityid;
+  final String entitytype;
+  final int originType;
+  final String unitid;
+
+  getListDataByUnitId({
+    @required this.entityid,
+    @required this.entitytype,
+    @required this.originType,
+    @required this.unitid,
+
+  });
+  @override
+  List<Object> get props =>
+      [entityid, entitytype, originType, unitid];
+}
+
+
 
 class getListDataForServiceRequestType extends ServiceRequestModelListEvent {
   final String entityid;

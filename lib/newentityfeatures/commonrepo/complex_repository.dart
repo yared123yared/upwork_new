@@ -456,11 +456,11 @@ class NewComplexRepository {
   Future<List<ServiceRequestModel>> getServiceRequestStaffSelf(
       {@required String entitytype,
       String entityid,
-      UserModel userModel}) async {
+      String  userid}) async {
     try {
       List<ServiceRequestModel> mylist = [];
       mylist = await ServiceRequestGateway.getServiceRequestStaffSelf(
-          entitytype: entitytype, entityid: entityid, um: userModel);
+          entitytype: entitytype, entityid: entityid, um: userid);
       return mylist;
     } catch (e) {
       print(e);
@@ -468,14 +468,14 @@ class NewComplexRepository {
     }
   }
 
-  Future<List<ServiceRequestModel>> getServiceRequestOwnerResident(
+  Future<List<ServiceRequestModel>> getAllServiceRequestModelsForListOfUnits(
       {@required String entitytype,
       String entityid,
-      UserModel userModel}) async {
+        List<String> residentunitlist}) async {
     try {
       List<ServiceRequestModel> mylist = [];
-      mylist = await ServiceRequestGateway.getServiceRequestStaffSelf(
-          entitytype: entitytype, entityid: entityid, um: userModel);
+      mylist = await ServiceRequestGateway.getAllServiceRequestModelsForListOfUnits(
+          entitytype: entitytype, entityid: entityid, residentunitlist: residentunitlist);
       return mylist;
     } catch (e) {
       print(e);

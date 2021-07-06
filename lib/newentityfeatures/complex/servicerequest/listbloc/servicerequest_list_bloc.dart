@@ -26,19 +26,7 @@ class ServiceRequestModelListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is getListDataForServiceRequestType) {
-      yield IsBusy();
-      ServiceRequestModelRepositoryReturnData ud =
-          await mrepository.getAllServiceRequestModelsForRequestype(
-              event.entitytype, event.entityid, event.requesttype);
 
-      if (ud.errortype == -1)
-        yield IsListDataLoaded(listdata: ud.itemlist, isStaff: ud.isStaff);
-      else if (ud.errortype == 1)
-        yield HasLogicalFaliur(error: ud.error);
-      else
-        yield HasExceptionFaliur(error: ud.error);
-    }
 
     if (event is deleteItemWithData) {
       yield IsBusy();
