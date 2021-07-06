@@ -311,9 +311,10 @@ class UiEntityPageStateList {
     setupP.add(DynamicEntityGridState.newBuilding);
     setupP.add(DynamicEntityGridState.newUnits);
     setupP.add(DynamicEntityGridState.newStaff);
-    if (_userRepository.getUser().defaultComplexModel.complexType=="SINGLEOWNER")
+    if (_userRepository.getUser().defaultComplexModel.complexType ==
+        "SINGLEOWNER")
       setupP.add(DynamicEntityGridState.managerregistrySingleOwner);
-      else
+    else
       setupP.add(DynamicEntityGridState.managerregistryMultiOwner);
 
     return setupP;
@@ -1446,7 +1447,6 @@ class UiSchoolHandler {
             title: 'newparentassignmentscoreinfopage',
             tapAction: () async {
               NewSchoolRepository _schoolRepo = Get.find();
-              UserRepository _userRepository = Get.find();
 
               String entityid = getCurEntity().entityid;
 
@@ -1869,7 +1869,7 @@ class UiSchoolHandler {
               Navigator.push(
                   context,
                   NextPageRoute(GeneralContactDetailPage(
-                    type: ContactOpenFrom.product,
+                    type: EcomProductType.product(),
                   )));
             });
         break;

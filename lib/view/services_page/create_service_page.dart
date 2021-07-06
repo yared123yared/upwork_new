@@ -1,18 +1,15 @@
 import 'package:complex/blocs/service_bloc.dart';
-import 'package:complex/common/helputil.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/data.dart';
 import 'package:complex/data/models/response/user_response/service_model.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/main.dart';
 import 'package:complex/common/widgets/custom_button.dart';
-import 'package:complex/common/widgets/custom_date_picker.dart';
 import 'package:complex/common/widgets/custom_dropdown.dart';
 import 'package:complex/common/widgets/custom_image_uploader.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
-import 'package:complex/view/complex_pages/custom_address_picker.dart';
 import 'package:complex/utils/places.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
@@ -22,7 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:injector/injector.dart';
 import 'package:provider/provider.dart';
 
@@ -50,27 +46,16 @@ class _CreateServicePageState extends State<CreateServicePage> {
   CustomTextFieldController _serviceOffered = CustomTextFieldController();
   CustomTextFieldController _mPhone = CustomTextFieldController();
   CustomTextFieldController _mLanguage = CustomTextFieldController();
-  CustomTextFieldController _timeInterval = CustomTextFieldController();
   CustomTextFieldController _address = CustomTextFieldController();
-  CustomTextFieldController _biography = CustomTextFieldController();
-  CustomTextFieldController _category = CustomTextFieldController();
   CustomTextFieldController _email = CustomTextFieldController();
-  CustomTextFieldController _geoHash = CustomTextFieldController();
   CustomTextFieldController _photo = CustomTextFieldController();
   CustomTextFieldController _serviceName = CustomTextFieldController();
   CustomTextFieldController _serviceType = CustomTextFieldController();
   CustomTextFieldController _district = CustomTextFieldController();
   CustomTextFieldController _state = CustomTextFieldController();
   CustomTextFieldController _village = CustomTextFieldController();
-  CustomTextFieldController _latitude = CustomTextFieldController();
-  CustomTextFieldController _longitude = CustomTextFieldController();
-  CustomTextFieldController _startDateController = CustomTextFieldController();
-  CustomTextFieldController _endDateController = CustomTextFieldController();
   CustomTextFieldController aptpslots = CustomTextFieldController();
   CustomTextFieldController apttype = CustomTextFieldController();
-
-  DateTime _startDate = DateTime.now();
-  DateTime _endDate = DateTime.now();
 
   bool isMobile;
   bool locationShared;

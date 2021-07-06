@@ -152,7 +152,8 @@ class OwnerProductCard extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              _editData(data);
+                              EcomNavigationHelper.of(context)
+                                  .completeToDetailsPage(data: data);
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(
@@ -239,37 +240,6 @@ class OwnerProductCard extends StatelessWidget {
               subtitle: v.data.companyname,
               title: v.data.title,
             ));
-  }
-
-  void _editData(CompleteProductData data) {
-    data.maybeMap(
-      pet: (pet) {
-        Get.to(() => GeneralContactDetailPage(
-              type: ContactOpenFrom.pet,
-            ));
-      },
-      product: (product) {
-        Get.to(() => GeneralContactDetailPage(
-              type: ContactOpenFrom.product,
-            ));
-      },
-      vehicle: (vehicle) {
-        Get.to(() => GeneralContactDetailPage(
-              type: ContactOpenFrom.vehicle,
-            ));
-      },
-      realEstate: (realEstate) {
-        Get.to(() => GeneralContactDetailPage(
-              type: ContactOpenFrom.addProperty,
-            ));
-      },
-      job: (job) {
-        Get.to(() => GeneralContactDetailPage(
-              type: ContactOpenFrom.job,
-            ));
-      },
-      orElse: () {},
-    );
   }
 }
 

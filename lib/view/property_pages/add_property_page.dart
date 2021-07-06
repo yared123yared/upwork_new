@@ -1,12 +1,10 @@
+import 'package:complex/application/explore/ecom/product_owner/product_owner_bloc.dart';
 import 'package:complex/blocs/product_bloc.dart';
-import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
-import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/main.dart';
-import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_slide_transition.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
@@ -18,17 +16,19 @@ import 'package:complex/view/property_pages/service_type.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
 import 'package:complex/utils/utility.dart';
+import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:injector/injector.dart';
 import 'package:intl/intl.dart';
 
 class AddPropertyPage extends StatefulWidget {
   final ContactDetails contactDetail;
-
-  AddPropertyPage(this.contactDetail);
+  final CompleteRealEstate realEstate;
+  AddPropertyPage(this.contactDetail, {this.realEstate});
 
   _AddPropertyPage createState() => _AddPropertyPage();
 }
@@ -62,9 +62,8 @@ class _AddPropertyPage extends State<AddPropertyPage> {
   List<String> _photos = [];
   ChannelsProvider _channelsProvider =
       Injector.appInstance.get<ChannelsProvider>();
-  UserRepository _userRepository = Injector.appInstance.get<UserRepository>();
   bool _isLoading = false;
-  ProductBloc _bloc;
+  ProductOwnerBloc _productBloc;
   var _key = GlobalKey<ScaffoldState>();
 
   bool _validateTitleBody() {
@@ -74,34 +73,9 @@ class _AddPropertyPage extends State<AddPropertyPage> {
     return vaild;
   }
 
-  void _handleCreatePropertyResponse(AddNewPropertyState state) {
-    switch (state.apiState) {
-      case ApiStatus.LOADING:
-        _isLoading = true;
-        break;
-      case ApiStatus.SUCCESS:
-        _isLoading = false;
-        AlertsWidget.alertWithOkBtn(
-          context: context,
-          onOkClick: () {
-            Navigator.pop(context);
-            Navigator.pop(context);
-          },
-          text: state.response.message,
-        );
-        break;
-      case ApiStatus.ERROR:
-        _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
-        break;
-      case ApiStatus.INITIAL:
-        break;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    _bloc = BlocProvider.of<ProductBloc>(context);
+    _productBloc = BlocProvider.of<ProductOwnerBloc>(context);
     Application(context);
     return WillPopScope(
       onWillPop: () async {
@@ -121,90 +95,100 @@ class _AddPropertyPage extends State<AddPropertyPage> {
         });
         return false;
       },
-      child: BlocListener<ProductBloc, ProductState>(
+      child: BlocListener<ProductOwnerBloc, ProductOwnerState>(
         listener: (context, state) {
           if (state is AddNewPropertyState)
-            _handleCreatePropertyResponse(state);
+            state.failure.fold(() {
+              if (state.isLoading) {
+                EasyLoading.show(status: 'Loading..');
+              } else if (state.message.isNotEmpty) {
+                EasyLoading.showInfo(state.message);
+              } else {
+                EasyLoading.dismiss();
+              }
+            }, (a) {
+              EasyLoading.dismiss();
+
+              showDialog(
+                  context: context,
+                  builder: (context) => ErrorDialogue(failure: a));
+            });
         },
-        child: BlocBuilder<ProductBloc, ProductState>(
-          builder: (context, state) {
-            return Scaffold(
-              key: _key,
-              appBar: AppBar(
-                elevation: 0,
-                backgroundColor: ColorConstants.primaryColor,
-                leading: GestureDetector(
+        child: Scaffold(
+          key: _key,
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: ColorConstants.primaryColor,
+            leading: GestureDetector(
+              onTap: () {
+                setState(() {
+                  if (_isRegistering) {
+                    _isRegistering = false;
+                  } else {
+                    if (_pageIndex == 0) {
+                      Navigator.pop(context);
+                    }
+                    if (_pageIndex > 1) {
+                      _pageIndex--;
+                    } else {
+                      _pageIndex = 0;
+                    }
+                  }
+                });
+              },
+              child: Icon(
+                Icons.arrow_back,
+              ),
+            ),
+            title: Text("Add Property"),
+            actions: [
+              if (_amenities.length > 0)
+                GestureDetector(
                   onTap: () {
-                    setState(() {
-                      if (_isRegistering) {
-                        _isRegistering = false;
-                      } else {
-                        if (_pageIndex == 0) {
-                          Navigator.pop(context);
-                        }
-                        if (_pageIndex > 1) {
-                          _pageIndex--;
-                        } else {
-                          _pageIndex = 0;
-                        }
-                      }
-                    });
+                    if (!_isRegistering)
+                      setState(() {
+                        _isRegistering = true;
+                      });
+                    else
+                      _registerClick();
                   },
-                  child: Icon(
-                    Icons.arrow_back,
-                  ),
-                ),
-                title: Text("Add Property"),
-                actions: [
-                  if (_amenities.length > 0)
-                    GestureDetector(
-                      onTap: () {
-                        if (!_isRegistering)
-                          setState(() {
-                            _isRegistering = true;
-                          });
-                        else
-                          _registerClick();
-                      },
-                      child: Container(
-                        margin: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            color: ColorConstants.primaryColor),
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(horizontal: 5),
-                        child: Text(
-                          _isRegistering ? 'Register' : 'Save',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Merriweather',
-                          ),
-                        ),
+                  child: Container(
+                    margin: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        color: ColorConstants.primaryColor),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    child: Text(
+                      _isRegistering ? 'Register' : 'Save',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Merriweather',
                       ),
                     ),
-                ],
-              ),
-              body: ScreenWithLoader(
-                isLoading: _isLoading,
-                body: SingleChildScrollView(
-                  controller: _scrollController,
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.white,
-                    padding: const EdgeInsets.all(20),
-                    child: Stack(
-                      children: [
-                        _index0(),
-                        if (_pageIndex > 0) _index1(),
-                        if (_isRegistering) _confirmRegistration()
-                      ],
-                    ),
                   ),
                 ),
+            ],
+          ),
+          body: ScreenWithLoader(
+            isLoading: _isLoading,
+            body: SingleChildScrollView(
+              controller: _scrollController,
+              child: Container(
+                width: double.infinity,
+                color: Colors.white,
+                padding: const EdgeInsets.all(20),
+                child: Stack(
+                  children: [
+                    _index0(),
+                    if (_pageIndex > 0) _index1(),
+                    if (_isRegistering) _confirmRegistration()
+                  ],
+                ),
               ),
-            );
-          },
+            ),
+          ),
         ),
       ),
     );
@@ -277,6 +261,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                         icon: Icons.title,
                         title: "Title",
                         controller: _title,
+                        initialValue: widget.realEstate?.data?.title,
                         validate: Validate.withOption(
                           isRequired: true,
                         ),
@@ -286,6 +271,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                         icon: Icons.text_fields_outlined,
                         title: "Description",
                         controller: _description,
+                        initialValue: widget.realEstate?.data?.description,
                         validate: Validate.withOption(
                           isRequired: true,
                         ),
@@ -854,7 +840,9 @@ class _AddPropertyPage extends State<AddPropertyPage> {
             CustomTextField(
               icon: Icons.attach_money_rounded,
               title: "Pricing",
+              initialValue: widget.realEstate?.data?.price.toString(),
               controller: _price,
+              // initialValue: widget.realEstate?.data?.price,
               validate: Validate.withOption(
                 isRequired: true,
                 isNumber: true,
@@ -870,6 +858,8 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                     icon: Icons.attach_money_rounded,
                     title: "Discount",
                     controller: _discountController,
+                    initialValue:
+                        widget.realEstate?.data?.discountstartdate?.toString(),
                     validate: Validate.withOption(
                       isRequired: true,
                       isInt: true,
@@ -1637,50 +1627,84 @@ class _AddPropertyPage extends State<AddPropertyPage> {
   }
 
   void _registerClick() {
-    PropertyModel _model = PropertyModel(
-      userid: UserSession.userId,
-      title: _title.text.trim(),
-      description: _description.text.trim(),
-      contactdetails: widget.contactDetail,
-      propertytype: _propertyType,
-      servicetype: _serviceType,
-      saletype: _saleType,
-      ownershiptype: _ownershipStatus,
-      price: int.parse(_price.text.trim()),
-      discountstartdate: _discountStartDate == null
-          ? null
-          : (_discountStartDate.millisecondsSinceEpoch / 1000).round(),
-      discountenddate: _discountEndDate == null
-          ? null
-          : (_discountEndDate.millisecondsSinceEpoch / 1000).round(),
-      creationdate: ((DateTime.now().millisecondsSinceEpoch / 1000).round()),
-      tenantgenderfamilypreference: _tenants,
-      furnishedstatus: _furnishingStatus,
-      constructionstatus: _contructionType,
-      numrooms: _bedRooms,
-      numbath: _bathRooms,
-      sqfeetarea: _sqFeet,
-      listingownertype: currentSegment == 0 ? "Broker" : "Owner",
-      has24hrwater: _amenities.contains("24xWater"),
-      hastv: _amenities.contains("TV"),
-      hasfridge: _amenities.contains("Fridge"),
-      hascooler: _amenities.contains("Cooler"),
-      hasairconditioner: _amenities.contains("AirConditioner"),
-      hasinternet: _amenities.contains("Internet/Wifi"),
-      hasgreenarea: _amenities.contains("GreenArea"),
-      hasparking: _amenities.contains("Parking"),
-      hasgaspipeline: _amenities.contains("GasPipeLine"),
-      hassecurity: _amenities.contains("Security"),
-      hasclubhouse: _amenities.contains("ClubHouse"),
-      haspowerbackup: _amenities.contains("PowerBackup"),
-      haslift: _amenities.contains("Lift"),
-      imagelist: _photos,
-    );
-    _bloc.add(
-      AddNewPropertyEvent(
-        model: _model,
-        userId: _userRepository.getUser().userID,
-      ),
+    CompleteRealEstate newRealEstate;
+
+    if (widget.realEstate != null) {
+      newRealEstate = widget.realEstate.copyWith(
+          docId: '',
+          dt: 'realestate',
+          serviceId: '',
+          userId: UserSession.userId,
+          data: widget.realEstate.data.copyWith(
+            title: _title.text.trim(),
+            description: _description.text.trim(),
+            contactdetails: widget.contactDetail,
+            propertytype: _propertyType,
+            servicetype: _serviceType,
+            saletype: _saleType,
+            ownershiptype: _ownershipStatus,
+            price: int.parse(_price.text.trim()),
+            furnishedstatus: _furnishingStatus,
+            constructionstatus: _contructionType,
+            numrooms: _bedRooms,
+            numbath: _bathRooms,
+            sqfeetarea: _sqFeet,
+            listingownertype: currentSegment == 0 ? "Broker" : "Owner",
+            has24hrwater: _amenities.contains("24xWater"),
+            hastv: _amenities.contains("TV"),
+            hasfridge: _amenities.contains("Fridge"),
+            hascooler: _amenities.contains("Cooler"),
+            hasairconditioner: _amenities.contains("AirConditioner"),
+            hasinternet: _amenities.contains("Internet/Wifi"),
+            hasgreenarea: _amenities.contains("GreenArea"),
+            hasparking: _amenities.contains("Parking"),
+            hasgaspipeline: _amenities.contains("GasPipeLine"),
+            hassecurity: _amenities.contains("Security"),
+            hasclubhouse: _amenities.contains("ClubHouse"),
+            haspowerbackup: _amenities.contains("PowerBackup"),
+            haslift: _amenities.contains("Lift"),
+            imagelist: _photos,
+          ));
+    } else {
+      newRealEstate = CompleteRealEstate(
+          docId: '',
+          dt: 'realestate',
+          serviceId: '',
+          userId: UserSession.userId,
+          data: RealEstateData(
+            title: _title.text.trim(),
+            description: _description.text.trim(),
+            contactdetails: widget.contactDetail,
+            propertytype: _propertyType,
+            servicetype: _serviceType,
+            saletype: _saleType,
+            ownershiptype: _ownershipStatus,
+            price: int.parse(_price.text.trim()),
+            furnishedstatus: _furnishingStatus,
+            constructionstatus: _contructionType,
+            numrooms: _bedRooms,
+            numbath: _bathRooms,
+            sqfeetarea: _sqFeet,
+            listingownertype: currentSegment == 0 ? "Broker" : "Owner",
+            has24hrwater: _amenities.contains("24xWater"),
+            hastv: _amenities.contains("TV"),
+            hasfridge: _amenities.contains("Fridge"),
+            hascooler: _amenities.contains("Cooler"),
+            hasairconditioner: _amenities.contains("AirConditioner"),
+            hasinternet: _amenities.contains("Internet/Wifi"),
+            hasgreenarea: _amenities.contains("GreenArea"),
+            hasparking: _amenities.contains("Parking"),
+            hasgaspipeline: _amenities.contains("GasPipeLine"),
+            hassecurity: _amenities.contains("Security"),
+            hasclubhouse: _amenities.contains("ClubHouse"),
+            haspowerbackup: _amenities.contains("PowerBackup"),
+            haslift: _amenities.contains("Lift"),
+            imagelist: _photos,
+          ));
+    }
+
+    _productBloc.add(
+      ProductOwnerEvent.add(productData: newRealEstate),
     );
   }
 }

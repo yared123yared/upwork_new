@@ -1,5 +1,4 @@
 import 'package:complex/data/providers/channel_provider.dart';
-import 'package:complex/data/providers/product_provider_old.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_dropdown.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
@@ -36,7 +35,6 @@ class _PackageDetailViewState extends State<PackageDetailView> {
 
   CustomTextFieldController _barCodeController = CustomTextFieldController();
   var _channelsProvider = Injector.appInstance.get<ChannelsProvider>();
-  var _productProvider = Injector.appInstance.get<ProductProviderOld>();
   List<String> _unitList = [
     "1",
     "2",
