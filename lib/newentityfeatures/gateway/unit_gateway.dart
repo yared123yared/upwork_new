@@ -24,6 +24,10 @@ class UnitGateway {
     }
   }
 
+
+
+
+
   static Future<List<UnitModel>> getUnitListForBuildingFloor(
       {@required String entitytype,
       @required String entityid,

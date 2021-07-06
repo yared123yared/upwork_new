@@ -3,6 +3,90 @@ import 'package:meta/meta.dart';
 
 enum DateTimeMode { DATE, TIME, DATETIME }
 
+class UnitOccupants {
+  String unitaddress;
+  bool hasowner;
+  bool hasresident;
+
+}
+
+class OccupiedUnitLookupModel {
+  List<String> buildinglist;
+  Map<String, List<String>> floormap;
+  Map<String, List<UnitOccupants>> justunits;
+
+  static OccupiedUnitLookupModel generteUnitLookup(List<String> occupiedresidentlist)
+  {
+
+    OccupiedUnitLookupModel oul = new OccupiedUnitLookupModel();
+    oul.buildinglist =[];
+    oul.floormap = new Map<String, List<String>>();
+    oul.justunits  = new Map<String, List<UnitOccupants>>();
+    for(String ounit in occupiedresidentlist)
+      {
+        List<String> abc = ounit.split('@');
+        int floornum = int.parse(abc[1]);
+        if(!oul.buildinglist.contains(abc[0]))
+          oul.buildinglist.add(abc[0]);
+
+        if(oul.floormap.containsKey(abc[0]))
+          {
+            if(!oul.floormap[abc[0]].contains(abc[1]))
+              oul.floormap[abc[0]].add(abc[1]);
+
+          }
+        else
+          {
+            oul.floormap[abc[0]]=[];
+            oul.floormap[abc[0]].add(abc[1]);
+          }
+
+        if(oul.justunits.containsKey(abc[0]))
+        {
+          UnitOccupants uo =null;
+          for(var k in oul.justunits[abc[0]])
+            {
+              if (ounit.contains(k.unitaddress))
+                {
+                  uo = k;
+                  break;
+                }
+                if(uo ==null)
+                  {
+                    uo= new UnitOccupants();
+                    uo.unitaddress =abc[2].replaceAll("_o", "").replaceAll("_r", "");
+                  }
+
+                if(abc[2].contains("_o"))
+                  uo.hasowner=true;
+                else
+                  uo.hasresident=true;
+
+
+            }
+        }
+        else
+        {
+          oul.justunits[abc[0]]=[];
+          UnitOccupants uo =new UnitOccupants();
+          uo.unitaddress =abc[2].replaceAll("_o", "").replaceAll("_r", "");
+          if(abc[2].contains("_o"))
+            uo.hasowner=true;
+          else
+            uo.hasresident=true;
+
+          oul.justunits[abc[0]].add(uo);
+        }
+
+
+
+      }
+
+      return oul;
+  }
+
+}
+
 class CommonUIHandler {
   static DateTime toDate({@required int timestamp}) =>
       DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);

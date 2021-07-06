@@ -32,6 +32,8 @@ import 'package:complex/newentityfeatures/gateway/resident_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/registry_gateway.dart';
 
 import 'package:complex/data/models/response/user_response/user_complex.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
+
 
 class NewComplexRepository {
   UnitsRepository units;
@@ -298,6 +300,15 @@ class NewComplexRepository {
       print(e);
     }
   }
+
+   Future<OccupiedUnitLookupModel> getOccupiedUnits(
+      {@required String entitytype, String entityid}) async {
+
+    List<String>data=  await ComplexGateway.getOccupiedUnits(entitytype: entitytype,entityid:entityid);
+    OccupiedUnitLookupModel oul = OccupiedUnitLookupModel.generteUnitLookup(data);
+    return oul;
+  }
+
 
   Future<dynamic> removeStaff(
       {@required String entitytype,@required String entityid,
