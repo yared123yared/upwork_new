@@ -13,7 +13,7 @@ class StaffModelBloc
       yield IsBusy();
       StaffModelRepositoryReturnData ud =
           await mrepository.createStaffModel(
-              event.item, event.entitytype, event.entityid);
+              item:event.item, entitytype:event.entitytype, entityid:event.entityid);
 
       if (ud.errortype == -1)
         yield IsSaved();
@@ -57,7 +57,7 @@ class StaffModelBloc
       yield IsBusy();
       StaffModelRepositoryReturnData ud =
           await mrepository.updateStaffModelWithDiff(
-              event.newitem, event.olditem, event.entitytype, event.entityid);
+              newitem:event.newitem,olditem: event.olditem, entitytype:event.entitytype,entityid: event.entityid);
 
       if (ud.errortype == -1)
         yield IsSaved();
