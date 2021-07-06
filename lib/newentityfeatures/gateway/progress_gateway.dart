@@ -11,25 +11,30 @@ class ProgressGateway {
   static Future submitProgressOfrSch(
       {@required OfferingsScheduleModel offeringsScheduleModel,
       @required ProgressModel progressModel}) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'SubmitProgressRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": "AefWmZc5Z3HwLhBd6nRU",
-      "virtualroomname": "None",
-      "actiontype": "ofr",
-      "date": progressModel.date,
-      "kind": progressModel.kind,
-      "totalscore": progressModel.totalScore,
-      "sessionterm": offeringsScheduleModel.sessionTermName,
-      "studentInfo": progressModel.progressList
-          .map((progress) => progress.toData())
-          .toList(),
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'SubmitProgressRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": "AefWmZc5Z3HwLhBd6nRU",
+        "virtualroomname": "None",
+        "actiontype": "ofr",
+        "date": progressModel.date,
+        "kind": progressModel.kind,
+        "totalscore": progressModel.totalScore,
+        "sessionterm": offeringsScheduleModel.sessionTermName,
+        "studentInfo": progressModel.progressList
+            .map((progress) => progress.toData())
+            .toList(),
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<ProgressModel> getProgress({
@@ -38,24 +43,29 @@ class ProgressGateway {
     @required String serviceID,
     @required String kind,
   }) async {
-    return await FirebaseFirestore.instance
-        .doc(
-            "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VIRTUALROOMS/${virtualRoom.virtualRoomName}/PROGRESS/$kind")
-        .get()
-        .then((x) {
-      ProgressModel _progress;
-      if (x.exists) {
-        _progress =
-            ProgressModel.fromJson(json: x.data(), virtualRoom: virtualRoom);
-      } else {
-        _progress = ProgressModel.fromJson(json: {
-          'kind': kind,
-          'date':
-              HelpUtil.formattedDateToString(DateTime.now(), DateTimeMode.DATE),
-        }, virtualRoom: virtualRoom);
-      }
-      return _progress;
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc(
+              "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VIRTUALROOMS/${virtualRoom.virtualRoomName}/PROGRESS/$kind")
+          .get()
+          .then((x) {
+        ProgressModel _progress;
+        if (x.exists) {
+          _progress =
+              ProgressModel.fromJson(json: x.data(), virtualRoom: virtualRoom);
+        } else {
+          _progress = ProgressModel.fromJson(json: {
+            'kind': kind,
+            'date': HelpUtil.formattedDateToString(
+                DateTime.now(), DateTimeMode.DATE),
+          }, virtualRoom: virtualRoom);
+        }
+        return _progress;
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<ProgressModel> getProgressVR({
@@ -65,47 +75,52 @@ class ProgressGateway {
     @required DateTime dateTime,
     @required String kind,
   }) async {
-    final HttpsCallable callable =
-        FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID,
-      "qtype": "PROGRESSVRSTAFF",
-      "kind": kind,
-      'mdate': HelpUtil.toTimeStamp(dateTime: dateTime),
-      "sessionterm": sessionTerm,
-      "virtualroomname": virtualroomname
-    });
-
-    ProgressModel promod;
-    Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
-    if (mdata['error'] != null) return promod;
-
-    Map<String, dynamic> data = Map<String, dynamic>.from(mdata['m']);
-    //Map<String,dynamic> attendencedata =data['sti'];
-    List<ProgressInfo> pio = [];
-    if (data['sti'] != null) {
-      pio = <ProgressInfo>[];
-      data['sti'].forEach((element) {
-        pio.add(
-            ProgressInfo.fromJson(data: Map<String, dynamic>.from(element)));
+    try {
+      final HttpsCallable callable =
+          FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID,
+        "qtype": "PROGRESSVRSTAFF",
+        "kind": kind,
+        'mdate': HelpUtil.toTimeStamp(dateTime: dateTime),
+        "sessionterm": sessionTerm,
+        "virtualroomname": virtualroomname
       });
+
+      ProgressModel promod;
+      Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
+      if (mdata['error'] != null) return promod;
+
+      Map<String, dynamic> data = Map<String, dynamic>.from(mdata['m']);
+      //Map<String,dynamic> attendencedata =data['sti'];
+      List<ProgressInfo> pio = [];
+      if (data['sti'] != null) {
+        pio = <ProgressInfo>[];
+        data['sti'].forEach((element) {
+          pio.add(
+              ProgressInfo.fromJson(data: Map<String, dynamic>.from(element)));
+        });
+      }
+      int totalscore =
+          data.containsKey('totalscore') && data['totalscore'] != null
+              ? data['totalscore']
+              : 0;
+      //String mkind =data['kind'];
+      promod = ProgressModel(
+          date: dateTime,
+          progressList: pio,
+          virtualrooname: virtualroomname,
+          offeringname: null,
+          atttype: "vr",
+          totalScore: totalscore,
+          kind: kind);
+      return promod;
+    } catch (e) {
+      print(e);
+      throw e;
     }
-    int totalscore =
-        data.containsKey('totalscore') && data['totalscore'] != null
-            ? data['totalscore']
-            : 0;
-    //String mkind =data['kind'];
-    promod = ProgressModel(
-        date: dateTime,
-        progressList: pio,
-        virtualrooname: virtualroomname,
-        offeringname: null,
-        atttype: "vr",
-        totalScore: totalscore,
-        kind: kind);
-    return promod;
   }
 
   static Future<ProgressModel> getProgressOFR({
@@ -115,47 +130,52 @@ class ProgressGateway {
     @required DateTime dateTime,
     @required String kind,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'GenericQueryActionRequest',
-    );
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'GenericQueryActionRequest',
+      );
 
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID,
-      "qtype": "PROGRESSMULTISTAFF",
-      "kind": kind,
-      'mdate': HelpUtil.toTimeStamp(dateTime: dateTime),
-      "sessionterm": sessionTerm,
-      "offeringname": offeringname
-    });
-    Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
-    if (mdata['error'] != null) return null;
-
-    Map<String, dynamic> data = Map<String, dynamic>.from(mdata['m']);
-    //Map<String,dynamic> attendencedata =data['sti'];
-    List<ProgressInfo> pio = [];
-    if (data['sti'] != null) {
-      pio = <ProgressInfo>[];
-      data['sti'].forEach((element) {
-        pio.add(
-            ProgressInfo.fromJson(data: Map<String, dynamic>.from(element)));
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID,
+        "qtype": "PROGRESSMULTISTAFF",
+        "kind": kind,
+        'mdate': HelpUtil.toTimeStamp(dateTime: dateTime),
+        "sessionterm": sessionTerm,
+        "offeringname": offeringname
       });
+      Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
+      if (mdata['error'] != null) return null;
+
+      Map<String, dynamic> data = Map<String, dynamic>.from(mdata['m']);
+      //Map<String,dynamic> attendencedata =data['sti'];
+      List<ProgressInfo> pio = [];
+      if (data['sti'] != null) {
+        pio = <ProgressInfo>[];
+        data['sti'].forEach((element) {
+          pio.add(
+              ProgressInfo.fromJson(data: Map<String, dynamic>.from(element)));
+        });
+      }
+      int totalscore =
+          data.containsKey('totalscore') && data['totalscore'] != null
+              ? data['totalscore']
+              : 0;
+      var promod = ProgressModel(
+        date: dateTime,
+        progressList: pio,
+        virtualrooname: null,
+        offeringname: offeringname,
+        atttype: "of",
+        totalScore: totalscore,
+        kind: kind,
+      );
+      return promod;
+    } catch (e) {
+      print(e);
+      throw e;
     }
-    int totalscore =
-        data.containsKey('totalscore') && data['totalscore'] != null
-            ? data['totalscore']
-            : 0;
-    var promod = ProgressModel(
-      date: dateTime,
-      progressList: pio,
-      virtualrooname: null,
-      offeringname: offeringname,
-      atttype: "of",
-      totalScore: totalscore,
-      kind: kind,
-    );
-    return promod;
   }
 
   static Future submitProgressVirtualRoom({
@@ -164,27 +184,32 @@ class ProgressGateway {
     @required String sessionTermName,
     @required String serviceID,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'SubmitProgressRequest',
-    );
-    print("CloudFunction " + "end");
-    Map<String, dynamic> data = {
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID,
-      "virtualroomname": virtualroomname,
-      "offeringkeyname": null,
-      "actiontype": "vr",
-      "mdate": HelpUtil.toTimeStamp(dateTime: progressModel.date),
-      "kind": progressModel.kind,
-      "totalscore": 200,
-      "sessionterm": sessionTermName,
-      "studentInfo": progressModel.progressList
-          .map((attendance) => attendance.toData())
-          .toList()
-    };
-    dynamic resp = await callable.call(data);
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'SubmitProgressRequest',
+      );
+      print("CloudFunction " + "end");
+      Map<String, dynamic> data = {
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID,
+        "virtualroomname": virtualroomname,
+        "offeringkeyname": null,
+        "actiontype": "vr",
+        "mdate": HelpUtil.toTimeStamp(dateTime: progressModel.date),
+        "kind": progressModel.kind,
+        "totalscore": 200,
+        "sessionterm": sessionTermName,
+        "studentInfo": progressModel.progressList
+            .map((attendance) => attendance.toData())
+            .toList()
+      };
+      dynamic resp = await callable.call(data);
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future submitProgressOfr(
@@ -192,26 +217,31 @@ class ProgressGateway {
       @required String offeringname,
       @required String sessionTermName,
       @required String serviceID}) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'SubmitProgressRequest',
-    );
-    print("CloudFunction " + "end");
-    Map<String, dynamic> data = {
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID,
-      "virtualroomname": null,
-      "offeringkeyname": offeringname,
-      "actiontype": "ofr",
-      "totalscore": progressModel.totalScore,
-      "mdate": HelpUtil.toTimeStamp(dateTime: progressModel.date),
-      "kind": progressModel.kind,
-      "sessionterm": sessionTermName,
-      "studentInfo": progressModel.progressList
-          .map((attendance) => attendance.toData())
-          .toList()
-    };
-    dynamic resp = await callable.call(data);
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'SubmitProgressRequest',
+      );
+      print("CloudFunction " + "end");
+      Map<String, dynamic> data = {
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID,
+        "virtualroomname": null,
+        "offeringkeyname": offeringname,
+        "actiontype": "ofr",
+        "totalscore": progressModel.totalScore,
+        "mdate": HelpUtil.toTimeStamp(dateTime: progressModel.date),
+        "kind": progressModel.kind,
+        "sessionterm": sessionTermName,
+        "studentInfo": progressModel.progressList
+            .map((attendance) => attendance.toData())
+            .toList()
+      };
+      dynamic resp = await callable.call(data);
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 }

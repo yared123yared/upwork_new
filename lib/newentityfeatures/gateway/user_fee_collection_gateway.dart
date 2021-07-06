@@ -11,72 +11,93 @@ class UserFeeCollectionGateWay {
     String idcardnum,
     String periodname,
   ) async {
-    return await FirebaseFirestore.instance
-        .collection("SERVICEPROVIDERINFO/$serviceID/USERFEEPAYMENT")
-        .where('idcardnum', isEqualTo: idcardnum)
-        .where('paymentperiodname', isEqualTo: periodname)
-        .get()
-        .then((x) {
-      UserRegFeeCollectionModel mdata;
-      for (var x1 in x.docs) {
-        if (x1.exists) {
-          mdata = UserRegFeeCollectionModel.fromJson(x1.data(), x1.id);
-          break;
+    try {
+      return await FirebaseFirestore.instance
+          .collection("SERVICEPROVIDERINFO/$serviceID/USERFEEPAYMENT")
+          .where('idcardnum', isEqualTo: idcardnum)
+          .where('paymentperiodname', isEqualTo: periodname)
+          .get()
+          .then((x) {
+        UserRegFeeCollectionModel mdata;
+        for (var x1 in x.docs) {
+          if (x1.exists) {
+            mdata = UserRegFeeCollectionModel.fromJson(x1.data(), x1.id);
+            break;
+          }
         }
-      }
-      return mdata;
-    });
+        return mdata;
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<UserRegFeeCollectionModel>> getUserFeeCollectionList({
     @required String serviceID,
   }) async {
-    return await FirebaseFirestore.instance
-        .collection("SERVICEPROVIDERINFO/$serviceID/USERFEEPAYMENT")
-        .get()
-        .then((x) {
-      return UserRegFeeCollectionModel.listFromJson(
-          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection("SERVICEPROVIDERINFO/$serviceID/USERFEEPAYMENT")
+          .get()
+          .then((x) {
+        return UserRegFeeCollectionModel.listFromJson(
+            x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<PaymentDetails>> getPaymentDetailsList({
     @required String serviceID,
     @required UserRegFeeCollectionModel userRegFeeCollectionModel,
   }) async {
-    return await FirebaseFirestore.instance
-        .collection(
-            "SERVICEPROVIDERINFO/$serviceID/USERFEEPAYMENT/${userRegFeeCollectionModel.docID}/PINFO")
-        .get()
-        .then((x) {
-      return PaymentDetails.listFromJson(
-          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection(
+              "SERVICEPROVIDERINFO/$serviceID/USERFEEPAYMENT/${userRegFeeCollectionModel.docID}/PINFO")
+          .get()
+          .then((x) {
+        return PaymentDetails.listFromJson(x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future userRegFeePayProcessingAddMaster({
     @required UserRegFeeCollectionModel userRegFeeCollectionModel,
     @required String serviceID,
   }) async {
-    final HttpsCallable callable =FirebaseFunctions.instance.httpsCallable(
-    'UserRegistrationFeePaymentProcessingActionRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "actiontype": "pr_add",
-      "prid": null,
-      "prnewdata": userRegFeeCollectionModel.toJson(),
-      "prolddata": null,
-      "chid": null,
-      "chnewdata": null,
-      "cholddata": null,
-      "idcardnum": userRegFeeCollectionModel.idCardNum,
-      "sessionterm": userRegFeeCollectionModel.sessionTerm,
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'UserRegistrationFeePaymentProcessingActionRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "actiontype": "pr_add",
+        "prid": null,
+        "prnewdata": userRegFeeCollectionModel.toJson(),
+        "prolddata": null,
+        "chid": null,
+        "chnewdata": null,
+        "cholddata": null,
+        "idcardnum": userRegFeeCollectionModel.idCardNum,
+        "sessionterm": userRegFeeCollectionModel.sessionTerm,
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future userRegFeePayProcessingMasterUpdate({
@@ -84,50 +105,60 @@ class UserFeeCollectionGateWay {
     @required UserRegFeeCollectionModel oldData,
     @required String serviceID,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'UserRegistrationFeePaymentProcessingActionRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "actiontype": "pr_update",
-      "prid": oldData.docID,
-      "prnewdata": payrecordtoUpdateData(newData, oldData),
-      "prolddata": oldData.toJson(),
-      "chid": null,
-      "chnewdata": null,
-      "cholddata": null,
-      "idcardnum": oldData.idCardNum,
-      "sessionterm": oldData.sessionTerm,
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'UserRegistrationFeePaymentProcessingActionRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "actiontype": "pr_update",
+        "prid": oldData.docID,
+        "prnewdata": payrecordtoUpdateData(newData, oldData),
+        "prolddata": oldData.toJson(),
+        "chid": null,
+        "chnewdata": null,
+        "cholddata": null,
+        "idcardnum": oldData.idCardNum,
+        "sessionterm": oldData.sessionTerm,
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future userRegFeePayProcessingMasterDelete({
     @required String prid,
     @required String serviceID,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-    'UserRegistrationFeePaymentProcessingActionRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "actiontype": "pr_delete",
-      "prid": prid,
-      "prnewdata": null,
-      "prolddata": null,
-      "chid": null,
-      "chnewdata": null,
-      "cholddata": null,
-      "idcardnum": null,
-      "sessionterm": null,
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'UserRegistrationFeePaymentProcessingActionRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "actiontype": "pr_delete",
+        "prid": prid,
+        "prnewdata": null,
+        "prolddata": null,
+        "chid": null,
+        "chnewdata": null,
+        "cholddata": null,
+        "idcardnum": null,
+        "sessionterm": null,
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future userRegFeePayProcessingChildAdd({
@@ -137,25 +168,30 @@ class UserFeeCollectionGateWay {
     @required String idCardNum,
     @required String sessionTerm,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'UserRegistrationFeePaymentProcessingActionRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "actiontype": "ch_add",
-      "prid": prid,
-      "prnewdata": null,
-      "prolddata": null,
-      "chid": null,
-      "chnewdata": chdata.toData(),
-      "cholddata": null,
-      "idcardnum": idCardNum,
-      "sessionterm": sessionTerm,
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'UserRegistrationFeePaymentProcessingActionRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "actiontype": "ch_add",
+        "prid": prid,
+        "prnewdata": null,
+        "prolddata": null,
+        "chid": null,
+        "chnewdata": chdata.toData(),
+        "cholddata": null,
+        "idcardnum": idCardNum,
+        "sessionterm": sessionTerm,
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future userRegFeePayProcessingChildUpdate({
@@ -165,25 +201,30 @@ class UserFeeCollectionGateWay {
     @required PaymentDetails newchData,
     @required String serviceID,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'UserRegistrationFeePaymentProcessingActionRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "actiontype": "ch_update",
-      "prid": prid,
-      "prnewdata": null,
-      "prolddata": null,
-      "chid": chid,
-      "chnewdata": paychildrecordtoUpdateData(newchData, oldchData),
-      "cholddata": oldchData.toData(),
-      "idcardnum": null,
-      "sessionterm": null,
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'UserRegistrationFeePaymentProcessingActionRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "actiontype": "ch_update",
+        "prid": prid,
+        "prnewdata": null,
+        "prolddata": null,
+        "chid": chid,
+        "chnewdata": paychildrecordtoUpdateData(newchData, oldchData),
+        "cholddata": oldchData.toData(),
+        "idcardnum": null,
+        "sessionterm": null,
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   //not implemented , need to think more , even if we should have it
@@ -192,25 +233,30 @@ class UserFeeCollectionGateWay {
     @required String chid,
     @required String serviceID,
   }) async {
-    final HttpsCallable callable =FirebaseFunctions.instance.httpsCallable(
-      'UserRegistrationFeePaymentProcessingActionRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "actiontype": "ch_add",
-      "prid": prid,
-      "prnewdata": null,
-      "prolddata": null,
-      "chid": chid,
-      "chnewdata": null,
-      "cholddata": null,
-      "idcardnum": null,
-      "sessionterm": null,
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'UserRegistrationFeePaymentProcessingActionRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "actiontype": "ch_add",
+        "prid": prid,
+        "prnewdata": null,
+        "prolddata": null,
+        "chid": chid,
+        "chnewdata": null,
+        "cholddata": null,
+        "idcardnum": null,
+        "sessionterm": null,
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Map<String, dynamic> payrecordtoUpdateData(

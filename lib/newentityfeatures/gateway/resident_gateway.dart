@@ -9,30 +9,26 @@ import 'package:meta/meta.dart';
 
 import 'package:complex/newentityfeatures/Models/resident_model.dart';
 
-
 class ResidentGateway {
   static Future addResidentRequest(
       {@required ResidentModel resident,
-        @required String entitytype ,String entityid}) async {
-
+      @required String entitytype,
+      String entityid}) async {
     SignUpRequest _signUpModel = SignUpRequest(
-      password: "secretPassword",
-      username: resident.firstName,
-      email: resident.email,
-      phoneNum: resident.contactNumber,requestType: "CHECKANDCREATE"
-    );
+        password: "secretPassword",
+        username: resident.firstName,
+        email: resident.email,
+        phoneNum: resident.contactNumber,
+        requestType: "CHECKANDCREATE");
 
-    String _userID =null;
+    String _userID = null;
     var authrepository = HelpUtil.getAuthRepositoryl();
-    GeneralResponseWithUserId gr = await authrepository.createUserForRequest_for(request:_signUpModel);
-    if(gr.success)
-      _userID=gr.userid;
-
-
-
+    GeneralResponseWithUserId gr =
+        await authrepository.createUserForRequest_for(request: _signUpModel);
+    if (gr.success) _userID = gr.userid;
 
     if (_userID != null) {
-      resident.appUserId=_userID;
+      resident.appUserId = _userID;
       //print(json.encode(resident.copyWith(appUserId: _userID).toJson()));
       final HttpsCallable callable = FirebaseFunctions.instance
           .httpsCallable('AddResidentRequestModified');
@@ -66,36 +62,55 @@ class ResidentGateway {
   }
 
   static Future<List<ResidentModel>> getResidents(
-      {@required String entitytype ,String entityid}) async {
-    return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entityid}/REGISTRY")
-        .get()
-        .then((x) {
-      return ResidentModel.listFromJson(
-          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
-    });
+      {@required String entitytype, String entityid}) async {
+    try {
+      return await FirebaseFirestore.instance
+          .collection("${entitytype}/${entityid}/REGISTRY")
+          .get()
+          .then((x) {
+        return ResidentModel.listFromJson(x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<ResidentModel>> getResidentsByBuildingAndFloor(
-      {@required String entitytype ,@required String entityid,@required String buildingname,@required int floornum}) async {
-    return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entityid}/REGISTRY")
-        .get()
-        .then((x) {
-      return ResidentModel.listFromJson(
-          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
-    });
+      {@required String entitytype,
+      @required String entityid,
+      @required String buildingname,
+      @required int floornum}) async {
+    try {
+      return await FirebaseFirestore.instance
+          .collection("${entitytype}/${entityid}/REGISTRY")
+          .get()
+          .then((x) {
+        return ResidentModel.listFromJson(x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<ResidentModel>> getResidentsByUnitList(
-      {@required String entitytype ,@required String entityid,@required List<String> unitlist}) async {
-    return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entityid}/REGISTRY")
-        .get()
-        .then((x) {
-      return ResidentModel.listFromJson(
-          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
-    });
+      {@required String entitytype,
+      @required String entityid,
+      @required List<String> unitlist}) async {
+    try {
+      return await FirebaseFirestore.instance
+          .collection("${entitytype}/${entityid}/REGISTRY")
+          .get()
+          .then((x) {
+        return ResidentModel.listFromJson(x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
-
 }

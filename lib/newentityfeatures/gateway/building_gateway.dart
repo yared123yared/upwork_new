@@ -4,17 +4,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:complex/newentityfeatures/Models/building_model.dart';
 
-
 class BuildingGateway {
   static Future<List<BuildingModel>> getBuildingList(
       {@required String complexID}) async {
-    return await FirebaseFirestore.instance
-        .collection("COMPLEXES/$complexID/BUILDING")
-        .get()
-        .then((x) {
-      return BuildingModel.listFromJson(
-          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection("COMPLEXES/$complexID/BUILDING")
+          .get()
+          .then((x) {
+        return BuildingModel.listFromJson(x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> updateBuilding(
@@ -44,9 +48,14 @@ class BuildingGateway {
 
   static Future<void> removeBuilding(
       {@required String complexID, @required BuildingModel building}) async {
-    return await FirebaseFirestore.instance
-        .collection("COMPLEXES/$complexID/BUILDING")
-        .doc(building.buildingID)
-        .delete();
+    try {
+      return await FirebaseFirestore.instance
+          .collection("COMPLEXES/$complexID/BUILDING")
+          .doc(building.buildingID)
+          .delete();
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 }

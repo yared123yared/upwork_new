@@ -23,16 +23,26 @@ class FeePlanGateway {
   }
 
   static Future addNewFeePlan({FeePlanModel feePlan, String serviceID}) async {
-    return await FirebaseFirestore.instance
-        .collection("SERVICEPROVIDERINFO/$serviceID/FEEPLANS")
-        .doc(feePlan.feePlanName)
-        .set(feePlan.toJson());
+    try {
+      return await FirebaseFirestore.instance
+          .collection("SERVICEPROVIDERINFO/$serviceID/FEEPLANS")
+          .doc(feePlan.feePlanName)
+          .set(feePlan.toJson());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future updateFeePlan({FeePlanModel feePlan, String serviceID}) async {
-    return await FirebaseFirestore.instance
-        .collection("SERVICEPROVIDERINFO/$serviceID/FEEPLANS")
-        .doc(feePlan.feePlanName)
-        .update(feePlan.toJson());
+    try {
+      return await FirebaseFirestore.instance
+          .collection("SERVICEPROVIDERINFO/$serviceID/FEEPLANS")
+          .doc(feePlan.feePlanName)
+          .update(feePlan.toJson());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 }

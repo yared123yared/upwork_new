@@ -55,11 +55,16 @@ class LookupGateway {
     @required String serviceID,
     @required String gradeName,
   }) {
-    return FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'grade': FieldValue.arrayUnion([gradeName])
-    });
+    try {
+      return FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'grade': FieldValue.arrayUnion([gradeName])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<String>> getSubjectList(String serviceID) async {
@@ -87,20 +92,30 @@ class LookupGateway {
 
   static Future<void> addFeeItemList(
       {@required String serviceID, @required String feeItem}) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'feeitemlist': FieldValue.arrayUnion([feeItem])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'feeitemlist': FieldValue.arrayUnion([feeItem])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> deleteFeeItemList(
       {@required String serviceID, @required String feeItem}) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'feeitemlist': FieldValue.arrayRemove([feeItem])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'feeitemlist': FieldValue.arrayRemove([feeItem])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<String>> getOfferingsList(String serviceID) async {
@@ -131,20 +146,30 @@ class LookupGateway {
     @required String serviceID,
     @required String subject,
   }) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'subject': FieldValue.arrayUnion([subject])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'subject': FieldValue.arrayUnion([subject])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> deleteOfferingList(
       {@required String serviceID, @required String subject}) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'subject': FieldValue.arrayRemove([subject])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'subject': FieldValue.arrayRemove([subject])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<SessionTerm>> getSessionTerms(String serviceID) async {
@@ -164,11 +189,16 @@ class LookupGateway {
 
   static Future<void> deleteExamTermInfo(
       {@required String serviceID, @required ExamTermInfo examTerm}) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'sessionterm': FieldValue.arrayRemove([examTerm.toJson()])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'sessionterm': FieldValue.arrayRemove([examTerm.toJson()])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<ExamTermInfo>> getExamTermInfo(String serviceID) async {
@@ -193,11 +223,16 @@ class LookupGateway {
     @required String serviceID,
     @required ExamTermInfo examTermInfo,
   }) {
-    return FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'examterminfo': FieldValue.arrayUnion([examTermInfo.toJson()])
-    });
+    try {
+      return FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'examterminfo': FieldValue.arrayUnion([examTermInfo.toJson()])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<RoomInfo>> getRoomsInfo(String serviceID) async {
@@ -222,35 +257,50 @@ class LookupGateway {
     @required String serviceID,
     @required RoomInfo roomInfo,
   }) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'roominfo': FieldValue.arrayUnion([roomInfo.toJson()])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'roominfo': FieldValue.arrayUnion([roomInfo.toJson()])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> deleteRoomInfo(
       {@required String serviceID, @required RoomInfo roomInfo}) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'roominfo': FieldValue.arrayUnion([roomInfo.toJson()])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'roominfo': FieldValue.arrayUnion([roomInfo.toJson()])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<ClassPeriodInfo>> getClassPeriodInfo(
     String serviceID,
   ) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .get()
-        .then<List<ClassPeriodInfo>>((x) {
-      if (x.data() != null) {
-        return ClassPeriodInfoList.fromJson(x.data()).list;
-      } else {
-        return [];
-      }
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .get()
+          .then<List<ClassPeriodInfo>>((x) {
+        if (x.data() != null) {
+          return ClassPeriodInfoList.fromJson(x.data()).list;
+        } else {
+          return [];
+        }
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   /// takes the complete list<period> and save it
@@ -258,89 +308,125 @@ class LookupGateway {
     @required String serviceID,
     @required List<ClassPeriodInfo> classPeriodInfoList,
   }) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'classperiodinfo': classPeriodInfoList.map((e) => e.toJson()).toList()
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'classperiodinfo': classPeriodInfoList.map((e) => e.toJson()).toList()
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> addClassPeriodInfo({
     @required String serviceID,
     @required ClassPeriodInfo classPeriodInfo,
   }) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'classperiodinfo': FieldValue.arrayUnion([
-        classPeriodInfo.toJson(),
-      ])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'classperiodinfo': FieldValue.arrayUnion([
+          classPeriodInfo.toJson(),
+        ])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> updateClassPeriodInfo({
     @required String serviceID,
     @required ClassPeriodInfo classPeriodInfo,
   }) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'classperiodinfo': FieldValue.arrayUnion([
-        classPeriodInfo.toJson(),
-      ])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'classperiodinfo': FieldValue.arrayUnion([
+          classPeriodInfo.toJson(),
+        ])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> deleteClassPeriodInfo({
     @required String serviceID,
     @required ClassPeriodInfo classPeriodInfo,
   }) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'classperiodinfo': FieldValue.arrayUnion([
-        classPeriodInfo.toJson(),
-      ])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'classperiodinfo': FieldValue.arrayUnion([
+          classPeriodInfo.toJson(),
+        ])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<PaymentPeriodInfo>> getPaymentPeriodInfo(
     String serviceID,
   ) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .get()
-        .then((x) {
-      if (x.data() != null) {
-        if (x.data()['paymentperiodinfo'] != null) {
-          return PaymentPeriodInfoList.fromJson(x.data()).list;
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .get()
+          .then((x) {
+        if (x.data() != null) {
+          if (x.data()['paymentperiodinfo'] != null) {
+            return PaymentPeriodInfoList.fromJson(x.data()).list;
+          } else {
+            return [];
+          }
         } else {
           return [];
         }
-      } else {
-        return [];
-      }
-    });
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> addPaymentPeriodInfo(
       {@required String serviceID,
       @required PaymentPeriodInfo paymentPeriodInfo}) async {
-    return await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'paymentperiodinfo': FieldValue.arrayUnion([paymentPeriodInfo.toJson()])
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'paymentperiodinfo': FieldValue.arrayUnion([paymentPeriodInfo.toJson()])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> deletePaymentPeriodInfo({
     @required String serviceID,
     @required PaymentPeriodInfo paymentPeriodInfo,
   }) async {
-    await FirebaseFirestore.instance
-        .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
-        .update({
-      'paymentperiodinfo': FieldValue.arrayRemove([paymentPeriodInfo.toJson()])
-    });
+    try {
+      await FirebaseFirestore.instance
+          .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+          .update({
+        'paymentperiodinfo':
+            FieldValue.arrayRemove([paymentPeriodInfo.toJson()])
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 }

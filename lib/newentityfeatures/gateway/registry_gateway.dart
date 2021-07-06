@@ -9,67 +9,87 @@ import 'package:complex/common/helputil.dart';
 
 class RegistryGateway {
   static Future<List<RegistryModel>> getRegistryList(
-      {@required String entitytype ,@required String entityid}) async {
-    return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entityid}/REGISTRY")
-        .get()
-        .then((x) {
-      print(x.docs);
-      return RegistryModel.listFromJson(x.docs.map((d) => d.data).toList());
-    });
+      {@required String entitytype, @required String entityid}) async {
+    try {
+      return await FirebaseFirestore.instance
+          .collection("${entitytype}/${entityid}/REGISTRY")
+          .get()
+          .then((x) {
+        print(x.docs);
+        return RegistryModel.listFromJson(x.docs.map((d) => d.data).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
-
 
   static Future<List<RegistryModel>> getRegistryListForBuildingAndFloor(
-      {@required String entitytype ,@required String entityid,@required String buildingid,int floor}) async {
-    return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entityid}/REGISTRY")
-        .where("bldf", isEqualTo: buildingid+"@"+floor.toString())
-        .get()
-        .then((x) {
-      print(x.docs);
-      return RegistryModel.listFromJson(x.docs.map((d) => d.data).toList());
-    });
+      {@required String entitytype,
+      @required String entityid,
+      @required String buildingid,
+      int floor}) async {
+    try {
+      return await FirebaseFirestore.instance
+          .collection("${entitytype}/${entityid}/REGISTRY")
+          .where("bldf", isEqualTo: buildingid + "@" + floor.toString())
+          .get()
+          .then((x) {
+        print(x.docs);
+        return RegistryModel.listFromJson(x.docs.map((d) => d.data).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
-
 
   static Future<RegistryModel> getRegistryListForUnitId(
-      {@required String entitytype ,@required String entityid,@required String unitid}) async {
-    return await FirebaseFirestore.instance
-        .doc("${entitytype}/${entityid}/REGISTRY/${unitid}")
-
-        .get()
-        .then((x) {
-
-      return RegistryModel.fromJson(x.data());
-    });
+      {@required String entitytype,
+      @required String entityid,
+      @required String unitid}) async {
+    try {
+      return await FirebaseFirestore.instance
+          .doc("${entitytype}/${entityid}/REGISTRY/${unitid}")
+          .get()
+          .then((x) {
+        return RegistryModel.fromJson(x.data());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
-
 
   static Future<List<RegistryModel>> getRegistryListForListOfUnits(
-      {@required String entitytype ,@required String entityid,@required List<String> unitlist}) async {
-    return await FirebaseFirestore.instance
-        .collection("${entitytype}/${entityid}/REGISTRY")
-        .where(FieldPath.documentId, whereIn: unitlist)
-        .get()
-        .then((x) {
-      print(x.docs);
-      return RegistryModel.listFromJson(x.docs.map((d) => d.data).toList());
-    });
+      {@required String entitytype,
+      @required String entityid,
+      @required List<String> unitlist}) async {
+    try {
+      return await FirebaseFirestore.instance
+          .collection("${entitytype}/${entityid}/REGISTRY")
+          .where(FieldPath.documentId, whereIn: unitlist)
+          .get()
+          .then((x) {
+        print(x.docs);
+        return RegistryModel.listFromJson(x.docs.map((d) => d.data).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
-
-
-
   static Future<void> updateRegistry(
-      {@required String entitytype ,String entityid,
+      {@required String entitytype,
+      String entityid,
       @required RegistryModel oldRegistry,
       @required RegistryModel newRegistry,
       @required bool isOwner,
       @required UserModel userModel}) async {
-    final HttpsCallable callable = FirebaseFunctions.instance
-        .httpsCallable('UpdateResidentRequestModified');
     try {
+      final HttpsCallable callable = FirebaseFunctions.instance
+          .httpsCallable('UpdateResidentRequestModified');
       final HttpsCallableResult resp = await callable.call(<String, dynamic>{
         'olddata': toData(registryModel: oldRegistry, isOwner: isOwner),
         'newdata': toUpdateData(
@@ -97,15 +117,16 @@ class RegistryGateway {
 
   // ignore: missing_return
   static Future<dynamic> deleteRegistry(
-      {@required String entitytype ,String entityid,
-        @required String unitadress,
-        @required bool isOwner,
-        @required UserModel userModel}) async {
+      {@required String entitytype,
+      String entityid,
+      @required String unitadress,
+      @required bool isOwner,
+      @required UserModel userModel}) async {
     final HttpsCallable callable = FirebaseFunctions.instance
         .httpsCallable('DeleteResidentRequestModified');
     try {
       final HttpsCallableResult resp = await callable.call(<String, dynamic>{
-        'residentdetailid': isOwner ? unitadress+ "_o":unitadress+ "_r",
+        'residentdetailid': isOwner ? unitadress + "_o" : unitadress + "_r",
         'entitytype': entitytype,
         'byuserid': userModel.userID,
         'entityid': entityid,
@@ -123,7 +144,6 @@ class RegistryGateway {
     }
   }
 
-
 //  static Future<void> deleteRegistry(){
 //
 //  }
@@ -132,37 +152,43 @@ class RegistryGateway {
       {@required RegistryModel oldRegistry,
       @required RegistryModel newRegistry,
       @required bool isOwner}) {
-    if (isOwner) {
-      return {
-        if (oldRegistry.ownerPublishedContact !=
-            newRegistry.ownerPublishedContact)
-          'publishedcontact': newRegistry.ownerPublishedContact,
-        if (oldRegistry.ownerEndDate != newRegistry.ownerEndDate)
-          'enddate': HelpUtil.toTimeStamp(
-            dateTime: newRegistry.ownerEndDate,
-          ),
-        if (oldRegistry.shareownercontactflag != newRegistry.shareownercontactflag)
-          'publishcontactflag':newRegistry.shareownercontactflag ,
-        if (oldRegistry.ownerManagementPosition !=
-            newRegistry.ownerManagementPosition)
-          'managementposition': newRegistry.ownerManagementPosition,
-      };
-    } else {
-      return {
-        if (oldRegistry.residentPublishedContact !=
-            newRegistry.residentPublishedContact)
-          'publishedcontact': newRegistry.residentPublishedContact,
-
-        if (oldRegistry.residentEndDate != newRegistry.residentEndDate)
-          'enddate': HelpUtil.toTimeStamp(
-            dateTime: newRegistry.residentEndDate,
-          ),
-        if (oldRegistry.shareresidentcontactflag != newRegistry.shareresidentcontactflag)
-          'publishcontactflag':newRegistry.shareresidentcontactflag ,
-        if (oldRegistry.residentManagementPosition !=
-            newRegistry.residentManagementPosition)
-          'managementposition': newRegistry.residentManagementPosition,
-      };
+    try {
+      if (isOwner) {
+        return {
+          if (oldRegistry.ownerPublishedContact !=
+              newRegistry.ownerPublishedContact)
+            'publishedcontact': newRegistry.ownerPublishedContact,
+          if (oldRegistry.ownerEndDate != newRegistry.ownerEndDate)
+            'enddate': HelpUtil.toTimeStamp(
+              dateTime: newRegistry.ownerEndDate,
+            ),
+          if (oldRegistry.shareownercontactflag !=
+              newRegistry.shareownercontactflag)
+            'publishcontactflag': newRegistry.shareownercontactflag,
+          if (oldRegistry.ownerManagementPosition !=
+              newRegistry.ownerManagementPosition)
+            'managementposition': newRegistry.ownerManagementPosition,
+        };
+      } else {
+        return {
+          if (oldRegistry.residentPublishedContact !=
+              newRegistry.residentPublishedContact)
+            'publishedcontact': newRegistry.residentPublishedContact,
+          if (oldRegistry.residentEndDate != newRegistry.residentEndDate)
+            'enddate': HelpUtil.toTimeStamp(
+              dateTime: newRegistry.residentEndDate,
+            ),
+          if (oldRegistry.shareresidentcontactflag !=
+              newRegistry.shareresidentcontactflag)
+            'publishcontactflag': newRegistry.shareresidentcontactflag,
+          if (oldRegistry.residentManagementPosition !=
+              newRegistry.residentManagementPosition)
+            'managementposition': newRegistry.residentManagementPosition,
+        };
+      }
+    } catch (e) {
+      print(e);
+      throw e;
     }
   }
 
@@ -203,7 +229,9 @@ class RegistryGateway {
       'appuserid':
           isOwner ? registryModel.ownerUserId : registryModel.residentUserId,
       'ownergroup': registryModel.ownerGroup,
-      'publishedcontactflag':isOwner ?registryModel.shareownercontactflag:registryModel.shareresidentcontactflag,
+      'publishedcontactflag': isOwner
+          ? registryModel.shareownercontactflag
+          : registryModel.shareresidentcontactflag,
     };
   }
 }

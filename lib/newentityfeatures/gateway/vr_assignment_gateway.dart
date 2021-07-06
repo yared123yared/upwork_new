@@ -204,31 +204,36 @@ class VrAssignmentGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    final HttpsCallable callable =
-        FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
-    print("CloudFunction " + "end");
-    List<VrAssignmentModel> kindlist = [];
-    dynamic resp = await callable.call(<String, dynamic>{
-      "entitytype": entitytype,
-      "entityid": entityid,
-      "qtype": "VRASSIGNMENTLISTNOTINDEPENDENTOFFERINGTEACHER",
-      "virtualroomname": virtualroomname,
-      "offeringname": offeringname,
-      "sessionterm": sessionterm
-    });
+    try {
+      final HttpsCallable callable =
+          FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
+      print("CloudFunction " + "end");
+      List<VrAssignmentModel> kindlist = [];
+      dynamic resp = await callable.call(<String, dynamic>{
+        "entitytype": entitytype,
+        "entityid": entityid,
+        "qtype": "VRASSIGNMENTLISTNOTINDEPENDENTOFFERINGTEACHER",
+        "virtualroomname": virtualroomname,
+        "offeringname": offeringname,
+        "sessionterm": sessionterm
+      });
 
-    print(resp.data);
-    Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
-    if (mdata['error'] != null) return kindlist;
+      print(resp.data);
+      Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
+      if (mdata['error'] != null) return kindlist;
 
-    //kindlist = List<AssignmentModelDropdown>();
-    for (dynamic d in mdata['lm']) {
-      Map<String, dynamic> bk = Map<String, dynamic>.from(d);
-      String key = bk['vrid'];
-      kindlist.add(VrAssignmentModel.fromJson(bk, key));
+      //kindlist = List<AssignmentModelDropdown>();
+      for (dynamic d in mdata['lm']) {
+        Map<String, dynamic> bk = Map<String, dynamic>.from(d);
+        String key = bk['vrid'];
+        kindlist.add(VrAssignmentModel.fromJson(bk, key));
+      }
+
+      return kindlist;
+    } catch (e) {
+      print(e);
+      throw e;
     }
-
-    return kindlist;
   }
 
   static Future<List<VrAssignmentModel>>
@@ -237,29 +242,34 @@ class VrAssignmentGateway {
           @required String offeringname,
           @required String entitytype,
           @required String entityid}) async {
-    final HttpsCallable callable =
-        FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
-    print("CloudFunction " + "end");
-    List<VrAssignmentModel> kindlist = [];
-    dynamic resp = await callable.call(<String, dynamic>{
-      "entitytype": entitytype,
-      "entityid": entityid,
-      "qtype": "VRASSIGNMENTLISTINDEPENDENTOFFERINGTEACHER",
-      "offeringname": offeringname,
-      "sessionterm": sessionterm
-    });
-    print(resp.data);
-    Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
-    if (mdata['error'] != null) return kindlist;
+    try {
+      final HttpsCallable callable =
+          FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
+      print("CloudFunction " + "end");
+      List<VrAssignmentModel> kindlist = [];
+      dynamic resp = await callable.call(<String, dynamic>{
+        "entitytype": entitytype,
+        "entityid": entityid,
+        "qtype": "VRASSIGNMENTLISTINDEPENDENTOFFERINGTEACHER",
+        "offeringname": offeringname,
+        "sessionterm": sessionterm
+      });
+      print(resp.data);
+      Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
+      if (mdata['error'] != null) return kindlist;
 
-    //kindlist = List<AssignmentModelDropdown>();
-    for (dynamic d in mdata['lm']) {
-      Map<String, dynamic> bk = Map<String, dynamic>.from(d);
-      String key = bk['vrid'];
-      kindlist.add(VrAssignmentModel.fromJson(bk, key));
+      //kindlist = List<AssignmentModelDropdown>();
+      for (dynamic d in mdata['lm']) {
+        Map<String, dynamic> bk = Map<String, dynamic>.from(d);
+        String key = bk['vrid'];
+        kindlist.add(VrAssignmentModel.fromJson(bk, key));
+      }
+
+      return kindlist;
+    } catch (e) {
+      print(e);
+      throw e;
     }
-
-    return kindlist;
   }
 
   static Future<List<AnsweredPaper>> getVrAssignmentScoreForSingleStudent({
@@ -268,28 +278,33 @@ class VrAssignmentGateway {
     @required String idcardnum,
     @required String entityid,
   }) async {
-    final HttpsCallable callable =
-        FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
-    print("CloudFunction " + "end");
-    List<AnsweredPaper> kindlist = [];
-    dynamic resp = await callable.call(<String, dynamic>{
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": entityid,
-      "qtype": "ANSWERLISTSINGLESTUDENT",
-      "vrasgid": vrid,
-      "id": idcardnum,
-      "sessionterm": sessionterm
-    });
-    print(resp.data);
-    Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
-    if (mdata['error'] != null) return kindlist;
+    try {
+      final HttpsCallable callable =
+          FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
+      print("CloudFunction " + "end");
+      List<AnsweredPaper> kindlist = [];
+      dynamic resp = await callable.call(<String, dynamic>{
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": entityid,
+        "qtype": "ANSWERLISTSINGLESTUDENT",
+        "vrasgid": vrid,
+        "id": idcardnum,
+        "sessionterm": sessionterm
+      });
+      print(resp.data);
+      Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
+      if (mdata['error'] != null) return kindlist;
 
-    //kindlist = List<AssignmentModelDropdown>();
-    for (dynamic d in mdata['lm']) {
-      Map<String, dynamic> bk = Map<String, dynamic>.from(d);
-      kindlist.add(AnsweredPaper.fromMap1(bk));
+      //kindlist = List<AssignmentModelDropdown>();
+      for (dynamic d in mdata['lm']) {
+        Map<String, dynamic> bk = Map<String, dynamic>.from(d);
+        kindlist.add(AnsweredPaper.fromMap1(bk));
+      }
+      return kindlist;
+    } catch (e) {
+      print(e);
+      throw e;
     }
-    return kindlist;
   }
 
   static Future<List<AnsweredPaper>>
@@ -300,27 +315,32 @@ class VrAssignmentGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    final HttpsCallable callable =
-        FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
-    List<AnsweredPaper> kindlist = [];
-    dynamic resp = await callable.call(<String, dynamic>{
-      "entitytype": entitytype,
-      "entityid": entityid,
-      "qtype": "ANSWERLISTALLSTUDENTOFR",
-      "vrasgid": vrid,
-      "offeringname": offeringname,
-      "sessionterm": sessionterm
-    });
-    print(resp.data);
-    Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
-    if (mdata['error'] != null) return kindlist;
+    try {
+      final HttpsCallable callable =
+          FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
+      List<AnsweredPaper> kindlist = [];
+      dynamic resp = await callable.call(<String, dynamic>{
+        "entitytype": entitytype,
+        "entityid": entityid,
+        "qtype": "ANSWERLISTALLSTUDENTOFR",
+        "vrasgid": vrid,
+        "offeringname": offeringname,
+        "sessionterm": sessionterm
+      });
+      print(resp.data);
+      Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
+      if (mdata['error'] != null) return kindlist;
 
-    //kindlist = List<AssignmentModelDropdown>();
-    for (dynamic d in mdata['lm']) {
-      Map<String, dynamic> bk = Map<String, dynamic>.from(d);
-      kindlist.add(AnsweredPaper.fromMap1(bk));
+      //kindlist = List<AssignmentModelDropdown>();
+      for (dynamic d in mdata['lm']) {
+        Map<String, dynamic> bk = Map<String, dynamic>.from(d);
+        kindlist.add(AnsweredPaper.fromMap1(bk));
+      }
+      return kindlist;
+    } catch (e) {
+      print(e);
+      throw e;
     }
-    return kindlist;
   }
 
   static Future submitScoreForTeacher({

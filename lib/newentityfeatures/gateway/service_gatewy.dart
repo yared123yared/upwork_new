@@ -24,12 +24,16 @@ class ServiceGateway {
 
   static Future<void> removeServiceRequestGateway(
       ServiceRequestModel service, String docId) async {
-    return await FirebaseFirestore.instance
+try {   return await FirebaseFirestore.instance
         .doc("COMPLEXES/icIns8DSaH6C81Q4h2Pz/SERVICEREQUESTS/$docId")
         .update({
       "data": FieldValue.arrayRemove([service.toJson()])
     });
+    } catch (e) {
+    print(e);
+    throw e;
   }
+}
 
   static Future addNewServiceRequest({ServiceRequestModel service}) async {
     try {

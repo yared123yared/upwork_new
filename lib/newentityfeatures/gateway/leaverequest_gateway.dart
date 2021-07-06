@@ -49,28 +49,39 @@ class LeaveRequestGateway {
 
   static Future<List<LeaveRequestModel>> getLeaveRequestHistoryAllStaff(
       {@required String entityType, @required String entityID}) async {
-    return await FirebaseFirestore.instance
-        .collection("$entityType/$entityID/LEAVEREQUESTS")
-        .get()
-        .then((x) {
-      print("data ${x.docs}");
-      return LeaveRequestModel.listFromJson(
-          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection("$entityType/$entityID/LEAVEREQUESTS")
+          .get()
+          .then((x) {
+        print("data ${x.docs}");
+        return LeaveRequestModel.listFromJson(
+            x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future updateStatus(
       {@required String entityID,
       @required String entityType,
       @required LeaveRequestModel leaveRequest}) async {
-    if (leaveRequest.id != null) {
-      print('id is not null ${leaveRequest.id}');
-      await FirebaseFirestore.instance
-          .collection("$entityType/$entityID/LEAVEREQUESTS")
-          .doc(leaveRequest.id)
-          .update({"leavestatus": leaveRequest.leavestatus.toShortString()});
-    } else {
-      print('id is null');
+    try {
+      if (leaveRequest.id != null) {
+        print('id is not null ${leaveRequest.id}');
+        await FirebaseFirestore.instance
+            .collection("$entityType/$entityID/LEAVEREQUESTS")
+            .doc(leaveRequest.id)
+            .update({"leavestatus": leaveRequest.leavestatus.toShortString()});
+      } else {
+        print('id is null');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
     }
   }
 
@@ -105,18 +116,23 @@ class LeaveRequestGateway {
       @required String byUserId,
       @required String entityType,
       @required String entityId}) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'LeaveManagementRequest',
-    );
-    dynamic resp = await callable.call(<String, dynamic>{
-      'leavereqdata': leaveRequest.toJson(),
-      'entitytype': entityType,
-      'entityid': entityId,
-      'byuserid': byUserId,
-      'leavedocid': null
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'LeaveManagementRequest',
+      );
+      dynamic resp = await callable.call(<String, dynamic>{
+        'leavereqdata': leaveRequest.toJson(),
+        'entitytype': entityType,
+        'entityid': entityId,
+        'byuserid': byUserId,
+        'leavedocid': null
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<LeaveRequestModel>> getLeaveRequestByStaffID(

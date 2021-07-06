@@ -9,13 +9,18 @@ mixin EntryLogGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    return await FirebaseFirestore.instance
-        .collection("$entitytype/$entityid/ENTRYLOGS")
-        .get()
-        .then((x) {
-      return EntryLogModel.listFromJson(
-          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection("$entitytype/$entityid/ENTRYLOGS")
+          .get()
+          .then((x) {
+        return EntryLogModel.listFromJson(x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future addNewEntryLog(

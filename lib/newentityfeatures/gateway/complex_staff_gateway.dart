@@ -34,37 +34,42 @@ class ComplexStaffGateway {
 
   static Future<void> newStaffRequest(
       {StaffModelx staffModel, ComplexModel complexModel}) async {
-    SignUpRequest _signUpModel = SignUpRequest(
-        password: "secretPassword",
-        username: staffModel.name,
-        email: staffModel.email,
-        phoneNum: staffModel.phoneNumStr,requestType: "CHECKANDCREATE"
-        );
-    String _userID = null;
-    var authrepository = HelpUtil.getAuthRepositoryl();
-    GeneralResponseWithUserId gr =
-        await authrepository.createUserForRequest_for(request: _signUpModel);
-    if (gr.success) _userID = gr.userid;
+    try {
+      SignUpRequest _signUpModel = SignUpRequest(
+          password: "secretPassword",
+          username: staffModel.name,
+          email: staffModel.email,
+          phoneNum: staffModel.phoneNumStr,
+          requestType: "CHECKANDCREATE");
+      String _userID = null;
+      var authrepository = HelpUtil.getAuthRepositoryl();
+      GeneralResponseWithUserId gr =
+          await authrepository.createUserForRequest_for(request: _signUpModel);
+      if (gr.success) _userID = gr.userid;
 
-    print(json.encode(staffModel.toJson()));
-    print('processing user id is: $_userID');
-    if (_userID != null) {
-      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-        'NewStaffCreateRequestModified',
-      );
-      staffModel.appUserId = _userID;
-      print(staffModel.toJson());
-      dynamic resp = await callable.call(<String, dynamic>{
-        'staffdata': staffModel.toJson(),
-        'entitytype': "COMPLEXES",
-        'staffid': _userID,
-        // 'byuserid': userModel.userID,
-        'entityid': complexModel.complexID,
-      });
-      print("CloudFunction " + callable.toString());
-      print("CloudFunction " + resp.data.toString());
-    } else {
-      print("malfunction");
+      print(json.encode(staffModel.toJson()));
+      print('processing user id is: $_userID');
+      if (_userID != null) {
+        final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+          'NewStaffCreateRequestModified',
+        );
+        staffModel.appUserId = _userID;
+        print(staffModel.toJson());
+        dynamic resp = await callable.call(<String, dynamic>{
+          'staffdata': staffModel.toJson(),
+          'entitytype': "COMPLEXES",
+          'staffid': _userID,
+          // 'byuserid': userModel.userID,
+          'entityid': complexModel.complexID,
+        });
+        print("CloudFunction " + callable.toString());
+        print("CloudFunction " + resp.data.toString());
+      } else {
+        print("malfunction");
+      }
+    } catch (e) {
+      print(e);
+      throw e;
     }
   }
 
@@ -73,17 +78,22 @@ class ComplexStaffGateway {
       @required StaffModelx newStaff,
       @required ComplexModel complexModel,
       @required UserModel userModel}) async {
-    final HttpsCallable callable =
-        FirebaseFunctions.instance.httpsCallable('StaffUpdateRequestModified');
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance
+          .httpsCallable('StaffUpdateRequestModified');
 
-    dynamic resp = await callable.call(<String, dynamic>{
-      'olddata': oldStaff.toJson(),
-      'newdata': toComplexStaffUpdateData(oldStaff, newStaff),
-      'entitytype': "COMPLEXES",
-      'staffid': oldStaff.appUserId,
-      'byuserid': userModel.userID,
-      'entityid': complexModel.complexID,
-    });
+      dynamic resp = await callable.call(<String, dynamic>{
+        'olddata': oldStaff.toJson(),
+        'newdata': toComplexStaffUpdateData(oldStaff, newStaff),
+        'entitytype': "COMPLEXES",
+        'staffid': oldStaff.appUserId,
+        'byuserid': userModel.userID,
+        'entityid': complexModel.complexID,
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<dynamic> deleteStaffRequest(

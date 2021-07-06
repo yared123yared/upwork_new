@@ -129,94 +129,109 @@ mixin AssignmentGateway {
     @required AssignmentModel assignmentModel,
     @required Question question,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'AssignmentOperationRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "optype": "q",
-      "asgid": "MT8ZjZi7uBDZUzXwtR6X",
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": "Zs65AZliQzlH47u2xQ0l",
-      "data": [
-        {
-          "qid": "None",
-          "data": {
-            "questiontext": question.questionText,
-            "difficultytype": question.difficultyType,
-            "questiontype": question.difficultyType,
-            "score": question.score,
-            "imageurl": [
-              {"ord": 1, "url": "gk.ll"},
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'AssignmentOperationRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "optype": "q",
+        "asgid": "MT8ZjZi7uBDZUzXwtR6X",
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": "Zs65AZliQzlH47u2xQ0l",
+        "data": [
+          {
+            "qid": "None",
+            "data": {
+              "questiontext": question.questionText,
+              "difficultytype": question.difficultyType,
+              "questiontype": question.difficultyType,
+              "score": question.score,
+              "imageurl": [
+                {"ord": 1, "url": "gk.ll"},
 
-              /// dummy data here
-              {"ord": 2, "url": "gk.ll"}
+                /// dummy data here
+                {"ord": 2, "url": "gk.ll"}
 
-              /// dummy data here
-            ],
-            "answers": ["1", "3"],
-            "answerdurl": "abc.ul",
-            "choices": [
-              {"ord": 1, "text": "choice is 1"}, //dummy data here
-              {"ord": 2, "text": "choice is 2"}, //dummy data here
-              {"ord": 3, "text": "choice is 3"}, //dummy data here
-              {"ord": 4, "text": "choice is 4"} //dummy data here
-            ]
-          }
-        },
-      ]
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+                /// dummy data here
+              ],
+              "answers": ["1", "3"],
+              "answerdurl": "abc.ul",
+              "choices": [
+                {"ord": 1, "text": "choice is 1"}, //dummy data here
+                {"ord": 2, "text": "choice is 2"}, //dummy data here
+                {"ord": 3, "text": "choice is 3"}, //dummy data here
+                {"ord": 4, "text": "choice is 4"} //dummy data here
+              ]
+            }
+          },
+        ]
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future submitQuestion({
     @required AssignmentModel assignmentModel,
     @required String serviceID,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'AssignmentOperationRequest',
-    );
-    print("CloudFunction " + "end");
-    List<Map> questiondata = <Map>[];
-    if (assignmentModel.questions != null)
-      assignmentModel.questions.forEach((element) {
-        questiondata.add(element.toData());
-      });
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'AssignmentOperationRequest',
+      );
+      print("CloudFunction " + "end");
+      List<Map> questiondata = <Map>[];
+      if (assignmentModel.questions != null)
+        assignmentModel.questions.forEach((element) {
+          questiondata.add(element.toData());
+        });
 
-    dynamic resp = await callable.call(<String, dynamic>{
-      "optype": "q",
-      "asgid": assignmentModel.assignmentID,
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID,
-      "data": questiondata
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+      dynamic resp = await callable.call(<String, dynamic>{
+        "optype": "q",
+        "asgid": assignmentModel.assignmentID,
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID,
+        "data": questiondata
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future submitStudyMaterial({
     @required AssignmentModel assignmentModel,
     @required String serviceID,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'AssignmentOperationRequest',
-    );
-    print("CloudFunction " + "end");
-    List<Map> studymaterialdata = <Map>[];
-    if (assignmentModel.studyMaterials != null)
-      assignmentModel.studyMaterials.forEach((element) {
-        studymaterialdata.add(element.toData());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'AssignmentOperationRequest',
+      );
+      print("CloudFunction " + "end");
+      List<Map> studymaterialdata = <Map>[];
+      if (assignmentModel.studyMaterials != null)
+        assignmentModel.studyMaterials.forEach((element) {
+          studymaterialdata.add(element.toData());
+        });
+      dynamic resp = await callable.call(<String, dynamic>{
+        "optype": "s",
+        "asgid": assignmentModel.assignmentID,
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID,
+        "data": studymaterialdata
       });
-    dynamic resp = await callable.call(<String, dynamic>{
-      "optype": "s",
-      "asgid": assignmentModel.assignmentID,
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceID,
-      "data": studymaterialdata
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   // New Gateways

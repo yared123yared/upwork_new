@@ -87,159 +87,184 @@ class SchoolGateway {
   static Future getUserSessonRegistrationNumber(
       {@required UserSessionRegModel userSessionRegModel,
       @required FeePlanModel feePlanModel}) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'UserSessionRegistrationActionRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "actiontype": "add",
-      "usersessioninformation": {
-        "version": userSessionRegModel.version,
-        "activesession": userSessionRegModel.activeSession,
-        "allocatedtransportroute":
-            userSessionRegModel.allocatedTransportedRoute,
-        "allocatedtransportcost": userSessionRegModel.allocatedTransportCost,
-        "feeplantype": userSessionRegModel.feePlanType,
-        "feeplanperiodtype": userSessionRegModel.feePlanPeriodType,
-        "startperiod": feePlanModel.startDate,
-        "feeplan": feePlanModel.feePlanName,
-        "applicablediscount": userSessionRegModel.applicableDiscount,
-        "house": userSessionRegModel.house,
-        "virtualroom": userSessionRegModel.virtualRoom,
-        "rollnumber": userSessionRegModel.rollNumber,
-        "offeringstaken": userSessionRegModel.offeringsTaken,
-        "offeringsschedule": [
-          {
-            "id": "JQwADxuZnoReKLHO0EQk3Dd5Ny53+_+HIGH+_+FIRST",
-            "ofr": "2).(Eng).(M)"
-          }
-        ],
-        "isActive": userSessionRegModel.isActive,
-        "idcardnum": userSessionRegModel.rollNumber,
-        "qrcode": "None"
-      },
-      "newdata": "None",
-      "olddata": "None",
-      "idcardnum": "None",
-      "sessionterm": "None",
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": "Zs65AZliQzlH47u2xQ0l"
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'UserSessionRegistrationActionRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "actiontype": "add",
+        "usersessioninformation": {
+          "version": userSessionRegModel.version,
+          "activesession": userSessionRegModel.activeSession,
+          "allocatedtransportroute":
+              userSessionRegModel.allocatedTransportedRoute,
+          "allocatedtransportcost": userSessionRegModel.allocatedTransportCost,
+          "feeplantype": userSessionRegModel.feePlanType,
+          "feeplanperiodtype": userSessionRegModel.feePlanPeriodType,
+          "startperiod": feePlanModel.startDate,
+          "feeplan": feePlanModel.feePlanName,
+          "applicablediscount": userSessionRegModel.applicableDiscount,
+          "house": userSessionRegModel.house,
+          "virtualroom": userSessionRegModel.virtualRoom,
+          "rollnumber": userSessionRegModel.rollNumber,
+          "offeringstaken": userSessionRegModel.offeringsTaken,
+          "offeringsschedule": [
+            {
+              "id": "JQwADxuZnoReKLHO0EQk3Dd5Ny53+_+HIGH+_+FIRST",
+              "ofr": "2).(Eng).(M)"
+            }
+          ],
+          "isActive": userSessionRegModel.isActive,
+          "idcardnum": userSessionRegModel.rollNumber,
+          "qrcode": "None"
+        },
+        "newdata": "None",
+        "olddata": "None",
+        "idcardnum": "None",
+        "sessionterm": "None",
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": "Zs65AZliQzlH47u2xQ0l"
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future userRegFeePayProcessing(
       {@required UserRegFeeCollectionModel userRegFeeCollectionModel}) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'UserRegistrationFeePaymentProcessingActionRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "actiontype": "pr_add",
-      "prid": "None",
-      "prnewdata": {
-        "version": userRegFeeCollectionModel.version,
-        "idcardnum": userRegFeeCollectionModel.idCardNum,
-        "virtualroomid": userRegFeeCollectionModel.virtualRoomId,
-        "rollnum": userRegFeeCollectionModel.rollNum,
-        "username": userRegFeeCollectionModel.userName,
-        "feeplantype": userRegFeeCollectionModel.feePlanType,
-        "feeplanname": userRegFeeCollectionModel.feePlaneName,
-        "paymentperiodtype": userRegFeeCollectionModel.paymentPeriodType,
-        "paymentperiodname": userRegFeeCollectionModel.paymentPeriodName,
-        "periodstartdate": userRegFeeCollectionModel.periodStartDay,
-        "periodenddate": userRegFeeCollectionModel.periodEndDay,
-        "totalfeeamount": 9200,
-        "feeplanamount": userRegFeeCollectionModel.feeAmount,
-        "transportfee": userRegFeeCollectionModel.transportFee,
-        "otheramount": 0,
-        "latefeeamount": userRegFeeCollectionModel.lateFeeAmount,
-        "latefeeamountagreed": userRegFeeCollectionModel.lateFeeAmountAgreed,
-        "totalpaymentmade": 0,
-        "paymentvalidationpending":
-            userRegFeeCollectionModel.paymentValidationPending,
-        "closed": false,
-        // "serversidetimestamp": userRegFeeCollectionModel.serverSideTimeStamp,
-      },
-      "prolddata": "None",
-      "chid": "None",
-      "chnewdata": "None",
-      "cholddata": "None",
-      "idcardnum": "10",
-      "sessionterm": "2020-2021",
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": "Zs65AZliQzlH47u2xQ0l"
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'UserRegistrationFeePaymentProcessingActionRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "actiontype": "pr_add",
+        "prid": "None",
+        "prnewdata": {
+          "version": userRegFeeCollectionModel.version,
+          "idcardnum": userRegFeeCollectionModel.idCardNum,
+          "virtualroomid": userRegFeeCollectionModel.virtualRoomId,
+          "rollnum": userRegFeeCollectionModel.rollNum,
+          "username": userRegFeeCollectionModel.userName,
+          "feeplantype": userRegFeeCollectionModel.feePlanType,
+          "feeplanname": userRegFeeCollectionModel.feePlaneName,
+          "paymentperiodtype": userRegFeeCollectionModel.paymentPeriodType,
+          "paymentperiodname": userRegFeeCollectionModel.paymentPeriodName,
+          "periodstartdate": userRegFeeCollectionModel.periodStartDay,
+          "periodenddate": userRegFeeCollectionModel.periodEndDay,
+          "totalfeeamount": 9200,
+          "feeplanamount": userRegFeeCollectionModel.feeAmount,
+          "transportfee": userRegFeeCollectionModel.transportFee,
+          "otheramount": 0,
+          "latefeeamount": userRegFeeCollectionModel.lateFeeAmount,
+          "latefeeamountagreed": userRegFeeCollectionModel.lateFeeAmountAgreed,
+          "totalpaymentmade": 0,
+          "paymentvalidationpending":
+              userRegFeeCollectionModel.paymentValidationPending,
+          "closed": false,
+          // "serversidetimestamp": userRegFeeCollectionModel.serverSideTimeStamp,
+        },
+        "prolddata": "None",
+        "chid": "None",
+        "chnewdata": "None",
+        "cholddata": "None",
+        "idcardnum": "10",
+        "sessionterm": "2020-2021",
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": "Zs65AZliQzlH47u2xQ0l"
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
-//  static Future submitAttendenceOfferingSch(
-//{      @required AttendanceInfo attendenceInfo,
-//      @required AttendanceModel attendenceModel,
-//      @required OfferingsScheduleModel offeringsScheduleModel,
-//      @required RegisteredIdModel listOfRegisteredId}) async {
-//    final HttpsCallable callable = CloudFunctions.instance.getHttpsCallable(
-//      functionName: 'SubmitAttendenceRequest',
-//    );
-//    print("CloudFunction " + "end");
-//    dynamic resp = await callable.call(<String, dynamic>{
-//      "entitytype": "SERVICEPROVIDERINFO",
-//      "entityid": "AefWmZc5Z3HwLhBd6nRU",
-//      "virtualroomname": "None",
-//      "actiontype": "ofr",
-//      "date": attendenceModel.date,
-//      "kind": attendenceModel.kind,
-//      "sessionterm": offeringsScheduleModel.sessionTermName,
-//      "studentInfo": [
-//        {
-//          "id": attendenceInfo.studentID,
-//          "vr": listOfRegisteredId.vr,
-//          "val": attendenceInfo.attendence
-//        },
-//        {"id": "2", "vr": "grade2-A", "val": "A"},
-//        {"id": "3", "vr": "grade2-A", "val": "A"},
-//        {"id": "4", "vr": "grade2-A", "val": "A"},
-//        {"id": "5", "vr": "grade2-A", "val": "A"},
-//        {"id": "6", "vr": "grade2-A", "val": "A"}
-//      ]
-//    });
-//    print("CloudFunction " + callable.toString());
-//    print("CloudFunction " + resp.data.toString());
-//  }
+  // static Future submitAttendenceOfferingSch(
+  //     {@required AttendanceInfo attendenceInfo,
+  //     @required AttendanceModel attendenceModel,
+  //     @required OfferingsScheduleModel offeringsScheduleModel,
+  //     @required RegisteredIdModel listOfRegisteredId}) async {
+  //   try {
+  //     final HttpsCallable callable = CloudFunctions.instance.getHttpsCallable(
+  //       functionName: 'SubmitAttendenceRequest',
+  //     );
+  //     print("CloudFunction " + "end");
+  //     dynamic resp = await callable.call(<String, dynamic>{
+  //       "entitytype": "SERVICEPROVIDERINFO",
+  //       "entityid": "AefWmZc5Z3HwLhBd6nRU",
+  //       "virtualroomname": "None",
+  //       "actiontype": "ofr",
+  //       "date": attendenceModel.date,
+  //       "kind": attendenceModel.kind,
+  //       "sessionterm": offeringsScheduleModel.sessionTermName,
+  //       "studentInfo": [
+  //         {
+  //           "id": attendenceInfo.studentID,
+  //           "vr": listOfRegisteredId.vr,
+  //           "val": attendenceInfo.attendence
+  //         },
+  //         {"id": "2", "vr": "grade2-A", "val": "A"},
+  //         {"id": "3", "vr": "grade2-A", "val": "A"},
+  //         {"id": "4", "vr": "grade2-A", "val": "A"},
+  //         {"id": "5", "vr": "grade2-A", "val": "A"},
+  //         {"id": "6", "vr": "grade2-A", "val": "A"}
+  //       ]
+  //     });
+  //     print("CloudFunction " + callable.toString());
+  //     print("CloudFunction " + resp.data.toString());
+  //   } catch (e) {
+  //     print(e);
+  //     throw e;
+  //   }
+  // }
 
   static Future getRollNumber(
       VirtualRoomModel virtualRoomModel, String serviceid) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'GetRollNumberRequest',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceid,
-      "virtualroomname": virtualRoomModel.virtualRoomName,
-      "sessionterm": virtualRoomModel.sessionTermName
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'GetRollNumberRequest',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceid,
+        "virtualroomname": virtualRoomModel.virtualRoomName,
+        "sessionterm": virtualRoomModel.sessionTermName
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<int> getRegistrationNumber(String serviceid) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'GetRegistrationNumberRequest',
-    );
-    print("CloudFunction " + "end");
-    HttpsCallableResult resp = await callable.call(<String, dynamic>{
-      "entitytype": "SERVICEPROVIDERINFO",
-      "entityid": serviceid,
-      "prefix": "",
-      "startcount": 1
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'GetRegistrationNumberRequest',
+      );
+      print("CloudFunction " + "end");
+      HttpsCallableResult resp = await callable.call(<String, dynamic>{
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceid,
+        "prefix": "",
+        "startcount": 1
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
 
-    return resp.data['id'] as int;
+      return resp.data['id'] as int;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<dynamic> uploadFileStorage({
@@ -248,19 +273,24 @@ class SchoolGateway {
     final String fileName,
     String entityid,
   }) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'geturlforstorage',
-    );
-    print("CloudFunction " + "end");
-    dynamic resp = await callable.call(<String, dynamic>{
-      "entitytype": "COMPLEXES",
-      "entityid": entityid,
-      "uploadtype": uploadType,
-      "variantname": variantName,
-      "filename": fileName,
-    });
-    print("CloudFunction " + callable.toString());
-    //print("CloudFunction " + resp.data.toString());
-    return resp;
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'geturlforstorage',
+      );
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "entitytype": "COMPLEXES",
+        "entityid": entityid,
+        "uploadtype": uploadType,
+        "variantname": variantName,
+        "filename": fileName,
+      });
+      print("CloudFunction " + callable.toString());
+      //print("CloudFunction " + resp.data.toString());
+      return resp;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 }

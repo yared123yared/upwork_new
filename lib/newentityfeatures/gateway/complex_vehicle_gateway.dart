@@ -54,32 +54,37 @@ class ComplexVehicleGateway {
       @required UserModel user,
       @required String entitytype,
       String entityid}) async {
-    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-      'NewComplexVehicleCreateRequestModified',
-    );
-    dynamic resp = await callable.call(<String, dynamic>{
-      'vehicledata': {
-        'unitaddress': vehicle.unitAddress,
-        'ownername': vehicle.ownerName,
-        'appuserid': user.userID,
-        'numberplate': vehicle.numberPlate,
-        'registrationnum': vehicle.registrationNum,
-        'isstaff': vehicle.isStaff,
-        'vehicletype': vehicle.vehicleType,
-        'photolink': vehicle.photoLink,
-        'startdate': HelpUtil.toTimeStamp(dateTime: vehicle.startDate),
-        'enddate': HelpUtil.toTimeStamp(dateTime: vehicle.endDate),
-        'isactive': vehicle.isActive,
-        'isvisitor': vehicle.isVisitor,
-        'username': vehicle.userName,
-        'userphonenum': vehicle.userPhoneNum,
-        'ispickanddrop': vehicle.isPickAndDrop
-      },
-      'entitytype': entitytype,
-      'entityid': entityid,
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'NewComplexVehicleCreateRequestModified',
+      );
+      dynamic resp = await callable.call(<String, dynamic>{
+        'vehicledata': {
+          'unitaddress': vehicle.unitAddress,
+          'ownername': vehicle.ownerName,
+          'appuserid': user.userID,
+          'numberplate': vehicle.numberPlate,
+          'registrationnum': vehicle.registrationNum,
+          'isstaff': vehicle.isStaff,
+          'vehicletype': vehicle.vehicleType,
+          'photolink': vehicle.photoLink,
+          'startdate': HelpUtil.toTimeStamp(dateTime: vehicle.startDate),
+          'enddate': HelpUtil.toTimeStamp(dateTime: vehicle.endDate),
+          'isactive': vehicle.isActive,
+          'isvisitor': vehicle.isVisitor,
+          'username': vehicle.userName,
+          'userphonenum': vehicle.userPhoneNum,
+          'ispickanddrop': vehicle.isPickAndDrop
+        },
+        'entitytype': entitytype,
+        'entityid': entityid,
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> updateVehicle(
@@ -88,24 +93,29 @@ class ComplexVehicleGateway {
       @required ComplexVehicleModel oldVehicle,
       @required ComplexVehicleModel newVehicle,
       @required UserModel user}) async {
-    final HttpsCallable callable = FirebaseFunctions.instance
-        .httpsCallable('ComplexVehicleUpdateRequestModified');
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance
+          .httpsCallable('ComplexVehicleUpdateRequestModified');
 
-    newVehicle.appUserId = oldVehicle.appUserId;
+      newVehicle.appUserId = oldVehicle.appUserId;
 
-    dynamic resp = await callable.call(<String, dynamic>{
-      'myolddata': toData(vehicle: oldVehicle, userID: user.userID),
-      'mynewdata': newVehicle.toJson(),
-      'isvisitor': oldVehicle.isVisitor,
-      'userid': oldVehicle.appUserId,
-      'byuserid': user.userID,
-      'residentdetailsid': oldVehicle.unitAddress,
-      'numplate': oldVehicle.numberPlate,
-      'entitytype': entitytype,
-      'entityid': entityid,
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+      dynamic resp = await callable.call(<String, dynamic>{
+        'myolddata': toData(vehicle: oldVehicle, userID: user.userID),
+        'mynewdata': newVehicle.toJson(),
+        'isvisitor': oldVehicle.isVisitor,
+        'userid': oldVehicle.appUserId,
+        'byuserid': user.userID,
+        'residentdetailsid': oldVehicle.unitAddress,
+        'numplate': oldVehicle.numberPlate,
+        'entitytype': entitytype,
+        'entityid': entityid,
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> deleteVehicle(
@@ -113,17 +123,22 @@ class ComplexVehicleGateway {
       String entityid,
       @required String numplate,
       @required UserModel user}) async {
-    final HttpsCallable callable = FirebaseFunctions.instance
-        .httpsCallable('ComplexVehicleUpdateRequestModified');
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance
+          .httpsCallable('ComplexVehicleUpdateRequestModified');
 
-    dynamic resp = await callable.call(<String, dynamic>{
-      'byuserid': user.userID,
-      'numplate': numplate,
-      'entitytype': entitytype,
-      'entityid': entityid,
-    });
-    print("CloudFunction " + callable.toString());
-    print("CloudFunction " + resp.data.toString());
+      dynamic resp = await callable.call(<String, dynamic>{
+        'byuserid': user.userID,
+        'numplate': numplate,
+        'entitytype': entitytype,
+        'entityid': entityid,
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Map<String, dynamic> toData(
@@ -151,9 +166,14 @@ class ComplexVehicleGateway {
   static Map<String, dynamic> toUpdateData(
       {@required ComplexVehicleModel newVehicle,
       @required ComplexVehicleModel oldVehicle}) {
-    return {
-      if (oldVehicle.endDate != newVehicle.startDate)
-        'enddate': HelpUtil.toTimeStamp(dateTime: newVehicle.endDate),
-    };
+    try {
+      return {
+        if (oldVehicle.endDate != newVehicle.startDate)
+          'enddate': HelpUtil.toTimeStamp(dateTime: newVehicle.endDate),
+      };
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 }

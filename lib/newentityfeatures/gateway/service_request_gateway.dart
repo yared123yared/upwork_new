@@ -159,45 +159,60 @@ class ServiceRequestGateway {
 
   static Future<List<ServiceRequestModel>> getAllActiveServiceRequestList(
       {@required String entitytype, String entityid}) async {
-    return await FirebaseFirestore.instance
-        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
-        .get()
-        .then((x) {
-      return ServiceRequestModel.listFromJson(
-        x.docs.map((d) => d.data).toList(),
-        x.docs.map((d) => d.id).toList(),
-      );
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+          .get()
+          .then((x) {
+        return ServiceRequestModel.listFromJson(
+          x.docs.map((d) => d.data).toList(),
+          x.docs.map((d) => d.id).toList(),
+        );
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<ServiceRequestModel>> getServiceRequestOwnerResident(
       {@required String entitytype,
       String entityid,
       @required UserModel um}) async {
-    return await FirebaseFirestore.instance
-        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
-        .get()
-        .then((x) {
-      return ServiceRequestModel.listFromJson(
-        x.docs.map((d) => d.data).toList(),
-        x.docs.map((d) => d.id).toList(),
-      );
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+          .get()
+          .then((x) {
+        return ServiceRequestModel.listFromJson(
+          x.docs.map((d) => d.data).toList(),
+          x.docs.map((d) => d.id).toList(),
+        );
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<ServiceRequestModel>> getServiceRequestStaffSelf(
       {@required String entitytype,
       String entityid,
       @required UserModel um}) async {
-    return await FirebaseFirestore.instance
-        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
-        .get()
-        .then((x) {
-      return ServiceRequestModel.listFromJson(
-        x.docs.map((d) => d.data).toList(),
-        x.docs.map((d) => d.id).toList(),
-      );
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+          .get()
+          .then((x) {
+        return ServiceRequestModel.listFromJson(
+          x.docs.map((d) => d.data).toList(),
+          x.docs.map((d) => d.id).toList(),
+        );
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<void> responseToAdhocVisitor({
@@ -238,14 +253,20 @@ class ServiceRequestGateway {
     String entityid,
     @required String qrCodeID,
   }) async {
-    return await FirebaseFirestore.instance
-        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
-        .where("generatedqrcode", isEqualTo: qrCodeID)
-        .get()
-        .then((x) {
-      return ServiceRequestModel.listFromJson(
-          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+          .where("generatedqrcode", isEqualTo: qrCodeID)
+          .get()
+          .then((x) {
+        return ServiceRequestModel.listFromJson(
+            x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
 //todo : Need to replace it with cloud function
@@ -254,24 +275,35 @@ class ServiceRequestGateway {
     String entityid,
     @required ServiceRequestModel serviceRequest,
   }) async {
-    return await FirebaseFirestore.instance
-        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
-        .doc(serviceRequest.requestID)
-        .delete();
+    try {
+      return await FirebaseFirestore.instance
+          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+          .doc(serviceRequest.requestID)
+          .delete();
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   static Future<List<ServiceRequestModel>> getServiceRequestFromQrCode(
       {@required String code,
       @required String entitytype,
       String entityid}) async {
-    return await FirebaseFirestore.instance
-        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
-        .where('generatedqrcode', isEqualTo: code)
-        .get()
-        .then((x) {
-      print(x.docs);
-      return ServiceRequestModel.listFromJson(
-          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
-    });
+    try {
+      return await FirebaseFirestore.instance
+          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+          .where('generatedqrcode', isEqualTo: code)
+          .get()
+          .then((x) {
+        print(x.docs);
+        return ServiceRequestModel.listFromJson(
+            x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 }
