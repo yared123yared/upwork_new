@@ -101,60 +101,62 @@ class RegistryModelRepository {
     RegistryModelRepositoryReturnData myreturn =
         RegistryModelRepositoryReturnData();
 
-
     List<RegistryModel> newRegistryList = [];
     bool isOwner = false;
 
     List<RegistryModel> registryList =
         await _complexRepository.registry.getRegistryListForBuildingAndFloor(
       entitytype: entitytype,
-      entityid: entityid,buildingid:buildingName,floor:floorNum  );
-    myreturn.itemlist=registryList;
+      entityid: entityid,
+      buildingid: buildingName,
+      floor: floorNum,
+    );
+    myreturn.itemlist = registryList;
 
     return myreturn;
-      }
+  }
 
-  Future<RegistryModelRepositoryReturnData>
-  getRegistryListDataByListOfUnits(String entitytype, String entityid,
-      int originType, List<String> unitlist) async {
+  Future<RegistryModelRepositoryReturnData> getRegistryListDataByListOfUnits(
+      String entitytype,
+      String entityid,
+      int originType,
+      List<String> unitlist) async {
     RegistryModelRepositoryReturnData myreturn =
-    RegistryModelRepositoryReturnData();
-
+        RegistryModelRepositoryReturnData();
 
     List<RegistryModel> newRegistryList = [];
     bool isOwner = false;
 
     List<RegistryModel> registryList =
-    await _complexRepository.registry.getRegistryListDataByListOfUnits(
-        entitytype: entitytype,
-        entityid: entityid,unitlist:unitlist );
-    myreturn.itemlist=registryList;
+        await _complexRepository.registry.getRegistryListDataByListOfUnits(
+      entitytype: entitytype,
+      entityid: entityid,
+      unitlist: unitlist,
+    );
+    myreturn.itemlist = registryList;
 
     return myreturn;
-
   }
 
-  Future<RegistryModelRepositoryReturnData>
-  getRegistryListDataByUnitId(String entitytype, String entityid,
-      int originType, String unitid) async {
+  Future<RegistryModelRepositoryReturnData> getRegistryListDataByUnitId(
+      String entitytype, String entityid, int originType, String unitid) async {
     RegistryModelRepositoryReturnData myreturn =
-    RegistryModelRepositoryReturnData();
-
+        RegistryModelRepositoryReturnData();
 
     List<RegistryModel> registryList = [];
     bool isOwner = false;
 
     RegistryModel myreg =
-    await _complexRepository.registry.getRegistryListDataByUnitId(
-        entitytype: entitytype,
-        entityid: entityid,unitid:unitid );
+        await _complexRepository.registry.getRegistryListDataByUnitId(
+      entitytype: entitytype,
+      entityid: entityid,
+      unitid: unitid,
+    );
     registryList.add(myreg);
-    myreturn.itemlist=registryList;
+    myreturn.itemlist = registryList;
 
     return myreturn;
-
   }
-
 
   Future<RegistryModelRepositoryReturnData> createRegistryModel(
       RegistryModel item, String entitytype, String entityid) async {
@@ -169,9 +171,6 @@ class RegistryModelRepository {
     myreturn.errortype = -1;
     return myreturn;
   }
-
-
-
 
   Future<RegistryModelRepositoryReturnData> createRegistryModelViaResidentModel(
       ResidentModel item, String entitytype, String entityid) async {

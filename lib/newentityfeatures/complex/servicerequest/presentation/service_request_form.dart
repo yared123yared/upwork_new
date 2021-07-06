@@ -119,7 +119,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
       });
     } else if (widget.origintype == 2) {
       _isStaff = true;
-      serviceTypes = [];
+      // serviceTypes = [];
     } else if (widget.origintype == 3) {
       _isStaff = false;
     }

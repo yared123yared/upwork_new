@@ -35,12 +35,11 @@ class RegistryModelListBloc
     if (event is getListDataByListOfUnits) {
       yield IsBusy();
       RegistryModelRepositoryReturnData ud =
-      await mrepository.getRegistryListDataByListOfUnits(
+          await mrepository.getRegistryListDataByListOfUnits(
         event.entitytype,
         event.entityid,
         event.originType,
         event.unitlist,
-
       );
 
       if (ud.errortype == -1)
@@ -58,12 +57,11 @@ class RegistryModelListBloc
     if (event is getListDataByUnitId) {
       yield IsBusy();
       RegistryModelRepositoryReturnData ud =
-      await mrepository.getRegistryListDataByUnitId(
+          await mrepository.getRegistryListDataByUnitId(
         event.entitytype,
         event.entityid,
         event.originType,
         event.unitid,
-
       );
 
       if (ud.errortype == -1)
@@ -78,7 +76,6 @@ class RegistryModelListBloc
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-
 
     if (event is getListData) {
       yield IsBusy();
@@ -103,8 +100,11 @@ class RegistryModelListBloc
 
     if (event is getPreData) {
       yield IsBusy();
-      BuildingModelRepositoryReturnData ud = await brepository
-          .getAllBuildingModels( event.entitytype,event.entityid,);
+      BuildingModelRepositoryReturnData ud =
+          await brepository.getAllBuildingModels(
+        event.entitytype,
+        event.entityid,
+      );
 
       if (ud.errortype == -1)
         yield IsBuildingListDataLoaded(buildinglistdata: ud.itemlist);

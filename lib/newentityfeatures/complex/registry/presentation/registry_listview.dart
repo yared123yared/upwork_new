@@ -44,13 +44,24 @@ class _RegistryListListState extends State<RegistryListList> {
 
   void initState() {
     mlistbloc = listbloc.RegistryModelListBloc();
-    mlistbloc.add(listbloc.getPreData(
-        entitytype: widget.entitytype, entityid: widget.entityid));
-    mlistbloc.add(listbloc.getListData(
-      entitytype: widget.entitytype,
-      entityid: widget.entityid,
-      originType: widget.origintype,
-    ));
+    if (widget.origintype == 3) {
+      BlocProvider.of<listbloc.RegistryModelListBloc>(context).add(
+        listbloc.getListDataByListOfUnits(
+          entityid: widget.entityid,
+          entitytype: widget.entitytype,
+          originType: widget.origintype,
+          unitlist: null,
+        ),
+      );
+    } else {
+      mlistbloc.add(listbloc.getPreData(
+          entitytype: widget.entitytype, entityid: widget.entityid));
+      mlistbloc.add(listbloc.getListData(
+        entitytype: widget.entitytype,
+        entityid: widget.entityid,
+        originType: widget.origintype,
+      ));
+    }
   }
 
   @override
@@ -103,7 +114,7 @@ class _RegistryListListState extends State<RegistryListList> {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: "${item.ownerName ?? ""} - ${item}",
+        title: "${item.ownerName ?? item.residentName ?? ""} - ${item}",
         subtitle: item?.residentPublishedContact ??
             item?.residentPublishedContact ??
             "",
@@ -237,6 +248,9 @@ class _RegistryListListState extends State<RegistryListList> {
           }
           if (state is listbloc.IsSearchedListDataLoaded) {
             List<cmodel.RegistryModel> em = [];
+            if (widget.origintype == 3) {
+              state.listdata;
+            }
             List<BuildingModel> bm = [];
 
             setState(() {
@@ -255,7 +269,6 @@ class _RegistryListListState extends State<RegistryListList> {
               blist = Map();
               state.buildinglistdata.forEach((registry) {
                 if (!buildings.contains(registry.buildingName)) {
-
                   buildings.add(registry.buildingName);
                 }
 
@@ -272,7 +285,7 @@ class _RegistryListListState extends State<RegistryListList> {
                 innerList?.add(registry);
 
                 blist[registry.buildingName] = {
-                    registry.buildingName: innerList,
+                  registry.buildingName: innerList,
                 };
               });
             }
@@ -316,7 +329,7 @@ class _RegistryListListState extends State<RegistryListList> {
                   loadData: () async => buildings,
                   onSelected: (value, index) {
                     setState(() {
-                      floors = blist[value].keys.toList();
+                      floors = list[value].keys.toList();
                     });
                   },
                 ),
@@ -338,17 +351,30 @@ class _RegistryListListState extends State<RegistryListList> {
                       );
                       return;
                     }
-
-                    BlocProvider.of<listbloc.RegistryModelListBloc>(context)
-                        .add(
-                      listbloc.getListDataByBuildingAndFloor(
-                        entityid: widget.entityid,
-                        entitytype: widget.entitytype,
-                        originType: widget.origintype,
-                        buildingName: _building.text,
-                        floorNum: int.parse(_floor.text),
-                      ),
-                    );
+                    if (widget.origintype == 1 || widget.origintype == 2) {
+                      BlocProvider.of<listbloc.RegistryModelListBloc>(context)
+                          .add(
+                        listbloc.getListDataByBuildingAndFloor(
+                          entityid: widget.entityid,
+                          entitytype: widget.entitytype,
+                          originType: widget.origintype,
+                          buildingName: _building.text,
+                          floorNum: int.parse(_floor.text),
+                        ),
+                      );
+                      // } else if (widget.origintype == 3) {
+                    } else if (widget.origintype == 4) {
+                      BlocProvider.of<listbloc.RegistryModelListBloc>(context)
+                          .add(
+                        listbloc.getListDataByBuildingAndFloor(
+                          entityid: widget.entityid,
+                          entitytype: widget.entitytype,
+                          originType: widget.origintype,
+                          buildingName: _building.text,
+                          floorNum: int.parse(_floor.text),
+                        ),
+                      );
+                    }
                   },
                 ),
               ],
