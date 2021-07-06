@@ -124,4 +124,42 @@ class ApiHelper {
       return some(failure);
     }
   }
+
+  Future<Option<Failure>> addDocToFirebaseCollecton<T>(
+      Map<String, dynamic> doc) async {
+    try {
+      doc.remove('runtimeType');
+
+      await _firestoreInstance.collection(endPoint).add(doc);
+      return none();
+    } on FirebaseException catch (e) {
+      LogicalFailure failure = LogicalFailure(
+          returnType: T.toString(), path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    } catch (e) {
+      ExceptionFailure failure = ExceptionFailure(
+          returnType: T.toString(), path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    }
+  }
+
+  Future<Option<Failure>> updateFirebaseDoc<T>(Map<String, dynamic> doc) async {
+    try {
+      doc.remove('runtimeType');
+      await _firestoreInstance.doc(endPoint).set(doc);
+      return none();
+    } on FirebaseException catch (e) {
+      LogicalFailure failure = LogicalFailure(
+          returnType: T.toString(), path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    } catch (e) {
+      ExceptionFailure failure = ExceptionFailure(
+          returnType: T.toString(), path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    }
+  }
 }

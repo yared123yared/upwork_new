@@ -2,13 +2,9 @@ import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_switch.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
-import 'package:complex/view/job_pages/add_job_page.dart';
-import 'package:complex/view/pet_pages/add_pet_page.dart';
-import 'package:complex/view/product_pages/select_product_type.dart';
-import 'package:complex/view/property_pages/add_property_page.dart';
-import 'package:complex/view/vehicle/vehicle_create_page.dart';
-import 'package:complex/utils/next_page_routing.dart';
+import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
 import 'package:complex/utils/utility.dart';
@@ -17,21 +13,20 @@ import 'package:flutter/rendering.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
-enum ContactOpenFrom { addProperty, vehicle, pet, product, job }
-
 class GeneralContactDetailPage extends StatefulWidget {
-  final ContactOpenFrom type;
+  final EcomProductType type;
   final CompleteProductData productData;
   final bool isService;
   final String serviceId;
   final String serviceProviderId;
 
-  GeneralContactDetailPage(
-      {this.type,
-      this.serviceId,
-      this.productData,
-      this.isService = false,
-      this.serviceProviderId});
+  GeneralContactDetailPage({
+    this.serviceId,
+    this.productData,
+    this.isService = false,
+    this.serviceProviderId,
+    @required this.type,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -42,7 +37,6 @@ class GeneralContactDetailPage extends StatefulWidget {
 class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
   bool _emailShare = true;
   bool _phoneShare = true;
-  bool _nameShare = true;
   bool _addressShare = true;
   bool _locationValue = false;
   ContactDetails initContactDetails = null;
@@ -72,6 +66,23 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
     super.initState();
   }
 
+  void loadNonTextFieldData() {
+    if (initContactDetails != null) {
+      setState(() {
+        _emailShare = initContactDetails.shareemail;
+        _phoneShare = initContactDetails.sharephone;
+
+        _addressShare = initContactDetails.shareaddress;
+        _locationValue = initContactDetails.address.latitude != null;
+        if (_locationValue) {
+          position = Position(
+              latitude: initContactDetails.address.latitude,
+              longitude: initContactDetails.address.longitude);
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,23 +109,26 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
           children: [
             _renderTextField('Name', _nameController,
                 initialValue: initContactDetails?.name),
-
-            // TODO KOUSIK
-            _renderNameShare(),
             _renderTextField('Phone', _phoneController,
                 isPhone: true, initialValue: initContactDetails?.phonenum),
-            _renderPhoneShare(), // TODO KOUSIK
-            _renderTextField('Email', _emailController, initialValue: initContactDetails?.email),
-            _renderEmailShare(), // TODO KOUSIK
-            // _renderGroupTitle(),
-            _renderLocationArea(), // TODO KOUSIK
-            _renderTextField('Select your State', _stateController, initialValue: initContactDetails?.address.state),
-            _renderTextField('Select your District', _districtController, initialValue: initContactDetails?.address.district),
-            _renderTextField('Select your Village', _villageController, initialValue: initContactDetails?.address.townVillage),
-            _renderTextField('Area/Sector', _areaSectorController, initialValue: initContactDetails?.address.areaSector),
-            _renderTextField('Society Name', _societyNameController, initialValue: initContactDetails?.address.societyname),
-            _renderTextField('Address Line 1', _addressLine1Controller, initialValue: initContactDetails?.address.addressline),
-            _renderAddressShare(),// TODO KOUSIK
+            _renderPhoneShare(),
+            _renderTextField('Email', _emailController,
+                initialValue: initContactDetails?.email),
+            _renderEmailShare(),
+            _renderLocationArea(),
+            _renderTextField('Select your State', _stateController,
+                initialValue: initContactDetails?.address?.state),
+            _renderTextField('Select your District', _districtController,
+                initialValue: initContactDetails?.address?.district),
+            _renderTextField('Select your Village', _villageController,
+                initialValue: initContactDetails?.address?.townVillage),
+            _renderTextField('Area/Sector', _areaSectorController,
+                initialValue: initContactDetails?.address?.areaSector),
+            _renderTextField('Society Name', _societyNameController,
+                initialValue: initContactDetails?.address?.societyname),
+            _renderTextField('Address Line 1', _addressLine1Controller,
+                initialValue: initContactDetails?.address?.addressline),
+            _renderAddressShare(),
             SizedBox(
               height: 20,
             ),
@@ -145,31 +159,14 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
                         addressline: _addressLine1Controller.text.trim(),
                       ),
                       shareaddress: _addressShare);
-                  if (widget.type == ContactOpenFrom.addProperty) {
-                    Navigator.push(context,
-                        NextPageRoute(AddPropertyPage(_contactDetail)));
-                  } else if (widget.type == ContactOpenFrom.vehicle) {
-                    Navigator.push(context,
-                        NextPageRoute(VehicleCreatePage(_contactDetail)));
-                  } else if (widget.type == ContactOpenFrom.pet) {
-                    Navigator.push(
-                        context, NextPageRoute(AddPetPage(_contactDetail)));
-                  } else if (widget.type == ContactOpenFrom.job) {
-                    Navigator.push(
-                        context, NextPageRoute(AddJobPage(_contactDetail)));
-                  } else if (widget.type == ContactOpenFrom.product) {
-                    Navigator.push(
-                      context,
-                      NextPageRoute(
-                        SelectProductType(
-                          _contactDetail,
-                          isService: widget.isService,
-                          serviceId: widget.serviceId,
-                          serviceProviderId: widget.serviceProviderId,
-                        ),
-                      ),
-                    );
-                  }
+
+                  EcomNavigationHelper.of(context).fromContactToAddProductPage(
+                      type: widget.type,
+                      data: widget.productData,
+                      isService: widget.isService,
+                      serviceId: widget.serviceId,
+                      serviceProviderId: widget.serviceProviderId,
+                      contactDetails: _contactDetail);
                 }
               },
               borderColor: ColorConstants.primaryColor,
@@ -204,24 +201,6 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
         isRequired: true,
         isInt: isPhone,
         isNumber: isPhone,
-      ),
-    );
-  }
-
-  Widget _renderNameShare() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('Share Name?', style: Styles.lightText(size: 16)),
-          _renderCheckBox(
-            checkValue: _nameShare,
-            onChange: () {
-              _nameShare = !_nameShare;
-            },
-          )
-        ],
       ),
     );
   }
@@ -336,7 +315,7 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
     );
   }
 
-  Future<Position> _determinePosition() async {
+  Future<void> _determinePosition() async {
     try {
       Utility.permissionCheckForMap();
       position = await Geolocator.getCurrentPosition();
@@ -364,10 +343,10 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
     setState(() {});
   }
 
-  Widget _renderCheckBox(
-      {@required bool checkValue,
-      @required Function onChange,
-      bool initialValue}) {
+  Widget _renderCheckBox({
+    @required bool checkValue,
+    @required Function onChange,
+  }) {
     return Row(
       children: [
         _renderCheckBoxArea('Yes', checkValue, () {

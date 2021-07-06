@@ -1,32 +1,30 @@
-import 'package:complex/blocs/product_bloc.dart';
-import 'package:complex/data/api/api_service.dart';
+import 'package:complex/application/explore/ecom/product_owner/product_owner_bloc.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/data/providers/product_provider_old.dart';
-import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_dropdown.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
-import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/pet_model.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
 import 'package:complex/utils/utility.dart';
+import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:injector/injector.dart';
 
 class AddPetPage extends StatefulWidget {
   final ContactDetails contactDetail;
   final CompletePet completePet;
 
-  AddPetPage(this.contactDetail,{this.completePet});
+  AddPetPage(this.contactDetail, {this.completePet});
 
   @override
   State<StatefulWidget> createState() {
@@ -46,12 +44,11 @@ class _AddPetPageState extends State<AddPetPage> {
   CustomTextFieldController _petTypeController = CustomTextFieldController();
   CustomTextFieldController _milkQuantityController =
       CustomTextFieldController();
-  bool _isLoading = true;
   bool _isMilking = false;
   List<String> _photos = [];
   var _channelsProvider = Injector.appInstance.get<ChannelsProvider>();
   var _key = GlobalKey<ScaffoldState>();
-  ProductBloc _productBloc;
+  ProductOwnerBloc _productBloc;
   var _isOwner = true;
   var _productProvider = Injector.appInstance.get<ProductProviderOld>();
   List<String> _petList = [];
@@ -61,34 +58,10 @@ class _AddPetPageState extends State<AddPetPage> {
 
   double get gridWidth => (screenWidth - 70) / 4;
 
-  void _handleAddPetResponse(AddNewPetState state) {
-    switch (state.apiState) {
-      case ApiStatus.LOADING:
-        _isLoading = true;
-        break;
-      case ApiStatus.SUCCESS:
-        _isLoading = false;
-        AlertsWidget.alertWithOkBtn(
-          context: context,
-          onOkClick: () {
-            Navigator.pop(context);
-            Navigator.pop(context);
-          },
-          text: state.response.message,
-        );
-        break;
-      case ApiStatus.ERROR:
-        _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
-        break;
-      case ApiStatus.INITIAL:
-        break;
-    }
-  }
-
   @override
   void initState() {
     super.initState();
+    EasyLoading.show(status: 'loading');
     Utility.waitFor(2).then((value) {
       _productProvider.getAnimalType().then((result) {
         print("result :: $result");
@@ -96,45 +69,48 @@ class _AddPetPageState extends State<AddPetPage> {
           List<String> local = List<String>.from(result['values']);
           _petList.addAll(local);
         }
-        setState(() {
-          _isLoading = false;
-        });
       });
+      EasyLoading.dismiss();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    _productBloc = BlocProvider.of<ProductBloc>(context);
-    return BlocListener<ProductBloc, ProductState>(
+    _productBloc = BlocProvider.of<ProductOwnerBloc>(context);
+    return BlocListener<ProductOwnerBloc, ProductOwnerState>(
       listener: (context, state) {
-        if (state is AddNewPetState) _handleAddPetResponse(state);
+        state.failure.fold(() {
+          if (state.isLoading) {
+            EasyLoading.show(status: 'Loading..');
+          } else if (state.message.isNotEmpty) {
+            EasyLoading.showInfo(state.message);
+          } else {
+            EasyLoading.dismiss();
+          }
+        }, (a) {
+          EasyLoading.dismiss();
+
+          showDialog(
+              context: context,
+              builder: (context) => ErrorDialogue(failure: a));
+        });
       },
-      child: BlocBuilder<ProductBloc, ProductState>(
-        builder: (context, state) {
-          return Scaffold(
-            key: _key,
-            appBar: AppBar(
-              title: Text('Generic Properties'),
-              leading: IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.white),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
-                ),
-              ),
-              backgroundColor: ColorConstants.greenColor,
+      child: Scaffold(
+        key: _key,
+        appBar: AppBar(
+          title: Text('Generic Properties'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(20),
             ),
-            body: ScreenWithLoader(
-              isLoading: _isLoading,
-              body: SingleChildScrollView(
-                child: _renderForm(),
-              ),
-            ),
-          );
-        },
+          ),
+          backgroundColor: ColorConstants.greenColor,
+        ),
+        body: _renderForm(),
       ),
     );
   }
@@ -153,9 +129,8 @@ class _AddPetPageState extends State<AddPetPage> {
         displayName: (x) => x,
         onSelected: (name, index) {
           print("SELECTED ITEM ::  $name  $index");
-          setState(() {
-            _isLoading = true;
-          });
+          EasyLoading.show(status: 'loading');
+
           _productProvider.breedList(name: name).then((result) {
             print("result :: $result");
             if (result != null) {
@@ -166,9 +141,7 @@ class _AddPetPageState extends State<AddPetPage> {
               _breed.clear();
             }
             _breedController.clear();
-            setState(() {
-              _isLoading = false;
-            });
+            EasyLoading.dismiss();
           });
         },
         validate: Validate.withOption(
@@ -203,18 +176,28 @@ class _AddPetPageState extends State<AddPetPage> {
   Widget _renderForm() {
     return Column(
       children: [
-        _renderTextField("Title", _titleController),
-        _renderTextField("Description", _descriptionController),
-        _renderTextField("Name", _nameController),
-        _renderTextField("Age", _ageController, isInt: true),
-        _renderTextField("Sex", _sexController),
+        _renderTextField("Title", _titleController,
+            initialValue: widget.completePet?.data?.title),
+        _renderTextField("Description", _descriptionController,
+            initialValue: widget.completePet?.data?.description),
+        _renderTextField("Name", _nameController,
+            initialValue: widget.completePet?.data?.petname),
+        _renderTextField("Age", _ageController,
+            isInt: true,
+            initialValue: widget.completePet?.data?.age.toString()),
+        _renderTextField("Sex", _sexController,
+            initialValue: widget.completePet?.data?.gender),
         _petTypeDropdown("Pet Type", _petTypeController, _petList),
         _breedDropdown("Breed", _breedController, _breed),
-        _renderTextField("Price", _priceController),
+        _renderTextField("Price", _priceController,
+            isInt: true,
+            initialValue: widget.completePet?.data?.price.toString()),
         _renderOwner(),
         GroupTitle(text: 'Milk Info'),
         _renderIsMilkingNow(),
-        _renderTextField("Milk Quantity (Liter)", _milkQuantityController),
+        _renderTextField("Milk Quantity (Liter)", _milkQuantityController,
+            isInt: true,
+            initialValue: widget.completePet?.data?.milkqty.toString()),
         GroupTitle(text: 'Photos'),
         _renderPhotosGrid(),
         Padding(
@@ -364,11 +347,11 @@ class _AddPetPageState extends State<AddPetPage> {
   }
 
   Widget _renderTextField(String text, CustomTextFieldController controller,
-      {bool isInt = false}) {
+      {bool isInt = false, @required String initialValue}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: CustomTextField(
-        initialValue:widget.completePet?.toString(),
+        initialValue: initialValue,
         title: text,
         controller: controller,
         validate: Validate.withOption(
@@ -406,17 +389,14 @@ class _AddPetPageState extends State<AddPetPage> {
                     var pickedFile = await FilePicker.platform
                         .pickFiles(type: FileType.image);
                     if (pickedFile != null && pickedFile.files != null) {
-                      setState(() {
-                        _isLoading = true;
-                      });
+                      EasyLoading.show(status: 'loading');
+
                       var image = await _channelsProvider.sendFile(
                           "Images", pickedFile?.files?.first?.path);
                       if (image != null) {
                         _photos.add(image);
                       }
-                      setState(() {
-                        _isLoading = false;
-                      });
+                      EasyLoading.dismiss();
                     }
                   } catch (error) {
                     print(error);
@@ -473,35 +453,57 @@ class _AddPetPageState extends State<AddPetPage> {
   }
 
   _onRegisterClick() {
-    PetModel _petModel = PetModel(
-      userid: UserSession.userId,
-      serviceproviderid: null,
-      tileimage: null,
-      docid: null,
-      description: _descriptionController.text.trim(),
-      title: _titleController.text.trim(),
-      creationdate: (DateTime.now().millisecondsSinceEpoch / 1000).round(),
-      contactdetails: widget.contactDetail,
-      price: int.parse(_priceController.text.trim()),
-      listingownertype: _isOwner ? "OWNER" : "DEALER",
-      imagelist: _photos,
-      age: int.parse(_ageController.text.trim()),
-      animaltype: _petTypeController.text.trim(),
-      breed: _descriptionController.text.trim(),
-      gender: _descriptionController.text.trim(),
-      ismilking: _isMilking,
-      milkqty: _milkQuantityController.text.isNotEmpty
-          ? int.parse(_milkQuantityController.text.trim())
-          : null,
-      petclass: null,
-      petname: _descriptionController.text.trim(),
-      vaccinated: false,
-    );
-    _productBloc.add(
-      AddNewPetEvent(
-        model: _petModel,
+    CompletePet newPet;
+    if (widget.completePet != null) {
+      widget.completePet.copyWith(
         userId: UserSession.userId,
-      ),
+        data: widget.completePet.data.copyWith(
+          description: _descriptionController.text.trim(),
+          title: _titleController.text.trim(),
+          contactdetails: widget.contactDetail,
+          price: int.parse(_priceController.text.trim()),
+          listingownertype: _isOwner ? "OWNER" : "DEALER",
+          imagelist: _photos,
+          age: int.parse(_ageController.text.trim()),
+          animaltype: _petTypeController.text.trim(),
+          breed: _descriptionController.text.trim(),
+          gender: _descriptionController.text.trim(),
+          ismilking: _isMilking,
+          milkqty: _milkQuantityController.text.isNotEmpty
+              ? int.parse(_milkQuantityController.text.trim())
+              : null,
+          petname: _descriptionController.text.trim(),
+          vaccinated: false,
+        ),
+      );
+    } else {
+      newPet = CompletePet(
+          docId: '',
+          dt: 'pet',
+          serviceId: '',
+          userId: UserSession.userId,
+          data: PetData(
+            description: _descriptionController.text.trim(),
+            title: _titleController.text.trim(),
+            contactdetails: widget.contactDetail,
+            price: int.parse(_priceController.text.trim()),
+            listingownertype: _isOwner ? "OWNER" : "DEALER",
+            imagelist: _photos,
+            age: int.parse(_ageController.text.trim()),
+            animaltype: _petTypeController.text.trim(),
+            breed: _descriptionController.text.trim(),
+            gender: _descriptionController.text.trim(),
+            ismilking: _isMilking,
+            milkqty: _milkQuantityController.text.isNotEmpty
+                ? int.parse(_milkQuantityController.text.trim())
+                : null,
+            petname: _descriptionController.text.trim(),
+            vaccinated: false,
+          ));
+    }
+
+    _productBloc.add(
+      ProductOwnerEvent.add(productData: newPet),
     );
   }
 }

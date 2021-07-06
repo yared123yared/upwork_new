@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/domain/core/api_helper.dart';
 import 'package:complex/domain/core/failure/failure.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:dartz/dartz.dart';
@@ -94,6 +95,22 @@ class ProductProvider {
                 CompleteProductList.fromJson({'products': listJson}),
             userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
             type: 'product');
+
+    return response;
+  }
+
+  Future<Option<Failure>> addProduct(
+      {@required CompleteProductData data}) async {
+    final Option<Failure> response =
+        await ApiHelper('CLASSIFIED').addDocToFirebaseCollecton(data.toJson());
+
+    return response;
+  }
+
+  Future<Option<Failure>> updateProduct(
+      {@required CompleteProductData data}) async {
+    final Option<Failure> response =
+        await ApiHelper('CLASSIFIED').updateFirebaseDoc(data.toJson());
 
     return response;
   }
