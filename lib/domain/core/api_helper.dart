@@ -174,7 +174,7 @@ class ApiHelper {
       if (response.statusCode == 200) {
         return none();
       } else {
-        return some(Failure.exception(
+        return some(Failure.logical(
             returnType: T.toString(),
             path: endPoint,
             error: "code: ${response.statusCode} body: ${response.body}"));
