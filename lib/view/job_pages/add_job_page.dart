@@ -346,6 +346,9 @@ class _AddJobPageState extends State<AddJobPage> {
             minyearexperience: int.parse(_yearExperience.text.trim()),
             worktype: '',
           ));
+      _productBloc.add(
+        ProductOwnerEvent.update(productData: newJob),
+      );
     } else {
       newJob = CompleteJob(
           docId: '',
@@ -367,10 +370,10 @@ class _AddJobPageState extends State<AddJobPage> {
             minyearexperience: int.parse(_yearExperience.text.trim()),
             worktype: '',
           ));
-    }
 
-    _productBloc.add(
-      ProductOwnerEvent.add(productData: newJob),
-    );
+      _productBloc.add(
+        ProductOwnerEvent.add(productData: newJob),
+      );
+    }
   }
 }
