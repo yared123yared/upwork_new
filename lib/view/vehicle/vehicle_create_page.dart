@@ -4,6 +4,7 @@ import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/data/providers/product_provider_old.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
 import 'package:complex/main.dart';
 import 'package:complex/common/widgets/alerts_widget.dart';
@@ -25,8 +26,9 @@ import 'package:injector/injector.dart';
 
 class VehicleCreatePage extends StatefulWidget {
   final ContactDetails contactDetail;
+  final CompleteVehicle completeVehicle;
 
-  VehicleCreatePage(this.contactDetail);
+  VehicleCreatePage(this.contactDetail,{this.completeVehicle});
 
   @override
   _VehicleCreatePageState createState() => _VehicleCreatePageState();
@@ -236,6 +238,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
               child: Column(
                 children: [
                   CustomTextField(
+                    initialValue:widget.completeVehicle?.toString(),
                     icon: Icons.title,
                     title: "Title",
                     controller: _title,
@@ -244,6 +247,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                     ),
                   ),
                   CustomTextField(
+                    initialValue:widget.completeVehicle?.toString(),
                     icon: Icons.text_fields_outlined,
                     title: "Description",
                     controller: _description,
@@ -252,6 +256,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                     ),
                   ),
                   CustomTextField(
+                    initialValue:widget.completeVehicle?.toString(),
                     icon: Icons.text_fields_outlined,
                     title: "Price",
                     controller: _price,
@@ -507,6 +512,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
             _makeDropdown("Make", _txtMake, _makeList),
             _modelDropdown("Model", _txtModel, _modelList),
             CustomTextField(
+              initialValue:widget.completeVehicle?.toString(),
               icon: null,
               title: "YearBuild",
               controller: _txtYearBuild,
@@ -517,6 +523,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
               ),
             ),
             CustomTextField(
+              initialValue:widget.completeVehicle?.toString(),
               icon: null,
               title: "Milage",
               controller: _txtMilage,
@@ -615,6 +622,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                       style: Styles.semiBoldText(size: 18))),
             ),
             CustomTextField(
+              initialValue:widget.completeVehicle?.toString(),
               icon: null,
               title: "Exterior Color",
               controller: _txtExteriorColor,
@@ -624,6 +632,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
             ),
             _vehicleType == 'Car/Suv'
                 ? CustomTextField(
+                     initialValue:widget.completeVehicle?.toString(),
                     icon: null,
                     title: "Interior Color",
                     controller: _txtInteriorColor,

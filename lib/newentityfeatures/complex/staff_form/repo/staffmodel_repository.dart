@@ -104,12 +104,12 @@ class StaffModelRepository {
     return grerror;
   }
 
-  Future<StaffModelRepositoryReturnData> createStaffModel(
-      StaffModelx item, String entitytype, String entityid) async {
+  Future<StaffModelRepositoryReturnData> createStaffModel({
+      StaffModelx item, String entitytype, String entityid}) async {
     StaffModelRepositoryReturnData myreturn = StaffModelRepositoryReturnData();
     await _complexRepository.addNewStaff(
       staffModel: item,
-      complexID: entityid,
+        entitytype: entitytype,entityid:entityid
     );
     myreturn.errortype = -1;
     return myreturn;
@@ -120,14 +120,14 @@ class StaffModelRepository {
     return null;
   }
 
-  Future<StaffModelRepositoryReturnData> updateStaffModelWithDiff(
+  Future<StaffModelRepositoryReturnData> updateStaffModelWithDiff({
       StaffModelx newitem,
       StaffModelx olditem,
       String entitytype,
-      String entityid) async {
+      String entityid}) async {
     StaffModelRepositoryReturnData myreturn = StaffModelRepositoryReturnData();
     await _complexRepository.updateStaff(
-      complexID: entityid,
+      entitytype: entitytype,entityid:entityid,
       newStaff: newitem,
       oldStaff: olditem,
       user: _user,
@@ -140,7 +140,7 @@ class StaffModelRepository {
       StaffModelx item, String entitytype, String entityid) async {
     StaffModelRepositoryReturnData myreturn = StaffModelRepositoryReturnData();
     await _complexRepository.removeStaff(
-      complexID: entityid,
+      entitytype: entitytype,entityid:entityid,
       staffModel: item,
       userModel: _user,
       // userModel: userModel,

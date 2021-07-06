@@ -15,10 +15,10 @@ import 'package:complex/data/models/response/user_response/user_model.dart';
 
 class ComplexStaffGateway {
   static Future<List<StaffModelx>> getStaffList(
-      {ComplexModel complexModel}) async {
+      {@required String entitytype,@required String entityid}) async {
     try {
       return await FirebaseFirestore.instance
-          .collection("COMPLEXES/${complexModel.complexID}/STAFF")
+          .collection("${entitytype}/${entityid}/STAFF")
           .get()
           .then((x) {
         return StaffModelx.listFromJson(
@@ -33,7 +33,7 @@ class ComplexStaffGateway {
   }
 
   static Future<void> newStaffRequest(
-      {StaffModelx staffModel, ComplexModel complexModel}) async {
+      {@required String entitytype,@required String entityid,StaffModelx staffModel, ComplexModel complexModel}) async {
     try {
       SignUpRequest _signUpModel = SignUpRequest(
           password: "secretPassword",
@@ -57,10 +57,10 @@ class ComplexStaffGateway {
         print(staffModel.toJson());
         dynamic resp = await callable.call(<String, dynamic>{
           'staffdata': staffModel.toJson(),
-          'entitytype': "COMPLEXES",
+          'entitytype': entitytype,
           'staffid': _userID,
           // 'byuserid': userModel.userID,
-          'entityid': complexModel.complexID,
+          'entityid': entityid,
         });
         print("CloudFunction " + callable.toString());
         print("CloudFunction " + resp.data.toString());
@@ -73,10 +73,10 @@ class ComplexStaffGateway {
     }
   }
 
-  static Future<void> updateStaffRequest(
-      {@required StaffModelx oldStaff,
+  static Future<void> updateStaffRequest({@required String entitytype,@required String entityid,
+      @required StaffModelx oldStaff,
       @required StaffModelx newStaff,
-      @required ComplexModel complexModel,
+
       @required UserModel userModel}) async {
     try {
       final HttpsCallable callable = FirebaseFunctions.instance
@@ -85,10 +85,10 @@ class ComplexStaffGateway {
       dynamic resp = await callable.call(<String, dynamic>{
         'olddata': oldStaff.toJson(),
         'newdata': toComplexStaffUpdateData(oldStaff, newStaff),
-        'entitytype': "COMPLEXES",
+        'entitytype': entitytype,
         'staffid': oldStaff.appUserId,
         'byuserid': userModel.userID,
-        'entityid': complexModel.complexID,
+        'entityid': entityid,
       });
     } catch (e) {
       print(e);
@@ -96,19 +96,18 @@ class ComplexStaffGateway {
     }
   }
 
-  static Future<dynamic> deleteStaffRequest(
-      {@required StaffModelx staffModel,
-      @required ComplexModel complexModel,
+  static Future<dynamic> deleteStaffRequest({@required String entitytype,@required String entityid, @required StaffModelx staffModel,
+
       @required UserModel userModel}) async {
     final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
       'StaffDeleteRequestModified',
     );
     try {
       dynamic resp = await callable.call(<String, dynamic>{
-        'entitytype': "COMPLEXES",
+        'entitytype': entitytype,
         'staffid': staffModel.appUserId,
         'byuserid': userModel.userID,
-        'entityid': complexModel.complexID,
+        'entityid': entityid,
       });
 
       print("CloudFunction " + callable.toString());
