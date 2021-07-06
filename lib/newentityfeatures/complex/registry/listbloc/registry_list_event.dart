@@ -10,7 +10,7 @@ class getListDataByBuildingAndFloor extends RegistryModelListEvent {
   final String entitytype;
   final int originType;
   final String buildingName;
-  final String floorNum;
+  final int floorNum;
   getListDataByBuildingAndFloor({
     @required this.entityid,
     @required this.entitytype,
@@ -23,6 +23,44 @@ class getListDataByBuildingAndFloor extends RegistryModelListEvent {
       [entityid, entitytype, originType, buildingName, floorNum];
 }
 
+class getListDataByListOfUnits extends RegistryModelListEvent {
+  final String entityid;
+  final String entitytype;
+  final int originType;
+  final List<String> unitlist;
+
+  getListDataByListOfUnits({
+    @required this.entityid,
+    @required this.entitytype,
+    @required this.originType,
+    @required this.unitlist,
+
+  });
+  @override
+  List<Object> get props =>
+      [entityid, entitytype, originType, unitlist];
+}
+
+
+class getListDataByUnitId extends RegistryModelListEvent {
+  final String entityid;
+  final String entitytype;
+  final int originType;
+  final String unitid;
+
+  getListDataByUnitId({
+    @required this.entityid,
+    @required this.entitytype,
+    @required this.originType,
+    @required this.unitid,
+
+  });
+  @override
+  List<Object> get props =>
+      [entityid, entitytype, originType, unitid];
+}
+
+
 //to get listdata
 class getListData extends RegistryModelListEvent {
   final String entityid;
@@ -34,6 +72,18 @@ class getListData extends RegistryModelListEvent {
       @required this.originType});
   @override
   List<Object> get props => [entityid, entitytype, entitytype];
+}
+
+class getPreData extends RegistryModelListEvent {
+  final String entityid;
+  final String entitytype;
+
+  getPreData({
+    @required this.entityid,
+    @required this.entitytype,
+  });
+  @override
+  List<Object> get props => [entityid, entitytype];
 }
 
 //We want to delete an item , we will call this method (if we have the complete item data )

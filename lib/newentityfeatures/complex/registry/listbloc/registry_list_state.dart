@@ -56,6 +56,16 @@ class IsListDataLoaded extends RegistryModelListState {
   List<Object> get props => [listdata, roles, buildingType];
 }
 
+class IsBuildingListDataLoaded extends RegistryModelListState {
+  IsBuildingListDataLoaded({
+    @required this.buildinglistdata,
+  });
+  final List<BuildingModel> buildinglistdata;
+
+  @override
+  List<Object> get props => [buildinglistdata];
+}
+
 class IsDeleted extends RegistryModelListState {
   const IsDeleted();
   @override

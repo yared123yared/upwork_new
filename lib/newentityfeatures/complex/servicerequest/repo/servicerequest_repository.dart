@@ -76,7 +76,6 @@ class ServiceRequestModelRepository {
     );
     List<ServiceRequestModel> filteredServices = [];
 
-
     if (originType == 1) {
       // managerregistryMultiOwner
       filteredServices = services;
@@ -158,9 +157,8 @@ class ServiceRequestModelRepository {
       serviceRequest: item,
       entitytype: entitytype,
       entityid: entityid,
-      // complexID: entityid,
+      roletype: item.requesterType,
     );
-    // await _complexRepository.setServiceRequestList(complexID: entityid);
 
     myreturn.errortype = -1;
     return myreturn;

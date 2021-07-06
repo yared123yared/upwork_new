@@ -121,7 +121,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
                           borderColor: Colors.black,
                           onTap: () {
                             Utility.hideKeyboard();
-                            /*BlocProvider.of<AuthBloc>(context).add(AuthEvent.logout())*/
+                            //BlocProvider.of<AuthBloc>(context).add(AuthEvent);
                           },
                         ),
                       ),

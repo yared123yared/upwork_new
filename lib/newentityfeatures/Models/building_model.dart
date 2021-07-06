@@ -9,6 +9,7 @@ class BuildingModel extends Equatable {
   double latitude;
   double longitude;
   num version;
+  int numfloor;
 
   BuildingModel({
     this.address,
@@ -18,6 +19,7 @@ class BuildingModel extends Equatable {
     this.buildingName,
     this.latitude,
     this.longitude,
+    this.numfloor,
   });
 
   @override
@@ -29,6 +31,7 @@ class BuildingModel extends Equatable {
         latitude,
         longitude,
         buildingID,
+    numfloor,
       ];
 
   BuildingModel copyWith({
@@ -38,6 +41,7 @@ class BuildingModel extends Equatable {
     String latitude,
     String longitude,
     num version,
+    int numfloor,
   }) {
     return BuildingModel(
       address: address ?? this.address,
@@ -46,6 +50,7 @@ class BuildingModel extends Equatable {
       longitude: longitude ?? this.longitude,
       version: version ?? this.version,
       attachedGate: attachedGate ?? this.attachedGate,
+      numfloor :numfloor ?? this.numfloor
     );
   }
 
@@ -64,6 +69,7 @@ class BuildingModel extends Equatable {
     latitude = json['latitude'];
     longitude = json['longitude'];
     version = json['version'];
+    numfloor =json['numfloor'];
   }
 
   Map<String, dynamic> toJson() {
@@ -79,6 +85,7 @@ class BuildingModel extends Equatable {
 
     data['longitude'] = this.longitude;
     data['version'] = this.version;
+    data['numfloor']=this.numfloor;
 
     return data;
   }

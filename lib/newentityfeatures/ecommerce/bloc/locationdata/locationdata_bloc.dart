@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/genericdbmethods_repository.dart';
-import 'package:complex/newentityfeatures/ecommerce/models/location_data.dart';
+import 'package:complex/domain/explore/ecom/location/location_data.dart';
 import 'package:complex/newentityfeatures/shared-ecommerce/utils/ecommerce_exception.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
@@ -28,7 +28,8 @@ class GetLocationDataServersEvent extends LocationDataServersEvent {
   UserModel curUserModel;
   double lati;
   double longi;
-  GetLocationDataServersEvent( this.curUserModel,this.lati,this.longi  );
+  String token;
+  GetLocationDataServersEvent( this.curUserModel,this.lati,this.longi ,this.token );
 }
 
 
@@ -51,9 +52,9 @@ class LocationDataServersBloc
             Longitude: event.lati, Latitude: event.longi);
 
 
-        List<String>location = await GenericDBRepository
+        String location = await GenericDBRepository
             .GetLocationInformationInitiate(
-            ld, event.curUserModel.locationservers);
+            ld,event.token, event.curUserModel.locationservers);
       }
     }
     on EcommerceException catch (e) {

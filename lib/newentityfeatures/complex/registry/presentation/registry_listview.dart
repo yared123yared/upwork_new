@@ -2,6 +2,7 @@ import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/widgets/custom_action_button.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 import 'package:complex/data/data.dart';
+import 'package:complex/newentityfeatures/Models/building_model.dart';
 import 'package:complex/newentityfeatures/Models/common/button_state.dart';
 import 'package:complex/newentityfeatures/Models/registry_model.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class _RegistryListListState extends State<RegistryListList> {
   CustomTextFieldController _floor = CustomTextFieldController();
 
   Map<String, Map<String, List<RegistryModel>>> list;
+  Map<String, Map<String, List<BuildingModel>>> blist;
   List<String> buildings = [];
   List floors = [];
   String buildingType;
@@ -42,11 +44,24 @@ class _RegistryListListState extends State<RegistryListList> {
 
   void initState() {
     mlistbloc = listbloc.RegistryModelListBloc();
-    mlistbloc.add(listbloc.getListData(
-      entitytype: widget.entitytype,
-      entityid: widget.entityid,
-      originType: widget.origintype,
-    ));
+    if (widget.origintype == 3) {
+      BlocProvider.of<listbloc.RegistryModelListBloc>(context).add(
+        listbloc.getListDataByListOfUnits(
+          entityid: widget.entityid,
+          entitytype: widget.entitytype,
+          originType: widget.origintype,
+          unitlist: null,
+        ),
+      );
+    } else {
+      mlistbloc.add(listbloc.getPreData(
+          entitytype: widget.entitytype, entityid: widget.entityid));
+      mlistbloc.add(listbloc.getListData(
+        entitytype: widget.entitytype,
+        entityid: widget.entityid,
+        originType: widget.origintype,
+      ));
+    }
   }
 
   @override
@@ -99,7 +114,7 @@ class _RegistryListListState extends State<RegistryListList> {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: "${item.ownerName ?? ""} - ${item}",
+        title: "${item.ownerName ?? item.residentName ?? ""} - ${item}",
         subtitle: item?.residentPublishedContact ??
             item?.residentPublishedContact ??
             "",
@@ -232,44 +247,50 @@ class _RegistryListListState extends State<RegistryListList> {
             return Center(child: Text("Deleted item"));
           }
           if (state is listbloc.IsSearchedListDataLoaded) {
-            List<cmodel.RegistryModel> em = state.listdata;
+            List<cmodel.RegistryModel> em = [];
+            if (widget.origintype == 3) {
+              state.listdata;
+            }
+            List<BuildingModel> bm = [];
 
             setState(() {
               isOwner = state.isOwner;
             });
 
-            return _blocBuilder(context, em);
+            return _blocBuilder(context, em, bm);
           }
 
-          if (state is listbloc.IsListDataLoaded) {
-            // List<cmodel.RegistryModel> em = state.listdata;
+          if (state is listbloc.IsBuildingListDataLoaded) {
             List<cmodel.RegistryModel> em = [];
+            List<BuildingModel> bm = [];
 
-            if (state.listdata != null) {
+            if (state.buildinglistdata != null) {
               list = Map();
-              state.listdata.forEach((registry) {
+              blist = Map();
+              state.buildinglistdata.forEach((registry) {
                 if (!buildings.contains(registry.buildingName)) {
                   buildings.add(registry.buildingName);
                 }
 
-                List<RegistryModel> innerList = [];
+                List<BuildingModel> innerList = [];
 
                 // We check if we recently added a registry into the same building. If we did, we set innerList to that building.
-                if (list.containsKey(registry.buildingName)) {
-                  print("l: ${list[registry.buildingName][registry.floorNum]}");
+                if (blist.containsKey(registry.buildingName)) {
+                  print(
+                      "l: ${blist[registry.buildingName][registry.numfloor]}");
                   innerList =
-                      list[registry.buildingName]?.values?.toList()?.first;
+                      blist[registry.buildingName]?.values?.toList()?.first;
                 }
 
                 innerList?.add(registry);
 
-                list[registry.buildingName] = {
-                  registry.floorNum: innerList,
+                blist[registry.buildingName] = {
+                  registry.buildingName: innerList,
                 };
               });
             }
 
-            return _blocBuilder(context, em);
+            return _blocBuilder(context, em, bm);
           }
           return Center(child: Text('Empty'));
         })),
@@ -290,7 +311,8 @@ class _RegistryListListState extends State<RegistryListList> {
     );
   }
 
-  Widget _blocBuilder(context, List<cmodel.RegistryModel> em) {
+  Widget _blocBuilder(
+      context, List<cmodel.RegistryModel> em, List<BuildingModel> bm) {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [
@@ -329,17 +351,30 @@ class _RegistryListListState extends State<RegistryListList> {
                       );
                       return;
                     }
-
-                    BlocProvider.of<listbloc.RegistryModelListBloc>(context)
-                        .add(
-                      listbloc.getListDataByBuildingAndFloor(
-                        entityid: widget.entityid,
-                        entitytype: widget.entitytype,
-                        originType: widget.origintype,
-                        buildingName: _building.text,
-                        floorNum: _floor.text,
-                      ),
-                    );
+                    if (widget.origintype == 1 || widget.origintype == 2) {
+                      BlocProvider.of<listbloc.RegistryModelListBloc>(context)
+                          .add(
+                        listbloc.getListDataByBuildingAndFloor(
+                          entityid: widget.entityid,
+                          entitytype: widget.entitytype,
+                          originType: widget.origintype,
+                          buildingName: _building.text,
+                          floorNum: int.parse(_floor.text),
+                        ),
+                      );
+                      // } else if (widget.origintype == 3) {
+                    } else if (widget.origintype == 4) {
+                      BlocProvider.of<listbloc.RegistryModelListBloc>(context)
+                          .add(
+                        listbloc.getListDataByBuildingAndFloor(
+                          entityid: widget.entityid,
+                          entitytype: widget.entitytype,
+                          originType: widget.origintype,
+                          buildingName: _building.text,
+                          floorNum: int.parse(_floor.text),
+                        ),
+                      );
+                    }
                   },
                 ),
               ],

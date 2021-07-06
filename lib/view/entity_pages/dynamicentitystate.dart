@@ -311,6 +311,10 @@ class UiEntityPageStateList {
     setupP.add(DynamicEntityGridState.newBuilding);
     setupP.add(DynamicEntityGridState.newUnits);
     setupP.add(DynamicEntityGridState.newStaff);
+    if (_userRepository.getUser().defaultComplexModel.complexType=="SINGLEOWNER")
+      setupP.add(DynamicEntityGridState.managerregistrySingleOwner);
+      else
+      setupP.add(DynamicEntityGridState.managerregistryMultiOwner);
 
     return setupP;
   }
