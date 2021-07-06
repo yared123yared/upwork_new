@@ -2,6 +2,7 @@ import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/widgets/custom_action_button.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 import 'package:complex/data/data.dart';
+import 'package:complex/data/models/response/user_response/residential_unit.dart';
 import 'package:complex/newentityfeatures/Models/building_model.dart';
 import 'package:complex/newentityfeatures/Models/common/button_state.dart';
 import 'package:complex/newentityfeatures/Models/registry_model.dart';
@@ -41,6 +42,7 @@ class _RegistryListListState extends State<RegistryListList> {
 
   bool isOwner = false; // for originType 3
   List<String> roles = [];
+  List<ResidentUnits> residentUnits = [];
 
   void initState() {
     mlistbloc = listbloc.RegistryModelListBloc();
@@ -50,7 +52,10 @@ class _RegistryListListState extends State<RegistryListList> {
           entityid: widget.entityid,
           entitytype: widget.entitytype,
           originType: widget.origintype,
-          unitlist: null,
+          unitlist: residentUnits.map(
+            (residentUnit) =>
+                residentUnit.rd.substring(0, residentUnit.rd.length - 2),
+          ),
         ),
       );
     } else {
