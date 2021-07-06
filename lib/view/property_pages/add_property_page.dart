@@ -859,7 +859,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                     title: "Discount",
                     controller: _discountController,
                     initialValue:
-                        widget.realEstate?.data?.discountstartdate.toString(),
+                        widget.realEstate?.data?.discountstartdate?.toString(),
                     validate: Validate.withOption(
                       isRequired: true,
                       isInt: true,
