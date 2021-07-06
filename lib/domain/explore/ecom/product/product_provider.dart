@@ -109,8 +109,8 @@ class ProductProvider {
 
   Future<Option<Failure>> updateProduct(
       {@required CompleteProductData data}) async {
-    final Option<Failure> response =
-        await ApiHelper('CLASSIFIED').updateFirebaseDoc(data.toJson());
+    final Option<Failure> response = await ApiHelper('CLASSIFIED/${data.docId}')
+        .updateFirebaseDoc(data.toJson());
 
     return response;
   }
