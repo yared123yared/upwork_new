@@ -45,7 +45,6 @@ class LeaveRequestRepository {
       @required String entityid,
       @required UserModel user}) async {
     try {
-      //List<LeaveRequestModel> lm = [];
       return await LeaveRequestGateway.getLeaveRequestHistoryAllStaff(
           entityType: entitytype, entityID: entityid);
     } catch (e) {
