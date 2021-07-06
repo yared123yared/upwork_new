@@ -101,8 +101,34 @@ class ProductProvider {
 
   Future<Option<Failure>> addProduct(
       {@required CompleteProductData data}) async {
-    final Option<Failure> response =
-        await ApiHelper('CLASSIFIED').addDocToFirebaseCollecton(data.toJson());
+    final Map<String, dynamic> productAction = {
+      "qtype": null,
+      "action": "add",
+      "origin": "USER",
+      "serviceid": null,
+      "userid": data.userId,
+      "producttype": null,
+      "classifiedtype": data.dt.toUpperCase(),
+      "petmodel": null,
+      "productmodel": null,
+      "vehiclemodel": null,
+      "jobrequestmodel": null,
+      'realestatemodel': null,
+    };
+    data.map(
+        realEstate: (realEstate) => productAction.update(
+            'realestatemodel', (value) => realEstate.data.toJson()),
+        job: (job) => productAction.update(
+            'jobrequestmodel', (value) => job.data.toJson()),
+        pet: (pet) =>
+            productAction.update('petmodel', (value) => pet.data.toJson()),
+        vehicle: (vehicle) => productAction.update(
+            'vehiclemodel', (value) => vehicle.data.toJson()),
+        product: (product) => productAction.update(
+            'productmodel', (value) => product.data.toJson()));
+
+    final Option<Failure> response = await ApiHelper(ApiHelper.dgOcnEp)
+        .httpPost<CompleteProductData>(data.toJson());
 
     return response;
   }
