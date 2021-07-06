@@ -3,27 +3,21 @@ import 'package:equatable/equatable.dart';
 // ignore: must_be_immutable
 class FeeItemGroupsModel extends Equatable {
   String scheduleName;
-  String usedByFeePlan;
+
   num version;
   String grade;
   List<FeeItem> feeItem;
 
   FeeItemGroupsModel(
-      {this.scheduleName,
-      this.feeItem,
-      this.usedByFeePlan,
-      this.version,
-      this.grade}) {
+      {this.scheduleName, this.feeItem, this.version, this.grade}) {
     this.feeItem ??= [];
   }
 
   @override
-  List<Object> get props =>
-      [scheduleName, grade, feeItem, usedByFeePlan, version];
+  List<Object> get props => [scheduleName, grade, feeItem, version];
 
   FeeItemGroupsModel copyWith({
     String scheduleName,
-    String usedByFeePlan,
     num version,
     String grade,
     List<String> data,
@@ -31,7 +25,6 @@ class FeeItemGroupsModel extends Equatable {
     return FeeItemGroupsModel(
         scheduleName: scheduleName ?? this.scheduleName,
         feeItem: data ?? this.feeItem ?? [],
-        usedByFeePlan: usedByFeePlan ?? this.usedByFeePlan,
         version: version ?? this.version,
         grade: grade ?? this.grade);
   }
@@ -42,7 +35,6 @@ class FeeItemGroupsModel extends Equatable {
     feeItem =
         (json['data'] as List)?.map((e) => FeeItem.fromData(e))?.toList() ?? [];
 
-    usedByFeePlan = json['usedbyfeeplan'];
     version = json['version'];
     grade = json['grade'];
   }
@@ -51,7 +43,7 @@ class FeeItemGroupsModel extends Equatable {
     final Map<String, dynamic> json = Map<String, dynamic>();
 
     json['schedulename'] = this.scheduleName;
-    json['usedbyfeeplan'] = this.usedByFeePlan;
+
     json['data'] = this.feeItem.map((e) => e.toData()).toList();
     json['version'] = this.version;
     json['grade'] = this.grade;
