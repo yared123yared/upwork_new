@@ -31,7 +31,7 @@ class FeeItemGroupsModelForm extends StatefulWidget {
 
 class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
   CustomTextFieldController _scheduleName = CustomTextFieldController();
-  CustomTextFieldController _usedByFeePlan = CustomTextFieldController();
+
   CustomTextFieldController _grade = CustomTextFieldController();
 
   List<FeeItem> _feeItems = [];
@@ -71,7 +71,6 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
       return false;
     } else
       return _scheduleName.isValid &&
-          _usedByFeePlan.isValid &&
           _grade.isValid &&
           _controllers.fold(
             true,
@@ -160,14 +159,6 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
             isRequired: true,
           ),
         ),
-        CustomTextField(
-          initialValue: widget.feeItemGroupsModel?.usedByFeePlan,
-          title: "Used by fee plan",
-          controller: _usedByFeePlan,
-          validate: Validate.withOption(
-            isRequired: true,
-          ),
-        ),
         CustomDropDownList<String>(
           loadData: () async => grades,
           displayName: (x) => x,
@@ -195,7 +186,6 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
             if (_validate()) {
               FeeItemGroupsModel _feeItemGroups = FeeItemGroupsModel(
                   scheduleName: _scheduleName.text,
-                  usedByFeePlan: _usedByFeePlan.text,
                   version: 1,
                   feeItem: _feeItems,
                   grade: _grade.text);
