@@ -9,6 +9,7 @@ import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
@@ -21,8 +22,9 @@ import 'package:injector/injector.dart';
 
 class AddJobPage extends StatefulWidget {
   final ContactDetails contactDetail;
+  final CompleteJob completeJob;
 
-  AddJobPage(this.contactDetail);
+  AddJobPage(this.contactDetail,{this.completeJob});
 
   @override
   State<StatefulWidget> createState() {
@@ -252,6 +254,7 @@ class _AddJobPageState extends State<AddJobPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: CustomTextField(
+        initialValue: widget.completeJob?.toString(),
         title: text,
         controller: controller,
         validate: Validate.withOption(

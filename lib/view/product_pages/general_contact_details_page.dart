@@ -103,18 +103,18 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
             _renderNameShare(),
             _renderTextField('Phone', _phoneController,
                 isPhone: true, initialValue: initContactDetails?.phonenum),
-            _renderPhoneShare(),
-            _renderTextField('Email', _emailController),
-            _renderEmailShare(),
+            _renderPhoneShare(), // TODO KOUSIK
+            _renderTextField('Email', _emailController, initialValue: initContactDetails?.email),
+            _renderEmailShare(), // TODO KOUSIK
             // _renderGroupTitle(),
-            _renderLocationArea(),
-            _renderTextField('Select your State', _stateController),
-            _renderTextField('Select your District', _districtController),
-            _renderTextField('Select your Village', _villageController),
-            _renderTextField('Area/Sector', _areaSectorController),
-            _renderTextField('Society Name', _societyNameController),
-            _renderTextField('Address Line 1', _addressLine1Controller),
-            _renderAddressShare(),
+            _renderLocationArea(), // TODO KOUSIK
+            _renderTextField('Select your State', _stateController, initialValue: initContactDetails?.address.state),
+            _renderTextField('Select your District', _districtController, initialValue: initContactDetails?.address.district),
+            _renderTextField('Select your Village', _villageController, initialValue: initContactDetails?.address.townVillage),
+            _renderTextField('Area/Sector', _areaSectorController, initialValue: initContactDetails?.address.areaSector),
+            _renderTextField('Society Name', _societyNameController, initialValue: initContactDetails?.address.societyname),
+            _renderTextField('Address Line 1', _addressLine1Controller, initialValue: initContactDetails?.address.addressline),
+            _renderAddressShare(),// TODO KOUSIK
             SizedBox(
               height: 20,
             ),

@@ -288,6 +288,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                         icon: Icons.text_fields_outlined,
                         title: "Description",
                         controller: _description,
+                        initialValue: widget.realEstate?.data?.description,
                         validate: Validate.withOption(
                           isRequired: true,
                         ),
@@ -856,7 +857,9 @@ class _AddPropertyPage extends State<AddPropertyPage> {
             CustomTextField(
               icon: Icons.attach_money_rounded,
               title: "Pricing",
+              initialValue: widget.realEstate?.data?.price.toString(),
               controller: _price,
+              // initialValue: widget.realEstate?.data?.price,
               validate: Validate.withOption(
                 isRequired: true,
                 isNumber: true,
@@ -872,6 +875,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                     icon: Icons.attach_money_rounded,
                     title: "Discount",
                     controller: _discountController,
+                    initialValue: widget.realEstate?.data?.discountstartdate.toString(),
                     validate: Validate.withOption(
                       isRequired: true,
                       isInt: true,
