@@ -127,6 +127,11 @@ class RegistryModelRepository {
     RegistryModelRepositoryReturnData myreturn =
         RegistryModelRepositoryReturnData();
 
+    List<String> unitList = _user.defaultComplexEntity.residentunits
+        .map((residentUnit) =>
+            residentUnit.rd.substring(0, residentUnit.rd.length - 2))
+        .toList();
+
     List<RegistryModel> newRegistryList = [];
     bool isOwner = false;
     _user.defaultComplexEntity.residentunits.forEach((residentUnit) {
@@ -136,12 +141,12 @@ class RegistryModelRepository {
     });
 
     List<RegistryModel> registryList;
-    if (unitlist.isNotEmpty) {
+    if (unitList.isNotEmpty) {
       registryList =
           await _complexRepository.registry.getRegistryListDataByListOfUnits(
         entitytype: entitytype,
         entityid: entityid,
-        unitlist: unitlist,
+        unitlist: unitList,
       );
     } else {
       registryList = [];
@@ -214,19 +219,19 @@ class RegistryModelRepository {
 
     bool isOwner = complexModel.roles.contains(EntityRoles.Owner);
 
-    await _complexRepository.addResidentRequest(
-      residentRequest: item,
-      userModel: _user,
-      entitytype: entitytype,
-      entityid: entityid,
-    );
-
     await _complexRepository.removeResident(
       entitytype: entitytype,
       unitadress: item.unitAddress,
       entityid: entityid,
       isOwner: isOwner,
       userModel: _user,
+    );
+    
+    await _complexRepository.addResidentRequest(
+      residentRequest: item,
+      userModel: _user,
+      entitytype: entitytype,
+      entityid: entityid,
     );
     myreturn.errortype = -1;
     return myreturn;
@@ -312,21 +317,6 @@ class RegistryModelRepository {
       complex: _user.defaultComplexEntity,
     );
 
-    bool displayOwner = false;
-    if (registry?.ownerUserId != null) displayOwner = true;
-    if (registry?.residentUserId != null) displayOwner = false;
-
-    bool haveAccess = _complexModel.roles.contains(EntityRoles.Manager) ||
-        (_complexModel.roles.contains(EntityRoles.Owner)
-            ? registry?.ownerUserId == _user.userID
-            : registry?.residentUserId == _user.userID);
-
-    List<String> roles = _complexModel.buildingType == 'Multi Owner' &&
-                _complexModel.roles.contains(EntityRoles.Manager) ||
-            !_complexModel.roles.contains(EntityRoles.Owner)
-        ? ["owner"]
-        : ["resident"];
-
     if (registry != null) {
       try {
         List<ResidentModel> residents =
@@ -355,21 +345,7 @@ class RegistryModelRepository {
       entitytype: entitytype,
       entityid: entityid,
     );
-    // unitList[0].unitID == _user.userID,
-    // List<UnitModel> unitList =
-    //     await _complexRepository.units.getUnitListForResidentAvailableForOwner(
-    //   entitytype: entitytype,
-    //   entityid: entityid,
-    //   unitlist: unitList,
-    // );
-    // tAvailableUnit(
-    //   complex: _complexModel,
-    //   user: _user,
-    // );
 
-    myreturn.haveAccess = haveAccess;
-    myreturn.displayOwner = displayOwner;
-    myreturn.roles = roles;
     myreturn.unitList = unitList;
 
     myreturn.errortype = -1;

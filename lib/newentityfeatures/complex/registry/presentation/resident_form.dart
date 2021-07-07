@@ -30,6 +30,7 @@ class ResidentForm extends StatefulWidget {
   final ReloadAction givenreloadaction;
   final String role;
   final int origintype;
+  final bool isOwner;
   ResidentForm({
     @required this.btnState,
     @required this.entitytype,
@@ -38,6 +39,7 @@ class ResidentForm extends StatefulWidget {
     @required this.origintype,
     @required this.registry,
     @required this.role,
+    @required this.isOwner,
   });
 
   @override
@@ -69,10 +71,7 @@ class _ResidentFormState extends State<ResidentForm> {
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now();
 
-  List<String> roles;
   List<String> registeredAsRoles = [];
-  bool haveAccess;
-  bool displayOwner;
   List<UnitModel> unitList;
 
   List<String> buildings = [];
@@ -87,7 +86,7 @@ class _ResidentFormState extends State<ResidentForm> {
     if (i == 0) {
       return _firstName.isValid &&
           _lastName.isValid &&
-          _emailAddress.isValid &&
+          (_newItem ? _emailAddress.isValid : true) &&
           _contactNumber.isValid &&
           _contactNumberToPublish.isValid;
       // && _middleName.isValid;
@@ -103,8 +102,8 @@ class _ResidentFormState extends State<ResidentForm> {
         // if (widget.role == "manager") {
         if (widget.origintype == 1) {
           String ownerName = widget.registry.ownerName;
-          String firstName = ownerName.substring(0, ownerName.indexOf(","));
-          String lastName = ownerName.substring(ownerName.indexOf(",") + 1);
+          String lastName = ownerName.substring(0, ownerName.indexOf(","));
+          String firstName = ownerName.substring(ownerName.indexOf(",") + 1);
 
           _firstName.text = resident?.firstName ?? firstName;
           _lastName.text = resident?.lastName ?? lastName;
@@ -115,7 +114,7 @@ class _ResidentFormState extends State<ResidentForm> {
           _contactNumberToPublish.text = resident?.publishedContact ??
               widget.registry.ownerPublishedContact;
 
-          _registeredAs.text = resident?.registerAs;
+          _registeredAs.text = "owner";
 
           _managementPosition.text = resident?.managementPosition ??
               widget.registry.ownerManagementPosition;
@@ -133,9 +132,9 @@ class _ResidentFormState extends State<ResidentForm> {
           // } else if (widget.role == "owner") {
         } else if (widget.origintype == 2 || widget.origintype == 3) {
           String residentName = widget.registry.residentName;
-          String firstName =
-              residentName.substring(0, residentName.indexOf(","));
           String lastName =
+              residentName.substring(0, residentName.indexOf(","));
+          String firstName =
               residentName.substring(residentName.indexOf(",") + 1);
 
           _firstName.text = resident?.firstName ?? firstName;
@@ -147,7 +146,7 @@ class _ResidentFormState extends State<ResidentForm> {
           _contactNumberToPublish.text = resident?.publishedContact ??
               widget.registry.residentPublishedContact;
 
-          _registeredAs.text = resident?.registerAs;
+          _registeredAs.text = "resident";
 
           _managementPosition.text = resident?.managementPosition ??
               widget.registry.residentManagementPosition;
@@ -161,7 +160,7 @@ class _ResidentFormState extends State<ResidentForm> {
               DateTime.now();
           _endDate = resident?.endDate ??
               widget?.registry?.residentEndDate ??
-              DateTime.now();
+              DateTime.now().add(Duration(days: 80));
         }
       }
     });
@@ -208,6 +207,7 @@ class _ResidentFormState extends State<ResidentForm> {
         endDate: _endDate,
         publishedContact: _contactNumberToPublish.text,
         publishcontactflag: isShared,
+        managementPosition: _managementPosition.text,
       );
       if (widget.registry != null) {
         mbloc.add(
@@ -273,13 +273,14 @@ class _ResidentFormState extends State<ResidentForm> {
                         isRequired: true,
                       ),
                     ),
-                    CustomTextField(
-                      title: "Email address",
-                      enabled: _newItem,
-                      controller: _emailAddress,
-                      validate:
-                          Validate.withOption(isRequired: true, isEmail: true),
-                    ),
+                    if (_newItem)
+                      CustomTextField(
+                        title: "Email address",
+                        enabled: _newItem,
+                        controller: _emailAddress,
+                        validate: Validate.withOption(
+                            isRequired: true, isEmail: true),
+                      ),
                     CustomTextField(
                       title: "Contact Number",
                       enabled: _newItem || widget.origintype == 1,
@@ -339,7 +340,7 @@ class _ResidentFormState extends State<ResidentForm> {
                     ),
                     CustomDropDownList<String>(
                       title: "Management Position",
-                      enabled: _newItem,
+                      enabled: _newItem || widget.isOwner,
                       controller: _managementPosition,
                       loadData: () async => managePos,
                       displayName: (x) => x,
@@ -419,7 +420,7 @@ class _ResidentFormState extends State<ResidentForm> {
                     ),
                     newentitytimepicker.CustomDateTimePicker(
                       controller: _endDateController,
-                      enabled: _newItem,
+                      enabled: _newItem || widget.isOwner,
                       dateTime: _endDate,
                       title: 'End Date',
                       mode: DateTimeMode.DATE,
@@ -514,9 +515,6 @@ class _ResidentFormState extends State<ResidentForm> {
             Navigator.of(context).pop(false);
           }
           if (state is itembloc.IsReadyForDetailsPage) {
-            haveAccess = state.haveAccess;
-            displayOwner = state.displayOwner;
-            roles = state.roles;
             unitList = state.unitList;
             _newItem = widget.registry == null;
 

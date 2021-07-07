@@ -141,7 +141,8 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
         _notes.text = widget.serviceRequestModel.notesInstructions;
         _unitAddress.text = widget.serviceRequestModel.unitId;
         _serviceProviderId.text = widget.serviceRequestModel.serviceProviderId;
-        _requestType.text = widget.serviceRequestModel.requestType.toString();
+        _requestType.text =
+            widget.serviceRequestModel?.requestType?.toString() ?? "";
         _memberId.text =
             widget.serviceRequestModel.serviceRequestorMemberUserId;
       });
@@ -257,7 +258,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     validate: Validate.withOption(isRequired: true),
                     onSelected: (value, index) => staff = value,
                   ),
-                CustomTextField(
+                /*  CustomTextField(
                   title: "Service Provider ID",
                   enabled: enabled,
                   controller: _serviceProviderId,
@@ -274,7 +275,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                   validate: Validate.withOption(
                     isRequired: true,
                   ),
-                ),
+                ), */
                 if (!_isStaff)
                   CustomTextField(
                     title: "Name",
