@@ -113,6 +113,7 @@ class RegistryModelRepository {
     );
     myreturn.itemlist = registryList;
 
+    myreturn.errortype = -1;
     return myreturn;
   }
 
@@ -135,6 +136,7 @@ class RegistryModelRepository {
     );
     myreturn.itemlist = registryList;
 
+    myreturn.errortype = -1;
     return myreturn;
   }
 
@@ -155,6 +157,7 @@ class RegistryModelRepository {
     registryList.add(myreg);
     myreturn.itemlist = registryList;
 
+    myreturn.errortype = -1;
     return myreturn;
   }
 

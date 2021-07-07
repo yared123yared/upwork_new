@@ -1,4 +1,6 @@
 import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/utils/resource/colors.dart';
+import 'package:complex/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -25,6 +27,7 @@ class ServiceModelListList extends StatefulWidget {
 class _ServiceModelListListState extends State<ServiceModelListList> {
   listbloc.ServiceRequestModelListBloc mlistbloc;
   bool enabledAdding = true;
+  bool isStaff = false;
 
   void initState() {
     super.initState();
@@ -38,6 +41,7 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
       entitytype: widget.entitytype,
       entityid: widget.entityid,
       originType: widget.originlist,
+      // isStaff: isStaff,
     ));
   }
 
@@ -204,6 +208,38 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [
+        if (widget.originlist == 1)
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "IsStaff",
+                    style: Styles.normalText(size: 16),
+                  ),
+                  Switch(
+                    activeColor: ColorConstants.primaryColor,
+                    onChanged: (value) {
+                      setState(() {
+                        isStaff = value;
+                      });
+                      mlistbloc.add(
+                        listbloc.getListData(
+                          entitytype: widget.entitytype,
+                          entityid: widget.entityid,
+                          originType: widget.originlist,
+                          // isStaff: isStaff,
+                        ),
+                      );
+                    },
+                    value: isStaff,
+                  ),
+                ],
+              ),
+            ),
+          ),
         SliverToBoxAdapter(
             child: CommonListPage(
                 canSearch: false,

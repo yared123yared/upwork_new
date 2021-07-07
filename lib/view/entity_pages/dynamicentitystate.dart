@@ -1032,7 +1032,7 @@ class UiSchoolHandler {
                     builder: (buildContext) => ServiceModelListList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      originlist: 1,
+                      originlist: 2,
                     ),
                   ));
             });
@@ -1050,7 +1050,7 @@ class UiSchoolHandler {
                     builder: (buildContext) => ServiceModelListList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      originlist: 1,
+                      originlist: 3,
                     ),
                   ));
             });

@@ -36,8 +36,9 @@ class _RegistryListListState extends State<RegistryListList> {
 
   Map<String, Map<String, List<RegistryModel>>> list;
   Map<String, Map<String, List<BuildingModel>>> blist;
-  List<String> buildings = [];
-  List floors = [];
+  // List<String> buildings = [];
+  List<BuildingModel> buildings = [];
+  List<int> floors = [];
   String buildingType;
 
   bool isOwner = false; // for originType 3
@@ -61,11 +62,11 @@ class _RegistryListListState extends State<RegistryListList> {
     } else {
       mlistbloc.add(listbloc.getPreData(
           entitytype: widget.entitytype, entityid: widget.entityid));
-      mlistbloc.add(listbloc.getListData(
-        entitytype: widget.entitytype,
-        entityid: widget.entityid,
-        originType: widget.origintype,
-      ));
+      // mlistbloc.add(listbloc.getListData(
+      //   entitytype: widget.entitytype,
+      //   entityid: widget.entityid,
+      //   originType: widget.origintype,
+      // ));
     }
   }
 
@@ -230,9 +231,15 @@ class _RegistryListListState extends State<RegistryListList> {
             doreload(true);
           }
           if (state is listbloc.IsListDataLoaded) {
+            state.listdata;
             setState(() {
               roles = state.roles ?? [];
               buildingType = state.buildingType;
+            });
+          }
+          if (state is listbloc.IsSearchedListDataLoaded) {
+            setState(() {
+              isOwner = state.isOwner;
             });
           }
         }, child: BlocBuilder<listbloc.RegistryModelListBloc,
@@ -252,15 +259,13 @@ class _RegistryListListState extends State<RegistryListList> {
             return Center(child: Text("Deleted item"));
           }
           if (state is listbloc.IsSearchedListDataLoaded) {
-            List<cmodel.RegistryModel> em = [];
+            List<cmodel.RegistryModel> em = state.listdata;
             if (widget.origintype == 3) {
               state.listdata;
             }
             List<BuildingModel> bm = [];
 
-            setState(() {
-              isOwner = state.isOwner;
-            });
+            isOwner = state.isOwner;
 
             return _blocBuilder(context, em, bm);
           }
@@ -272,26 +277,26 @@ class _RegistryListListState extends State<RegistryListList> {
             if (state.buildinglistdata != null) {
               list = Map();
               blist = Map();
-              state.buildinglistdata.forEach((registry) {
-                if (!buildings.contains(registry.buildingName)) {
-                  buildings.add(registry.buildingName);
+              state.buildinglistdata.forEach((building) {
+                if (!buildings.contains(building)) {
+                  buildings.add(building);
                 }
-
+/* 
                 List<BuildingModel> innerList = [];
 
-                // We check if we recently added a registry into the same building. If we did, we set innerList to that building.
-                if (blist.containsKey(registry.buildingName)) {
+                // We check if we recently added a building into the same building. If we did, we set innerList to that building.
+                if (blist.containsKey(building.buildingName)) {
                   print(
-                      "l: ${blist[registry.buildingName][registry.numfloor]}");
+                      "l: ${blist[building.buildingName][building.numfloor]}");
                   innerList =
-                      blist[registry.buildingName]?.values?.toList()?.first;
+                      blist[building.buildingName]?.values?.toList()?.first;
                 }
 
-                innerList?.add(registry);
+                innerList?.add(building);
 
-                blist[registry.buildingName] = {
-                  registry.buildingName: innerList,
-                };
+                blist[building.buildingName] = {
+                  building.buildingName: innerList,
+                }; */
               });
             }
 
@@ -331,17 +336,21 @@ class _RegistryListListState extends State<RegistryListList> {
                   controller: _building,
                   title: "Building",
                   displayName: (data) => data,
-                  loadData: () async => buildings,
+                  loadData: () async => buildings
+                      .map((building) => building.buildingName)
+                      .toList(),
                   onSelected: (value, index) {
                     setState(() {
-                      floors = list[value].keys.toList();
+                      // floors = blist[value].keys.toList();
+                      floors = List.generate(
+                          buildings[index].numfloor+1, (index) => index);
                     });
                   },
                 ),
                 CustomDropDownList(
                   title: "Floor Number",
                   controller: _floor,
-                  displayName: (data) => data,
+                  displayName: (data) => data.toString(),
                   loadData: () async => floors,
                 ),
                 CustomActionButton(
