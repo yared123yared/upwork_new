@@ -54,7 +54,7 @@ class OccupiedUnitLookupModel {
                 if(uo ==null)
                   {
                     uo= new UnitOccupants();
-                    uo.unitaddress =abc[2].replaceAll("_o", "").replaceAll("_r", "");
+                    uo.unitaddress =ounit.replaceAll("_o", "").replaceAll("_r", "");
                   }
 
                 if(abc[2].contains("_o"))
@@ -69,7 +69,7 @@ class OccupiedUnitLookupModel {
         {
           oul.justunits[abc[0]]=[];
           UnitOccupants uo =new UnitOccupants();
-          uo.unitaddress =abc[2].replaceAll("_o", "").replaceAll("_r", "");
+          uo.unitaddress =ounit.replaceAll("_o", "").replaceAll("_r", "");
           if(abc[2].contains("_o"))
             uo.hasowner=true;
           else
