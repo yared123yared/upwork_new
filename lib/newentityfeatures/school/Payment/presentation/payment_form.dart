@@ -34,6 +34,10 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
   List<String> sessions;
   bool editable;
 
+  DateTime startDate = DateTime.now();
+  DateTime endDate = DateTime.now();
+  DateTime dueDate = DateTime.now();
+
   CustomTextFieldController _sessionName = CustomTextFieldController();
   CustomTextFieldController _groupName = CustomTextFieldController();
   CustomTextFieldController _paymentPeriodNumber = CustomTextFieldController();
@@ -326,7 +330,7 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
       child: Column(
         children: [
           // for (var i = 0; i < periodInfoList.length; i++)
-          // buildPeriodInfoInput(numberPeriod),
+          buildPeriodInfoInput(numberPeriod),
           CustomActionButton(
             state: ButtonState.idle,
             title: timelineIndex != numPeriods
@@ -340,6 +344,13 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
             //     horizontal: width * 25, vertical: height * 6),
             onTap: () async {
               if (_validate()) {
+                periodInfoList[numberPeriod] = PeriodInfo(
+                  paymentPeriodName: controllers[numberPeriod][0].text,
+                  numDays: int.parse(controllers[numberPeriod][1].text),
+                  dueDate: dueDate,
+                  endDate: endDate,
+                  startDate: startDate,
+                );
                 PaymentPeriodInfo _paymentPeriodInfo = PaymentPeriodInfo(
                   sessionName: _sessionName.text,
                   grpName: _groupName.text,
@@ -401,60 +412,61 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
     );
   }
 
-  // Widget buildPeriodInfoInput(int i) {
-  //   return SingleChildScrollView(
-  //     padding: EdgeInsets.symmetric(horizontal: width * 6),
-  //     child: Column(
-  //       children: [
-  //         CustomTextField(
-  //           enabled: editable,
-  //           initialValue: periodInfoList[i].paymentPeriodName,
-  //           title: "Payment Period Name",
-  //           onChange: (text) => periodInfoList[i].paymentPeriodName = text,
-  //           // controller: controllers[i * 2],
-  //           controller: controllers[i][0],
-  //           validate: Validate.withOption(
-  //             isRequired: true,
-  //           ),
-  //         ),
-  //         CustomDateTimePicker(
-  //           controller: _startDateController,
-  //           enabled: editable,
-  //           dateTime: periodInfoList[i].startDate,
-  //           title: 'Start Date',
-  //           mode: DateTimeMode.DATE,
-  //           onChange: (x) => periodInfoList[i].startDate = x,
-  //         ),
-  //         CustomDateTimePicker(
-  //           controller: _endDateController,
-  //           enabled: editable,
-  //           dateTime: periodInfoList[i].endDate,
-  //           title: 'End Date',
-  //           mode: DateTimeMode.DATE,
-  //           onChange: (x) => periodInfoList[i].endDate = x,
-  //         ),
-  //         CustomDateTimePicker(
-  //           controller: _dueDateController,
-  //           enabled: editable,
-  //           dateTime: periodInfoList[i].dueDate,
-  //           title: 'Due Date',
-  //           mode: DateTimeMode.DATE,
-  //           onChange: (x) => periodInfoList[i].dueDate = x,
-  //         ),
-  //         CustomTextField(
-  //           enabled: editable,
-  //           title: "Number Of Days",
-  //           initialValue: periodInfoList[i].numDays.toString(),
-  //           onChange: (text) => periodInfoList[i].numDays = int.tryParse(text),
-  //           // controller: controllers[i * 2 + 1],
-  //           controller: controllers[i][1],
-  //           validate: Validate.withOption(
-  //             isRequired: true,
-  //             isNumber: true,
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
+  Widget buildPeriodInfoInput(int i) {
+    return SingleChildScrollView(
+      padding: EdgeInsets.symmetric(horizontal: width * 6),
+      child: Column(
+        children: [
+          CustomTextField(
+            enabled: editable,
+            initialValue: periodInfoList[i].paymentPeriodName,
+            title: "Payment Period Name",
+            // onChange: (text) => periodInfoList[i].paymentPeriodName = text,
+            // controller: controllers[i * 2],
+            controller: controllers[i][0],
+            validate: Validate.withOption(
+              isRequired: true,
+            ),
+          ),
+          CustomDateTimePicker(
+            controller: _startDateController,
+            enabled: editable,
+            dateTime: periodInfoList[i].startDate,
+            title: 'Start Date',
+            mode: DateTimeMode.DATE,
+            // onChange: (x) => periodInfoList[i].startDate = x,
+            onChange: (x) => startDate = x,
+          ),
+          CustomDateTimePicker(
+            controller: _endDateController,
+            enabled: editable,
+            dateTime: periodInfoList[i].endDate,
+            title: 'End Date',
+            mode: DateTimeMode.DATE,
+            onChange: (x) => endDate = x,
+          ),
+          CustomDateTimePicker(
+            controller: _dueDateController,
+            enabled: editable,
+            dateTime: periodInfoList[i].dueDate,
+            title: 'Due Date',
+            mode: DateTimeMode.DATE,
+            onChange: (x) => dueDate = x,
+          ),
+          CustomTextField(
+            enabled: editable,
+            title: "Number Of Days",
+            initialValue: periodInfoList[i].numDays.toString(),
+            // onChange: (text) => periodInfoList[i].numDays = int.tryParse(text),
+            // controller: controllers[i * 2 + 1],
+            controller: controllers[i][1],
+            validate: Validate.withOption(
+              isRequired: true,
+              isNumber: true,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
