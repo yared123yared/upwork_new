@@ -9,8 +9,6 @@ import 'package:intl/intl.dart';
 import 'log.dart';
 import 'styles.dart';
 
-
-
 class Utility {
   static Future<bool> checkNetwork() async {
     bool isConnected = false;
@@ -37,19 +35,18 @@ class Utility {
   static void showSnackBar({
     String message,
     int miliSec = 2000,
-    @required GlobalKey<ScaffoldState> key,
+    @required BuildContext context,
   }) {
-    if (key != null)
-      key.currentState.showSnackBar(
-        SnackBar(
-          duration: Duration(milliseconds: miliSec),
-          content: Text(
-            message ?? "",
-            style: Styles.boldText(color: Colors.white),
-          ),
-          backgroundColor: Colors.black.withOpacity(0.7),
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: Duration(milliseconds: miliSec),
+        content: Text(
+          message ?? "",
+          style: Styles.boldText(color: Colors.white),
         ),
-      );
+        backgroundColor: Colors.black.withOpacity(0.7),
+      ),
+    );
   }
 
   static int getDeviceType() {

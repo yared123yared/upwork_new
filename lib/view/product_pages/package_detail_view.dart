@@ -143,7 +143,7 @@ class _PackageDetailViewState extends State<PackageDetailView> {
             onTap: () {
               if (_photos.length == 0) {
                 Utility.showSnackBar(
-                    key: _key, message: "At least one image required");
+                    context: context, message: "At least one image required");
               } else if (_validateInput()) {
                 packageList.add(
                   Packagedata(

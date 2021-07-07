@@ -689,7 +689,7 @@ class _CreateServicePageState extends State<CreateServicePage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -707,7 +707,7 @@ class _CreateServicePageState extends State<CreateServicePage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -1443,7 +1443,7 @@ class _CreateServicePageState extends State<CreateServicePage> {
       setState(() {});
     } catch (e) {
       if (e is LocationServiceDisabledException) {
-        Utility.showSnackBar(key: _key, message: e.toString());
+        Utility.showSnackBar(context: context, message: e.toString());
         setState(() {
           currentLocation = false;
         });

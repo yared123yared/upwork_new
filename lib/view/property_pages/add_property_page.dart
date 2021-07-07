@@ -10,7 +10,7 @@ import 'package:complex/common/widgets/custom_slide_transition.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/selection_button.dart';
-import 'package:complex/view/login_pages/landing_page.dart';
+import 'package:complex/view/auth_pages/auth_page.dart';
 import 'package:complex/view/property_pages/property_type.dart';
 import 'package:complex/view/property_pages/service_type.dart';
 import 'package:complex/utils/resource/colors.dart';

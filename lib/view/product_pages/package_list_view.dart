@@ -58,7 +58,7 @@ class _PackageListViewState extends State<PackageListView> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;

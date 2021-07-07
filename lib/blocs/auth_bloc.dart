@@ -7,6 +7,7 @@ import 'package:complex/data/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
+import 'package:logger/logger.dart';
 
 //create event
 abstract class AuthEvent {
@@ -97,12 +98,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           yield LoginState(ApiStatus.ERROR, message: response.message);
         }
       } catch (e) {
+        Logger().e(e.toString());
         yield LoginState(ApiStatus.ERROR, message: "Something went wrong");
       }
     } else if (event is SocialLoginUser) {
       try {
         yield LoginState(ApiStatus.LOADING);
-        final response = await authRepository.socialSignIn(authCredential: event.request);
+        final response =
+            await authRepository.socialSignIn(authCredential: event.request);
         if (response.success) {
           yield LoginState(ApiStatus.SUCCESS, response: response);
         } else {
@@ -132,8 +135,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (response.success) {
           yield CreateUserState(ApiStatus.SUCCESS, response: response);
         } else {
-          yield CreateUserState(ApiStatus.ERROR,
-              message: response.message);
+          yield CreateUserState(ApiStatus.ERROR, message: response.message);
         }
       } catch (e) {
         yield CreateUserState(ApiStatus.ERROR, message: "");
