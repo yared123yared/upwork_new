@@ -4,6 +4,7 @@ import 'package:complex/blocs/channels_bloc.dart';
 import 'package:complex/blocs/complex_bloc.dart';
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/blocs/service_bloc.dart';
+import 'package:complex/common/Colors/colors.dart';
 import 'package:complex/local/pref/Preference.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart';
 import 'package:complex/view/login_pages/splash_page.dart';
@@ -144,7 +145,7 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
         child: GetMaterialApp(
           title: "VThePeople",
           theme: ThemeData(
-            primaryColor: ColorConstants.primaryColor,
+            primaryColor: green,
           ),
           debugShowCheckedModeBanner: false,
           home: SplashPage(),

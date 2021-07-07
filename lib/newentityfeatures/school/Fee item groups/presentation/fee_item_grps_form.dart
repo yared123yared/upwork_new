@@ -178,7 +178,7 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
         CustomActionButton(
           state: ButtonState.idle,
           title: edit ? "Update" : "Add",
-          gradient: C.bgGradient,
+          color: green,
           padding: EdgeInsets.symmetric(vertical: height * 1.5),
           margin: EdgeInsets.symmetric(
               horizontal: width * 25, vertical: height * 6),
@@ -221,10 +221,16 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
       child: ExpansionTile(
         initiallyExpanded: i == 0,
         trailing: IconButton(
-          icon: Icon(Icons.close),
+          icon: Icon(
+            Icons.close,
+            color: green,
+          ),
           onPressed: () => removeItem(i),
         ),
-        title: Text("Fee Item $i"),
+        title: Text(
+          "Fee Item $i",
+          style: TextStyle(color: green),
+        ),
         children: [
           CustomDropDownList<String>(
             loadData: () async => feeItemName,

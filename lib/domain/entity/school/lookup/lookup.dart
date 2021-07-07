@@ -89,6 +89,8 @@ abstract class Lookup with _$Lookup {
 
   const factory Lookup.feeItem({@required String feeItem}) = FeeItem;
 
+  const factory Lookup.buildings({@required String buildings}) = Building;
+
   const factory Lookup.grade({@required String grades}) = Grade;
 
   factory Lookup.fromJson(Map<String, dynamic> json) => _$LookupFromJson(json);
@@ -109,10 +111,17 @@ abstract class LookupList with _$LookupList {
       SessionTermList;
 
   const factory LookupList.offering(
-      {@JsonKey(name: 'subject') @required List<String> list}) = Offerings;
+      {@JsonKey(name: 'subject', defaultValue: [])
+      @required
+          List<String> list}) = Offerings;
 
   const factory LookupList.feeItem(
       {@JsonKey(name: 'feeitemlist') @required List<String> list}) = FeeItems;
+
+  const factory LookupList.buildings(
+      {@JsonKey(name: 'building', defaultValue: [])
+      @required
+          List<String> list}) = Buildings;
 
   const factory LookupList.grade(
       {@JsonKey(name: 'grades') @required List<String> list}) = Grades;
@@ -141,6 +150,7 @@ abstract class LookupType with _$LookupType {
   const factory LookupType.sessionTerm() = _SessionTerm;
   const factory LookupType.classPeriod() = _ClassPeriod;
   const factory LookupType.paymentPeriod() = _PaymentPeriod;
+  const factory LookupType.buildings() = _Buildings;
 
   factory LookupType.from(Lookup lookup) => lookup.map(
       roomInfo: (roomInfo) => LookupType.rooms(),
@@ -152,5 +162,6 @@ abstract class LookupType with _$LookupType {
       schedule: (schedule) => LookupType.classPeriod(),
       feeItem: (feeItem) => LookupType.feeItem(),
       offering: (offering) => LookupType.offering(),
-      grade: (grades) => LookupType.grade());
+      grade: (grades) => LookupType.grade(),
+      buildings: (buildings) => LookupType.buildings());
 }

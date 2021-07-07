@@ -2,6 +2,7 @@ import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/offerings/presentation/offerings_listview.dart';
+import 'package:complex/view/entity/school/lookup/building_list_page.dart';
 import 'package:complex/view/entity/school/lookup/examTerm_list_page.dart';
 import 'package:complex/view/entity/school/lookup/fee_item_list_page.dart';
 import 'package:complex/view/entity/school/lookup/grade_list_page.dart';
@@ -24,38 +25,41 @@ class LookupNavigationHelper {
     Logger().i(type.toString());
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => type.map(
-            feeItem: (feeItem) => FeeItemListPage(
-                  entityid: entityID,
-                  entitytype: entityType,
-                ),
-            offering: (offering) => OfferingListPage(
-                  entityid: entityID,
-                  entitytype: entityType,
-                ),
-            grade: (grade) => GradeListPage(
-                  entityid: entityID,
-                  entitytype: entityType,
-                ),
-            rooms: (rooms) => RoomsListPage(
-                  entityid: entityID,
-                  entitytype: entityType,
-                ),
-            examTerm: (examTerm) => ExamTermListPage(
-                  entityid: entityID,
-                  entitytype: entityType,
-                ),
-            sessionTerm: (sessionTerm) => SessionTermListPage(
-                  entityid: entityID,
-                  entitytype: entityType,
-                ),
-            classPeriod: (classPeriod) => FeeItemFormList(
-                  entityid: entityID,
-                  entitytype: entityType,
-                ),
-            paymentPeriod: (paymentPeriod) => FeeItemFormList(
-                  entityid: entityID,
-                  entitytype: entityType,
-                ))));
+              feeItem: (feeItem) => FeeItemListPage(
+                entityid: entityID,
+                entitytype: entityType,
+              ),
+              offering: (offering) => OfferingListPage(
+                entityid: entityID,
+                entitytype: entityType,
+              ),
+              grade: (grade) => GradeListPage(
+                entityid: entityID,
+                entitytype: entityType,
+              ),
+              rooms: (rooms) => RoomsListPage(
+                entityid: entityID,
+                entitytype: entityType,
+              ),
+              examTerm: (examTerm) => ExamTermListPage(
+                entityid: entityID,
+                entitytype: entityType,
+              ),
+              sessionTerm: (sessionTerm) => SessionTermListPage(
+                entityid: entityID,
+                entitytype: entityType,
+              ),
+              classPeriod: (classPeriod) => FeeItemFormList(
+                entityid: entityID,
+                entitytype: entityType,
+              ),
+              paymentPeriod: (paymentPeriod) => FeeItemFormList(
+                entityid: entityID,
+                entitytype: entityType,
+              ),
+              buildings: (building) =>
+                  BuildingListPage(entityid: entityID, entitytype: entityType),
+            )));
 
     await Future.delayed(Duration(milliseconds: 100));
 

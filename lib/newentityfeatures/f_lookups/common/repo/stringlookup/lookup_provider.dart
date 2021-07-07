@@ -283,4 +283,35 @@ class LookupProvider extends ILookupProvider {
 
     return response;
   }
+
+  @override
+  Future<Option<Failure>> createBuilding(
+      {String serviceID, String building}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .addItemsInDocArrayFirestore(
+            errorType: 'Fee Item', fieldName: 'building', elements: [building]);
+
+    return response;
+  }
+
+  @override
+  Future<Option<Failure>> deleteBuilding(
+      {String serviceID, String building}) async {
+    final Option<Failure> response = await ApiHelper(lookupEndPoint(serviceID))
+        .removeItemsFromDocsArrayFirestore(
+            errorType: 'Fee Item', fieldName: 'building', elements: [building]);
+
+    return response;
+  }
+
+  @override
+  Future<Either<Failure, Buildings>> getBuildingList({String serviceID}) async {
+    Either<Failure, Buildings> response =
+        await ApiHelper("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
+            .getDocFromFirestore(fromJson: (json) {
+      return Buildings.fromJson(json);
+    });
+
+    return response;
+  }
 }

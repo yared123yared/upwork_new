@@ -144,6 +144,7 @@ enum DynamicEntityGridState {
   examTerm,
   sessionTerm,
   caseView,
+  schoolbuilding,
 
   securityservicerequest,
   gradelist,
@@ -394,6 +395,7 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.examTerm);
     panelmem.add(DynamicEntityGridState.sessionTerm);
     panelmem.add(DynamicEntityGridState.caseView);
+    panelmem.add(DynamicEntityGridState.schoolbuilding);
 
     return panelmem;
   }
@@ -832,6 +834,19 @@ class UiSchoolHandler {
               // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
               LookupNavigationHelper.toListPage(
                   type: LookupType.grade(),
+                  context: context,
+                  entityType: getCurEntity().entitytype,
+                  entityID: getCurEntity().entityid);
+            });
+        break;
+      case DynamicEntityGridState.schoolbuilding:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Buildings',
+            tapAction: () {
+              // listbloc.StringListBloc mlistbloc=BlocProvider.of<listbloc.StringListBloc>(context);
+              LookupNavigationHelper.toListPage(
+                  type: LookupType.buildings(),
                   context: context,
                   entityType: getCurEntity().entitytype,
                   entityID: getCurEntity().entityid);

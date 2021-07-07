@@ -1,3 +1,4 @@
+import 'package:complex/common/Colors/colors.dart';
 import 'package:flutter/material.dart';
 
 class ColorConstants {
@@ -16,7 +17,7 @@ class ColorConstants {
       900: const Color(0xFF49AA74),
     },
   );
-  static const Color primaryColor = Color(0xFF49AA74);
+  static const Color primaryColor = green;
   static const Color lightGreen = Color(0xFFC2FFDD);
   static const Color white = Colors.white;
   static const Color blue = Colors.blue;
@@ -30,5 +31,4 @@ class ColorConstants {
   static const Color darkGreyColor = Color.fromRGBO(47, 51, 50, 0.6); //#2F3332
   static const Color darkBlackColor = Color.fromRGBO(47, 51, 50, 1.0); //#2F3332
   static const Color groupGreyColor = Color.fromRGBO(243, 244, 246, 1.0);
-
 }

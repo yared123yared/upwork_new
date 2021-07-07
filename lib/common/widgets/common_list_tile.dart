@@ -55,7 +55,7 @@ class _CommonListTileState extends State<CommonListTile> {
               Icon(
                 Icons.account_balance,
                 size: width * 10,
-                color: C.primaryTextBlue.withOpacity(0.6),
+                color: green,
               ),
               SizedBox(width: width * 2),
               if (!showDeleteButton)
@@ -73,7 +73,7 @@ class _CommonListTileState extends State<CommonListTile> {
                             widget.listState.title ?? "Error",
                             style: TextStyle(
                               fontFamily: 'Merriweather',
-                              color: C.secondaryTextBlue,
+                              color: green,
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
                             ),

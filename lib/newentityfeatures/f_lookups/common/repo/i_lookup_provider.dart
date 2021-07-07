@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 abstract class ILookupProvider {
   Future<Either<Failure, FeeItems>> getFeeItemsList(
       {@required String serviceID});
+  Future<Either<Failure, Buildings>> getBuildingList(
+      {@required String serviceID});
   Future<Either<Failure, Grades>> getGradeList({@required String serviceID});
   Future<Either<Failure, Offerings>> getOfferingsList(
       {@required String serviceID});
@@ -28,6 +30,11 @@ abstract class ILookupProvider {
       {@required String serviceID, @required String grade});
   Future<Option<Failure>> deleteDeleteGrade(
       {@required String serviceID, @required String grade});
+
+  Future<Option<Failure>> createBuilding(
+      {@required String serviceID, @required String building});
+  Future<Option<Failure>> deleteBuilding(
+      {@required String serviceID, @required String building});
 
   Future<Option<Failure>> createOfferingItem(
       {@required String serviceID, @required String offering});

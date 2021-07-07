@@ -1,5 +1,4 @@
 import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
-import 'package:complex/common/Colors/colors.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:flutter/material.dart';
@@ -10,36 +9,32 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
-// import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart'
-//     as listbloc;
 
-class OfferingListPage extends StatefulWidget {
+class BuildingListPage extends StatefulWidget {
   final String entityid;
   final String entitytype;
-  OfferingListPage({@required this.entitytype, @required this.entityid});
+  BuildingListPage({@required this.entitytype, @required this.entityid});
 
   @override
-  _OfferingListPageState createState() => _OfferingListPageState();
+  _BuildingListPageState createState() => _BuildingListPageState();
 }
 
-class _OfferingListPageState extends State<OfferingListPage> {
+class _BuildingListPageState extends State<BuildingListPage> {
   Future<String> _addButtonActions(
       BuildContext context, String entitytype, String entityid) async {
     CustomTextFieldController c = CustomTextFieldController();
     Future<String> sb = Get.generalDialog<String>(
         pageBuilder: (context, animation, secondaryAnimation) {
       return AlertDialog(
-        title: Text('Enter the Offering Name'),
+        title: Text('Enter the Building Name'),
         content: CustomTextField(
           controller: c,
           autoFocus: true,
-          title: 'Offering',
+          title: 'Building Name',
           validate: Validate.withOption(isRequired: true),
         ),
         actions: [
           OutlinedButton(
-            style:
-                ButtonStyle(foregroundColor: MaterialStateProperty.all(green)),
             child: Text("Cancel"),
             onPressed: () {
               Navigator.of(context).pop("*NOVALUESET*");
@@ -47,8 +42,6 @@ class _OfferingListPageState extends State<OfferingListPage> {
             },
           ),
           ElevatedButton(
-            style:
-                ButtonStyle(backgroundColor: MaterialStateProperty.all(green)),
             child: Text("Confirm"),
             onPressed: () {
               if (c.isValid) {
@@ -77,7 +70,7 @@ class _OfferingListPageState extends State<OfferingListPage> {
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
             BlocProvider.of<LookupBloc>(context).add(DeleteItemWithData(
-                item: Offering(offering: item),
+                item: Building(buildings: item),
                 entityid: widget.entityid,
                 entitytype: widget.entitytype));
           }
@@ -135,23 +128,22 @@ class _OfferingListPageState extends State<OfferingListPage> {
       buildWhen: (p, c) => p.listData != c.listData,
       builder: (context, state) {
         return state.listData.maybeMap(
-            offering: (offering) => Scaffold(
+            buildings: (building) => Scaffold(
                 appBar: AppBar(
-                  title: Text("Offering"),
+                  title: Text("Buildings"),
                   centerTitle: true,
                 ),
-                body: offering.list.isNotEmpty
-                    ? _blocBuilder(context, offering.list)
+                body: building.list.isNotEmpty
+                    ? _blocBuilder(context, building.list)
                     : Center(child: Text('Empty')),
                 floatingActionButton: FloatingActionButton.extended(
-                  backgroundColor: green,
                   onPressed: () async {
                     String returnedval = await _addButtonActions(
                         context, widget.entitytype, widget.entityid);
                     if (returnedval != "*NOVALUESET*") {
                       BlocProvider.of<LookupBloc>(context).add(
                         CreateItem(
-                            item: Offering(offering: returnedval),
+                            item: Building(buildings: returnedval),
                             entityid: widget.entityid,
                             entitytype: widget.entitytype),
                       );
@@ -164,7 +156,7 @@ class _OfferingListPageState extends State<OfferingListPage> {
                 )),
             orElse: () => Scaffold(
                   appBar: AppBar(
-                    title: Text("Problem"),
+                    title: Text("Building"),
                     centerTitle: true,
                   ),
                 ));
@@ -181,7 +173,7 @@ class _OfferingListPageState extends State<OfferingListPage> {
                 canSearch: false,
                 updateAction: null,
                 appBarTitle: "FeeItems",
-                dynamicListState: "Offering",
+                dynamicListState: "FeeItems",
                 listItems:
                     em != null ? toCommonListState(em, context) : Container())),
       ],

@@ -217,6 +217,25 @@ Map<String, dynamic> _$_$FeeItemToJson(_$FeeItem instance) {
   return val;
 }
 
+_$Building _$_$BuildingFromJson(Map<String, dynamic> json) {
+  return _$Building(
+    buildings: json['buildings'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$BuildingToJson(_$Building instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('buildings', instance.buildings);
+  return val;
+}
+
 _$Grade _$_$GradeFromJson(Map<String, dynamic> json) {
   return _$Grade(
     grades: json['grades'] as String,
@@ -305,7 +324,7 @@ Map<String, dynamic> _$_$SessionTermListToJson(_$SessionTermList instance) {
 
 _$Offerings _$_$OfferingsFromJson(Map<String, dynamic> json) {
   return _$Offerings(
-    list: (json['subject'] as List)?.map((e) => e as String)?.toList(),
+    list: (json['subject'] as List)?.map((e) => e as String)?.toList() ?? [],
   );
 }
 
@@ -338,6 +357,25 @@ Map<String, dynamic> _$_$FeeItemsToJson(_$FeeItems instance) {
   }
 
   writeNotNull('feeitemlist', instance.list);
+  return val;
+}
+
+_$Buildings _$_$BuildingsFromJson(Map<String, dynamic> json) {
+  return _$Buildings(
+    list: (json['building'] as List)?.map((e) => e as String)?.toList() ?? [],
+  );
+}
+
+Map<String, dynamic> _$_$BuildingsToJson(_$Buildings instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('building', instance.list);
   return val;
 }
 

@@ -81,6 +81,13 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           return data.fold(
               (l) => state.copyWith(isLoading: false, failure: some(l)),
               (r) => state.copyWith(isLoading: false, listData: r));
+        }, buildings: (v) async {
+          Either<Failure, Buildings> data =
+              await provider.getBuildingList(serviceID: getListData.entityid);
+
+          return data.fold(
+              (l) => state.copyWith(isLoading: false, failure: some(l)),
+              (r) => state.copyWith(isLoading: false, listData: r));
         });
 
         yield newState;
@@ -95,10 +102,9 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
             sessionTerm: (sessionTerm) => provider.deleteSessionTerm(
                 serviceID: deleteItemWithData.entityid,
                 sessionTerm: sessionTerm),
-            paymentPeriodInfo: (paymentPeriodInfo) =>
-                provider.deletePaymentPeriod(
-                    serviceID: deleteItemWithData.entityid,
-                    paymentPeriodInfo: paymentPeriodInfo),
+            paymentPeriodInfo: (paymentPeriodInfo) => provider.deletePaymentPeriod(
+                serviceID: deleteItemWithData.entityid,
+                paymentPeriodInfo: paymentPeriodInfo),
             periodInfo: (periodInfo) => none(),
             classPeriodInfo: (classPeriodInfo) => provider.deleteClassPeriod(
                 serviceID: deleteItemWithData.entityid,
@@ -111,7 +117,9 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
                 serviceID: deleteItemWithData.entityid,
                 offering: offering.offering),
             grade: (grade) => provider.deleteDeleteGrade(
-                serviceID: deleteItemWithData.entityid, grade: grade.grades));
+                serviceID: deleteItemWithData.entityid, grade: grade.grades),
+            buildings: (building) =>
+                provider.deleteBuilding(serviceID: deleteItemWithData.entityid, building: building.buildings));
 
         response.fold(() {
           add(LookupEvent.getListData(
@@ -131,10 +139,9 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
                 serviceID: createItem.entityid, examTerm: examTermInfo),
             sessionTerm: (sessionTerm) => provider.createSessionTerm(
                 serviceID: createItem.entityid, sessionTerm: sessionTerm),
-            paymentPeriodInfo: (paymentPeriodInfo) =>
-                provider.createPaymentPeriod(
-                    serviceID: createItem.entityid,
-                    paymentPeriodInfo: paymentPeriodInfo),
+            paymentPeriodInfo: (paymentPeriodInfo) => provider.createPaymentPeriod(
+                serviceID: createItem.entityid,
+                paymentPeriodInfo: paymentPeriodInfo),
             periodInfo: (periodInfo) => none(),
             classPeriodInfo: (classPeriodInfo) => provider.createClassPeriod(
                 serviceID: createItem.entityid,
@@ -145,7 +152,9 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
             offering: (offering) => provider.createOfferingItem(
                 serviceID: createItem.entityid, offering: offering.offering),
             grade: (grade) => provider.createGrade(
-                serviceID: createItem.entityid, grade: grade.grades));
+                serviceID: createItem.entityid, grade: grade.grades),
+            buildings: (building) =>
+                provider.createBuilding(serviceID: createItem.entityid, building: building.buildings));
 
         response.fold(() {
           add(LookupEvent.getListData(
