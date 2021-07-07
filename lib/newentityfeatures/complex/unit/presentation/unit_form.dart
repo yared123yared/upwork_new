@@ -46,13 +46,17 @@ class _UnitModelFormState extends State<UnitModelForm> {
   var btnState;
 
   bool _validate() {
+    BuildingModel building = buildingList
+        .firstWhere((element) => element.buildingName == _buildingName.text);
     return Validate.validateAll([
-      _address,
-      _buildingName,
-      _floorNumber,
-      _noVisitorParking,
-      _noFixedParking,
-    ]);
+          _address,
+          _buildingName,
+          _floorNumber,
+          _noVisitorParking,
+          _noFixedParking,
+        ]) &&
+        // int.parse(_floorNumber.text) >= 0 &&
+        int.parse(_floorNumber.text) <= building.numfloor;
   }
 
   void _initFiledValue() {

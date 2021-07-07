@@ -48,15 +48,15 @@ class _RegistryListListState extends State<RegistryListList> {
   void initState() {
     mlistbloc = listbloc.RegistryModelListBloc();
     if (widget.origintype == 3) {
-      BlocProvider.of<listbloc.RegistryModelListBloc>(context).add(
+      mlistbloc.add(
         listbloc.getListDataByListOfUnits(
           entityid: widget.entityid,
           entitytype: widget.entitytype,
           originType: widget.origintype,
-          unitlist: residentUnits.map(
-            (residentUnit) =>
-                residentUnit.rd.substring(0, residentUnit.rd.length - 2),
-          ),
+          unitlist: residentUnits
+              .map((residentUnit) =>
+                  residentUnit.rd.substring(0, residentUnit.rd.length - 2))
+              .toList(),
         ),
       );
     } else {
@@ -326,75 +326,77 @@ class _RegistryListListState extends State<RegistryListList> {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.0),
-            child: ExpansionTile(
-              title: Text("Select Parameters To Search"),
-              children: [
-                CustomDropDownList(
-                  controller: _building,
-                  title: "Building",
-                  displayName: (data) => data,
-                  loadData: () async => buildings
-                      .map((building) => building.buildingName)
-                      .toList(),
-                  onSelected: (value, index) {
-                    setState(() {
-                      // floors = blist[value].keys.toList();
-                      floors = List.generate(
-                          buildings[index].numfloor+1, (index) => index);
-                    });
-                  },
-                ),
-                CustomDropDownList(
-                  title: "Floor Number",
-                  controller: _floor,
-                  displayName: (data) => data.toString(),
-                  loadData: () async => floors,
-                ),
-                CustomActionButton(
-                  title: "Get Registries",
-                  gradient: C.bgGradient,
-                  onTap: () {
-                    if (_floor.text.isEmpty || _building.text.isEmpty) {
-                      asuka.showSnackBar(
-                        SnackBar(
-                            content: Text(
-                                "Please fill the parameters to do the search")),
-                      );
-                      return;
-                    }
-                    if (widget.origintype == 1 || widget.origintype == 2) {
-                      BlocProvider.of<listbloc.RegistryModelListBloc>(context)
-                          .add(
-                        listbloc.getListDataByBuildingAndFloor(
-                          entityid: widget.entityid,
-                          entitytype: widget.entitytype,
-                          originType: widget.origintype,
-                          buildingName: _building.text,
-                          floorNum: int.parse(_floor.text),
-                        ),
-                      );
-                      // } else if (widget.origintype == 3) {
-                    } else if (widget.origintype == 4) {
-                      BlocProvider.of<listbloc.RegistryModelListBloc>(context)
-                          .add(
-                        listbloc.getListDataByBuildingAndFloor(
-                          entityid: widget.entityid,
-                          entitytype: widget.entitytype,
-                          originType: widget.origintype,
-                          buildingName: _building.text,
-                          floorNum: int.parse(_floor.text),
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
+        if (widget.origintype != 3)
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.0),
+              child: ExpansionTile(
+                title: Text("Select Parameters To Search"),
+                children: [
+                  CustomDropDownList(
+                    controller: _building,
+                    title: "Building",
+                    displayName: (data) => data,
+                    loadData: () async => buildings
+                        .map((building) => building.buildingName)
+                        .toList(),
+                    onSelected: (value, index) {
+                      setState(() {
+                        floors = List.generate(
+                            buildings[index].numfloor + 1, (index) => index);
+                        _building.text = value;
+                        // floors = blist[value].keys.toList();
+                      });
+                    },
+                  ),
+                  CustomDropDownList(
+                    title: "Floor Number",
+                    controller: _floor,
+                    displayName: (data) => data.toString(),
+                    loadData: () async => floors,
+                  ),
+                  CustomActionButton(
+                    title: "Get Registries",
+                    gradient: C.bgGradient,
+                    onTap: () {
+                      if (_floor.text.isEmpty || _building.text.isEmpty) {
+                        asuka.showSnackBar(
+                          SnackBar(
+                              content: Text(
+                                  "Please fill the parameters to do the search")),
+                        );
+                        return;
+                      }
+                      if (widget.origintype == 1 || widget.origintype == 2) {
+                        BlocProvider.of<listbloc.RegistryModelListBloc>(context)
+                            .add(
+                          listbloc.getListDataByBuildingAndFloor(
+                            entityid: widget.entityid,
+                            entitytype: widget.entitytype,
+                            originType: widget.origintype,
+                            buildingName: _building.text,
+                            floorNum: int.parse(_floor.text),
+                          ),
+                        );
+                        // } else if (widget.origintype == 3) {
+                      } else if (widget.origintype == 4) {
+                        BlocProvider.of<listbloc.RegistryModelListBloc>(context)
+                            .add(
+                          listbloc.getListDataByBuildingAndFloor(
+                            entityid: widget.entityid,
+                            entitytype: widget.entitytype,
+                            originType: widget.origintype,
+                            buildingName: _building.text,
+                            floorNum: int.parse(_floor.text),
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
         // SliverList(
         //   delegate: SliverChildListDelegate(
         //     list.entries

@@ -96,7 +96,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
   List<String> serviceTypes = [
     "VISITOR",
     "HOMEHELP",
-    "ADHOCVISITOR",
+    // "ADHOCVISITOR",
     "GATEPASS",
     "DELIVERY",
   ];

@@ -62,7 +62,6 @@ class ServiceRequestModelRepository {
 
     List<String> roles;
 
-
     // List<String> role = _complexModel.stringRoles;
     List<ServiceRequestModel> services =
         await _complexRepository.getAllActiveServiceRequestList(
@@ -72,12 +71,7 @@ class ServiceRequestModelRepository {
     );
     List<ServiceRequestModel> filteredServices = [];
 
-
     myreturn.itemlist = services;
-
-
-
-
 
     // myreturn.itemlist = await _complexRepository.getServiceRequestList(
     //   complexID: entityid,
@@ -88,32 +82,24 @@ class ServiceRequestModelRepository {
     return myreturn;
   }
 
-
-  Future<ServiceRequestModelRepositoryReturnData> getAllServiceRequestModelsForStaffId(
-      String entitytype, String entityid, int originType,String staffid) async {
+  Future<ServiceRequestModelRepositoryReturnData>
+      getAllServiceRequestModelsForStaffId(String entitytype, String entityid,
+          int originType, String staffid) async {
     ServiceRequestModelRepositoryReturnData myreturn =
-    ServiceRequestModelRepositoryReturnData();
-
-
+        ServiceRequestModelRepositoryReturnData();
 
     List<String> roles;
 
-
     // List<String> role = _complexModel.stringRoles;
     List<ServiceRequestModel> services =
-    await _complexRepository.getServiceRequestStaffSelf(
+        await _complexRepository.getServiceRequestStaffSelf(
       entitytype: entitytype,
       entityid: entityid,
       userid: staffid,
     );
     List<ServiceRequestModel> filteredServices = [];
 
-
     myreturn.itemlist = services;
-
-
-
-
 
     // myreturn.itemlist = await _complexRepository.getServiceRequestList(
     //   complexID: entityid,
@@ -124,32 +110,27 @@ class ServiceRequestModelRepository {
     return myreturn;
   }
 
-
-  Future<ServiceRequestModelRepositoryReturnData> getAllServiceRequestModelsForListOfUnits(
-      String entitytype, String entityid, int originType,List<String> residentunitlist) async {
+  Future<ServiceRequestModelRepositoryReturnData>
+      getAllServiceRequestModelsForListOfUnits(
+          String entitytype,
+          String entityid,
+          int originType,
+          List<String> residentunitlist) async {
     ServiceRequestModelRepositoryReturnData myreturn =
-    ServiceRequestModelRepositoryReturnData();
-
-
+        ServiceRequestModelRepositoryReturnData();
 
     List<String> roles;
 
-
     // List<String> role = _complexModel.stringRoles;
     List<ServiceRequestModel> services =
-    await _complexRepository.getAllServiceRequestModelsForListOfUnits(
+        await _complexRepository.getAllServiceRequestModelsForListOfUnits(
       entitytype: entitytype,
       entityid: entityid,
       residentunitlist: residentunitlist,
     );
     List<ServiceRequestModel> filteredServices = [];
 
-
     myreturn.itemlist = services;
-
-
-
-
 
     // myreturn.itemlist = await _complexRepository.getServiceRequestList(
     //   complexID: entityid,
@@ -159,14 +140,6 @@ class ServiceRequestModelRepository {
 
     return myreturn;
   }
-
-
-
-
-
-
-
-
 
   Future<ServiceRequestModelRepositoryReturnData> createServiceRequestModel(
       ServiceRequestModel item, String entitytype, String entityid) async {
@@ -273,8 +246,7 @@ class ServiceRequestModelRepository {
       // user: _user,
     ));
 
-
-    myreturn.oul =  await _complexRepository.getOccupiedUnits(
+    myreturn.oul = await _complexRepository.getOccupiedUnits(
       entitytype: entitytype,
       entityid: entityid,
     );
@@ -282,7 +254,7 @@ class ServiceRequestModelRepository {
     List<UnitModel> filteredUnits = [];
     if (originType == 3) {
       units.forEach((unit) {
-        if (unit.hasOwner || unit.hasResident) {
+        if ((unit?.hasOwner ?? false) || (unit?.hasResident ?? false)) {
           filteredUnits.add(unit);
         }
       });

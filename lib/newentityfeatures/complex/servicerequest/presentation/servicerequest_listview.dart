@@ -181,10 +181,10 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
 
           if (state is listbloc.IsListDataLoaded) {
             List<cmodel.ServiceRequestModel> em = state.listdata;
-            if (widget.originlist == 2 && !state.isStaff) {
+            if (widget.originlist == 2 /*  && !state.isStaff */) {
               enabledAdding = false;
             }
-            if (widget.originlist == 3 && state.isStaff) {
+            if (widget.originlist == 3 /*  && state.isStaff */) {
               enabledAdding = false;
             }
             return _blocBuilder(context, em);

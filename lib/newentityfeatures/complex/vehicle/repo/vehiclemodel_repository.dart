@@ -40,14 +40,14 @@ class VehicleModelRepository {
     VehicleModelRepositoryReturnData myreturn =
         VehicleModelRepositoryReturnData();
 
-    if (_complexRepository.getVehicleList(complexID: entityid) == null ||
-        _complexRepository.getVehicleList(complexID: entityid).length == 0) {
-      await _complexRepository.setVehicleList(
-        entityid: entityid,
-        entitytype: entitytype,
-        user: _user,
-      );
-    }
+    // if (_complexRepository.getVehicleList(complexID: entityid) == null ||
+    //     _complexRepository.getVehicleList(complexID: entityid).length == 0) {
+    //   await _complexRepository.setVehicleList(
+    //     entityid: entityid,
+    //     entitytype: entitytype,
+    //     user: _user,
+    //   );
+    // }
     myreturn.itemlist = _complexRepository.getVehicleList(
       complexID: entityid,
     );

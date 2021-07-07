@@ -104,7 +104,7 @@ class RegistryModelRepository {
         RegistryModelRepositoryReturnData();
 
     List<RegistryModel> newRegistryList = [];
-    bool isOwner = false;
+    bool isOwner = _user.userID.endsWith("o");
 
     List<RegistryModel> registryList =
         await _complexRepository.registry.getRegistryListForBuildingAndFloor(
@@ -129,14 +129,25 @@ class RegistryModelRepository {
 
     List<RegistryModel> newRegistryList = [];
     bool isOwner = false;
+    _user.defaultComplexEntity.residentunits.forEach((residentUnit) {
+      if (residentUnit.rd.endsWith("o")) {
+        isOwner = true;
+      }
+    });
 
-    List<RegistryModel> registryList =
-        await _complexRepository.registry.getRegistryListDataByListOfUnits(
-      entitytype: entitytype,
-      entityid: entityid,
-      unitlist: unitlist,
-    );
+    List<RegistryModel> registryList;
+    if (unitlist.isNotEmpty) {
+      registryList =
+          await _complexRepository.registry.getRegistryListDataByListOfUnits(
+        entitytype: entitytype,
+        entityid: entityid,
+        unitlist: unitlist,
+      );
+    } else {
+      registryList = [];
+    }
     myreturn.itemlist = registryList;
+    myreturn.listviewData.isOwner = isOwner;
 
     myreturn.errortype = -1;
     return myreturn;
@@ -340,7 +351,7 @@ class RegistryModelRepository {
       entityid: entityid,
     );
 
-    myreturn.oul =  await _complexRepository.getOccupiedUnits(
+    myreturn.oul = await _complexRepository.getOccupiedUnits(
       entitytype: entitytype,
       entityid: entityid,
     );
