@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,7 +83,6 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
   bool _isStaff = false;
   bool enabled = true;
 
-  List<String> roles;
 
   StaffModelx staff;
 
@@ -103,8 +103,8 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
 
   bool _validate() {
     return ((_staffController?.isValid ?? false) || !_isStaff) &&
-        _serviceProviderId.isValid &&
-        _memberId.isValid &&
+        // _serviceProviderId.isValid &&
+        // _memberId.isValid &&
         _endDateController.isValid &&
         (_name.isValid || _isStaff) &&
         (_unitAddress.isValid || _isStaff) &&
@@ -221,10 +221,6 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
             units = state.units;
             stafflist = state.stafflist;
             buildinglist = state.buildinglist;
-            roles = state.roles ?? [];
-            // if (roles.contains("security")) {
-            //   _requestType.text = "ADHOCVISITOR";
-            // }
 
             return _render(context);
           }
@@ -243,11 +239,12 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
           children: <Widget>[
             Column(
               children: <Widget>[
-                // CustomSwitchWithTitle(
-                //   title: "For Staff",
-                //   isEnabled: enabled || _isStaff,
-                //   onChange: (value) => setState(() => _isStaff = value),
-                // ),
+                if (widget.origintype == 1)
+                  CustomSwitchWithTitle(
+                    title: "For Staff",
+                    // isEnabled: enabled || _isStaff,
+                    onChange: (value) => setState(() => _isStaff = value),
+                  ),
                 if (_isStaff)
                   CustomDropDownList<StaffModelx>(
                     title: "Staff Member",
@@ -310,10 +307,12 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                   ),
                 CustomDropDownList(
                   title: "Request Type",
-                  enabled: widget.origintype != 1,
+                  enabled: (widget.origintype != 1 &&
+                      widget.serviceRequestModel != null),
                   controller: _requestType,
                   initialValue:
-                      widget?.serviceRequestModel?.requestType.toString(),
+                      widget?.serviceRequestModel?.requestType?.toString() ??
+                          "",
                   loadData: () async => serviceTypes,
                   displayName: (data) => data,
                   validate: Validate.withOption(
@@ -332,7 +331,9 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                 ),
                 newentitytimepicker.CustomDateTimePicker(
                   controller: _startDateController,
-                  enabled: enabled,
+                  enabled: enabled ||
+                      (widget.serviceRequestModel?.startDate == null &&
+                          widget.origintype != 1),
                   dateTime: _startDate,
                   title: 'Start Date',
                   mode: DateTimeMode.DATE,
@@ -340,7 +341,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                 ),
                 newentitytimepicker.CustomDateTimePicker(
                   controller: _endDateController,
-                  enabled: enabled,
+                  enabled: enabled || widget.origintype != 1,
                   dateTime: _endDate,
                   title: 'End Date',
                   mode: DateTimeMode.DATE,

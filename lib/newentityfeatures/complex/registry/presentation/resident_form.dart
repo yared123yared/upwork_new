@@ -87,7 +87,7 @@ class _ResidentFormState extends State<ResidentForm> {
       return _firstName.isValid &&
           _lastName.isValid &&
           (_newItem ? _emailAddress.isValid : true) &&
-          _contactNumber.isValid &&
+          (_newItem ? _contactNumber.isValid : true) &&
           _contactNumberToPublish.isValid;
       // && _middleName.isValid;
     } else if (i == 1) {
@@ -105,30 +105,20 @@ class _ResidentFormState extends State<ResidentForm> {
           String lastName = ownerName.substring(0, ownerName.indexOf(","));
           String firstName = ownerName.substring(ownerName.indexOf(",") + 1);
 
-          _firstName.text = resident?.firstName ?? firstName;
-          _lastName.text = resident?.lastName ?? lastName;
-          _emailAddress.text = resident?.email;
+          _firstName.text = firstName;
+          _lastName.text = lastName;
 
-          _contactNumber.text =
-              resident?.contactNumber ?? widget.registry.ownerPublishedContact;
-          _contactNumberToPublish.text = resident?.publishedContact ??
-              widget.registry.ownerPublishedContact;
+          _contactNumberToPublish.text = widget.registry.ownerPublishedContact;
 
           _registeredAs.text = "owner";
 
-          _managementPosition.text = resident?.managementPosition ??
-              widget.registry.ownerManagementPosition;
-          _unit.text = resident?.unitAddress ?? widget.registry.unitAddress;
-          _startDateController.text = resident?.startDate?.toString() ??
+          _managementPosition.text = widget.registry.ownerManagementPosition;
+          _unit.text = widget.registry.unitAddress;
+          _startDateController.text =
               widget.registry.ownerStartDate?.toString();
-          _endDateController.text = resident?.endDate?.toString() ??
-              widget.registry.ownerEndDate?.toString();
-          _startDate = resident?.startDate ??
-              widget?.registry?.ownerStartDate ??
-              DateTime.now();
-          _endDate = resident?.endDate ??
-              widget?.registry?.ownerEndDate ??
-              DateTime.now();
+          _endDateController.text = widget.registry.ownerEndDate?.toString();
+          _startDate = widget?.registry?.ownerStartDate ?? DateTime.now();
+          _endDate = widget?.registry?.ownerEndDate ?? DateTime.now();
           // } else if (widget.role == "owner") {
         } else if (widget.origintype == 2 || widget.origintype == 3) {
           String residentName = widget.registry.residentName;
@@ -137,29 +127,21 @@ class _ResidentFormState extends State<ResidentForm> {
           String firstName =
               residentName.substring(residentName.indexOf(",") + 1);
 
-          _firstName.text = resident?.firstName ?? firstName;
-          _lastName.text = resident?.lastName ?? lastName;
-          _emailAddress.text = resident?.email;
+          _firstName.text = firstName;
+          _lastName.text = lastName;
 
-          _contactNumber.text = resident?.contactNumber ??
-              widget.registry.residentPublishedContact;
-          _contactNumberToPublish.text = resident?.publishedContact ??
+          _contactNumberToPublish.text =
               widget.registry.residentPublishedContact;
 
           _registeredAs.text = "resident";
 
-          _managementPosition.text = resident?.managementPosition ??
-              widget.registry.residentManagementPosition;
-          _unit.text = resident?.unitAddress ?? widget.registry.unitAddress;
-          _startDateController.text = resident?.startDate?.toString() ??
+          _managementPosition.text = widget.registry.residentManagementPosition;
+          _unit.text = widget.registry.unitAddress;
+          _startDateController.text =
               widget.registry.residentStartDate?.toString();
-          _endDateController.text = resident?.endDate?.toString() ??
-              widget.registry.residentEndDate?.toString();
-          _startDate = resident?.startDate ??
-              widget?.registry?.residentStartDate ??
-              DateTime.now();
-          _endDate = resident?.endDate ??
-              widget?.registry?.residentEndDate ??
+          _endDateController.text = widget.registry.residentEndDate?.toString();
+          _startDate = widget?.registry?.residentStartDate ?? DateTime.now();
+          _endDate = widget?.registry?.residentEndDate ??
               DateTime.now().add(Duration(days: 80));
         }
       }
@@ -210,10 +192,34 @@ class _ResidentFormState extends State<ResidentForm> {
         managementPosition: _managementPosition.text,
       );
       if (widget.registry != null) {
+        // mbloc.add(
+        //   itembloc.updateResident(
+        //     // olditem: widget.registry,
+        //     item: _residentModel,
+        //     entityid: widget.entityid,
+        //     entitytype: widget.entitytype,
+        //   ),
+        // );
+
+        RegistryModel registryModel;
+        if (widget.origintype == 1) {
+          registryModel = widget.registry.copyWith(
+            ownerManagementPosition: _managementPosition.text,
+            ownerEndDate: _endDate,
+          );
+        } else if (widget.origintype == 2) {
+          registryModel = widget.registry.copyWith(
+            ownerEndDate: _endDate,
+          );
+        } else if (widget.origintype == 3) {
+          registryModel = widget.registry.copyWith(
+            ownerPublishedContact: _contactNumberToPublish.text,
+          );
+        }
         mbloc.add(
-          itembloc.updateResident(
-            // olditem: widget.registry,
-            item: _residentModel,
+          itembloc.updateItemWithDiff(
+            olditem: widget.registry,
+            newitem: registryModel,
             entityid: widget.entityid,
             entitytype: widget.entitytype,
           ),
@@ -281,18 +287,20 @@ class _ResidentFormState extends State<ResidentForm> {
                         validate: Validate.withOption(
                             isRequired: true, isEmail: true),
                       ),
-                    CustomTextField(
-                      title: "Contact Number",
-                      enabled: _newItem || widget.origintype == 1,
-                      controller: _contactNumber,
-                      validate:
-                          Validate.withOption(isRequired: true, isNumber: true),
-                    ),
+                    if (_newItem)
+                      CustomTextField(
+                        title: "Contact Number",
+                        enabled: _newItem,
+                        controller: _contactNumber,
+                        validate: Validate.withOption(
+                            isRequired: true, isNumber: true),
+                      ),
                     Row(
                       children: [
                         Expanded(
                           child: CustomTextField(
                             title: "Contact Number To Publish",
+                            enabled: _newItem || widget.origintype == 3,
                             controller: _contactNumberToPublish,
                             validate: Validate.withOption(
                                 isRequired: true, isNumber: true),
@@ -340,7 +348,7 @@ class _ResidentFormState extends State<ResidentForm> {
                     ),
                     CustomDropDownList<String>(
                       title: "Management Position",
-                      enabled: _newItem || widget.isOwner,
+                      enabled: _newItem || widget.origintype == 1,
                       controller: _managementPosition,
                       loadData: () async => managePos,
                       displayName: (x) => x,

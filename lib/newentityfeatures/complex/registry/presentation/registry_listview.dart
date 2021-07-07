@@ -242,7 +242,7 @@ class _RegistryListListState extends State<RegistryListList> {
           }
           if (state is listbloc.IsSearchedListDataLoaded) {
             setState(() {
-              isOwner = state.isOwner;
+              isOwner = state.isOwner ?? false;
             });
           }
         }, child: BlocBuilder<listbloc.RegistryModelListBloc,
@@ -267,8 +267,6 @@ class _RegistryListListState extends State<RegistryListList> {
               state.listdata;
             }
             List<BuildingModel> bm = [];
-
-            isOwner = state.isOwner;
 
             return _blocBuilder(context, em, bm);
           }

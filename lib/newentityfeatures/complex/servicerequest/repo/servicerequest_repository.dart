@@ -5,7 +5,9 @@ import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
+import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/gateway/complex_staff_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
@@ -246,24 +248,32 @@ class ServiceRequestModelRepository {
       // user: _user,
     ));
 
-    myreturn.oul = await _complexRepository.getOccupiedUnits(
+    if (originType != 1)
+      myreturn.oul = await _complexRepository.getOccupiedUnits(
+        entitytype: entitytype,
+        entityid: entityid,
+      );
+
+    // List<UnitModel> filteredUnits = [];
+    // if (originType == 3) {
+    //   units.forEach((unit) {
+    //     if ((unit?.hasOwner ?? false) || (unit?.hasResident ?? false)) {
+    //       filteredUnits.add(unit);
+    //     }
+    //   });
+    // } else {
+    //   filteredUnits = units;
+    // }
+
+    // List<StaffModelx> stafflist = _complexRepository.getStaffList(
+    //   complexID: entityid,
+    // );
+    
+    List<SchoolOwner> stafflist =
+        await OfferingsVrManagementGateway.getListOfStaff(
+      staffcategory: "ALL",
       entitytype: entitytype,
       entityid: entityid,
-    );
-
-    List<UnitModel> filteredUnits = [];
-    if (originType == 3) {
-      units.forEach((unit) {
-        if ((unit?.hasOwner ?? false) || (unit?.hasResident ?? false)) {
-          filteredUnits.add(unit);
-        }
-      });
-    } else {
-      filteredUnits = units;
-    }
-
-    List<StaffModelx> stafflist = _complexRepository.getStaffList(
-      complexID: entityid,
     );
 
     List buildinglist = await _complexRepository.getBuildingList(
@@ -273,8 +283,8 @@ class ServiceRequestModelRepository {
     myreturn.errortype = -1;
     myreturn.isStaff = isStaff;
     myreturn.haveAccess = haveAccess;
-    myreturn.unitlist = filteredUnits;
-    myreturn.stafflist = stafflist;
+    myreturn.unitlist = units;
+    myreturn.stafflist = stafflist ?? [];
     myreturn.buildings = buildinglist;
     myreturn.roles = roles;
     myreturn.user = user;

@@ -226,7 +226,7 @@ class RegistryModelRepository {
       isOwner: isOwner,
       userModel: _user,
     );
-    
+
     await _complexRepository.addResidentRequest(
       residentRequest: item,
       userModel: _user,
