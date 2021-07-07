@@ -63,7 +63,7 @@ class _$LookupTearOff {
 // ignore: unused_element
   SessionTerm sessionTerm(
       {@required
-      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @required
       @JsonKey(name: 'isactive')
@@ -72,7 +72,7 @@ class _$LookupTearOff {
       @JsonKey(name: 'termname')
           String termName,
       @required
-      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate}) {
     return SessionTerm(
       endDate: endDate,
@@ -101,13 +101,13 @@ class _$LookupTearOff {
 // ignore: unused_element
   PeriodInfo periodInfo(
       {@required
-      @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime dueDate,
       @required
-      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate,
       @required
-      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @required
       @JsonKey(name: 'paymentperiodname')
@@ -137,10 +137,10 @@ class _$LookupTearOff {
 // ignore: unused_element
   Schedule schedule(
       {@required
-      @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startTime,
       @required
-      @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endTime,
       @required
       @JsonKey(name: 'classperiodname')
@@ -195,13 +195,13 @@ mixin _$Lookup {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -212,11 +212,11 @@ mixin _$Lookup {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -228,9 +228,9 @@ mixin _$Lookup {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -245,13 +245,13 @@ mixin _$Lookup {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -260,11 +260,11 @@ mixin _$Lookup {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -273,9 +273,9 @@ mixin _$Lookup {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -418,13 +418,13 @@ class _$RoomInfo implements RoomInfo {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -435,11 +435,11 @@ class _$RoomInfo implements RoomInfo {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -451,9 +451,9 @@ class _$RoomInfo implements RoomInfo {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -482,13 +482,13 @@ class _$RoomInfo implements RoomInfo {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -497,11 +497,11 @@ class _$RoomInfo implements RoomInfo {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -510,9 +510,9 @@ class _$RoomInfo implements RoomInfo {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -692,13 +692,13 @@ class _$ExamTermInfo implements ExamTermInfo {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -709,11 +709,11 @@ class _$ExamTermInfo implements ExamTermInfo {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -725,9 +725,9 @@ class _$ExamTermInfo implements ExamTermInfo {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -756,13 +756,13 @@ class _$ExamTermInfo implements ExamTermInfo {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -771,11 +771,11 @@ class _$ExamTermInfo implements ExamTermInfo {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -784,9 +784,9 @@ class _$ExamTermInfo implements ExamTermInfo {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -880,13 +880,13 @@ abstract class $SessionTermCopyWith<$Res> {
           SessionTerm value, $Res Function(SessionTerm) then) =
       _$SessionTermCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      {@JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @JsonKey(name: 'isactive')
           bool isActive,
       @JsonKey(name: 'termname')
           String termName,
-      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate});
 }
 
@@ -923,7 +923,7 @@ class _$SessionTermCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
 class _$SessionTerm implements SessionTerm {
   const _$SessionTerm(
       {@required
-      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.endDate,
       @required
       @JsonKey(name: 'isactive')
@@ -932,7 +932,7 @@ class _$SessionTerm implements SessionTerm {
       @JsonKey(name: 'termname')
           this.termName,
       @required
-      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.startDate})
       : assert(endDate != null),
         assert(isActive != null),
@@ -944,7 +944,7 @@ class _$SessionTerm implements SessionTerm {
 
   @override
   @JsonKey(
-      name: "enddate",
+      name: 'enddate',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime endDate;
@@ -956,7 +956,7 @@ class _$SessionTerm implements SessionTerm {
   final String termName;
   @override
   @JsonKey(
-      name: "startdate",
+      name: 'startdate',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime startDate;
@@ -1008,13 +1008,13 @@ class _$SessionTerm implements SessionTerm {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -1025,11 +1025,11 @@ class _$SessionTerm implements SessionTerm {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -1041,9 +1041,9 @@ class _$SessionTerm implements SessionTerm {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -1072,13 +1072,13 @@ class _$SessionTerm implements SessionTerm {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -1087,11 +1087,11 @@ class _$SessionTerm implements SessionTerm {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -1100,9 +1100,9 @@ class _$SessionTerm implements SessionTerm {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -1176,7 +1176,7 @@ class _$SessionTerm implements SessionTerm {
 abstract class SessionTerm implements Lookup {
   const factory SessionTerm(
       {@required
-      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @required
       @JsonKey(name: 'isactive')
@@ -1185,14 +1185,14 @@ abstract class SessionTerm implements Lookup {
       @JsonKey(name: 'termname')
           String termName,
       @required
-      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate}) = _$SessionTerm;
 
   factory SessionTerm.fromJson(Map<String, dynamic> json) =
       _$SessionTerm.fromJson;
 
   @JsonKey(
-      name: "enddate",
+      name: 'enddate',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get endDate;
@@ -1201,7 +1201,7 @@ abstract class SessionTerm implements Lookup {
   @JsonKey(name: 'termname')
   String get termName;
   @JsonKey(
-      name: "startdate",
+      name: 'startdate',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get startDate;
@@ -1339,13 +1339,13 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -1356,11 +1356,11 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -1372,9 +1372,9 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -1404,13 +1404,13 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -1419,11 +1419,11 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -1432,9 +1432,9 @@ class _$PaymentPeriodInfo implements PaymentPeriodInfo {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -1539,11 +1539,11 @@ abstract class $PeriodInfoCopyWith<$Res> {
           PeriodInfo value, $Res Function(PeriodInfo) then) =
       _$PeriodInfoCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      {@JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime dueDate,
-      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate,
-      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @JsonKey(name: 'paymentperiodname')
           String paymentPeriodName,
@@ -1587,13 +1587,13 @@ class _$PeriodInfoCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
 class _$PeriodInfo implements PeriodInfo {
   const _$PeriodInfo(
       {@required
-      @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.dueDate,
       @required
-      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.startDate,
       @required
-      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.endDate,
       @required
       @JsonKey(name: 'paymentperiodname')
@@ -1612,19 +1612,19 @@ class _$PeriodInfo implements PeriodInfo {
 
   @override
   @JsonKey(
-      name: "duedate",
+      name: 'duedate',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime dueDate;
   @override
   @JsonKey(
-      name: "startdate",
+      name: 'startdate',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime startDate;
   @override
   @JsonKey(
-      name: "enddate",
+      name: 'enddate',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime endDate;
@@ -1685,13 +1685,13 @@ class _$PeriodInfo implements PeriodInfo {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -1702,11 +1702,11 @@ class _$PeriodInfo implements PeriodInfo {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -1718,9 +1718,9 @@ class _$PeriodInfo implements PeriodInfo {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -1749,13 +1749,13 @@ class _$PeriodInfo implements PeriodInfo {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -1764,11 +1764,11 @@ class _$PeriodInfo implements PeriodInfo {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -1777,9 +1777,9 @@ class _$PeriodInfo implements PeriodInfo {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -1854,13 +1854,13 @@ class _$PeriodInfo implements PeriodInfo {
 abstract class PeriodInfo implements Lookup {
   const factory PeriodInfo(
       {@required
-      @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime dueDate,
       @required
-      @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startDate,
       @required
-      @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endDate,
       @required
       @JsonKey(name: 'paymentperiodname')
@@ -1873,17 +1873,17 @@ abstract class PeriodInfo implements Lookup {
       _$PeriodInfo.fromJson;
 
   @JsonKey(
-      name: "duedate",
+      name: 'duedate',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get dueDate;
   @JsonKey(
-      name: "startdate",
+      name: 'startdate',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get startDate;
   @JsonKey(
-      name: "enddate",
+      name: 'enddate',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get endDate;
@@ -1986,13 +1986,13 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -2003,11 +2003,11 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -2019,9 +2019,9 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -2050,13 +2050,13 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -2065,11 +2065,11 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -2078,9 +2078,9 @@ class _$ClassPeriodInfo implements ClassPeriodInfo {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -2172,9 +2172,9 @@ abstract class $ScheduleCopyWith<$Res> {
   factory $ScheduleCopyWith(Schedule value, $Res Function(Schedule) then) =
       _$ScheduleCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      {@JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startTime,
-      @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endTime,
       @JsonKey(name: 'classperiodname')
           String classPeriodName});
@@ -2212,10 +2212,10 @@ class _$ScheduleCopyWithImpl<$Res> extends _$LookupCopyWithImpl<$Res>
 class _$Schedule implements Schedule {
   const _$Schedule(
       {@required
-      @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.startTime,
       @required
-      @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.endTime,
       @required
       @JsonKey(name: 'classperiodname')
@@ -2229,13 +2229,13 @@ class _$Schedule implements Schedule {
 
   @override
   @JsonKey(
-      name: "starttime",
+      name: 'starttime',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime startTime;
   @override
   @JsonKey(
-      name: "endtime",
+      name: 'endtime',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime endTime;
@@ -2286,13 +2286,13 @@ class _$Schedule implements Schedule {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -2303,11 +2303,11 @@ class _$Schedule implements Schedule {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -2319,9 +2319,9 @@ class _$Schedule implements Schedule {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -2350,13 +2350,13 @@ class _$Schedule implements Schedule {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -2365,11 +2365,11 @@ class _$Schedule implements Schedule {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -2378,9 +2378,9 @@ class _$Schedule implements Schedule {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -2454,10 +2454,10 @@ class _$Schedule implements Schedule {
 abstract class Schedule implements Lookup {
   const factory Schedule(
       {@required
-      @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime startTime,
       @required
-      @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+      @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime endTime,
       @required
       @JsonKey(name: 'classperiodname')
@@ -2466,12 +2466,12 @@ abstract class Schedule implements Lookup {
   factory Schedule.fromJson(Map<String, dynamic> json) = _$Schedule.fromJson;
 
   @JsonKey(
-      name: "starttime",
+      name: 'starttime',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get startTime;
   @JsonKey(
-      name: "endtime",
+      name: 'endtime',
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get endTime;
@@ -2553,13 +2553,13 @@ class _$Offering implements Offering {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -2570,11 +2570,11 @@ class _$Offering implements Offering {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -2586,9 +2586,9 @@ class _$Offering implements Offering {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -2617,13 +2617,13 @@ class _$Offering implements Offering {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -2632,11 +2632,11 @@ class _$Offering implements Offering {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -2645,9 +2645,9 @@ class _$Offering implements Offering {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -2799,13 +2799,13 @@ class _$FeeItem implements FeeItem {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -2816,11 +2816,11 @@ class _$FeeItem implements FeeItem {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -2832,9 +2832,9 @@ class _$FeeItem implements FeeItem {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -2863,13 +2863,13 @@ class _$FeeItem implements FeeItem {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -2878,11 +2878,11 @@ class _$FeeItem implements FeeItem {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -2891,9 +2891,9 @@ class _$FeeItem implements FeeItem {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),
@@ -3045,13 +3045,13 @@ class _$Grade implements Grade {
             @JsonKey(name: 'subtermname') String subTermName),
     @required
         TResult sessionTerm(
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'isactive')
                 bool isActive,
             @JsonKey(name: 'termname')
                 String termName,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate),
     @required
         TResult paymentPeriodInfo(
@@ -3062,11 +3062,11 @@ class _$Grade implements Grade {
             @JsonKey(name: 'numperiods') int numperiods),
     @required
         TResult periodInfo(
-            @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime dueDate,
-            @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startDate,
-            @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endDate,
             @JsonKey(name: 'paymentperiodname')
                 String paymentPeriodName,
@@ -3078,9 +3078,9 @@ class _$Grade implements Grade {
             @JsonKey(name: 'type') String type),
     @required
         TResult schedule(
-            @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime startTime,
-            @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+            @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime endTime,
             @JsonKey(name: 'classperiodname')
                 String classPeriodName),
@@ -3109,13 +3109,13 @@ class _$Grade implements Grade {
     TResult examTermInfo(@JsonKey(name: 'maintermname') String mainTermName,
         @JsonKey(name: 'subtermname') String subTermName),
     TResult sessionTerm(
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'isactive')
             bool isActive,
         @JsonKey(name: 'termname')
             String termName,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate),
     TResult paymentPeriodInfo(
         @JsonKey(name: 'grpname') String grpName,
@@ -3124,11 +3124,11 @@ class _$Grade implements Grade {
         @JsonKey(name: 'isfrozen') bool isfrozen,
         @JsonKey(name: 'numperiods') int numperiods),
     TResult periodInfo(
-        @JsonKey(name: "duedate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'duedate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime dueDate,
-        @JsonKey(name: "startdate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'startdate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startDate,
-        @JsonKey(name: "enddate", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'enddate', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endDate,
         @JsonKey(name: 'paymentperiodname')
             String paymentPeriodName,
@@ -3137,9 +3137,9 @@ class _$Grade implements Grade {
     TResult classPeriodInfo(@JsonKey(name: 'schedule') List<Schedule> schedule,
         @JsonKey(name: 'type') String type),
     TResult schedule(
-        @JsonKey(name: "starttime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'starttime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime startTime,
-        @JsonKey(name: "endtime", fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
+        @JsonKey(name: 'endtime', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime endTime,
         @JsonKey(name: 'classperiodname')
             String classPeriodName),

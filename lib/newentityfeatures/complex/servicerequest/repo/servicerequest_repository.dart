@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
-import 'package:complex/newentityfeatures/gateway/staff_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/complex_staff_gateway.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
@@ -36,6 +37,7 @@ class ServiceRequestModelRepositoryReturnData {
   bool isStaff;
   bool haveAccess;
   var btnState;
+  OccupiedUnitLookupModel oul;
 
   ServiceRequestModelRepositoryReturnData() {
     errortype = 2;
@@ -270,6 +272,13 @@ class ServiceRequestModelRepository {
       // complexID: entityid,
       // user: _user,
     ));
+
+
+    myreturn.oul =  await _complexRepository.getOccupiedUnits(
+      entitytype: entitytype,
+      entityid: entityid,
+    );
+
     List<UnitModel> filteredUnits = [];
     if (originType == 3) {
       units.forEach((unit) {

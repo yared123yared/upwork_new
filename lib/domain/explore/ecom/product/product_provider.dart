@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/domain/core/api_helper.dart';
 import 'package:complex/domain/core/failure/failure.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:dartz/dartz.dart';
@@ -94,6 +95,48 @@ class ProductProvider {
                 CompleteProductList.fromJson({'products': listJson}),
             userID: '79gE5SnVjQPtQ2weFsncv19TWrY2',
             type: 'product');
+
+    return response;
+  }
+
+  Future<Option<Failure>> addProduct(
+      {@required CompleteProductData data}) async {
+    final Map<String, dynamic> productAction = {
+      "qtype": null,
+      "action": "add",
+      "origin": "USER",
+      "serviceid": null,
+      "userid": data.userId,
+      "producttype": null,
+      "classifiedtype": data.dt.toUpperCase(),
+      "petmodel": null,
+      "productmodel": null,
+      "vehiclemodel": null,
+      "jobrequestmodel": null,
+      'realestatemodel': null,
+    };
+    data.map(
+        realEstate: (realEstate) => productAction.update('realestatemodel',
+            (value) => realEstate.data.toJson()..remove('runtimeType')),
+        job: (job) => productAction.update('jobrequestmodel',
+            (value) => job.data.toJson()..remove('runtimeType')),
+        pet: (pet) => productAction.update(
+            'petmodel', (value) => pet.data.toJson()..remove('runtimeType')),
+        vehicle: (vehicle) => productAction.update('vehiclemodel',
+            (value) => vehicle.data.toJson()..remove('runtimeType')),
+        product: (product) => productAction.update('productmodel',
+            (value) => product.data.toJson()..remove('runtimeType')));
+
+    final Option<Failure> response = await ApiHelper(ApiHelper.dgOcnEp)
+        .httpPost<CompleteProductData>(data.toJson());
+
+    return response;
+  }
+
+  Future<Option<Failure>> updateProduct(
+      {@required CompleteProductData data}) async {
+    final Option<Failure> response = await ApiHelper('CLASSIFIED/${data.docId}')
+        .updateFirebaseDoc(data.toJson());
 
     return response;
   }

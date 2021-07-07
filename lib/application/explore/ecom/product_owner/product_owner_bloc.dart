@@ -8,21 +8,21 @@ import 'package:complex/domain/explore/ecom/product/product_provider.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'product_list_event.dart';
-part 'product_list_state.dart';
-part 'product_list_bloc.freezed.dart';
+part 'product_owner_event.dart';
+part 'product_owner_state.dart';
+part 'product_owner_bloc.freezed.dart';
 
-class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
+class ProductOwnerBloc extends Bloc<ProductOwnerEvent, ProductOwnerState> {
   ProductProvider provider = ProductProvider();
-  ProductListBloc() : super(ProductListState.initial());
+  ProductOwnerBloc() : super(ProductOwnerState.initial());
 
   @override
-  Stream<ProductListState> mapEventToState(
-    ProductListEvent event,
+  Stream<ProductOwnerState> mapEventToState(
+    ProductOwnerEvent event,
   ) async* {
     yield* event.map(get: (get) async* {
-      yield ProductListState.initial().copyWith(isLoading: true);
-      final ProductListState finalState = await get.type.map(pet: (pet) async {
+      yield ProductOwnerState.initial().copyWith(isLoading: true);
+      final ProductOwnerState finalState = await get.type.map(pet: (pet) async {
         Either<Failure, CompletePetList> data =
             await provider.getCompletePetList();
         return data.fold(
@@ -55,6 +55,21 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
       });
 
       yield finalState;
+    }, add: (_AddProduct value) async* {
+      yield ProductOwnerState.initial().copyWith(isLoading: true);
+      Option<Failure> data = await provider.addProduct(data: value.productData);
+      yield data.fold(
+          () => state.copyWith(
+              isLoading: false, message: 'Product created succesfully'),
+          (a) => state.copyWith(isLoading: false, failure: some(a)));
+    }, update: (_UpdateProduct value) async* {
+      yield ProductOwnerState.initial().copyWith(isLoading: true);
+      Option<Failure> data =
+          await provider.updateProduct(data: value.productData);
+      yield data.fold(
+          () => state.copyWith(
+              isLoading: false, message: 'Product updated succesfully'),
+          (a) => state.copyWith(isLoading: false, failure: some(a)));
     });
   }
 }

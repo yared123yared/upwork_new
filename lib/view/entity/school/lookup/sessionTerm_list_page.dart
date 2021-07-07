@@ -1,5 +1,6 @@
 import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
+import 'package:complex/view/entity/school/lookup/session_term_form_page.dart';
 import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,41 +24,22 @@ class SessionTermListPage extends StatefulWidget {
 }
 
 class _SessionTermListPageState extends State<SessionTermListPage> {
-  Future<String> _addButtonActions(
-      BuildContext context, String entitytype, String entityid) async {
-    CustomTextFieldController c = CustomTextFieldController();
-    Future<String> sb = Get.generalDialog<String>(
-        pageBuilder: (context, animation, secondaryAnimation) {
-      return AlertDialog(
-        title: Text('Enter the Offering Name'),
-        content: CustomTextField(
-          controller: c,
-          autoFocus: true,
-          title: 'Exam Term',
-          validate: Validate.withOption(isRequired: true),
+  VoidCallback addButtonActions({
+    @required BuildContext context,
+  }) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BlocProvider(
+          create: (context) => LookupBloc(),
+          child: SessionTermFormPage(
+              sessionTermModel: null,
+              entitytype: widget.entitytype,
+              entityid: widget.entityid,
+              givenreloadaction: null),
         ),
-        actions: [
-          OutlinedButton(
-            child: Text("Cancel"),
-            onPressed: () {
-              Navigator.of(context).pop("*NOVALUESET*");
-              //Navigator.pop(context);
-            },
-          ),
-          ElevatedButton(
-            child: Text("Confirm"),
-            onPressed: () {
-              if (c.isValid) {
-                Navigator.of(context).pop(c.text);
-                //Navigator.pop(context);
-              }
-            },
-          ),
-        ],
-      );
-    });
-
-    return sb;
+      ),
+    );
   }
 
   List<ListStateClass> toCommonListState(
@@ -135,7 +117,7 @@ class _SessionTermListPageState extends State<SessionTermListPage> {
         return state.listData.maybeMap(
             sessionTermList: (sessionTerm) => Scaffold(
                 appBar: AppBar(
-                  title: Text("Exam Term Info"),
+                  title: Text("Session Term List"),
                   centerTitle: true,
                 ),
                 body: sessionTerm.list.isNotEmpty
@@ -143,19 +125,7 @@ class _SessionTermListPageState extends State<SessionTermListPage> {
                     : Center(child: Text('Empty')),
                 floatingActionButton: FloatingActionButton.extended(
                   onPressed: () async {
-                    String returnedval = await _addButtonActions(
-                        context, widget.entitytype, widget.entityid);
-                    if (returnedval != "*NOVALUESET*") {
-                      BlocProvider.of<listbloc.StringListBloc>(context).add(
-                        listbloc.CreateItem(
-                            item: returnedval,
-                            entitytype: widget.entitytype,
-                            entityid: widget.entityid,
-                            fieldname: "feeitemlist"),
-                      );
-                    } else {
-                      returnedval = "*NOVALUESET*";
-                    }
+                    addButtonActions(context: context);
                   },
                   icon: Icon(Icons.add),
                   label: Text("Add New"),

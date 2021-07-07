@@ -1,4 +1,4 @@
-import 'package:complex/application/explore/ecom/product_list/product_list_bloc.dart';
+import 'package:complex/application/explore/ecom/product_owner/product_owner_bloc.dart';
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/view/explore_tab/owner_view/owner_product_card.dart';
 import 'package:complex/view/widget/error_dialogue.dart';
@@ -12,7 +12,7 @@ class OwnerProductListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProductListBloc, ProductListState>(
+    return BlocConsumer<ProductOwnerBloc, ProductOwnerState>(
       listener: (context, state) {
         state.failure.fold(() {
           if (state.isLoading) {

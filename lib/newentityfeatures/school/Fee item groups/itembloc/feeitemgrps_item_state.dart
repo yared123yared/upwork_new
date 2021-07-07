@@ -39,12 +39,15 @@ class IsReadyForDetailsPage extends FeeItemGroupsModelState {
       {@required this.entityid,
       @required this.entitytype,
       @required this.detailstype,
-      @required this.grades});
+      @required this.grades,
+      @required this.feeitem});
 
   final String detailstype; //create or update
   final String entityid;
   final String entitytype;
   final List<String> grades;
+  final List<String> feeitem;
   @override
-  List<Object> get props => [entityid, entitytype, detailstype, grades];
+  List<Object> get props =>
+      [entityid, entitytype, detailstype, grades, feeitem];
 }

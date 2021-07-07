@@ -23,6 +23,20 @@ class ComplexGateway {
     });
   }
 
+  static Future<List<String>> getOccupiedUnits(
+      {@required String entitytype, String entityid}) async {
+
+    return await FirebaseFirestore.instance
+        .doc("$entitytype/$entityid/LOOKUPS/filledresidentunit")
+        .get()
+        .then((x) {
+      var mdata =x.data();
+      List<String> myunits= mdata['data'] != null ? mdata['data'].cast<String>(): [];
+      return myunits;
+    });
+
+  }
+
   static Future<ComplexModel> fetchComplex(String id) {
     return FirebaseFirestore.instance.doc("COMPLEXES/$id").get().then((x) {
       return ComplexModel.fromData(x.data(), [], id);

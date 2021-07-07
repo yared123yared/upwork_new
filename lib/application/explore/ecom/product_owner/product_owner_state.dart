@@ -1,8 +1,8 @@
-part of 'product_list_bloc.dart';
+part of 'product_owner_bloc.dart';
 
 @freezed
-abstract class ProductListState with _$ProductListState {
-  const factory ProductListState({
+abstract class ProductOwnerState with _$ProductOwnerState {
+  const factory ProductOwnerState({
     @required bool isLoading,
     @required bool workDone,
     @required Option<Failure> failure,
@@ -10,7 +10,7 @@ abstract class ProductListState with _$ProductListState {
     @required CompleteProductDataList listData,
   }) = _ProductListState;
 
-  factory ProductListState.initial() => _ProductListState(
+  factory ProductOwnerState.initial() => _ProductListState(
       failure: none(),
       isLoading: false,
       listData: CompleteProductDataList.empty(),

@@ -1,9 +1,11 @@
+import 'package:complex/application/explore/ecom/product_owner/product_owner_bloc.dart';
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/data/providers/product_provider_old.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
 import 'package:complex/main.dart';
 import 'package:complex/common/widgets/alerts_widget.dart';
@@ -17,16 +19,19 @@ import 'package:complex/view/login_pages/landing_page.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
 import 'package:complex/utils/utility.dart';
+import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:injector/injector.dart';
 
 class VehicleCreatePage extends StatefulWidget {
   final ContactDetails contactDetail;
+  final CompleteVehicle completeVehicle;
 
-  VehicleCreatePage(this.contactDetail);
+  VehicleCreatePage(this.contactDetail, {this.completeVehicle});
 
   @override
   _VehicleCreatePageState createState() => _VehicleCreatePageState();
@@ -35,7 +40,7 @@ class VehicleCreatePage extends StatefulWidget {
 class _VehicleCreatePageState extends State<VehicleCreatePage> {
   bool _isLoading = true;
   var _channelsProvider = Injector.appInstance.get<ChannelsProvider>();
-  ProductBloc _bloc;
+  ProductOwnerBloc _bloc;
   ScrollController _scrollController = ScrollController();
   CustomTextFieldController _title = CustomTextFieldController();
   CustomTextFieldController _description = CustomTextFieldController();
@@ -112,7 +117,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
 
   @override
   Widget build(BuildContext context) {
-    _bloc = BlocProvider.of<ProductBloc>(context);
+    _bloc = BlocProvider.of<ProductOwnerBloc>(context);
     Application(context);
     return WillPopScope(
       onWillPop: () async {
@@ -129,38 +134,49 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
           return false;
         }
       },
-      child: BlocListener<ProductBloc, ProductState>(
+      child: BlocListener<ProductOwnerBloc, ProductOwnerState>(
         listener: (context, state) {
-          if (state is AddNewVehicleState) _handleCreatePropertyResponse(state);
+          if (state is AddNewPropertyState)
+            state.failure.fold(() {
+              if (state.isLoading) {
+                EasyLoading.show(status: 'Loading..');
+              } else if (state.message.isNotEmpty) {
+                EasyLoading.showInfo(state.message);
+              } else {
+                EasyLoading.dismiss();
+              }
+            }, (a) {
+              EasyLoading.dismiss();
+
+              showDialog(
+                  context: context,
+                  builder: (context) => ErrorDialogue(failure: a));
+            });
         },
-        child: BlocBuilder<ProductBloc, ProductState>(
-          builder: (context, state) {
-            return Scaffold(
-              key: _key,
-              backgroundColor: Colors.transparent,
-              appBar: AppBar(
-                title: Text("Add Vehicle"),
-              ),
-              body: ScreenWithLoader(
-                isLoading: _isLoading,
-                body: Container(
-                  color: Colors.white,
-                  height: double.infinity,
-                  width: double.infinity,
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        if (_pageIndex == 0) _index0(),
-                        if (_pageIndex > 0) _index1(),
-                      ],
-                    ),
-                  ),
+        child: Scaffold(
+          key: _key,
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: Text("Add Vehicle"),
+          ),
+          body: ScreenWithLoader(
+            isLoading: _isLoading,
+            body: Container(
+              color: Colors.white,
+              height: double.infinity,
+              width: double.infinity,
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    if (_pageIndex == 0) _index0(),
+                    if (_pageIndex > 0) _index1(),
+                  ],
                 ),
               ),
-            );
-          },
+            ),
+          ),
         ),
       ),
     );
@@ -236,6 +252,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
               child: Column(
                 children: [
                   CustomTextField(
+                    initialValue: widget.completeVehicle?.toString(),
                     icon: Icons.title,
                     title: "Title",
                     controller: _title,
@@ -244,6 +261,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                     ),
                   ),
                   CustomTextField(
+                    initialValue: widget.completeVehicle?.toString(),
                     icon: Icons.text_fields_outlined,
                     title: "Description",
                     controller: _description,
@@ -252,6 +270,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                     ),
                   ),
                   CustomTextField(
+                    initialValue: widget.completeVehicle?.toString(),
                     icon: Icons.text_fields_outlined,
                     title: "Price",
                     controller: _price,
@@ -507,6 +526,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
             _makeDropdown("Make", _txtMake, _makeList),
             _modelDropdown("Model", _txtModel, _modelList),
             CustomTextField(
+              initialValue: widget.completeVehicle?.toString(),
               icon: null,
               title: "YearBuild",
               controller: _txtYearBuild,
@@ -517,6 +537,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
               ),
             ),
             CustomTextField(
+              initialValue: widget.completeVehicle?.toString(),
               icon: null,
               title: "Milage",
               controller: _txtMilage,
@@ -615,6 +636,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                       style: Styles.semiBoldText(size: 18))),
             ),
             CustomTextField(
+              initialValue: widget.completeVehicle?.toString(),
               icon: null,
               title: "Exterior Color",
               controller: _txtExteriorColor,
@@ -624,6 +646,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
             ),
             _vehicleType == 'Car/Suv'
                 ? CustomTextField(
+                    initialValue: widget.completeVehicle?.toString(),
                     icon: null,
                     title: "Interior Color",
                     controller: _txtInteriorColor,
@@ -997,50 +1020,79 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
   ];
 
   _createClick() {
-    VehicleModel _vehicleModel = VehicleModel(
-      imagelist: _photos,
-      listingownertype: _ownershipStatus,
-      price: int.parse(_price.text),
-      servicetype: _serviceType,
-      propertytype: _propertyType,
-      contactdetails: widget.contactDetail,
-      creationdate: ((DateTime.now().millisecondsSinceEpoch / 1000).round()),
-      title: _title.text,
-      description: _description.text,
-      docid: null,
-      tileimage: null,
-      serviceproviderid: null,
-      userid: UserSession.userId,
-      yearbuild: int.parse(_txtYearBuild.text),
-      vehicletype: _vehicleType,
-      transmission: transmissionType,
-      ownershiptransfer: ownershipTransferType,
-      model: _txtModel.text,
-      milage: int.parse(_txtMilage.text),
-      make: _txtMake.text,
-      interiorcolor: _txtInteriorColor.text,
-      fueltype: _fuelType,
-      exteriorcolor: _txtExteriorColor.text,
-      drivetype: _driveType,
-      cylinder:
-          _cylinder == null || _cylinder.isEmpty ? null : int.parse(_cylinder),
-      bodytype: _bodyType,
-      airbags: false,
-      seatingcapacity: 4,
-      alloywheels: false,
-      antilockbrakingsystem: false,
-      automaticclimatecontrol: false,
-      cruisecontrol: false,
-      keylessentry: false,
-      moonroof: false,
-      parkingsensors: false,
-      powersteering: false,
-      rearacvents: false,
-      remotetrunkopener: false,
-      sunroof: false,
-      turboengine: false,
-    );
-    _bloc.add(
-        AddNewVehicleEvent(model: _vehicleModel, userId: UserSession.userId));
+    CompleteVehicle newVehicle;
+
+    if (widget.completeVehicle != null) {
+      newVehicle = widget.completeVehicle.copyWith(
+          docId: '',
+          dt: 'vehicle',
+          serviceId: '',
+          userId: UserSession.userId,
+          data: widget.completeVehicle.data.copyWith(
+            imagelist: _photos,
+            listingownertype: _ownershipStatus,
+            price: int.parse(_price.text),
+            servicetype: _serviceType,
+            propertytype: _propertyType,
+            contactdetails: widget.contactDetail,
+            title: _title.text,
+            description: _description.text,
+            tileimage: null,
+            yearbuild: int.parse(_txtYearBuild.text),
+            vehicletype: _vehicleType,
+            transmission: transmissionType,
+            ownershiptransfer: ownershipTransferType,
+            model: _txtModel.text,
+            milage: int.parse(_txtMilage.text),
+            make: _txtMake.text,
+            interiorcolor: _txtInteriorColor.text,
+            fueltype: _fuelType,
+            exteriorcolor: _txtExteriorColor.text,
+            drivetype: _driveType,
+            cylinder: _cylinder == null || _cylinder.isEmpty
+                ? null
+                : int.parse(_cylinder),
+            bodytype: _bodyType,
+          ));
+      _bloc.add(
+        ProductOwnerEvent.add(productData: newVehicle),
+      );
+    } else {
+      newVehicle = CompleteVehicle(
+          docId: '',
+          dt: 'vehicle',
+          serviceId: '',
+          userId: UserSession.userId,
+          data: VehicleData(
+            imagelist: _photos,
+            listingownertype: _ownershipStatus,
+            price: int.parse(_price.text),
+            servicetype: _serviceType,
+            propertytype: _propertyType,
+            contactdetails: widget.contactDetail,
+            title: _title.text,
+            description: _description.text,
+            tileimage: null,
+            yearbuild: int.parse(_txtYearBuild.text),
+            vehicletype: _vehicleType,
+            transmission: transmissionType,
+            ownershiptransfer: ownershipTransferType,
+            model: _txtModel.text,
+            milage: int.parse(_txtMilage.text),
+            make: _txtMake.text,
+            interiorcolor: _txtInteriorColor.text,
+            fueltype: _fuelType,
+            exteriorcolor: _txtExteriorColor.text,
+            drivetype: _driveType,
+            cylinder: _cylinder == null || _cylinder.isEmpty
+                ? null
+                : int.parse(_cylinder),
+            bodytype: _bodyType,
+          ));
+
+      _bloc.add(
+        ProductOwnerEvent.add(productData: newVehicle),
+      );
+    }
   }
 }

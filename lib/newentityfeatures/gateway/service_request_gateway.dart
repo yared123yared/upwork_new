@@ -195,7 +195,7 @@ class ServiceRequestGateway {
 
   static Future<List<ServiceRequestModel>> getServiceRequestStaffSelf(
       {@required String entitytype,
-      String entityid,
+        @required String entityid,
       @required String um}) async {
     DateTime now = new DateTime.now();
     DateTime date = new DateTime(now.year, now.month, now.day);

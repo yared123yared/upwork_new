@@ -2,6 +2,7 @@
 // import 'package:complex/newentityfeatures/complex/repository/gateway/resident_gateway.dart';
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/tempmodelforcomplex.dart';
 // import 'package:complex/newentityfeatures/Models/entity/entity_roles.dart';
@@ -22,6 +23,7 @@ class RegistryModelRepositoryReturnData {
   List<RegistryModel> itemlist;
   RegistryModel item;
   RegistryEntryData listviewData;
+
   String id;
   int errortype;
   String error;
@@ -337,6 +339,11 @@ class RegistryModelRepository {
       entitytype: entitytype,
       entityid: entityid,
     );
+
+    myreturn.oul =  await _complexRepository.getOccupiedUnits(
+      entitytype: entitytype,
+      entityid: entityid,
+    );
     // unitList[0].unitID == _user.userID,
     // List<UnitModel> unitList =
     //     await _complexRepository.units.getUnitListForResidentAvailableForOwner(
@@ -367,7 +374,7 @@ class RegistryEntryData {
   List<UnitModel> unitList;
   ResidentModel resident;
   bool isOwner;
-
+  OccupiedUnitLookupModel oul;
   var btnState;
 
   String error;

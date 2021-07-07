@@ -32,7 +32,7 @@ class _DynamicCategoryPageState extends State<DynamicCategoryPage> {
   var _key = GlobalKey<ScaffoldState>();
   ProductBloc _productBloc;
   bool _isLoading = false;
-  var _type;
+
   Map<String, dynamic> _fieldData;
 
   void _handleCategoryResponse(GetCategoryFieldState state) {

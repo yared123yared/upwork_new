@@ -17,6 +17,7 @@ import 'package:complex/common/helputil.dart' hide DateTimeMode;
 import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/widgets/date_time_picker_newentity.dart'
     as newentitytimepicker;
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../itembloc/bloc.dart' as itembloc;
 // import 'package:complex/newentityfeatures/staff/model/staff_model.dart';
@@ -170,14 +171,17 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
         ));
         return false;
       }
+
       return Validate.validateAll([_selectRole, _timeInterval, _uploadPhoto]);
     } else if (i == 3) {
+
       return Validate.validateAll([
         _education,
         _basicBio,
         _category,
       ]);
     } else if (i == 4) {
+
       return Validate.validateAll([
         _sickLeaves,
         _casualLeaves,
@@ -216,9 +220,8 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
         body: BlocListener<itembloc.StaffModelBloc, itembloc.StaffModelState>(
           listener: (context, state) {
             if (state is itembloc.IsSaved) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is Created/Saved"),
-              ));
+              EasyLoading.showSuccess("Item is Created/Saved");
+
               widget.givenreloadaction(true);
               Navigator.of(context).pop(false);
             }

@@ -32,7 +32,8 @@ class FeeItemGroupsModelBloc
             entitytype: event.entitytype,
             entityid: event.entityid,
             detailstype: "start",
-            grades: ud.grades);
+            grades: ud.grades,
+            feeitem: ud.feeitemlist);
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
       else

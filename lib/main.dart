@@ -1,4 +1,3 @@
-import 'package:complex/application/explore/ecom/product_list/product_list_bloc.dart';
 import 'package:complex/application/lookup_bloc/lookup_bloc.dart';
 import 'package:complex/blocs/auth_bloc.dart';
 import 'package:complex/blocs/channels_bloc.dart';
@@ -19,6 +18,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'application/explore/ecom/product_owner/product_owner_bloc.dart';
 import 'data/models/response/auth_response/user_session.dart';
 import 'dependency_injections.dart';
 import 'package:get/get.dart';
@@ -113,8 +113,8 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
             create: (context) => LookupBloc(),
           ),
 
-          BlocProvider<ProductListBloc>(
-            create: (context) => ProductListBloc(),
+          BlocProvider<ProductOwnerBloc>(
+            create: (context) => ProductOwnerBloc(),
           ),
           // BY ABDERRAHMANE:
           // ECOMMERCE
@@ -149,7 +149,6 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
           debugShowCheckedModeBanner: false,
           home: SplashPage(),
           builder: EasyLoading.init(),
-
 
           /*
           localeResolutionCallback: (locale, _) {

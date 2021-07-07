@@ -1,15 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/domain/core/failure/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
+import 'package:http/http.dart' as http;
 
 class ApiHelper {
   final FirebaseFirestore _firestoreInstance = FirebaseFirestore.instance;
   // final String _baseUrl =
   //     "https://us-central1-brindavan-c61b7.cloudfunctions.net";
   final String endPoint;
-
+  static String dgOcnEp =
+      "https://us-central1-brindavan-c61b7.cloudfunctions.net/digitaloceaninteract";
   ApiHelper(this.endPoint);
   Future<Either<Failure, T>> getDocFromFirestore<T>({
     @required
@@ -122,6 +125,63 @@ class ApiHelper {
           returnType: errorType, path: endPoint, error: e.toString());
       Logger().e(failure.toString());
       return some(failure);
+    }
+  }
+
+  Future<Option<Failure>> addDocToFirebaseCollecton<T>(
+      Map<String, dynamic> doc) async {
+    try {
+      doc.remove('runtimeType');
+
+      await _firestoreInstance.collection(endPoint).add(doc);
+      return none();
+    } on FirebaseException catch (e) {
+      LogicalFailure failure = LogicalFailure(
+          returnType: T.toString(), path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    } catch (e) {
+      ExceptionFailure failure = ExceptionFailure(
+          returnType: T.toString(), path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    }
+  }
+
+  Future<Option<Failure>> updateFirebaseDoc<T>(Map<String, dynamic> doc) async {
+    try {
+      doc.remove('runtimeType');
+      await _firestoreInstance.doc(endPoint).set(doc);
+      return none();
+    } on FirebaseException catch (e) {
+      LogicalFailure failure = LogicalFailure(
+          returnType: T.toString(), path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    } catch (e) {
+      ExceptionFailure failure = ExceptionFailure(
+          returnType: T.toString(), path: endPoint, error: e.toString());
+      Logger().e(failure.toString());
+      return some(failure);
+    }
+  }
+
+  Future<Option<Failure>> httpPost<T>(Map<String, dynamic> body) async {
+    try {
+      http.Response response = await http.post(Uri.parse(endPoint),
+          headers: {"Authorization": "Bearer ${UserSession.userToken}"},
+          body: body);
+      if (response.statusCode == 200) {
+        return none();
+      } else {
+        return some(Failure.logical(
+            returnType: T.toString(),
+            path: endPoint,
+            error: "code: ${response.statusCode} body: ${response.body}"));
+      }
+    } catch (e) {
+      return some(Failure.exception(
+          returnType: T.toString(), path: endPoint, error: e.toString()));
     }
   }
 }

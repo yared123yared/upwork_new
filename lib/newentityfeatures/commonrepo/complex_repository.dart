@@ -32,6 +32,8 @@ import 'package:complex/newentityfeatures/gateway/resident_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/registry_gateway.dart';
 
 import 'package:complex/data/models/response/user_response/user_complex.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
+
 
 class NewComplexRepository {
   UnitsRepository units;
@@ -269,61 +271,54 @@ class NewComplexRepository {
     }
   }
 
-  //staff
-  Future<void> setStaffList({@required String complexID}) async {
-    try {
-      _staffList[_complexList[complexID].complexID] =
-          await ComplexStaffGateway.getStaffList(
-        complexModel: _complexList[complexID],
-      );
-    } catch (e) {
-      print(e);
-    }
-  }
+
 
   List<StaffModelx> getStaffList({@required String complexID}) =>
       _staffList[_complexList[complexID].complexID];
 
   Future<void> addNewStaff(
-      {@required String complexID, @required StaffModelx staffModel}) async {
+      {@required String entitytype,@required String entityid, @required StaffModelx staffModel}) async {
     try {
       await ComplexStaffGateway.newStaffRequest(
-          staffModel: staffModel, complexModel: _complexList[complexID]);
-      await setStaffList(complexID: complexID);
+          staffModel: staffModel, entitytype: entitytype,entityid:entityid);
+
     } catch (e) {
       print(e);
     }
   }
 
   Future<void> updateStaff(
-      {@required String complexID,
+      {@required String entitytype,@required String entityid,
       @required StaffModelx newStaff,
       @required StaffModelx oldStaff,
       @required UserModel user}) async {
     try {
-      await ComplexStaffGateway.updateStaffRequest(
-          newStaff: newStaff,
-          oldStaff: oldStaff,
-          userModel: user,
-          complexModel: _complexList[complexID]);
+      await ComplexStaffGateway.updateStaffRequest(oldStaff:oldStaff,newStaff:newStaff,userModel: user,entitytype:entitytype,entityid: entityid );
 
-      await setStaffList(complexID: complexID);
+
     } catch (e) {
       print(e);
     }
   }
 
+   Future<OccupiedUnitLookupModel> getOccupiedUnits(
+      {@required String entitytype, String entityid}) async {
+
+    List<String>data=  await ComplexGateway.getOccupiedUnits(entitytype: entitytype,entityid:entityid);
+    OccupiedUnitLookupModel oul = OccupiedUnitLookupModel.generteUnitLookup(data);
+    return oul;
+  }
+
+
   Future<dynamic> removeStaff(
-      {@required String complexID,
+      {@required String entitytype,@required String entityid,
       @required StaffModelx staffModel,
       @required UserModel userModel}) async {
     try {
-      final response = await ComplexStaffGateway.deleteStaffRequest(
-          staffModel: staffModel,
-          complexModel: _complexList[complexID],
-          userModel: userModel);
+      final response = await ComplexStaffGateway.deleteStaffRequest(staffModel: staffModel,userModel: userModel,
+          entitytype:entitytype,entityid: entityid);
       //print('responseeeee ${response['id']}');
-      await setStaffList(complexID: complexID);
+
       return response;
     } catch (e) {
       print(e);
