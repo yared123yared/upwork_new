@@ -90,11 +90,13 @@ class OfferingWeeklyScheduleRepository {
       }
 
       ///this function will be used to fill the primary and secondary owner fields
-      getAssignment(String grade) =>
-          _schoolRepo.get_ListOfAssignemntOfferedByTeacher(
-            serviceID: entityid,
-            grade: grade,
-          );
+      Future<List<TeacherOfferingsAssignment>> getAssignment(String grade) {
+        return _schoolRepo.getTeacherOfferingsAssignmentListByGrade(
+          serviceID: entityid,
+          grade: grade,
+        );
+      }
+
       //
       //Please put your code here
       OfferingWeeklyDataEntry gr = OfferingWeeklyDataEntry(
@@ -112,7 +114,7 @@ class OfferingWeeklyScheduleRepository {
         getOfferingGroupModel: _offeringModelGroup,
         periods: periods,
         errortype: -1,
-        // getAssignmentsWithGrade: getAssignment,
+        getAssignmentsWithGrade: getAssignment,
       );
 
       return gr;
@@ -234,6 +236,8 @@ class OfferingWeeklyDataEntry {
   ButtonState buttonstate;
   Future<List<OfferingModelGroup>> Function(String) getOfferingGroupModel;
   OfferingWeeklySchedule offeringsScheduleModel;
+  Future<List<TeacherOfferingsAssignment>> Function(String)
+      getAssignmentsWithGrade;
   List<String> grades;
   List<String> rooms;
   List<SchoolOwner> schoolOwner;
@@ -246,6 +250,7 @@ class OfferingWeeklyDataEntry {
     this.buttonstate,
     this.getOfferingGroupModel,
     this.offeringsScheduleModel,
+    this.getAssignmentsWithGrade,
     this.grades,
     this.rooms,
     this.schoolOwner,

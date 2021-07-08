@@ -145,6 +145,7 @@ class _OfferingWeeklyScheduleFormState
               rooms = state.rooms;
               schoolOwner = state.schoolOwner;
               periods = state.periods;
+              getAssignmentsWithGrade = state.getAssignmentsWithGrade;
             });
 
             // sessiontermlist = state.sessiontermlist;
@@ -244,6 +245,7 @@ class _OfferingWeeklyScheduleFormState
                         } catch (e) {
                           print("has exception in getting assignments");
                           print("------------------------------------");
+                          print(e);
                         }
                       },
                     ),

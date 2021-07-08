@@ -1,4 +1,6 @@
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart'
+    hide DateTimeMode;
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:flutter/material.dart';
@@ -56,14 +58,21 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
 
   CustomTextFieldController _startDateController = CustomTextFieldController();
   CustomTextFieldController _endDateController = CustomTextFieldController();
+
+  CustomTextFieldController _building = CustomTextFieldController();
+  CustomTextFieldController _floorNum = CustomTextFieldController();
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now();
 
+  List<String> filteredUnits;
   List<String> units;
+  Map<String, List<String>> floormap;
+  Map<String, List<UnitOccupants>> justunits;
   List<SchoolOwner> stafflist;
-  List<BuildingModel> buildinglist;
+  List<String> buildinglist;
+  List<int> floors = [];
 
-  bool isStaff;
+  // bool isStaff;
   var btnState;
   bool haveAccess;
   var user;
@@ -83,7 +92,6 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
   bool _isUpdate = false;
   bool _isStaff = false;
   bool enabled = true;
-
 
   SchoolOwner staff;
 
@@ -190,7 +198,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
             Navigator.of(context).pop(false);
           }
           if (state is itembloc.IsReadyForDetailsPage) {
-            isStaff = state.isStaff;
+            // isStaff = state.isStaff;
             haveAccess = state.haveAccess;
             user = state.user;
             btnState = state.btnState;
@@ -215,7 +223,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
             return Center(child: Text(state.error));
 
           if (state is itembloc.IsReadyForDetailsPage) {
-            isStaff = state.isStaff;
+            // isStaff = state.isStaff;
             haveAccess = state.haveAccess;
             user = state.user;
             btnState = state.btnState;
@@ -243,7 +251,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                 if (widget.origintype == 1)
                   CustomSwitchWithTitle(
                     title: "For Staff",
-                    // isEnabled: enabled || _isStaff,
+                    isEnabled: _isStaff,
                     onChange: (value) => setState(() => _isStaff = value),
                   ),
                 if (_isStaff)
@@ -285,21 +293,56 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                       isRequired: true,
                     ),
                   ),
-                // newentitytimepicker.CustomDateTimePicker(
-                //   controller: _endDateController,
-                //   dateTime: _endDate,
-                //   title: 'Expected Time',
-                //   mode: DateTimeMode.DATETIME,
-                //   onChange: (x) => _endDate = x,
-                // ),
+                if (!_isStaff && widget.origintype == 1) ...[
+                  CustomDropDownList<String>(
+                    title: "Building Name",
+                    controller: _building,
+                    loadData: () async => buildinglist,
+                    displayName: (x) => x,
+                    validate: Validate.withOption(isRequired: true),
+                    onSelected: (value, index) {
+                      setState(() {
+                        _building.text = value;
+                        floors = [];
+                        
+                        filteredUnits = [];
+                        floors = floormap[value]
+                            .map((floor) => int.parse(floor))
+                            .toList();
+                      });
+                    },
+                  ),
+                  CustomDropDownList<int>(
+                    enabled: buildinglist.isNotEmpty,
+                    loadData: () async => floors,
+                    shouldReload: true,
+                    displayName: (x) => x.toString(),
+                    title: "Floor Number",
+                    controller: _floorNum,
+                    validate: Validate.withOption(isRequired: true),
+                    onSelected: (floor, index) {
+                      setState(() {
+                        _floorNum.text = floor.toString();
+                        filteredUnits = [];
 
+                        justunits.keys.toList().forEach((value) {
+                          List<String> units = value.split("@");
+                          if (units[0] == _building.text &&
+                              int.parse(units[1]) == floor) {
+                            filteredUnits.add(value);
+                          }
+                        });
+                      });
+                    },
+                  ),
+                ],
                 if (!_isStaff)
                   CustomDropDownList<String>(
                     title: "Unit Address",
                     enabled: enabled,
                     controller: _unitAddress,
                     initialValue: widget?.serviceRequestModel?.unitId,
-                    loadData: () async =>   units,
+                    loadData: () async => filteredUnits ?? units,
                     displayName: (x) => x,
                     validate: Validate.withOption(
                       isRequired: true,
@@ -319,7 +362,6 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     isRequired: true,
                   ),
                 ),
-
                 CustomTextField(
                   title: "Notes",
                   enabled: enabled,
@@ -398,7 +440,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                   }
                 },
               ),
-            if (!isStaff && _isUpdate)
+            if (!_isStaff && _isUpdate)
               Row(
                 children: [
                   Expanded(

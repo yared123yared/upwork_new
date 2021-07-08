@@ -41,6 +41,7 @@ class OfferingWeeklyScheduleBloc
           grades: ud.grades,
           getOfferingGroupModel: ud.getOfferingGroupModel,
           periods: ud.periods,
+          getAssignmentsWithGrade: ud.getAssignmentsWithGrade,
         );
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);

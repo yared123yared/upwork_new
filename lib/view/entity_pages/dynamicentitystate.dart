@@ -398,6 +398,7 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.schoolbuilding);
     panelmem.add(DynamicEntityGridState.newteacherassignment);
     panelmem.add(DynamicEntityGridState.newofferinggroup);
+    panelmem.add(DynamicEntityGridState.newClassPeriod);
     return panelmem;
   }
 
@@ -588,9 +589,12 @@ class UiEntityPageStateList {
 
   static List<DynamicEntityGridState> fillClassifiedBrokerPanel() {
     List<DynamicEntityGridState> panelmem = [];
-    panelmem.add(DynamicEntityGridState.brokerclassifiedvehicle);
-    panelmem.add(DynamicEntityGridState.brokerclassifiedrealestate);
-    panelmem.add(DynamicEntityGridState.shopproduct);
+    //panelmem.add(DynamicEntityGridState.brokerclassifiedvehicle);
+    //panelmem.add(DynamicEntityGridState.brokerclassifiedrealestate);
+    panelmem.add(DynamicEntityGridState.classifiedvehicle);
+    panelmem.add(DynamicEntityGridState.classifiedrealestate);
+    panelmem.add(DynamicEntityGridState.classifiedpet);
+    panelmem.add(DynamicEntityGridState.classifiedjob);
     panelmem.add(DynamicEntityGridState.classifiedproduct);
 
     return panelmem;
@@ -599,6 +603,7 @@ class UiEntityPageStateList {
   static List<DynamicEntityGridState> fillproductpanel() {
     List<DynamicEntityGridState> panelmem = [];
     panelmem.add(DynamicEntityGridState.productcategorylist);
+    panelmem.add(DynamicEntityGridState.shopproduct);
 
     return panelmem;
   }
@@ -706,7 +711,8 @@ class UiEntityPageStateList {
     DynamicEntityPageState.FeesPayment,
     DynamicEntityPageState.StaffPanel,
     DynamicEntityPageState.SecurityPanel,
-    //DynamicEntityPageState.EcomPanel,
+    DynamicEntityPageState.EcomPanel,
+    DynamicEntityPageState.brokerpanel,
     //DynamicEntityPageState.AptPanel,
     //DynamicEntityPageState.AcademicManager,
     // DynamicEntityPageState.TripManager,
@@ -714,8 +720,8 @@ class UiEntityPageStateList {
     //DynamicEntityPageState.EndUser,
     //DynamicEntityPageState.NewForms,
     //DynamicEntityPageState.userclassifiedpanel,
-    //DynamicEntityPageState.brokerpanel,
-    //DynamicEntityPageState.productpanel
+
+    DynamicEntityPageState.productpanel
   ];
   static List<DynamicEntityPageState> complexFeaturePageState = [
     DynamicEntityPageState.SetupPanel,
