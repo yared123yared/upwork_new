@@ -304,9 +304,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                       setState(() {
                         _building.text = value;
                         floors = [];
-                        floormap = {
-                          "sas": ["1", "2"]
-                        };
+                        
                         filteredUnits = [];
                         floors = floormap[value]
                             .map((floor) => int.parse(floor))
@@ -326,7 +324,6 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                       setState(() {
                         _floorNum.text = floor.toString();
                         filteredUnits = [];
-                        justunits = {"sas@2@2": []};
 
                         justunits.keys.toList().forEach((value) {
                           List<String> units = value.split("@");
