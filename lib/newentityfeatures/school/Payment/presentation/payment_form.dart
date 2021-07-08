@@ -34,19 +34,15 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
   List<String> sessions;
   bool editable;
 
-  DateTime startDate = DateTime.now();
-  DateTime endDate = DateTime.now();
-  DateTime dueDate = DateTime.now();
+  List<DateTime> startDates = [];
+  List<DateTime> endDates = [];
+  List<DateTime> dueDates = [];
 
   CustomTextFieldController _sessionName = CustomTextFieldController();
   CustomTextFieldController _groupName = CustomTextFieldController();
   CustomTextFieldController _paymentPeriodNumber = CustomTextFieldController();
 
-  CustomTextFieldController _startDateController = CustomTextFieldController();
-  CustomTextFieldController _endDateController = CustomTextFieldController();
-  CustomTextFieldController _dueDateController = CustomTextFieldController();
-
-  ///each period info needs two controllers
+  ///each period info needs five controllers
   List<List<CustomTextFieldController>> controllers = [];
   List<PeriodInfo> periodInfoList = [];
 
@@ -87,7 +83,11 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
     if (!editable) return;
 
     setState(() {
-      for (var i = 0; i < int.parse(_paymentPeriodNumber.text); i++) {
+      int periods = int.parse(_paymentPeriodNumber.text);
+      startDates = List.generate(periods, (index) => DateTime.now());
+      endDates = List.generate(periods, (index) => DateTime.now());
+      dueDates = List.generate(periods, (index) => DateTime.now());
+      for (var i = 0; i < periods; i++) {
         controllers.insert(i, []);
         periodInfoList.add(
           PeriodInfo(
@@ -98,6 +98,10 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
             paymentPeriodName: '',
           ),
         );
+        controllers[i].add(CustomTextFieldController());
+        controllers[i].add(CustomTextFieldController());
+        // for dates
+        controllers[i].add(CustomTextFieldController());
         controllers[i].add(CustomTextFieldController());
         controllers[i].add(CustomTextFieldController());
       }
@@ -124,10 +128,20 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
     numPeriods = widget?.paymentPeriodInfo?.periodInfo?.length;
     if (widget.paymentPeriodInfo != null) {
       periodInfoList = widget.paymentPeriodInfo.periodInfo;
+      startDates =
+          List.generate(numPeriods, (index) => periodInfoList[index].startDate);
+      endDates =
+          List.generate(numPeriods, (index) => periodInfoList[index].endDate);
+      dueDates =
+          List.generate(numPeriods, (index) => periodInfoList[index].dueDate);
+
       controllers = List.generate(
         periodInfoList.length /* * 2 */,
         (i) {
           return [
+            CustomTextFieldController(),
+            CustomTextFieldController(),
+            CustomTextFieldController(),
             CustomTextFieldController(),
             CustomTextFieldController(),
           ];
@@ -344,12 +358,13 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
             //     horizontal: width * 25, vertical: height * 6),
             onTap: () async {
               if (_validate()) {
+                setState(() {});
                 periodInfoList[numberPeriod] = PeriodInfo(
                   paymentPeriodName: controllers[numberPeriod][0].text,
                   numDays: int.parse(controllers[numberPeriod][1].text),
-                  dueDate: dueDate,
-                  endDate: endDate,
-                  startDate: startDate,
+                  dueDate: dueDates[numberPeriod],
+                  endDate: endDates[numberPeriod],
+                  startDate: startDates[numberPeriod],
                 );
                 PaymentPeriodInfo _paymentPeriodInfo = PaymentPeriodInfo(
                   sessionName: _sessionName.text,
@@ -429,29 +444,32 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
             ),
           ),
           CustomDateTimePicker(
-            controller: _startDateController,
+            // controller: _startDateController,
+            controller: controllers[i][2],
             enabled: editable,
             dateTime: periodInfoList[i].startDate,
             title: 'Start Date',
             mode: DateTimeMode.DATE,
             // onChange: (x) => periodInfoList[i].startDate = x,
-            onChange: (x) => startDate = x,
+            onChange: (x) => startDates[i] = x,
           ),
           CustomDateTimePicker(
-            controller: _endDateController,
+            // controller: _endDateController,
+            controller: controllers[i][3],
             enabled: editable,
             dateTime: periodInfoList[i].endDate,
             title: 'End Date',
             mode: DateTimeMode.DATE,
-            onChange: (x) => endDate = x,
+            onChange: (x) => endDates[i] = x,
           ),
           CustomDateTimePicker(
-            controller: _dueDateController,
+            // controller: _dueDateController,
+            controller: controllers[i][4],
             enabled: editable,
             dateTime: periodInfoList[i].dueDate,
             title: 'Due Date',
             mode: DateTimeMode.DATE,
-            onChange: (x) => dueDate = x,
+            onChange: (x) => dueDates[i] = x,
           ),
           CustomTextField(
             enabled: editable,

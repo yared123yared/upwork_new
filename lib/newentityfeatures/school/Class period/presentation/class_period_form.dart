@@ -50,6 +50,9 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
 
   // CustomTextFieldController _paymentPeriodType = CustomTextFieldController();
 
+  List<DateTime> startDates = [];
+  List<DateTime> endDates = [];
+
   List<List<CustomTextFieldController>> controllers = [];
 
   bool newType = false;
@@ -93,11 +96,19 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
           numPeriods = widget.classPeriodInfo?.schedule?.length;
           _type.text = widget.classPeriodInfo?.type;
           schedules = widget.classPeriodInfo?.schedule;
+          startDates =
+              List.generate(numPeriods, (index) => schedules[index].startTime);
+          endDates =
+              List.generate(numPeriods, (index) => schedules[index].endTime);
+
           controllers = List.generate(
             schedules.length /*  * 7 */,
             (index) {
               return [
-                for (var i = 0; i < 3; i++) CustomTextFieldController(),
+                // for (var i = 0; i < 3; i++) CustomTextFieldController(),
+                CustomTextFieldController(),
+                CustomTextFieldController(),
+                CustomTextFieldController(),
               ];
             },
           );
@@ -112,6 +123,8 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
     // int periods = int.parse(_classPeriodName.text);
 
     setState(() {
+      startDates = List.generate(periods, (index) => DateTime.now());
+      endDates = List.generate(periods, (index) => DateTime.now());
       for (var i = 0; i < periods; i++) {
         controllers.insert(i, []);
         schedules.add(
@@ -319,7 +332,7 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
       child: Column(
         children: [
           // for (int i = 0; i < schedules.length; i++)
-          // _buildItem(numberPeriod),
+          _buildItem(numberPeriod),
           CustomActionButton(
             state: ButtonState.idle,
             title: timelineIndex != numPeriods
@@ -345,6 +358,11 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
               // });
               print(_validate());
               if (_validate()) {
+                schedules[numberPeriod] = Schedule(
+                  classPeriodName: _classPeriodName.text,
+                  endTime: endDates[numberPeriod],
+                  startTime: startDates[numberPeriod],
+                );
                 ClassPeriodInfo _scheduleModel = ClassPeriodInfo(
                   schedule: schedules,
                   type: _type.text,
@@ -374,50 +392,52 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
     );
   }
 
-  // Widget _buildItem(int i) {
-  //   return SingleChildScrollView(
-  //     padding: EdgeInsets.symmetric(horizontal: width * 6),
-  //     child: Column(
-  //       children: [
-  //         CustomTextField(
-  //           enabled: !edit,
-  //           initialValue: schedules[i].classPeriodName,
-  //           title: "Class Period Name",
-  //           onChange: (text) {
-  //             setState(() => schedules[i].classPeriodName = text);
-  //           },
-  //           controller: controllers[i][0],
-  //           validate: Validate.withOption(
-  //             isRequired: true,
-  //           ),
-  //         ),
-  //         CustomDateTimePicker(
-  //           title: 'Start Date',
-  //           enabled: true,
-  //           controller: controllers[i][1],
-  //           onChange: (value) {
-  //             setState(() => schedules[i].startTime = value);
-  //           },
-  //           dateTime: schedules[i].startTime,
-  //           autoSync: true,
-  //           mode: DateTimeMode.DATE,
-  //           validate: Validate.withOption(isRequired: true),
-  //         ),
-  //         CustomDateTimePicker(
-  //           title: 'End Date',
-  //           enabled: true,
-  //           autoSync: true,
-  //           controller: controllers[i][2],
-  //           onChange: (value) {
-  //             setState(() => schedules[i].endTime = value);
-  //           },
-  //           dateTime: schedules[i].endTime,
-  //           mode: DateTimeMode.DATE,
-  //           validate: Validate.withOption(isRequired: true),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  //   // ));
-  // }
+  Widget _buildItem(int i) {
+    return SingleChildScrollView(
+      padding: EdgeInsets.symmetric(horizontal: width * 6),
+      child: Column(
+        children: [
+          CustomTextField(
+            enabled: !edit,
+            initialValue: schedules[i].classPeriodName,
+            title: "Class Period Name",
+            // onChange: (text) {
+            //   setState(() => schedules[i].classPeriodName = text);
+            // },
+            controller: controllers[i][0],
+            validate: Validate.withOption(
+              isRequired: true,
+            ),
+          ),
+          CustomDateTimePicker(
+            title: 'Start Date',
+            enabled: true,
+            controller: controllers[i][1],
+            // onChange: (value) {
+            //   setState(() => schedules[i].startTime = value);
+            // },
+            onChange: (x) => startDates[i] = x,
+            dateTime: startDates[i],
+            autoSync: true,
+            mode: DateTimeMode.DATE,
+            validate: Validate.withOption(isRequired: true),
+          ),
+          CustomDateTimePicker(
+            title: 'End Date',
+            enabled: true,
+            autoSync: true,
+            controller: controllers[i][2],
+            // onChange: (value) {
+            //   setState(() => endDates[i] = value);
+            // },
+            onChange: (x) => endDates[i] = x,
+            dateTime: endDates[i],
+            mode: DateTimeMode.DATE,
+            validate: Validate.withOption(isRequired: true),
+          ),
+        ],
+      ),
+    );
+    // ));
+  }
 }

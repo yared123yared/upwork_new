@@ -73,7 +73,13 @@ class ClassPeriodModelRepository {
       String type;
       List<ClassPeriodInfo> items =
           _schoolRepo.getClassPeriodInfoList(serviceID: entityid);
-      List<String> types = items?.map((e) => e.type)?.toList() ?? [];
+
+      List<String> types = [];
+      items.forEach((item) {
+        if (!types.contains(item.type)) {
+          types.add(item.type);
+        }
+      });
 
       List<PaymentPeriodInfo> paymentPeriods =
           await _schoolRepo.lookup.getPaymentPeriodInfoList(
@@ -176,14 +182,15 @@ class ClassPeriodModelRepository {
       String entitytype, String entityid) async {
     ClassPeriodModelRepositoryReturnData myreturn =
         ClassPeriodModelRepositoryReturnData();
-    if (_schoolRepo.getClassPeriodInfoList(serviceID: entityid) == null ||
-        _schoolRepo.getClassPeriodInfoList(serviceID: entityid).length == 0) {
-      await _schoolRepo.setClassPeriodList(serviceID: entityid);
-    }
+    // if (_schoolRepo.getClassPeriodInfoList(serviceID: entityid) == null ||
+    //     _schoolRepo.getClassPeriodInfoList(serviceID: entityid).length == 0) {
+    await _schoolRepo.setClassPeriodList(serviceID: entityid);
+    // }
 
     List<ClassPeriodInfo> list = _schoolRepo.getClassPeriodInfoList(
       serviceID: entityid,
     );
+
     myreturn.errortype = -1;
     myreturn.itemlist = list;
     return myreturn;

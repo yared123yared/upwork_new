@@ -34,7 +34,9 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
   Future<List<String>> offeringgrouplist;
   List<ClassPeriodInfo> em = [];
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
-  Map<String, List> mapItems = Map();
+  Map<String, List<ClassPeriodInfo>> mapItems = Map();
+
+  List<String> classTypes = [];
 
   void initState() {
     super.initState();
@@ -81,8 +83,7 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
 
     list.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: "${item.type ?? ''}",
-        // subtitle: "grade: ${item.grade}",
+        title: "${item.type ?? ''} - periods: ${item?.schedule?.length ?? ""}",
         tapAction: () {
           Navigator.push(
             context,
@@ -167,12 +168,27 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
             }
             if (state is listbloc.IsListDataLoaded) {
               setState(() {
-                em = state.listdata;
+                em = state.listdata ?? [];
+
+                // Map<String, List<ClassPeriodInfo>> list;
+
+                // em.forEach((classPeriod) {
+                //   if (!list.containsKey(classPeriod.type)) {
+                //     // list.
+                //   }
+                // });
 
                 setState(() {
-                  em?.forEach((item) {
-                    mapItems[item.type] = item.schedule;
+                  em.forEach((classPeriod) {
+                    if (!classTypes.contains(classPeriod.type)) {
+                      classTypes.add(classPeriod.type);
+
+                      mapItems[classPeriod.type] = [];
+                    }
+
+                    mapItems[classPeriod.type].add(classPeriod);
                   });
+                  // em?.forEach((item) {});
                 });
               });
             }
@@ -264,7 +280,8 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
         SliverList(
           delegate: SliverChildListDelegate(
             [
-              for (int i = 0; i < (em?.length ?? 0); i++)
+              // for (int i = 0; i < (em?.length ?? 0); i++)
+              for (int i = 0; i < classTypes.length; i++)
                 Card(
                   elevation: 0,
                   color: Colors.black.withOpacity(0.1),
@@ -274,7 +291,8 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
                   child: ExpansionTile(
                     // initiallyExpanded:  == 0,
                     title: Text(
-                      em[i].type,
+                      classTypes[i],
+                      // em[i].type,
                       style: TextStyle(
                         fontFamily: 'Merriweather',
                         fontWeight: FontWeight.w700,
@@ -284,13 +302,15 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
                     ),
                     // title: Text(em[i].type),
                     children: [
+                      // if (em[i].type == classTypes[i])
                       CommonListPage(
                         canSearch: false,
                         updateAction: null,
                         appBarTitle: "Class Period List",
                         dynamicListState: "Class Period List",
-                        listItems: em != null
-                            ? toCommonListState(em, context, em[i].type)
+                        listItems: mapItems[classTypes[i]] != null
+                            ? toCommonListState(
+                                mapItems[classTypes[i]], context, em[i].type)
                             : [],
                       ),
                     ],
