@@ -397,6 +397,7 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.caseView);
     panelmem.add(DynamicEntityGridState.schoolbuilding);
     panelmem.add(DynamicEntityGridState.newteacherassignment);
+    panelmem.add(DynamicEntityGridState.newofferinggroup);
     return panelmem;
   }
 
