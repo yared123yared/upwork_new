@@ -196,7 +196,8 @@ class _ChatPageState extends State<ChatPage>
         print("qwerty");
         if (_showProgress) {
           Utility.showSnackBar(
-              key: _key, message: "Please wait while one media is sharing");
+              context: context,
+              message: "Please wait while one media is sharing");
           return;
         }
         showModalBottomSheet(
@@ -265,7 +266,7 @@ class _ChatPageState extends State<ChatPage>
   sendMessage() {
     if (_showProgress) {
       Utility.showSnackBar(
-          key: _key, message: "Please wait while one media is sharing");
+          context: context, message: "Please wait while one media is sharing");
       return;
     }
     if (_messageController.text.trim().isNotEmpty) {
@@ -319,11 +320,13 @@ class _ChatPageState extends State<ChatPage>
             _showProgress = false;
             controller.stop();
           });
-          Utility.showSnackBar(key: _key, message: 'Something went wrong');
+          Utility.showSnackBar(
+              context: context, message: 'Something went wrong');
         }
       }
     } else {
-      Utility.showSnackBar(key: _key, message: 'Storage permission is denied');
+      Utility.showSnackBar(
+          context: context, message: 'Storage permission is denied');
     }
   }
 
@@ -338,7 +341,8 @@ class _ChatPageState extends State<ChatPage>
 
       if (files?.files?.first != null) {
         if (!files?.files?.first?.path?.contains(".mp4")) {
-          Utility.showSnackBar(key: _key, message: 'Only Mp4 video is allowed');
+          Utility.showSnackBar(
+              context: context, message: 'Only Mp4 video is allowed');
           return;
         }
         setState(() {
@@ -366,11 +370,13 @@ class _ChatPageState extends State<ChatPage>
             _showProgress = false;
             controller.stop();
           });
-          Utility.showSnackBar(key: _key, message: 'Something went wrong');
+          Utility.showSnackBar(
+              context: context, message: 'Something went wrong');
         }
       }
     } else {
-      Utility.showSnackBar(key: _key, message: 'Storage permission is denied');
+      Utility.showSnackBar(
+          context: context, message: 'Storage permission is denied');
     }
   }
 

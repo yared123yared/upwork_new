@@ -67,7 +67,7 @@ class _ComplexFormState extends State<CreateComplexPage> {
       if (!_buildingType.isValid) valid = false;
       if (_startDate.isAfter(_endDate)) {
         Utility.showSnackBar(
-            key: _key, message: "End Date must be after start date");
+            context: context, message: "End Date must be after start date");
         return false;
       }
     } else {
@@ -96,7 +96,7 @@ class _ComplexFormState extends State<CreateComplexPage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -115,7 +115,7 @@ class _ComplexFormState extends State<CreateComplexPage> {
       case ApiStatus.ERROR:
         _isLoading = false;
         print(state.message);
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -133,7 +133,7 @@ class _ComplexFormState extends State<CreateComplexPage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;

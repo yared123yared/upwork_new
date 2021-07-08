@@ -7,7 +7,7 @@ import 'package:complex/blocs/service_bloc.dart';
 import 'package:complex/common/Colors/colors.dart';
 import 'package:complex/local/pref/Preference.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/bloc/stringlookup/bloc.dart';
-import 'package:complex/view/login_pages/splash_page.dart';
+import 'package:complex/view/auth_pages/splash_page.dart';
 import 'package:complex/utils/local_db_util.dart';
 import 'package:complex/utils/log.dart';
 import 'package:complex/utils/resource/colors.dart';

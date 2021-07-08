@@ -82,7 +82,6 @@ class _ChannelsListPageState extends State<ChannelsListPage> {
         child: BlocBuilder<ChannelsBloc, ChannelsState>(
           builder: (context, state) {
             return Scaffold(
-              key: _key,
               appBar: AppBar(
                 title: Text("Channels"),
               ),
@@ -132,7 +131,7 @@ class _ChannelsListPageState extends State<ChannelsListPage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -154,7 +153,7 @@ class _ChannelsListPageState extends State<ChannelsListPage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -343,7 +342,7 @@ class _ExtentionWidgetTileState extends State<ExtentionWidgetTile> {
                               _goToChat(channel);
                             } else {
                               Utility.showSnackBar(
-                                  key: ChannelsListPage.of(context)._key,
+                                  context: context,
                                   message: "Channel is deactivated");
                             }
                           },
