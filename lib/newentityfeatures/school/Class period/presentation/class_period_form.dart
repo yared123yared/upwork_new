@@ -278,16 +278,17 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
                     newType
                         ? CustomTextField(
                             controller: _type,
+                            enabled: !edit,
                             title: "New Type",
                             validate: Validate.withOption(isRequired: true),
                           )
                         : CustomDropDownList<String>(
                             initialValue: widget.classPeriodInfo?.type,
+                            enabled: !edit,
                             controller: _type,
                             displayName: (data) => data,
                             loadData: () async => types,
                             title: "Type",
-                            // enabled: !edit,
                           ),
                   ],
                 ),
@@ -375,14 +376,25 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
                   });
                   return;
                 } else {
-                  BlocProvider.of<itembloc.ClassPeriodModelBloc>(context).add(
-                    itembloc.CreateItem(
-                      item: _scheduleModel,
-                      type: _type.text,
-                      entityid: widget.entityid,
-                      entitytype: widget.entitytype,
-                    ),
-                  );
+                  if (widget.classPeriodInfo != null) {
+                    BlocProvider.of<itembloc.ClassPeriodModelBloc>(context).add(
+                      itembloc.UpdateItem(
+                        item: _scheduleModel,
+                        // type: _type.text,
+                        entityid: widget.entityid,
+                        entitytype: widget.entitytype,
+                      ),
+                    );
+                  } else {
+                    BlocProvider.of<itembloc.ClassPeriodModelBloc>(context).add(
+                      itembloc.CreateItem(
+                        item: _scheduleModel,
+                        type: _type.text,
+                        entityid: widget.entityid,
+                        entitytype: widget.entitytype,
+                      ),
+                    );
+                  }
                 }
               }
             },
@@ -411,7 +423,7 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
           ),
           CustomDateTimePicker(
             title: 'Start Date',
-            enabled: true,
+            enabled: !edit,
             controller: controllers[i][1],
             // onChange: (value) {
             //   setState(() => schedules[i].startTime = value);
@@ -424,7 +436,7 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
           ),
           CustomDateTimePicker(
             title: 'End Date',
-            enabled: true,
+            enabled: !edit,
             autoSync: true,
             controller: controllers[i][2],
             // onChange: (value) {
