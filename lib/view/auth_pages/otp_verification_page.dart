@@ -155,7 +155,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
           _isLoading = false;
         });
         if (e is FirebaseAuthException) print("${e.message}");
-        Utility.showSnackBar(key: _key, message: "${e.message}");
+        Utility.showSnackBar(context: context, message: "${e.message}");
       }
     }
   }

@@ -7,6 +7,7 @@ import 'package:complex/data/models/response/user_response/user_entity.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
 import 'package:complex/data/repositories/service_repository.dart';
 import 'package:injector/injector.dart';
+import 'package:logger/logger.dart';
 
 import 'complex_repository.dart';
 
@@ -36,7 +37,7 @@ class UserRepository {
           .doc("USERS/${_user.userID}")
           .snapshots();
     } catch (e) {
-      print("USer profile change  get error: $e");
+      Logger().e("USer profile change  get error: $e");
       throw e;
     }
   }
@@ -50,24 +51,28 @@ class UserRepository {
       _user = UserModel.fromData(userData, userID);
       UserSession.userId = _user.userID;
     }
-    String country ="INDIA";  //use locale or any other mechanism to know country and make it caps to use it in query
-    List<String> locationservers=null;
+    String country =
+        "INDIA"; //use locale or any other mechanism to know country and make it caps to use it in query
+    List<String> locationservers = null;
 
     await Future.wait<void>([
-
-
       FirebaseFirestore.instance.doc("USERS/$userID").get().then((x) {
         /*x.data().forEach((key, value) {
           print("value of $key  =>  $value}");
         });*/
+        Logger().i(userID);
         _user = UserModel.fromData(x.data(), userID);
 
         UserSession.userId = _user.userID;
       }),
-
-      FirebaseFirestore.instance.doc("ENDUSERLOCATIONSERVERS/$country").get().then((x) {
-        Map<String, dynamic> mdata =x.data();
-        locationservers =mdata !=null && mdata['data'] != null ? List<String>.from(mdata['data'] as List) : [];
+      FirebaseFirestore.instance
+          .doc("ENDUSERLOCATIONSERVERS/$country")
+          .get()
+          .then((x) {
+        Map<String, dynamic> mdata = x.data();
+        locationservers = mdata != null && mdata['data'] != null
+            ? List<String>.from(mdata['data'] as List)
+            : [];
       }),
       FirebaseFirestore.instance
           .collection("USERALERTS")
@@ -87,8 +92,8 @@ class UserRepository {
     ]);
 
     UserEntity.setDefaultEntity(_userentity, _user);
-    _user.currentcountry =country;
-    _user.locationservers =locationservers;
+    _user.currentcountry = country;
+    _user.locationservers = locationservers;
     if (_user.defaultType == entityT.service) {
       _user.defaultServiceModel =
           await serviceRepository.getService(_user.defaultServiceEntity);

@@ -345,9 +345,10 @@ class _GenericPropertiesState extends State<GenericProperties> {
 
   _nextClick() {
     if (_photos.length == 0) {
-      Utility.showSnackBar(key: _key, message: "At least one image required");
+      Utility.showSnackBar(
+          context: context, message: "At least one image required");
     } else if (_dynamicProperties == null) {
-      Utility.showSnackBar(key: _key, message: "Please select brand ");
+      Utility.showSnackBar(context: context, message: "Please select brand ");
     } else if (_validateFields()) {
       ProductModel _model = ProductModel(
         addressarea: widget.contactDetails,

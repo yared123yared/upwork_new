@@ -48,7 +48,7 @@ class _DynamicCategoryPageState extends State<DynamicCategoryPage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -68,7 +68,7 @@ class _DynamicCategoryPageState extends State<DynamicCategoryPage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -436,10 +436,10 @@ class _EditAddCategoryState extends State<EditAddCategory> {
             onTap: () {
               if (_categoryNameController.text.isEmpty) {
                 Utility.showSnackBar(
-                    key: _key, message: "Please enter category name");
+                    context: context, message: "Please enter category name");
               } else if (_dynamicProductIdController.text.isEmpty) {
                 Utility.showSnackBar(
-                    key: _key, message: "Please enter category name");
+                    context: context, message: "Please enter category name");
               } else {
                 if (widget.type == AddEditCategory.edit) {
                   widget.childData['category'] = _categoryNameController.text;

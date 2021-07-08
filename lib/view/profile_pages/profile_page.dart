@@ -17,8 +17,8 @@ import 'package:complex/main.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/view/complex_pages/create_complex_page.dart';
-import 'package:complex/view/login_pages/phone_verification_page.dart';
-import 'package:complex/view/login_pages/splash_page.dart';
+import 'package:complex/view/auth_pages/phone_verification_page.dart';
+import 'package:complex/view/auth_pages/splash_page.dart';
 import 'package:complex/view/services_page/create_service_page.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/places.dart';
@@ -128,7 +128,7 @@ class _ProfilePageState extends State<ProfilePage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -145,7 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -285,7 +285,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     );
                   } else {
                     Utility.showSnackBar(
-                      key: _key,
+                      context: context,
                       message: "Just service creator can modify it",
                     );
                   }
@@ -421,7 +421,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     );
                   } else {
                     Utility.showSnackBar(
-                      key: _key,
+                      context: context,
                       message: "Just complex creator can modify it",
                     );
                   }

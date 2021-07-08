@@ -137,7 +137,7 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
               onTap: () {
                 if (!_locationValue) {
                   Utility.showSnackBar(
-                      key: _key,
+                      context: context,
                       message:
                           "Please enable location for better accessibility");
                 } else if (_validate()) {
@@ -321,7 +321,7 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
       position = await Geolocator.getCurrentPosition();
     } catch (e) {
       if (e is LocationServiceDisabledException) {
-        Utility.showSnackBar(key: _key, message: e.toString());
+        Utility.showSnackBar(context: context, message: e.toString());
         setState(() {
           _locationValue = false;
         });

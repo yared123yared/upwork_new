@@ -15,7 +15,7 @@ import 'package:complex/common/widgets/custom_slide_transition.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/selection_button.dart';
-import 'package:complex/view/login_pages/landing_page.dart';
+import 'package:complex/view/auth_pages/auth_page.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
 import 'package:complex/utils/utility.dart';
@@ -88,7 +88,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -374,7 +374,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
               onTap: () {
                 if (_photos.length == 0) {
                   Utility.showSnackBar(
-                      key: _key, message: "At least one image required");
+                      context: context, message: "At least one image required");
                 } else if (_validateInfo()) {
                   _scrollController.jumpTo(0);
                   setState(() {

@@ -1,15 +1,17 @@
 import 'package:complex/data/providers/auth_provider.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
+import 'package:complex/view/auth_pages/phone_verification_page.dart';
 import 'package:complex/view/dashboard/home_page.dart';
-import 'package:complex/view/login_pages/landing_page.dart';
-import 'package:complex/view/login_pages/phone_verification_page.dart';
 import 'package:complex/utils/local_db_util.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/notification_helper.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
+import 'package:logger/logger.dart';
+
+import 'auth_page.dart';
 
 class SplashPage extends StatefulWidget {
   @override

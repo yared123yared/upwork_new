@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/request/auth_request/login_request.dart';
 import 'package:complex/data/models/request/auth_request/signup_request.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:meta/meta.dart';
 
 class AuthProvider {
@@ -30,15 +32,22 @@ class AuthProvider {
     );
   }
 
-
   Future<void> signOut() async {
     return await _firebaseAuth.signOut();
   }
 
-
   Future<bool> isSignedIn() async {
     final currentUser = _firebaseAuth.currentUser;
-    return currentUser != null;
+
+    if (currentUser != null) {
+      bool hasData = await FirebaseFirestore.instance
+          .doc("USERS/${currentUser.uid}")
+          .get()
+          .then((x) => x.data() != null);
+      return hasData;
+    } else {
+      return false;
+    }
   }
 
   Future<bool> hasVerifiedEmail() async =>
@@ -80,26 +89,25 @@ class AuthProvider {
     }
   }
 
-  Future<String> userProfileCreationRequestwithreturnval({SignUpRequest signUpModel}) async {
+  Future<String> userProfileCreationRequestwithreturnval(
+      {SignUpRequest signUpModel}) async {
     final HttpsCallable userProfileCreationRequest =
-    FirebaseFunctions.instance.httpsCallable(
+        FirebaseFunctions.instance.httpsCallable(
       'UserProfileCreationRequest',
     );
     try {
       final HttpsCallableResult result =
-      await userProfileCreationRequest.call(<String, dynamic>{
+          await userProfileCreationRequest.call(<String, dynamic>{
         'email': signUpModel.email,
         'username': signUpModel.username,
         'phonenum': signUpModel.phoneNum,
         'defaultpassword': signUpModel.password,
         'requesttype': signUpModel.requestType,
-
       });
       print("result ${result.data}");
       Map<String, dynamic> mdata = Map<String, dynamic>.from(result.data);
       if (mdata['error'] != null) return null;
       return mdata['id'];
-
     } on FirebaseFunctionsException catch (e) {
       print('caught firebase functions exception');
       print(e.code);
@@ -110,7 +118,6 @@ class AuthProvider {
       print(e);
     }
   }
-
 
   Future<int> updateProfile({
     String name,
@@ -138,7 +145,7 @@ class AuthProvider {
         return 1;
       });
     } else if (phoneNumber != null) {
-     /* return await FirebaseAuth.instance.currentUser
+      /* return await FirebaseAuth.instance.currentUser
           .updatePhoneNumber(PhoneAuthCredential)
           .then((value) => 0)
           .catchError((onError) {

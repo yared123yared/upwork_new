@@ -132,7 +132,7 @@ class _SizeAndColorDetailViewState extends State<SizeAndColorDetailView> {
             onTap: () {
               if (_photos.length == 0) {
                 Utility.showSnackBar(
-                    key: _key, message: "At least one image required");
+                    context: context, message: "At least one image required");
               } else if (_validateInput()) {
                 sizeAndColor.add(
                   Sizeandcolordata(

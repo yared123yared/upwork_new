@@ -3,7 +3,6 @@ import 'package:complex/data/api/api_service.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
-import 'package:complex/view/login_pages/otp_verification_page.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/styles.dart';
 import 'package:complex/utils/utility.dart';
@@ -15,6 +14,7 @@ import 'package:flutter_country_picker/country.dart';
 import 'package:flutter_country_picker/flutter_country_picker.dart';
 
 import '../../main.dart';
+import 'otp_verification_page.dart';
 
 class PhoneVerificationPage extends StatefulWidget {
   final int value;
@@ -101,7 +101,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
                         Utility.hideKeyboard();
                         if (validatePhone(controller.text) != null) {
                           Utility.showSnackBar(
-                              key: _key,
+                              context: context,
                               message: validatePhone(controller.text));
                         } else {
                           _verifyNumber();
@@ -142,7 +142,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
         break;
       case ApiStatus.ERROR:
         _isLoading = false;
-        Utility.showSnackBar(key: _key, message: state.message);
+        Utility.showSnackBar(context: context, message: state.message);
         break;
       case ApiStatus.INITIAL:
         break;
@@ -169,7 +169,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       print(
           'Phone number verification failed. Code: ${authException.code}. Message: ${authException.message}');
       Utility.showSnackBar(
-          key: _key,
+          context: context,
           message:
               'Phone number verification failed. Code: ${authException.code}. Message: ${authException.message}');
     };
@@ -177,7 +177,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
     PhoneCodeSent codeSent =
         (String verificationId, [int forceResendingToken]) async {
       Utility.showSnackBar(
-          key: _key,
+          context: context,
           message: 'Please check your phone for the verification code.');
       _verificationId = verificationId;
       _isLoading = false;
@@ -212,7 +212,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
           codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
     } catch (e) {
       Utility.showSnackBar(
-          key: _key, message: "Failed to Verify Phone Number: ${e}");
+          context: context, message: "Failed to Verify Phone Number: ${e}");
     }
   }
 }
