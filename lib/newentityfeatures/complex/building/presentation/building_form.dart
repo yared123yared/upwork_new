@@ -9,6 +9,7 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/helputil.dart';
 import "package:asuka/asuka.dart" as asuka;
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../itembloc/bloc.dart' as itembloc;
 
 class BuildingForm extends StatefulWidget {
@@ -29,6 +30,7 @@ class BuildingForm extends StatefulWidget {
 class _BuildingFormState extends State<BuildingForm> {
   CustomTextFieldController _buildingName = CustomTextFieldController();
   CustomTextFieldController _address = CustomTextFieldController();
+  CustomTextFieldController _numfloor = CustomTextFieldController();
   CustomTextFieldController _latitude = CustomTextFieldController();
   CustomTextFieldController _longitude = CustomTextFieldController();
   CustomTextFieldController _attachedGate = CustomTextFieldController();
@@ -42,6 +44,7 @@ class _BuildingFormState extends State<BuildingForm> {
       _latitude,
       _longitude,
       _attachedGate,
+     _numfloor
     ]);
   }
 
@@ -66,11 +69,10 @@ class _BuildingFormState extends State<BuildingForm> {
         body: BlocListener<itembloc.BuildingModelBloc,
             itembloc.BuildingModelState>(listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
+
             widget.givenreloadaction(true);
-            Navigator.of(context).pop(false);
+            Navigator.of(context).pop(true);
           }
         }, child: BlocBuilder<itembloc.BuildingModelBloc,
             itembloc.BuildingModelState>(builder: (context, state) {
@@ -112,6 +114,13 @@ class _BuildingFormState extends State<BuildingForm> {
                       initialValue: widget.buildingModel?.buildingName,
                       title: "Building Name",
                       controller: _buildingName,
+                      autoFocus: true,
+                      validate: Validate.withOption(isRequired: true),
+                    ),
+                    CustomTextField(
+                      initialValue: widget.buildingModel?.numfloor.toString(),
+                      title: "Number of Floor",
+                      controller: _numfloor,
                       autoFocus: true,
                       validate: Validate.withOption(isRequired: true),
                     ),

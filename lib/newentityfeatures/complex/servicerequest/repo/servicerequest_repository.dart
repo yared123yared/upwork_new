@@ -7,7 +7,7 @@ import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/gateway/complex_staff_gateway.dart';
-import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/complex_staff_gateway.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
@@ -31,9 +31,9 @@ class ServiceRequestModelRepositoryReturnData {
   int errortype;
   String error;
   List<String> searchparavalues;
-  List<UnitModel> unitlist;
-  List<StaffModelx> stafflist;
-  List<BuildingModel> buildings;
+  List<String> unitlist;
+  List<SchoolOwner> stafflist;
+  List<String> buildings;
   List<String> roles;
   UserModel user;
   bool isStaff;
@@ -54,16 +54,15 @@ class ServiceRequestModelRepository {
   FirebaseMessaging _firebaseMessaging = Get.find();
 
   Future<ServiceRequestModelRepositoryReturnData> getAllServiceRequestModels(
-      String entitytype, String entityid, int originType) async {
+      String entitytype, String entityid) async {
     ServiceRequestModelRepositoryReturnData myreturn =
         ServiceRequestModelRepositoryReturnData();
 
-    ComplexModel _complexModel = await _complexRepository.getComplexAsync(
-      complex: _user.defaultComplexEntity,
+
+    myreturn.oul = await _complexRepository.getOccupiedUnits(
+      entitytype: entitytype,
+      entityid: entityid,
     );
-
-    List<String> roles;
-
     // List<String> role = _complexModel.stringRoles;
     List<ServiceRequestModel> services =
         await _complexRepository.getAllActiveServiceRequestList(
@@ -71,13 +70,11 @@ class ServiceRequestModelRepository {
       entityid: entityid,
       userModel: _user,
     );
-    List<ServiceRequestModel> filteredServices = [];
+
 
     myreturn.itemlist = services;
 
-    // myreturn.itemlist = await _complexRepository.getServiceRequestList(
-    //   complexID: entityid,
-    // );
+
 
     myreturn.errortype = -1;
 
@@ -207,6 +204,35 @@ class ServiceRequestModelRepository {
     return myreturn;
   }
 
+  Future<ServiceRequestModelRepositoryReturnData> getInitialDataList(
+      String entitytype,
+      String entityid,
+      ) async {
+
+
+    ServiceRequestModelRepositoryReturnData myreturn =
+        ServiceRequestModelRepositoryReturnData();
+
+    myreturn.oul = await _complexRepository.getOccupiedUnits(
+      entitytype: entitytype,
+      entityid: entityid,
+    );
+
+    myreturn.stafflist= await ComplexStaffGateway.getListOfAllStaff(entitytype: entitytype,
+      entityid: entityid);
+
+
+    myreturn.errortype = -1;
+
+
+    return myreturn;
+  }
+
+
+
+
+
+
   Future<ServiceRequestModelRepositoryReturnData> getInitialData(
       String entitytype,
       String entityid,
@@ -220,77 +246,41 @@ class ServiceRequestModelRepository {
     }
 
     ServiceRequestModelRepositoryReturnData myreturn =
-        ServiceRequestModelRepositoryReturnData();
+    ServiceRequestModelRepositoryReturnData();
     //await _userRepository.updateUser();
-    /* ComplexModel */ var _complexModel =
-        await _complexRepository.getComplexAsync(
-      complex: _user.defaultComplexEntity,
-    );
 
-    List<String> roles = _complexModel.stringRoles;
 
-    bool isStaff = _complexModel.roles.contains(EntityRoles.Staff) ||
-        _complexModel.roles.contains(EntityRoles.Manager);
-    bool haveAccess = await _haveAccess(
-      serviceRequest,
-      _complexModel,
-      entityid,
-      entitytype,
-    );
+
 
     var btnState;
     var user = _user;
 
-    List<UnitModel> units = (await _complexRepository.units.getUnitList(
-      entitytype: entitytype,
-      entityid: entityid,
-      // complexID: entityid,
-      // user: _user,
-    ));
 
-    if (originType != 1)
-      myreturn.oul = await _complexRepository.getOccupiedUnits(
-        entitytype: entitytype,
-        entityid: entityid,
-      );
 
-    // List<UnitModel> filteredUnits = [];
-    // if (originType == 3) {
-    //   units.forEach((unit) {
-    //     if ((unit?.hasOwner ?? false) || (unit?.hasResident ?? false)) {
-    //       filteredUnits.add(unit);
-    //     }
-    //   });
-    // } else {
-    //   filteredUnits = units;
-    // }
-
-    // List<StaffModelx> stafflist = _complexRepository.getStaffList(
-    //   complexID: entityid,
-    // );
-    
-    List<SchoolOwner> stafflist =
-        await OfferingsVrManagementGateway.getListOfStaff(
-      staffcategory: "ALL",
+    myreturn.oul = await _complexRepository.getOccupiedUnits(
       entitytype: entitytype,
       entityid: entityid,
     );
 
-    List buildinglist = await _complexRepository.getBuildingList(
-      complexID: entityid,
-    );
+
+
+    myreturn.stafflist= await ComplexStaffGateway.getListOfAllStaff(entitytype: entitytype,
+        entityid: entityid);
+
+
 
     myreturn.errortype = -1;
-    myreturn.isStaff = isStaff;
-    myreturn.haveAccess = haveAccess;
-    myreturn.unitlist = units;
-    myreturn.stafflist = stafflist ?? [];
-    myreturn.buildings = buildinglist;
-    myreturn.roles = roles;
+
+
+    myreturn.unitlist = _user.defaultComplexEntity.getUnitList();
+
+    myreturn.buildings = myreturn.oul.buildinglist;
+
     myreturn.user = user;
 
     return myreturn;
   }
+
 
   Future<bool> _haveAccess(ServiceRequestModel serviceRequest, complexModel,
       entityid, entitytype) async {

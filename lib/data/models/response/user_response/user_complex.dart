@@ -13,6 +13,17 @@ class UserComplex {
   bool isEndUser;
   List<ResidentUnits> residentunits;
 
+  List<String> getUnitList()
+  {
+    List<String> st = [];
+    if(residentunits !=null)
+    {
+      for(var k in residentunits)
+        st.add(k.rd);
+      return st;
+    }
+    return st;
+  }
   UserComplex({
     this.channels,
     this.name,

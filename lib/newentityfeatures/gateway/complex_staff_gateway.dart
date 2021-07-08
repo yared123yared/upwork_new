@@ -5,6 +5,7 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/models/request/auth_request/signup_request.dart';
 import 'package:complex/data/models/response/general_response.dart';
+import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:meta/meta.dart';
 
 // import '../../model/models.dart';
@@ -31,6 +32,39 @@ class ComplexStaffGateway {
       throw e;
     }
   }
+
+
+  static Future<List<SchoolOwner>> getListOfAllStaff({
+
+    @required String entitytype,
+    @required String entityid,
+  }) async {
+
+      final HttpsCallable callable =
+      FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
+      print("CloudFunction " + "end");
+      dynamic resp = await callable.call(<String, dynamic>{
+        "entitytype": entitytype,
+        "entityid": entityid,
+        "qtype": "allstaff",
+
+      });
+
+      List<SchoolOwner> rm = [];
+      Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
+      if (mdata['error'] != null) return rm;
+      rm = <SchoolOwner>[];
+      mdata['lm'].forEach((j) {
+        rm.add(SchoolOwner.fromData(Map<String, dynamic>.from(j)));
+      });
+
+      //for(dynamic d in mdata['lm'])
+      //  rm.add(SchoolOwner.fromData(d));
+
+      return rm;
+
+  }
+
 
   static Future<void> newStaffRequest(
       {@required String entitytype,@required String entityid,StaffModelx staffModel, ComplexModel complexModel}) async {

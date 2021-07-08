@@ -1,4 +1,5 @@
 import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/data/models/response/user_response/residential_unit.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,22 @@ class ServiceModelListList extends StatefulWidget {
   final String entitytype;
   final String fieldname;
   final int originlist;
+  final List<ResidentUnits> residentunits;
+  final String curuserid;
   ServiceModelListList(
-      {this.entitytype, this.entityid, this.fieldname, this.originlist});
+      {this.entitytype, this.entityid, this.fieldname, this.originlist,this.residentunits,this.curuserid});
 
+  List<String> getUnitList()
+  {
+    List<String> st = [];
+    if(residentunits !=null)
+      {
+        for(var k in residentunits)
+          st.add(k.rd);
+        return st;
+      }
+    return st;
+  }
   @override
   _ServiceModelListListState createState() => _ServiceModelListListState();
 }
@@ -32,17 +46,19 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
   void initState() {
     super.initState();
     mlistbloc = listbloc.ServiceRequestModelListBloc();
-    mlistbloc.add(listbloc.getListDataForServiceRequestType(
-      entitytype: widget.entitytype,
-      entityid: widget.entityid,
-      requesttype: widget.fieldname,
-    ));
-    mlistbloc.add(listbloc.getListData(
-      entitytype: widget.entitytype,
-      entityid: widget.entityid,
-      originType: widget.originlist,
-      // isStaff: isStaff,
-    ));
+
+
+
+
+      mlistbloc.add(listbloc.getListData(
+        entitytype: widget.entitytype,
+        entityid: widget.entityid,
+        originType: widget.originlist,residentunitlist: widget.getUnitList(),userid: widget.curuserid
+
+      ));
+
+    //staff self
+
   }
 
   @override
@@ -54,11 +70,14 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
 
   void doreload(bool reloadtype) {
     if (reloadtype) {
+      /*
       mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype,
         entityid: widget.entityid,
         originType: widget.originlist,
       ));
+
+       */
     }
   }
 
@@ -225,6 +244,7 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
                       setState(() {
                         isStaff = value;
                       });
+                      /*
                       mlistbloc.add(
                         listbloc.getListData(
                           entitytype: widget.entitytype,
@@ -233,6 +253,8 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
                           // isStaff: isStaff,
                         ),
                       );
+
+                       */
                     },
                     value: isStaff,
                   ),

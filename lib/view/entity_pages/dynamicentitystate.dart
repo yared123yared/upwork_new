@@ -396,7 +396,7 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.sessionTerm);
     panelmem.add(DynamicEntityGridState.caseView);
     panelmem.add(DynamicEntityGridState.schoolbuilding);
-
+    panelmem.add(DynamicEntityGridState.newteacherassignment);
     return panelmem;
   }
 
@@ -1030,7 +1030,7 @@ class UiSchoolHandler {
                     builder: (buildContext) => ServiceModelListList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      originlist: 1,
+                      originlist: 1,residentunits:null,curuserid:null
                     ),
                   ));
             });
@@ -1048,7 +1048,7 @@ class UiSchoolHandler {
                     builder: (buildContext) => ServiceModelListList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      originlist: 2,
+                      originlist: 2,residentunits:null,curuserid:_userRepository.getUser().userID
                     ),
                   ));
             });
@@ -1066,7 +1066,7 @@ class UiSchoolHandler {
                     builder: (buildContext) => ServiceModelListList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      originlist: 3,
+                      originlist: 3,residentunits:_userRepository.getUser().defaultComplexEntity.residentunits,curuserid:null
                     ),
                   ));
             });

@@ -10,9 +10,11 @@ class getListData extends ServiceRequestModelListEvent {
   final String entityid;
   final String entitytype;
   final int originType;
-  getListData({@required this.entityid, @required this.entitytype, @required this.originType});
+  final List<String> residentunitlist;
+  final String userid;
+  getListData({@required this.entityid, @required this.entitytype, @required this.originType, @required this.residentunitlist, @required this.userid});
   @override
-  List<Object> get props => [entityid, entitytype, originType];
+  List<Object> get props => [entityid, entitytype, originType,residentunitlist,userid];
 }
 class getPreData extends ServiceRequestModelListEvent {
   final String entityid;

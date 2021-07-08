@@ -1,5 +1,6 @@
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
+import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -58,8 +59,8 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now();
 
-  List<UnitModel> units;
-  List<StaffModelx> stafflist;
+  List<String> units;
+  List<SchoolOwner> stafflist;
   List<BuildingModel> buildinglist;
 
   bool isStaff;
@@ -84,7 +85,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
   bool enabled = true;
 
 
-  StaffModelx staff;
+  SchoolOwner staff;
 
   itembloc.ServiceRequestModelBloc mbloc;
 /* 
@@ -133,11 +134,11 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
       String id = widget.serviceRequestModel.forstaffid;
       // if the user is owner/resident stafflist wont be loaded
       if (id != null && stafflist != null)
-        staff = stafflist.firstWhere((element) => id == element.staffID);
+        staff = stafflist.firstWhere((element) => id == element.id);
 
       Future.delayed(Duration(milliseconds: 80), () {
         _name.text = widget.serviceRequestModel.correspondingName;
-        _staffController.text = staff?.name;
+        _staffController.text = staff?.display;
         _notes.text = widget.serviceRequestModel.notesInstructions;
         _unitAddress.text = widget.serviceRequestModel.unitId;
         _serviceProviderId.text = widget.serviceRequestModel.serviceProviderId;
@@ -246,12 +247,12 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     onChange: (value) => setState(() => _isStaff = value),
                   ),
                 if (_isStaff)
-                  CustomDropDownList<StaffModelx>(
+                  CustomDropDownList<SchoolOwner>(
                     title: "Staff Member",
                     loadData: () async => stafflist,
-                    displayName: (data) => "${data?.name}",
+                    displayName: (data) => "${data?.display}",
                     controller: _staffController,
-                    initialValue: staff?.name,
+                    initialValue: staff?.display,
                     validate: Validate.withOption(isRequired: true),
                     onSelected: (value, index) => staff = value,
                   ),
@@ -298,8 +299,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     enabled: enabled,
                     controller: _unitAddress,
                     initialValue: widget?.serviceRequestModel?.unitId,
-                    loadData: () async =>
-                        units.map((unit) => unit.unitID).toList(),
+                    loadData: () async =>   units,
                     displayName: (x) => x,
                     validate: Validate.withOption(
                       isRequired: true,
@@ -367,8 +367,8 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                       requestType: ServiceRequestType.GATEPASS,
                       notesInstructions: _notes.text,
                       forstaff: _isStaff,
-                      forstaffid: staff?.staffID,
-                      forstaffname: staff?.name,
+                      forstaffid: staff?.id,
+                      forstaffname: staff?.display,
                       requestedDate: DateTime.now(),
                       requesterType: _requestType.text,
                       startDate:

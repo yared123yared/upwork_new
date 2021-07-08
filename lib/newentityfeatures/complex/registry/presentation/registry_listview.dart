@@ -343,8 +343,8 @@ class _RegistryListListState extends State<RegistryListList> {
                         .toList(),
                     onSelected: (value, index) {
                       setState(() {
-                        floors = List.generate(
-                            buildings[index].numfloor + 1, (index) => index);
+                        floors = buildings[index].numfloor !=null ? List.generate(
+                            buildings[index].numfloor + 1, (index) => index) :[];
                         _building.text = value;
                         // floors = blist[value].keys.toList();
                       });

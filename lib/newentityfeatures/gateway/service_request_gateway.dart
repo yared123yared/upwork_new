@@ -158,13 +158,14 @@ class ServiceRequestGateway {
   }
 
   static Future<List<ServiceRequestModel>> getAllActiveServiceRequestList(
-      {@required String entitytype, String entityid}) async {
+      {@required String entitytype, @required String entityid}) async {
     DateTime now = new DateTime.now();
     DateTime date = new DateTime(now.year, now.month, now.day);
 
+    String mycol ="${entitytype}/${entityid}/SERVICEREQUESTS";
     return await FirebaseFirestore.instance
-        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
-        .where("endDate",isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
+        .collection(mycol)
+        .where("enddate",isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
         .get()
         .then((x) {
       return ServiceRequestModel.listFromJson(
@@ -180,10 +181,11 @@ class ServiceRequestGateway {
       @required List<String> residentunitlist}) async {
     DateTime now = new DateTime.now();
     DateTime date = new DateTime(now.year, now.month, now.day);
+    String mycol ="${entitytype}/${entityid}/SERVICEREQUESTS";
     return await FirebaseFirestore.instance
-        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+        .collection(mycol)
         .where("unitId", whereIn: residentunitlist)
-        .where("endDate",isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
+        .where("enddate",isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
         .get()
         .then((x) {
       return ServiceRequestModel.listFromJson(
@@ -199,11 +201,11 @@ class ServiceRequestGateway {
       @required String um}) async {
     DateTime now = new DateTime.now();
     DateTime date = new DateTime(now.year, now.month, now.day);
-
+    String mycol ="${entitytype}/${entityid}/SERVICEREQUESTS";
     return await FirebaseFirestore.instance
-        .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+        .collection(mycol)
         .where("forstaffid", isEqualTo: um)
-        .where("endDate",isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
+        .where("enddate",isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
         .get()
         .then((x) {
       return ServiceRequestModel.listFromJson(
@@ -252,8 +254,9 @@ class ServiceRequestGateway {
     @required String qrCodeID,
   }) async {
     try {
+      String mycol ="${entitytype}/${entityid}/SERVICEREQUESTS";
       return await FirebaseFirestore.instance
-          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+          .collection(mycol)
           .where("generatedqrcode", isEqualTo: qrCodeID)
           .get()
           .then((x) {
@@ -274,8 +277,9 @@ class ServiceRequestGateway {
     @required ServiceRequestModel serviceRequest,
   }) async {
     try {
+      String mycol ="${entitytype}/${entityid}/SERVICEREQUESTS";
       return await FirebaseFirestore.instance
-          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+          .collection(mycol)
           .doc(serviceRequest.requestID)
           .delete();
     } catch (e) {
@@ -289,8 +293,9 @@ class ServiceRequestGateway {
       @required String entitytype,
       String entityid}) async {
     try {
+      String mycol ="${entitytype}/${entityid}/SERVICEREQUESTS";
       return await FirebaseFirestore.instance
-          .collection("$entitytype/$entitytype/SERVICEREQUESTS")
+          .collection(mycol)
           .where('generatedqrcode', isEqualTo: code)
           .get()
           .then((x) {
