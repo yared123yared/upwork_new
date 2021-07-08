@@ -1,6 +1,6 @@
 import 'package:complex/common/widgets/custom_action_button.dart';
 //
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/data/data.dart';
 import 'package:complex/newentityfeatures/Models/user_registration_model.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../listbloc/bloc.dart' as listbloc;
 import './student_basic_form.dart';
@@ -197,9 +198,7 @@ class _StudentBasicFormModelListListState
             }
 
             if (state is listbloc.IsDeleted) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is deleted"),
-              ));
+              EasyLoading.showSuccess("Item Deleted");
               doreload(true);
             }
 
@@ -305,9 +304,7 @@ class _StudentBasicFormModelListListState
                     if (_guardianPhone.text.isEmpty &&
                         _phone.text.isEmpty &&
                         _card.text.isEmpty) {
-                      asuka.showSnackBar(
-                        SnackBar(content: Text("Please enter one item")),
-                      );
+                      EasyLoading.showError("Please enter one item");
                       return;
                     }
 
