@@ -16,7 +16,7 @@ import 'package:complex/data/models/response/user_response/user_model.dart';
 
 class ComplexStaffGateway {
   static Future<List<StaffModelx>> getStaffList(
-      {@required String entitytype,@required String entityid}) async {
+      {@required String entitytype, @required String entityid}) async {
     try {
       return await FirebaseFirestore.instance
           .collection("${entitytype}/${entityid}/STAFF")
@@ -33,41 +33,38 @@ class ComplexStaffGateway {
     }
   }
 
-
   static Future<List<SchoolOwner>> getListOfAllStaff({
-
     @required String entitytype,
     @required String entityid,
   }) async {
+    final HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
+    print("CloudFunction " + "end");
+    dynamic resp = await callable.call(<String, dynamic>{
+      "entitytype": entitytype,
+      "entityid": entityid,
+      "qtype": "allstaff",
+    });
 
-      final HttpsCallable callable =
-      FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
-      print("CloudFunction " + "end");
-      dynamic resp = await callable.call(<String, dynamic>{
-        "entitytype": entitytype,
-        "entityid": entityid,
-        "qtype": "allstaff",
+    List<SchoolOwner> rm = [];
+    Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
+    if (mdata['error'] != null) return rm;
+    rm = <SchoolOwner>[];
+    mdata['lm'].forEach((j) {
+      rm.add(SchoolOwner.fromData(Map<String, dynamic>.from(j)));
+    });
 
-      });
+    //for(dynamic d in mdata['lm'])
+    //  rm.add(SchoolOwner.fromData(d));
 
-      List<SchoolOwner> rm = [];
-      Map<String, dynamic> mdata = Map<String, dynamic>.from(resp.data);
-      if (mdata['error'] != null) return rm;
-      rm = <SchoolOwner>[];
-      mdata['lm'].forEach((j) {
-        rm.add(SchoolOwner.fromData(Map<String, dynamic>.from(j)));
-      });
-
-      //for(dynamic d in mdata['lm'])
-      //  rm.add(SchoolOwner.fromData(d));
-
-      return rm;
-
+    return rm;
   }
 
-
   static Future<void> newStaffRequest(
-      {@required String entitytype,@required String entityid,StaffModelx staffModel, ComplexModel complexModel}) async {
+      {@required String entitytype,
+      @required String entityid,
+      StaffModelx staffModel,
+      ComplexModel complexModel}) async {
     try {
       SignUpRequest _signUpModel = SignUpRequest(
           password: "secretPassword",
@@ -107,10 +104,11 @@ class ComplexStaffGateway {
     }
   }
 
-  static Future<void> updateStaffRequest({@required String entitytype,@required String entityid,
+  static Future<void> updateStaffRequest(
+      {@required String entitytype,
+      @required String entityid,
       @required StaffModelx oldStaff,
       @required StaffModelx newStaff,
-
       @required UserModel userModel}) async {
     try {
       final HttpsCallable callable = FirebaseFunctions.instance
@@ -130,8 +128,10 @@ class ComplexStaffGateway {
     }
   }
 
-  static Future<dynamic> deleteStaffRequest({@required String entitytype,@required String entityid, @required StaffModelx staffModel,
-
+  static Future<dynamic> deleteStaffRequest(
+      {@required String entitytype,
+      @required String entityid,
+      @required StaffModelx staffModel,
       @required UserModel userModel}) async {
     final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
       'StaffDeleteRequestModified',

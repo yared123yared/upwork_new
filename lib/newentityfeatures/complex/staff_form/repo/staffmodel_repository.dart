@@ -104,13 +104,11 @@ class StaffModelRepository {
     return grerror;
   }
 
-  Future<StaffModelRepositoryReturnData> createStaffModel({
-      StaffModelx item, String entitytype, String entityid}) async {
+  Future<StaffModelRepositoryReturnData> createStaffModel(
+      {StaffModelx item, String entitytype, String entityid}) async {
     StaffModelRepositoryReturnData myreturn = StaffModelRepositoryReturnData();
     await _complexRepository.addNewStaff(
-      staffModel: item,
-        entitytype: entitytype,entityid:entityid
-    );
+        staffModel: item, entitytype: entitytype, entityid: entityid);
     myreturn.errortype = -1;
     return myreturn;
   }
@@ -120,14 +118,15 @@ class StaffModelRepository {
     return null;
   }
 
-  Future<StaffModelRepositoryReturnData> updateStaffModelWithDiff({
-      StaffModelx newitem,
+  Future<StaffModelRepositoryReturnData> updateStaffModelWithDiff(
+      {StaffModelx newitem,
       StaffModelx olditem,
       String entitytype,
       String entityid}) async {
     StaffModelRepositoryReturnData myreturn = StaffModelRepositoryReturnData();
     await _complexRepository.updateStaff(
-      entitytype: entitytype,entityid:entityid,
+      entitytype: entitytype,
+      entityid: entityid,
       newStaff: newitem,
       oldStaff: olditem,
       user: _user,
@@ -140,7 +139,7 @@ class StaffModelRepository {
       StaffModelx item, String entitytype, String entityid) async {
     StaffModelRepositoryReturnData myreturn = StaffModelRepositoryReturnData();
     await _complexRepository.removeStaff(
-      entitytype: entitytype,entityid:entityid,
+      entitytype: entitytype, entityid: entityid,
       staffModel: item,
       userModel: _user,
       // userModel: userModel,
@@ -152,9 +151,8 @@ class StaffModelRepository {
   Future<StaffModelRepositoryReturnData> getInitialData(
       String entitytype, String entityid) async {
     StaffModelRepositoryReturnData myreturn = StaffModelRepositoryReturnData();
-    myreturn.itemlist = await _complexRepository.getStaffList(
-      complexID: entityid,
-    );
+    myreturn.itemlist = await _complexRepository.getAllStaffList(
+        entityid: entityid, entitytype: entitytype);
     myreturn.errortype = -1;
     return myreturn;
   }

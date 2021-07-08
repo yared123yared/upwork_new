@@ -35,7 +35,7 @@ class _StaffModelListListState extends State<StaffModelListList> {
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     mlistbloc = listbloc.StaffModelListBloc();
-    mlistbloc.add(listbloc.getPreData(
+    mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }
 
@@ -135,7 +135,7 @@ class _StaffModelListListState extends State<StaffModelListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Staff List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.StaffModelListBloc,

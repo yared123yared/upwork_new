@@ -34,7 +34,6 @@ import 'package:complex/newentityfeatures/gateway/registry_gateway.dart';
 import 'package:complex/data/models/response/user_response/user_complex.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 
-
 class NewComplexRepository {
   UnitsRepository units;
   RegistryRepository registry;
@@ -271,52 +270,69 @@ class NewComplexRepository {
     }
   }
 
-
+  Future<List<StaffModelx>> getAllStaffList({
+    @required String entitytype,
+    @required String entityid,
+  }) async {
+    try {
+      return await ComplexStaffGateway.getStaffList(
+          entitytype: entitytype, entityid: entityid);
+    } catch (e) {}
+  }
 
   List<StaffModelx> getStaffList({@required String complexID}) =>
       _staffList[_complexList[complexID].complexID];
 
   Future<void> addNewStaff(
-      {@required String entitytype,@required String entityid, @required StaffModelx staffModel}) async {
+      {@required String entitytype,
+      @required String entityid,
+      @required StaffModelx staffModel}) async {
     try {
       await ComplexStaffGateway.newStaffRequest(
-          staffModel: staffModel, entitytype: entitytype,entityid:entityid);
-
+          staffModel: staffModel, entitytype: entitytype, entityid: entityid);
     } catch (e) {
       print(e);
     }
   }
 
   Future<void> updateStaff(
-      {@required String entitytype,@required String entityid,
+      {@required String entitytype,
+      @required String entityid,
       @required StaffModelx newStaff,
       @required StaffModelx oldStaff,
       @required UserModel user}) async {
     try {
-      await ComplexStaffGateway.updateStaffRequest(oldStaff:oldStaff,newStaff:newStaff,userModel: user,entitytype:entitytype,entityid: entityid );
-
-
+      await ComplexStaffGateway.updateStaffRequest(
+          oldStaff: oldStaff,
+          newStaff: newStaff,
+          userModel: user,
+          entitytype: entitytype,
+          entityid: entityid);
     } catch (e) {
       print(e);
     }
   }
 
-   Future<OccupiedUnitLookupModel> getOccupiedUnits(
+  Future<OccupiedUnitLookupModel> getOccupiedUnits(
       {@required String entitytype, String entityid}) async {
-
-    List<String>data=  await ComplexGateway.getOccupiedUnits(entitytype: entitytype,entityid:entityid);
-    OccupiedUnitLookupModel oul = OccupiedUnitLookupModel.generteUnitLookup(data);
+    List<String> data = await ComplexGateway.getOccupiedUnits(
+        entitytype: entitytype, entityid: entityid);
+    OccupiedUnitLookupModel oul =
+        OccupiedUnitLookupModel.generteUnitLookup(data);
     return oul;
   }
 
-
   Future<dynamic> removeStaff(
-      {@required String entitytype,@required String entityid,
+      {@required String entitytype,
+      @required String entityid,
       @required StaffModelx staffModel,
       @required UserModel userModel}) async {
     try {
-      final response = await ComplexStaffGateway.deleteStaffRequest(staffModel: staffModel,userModel: userModel,
-          entitytype:entitytype,entityid: entityid);
+      final response = await ComplexStaffGateway.deleteStaffRequest(
+          staffModel: staffModel,
+          userModel: userModel,
+          entitytype: entitytype,
+          entityid: entityid);
       //print('responseeeee ${response['id']}');
 
       return response;
@@ -449,9 +465,7 @@ class NewComplexRepository {
   }
 
   Future<List<ServiceRequestModel>> getServiceRequestStaffSelf(
-      {@required String entitytype,
-      String entityid,
-      String  userid}) async {
+      {@required String entitytype, String entityid, String userid}) async {
     try {
       List<ServiceRequestModel> mylist = [];
       mylist = await ServiceRequestGateway.getServiceRequestStaffSelf(
@@ -466,11 +480,14 @@ class NewComplexRepository {
   Future<List<ServiceRequestModel>> getAllServiceRequestModelsForListOfUnits(
       {@required String entitytype,
       String entityid,
-        List<String> residentunitlist}) async {
+      List<String> residentunitlist}) async {
     try {
       List<ServiceRequestModel> mylist = [];
-      mylist = await ServiceRequestGateway.getAllServiceRequestModelsForListOfUnits(
-          entitytype: entitytype, entityid: entityid, residentunitlist: residentunitlist);
+      mylist =
+          await ServiceRequestGateway.getAllServiceRequestModelsForListOfUnits(
+              entitytype: entitytype,
+              entityid: entityid,
+              residentunitlist: residentunitlist);
       return mylist;
     } catch (e) {
       print(e);
