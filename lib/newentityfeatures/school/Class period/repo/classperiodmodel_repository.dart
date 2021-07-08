@@ -176,14 +176,15 @@ class ClassPeriodModelRepository {
       String entitytype, String entityid) async {
     ClassPeriodModelRepositoryReturnData myreturn =
         ClassPeriodModelRepositoryReturnData();
-    if (_schoolRepo.getClassPeriodInfoList(serviceID: entityid) == null ||
-        _schoolRepo.getClassPeriodInfoList(serviceID: entityid).length == 0) {
-      await _schoolRepo.setClassPeriodList(serviceID: entityid);
-    }
+    // if (_schoolRepo.getClassPeriodInfoList(serviceID: entityid) == null ||
+    //     _schoolRepo.getClassPeriodInfoList(serviceID: entityid).length == 0) {
+    await _schoolRepo.setClassPeriodList(serviceID: entityid);
+    // }
 
     List<ClassPeriodInfo> list = _schoolRepo.getClassPeriodInfoList(
       serviceID: entityid,
     );
+
     myreturn.errortype = -1;
     myreturn.itemlist = list;
     return myreturn;
