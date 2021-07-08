@@ -11,6 +11,7 @@ import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/Models/user_registration_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+import 'package:logger/logger.dart';
 
 class StudentBasicFormModelRepositoryReturnData {
   List<UserRegistrationModel> itemlist;
@@ -145,12 +146,13 @@ class StudentBasicFormModelRepository {
 
     if (item.email != null) {
       SignUpRequest _signUpModel3 = SignUpRequest(
-        email: item.email,
-        username: item.name,
-        phoneNum: null,
-        password: "defultPassword",requestType: "CHECKANDCREATE"
-      );
-      gr = await authrepository.createUserForRequest_for(request: _signUpModel3);
+          email: item.email,
+          username: item.name,
+          phoneNum: null,
+          password: "defultPassword",
+          requestType: "CHECKANDCREATE");
+      gr =
+          await authrepository.createUserForRequest_for(request: _signUpModel3);
       if (gr.success) appuserid = gr.userid;
     }
 
@@ -229,6 +231,7 @@ class StudentBasicFormModelRepository {
           user.guardian1phone == phone ||
           user.guardian2phone == phone) {
         filteredUsers.add(user);
+        Logger().i(user);
       }
     });
 /* 

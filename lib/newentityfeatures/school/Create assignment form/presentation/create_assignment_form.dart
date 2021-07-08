@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 import 'package:complex/common/presentation.dart';
@@ -12,7 +13,7 @@ import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/newentityfeatures/Models/assignment_model.dart';
 
 import '../itembloc/bloc.dart';
@@ -263,9 +264,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
         body: BlocListener<CreateAssignmentBloc, CreateAssignmentState>(
           listener: (context, state) {
             if (state is IsSaved) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is Created/Saved"),
-              ));
+              EasyLoading.showSuccess("Item is Created/Saved");
               widget.givenreloadaction(true);
               Navigator.of(context).pop(false);
             }
@@ -527,20 +526,18 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
 
                   if (_assignmentModel.questions.length == 0) {
                     FocusScope.of(context).unfocus();
-                    asuka.showSnackBar(
-                      SnackBar(
-                        content: Text(
-                            "The widget.assignmentModel have no questions inside it"),
-                      ),
-                    );
+                    EasyLoading.showInfo(
+                        "The widget.assignmentModel have no questions inside it");
+
                     return;
                   }
-                  BlocProvider.of<CreateAssignmentBloc>(context).add(
-                    publishItem(
-                      item: _assignmentModel,
-                      entityid: widget.entityid,
-                    ),
-                  );
+                  if (_isPublished)
+                    BlocProvider.of<CreateAssignmentBloc>(context).add(
+                      publishItem(
+                        item: _assignmentModel,
+                        entityid: widget.entityid,
+                      ),
+                    );
                   // BlocProvider.of<SchoolBloc>(context).add(
                   //   PublishAssignmentSchoolEvent(
                   //     asssignment: _assignmentModel,
@@ -584,7 +581,15 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
                         entitytype: widget.entitytype,
                       ),
                     );
-                  } else {
+                  }
+                  if (_isPublished)
+                    BlocProvider.of<CreateAssignmentBloc>(context).add(
+                      publishItem(
+                        item: _assignmentModel,
+                        entityid: widget.entityid,
+                      ),
+                    );
+                  else {
                     print("testing assignment ${assignmentModel.basicInfo}");
                     BlocProvider.of<CreateAssignmentBloc>(context).add(
                       createItem(
