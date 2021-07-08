@@ -73,7 +73,13 @@ class ClassPeriodModelRepository {
       String type;
       List<ClassPeriodInfo> items =
           _schoolRepo.getClassPeriodInfoList(serviceID: entityid);
-      List<String> types = items?.map((e) => e.type)?.toList() ?? [];
+
+      List<String> types = [];
+      items.forEach((item) {
+        if (!types.contains(item.type)) {
+          types.add(item.type);
+        }
+      });
 
       List<PaymentPeriodInfo> paymentPeriods =
           await _schoolRepo.lookup.getPaymentPeriodInfoList(
