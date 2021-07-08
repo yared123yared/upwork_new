@@ -100,7 +100,7 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
   void _initFiledValue() {
     if (_complexModel != null) {
       staffRoleList = _complexModel.roles.contains(EntityRoles.Manager)
-          ? ["staff", "security", "maid", 'manager']
+          ? ["staff", "security", "maid", 'manager', 'instructor']
           : ["staff", "security", "maid"];
     } else {
       staffRoleList = ["staff", "security", "maid"];
@@ -174,14 +174,12 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
 
       return Validate.validateAll([_selectRole, _timeInterval, _uploadPhoto]);
     } else if (i == 3) {
-
       return Validate.validateAll([
         _education,
         _basicBio,
         _category,
       ]);
     } else if (i == 4) {
-
       return Validate.validateAll([
         _sickLeaves,
         _casualLeaves,
@@ -214,7 +212,7 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Staff Form'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.StaffModelBloc, itembloc.StaffModelState>(
@@ -497,12 +495,8 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
             initialValue: widget.staffModel?.category,
             title: "Category",
             controller: _category,
-            loadData: () async => [
-              "gardener",
-              "driver",
-              "maid",
-              "manager",
-            ],
+            loadData: () async =>
+                ["gardener", "driver", "maid", "manager", "instructor"],
             displayName: (x) => x,
             validate: Validate.withOption(
               isRequired: true,

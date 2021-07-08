@@ -164,7 +164,7 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Class Period'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.ClassPeriodModelBloc,

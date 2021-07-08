@@ -198,7 +198,6 @@ enum DynamicEntityGridState {
   newdelivery,
   newdeliverytrip,
   newvenodr
-
 }
 
 class UiEntityPageStateList {
@@ -1036,10 +1035,11 @@ class UiSchoolHandler {
                   context,
                   MaterialPageRoute(
                     builder: (buildContext) => ServiceModelListList(
-                      entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,
-                      originlist: 1,residentunits:null,curuserid:null
-                    ),
+                        entitytype: getCurEntity().entitytype,
+                        entityid: getCurEntity().entityid,
+                        originlist: 1,
+                        residentunits: null,
+                        curuserid: null),
                   ));
             });
         break;
@@ -1054,10 +1054,11 @@ class UiSchoolHandler {
                   context,
                   MaterialPageRoute(
                     builder: (buildContext) => ServiceModelListList(
-                      entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,
-                      originlist: 2,residentunits:null,curuserid:_userRepository.getUser().userID
-                    ),
+                        entitytype: getCurEntity().entitytype,
+                        entityid: getCurEntity().entityid,
+                        originlist: 2,
+                        residentunits: null,
+                        curuserid: _userRepository.getUser().userID),
                   ));
             });
         break;
@@ -1072,10 +1073,14 @@ class UiSchoolHandler {
                   context,
                   MaterialPageRoute(
                     builder: (buildContext) => ServiceModelListList(
-                      entitytype: getCurEntity().entitytype,
-                      entityid: getCurEntity().entityid,
-                      originlist: 3,residentunits:_userRepository.getUser().defaultComplexEntity.residentunits,curuserid:null
-                    ),
+                        entitytype: getCurEntity().entitytype,
+                        entityid: getCurEntity().entityid,
+                        originlist: 3,
+                        residentunits: _userRepository
+                            .getUser()
+                            .defaultComplexEntity
+                            .residentunits,
+                        curuserid: null),
                   ));
             });
         break;
