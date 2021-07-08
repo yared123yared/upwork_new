@@ -54,6 +54,7 @@ class IsReadyForDetailsPage extends OfferingWeeklyScheduleState {
     @required this.rooms,
     @required this.schoolOwner,
     @required this.periods,
+    @required this.getAssignmentsWithGrade,
   });
 
   final String detailstype; //create or update
@@ -67,6 +68,8 @@ class IsReadyForDetailsPage extends OfferingWeeklyScheduleState {
   final List<String> rooms;
   final List<SchoolOwner> schoolOwner;
   final List<ClassPeriodInfo> periods;
+  final Future<List<TeacherOfferingsAssignment>> Function(String)
+      getAssignmentsWithGrade;
 
   @override
   List<Object> get props => [
@@ -80,5 +83,6 @@ class IsReadyForDetailsPage extends OfferingWeeklyScheduleState {
         rooms,
         schoolOwner,
         periods,
+        getAssignmentsWithGrade,
       ];
 }
