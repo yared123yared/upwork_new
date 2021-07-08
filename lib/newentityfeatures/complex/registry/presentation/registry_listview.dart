@@ -1,4 +1,4 @@
-import "package:asuka/asuka.dart" as asuka;
+// import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/widgets/custom_action_button.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 import 'package:complex/data/data.dart';
@@ -6,11 +6,13 @@ import 'package:complex/data/models/response/user_response/residential_unit.dart
 import 'package:complex/newentityfeatures/Models/building_model.dart';
 import 'package:complex/newentityfeatures/Models/common/button_state.dart';
 import 'package:complex/newentityfeatures/Models/registry_model.dart';
+import 'package:complex/newentityfeatures/complex/registry/presentation/registry_expandable_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../listbloc/bloc.dart' as listbloc;
 import 'package:complex/newentityfeatures/Models/registry_model.dart' as cmodel;
@@ -225,9 +227,7 @@ class _RegistryListListState extends State<RegistryListList> {
         body: BlocListener<listbloc.RegistryModelListBloc,
             listbloc.RegistryModelListState>(listener: (context, state) {
           if (state is listbloc.IsDeleted) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is deleted"),
-            ));
+            EasyLoading.showSuccess('Item is deleted');
             doreload(true);
           }
           if (state is listbloc.IsListDataLoaded) {
@@ -281,22 +281,6 @@ class _RegistryListListState extends State<RegistryListList> {
                 if (!buildings.contains(building)) {
                   buildings.add(building);
                 }
-/* 
-                List<BuildingModel> innerList = [];
-
-                // We check if we recently added a building into the same building. If we did, we set innerList to that building.
-                if (blist.containsKey(building.buildingName)) {
-                  print(
-                      "l: ${blist[building.buildingName][building.numfloor]}");
-                  innerList =
-                      blist[building.buildingName]?.values?.toList()?.first;
-                }
-
-                innerList?.add(building);
-
-                blist[building.buildingName] = {
-                  building.buildingName: innerList,
-                }; */
               });
             }
 
@@ -307,8 +291,6 @@ class _RegistryListListState extends State<RegistryListList> {
         floatingActionButton: widget.origintype == 1 ||
                 widget.origintype == 2 ||
                 (widget.origintype == 3 && isOwner)
-            // (buildingType == "Multi Owner" && roles.contains('owner')) ||
-            //         (roles.contains('manager'))
             ? FloatingActionButton.extended(
                 onPressed: () async {
                   addButtonActions(context: context);
@@ -343,7 +325,7 @@ class _RegistryListListState extends State<RegistryListList> {
                     setState(() {
                       // floors = blist[value].keys.toList();
                       floors = List.generate(
-                          buildings[index].numfloor+1, (index) => index);
+                          buildings[index].numfloor + 1, (index) => index);
                     });
                   },
                 ),
@@ -358,12 +340,9 @@ class _RegistryListListState extends State<RegistryListList> {
                   gradient: C.bgGradient,
                   onTap: () {
                     if (_floor.text.isEmpty || _building.text.isEmpty) {
-                      asuka.showSnackBar(
-                        SnackBar(
-                            content: Text(
-                                "Please fill the parameters to do the search")),
-                      );
-                      return;
+                      EasyLoading.showToast(
+                          "Please fill the parameters to do the search",
+                          duration: Duration(seconds: 1));
                     }
                     if (widget.origintype == 1 || widget.origintype == 2) {
                       BlocProvider.of<listbloc.RegistryModelListBloc>(context)
@@ -376,7 +355,6 @@ class _RegistryListListState extends State<RegistryListList> {
                           floorNum: int.parse(_floor.text),
                         ),
                       );
-                      // } else if (widget.origintype == 3) {
                     } else if (widget.origintype == 4) {
                       BlocProvider.of<listbloc.RegistryModelListBloc>(context)
                           .add(
@@ -395,65 +373,24 @@ class _RegistryListListState extends State<RegistryListList> {
             ),
           ),
         ),
-        // SliverList(
-        //   delegate: SliverChildListDelegate(
-        //     list.entries
-        //         .map<Widget>(
-        //           (e) => ExpansionTile(
-        //             title: Text(
-        //               "Building: ${e.key}",
-        //               style: TextStyle(
-        //                 fontFamily: 'Merriweather',
-        //                 fontWeight: FontWeight.w700,
-        //                 fontSize: width * 6,
-        //                 color: C.secondaryTextBlue,
-        //               ),
-        //             ),
-        //             children: e.value.entries
-        //                 .map<Widget>(
-        //                   (floor) => ExpansionTile(
-        //                     title: Text(
-        //                       "Floor: ${floor.key}",
-        //                       style: TextStyle(
-        //                         fontFamily: 'Merriweather',
-        //                         fontWeight: FontWeight.w700,
-        //                         fontSize: width * 6,
-        //                         color: C.secondaryTextBlue,
-        //                       ),
-        //                     ),
-        //                     children: [
-        //                       CommonListPage(
-        //                         canSearch: false,
-        //                         updateAction: null,
-        //                         appBarTitle: "Class Period List",
-        //                         dynamicListState: "Class Period List",
-        //                         listItems: em != null
-        //                             ? toCommonListState(
-        //                                 floor.value.toList(),
-        //                                 context,
-        //                               )
-        //                             : [],
-        //                       ),
-        //                     ],
-        //                     initiallyExpanded: floor.key == e.value.keys.first,
-        //                   ),
-        //                 )
-        //                 .toList(),
-        //             initiallyExpanded: e.key == list.keys.first,
-        //           ),
-        //         )
-        //         .toList(),
-        //   ),
-        // )
-
-        SliverToBoxAdapter(
-            child: CommonListPage(
-                canSearch: false,
-                updateAction: null,
-                appBarTitle: "Registry",
-                dynamicListState: "Registry",
-                listItems:
-                    em != null ? toCommonListState(em, context) : Container())),
+        // SliverToBoxAdapter(
+        //     child: CommonListPage(
+        //         canSearch: false,
+        //         updateAction: null,
+        //         appBarTitle: "Registry",
+        //         dynamicListState: "Registry",
+        //         listItems:
+        //             em != null ? toCommonListState(em, context) : Container())),
+        if (em.isNotEmpty)
+          SliverToBoxAdapter(
+            child: ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: em.length,
+                itemBuilder: (context, index) => RegistryExpandableTile(
+                      registryModel: em[index],
+                    )),
+          )
       ],
     );
   }
