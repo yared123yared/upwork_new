@@ -9,6 +9,7 @@ import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
 import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/helputil.dart' hide DateTimeMode;
+import 'package:logger/logger.dart';
 
 import '../itembloc/bloc.dart' as itembloc;
 
@@ -175,7 +176,7 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('payment period'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.PaymentModelBloc,
@@ -428,6 +429,14 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
   }
 
   Widget buildPeriodInfoInput(int i) {
+    int daysBetween(DateTime from, DateTime to) {
+      from = DateTime(from.year, from.month, from.day);
+      to = DateTime(to.year, to.month, to.day);
+      return (to.difference(from).inHours / 24).round();
+    }
+
+    String numDays;
+
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: width * 6),
       child: Column(
@@ -460,7 +469,13 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
             dateTime: periodInfoList[i].endDate,
             title: 'End Date',
             mode: DateTimeMode.DATE,
-            onChange: (x) => endDates[i] = x,
+            onChange: (x) {
+              endDates[i] = x;
+              int duration = daysBetween(startDates[i], endDates[i]);
+              Logger().i(duration);
+              numDays = duration.toString();
+              controllers[i][1].text = numDays;
+            },
           ),
           CustomDateTimePicker(
             // controller: _dueDateController,
@@ -472,7 +487,7 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
             onChange: (x) => dueDates[i] = x,
           ),
           CustomTextField(
-            enabled: editable,
+            enabled: false,
             title: "Number Of Days",
             initialValue: periodInfoList[i].numDays.toString(),
             // onChange: (text) => periodInfoList[i].numDays = int.tryParse(text),
