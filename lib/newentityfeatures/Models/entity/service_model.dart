@@ -451,6 +451,7 @@
 //   }
 // }
 
+import 'package:complex/common/helputil.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
@@ -1148,7 +1149,7 @@ class ServiceModel extends Equatable {
     category = json['category'];
     email = json['email'];
     endDate = json['enddate'] is int
-        ? CommonUIHandler.toDate(timestamp: json['enddate'])
+        ? HelpUtil.toDate(timestamp: json['enddate'])
         : DateTime.now();
     extraCost = json['extracost'];
     geoHash = json['geohash'].toString();
@@ -1185,7 +1186,7 @@ class ServiceModel extends Equatable {
     serverSideTimeStamp = json['serversidetimestamp'];
     serviceName = json['servicename'];
     startDate = json['startdate'] is int
-        ? CommonUIHandler.toDate(timestamp: json['startdate'])
+        ? HelpUtil.toDate(timestamp: json['startdate'])
         : DateTime.now();
     state = json['state'];
     town = json['town'];
@@ -1280,7 +1281,7 @@ class ServiceModel extends Equatable {
     json['category'] = this.category;
     json['email'] = this.email;
     json['createdby'] = this.createdBy;
-    json['enddate'] = CommonUIHandler.toTimeStamp(dateTime: this.endDate);
+    json['enddate'] = HelpUtil.toTimeStamp(dateTime: this.endDate);
     json['extracost'] = this.extraCost;
     //json['geohash'] = this.geoHash;
     json['idrunningnumber'] = this.idRunningNumber;
@@ -1306,7 +1307,7 @@ class ServiceModel extends Equatable {
     json['routerunningnumber'] = this.routerRunningNumber;
     json['servicename'] = this.serviceName;
     json['servicetype'] = this.serviceType;
-    json['startdate'] = CommonUIHandler.toTimeStamp(dateTime: this.startDate);
+    json['startdate'] = HelpUtil.toTimeStamp(dateTime: this.startDate);
     json['state'] = this.state;
     json['town'] = this.town;
     json['tripidrunningnumber'] = this.tripIdRunningNumber;

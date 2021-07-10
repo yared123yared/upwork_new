@@ -713,6 +713,7 @@ class UiEntityPageStateList {
     DynamicEntityPageState.SecurityPanel,
     DynamicEntityPageState.EcomPanel,
     DynamicEntityPageState.brokerpanel,
+    DynamicEntityPageState.EndUser,
     //DynamicEntityPageState.AptPanel,
     //DynamicEntityPageState.AcademicManager,
     // DynamicEntityPageState.TripManager,

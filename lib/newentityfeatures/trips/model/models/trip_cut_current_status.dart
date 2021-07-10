@@ -1,3 +1,5 @@
+import 'package:complex/common/helputil.dart';
+
 import '../models.dart';
 
 class TripCutCurrentStatus {
@@ -23,7 +25,7 @@ class TripCutCurrentStatus {
     data['long_staff'] = this.staffLong;
     data['tripid'] = this.tripId;
     data['tripstarttime'] =
-        CommonUIHandler.toTimeStamp(dateTime: this.tripStartTime).toInt();
+        HelpUtil.toTimeStamp(dateTime: this.tripStartTime).toInt();
     data['vehicleNumPlate'] = this.vehicleNumPlate;
 
     return data;
@@ -35,7 +37,7 @@ class TripCutCurrentStatus {
     this.staffLong = json['long_staff'];
     this.tripId = json['tripid'];
     this.tripStartTime = json['tripstarttime'] != null
-        ? CommonUIHandler.toDate(timestamp: json['tripstarttime'])
+        ? HelpUtil.toDate(timestamp: json['tripstarttime'])
         : null;
     this.vehicleNumPlate = json['vehicleNumPlate'];
   }

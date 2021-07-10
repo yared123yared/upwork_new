@@ -182,17 +182,22 @@ class ServiceRequestGateway {
     DateTime now = new DateTime.now();
     DateTime date = new DateTime(now.year, now.month, now.day);
     String mycol ="${entitytype}/${entityid}/SERVICEREQUESTS";
-    return await FirebaseFirestore.instance
-        .collection(mycol)
-        .where("unitId", whereIn: residentunitlist)
-        .where("enddate",isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
-        .get()
-        .then((x) {
-      return ServiceRequestModel.listFromJson(
-        x.docs.map((d) => d.data).toList(),
-        x.docs.map((d) => d.id).toList(),
-      );
-    });
+    if(residentunitlist.length >0) {
+      return await FirebaseFirestore.instance
+          .collection(mycol)
+          .where("unitId", whereIn: residentunitlist)
+          .where("enddate",
+          isGreaterThanOrEqualTo: HelpUtil.toTimeStamp(dateTime: date))
+          .get()
+          .then((x) {
+        return ServiceRequestModel.listFromJson(
+          x.docs.map((d) => d.data).toList(),
+          x.docs.map((d) => d.id).toList(),
+        );
+      });
+    }
+    List<ServiceRequestModel>abc = [];
+    return abc;
   }
 
   static Future<List<ServiceRequestModel>> getServiceRequestStaffSelf(

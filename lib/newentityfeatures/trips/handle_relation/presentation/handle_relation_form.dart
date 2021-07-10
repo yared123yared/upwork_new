@@ -76,9 +76,9 @@ class _HandleRelationFormState extends State<HandleRelationForm> {
     Future.delayed(
       Duration(seconds: 0),
       () => _startDateController.text =
-          model.CommonUIHandler.formattedDateToString(
+          HelpUtil.formattedDateToString(
         DateTime.now(),
-        model.DateTimeMode.DATE,
+        DateTimeMode.DATE,
       ),
     );
     Future.delayed(Duration(milliseconds: 0), () {
@@ -280,9 +280,9 @@ class _HandleRelationFormState extends State<HandleRelationForm> {
               DatePicker.showDatePicker(context, onConfirm: (date) {
                 _startDate = date;
                 _startDateController.text =
-                    model.CommonUIHandler.formattedDateToString(
+                    HelpUtil.formattedDateToString(
                   date,
-                  model.DateTimeMode.DATE,
+                  DateTimeMode.DATE,
                 );
               });
               //   BlocProvider.of<DateCubit>(context)
@@ -342,9 +342,9 @@ class _HandleRelationFormState extends State<HandleRelationForm> {
                         timelineIndex++;
                       });
                       DateTime startDate = _startDate ??
-                          model.CommonUIHandler.formattedStringToDate(
+                          HelpUtil.formattedStringToDate(
                             _startDateController.text,
-                            model.DateTimeMode.DATE,
+                            DateTimeMode.DATE,
                           );
                       BlocProvider.of<itembloc.HandleRelationBloc>(context).add(
                         itembloc.RelationsSearchedEvent(

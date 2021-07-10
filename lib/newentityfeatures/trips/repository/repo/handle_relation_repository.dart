@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:complex/common/helputil.dart';
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
@@ -71,7 +72,7 @@ class HandleRelationRepository {
                   'SERVICEPROVIDERINFO/$serviceID/TRIPCUTVEHSTAFFREL/${relation.id}')
               .update({
             'lastcheckindatestaff1':
-                CommonUIHandler.toTimeStamp(dateTime: DateTime.now()).toInt(),
+                HelpUtil.toTimeStamp(dateTime: DateTime.now()).toInt(),
           });
         } else {
           await _firestore
@@ -79,7 +80,7 @@ class HandleRelationRepository {
                   'SERVICEPROVIDERINFO/$serviceID/TRIPCUTVEHSTAFFREL/${relation.id}')
               .update({
             'lastcheckindatestaff2':
-                CommonUIHandler.toTimeStamp(dateTime: DateTime.now()).toInt(),
+                HelpUtil.toTimeStamp(dateTime: DateTime.now()).toInt(),
           });
         }
 
@@ -126,7 +127,7 @@ class HandleRelationRepository {
         'long_staff': position.longitude,
         'tripid': trip.id,
         'tripstarttime':
-            CommonUIHandler.toTimeStamp(dateTime: tripStartTime).toInt(),
+            HelpUtil.toTimeStamp(dateTime: tripStartTime).toInt(),
         'vehplatenum': relation.vehicleModel.numberPlate
       });
     } catch (e) {

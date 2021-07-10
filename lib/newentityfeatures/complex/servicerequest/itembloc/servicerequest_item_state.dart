@@ -47,6 +47,7 @@ class IsReadyForDetailsPage extends ServiceRequestModelState {
     @required this.stafflist,
     @required this.buildinglist,
     @required this.roles,
+    @required this.oul,
   });
 
   final String detailstype; //create or update
@@ -62,6 +63,7 @@ class IsReadyForDetailsPage extends ServiceRequestModelState {
   List stafflist;
   List buildinglist;
   List roles;
+  OccupiedUnitLookupModel oul;
 
   @override
   List<Object> get props => [
@@ -75,6 +77,6 @@ class IsReadyForDetailsPage extends ServiceRequestModelState {
         units,
         stafflist,
         roles,
-        buildinglist,
+        buildinglist,oul
       ];
 }

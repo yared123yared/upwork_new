@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/common/helputil.dart';
 import 'package:flutter/material.dart';
 
 import '../models.dart';
@@ -26,8 +27,8 @@ class TripCut{
       {@required Map<String, dynamic> json, @required String docId}) {
     this.id = docId;
     this.name = json['tripcutname'];
-    this.startDate = CommonUIHandler.toDate(timestamp: json['startdate']);
-    this.endDate = CommonUIHandler.toDate(timestamp: json['enddate']);
+    this.startDate = HelpUtil.toDate(timestamp: json['startdate']);
+    this.endDate = HelpUtil.toDate(timestamp: json['enddate']);
     this.checkInTime = json['checkintime'];
     this.isActive = json['isactive'];
     List<RouteTripModel> trips = [];
@@ -44,9 +45,9 @@ class TripCut{
     Map<String, dynamic> data = {};
     data['tripcutname'] = this.name.toLowerCase();
     data['startdate'] =
-        CommonUIHandler.toTimeStamp(dateTime: this.startDate).toInt();
+        HelpUtil.toTimeStamp(dateTime: this.startDate).toInt();
     data['enddate'] =
-        CommonUIHandler.toTimeStamp(dateTime: this.endDate).toInt();
+        HelpUtil.toTimeStamp(dateTime: this.endDate).toInt();
     data['checkintime'] = this.checkInTime;
     data['isactive'] = this.isActive;
     var routeTrips = List.generate(

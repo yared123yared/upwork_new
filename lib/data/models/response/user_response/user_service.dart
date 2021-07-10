@@ -105,7 +105,7 @@ class UserService {
     }
 
     roles = data['roles'] != null ? data['roles'].cast<String>() : [];
-    roles.add("manager");
+    //roles.add("manager");
     isActive = data['isactive'];
     isEmployee = data['isemployee'];
     isEmployee = true;

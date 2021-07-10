@@ -5,7 +5,7 @@ import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 // import 'package:complex/newentityfeatures/complex/building/model/building_model.dart';
 import 'package:complex/newentityfeatures/Models/building_model.dart';
 
@@ -18,6 +18,7 @@ import 'package:complex/newentityfeatures/Models/unit_model.dart';
 import 'package:complex/newentityfeatures/Models/service_request_model.dart';
 
 import 'package:complex/common/presentation.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../itembloc/bloc.dart' as itembloc;
 import 'package:complex/data/screen_size.dart';
 
@@ -51,7 +52,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
 
   CustomTextFieldController _unitAddress = CustomTextFieldController();
   CustomTextFieldController _name = CustomTextFieldController();
-
+  CustomTextFieldController _phonecontroller = CustomTextFieldController();
   CustomTextFieldController _notes = CustomTextFieldController();
   CustomTextFieldController _staffController = CustomTextFieldController();
   CustomTextFieldController _requestType = CustomTextFieldController();
@@ -61,16 +62,22 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
 
   CustomTextFieldController _building = CustomTextFieldController();
   CustomTextFieldController _floorNum = CustomTextFieldController();
+  CustomTextFieldController _justunitcontroller = CustomTextFieldController();
+  CustomTextFieldController _justresidentorowner = CustomTextFieldController();
+
+
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now();
 
-  List<String> filteredUnits;
+  List<UnitOccupants> filteredUnits;
   List<String> units;
-  Map<String, List<String>> floormap;
+  Map<String, List<int>> floormap;
   Map<String, List<UnitOccupants>> justunits;
   List<SchoolOwner> stafflist;
   List<String> buildinglist;
   List<int> floors = [];
+  UnitOccupants selectedUnitOcupant;
+  List<String> residentownerlist;
 
   // bool isStaff;
   var btnState;
@@ -102,35 +109,77 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
   DateTime _endDate = DateTime(
       DateTime.now().year, DateTime.now().month, DateTime.now().day);
  */
-  List<String> serviceTypes = [
+  List<String> serviceTypesWithOutAdhoc = [
     "VISITOR",
     "HOMEHELP",
     // "ADHOCVISITOR",
     "GATEPASS",
     "DELIVERY",
   ];
+  List<String> serviceTypesWithAdhoc = [
 
+    "ADHOCVISITOR",
+
+  ];
   bool _validate() {
-    return ((_staffController?.isValid ?? false) || !_isStaff) &&
-        // _serviceProviderId.isValid &&
+    return ((_staffController?.isValid ?? false) || !_isStaff) && (_requestType.isValid) && (_requestType.text == "HOMEHELP" ? _phonecontroller.isValid :true)
+
+        && (_requestType.text == "HOMEHELP" || _requestType.text == "ADHOCVISITOR" || _requestType.text =="VISITOR" ? _name.isValid :true) &&
+    // _serviceProviderId.isValid &&
         // _memberId.isValid &&
+          (_isStaff ? _staffController.isValid :true) &&
         _endDateController.isValid &&
-        (_name.isValid || _isStaff) &&
-        (_unitAddress.isValid || _isStaff) &&
+
+        (_isStaff || _unitAddress.isValid ) &&
         _notes.isValid;
   }
 
   void _initFiledValue() {
+
+    if(widget.serviceRequestModel != null)
+      {
+        isrequesttypeenabled=true;
+        isbuildingidenabled=true;
+        isstaffsliderenabled=true;
+        isnameenabled=true;
+        isbuildingenabled=true;
+        isfloorenabled=true;
+        isunitaddressenabled=true;
+        isphonenumenabled=true;
+        isstartdateenabled=true;
+        isendDatedateenabled=true;
+        isnotesenabled=true;
+
+      }
+    else
+      {
+
+        isrequesttypeenabled=false;
+        isbuildingidenabled=false;
+        isstaffsliderenabled=false;
+        isnameenabled=false;
+        isbuildingenabled=false;
+        isfloorenabled=false;
+        isunitaddressenabled=false;
+        isphonenumenabled=false;
+        isstartdateenabled=true;
+        isendDatedateenabled=true;
+        isnotesenabled=true;
+      }
+
     if (widget.origintype == 1) {
       enabled = widget.serviceRequestModel == null ? true : false;
       Future.delayed(Duration(milliseconds: 80), () {
         _requestType.text = "ADHOCVISITOR";
       });
+      haveAccess=false;
     } else if (widget.origintype == 2) {
       _isStaff = true;
+      haveAccess=true;
       // serviceTypes = [];
     } else if (widget.origintype == 3) {
       _isStaff = false;
+      haveAccess=true;
     }
 
     if (widget.serviceRequestModel != null) {
@@ -191,9 +240,8 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
         body: BlocListener<itembloc.ServiceRequestModelBloc,
             itembloc.ServiceRequestModelState>(listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
+
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }
@@ -202,9 +250,10 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
             haveAccess = state.haveAccess;
             user = state.user;
             btnState = state.btnState;
-            units = state.units;
+            justunits = state.oul.justunits;
             stafflist = state.stafflist;
             buildinglist = state.buildinglist;
+            floormap=state.oul.floormap;
 
             _initFiledValue();
           }
@@ -224,7 +273,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
 
           if (state is itembloc.IsReadyForDetailsPage) {
             // isStaff = state.isStaff;
-            haveAccess = state.haveAccess;
+            //haveAccess = state.haveAccess;
             user = state.user;
             btnState = state.btnState;
             units = state.units;
@@ -282,7 +331,6 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     isRequired: true,
                   ),
                 ), */
-                if (!_isStaff)
                   CustomTextField(
                     title: "Name",
                     enabled: enabled,
@@ -293,7 +341,20 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                       isRequired: true,
                     ),
                   ),
-                if (!_isStaff && widget.origintype == 1) ...[
+
+                CustomTextField(
+                  title: "Phone",
+                  enabled: enabled,
+                  initialValue:
+                  widget?.serviceRequestModel?.phone,
+                  controller: _phonecontroller,
+                  validate: Validate.withOption(
+                    isRequired: true,
+                  ),
+                ),
+
+                // this has to be shown only in case of add record
+                if (!_isStaff && widget.origintype == 1 && widget.serviceRequestModel ==null) ...[
                   CustomDropDownList<String>(
                     title: "Building Name",
                     controller: _building,
@@ -306,14 +367,12 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                         floors = [];
                         
                         filteredUnits = [];
-                        floors = floormap[value]
-                            .map((floor) => int.parse(floor))
-                            .toList();
+                        floors =floormap.containsKey(value) ?floormap[value]:[];
                       });
                     },
                   ),
                   CustomDropDownList<int>(
-                    enabled: buildinglist.isNotEmpty,
+                    enabled: _building.text !=null && _building.text.isNotEmpty,
                     loadData: () async => floors,
                     shouldReload: true,
                     displayName: (x) => x.toString(),
@@ -323,20 +382,61 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     onSelected: (floor, index) {
                       setState(() {
                         _floorNum.text = floor.toString();
-                        filteredUnits = [];
-
-                        justunits.keys.toList().forEach((value) {
-                          List<String> units = value.split("@");
-                          if (units[0] == _building.text &&
-                              int.parse(units[1]) == floor) {
-                            filteredUnits.add(value);
+                        String buildingfloor= _building.text + "@" + _floorNum.text;
+                        filteredUnits = justunits.containsKey(buildingfloor)?justunits[buildingfloor]:[];
                           }
-                        });
-                      });
+                        );
                     },
                   ),
+                  CustomDropDownList<UnitOccupants>(
+                    title: "Unit Address",
+                    enabled: _building.text!=null &&_building.text.isNotEmpty && _floorNum!=null && _floorNum.text.isNotEmpty,
+                    controller: _justunitcontroller,
+                    //initialValue: widget?.serviceRequestModel?.unitId,
+                    loadData: () async => filteredUnits ?? units,
+                    displayName: (x) => x.unitaddress,
+                    validate: Validate.withOption(
+                      isRequired: true,
+                    ),
+                onSelected: (value, index) {
+                  setState(() {
+                    selectedUnitOcupant =value;
+                    residentownerlist=[];
+                    if(selectedUnitOcupant.hasowner)
+                      residentownerlist.add("ForOwner");
+
+                    if(selectedUnitOcupant.hasresident)
+                      residentownerlist.add("ForResident");
+
+                  }
+                  );
+                },
+                  ),
+
+                  CustomDropDownList<String>(
+                    title: "Owner/Resident",
+                    enabled: _building.text !=null && _building.text.isNotEmpty && _floorNum.text !=null && _floorNum.text.isNotEmpty && selectedUnitOcupant !=null,
+                    controller: _justresidentorowner,
+                    //initialValue: widget?.serviceRequestModel?.unitId,
+                    loadData: () async => residentownerlist,
+                    displayName: (x) => x,
+                    validate: Validate.withOption(
+                      isRequired: true,
+                    ),
+                    onSelected: (value, index) {
+                      setState(() {
+                        if(value == "ForOwner")
+                            _unitAddress.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_o" ;
+                        if(value == "ForResident")
+                            _unitAddress.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_r" ;
+                      }
+                      );
+                    },
+                  ),
+
+
                 ],
-                if (!_isStaff)
+                if ((widget.origintype == 3 && !_isStaff) || (widget.origintype == 1 && widget.serviceRequestModel !=null && !_isStaff ))
                   CustomDropDownList<String>(
                     title: "Unit Address",
                     enabled: enabled,
@@ -350,13 +450,13 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                   ),
                 CustomDropDownList(
                   title: "Request Type",
-                  enabled: (widget.origintype != 1 &&
-                      widget.serviceRequestModel != null),
+                  enabled: (
+                      widget.serviceRequestModel == null),
                   controller: _requestType,
                   initialValue:
                       widget?.serviceRequestModel?.requestType?.toString() ??
                           "",
-                  loadData: () async => serviceTypes,
+                  loadData: () async =>widget.origintype ==1? serviceTypesWithAdhoc:serviceTypesWithOutAdhoc,
                   displayName: (data) => data,
                   validate: Validate.withOption(
                     isRequired: true,

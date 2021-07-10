@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:complex/common/helputil.dart';
 import 'package:flutter/material.dart';
 
 import '../models.dart';
@@ -42,17 +43,17 @@ class Relation {
     this.staff1 = RegisteredUser.fromJson(json['staff1']);
     this.staff2 = RegisteredUser.fromJson(json['staff2']);
     this.isActive = json['isactive'];
-    this.startDate = CommonUIHandler.toDate(
+    this.startDate = HelpUtil.toDate(
       timestamp: json['startdate'],
     );
-    this.endDate = CommonUIHandler.toDate(timestamp: json['enddate']);
+    this.endDate = HelpUtil.toDate(timestamp: json['enddate']);
     this.name = json['name'];
     this.dayOfWeek = json['dayofweek'];
     this.lastCheckInDateStaff1 = json['lastcheckindatestaff1'] != null
-        ? CommonUIHandler.toDate(timestamp: json['lastcheckindatestaff1'])
+        ? HelpUtil.toDate(timestamp: json['lastcheckindatestaff1'])
         : null;
     this.lastCheckInDateStaff2 = json['lastcheckindatestaff2'] != null
-        ? CommonUIHandler.toDate(timestamp: json['lastcheckindatestaff2'])
+        ? HelpUtil.toDate(timestamp: json['lastcheckindatestaff2'])
         : null;
   }
 
@@ -64,17 +65,17 @@ class Relation {
     data['staff1'] = this.staff1.toJson();
     data['staff2'] = this.staff2.toJson();
     data['startdate'] =
-        CommonUIHandler.toTimeStamp(dateTime: this.startDate).toInt();
+        HelpUtil.toTimeStamp(dateTime: this.startDate).toInt();
     data['enddate'] =
-        CommonUIHandler.toTimeStamp(dateTime: this.endDate).toInt();
+        HelpUtil.toTimeStamp(dateTime: this.endDate).toInt();
     data['name'] = this.name;
     data['dayofweek'] = this.tripCut.dayOfWeek;
     data['lastcheckindatestaff1'] = this.lastCheckInDateStaff1 != null
-        ? CommonUIHandler.toTimeStamp(dateTime: this.lastCheckInDateStaff1)
+        ? HelpUtil.toTimeStamp(dateTime: this.lastCheckInDateStaff1)
             .toInt()
         : null;
     data['lastcheckindatestaff2'] = this.lastCheckInDateStaff2 != null
-        ? CommonUIHandler.toTimeStamp(dateTime: this.lastCheckInDateStaff2)
+        ? HelpUtil.toTimeStamp(dateTime: this.lastCheckInDateStaff2)
             .toInt()
         : null;
     return data;

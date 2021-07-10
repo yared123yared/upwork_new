@@ -1,3 +1,4 @@
+import 'package:complex/common/helputil.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart'
     as model;
 import 'package:complex/newentityfeatures/trips/model/models/route_points.dart';
@@ -88,9 +89,9 @@ class _EndUserListListState extends State<EndUserListList> {
     if (_startDate != null) {
       _initController(
         _startDateController,
-        model.CommonUIHandler.formattedDateToString(
+        HelpUtil.formattedDateToString(
           /* widget. */ _startDate,
-          model.DateTimeMode.DATE,
+          DateTimeMode.DATE,
         ),
       );
     }
@@ -267,9 +268,9 @@ class _EndUserListListState extends State<EndUserListList> {
                     DatePicker.showDatePicker(context, onConfirm: (date) {
                       _startDate = date;
                       _startDateController.text =
-                          model.CommonUIHandler.formattedDateToString(
+                          HelpUtil.formattedDateToString(
                         date,
-                        model.DateTimeMode.DATE,
+                        DateTimeMode.DATE,
                       );
 
                       // BlocProvider.of<DateCubit>(context)
@@ -315,9 +316,9 @@ class _EndUserListListState extends State<EndUserListList> {
                 onTap: () {
                   if (_validate()) {
                     DateTime startDate = _startDate ??
-                        model.CommonUIHandler.formattedStringToDate(
+                        HelpUtil.formattedStringToDate(
                           _startDateController.text,
-                          model.DateTimeMode.DATE,
+                          DateTimeMode.DATE,
                         );
                     setState(() {
                       timelineIndex = 3;

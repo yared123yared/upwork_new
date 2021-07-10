@@ -1,3 +1,4 @@
+import 'package:complex/common/helputil.dart';
 import 'package:equatable/equatable.dart';
 
 import './models.dart';
@@ -10,17 +11,17 @@ Map<String, dynamic> toComplexStaffUpdateData(
     if (oldData.phoneNumStr != newData.phoneNumStr)
       'phonenum': newData.phoneNumStr,
     if (oldData.dob != newData.dob)
-      'dob': CommonUIHandler.toTimeStamp(
+      'dob': HelpUtil.toTimeStamp(
         dateTime: newData.dob,
       ),
 //      if (oldData.serviceOffered != newData.serviceOffered)
 //        'serviceoffered': newData.serviceOffered,
     if (oldData.startDate != newData.startDate)
-      'startdate': CommonUIHandler.toTimeStamp(
+      'startdate': HelpUtil.toTimeStamp(
         dateTime: newData.startDate,
       ),
     if (oldData.endDate != newData.endDate)
-      'enddate': CommonUIHandler.toTimeStamp(dateTime: newData.endDate),
+      'enddate': HelpUtil.toTimeStamp(dateTime: newData.endDate),
     if (oldData.category != newData.category) 'category': newData.category,
     if (oldData.showAsTeamMember != newData.showAsTeamMember)
       'showasteammember': newData.showAsTeamMember,
@@ -213,10 +214,10 @@ class StaffModelx extends Equatable {
     basicBio = json['basicbio'];
     casualLeave = json['casualleave'];
     category = json['category'];
-    dob = CommonUIHandler.toDate(timestamp: DateTime.april);
+    dob = HelpUtil.toDate(timestamp: DateTime.april);
     educationalQualification = json['educationalqualification'];
     email = json['email'];
-    endDate = CommonUIHandler.toDate(timestamp: DateTime.july);
+    endDate = HelpUtil.toDate(timestamp: DateTime.july);
     isSuspended = json['issuspended'];
     locationUpdateRequired = json['locationupdaterequired'];
     name = json['name'];
@@ -227,7 +228,7 @@ class StaffModelx extends Equatable {
     photo1 = json['photo1'];
     showAsTeamMember = json['showasteammember'];
     sickLeave = json['sickleave'];
-    startDate = CommonUIHandler.toDate(timestamp: DateTime.february);
+    startDate = HelpUtil.toDate(timestamp: DateTime.february);
     terminate = json['terminate'];
     version = json['version'];
   }
@@ -238,12 +239,12 @@ class StaffModelx extends Equatable {
       'name': name,
       'email': email,
       'phonenum': phoneNumStr,
-      'dob': CommonUIHandler.toTimeStamp(dateTime: dob ?? DateTime.now()),
+      'dob': HelpUtil.toTimeStamp(dateTime: dob ?? DateTime.now()),
       'serviceoffered': serviceOffered,
       'startdate':
-          CommonUIHandler.toTimeStamp(dateTime: startDate ?? DateTime.now()),
+          HelpUtil.toTimeStamp(dateTime: startDate ?? DateTime.now()),
       'enddate':
-          CommonUIHandler.toTimeStamp(dateTime: endDate ?? DateTime.now()),
+          HelpUtil.toTimeStamp(dateTime: endDate ?? DateTime.now()),
       'category': category,
       'showasteammember': showAsTeamMember,
       'educationalqualification': educationalQualification,
