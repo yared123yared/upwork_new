@@ -81,20 +81,20 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
         _amountValidateDate.text = widget.paymentDetails.amountValidateDate;
         _checkDetails.text = widget.paymentDetails.checkDetails;
         _creditCardTransactionNum.text =
-            widget.paymentDetails.creditCardTransactionNum.toString();
+            widget.paymentDetails.creditCardTransactionNum.toString() ?? "";
         _image.text = widget.paymentDetails.image;
 
         _lateFeeIncluded = widget.paymentDetails.lateFeeIncluded;
-        _paymentAmount.text = widget.paymentDetails.paymentAmount.toString();
+        _paymentAmount.text = widget.paymentDetails.paymentAmount.toString() ?? "";
         _paymentDate.text = widget.paymentDetails.paymentDate;
         _paymentMechanism.text = widget.paymentDetails.paymentMechanism;
         _receivedByMemberId.text = widget.paymentDetails.receivedByMemberId;
         _receivedByMemberName.text = widget.paymentDetails.receivedByMemberName;
       } else {
-        _amountReceivedDate.text = widget.feeData.startDate.toString();
-        _amountValidateDate.text = widget.feeData.endDate.toString();
-        _paymentDate.text = widget.feeData.dueDate.toString();
-        _paymentAmount.text = widget.feeData.totalAmount.toString();
+        _amountReceivedDate.text = widget.feeData.startDate.toString() ?? "";
+        _amountValidateDate.text = widget.feeData.endDate.toString() ?? "";
+        _paymentDate.text = widget.feeData.dueDate.toString() ?? "";
+        _paymentAmount.text = widget.feeData.totalAmount.toString() ?? "";
       }
     });
   }
@@ -110,11 +110,11 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
     _amountValidateDate.text = widget.paymentDetails.amountValidateDate;
     _checkDetails.text = widget.paymentDetails.checkDetails;
     _creditCardTransactionNum.text =
-        widget.paymentDetails.creditCardTransactionNum.toString();
+        widget.paymentDetails.creditCardTransactionNum.toString() ?? "";
     _image.text = widget.paymentDetails.image;
 
     _lateFeeIncluded = widget.paymentDetails.lateFeeIncluded;
-    _paymentAmount.text = widget.paymentDetails.paymentAmount.toString();
+    _paymentAmount.text = widget.paymentDetails.paymentAmount.toString() ?? "";
     _paymentDate.text = widget.paymentDetails.paymentDate;
     _paymentMechanism.text = widget.paymentDetails.paymentMechanism;
     _receivedByMemberId.text = widget.paymentDetails.receivedByMemberId;
@@ -229,7 +229,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue:
-                          widget?.paymentDetails?.checkDetails?.toString(),
+                          widget?.paymentDetails?.checkDetails?.toString() ?? "",
                       title: "Check Details",
                       controller: _checkDetails,
                       validate: Validate.withOption(isRequired: true),
@@ -239,7 +239,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue: widget
                           ?.paymentDetails?.creditCardTransactionNum
-                          ?.toString(),
+                          ?.toString() ?? "",
                       title: "Credit card transaction",
                       controller: _creditCardTransactionNum,
                       validate: Validate.withOption(isRequired: true),
@@ -265,7 +265,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue:
-                          widget?.paymentDetails?.paymentAmount?.toString(),
+                          widget?.paymentDetails?.paymentAmount?.toString() ?? "",
                       title: "Payment Ammount",
                       controller: _paymentAmount,
                       validate: Validate.withOption(isRequired: true),
@@ -291,7 +291,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue:
-                          widget?.paymentDetails?.paymentMechanism?.toString(),
+                          widget?.paymentDetails?.paymentMechanism?.toString() ?? "",
                       title: "Payment Mechanism",
                       controller: _paymentMechanism,
                       validate: Validate.withOption(isRequired: true),
@@ -301,7 +301,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue: widget?.paymentDetails?.receivedByMemberName
-                          ?.toString(),
+                          ?.toString() ?? "",
                       controller: _receivedByMemberName,
                       loadData: () async => _membersList ?? [],
                       displayName: (x) => x.display,
@@ -319,7 +319,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue: widget?.paymentDetails?.receivedByMemberId
-                          ?.toString(),
+                          ?.toString() ?? "",
                       title: "Received by member id",
                       controller: _receivedByMemberId,
                       validate: Validate.withOption(isRequired: true),

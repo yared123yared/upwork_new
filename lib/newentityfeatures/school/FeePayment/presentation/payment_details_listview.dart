@@ -33,6 +33,7 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
   List<PaymentDetails> em;
   FeePlanModel feePlan;
   FeeData nextPaymentDetailsFeeData;
+  int numPeriodsDefined = 0;
 
   void initState() {
     mlistbloc = listbloc.FeePaymentListBloc();
@@ -82,27 +83,32 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
     );
   }
 
-  List<ListStateClass> toCommonListState(
-      List<PaymentDetails> listItems, BuildContext context) {
+  List<ListStateClass> toCommonListState(List<PaymentDetails> listItems,
+      List<FeeData> feePlanItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
-    listItems.asMap().forEach((index, item) {
+    feePlanItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: "${item.receivedByMemberName ?? ''} ${item ?? ""}",
-        // subtitle: "grade: ${item.grade}",
+        title: numPeriodsDefined > index
+            ? "${listItems[index].receivedByMemberName ?? ''} ${item ?? ""}"
+            : "${item.paymentPeriodName ?? ''} ${item ?? ""}",
+        subtitle: numPeriodsDefined > index ? null : "Not Paid",
         tapAction: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PaymentDetailsForm(
-                paymentDetails: item,
-                userRegFeeCollectionModel: widget.userRegFeeCollectionModel,
-                feeData: null,
-                entitytype: widget.entitytype,
-                entityid: widget.entityid,
-                givenreloadaction: doreload,
+          if (numPeriodsDefined == index) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PaymentDetailsForm(
+                  paymentDetails:
+                      numPeriodsDefined > index ? listItems[index] : null,
+                  userRegFeeCollectionModel: widget.userRegFeeCollectionModel,
+                  feeData: item,
+                  entitytype: widget.entitytype,
+                  entityid: widget.entityid,
+                  givenreloadaction: doreload,
+                ),
               ),
-            ),
-          );
+            );
+          }
         },
         // deleteAction: () async {
         //   bool docancel = await _asyncConfirmDialog(context);
@@ -169,11 +175,11 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
 
             if (state is listbloc.IsPaymentDetailsListDataLoaded) {
               setState(() {
-                em = state.listdata;
-                feePlan = state.feePlan;
+                em = state.listdata ?? [];
+                feePlan = state.feePlan ?? [];
 
                 // We will receive a list with all the payment details defined, so we'll just take the length of that list and use it to select the feeData to send to the form
-                int numPeriodsDefined = state.listdata?.length ?? 0;
+                numPeriodsDefined = em?.length ?? 0;
                 nextPaymentDetailsFeeData =
                     state.feePlan.feeData[numPeriodsDefined];
               });
@@ -210,8 +216,8 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
             onPressed: () async {
               addButtonActions(context: context);
             },
-            icon: Icon(Icons.add),
-            label: Text("Add New"),
+            icon: Icon(Icons.arrow_right_alt),
+            label: Text("Fill Next Period"),
           )
           // : null,
           ),
@@ -228,7 +234,9 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
                 updateAction: null,
                 appBarTitle: "Attach Assignment List",
                 dynamicListState: "Attach Assignment List",
-                listItems: em != null ? toCommonListState(em, context) : [])),
+                listItems: em != null
+                    ? toCommonListState(em, feePlan.feeData, context)
+                    : [])),
       ],
     );
   }
