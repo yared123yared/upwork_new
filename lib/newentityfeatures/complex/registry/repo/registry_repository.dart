@@ -23,7 +23,8 @@ class RegistryModelRepositoryReturnData {
   List<RegistryModel> itemlist;
   RegistryModel item;
   RegistryEntryData listviewData;
-
+  List<String> availableUnitForOwner;
+  OccupiedUnitLookupModel oul;
   String id;
   int errortype;
   String error;
@@ -151,6 +152,18 @@ class RegistryModelRepository {
     } else {
       registryList = [];
     }
+
+    myreturn.availableUnitForOwner =[]; //this represent units which are free and can be rented out
+
+    for(var k  in registryList)
+      {
+        if(_user.userID == k.ownerUserId)
+          {
+            if(k.residentUserId ==null || k.residentUserId.isEmpty)
+              myreturn.availableUnitForOwner.add(k.unitAddress);
+          }
+      }
+
     myreturn.itemlist = registryList;
     myreturn.listviewData.isOwner = isOwner;
 

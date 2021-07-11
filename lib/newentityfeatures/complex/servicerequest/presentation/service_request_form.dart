@@ -393,7 +393,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     enabled: _building.text!=null &&_building.text.isNotEmpty && _floorNum!=null && _floorNum.text.isNotEmpty,
                     controller: _justunitcontroller,
                     //initialValue: widget?.serviceRequestModel?.unitId,
-                    loadData: () async => filteredUnits ?? units,
+                    loadData: () async => filteredUnits ,
                     displayName: (x) => x.unitaddress,
                     validate: Validate.withOption(
                       isRequired: true,

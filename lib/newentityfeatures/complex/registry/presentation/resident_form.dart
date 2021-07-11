@@ -1,4 +1,5 @@
 import 'package:complex/common/helputil.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 import 'package:complex/newentityfeatures/Models/registry_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,6 +32,8 @@ class ResidentForm extends StatefulWidget {
   final String role;
   final int origintype;
   final bool isOwner;
+  final List<String> unitlistForOwnerCase;
+  final OccupiedUnitLookupModel oul;
   ResidentForm({
     @required this.btnState,
     @required this.entitytype,
@@ -40,6 +43,8 @@ class ResidentForm extends StatefulWidget {
     @required this.registry,
     @required this.role,
     @required this.isOwner,
+    @required this.unitlistForOwnerCase,
+    @required this.oul
   });
 
   @override
@@ -72,11 +77,11 @@ class _ResidentFormState extends State<ResidentForm> {
   DateTime _endDate = DateTime.now();
 
   List<String> registeredAsRoles = [];
-  List<UnitModel> unitList;
+
 
   List<String> buildings = [];
   List<int> floors = [];
-  List<UnitModel> filteredUnits;
+  List<UnitOccupants> filteredUnits;
 
   ResidentModel resident;
 
@@ -356,68 +361,80 @@ class _ResidentFormState extends State<ResidentForm> {
                         isRequired: true,
                       ),
                     ),
-                    CustomDropDownList<String>(
-                      initialValue: widget.registry?.buildingName,
-                      enabled: _newItem,
-                      // enabled: isManager && !_newItem,
-                      title: "Building Name",
-                      controller: _building,
-                      loadData: () async => buildings,
-                      displayName: (x) => x,
-                      validate: Validate.withOption(isRequired: true),
-                      onSelected: (value, index) {
-                        setState(() {
-                          _building.text = value;
-                          floors = [];
-                          filteredUnits = [];
-                          unitList.forEach((unit) {
-                            if (!floors.contains(unit.floorNum) &&
-                                unit.buildingName == value) {
-                              floors.add(unit.floorNum);
-                              _floorNum.text = floors.first.toString();
-                            }
-                            if (unit.buildingName == value &&
-                                unit.floorNum == floors.first) {
-                              filteredUnits.add(unit);
-                            }
+
+                    if (widget.origintype == 1 && widget.registry ==null) ...[
+                      CustomDropDownList<String>(
+                        title: "Building Name",
+                        controller: _building,
+                        loadData: () async => widget.oul.buildinglist,
+                        displayName: (x) => x,
+                        validate: Validate.withOption(isRequired: true),
+                        onSelected: (value, index) {
+                          setState(() {
+                            _building.text = value;
+                            floors = [];
+
+                            filteredUnits = [];
+                            floors =widget.oul.floormap.containsKey(value) ?widget.oul.floormap:[];
                           });
-                        });
-                      },
-                    ),
-                    CustomDropDownList<int>(
-                      loadData: () async => floors,
-                      shouldReload: true,
-                      displayName: (x) => x.toString(),
-                      initialValue: widget.registry?.floorNum,
-                      title: "Floor Number",
-                      controller: _floorNum,
-                      enabled: buildings.isNotEmpty && _newItem,
-                      validate: Validate.withOption(isRequired: true),
-                      onSelected: (value, index) {
-                        setState(() {
-                          _floorNum.text = value.toString();
-                          filteredUnits = [];
-                          unitList.forEach((unit) {
-                            if (unit.buildingName == _building.text &&
-                                unit.floorNum == value) {
-                              filteredUnits.add(unit);
-                            }
-                          });
-                        });
-                      },
-                    ),
+                        },
+                      ),
+                      CustomDropDownList<int>(
+                        enabled: _building.text !=null && _building.text.isNotEmpty,
+                        loadData: () async => floors,
+                        shouldReload: true,
+                        displayName: (x) => x.toString(),
+                        title: "Floor Number",
+                        controller: _floorNum,
+                        validate: Validate.withOption(isRequired: true),
+                        onSelected: (floor, index) {
+                          setState(() {
+                            _floorNum.text = floor.toString();
+                            String buildingfloor= _building.text + "@" + _floorNum.text;
+                            filteredUnits = widget.oul.freeunits.containsKey(buildingfloor)?widget.oul.freeunits[buildingfloor]:[];
+                          }
+                          );
+                        },
+                      ),
+                      CustomDropDownList<UnitOccupants>(
+                        title: "Unit Address",
+                        enabled: _building.text!=null &&_building.text.isNotEmpty && _floorNum!=null && _floorNum.text.isNotEmpty,
+                        controller: _unit,
+                        //initialValue: widget?.serviceRequestModel?.unitId,
+                        loadData: () async => filteredUnits ,
+                        displayName: (x) => x.unitaddress,
+                        validate: Validate.withOption(
+                          isRequired: true,
+                        ),
+
+                      ),
+
+
+
+                    ],
+                    if (widget.origintype == 3 && widget.registry ==null)
                     CustomDropDownList<String>(
                       title: "Select Unit",
                       controller: _unit,
                       enabled: _newItem,
                       shouldReload: true,
-                      loadData: () async =>
-                          filteredUnits.map((e) => e.unitID).toList(),
+                      loadData: () async =>widget.unitlistForOwnerCase,
+
                       displayName: (x) => x,
                       validate: Validate.withOption(
                         isRequired: true,
                       ),
                     ),
+                    if ( widget.registry !=null)
+                      CustomTextField(
+                        title: "Unit Address",
+                        enabled: _newItem,
+                        controller: _unit,
+                        validate: Validate.withOption(
+                            isRequired: true, isNumber: true),
+                      ),
+
+
                     newentitytimepicker.CustomDateTimePicker(
                       controller: _startDateController,
                       enabled: _newItem,
@@ -523,7 +540,6 @@ class _ResidentFormState extends State<ResidentForm> {
             Navigator.of(context).pop(false);
           }
           if (state is itembloc.IsReadyForDetailsPage) {
-            unitList = state.unitList;
             _newItem = widget.registry == null;
 
             resident = state.resident;
@@ -534,15 +550,8 @@ class _ResidentFormState extends State<ResidentForm> {
               registeredAsRoles = ["resident"];
             }
 
-            unitList.forEach((unit) {
-              if (!buildings.contains(unit.buildingName)) {
-                buildings.add(unit.buildingName);
-              }
-              if (!floors.contains(unit.floorNum)) {
-                floors.add(unit.floorNum);
-              }
-            });
-            filteredUnits = unitList;
+
+
 
             _initFiledValue();
           }

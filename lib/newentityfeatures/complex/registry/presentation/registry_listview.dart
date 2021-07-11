@@ -5,6 +5,7 @@ import 'package:complex/data/data.dart';
 import 'package:complex/data/models/response/user_response/residential_unit.dart';
 import 'package:complex/newentityfeatures/Models/building_model.dart';
 import 'package:complex/newentityfeatures/Models/common/button_state.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 import 'package:complex/newentityfeatures/Models/registry_model.dart';
 import 'package:complex/newentityfeatures/complex/registry/presentation/registry_expandable_tile.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class _RegistryListListState extends State<RegistryListList> {
 
   CustomTextFieldController _building = CustomTextFieldController();
   CustomTextFieldController _floor = CustomTextFieldController();
-
+  OccupiedUnitLookupModel oul;
   Map<String, Map<String, List<RegistryModel>>> list;
   Map<String, Map<String, List<BuildingModel>>> blist;
   // List<String> buildings = [];
@@ -46,6 +47,9 @@ class _RegistryListListState extends State<RegistryListList> {
   bool isOwner = false; // for originType 3
   List<String> roles = [];
   List<ResidentUnits> residentUnits = [];
+  List<String> availableunitsforOwnerForTenant;
+
+
 
   void initState() {
     mlistbloc = listbloc.RegistryModelListBloc();
@@ -100,22 +104,40 @@ class _RegistryListListState extends State<RegistryListList> {
     } else {
       role = "owner";
     }
+    bool allowAdd =false;
+    //origintype =3 for owner/resident view
+    if(widget.origintype ==3 && availableunitsforOwnerForTenant.length >0)
+      {
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ResidentForm(
-          entitytype: widget.entitytype,
-          entityid: widget.entityid,
-          givenreloadaction: doreload,
-          origintype: widget.origintype,
-          btnState: ButtonState.idle,
-          registry: null,
-          isOwner: isOwner,
-          role: role,
+          allowAdd=true;
+
+      }
+    //origintype =1 for manager view
+    else if (widget.origintype ==1 && oul.hasfreeunits)
+      {
+        allowAdd=true;
+
+      }
+    if(allowAdd) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              ResidentForm(
+                entitytype: widget.entitytype,
+                entityid: widget.entityid,
+                givenreloadaction: doreload,
+                origintype: widget.origintype,
+                btnState: ButtonState.idle,
+                registry: null,
+                isOwner: isOwner,
+                role: role,
+                unitlistForOwnerCase: availableunitsforOwnerForTenant,
+                oul:oul
+              ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   List<ListStateClass> toCommonListState(
@@ -154,6 +176,8 @@ class _RegistryListListState extends State<RegistryListList> {
                   registry: item,
                   isOwner: isOwner,
                   role: "manager",
+                  unitlistForOwnerCase: [],
+                  oul:oul
                 ),
               ),
             );
@@ -170,6 +194,9 @@ class _RegistryListListState extends State<RegistryListList> {
                   registry: item,
                   isOwner: isOwner,
                   role: "owner",
+                    unitlistForOwnerCase: [],
+                    oul:oul
+
                 ),
               ),
             );
@@ -242,9 +269,15 @@ class _RegistryListListState extends State<RegistryListList> {
           }
           if (state is listbloc.IsSearchedListDataLoaded) {
             setState(() {
-              isOwner = state.isOwner ?? false;
+              availableunitsforOwnerForTenant=state.availablefortenantunits;
             });
           }
+          if (state is listbloc.IsBuildingListDataLoaded) {
+            setState(() {
+              oul=state.oul;
+            });
+          }
+
         }, child: BlocBuilder<listbloc.RegistryModelListBloc,
             listbloc.RegistryModelListState>(builder: (context, state) {
           if (state is listbloc.IsBusy)
@@ -268,24 +301,16 @@ class _RegistryListListState extends State<RegistryListList> {
             }
             List<BuildingModel> bm = [];
 
-            return _blocBuilder(context, em, bm);
+            return _blocBuilder(context, em);
           }
 
           if (state is listbloc.IsBuildingListDataLoaded) {
             List<cmodel.RegistryModel> em = [];
-            List<BuildingModel> bm = [];
 
-            if (state.buildinglistdata != null) {
-              list = Map();
-              blist = Map();
-              state.buildinglistdata.forEach((building) {
-                if (!buildings.contains(building)) {
-                  buildings.add(building);
-                }
-              });
-            }
 
-            return _blocBuilder(context, em, bm);
+
+
+            return _blocBuilder(context, em );
           }
           return Center(child: Text('Empty'));
         })),
@@ -305,10 +330,11 @@ class _RegistryListListState extends State<RegistryListList> {
   }
 
   Widget _blocBuilder(
-      context, List<cmodel.RegistryModel> em, List<BuildingModel> bm) {
+      context, List<cmodel.RegistryModel> em) {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [
+        if (widget.origintype !=3)
         SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.0),
@@ -319,14 +345,11 @@ class _RegistryListListState extends State<RegistryListList> {
                   controller: _building,
                   title: "Building",
                   displayName: (data) => data,
-                  loadData: () async => buildings
-                      .map((building) => building.buildingName)
-                      .toList(),
+                  loadData: () async => oul.buildinglist,
                   onSelected: (value, index) {
                     setState(() {
                       // floors = blist[value].keys.toList();
-                      floors = List.generate(
-                          buildings[index].numfloor + 1, (index) => index);
+                      floors = oul.floormap[value];
                     });
                   },
                 ),

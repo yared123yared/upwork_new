@@ -16,7 +16,10 @@ class OccupiedUnitLookupModel {
   List<String> buildinglist;
   Map<String, List<int>> floormap;
   Map<String, List<UnitOccupants>> justunits;
-
+  Map<String, List<UnitOccupants>> freeunits;
+  Map<String,List<UnitOccupants>> occupiedunits;
+  bool hasfreeunits;
+  bool hasoccupiedunits;
   static OccupiedUnitLookupModel generteUnitLookup(List<String> occupiedresidentlist)
   {
 
@@ -24,6 +27,9 @@ class OccupiedUnitLookupModel {
     oul.buildinglist =[];
     oul.floormap = new Map<String, List<int>>();
     oul.justunits  = new Map<String, List<UnitOccupants>>();
+    oul.freeunits  = new Map<String, List<UnitOccupants>>();
+    oul.occupiedunits  = new Map<String, List<UnitOccupants>>();
+
     for(String ounit in occupiedresidentlist)
       {
         List<String> abc = ounit.split('@');
@@ -101,6 +107,28 @@ class OccupiedUnitLookupModel {
 
 
       }
+
+      for(var k in oul.justunits.keys)
+        {
+          List<UnitOccupants> mlist= oul.justunits[k];
+          List<UnitOccupants>freeunits =[];
+          List<UnitOccupants> occupiedunits=[];
+
+          for(var p in mlist)
+            {
+              if(p.hasowner || p.hasresident) {
+                occupiedunits.add(p);
+                oul.hasoccupiedunits=true;
+              }
+              else {
+                freeunits.add(p);
+                oul.hasfreeunits=true;
+              }
+            }
+          oul.freeunits[k]=freeunits;
+          oul.occupiedunits[k]=occupiedunits;
+        }
+
 
       return oul;
   }

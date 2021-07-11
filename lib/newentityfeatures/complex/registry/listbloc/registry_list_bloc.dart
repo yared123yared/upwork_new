@@ -3,6 +3,7 @@ part of 'bloc.dart';
 class RegistryModelListBloc
     extends Bloc<RegistryModelListEvent, RegistryModelListState> {
   RegistryModelRepository mrepository = RegistryModelRepository();
+  NewComplexRepository _complexRepository = Get.find();
   RegistryModelListBloc() : super(RegistryModelListState());
   BuildingModelRepository brepository = BuildingModelRepository();
   @override
@@ -26,6 +27,7 @@ class RegistryModelListBloc
           roles: ud.listviewData.roles,
           buildingType: ud.listviewData.buildingType,
           isOwner: ud.listviewData.isOwner,
+
         );
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
@@ -48,6 +50,7 @@ class RegistryModelListBloc
           roles: ud.listviewData.roles,
           buildingType: ud.listviewData.buildingType,
           isOwner: ud.listviewData.isOwner,
+          availablefortenantunits: ud.availableUnitForOwner
         );
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
@@ -100,18 +103,16 @@ class RegistryModelListBloc
 
     if (event is getPreData) {
       yield IsBusy();
-      BuildingModelRepositoryReturnData ud =
-          await brepository.getAllBuildingModels(
-        event.entitytype,
-        event.entityid,
-      );
-
-      if (ud.errortype == -1)
-        yield IsBuildingListDataLoaded(buildinglistdata: ud.itemlist);
-      else if (ud.errortype == 1)
-        yield HasLogicalFaliur(error: ud.error);
-      else
-        yield HasExceptionFaliur(error: ud.error);
+      try {
+        OccupiedUnitLookupModel oul = await _complexRepository.getOccupiedUnits(
+          entitytype: event.entitytype,
+          entityid: event.entityid,
+        );
+        yield IsBuildingListDataLoaded(oul: oul);
+      }
+      catch (e) {
+        yield HasExceptionFaliur(error: "Error has occured");
+      }
     }
 
     if (event is deleteItemWithData) {

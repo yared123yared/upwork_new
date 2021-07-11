@@ -32,14 +32,16 @@ class IsSearchedListDataLoaded extends RegistryModelListState {
     @required this.roles,
     @required this.buildingType,
     this.isOwner,
+     this.availablefortenantunits,
   });
 
   final List<RegistryModel> listdata;
   final List<String> roles;
   final String buildingType;
   final bool isOwner;
+  final List<String> availablefortenantunits;
   @override
-  List<Object> get props => [listdata, roles, buildingType, isOwner];
+  List<Object> get props => [listdata, roles, buildingType, isOwner,availablefortenantunits];
 }
 
 class IsListDataLoaded extends RegistryModelListState {
@@ -58,12 +60,12 @@ class IsListDataLoaded extends RegistryModelListState {
 
 class IsBuildingListDataLoaded extends RegistryModelListState {
   IsBuildingListDataLoaded({
-    @required this.buildinglistdata,
+    @required this.oul,
   });
-  final List<BuildingModel> buildinglistdata;
+  final OccupiedUnitLookupModel oul;
 
   @override
-  List<Object> get props => [buildinglistdata];
+  List<Object> get props => [oul];
 }
 
 class IsDeleted extends RegistryModelListState {
