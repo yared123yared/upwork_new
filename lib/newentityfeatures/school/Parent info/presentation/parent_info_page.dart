@@ -311,6 +311,10 @@ class _ParentInfoPageState extends State<ParentInfoPage> {
                       setState(() {
                         _resultState = resultState;
                       });
+                    } else {
+                      setState(() {
+                        timelineIndex = 1;
+                      });
                     }
                     // } else if (state is VrAssignmentAnsweredPaperListState) {
                   }

@@ -151,6 +151,20 @@ class _QuestionsAnswerFormState extends State<QuestionsAnswerForm> {
                       ),
                       for (var i = 0; i < questions.length; i++)
                         _buildQuestion(i, questions.keys.toList()[i]),
+                      if (questions.isEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 24.0,
+                            horizontal: 28.0,
+                          ),
+                          child: Center(
+                            child: Text(
+                              "There are no questions for this assignment",
+                              textAlign: TextAlign.center,
+
+                            ),
+                          ),
+                        ),
                       if (widget.state != AnswerFormState.studentShowScore)
                         CustomActionButton(
                           title: "SUBMIT",
