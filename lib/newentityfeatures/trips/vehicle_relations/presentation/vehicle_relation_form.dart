@@ -175,7 +175,7 @@ class _VehicleRelationFormState extends State<VehicleRelationForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Vehicle Relation'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.VehicleRelationBloc,

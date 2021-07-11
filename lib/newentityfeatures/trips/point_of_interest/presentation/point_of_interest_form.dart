@@ -91,7 +91,7 @@ class _PointOfInterestFormState extends State<PointOfInterestForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Point of Interest'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.PointOfInterestBloc,

@@ -340,6 +340,7 @@ class _RegistryListListState extends State<RegistryListList> {
             padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: ExpansionTile(
               title: Text("Select Parameters To Search"),
+              initiallyExpanded: true,
               children: [
                 CustomDropDownList(
                   controller: _building,

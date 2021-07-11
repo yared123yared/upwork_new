@@ -134,7 +134,7 @@ class _HandleRelationListListState extends State<HandleRelationListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Handle Relation List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.HandleRelationListBloc,
@@ -247,8 +247,8 @@ class _HandleRelationListListState extends State<HandleRelationListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Handle Relation List",
+                dynamicListState: "Handle Relation List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

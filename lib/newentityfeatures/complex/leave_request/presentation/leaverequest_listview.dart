@@ -147,7 +147,7 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
       value: mlistbloc,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Attach Assignment List"),
+          title: Text("Leave Request List"),
           centerTitle: true,
         ),
         body: BlocListener<listbloc.LeaveRequestListBloc,
@@ -263,8 +263,8 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Leave Request List",
+                dynamicListState: "Leave Request List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

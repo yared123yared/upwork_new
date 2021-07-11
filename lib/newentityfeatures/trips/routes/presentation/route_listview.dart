@@ -136,7 +136,7 @@ class _RouteListListState extends State<RouteListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Route List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.RouteListBloc, listbloc.RouteListState>(
@@ -250,8 +250,8 @@ class _RouteListListState extends State<RouteListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Route List",
+                dynamicListState: "Route List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

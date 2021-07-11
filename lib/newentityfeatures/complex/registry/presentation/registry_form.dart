@@ -108,7 +108,7 @@ class _RegistryFormState extends State<RegistryForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Registry'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.RegistryModelBloc,

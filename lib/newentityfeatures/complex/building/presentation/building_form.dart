@@ -113,6 +113,7 @@ class _BuildingFormState extends State<BuildingForm> {
                     CustomTextField(
                       initialValue: widget.buildingModel?.buildingName,
                       title: "Building Name",
+                      enabled: !_isUpdate,
                       controller: _buildingName,
                       autoFocus: true,
                       validate: Validate.withOption(isRequired: true),
@@ -120,6 +121,7 @@ class _BuildingFormState extends State<BuildingForm> {
                     CustomTextField(
                       initialValue: widget.buildingModel?.numfloor.toString(),
                       title: "Number of Floor",
+                      enabled: !_isUpdate,
                       controller: _numfloor,
                       autoFocus: true,
                       validate: Validate.withOption(isRequired: true),
@@ -132,6 +134,7 @@ class _BuildingFormState extends State<BuildingForm> {
                       validate:
                           Validate.withOption(isRequired: true, isNumber: true),
                     ),
+                    if (!_isUpdate)
                     CustomAddressPicker(
                       initialValue: widget.buildingModel?.address,
                       controller: _address,

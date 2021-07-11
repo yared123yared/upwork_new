@@ -126,7 +126,7 @@ class _TripCutFormState extends State<TripCutForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Trip Cuts'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.TripCutBloc, itembloc.TripCutState>(

@@ -132,7 +132,7 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Session Registration'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.SessionRegistrationBloc,

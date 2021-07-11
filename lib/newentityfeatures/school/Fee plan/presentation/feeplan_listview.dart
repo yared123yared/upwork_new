@@ -249,8 +249,8 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Fee Plan List",
+                dynamicListState: "Fee Plan List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

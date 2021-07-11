@@ -132,7 +132,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Fee Plan'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.FeePlanModelBloc,

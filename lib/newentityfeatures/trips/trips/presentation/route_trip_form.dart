@@ -116,7 +116,7 @@ class _RouteTripFormState extends State<RouteTripForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Route Trips'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.RouteTripBloc, itembloc.RouteTripState>(

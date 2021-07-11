@@ -139,7 +139,7 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Vehicle List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.VehicleModelListBloc,
@@ -252,8 +252,8 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Vehicle List",
+                dynamicListState: "Vehicle List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

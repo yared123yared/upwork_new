@@ -305,7 +305,8 @@ class _ResidentFormState extends State<ResidentForm> {
                         Expanded(
                           child: CustomTextField(
                             title: "Contact Number To Publish",
-                            enabled: _newItem || widget.origintype == 3,
+                            enabled: _newItem,
+                            // enabled: _newItem || widget.origintype == 3,
                             controller: _contactNumberToPublish,
                             validate: Validate.withOption(
                                 isRequired: true, isNumber: true),

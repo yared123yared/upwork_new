@@ -174,7 +174,7 @@ class _CreateAssignmentListState extends State<CreateAssignmentList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Create Assignment List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.CreateAssignmentListBloc,
@@ -287,8 +287,8 @@ class _CreateAssignmentListState extends State<CreateAssignmentList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Create Assignment List",
+                dynamicListState: "Create Assignment List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

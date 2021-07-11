@@ -138,7 +138,7 @@ class _FamilyMemberListListState extends State<FamilyMemberListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Family Members"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.FamilyMemberListBloc,
@@ -204,58 +204,11 @@ class _FamilyMemberListListState extends State<FamilyMemberListList> {
       shrinkWrap: true,
       slivers: [
         SliverToBoxAdapter(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.0),
-            child: ExpansionTile(
-              title: Text("Select Parameters To Search"),
-              children: [
-                CustomDropDownList<String>(
-                  loadData: () async => sessionterm,
-                  shouldReload: true,
-                  displayName: (x) => x,
-                  controller: _sessionterm,
-                  title: "SessionTerm",
-                ),
-                CustomDropDownList<String>(
-                  loadData: () async => gradelist,
-                  shouldReload: true,
-                  displayName: (x) => x,
-                  controller: _grade,
-                  title: "Select Grade",
-                  onSelected: (item, index) => setState(() {
-                    offeringgrouplist =
-                        offeringModelGroupfunc(item, widget.entityid);
-                  }),
-                ),
-                CustomDropDownList<String>(
-                    loadData: () async => units,
-                    shouldReload: true,
-                    displayName: (x) => x,
-                    controller: _unit,
-                    title: "Select Unit",
-                    onSelected: (item, index) {
-                      if (item != null && item.length > 0) {
-                        setState(() {
-                          mlistbloc.add(
-                            listbloc.GetListDataWithSearchParameter(
-                              entitytype: widget.entitytype,
-                              entityid: widget.entityid,
-                              units: units,
-                            ),
-                          );
-                        });
-                      }
-                    }),
-              ],
-            ),
-          ),
-        ),
-        SliverToBoxAdapter(
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Family Members",
+                dynamicListState: "Family Members",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

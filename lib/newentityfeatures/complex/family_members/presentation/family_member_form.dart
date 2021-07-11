@@ -26,10 +26,7 @@ class FamilyMemberForm extends StatefulWidget {
 }
 
 class _FamilyMemberFormState extends State<FamilyMemberForm> {
-  CustomTextFieldController _session = CustomTextFieldController();
-  CustomTextFieldController _grade = CustomTextFieldController();
-  CustomTextFieldController _virtualRoom = CustomTextFieldController();
-
+  CustomTextFieldController phoneNumber = CustomTextFieldController();
   CustomTextFieldController emailAddress = CustomTextFieldController();
   CustomTextFieldController unitsController = CustomTextFieldController();
 
@@ -39,6 +36,7 @@ class _FamilyMemberFormState extends State<FamilyMemberForm> {
   bool validate() {
     return Validate.validateAll([
       emailAddress,
+      phoneNumber,
       unitsController,
     ]);
   }
@@ -61,7 +59,7 @@ class _FamilyMemberFormState extends State<FamilyMemberForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Family Members'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.FamilyMemberBloc,
@@ -117,6 +115,15 @@ class _FamilyMemberFormState extends State<FamilyMemberForm> {
           validate: Validate.withOption(
             isRequired: true,
             isEmail: true,
+          ),
+        ),
+        CustomTextField(
+          title: "Published Contact",
+          // initialValue: widget.familyMember?,
+          controller: phoneNumber,
+          validate: Validate.withOption(
+            isRequired: true,
+            isNumber: true,
           ),
         ),
         CustomDropDownList<String>(
