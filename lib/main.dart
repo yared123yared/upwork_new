@@ -52,20 +52,19 @@ void main() {
     Get.lazyPut(() => NewSchoolRepository());
     Get.lazyPut(() => NewComplexRepository());
     Get.lazyPut(() => GenericDBRepository());
-    var instance = FirebaseMessaging();
-    instance.configure(onLaunch: onLaunch);
-    Get.lazyPut(() => instance);
+    var instance = FirebaseMessaging.instance;
+    FirebaseMessaging.onBackgroundMessage(onLaunch);
     // FirebaseMessaging.onBackgroundMessage(onLaunch);
     setupDependencyInjections();
     runApp(MyApp());
   });
 }
 
-Future<void> onLaunch(Map<String, dynamic> message) async {
+Future<void> onLaunch(RemoteMessage message) async {
   Log.v('onLaunch called --> $message');
   // _notificationClickAction(message);
   await Firebase.initializeApp();
-  UserSession.notificationData = message;
+  UserSession.notificationData = message.data;
 }
 
 class MyApp extends StatelessWidget with PortraitModeMixin {

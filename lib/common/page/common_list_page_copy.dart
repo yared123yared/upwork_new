@@ -39,8 +39,8 @@ class _CommonListPage extends State<CommonListPage> {
   initiateSearchEngine() {
     _searchResult = widget.listItems;
     searchEngine = AutoComplete(
-        // engine: SortEngine.configMulti(Duration(milliseconds: 300), 15, 0.5, 0.5),
-        );
+      engine: SortEngine.configMulti(Duration(milliseconds: 300), 15, 0.5, 0.5),
+    );
     widget.listItems.forEach((item) {
       if (item.title != null) searchEngine.enter(item.title);
       if (item.subtitle != null) searchEngine.enter(item.subtitle);
