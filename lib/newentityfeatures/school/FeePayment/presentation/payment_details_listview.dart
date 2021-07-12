@@ -159,7 +159,7 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Payment Details List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.FeePaymentListBloc,
@@ -232,8 +232,8 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Payment Details List",
+                dynamicListState: "Payment Details List",
                 listItems: em != null
                     ? toCommonListState(em, feePlan.feeData, context)
                     : [])),

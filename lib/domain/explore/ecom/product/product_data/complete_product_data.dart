@@ -52,7 +52,7 @@ abstract class CompleteProductData with _$CompleteProductData {
     @JsonKey(name: 'adata') @required VehicleData data,
   }) = CompleteVehicle;
   const factory CompleteProductData.product({
-    @JsonKey(name: 'docid') @required String docId,
+    @JsonKey(name: 'docid', defaultValue: '') @required String docId,
     @required String dt,
     @JsonKey(name: 'serviceproviderid', defaultValue: '')
     @required

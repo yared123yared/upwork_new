@@ -100,7 +100,7 @@ class _RemoteTripFormState extends State<RemoteTripForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Remote Trips'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.RemoteTripBloc, itembloc.RemoteTripState>(

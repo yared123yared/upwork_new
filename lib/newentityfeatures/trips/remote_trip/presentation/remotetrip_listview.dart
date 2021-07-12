@@ -141,7 +141,7 @@ class _RemoteTripListListState extends State<RemoteTripListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Remote Trip List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.RemoteTripListBloc,
@@ -261,8 +261,8 @@ class _RemoteTripListListState extends State<RemoteTripListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Remote Trip List",
+                dynamicListState: "Remote Trip List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

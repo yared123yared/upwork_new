@@ -134,7 +134,7 @@ class _EntryLogsListListState extends State<EntryLogsListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Entry Logs"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.EntryLogsListBloc,
@@ -247,8 +247,8 @@ class _EntryLogsListListState extends State<EntryLogsListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Entry Logs",
+                dynamicListState: "Entry Logs",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

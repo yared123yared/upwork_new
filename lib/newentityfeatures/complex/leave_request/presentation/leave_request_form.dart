@@ -140,7 +140,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Leave Request'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.LeaveRequestBloc,

@@ -143,7 +143,7 @@ class _EndUserListListState extends State<EndUserListList> {
       create: (context) => listbloc.EndUserListBloc(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('End User'),
           centerTitle: true,
         ),
         body: BlocListener<listbloc.EndUserListBloc, listbloc.EndUserListState>(

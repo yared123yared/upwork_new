@@ -138,7 +138,7 @@ class _VirtualRoomModelListListState extends State<VirtualRoomModelListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Virtual Room List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.VirtualRoomModelListBloc,
@@ -251,8 +251,8 @@ class _VirtualRoomModelListListState extends State<VirtualRoomModelListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Virtual Room List",
+                dynamicListState: "Virtual Room List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

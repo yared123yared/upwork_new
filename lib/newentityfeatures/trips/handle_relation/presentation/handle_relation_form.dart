@@ -149,7 +149,7 @@ class _HandleRelationFormState extends State<HandleRelationForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Handle Relation'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.HandleRelationBloc,

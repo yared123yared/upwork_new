@@ -135,7 +135,7 @@ class _TripCutListListState extends State<TripCutListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Trip Cut List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.TripCutListBloc,
@@ -249,8 +249,8 @@ class _TripCutListListState extends State<TripCutListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Trip Cut List",
+                dynamicListState: "Trip Cut List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

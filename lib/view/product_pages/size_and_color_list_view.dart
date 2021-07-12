@@ -8,7 +8,7 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
-import 'package:complex/view/product_pages/size_color_detail_view.dart';
+import 'package:complex/view/product_pages/size_color_detail_form.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
@@ -175,7 +175,7 @@ class _SizeAndColorListViewState extends State<SizeAndColorListView> {
               ),
             ),
             onTap: () {
-              Navigator.push(context, NextPageRoute(SizeAndColorDetailView()))
+              Navigator.push(context, NextPageRoute(SizeAndColorDetailForm()))
                   .then((value) => Utility.waitForMili(500)
                       .then((value) => setState(() {})));
             },

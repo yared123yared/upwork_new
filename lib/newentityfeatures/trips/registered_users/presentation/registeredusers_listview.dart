@@ -136,7 +136,7 @@ class _RegisteredUsersListListState extends State<RegisteredUsersListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Registered Users List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.RegisteredUsersListBloc,
@@ -249,8 +249,8 @@ class _RegisteredUsersListListState extends State<RegisteredUsersListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Registered Users List",
+                dynamicListState: "Registered Users List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

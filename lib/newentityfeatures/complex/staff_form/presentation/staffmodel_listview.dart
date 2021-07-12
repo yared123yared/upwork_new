@@ -248,8 +248,8 @@ class _StaffModelListListState extends State<StaffModelListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Staff List",
+                dynamicListState: "Staff List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

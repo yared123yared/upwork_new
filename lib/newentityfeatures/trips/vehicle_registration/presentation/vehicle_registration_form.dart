@@ -143,7 +143,7 @@ class _VehicleRegistrationFormState extends State<VehicleRegistrationForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Vehicle Registration'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.VehicleRegistrationBloc,

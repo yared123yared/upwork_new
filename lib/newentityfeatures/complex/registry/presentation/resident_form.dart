@@ -180,6 +180,9 @@ class _ResidentFormState extends State<ResidentForm> {
     //   asuka.showSnackBar(SnackBar(
     //     content: Text("Item is deleted"),
     //   ));
+    String unitaddress= _unit.text;
+    if (widget.origintype == 1 && widget.registry ==null)
+      unitaddress=_building.text + "@" + _floorNum.text +"@" + _unit.text;
 
     if (_endDate.isAfter(_startDate)) {
       ResidentModel _residentModel = ResidentModel(
@@ -189,7 +192,7 @@ class _ResidentFormState extends State<ResidentForm> {
         email: _emailAddress.text,
         contactNumber: _contactNumber.text,
         registerAs: _registeredAs.text,
-        unitAddress: _unit.text,
+        unitAddress: unitaddress,
         startDate: _startDate,
         endDate: _endDate,
         publishedContact: _contactNumberToPublish.text,
@@ -305,7 +308,8 @@ class _ResidentFormState extends State<ResidentForm> {
                         Expanded(
                           child: CustomTextField(
                             title: "Contact Number To Publish",
-                            enabled: _newItem || widget.origintype == 3,
+                            enabled: _newItem,
+                            // enabled: _newItem || widget.origintype == 3,
                             controller: _contactNumberToPublish,
                             validate: Validate.withOption(
                                 isRequired: true, isNumber: true),
@@ -375,7 +379,7 @@ class _ResidentFormState extends State<ResidentForm> {
                             floors = [];
 
                             filteredUnits = [];
-                            floors =widget.oul.floormap.containsKey(value) ?widget.oul.floormap:[];
+                            floors =widget.oul.floormap.containsKey(value) ?widget.oul.floormap[value]:[];
                           });
                         },
                       ),
