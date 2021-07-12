@@ -26,6 +26,7 @@ class OccupiedUnitLookupModel {
     oul.occupiedunits = new Map<String, List<UnitOccupants>>();
     oul.hasfreeunits = false;
     oul.hasoccupiedunits = false;
+
     for (String ounit in occupiedresidentlist) {
       List<String> abc = ounit.split('@');
       int floornum = int.parse(abc[1]);

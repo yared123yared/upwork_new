@@ -160,7 +160,7 @@
 //     @JsonKey(name:'price')double price,
 //     @JsonKey(name:'discountedprice')double discountedprice,
 //     @JsonKey(name:'ptype')int ptype,
-//     @JsonKey(name:'dynamicproperties')List<dynaproperty> dynamicproperties,
+//     @JsonKey(name:'dynamicproperties')List<DynaProperty> dynamicproperties,
 //     @JsonKey(name:'varinattype')String varinattype,
 //     @JsonKey(name:'nopackagedata')NoPackageModel nopackagedata,
 //     @JsonKey(name:'packagedata')List<PackageModel> packagedata,
@@ -236,13 +236,13 @@
 // }
 //
 // @freezed
-// abstract class dynaproperty with _$dynaproperty {
-//   factory dynaproperty({
+// abstract class DynaProperty with _$DynaProperty {
+//   factory DynaProperty({
 //     @JsonKey(name:'propertyname')String propertyname,
 //     @JsonKey(name:'values')List<String> values,
 //
-//   }) = _dynaproperty;
-//   factory dynaproperty.fromJson(Map<String, dynamic> json) => _$dynapropertyFromJson(json);
+//   }) = _DynaProperty;
+//   factory DynaProperty.fromJson(Map<String, dynamic> json) => _$DynaPropertyFromJson(json);
 // //require keysetting
 // }
 //

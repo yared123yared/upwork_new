@@ -178,6 +178,9 @@ class _ResidentFormState extends State<ResidentForm> {
     //   asuka.showSnackBar(SnackBar(
     //     content: Text("Item is deleted"),
     //   ));
+    String unitaddress = _unit.text;
+    if (widget.origintype == 1 && widget.registry == null)
+      unitaddress = _building.text + "@" + _floorNum.text + "@" + _unit.text;
 
     if (_endDate.isAfter(_startDate)) {
       ResidentModel _residentModel = ResidentModel(
@@ -187,7 +190,7 @@ class _ResidentFormState extends State<ResidentForm> {
         email: _emailAddress.text,
         contactNumber: _contactNumber.text,
         registerAs: _registeredAs.text,
-        unitAddress: _unit.text,
+        unitAddress: unitaddress,
         startDate: _startDate,
         endDate: _endDate,
         publishedContact: _contactNumberToPublish.text,

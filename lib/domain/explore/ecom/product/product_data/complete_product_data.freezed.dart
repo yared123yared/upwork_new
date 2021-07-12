@@ -133,7 +133,7 @@ class _$CompleteProductDataTearOff {
 // ignore: unused_element
   CompleteProduct product(
       {@required
-      @JsonKey(name: 'docid')
+      @JsonKey(name: 'docid', defaultValue: '')
           String docId,
       @required
           String dt,
@@ -223,7 +223,7 @@ mixin _$CompleteProductData {
                 VehicleData data),
     @required
         TResult product(
-            @JsonKey(name: 'docid')
+            @JsonKey(name: 'docid', defaultValue: '')
                 String docId,
             String dt,
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
@@ -260,7 +260,7 @@ mixin _$CompleteProductData {
         @JsonKey(name: 'userid', defaultValue: '') String userId,
         @JsonKey(name: 'adata') VehicleData data),
     TResult product(
-        @JsonKey(name: 'docid') String docId,
+        @JsonKey(name: 'docid', defaultValue: '') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
         @JsonKey(name: 'userid', defaultValue: '') String userId,
@@ -510,7 +510,7 @@ class _$CompleteRealEstate implements CompleteRealEstate {
                 VehicleData data),
     @required
         TResult product(
-            @JsonKey(name: 'docid')
+            @JsonKey(name: 'docid', defaultValue: '')
                 String docId,
             String dt,
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
@@ -556,7 +556,7 @@ class _$CompleteRealEstate implements CompleteRealEstate {
         @JsonKey(name: 'userid', defaultValue: '') String userId,
         @JsonKey(name: 'adata') VehicleData data),
     TResult product(
-        @JsonKey(name: 'docid') String docId,
+        @JsonKey(name: 'docid', defaultValue: '') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
         @JsonKey(name: 'userid', defaultValue: '') String userId,
@@ -832,7 +832,7 @@ class _$CompleteJob implements CompleteJob {
                 VehicleData data),
     @required
         TResult product(
-            @JsonKey(name: 'docid')
+            @JsonKey(name: 'docid', defaultValue: '')
                 String docId,
             String dt,
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
@@ -878,7 +878,7 @@ class _$CompleteJob implements CompleteJob {
         @JsonKey(name: 'userid', defaultValue: '') String userId,
         @JsonKey(name: 'adata') VehicleData data),
     TResult product(
-        @JsonKey(name: 'docid') String docId,
+        @JsonKey(name: 'docid', defaultValue: '') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
         @JsonKey(name: 'userid', defaultValue: '') String userId,
@@ -1154,7 +1154,7 @@ class _$CompletePet implements CompletePet {
                 VehicleData data),
     @required
         TResult product(
-            @JsonKey(name: 'docid')
+            @JsonKey(name: 'docid', defaultValue: '')
                 String docId,
             String dt,
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
@@ -1200,7 +1200,7 @@ class _$CompletePet implements CompletePet {
         @JsonKey(name: 'userid', defaultValue: '') String userId,
         @JsonKey(name: 'adata') VehicleData data),
     TResult product(
-        @JsonKey(name: 'docid') String docId,
+        @JsonKey(name: 'docid', defaultValue: '') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
         @JsonKey(name: 'userid', defaultValue: '') String userId,
@@ -1476,7 +1476,7 @@ class _$CompleteVehicle implements CompleteVehicle {
                 VehicleData data),
     @required
         TResult product(
-            @JsonKey(name: 'docid')
+            @JsonKey(name: 'docid', defaultValue: '')
                 String docId,
             String dt,
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
@@ -1522,7 +1522,7 @@ class _$CompleteVehicle implements CompleteVehicle {
         @JsonKey(name: 'userid', defaultValue: '') String userId,
         @JsonKey(name: 'adata') VehicleData data),
     TResult product(
-        @JsonKey(name: 'docid') String docId,
+        @JsonKey(name: 'docid', defaultValue: '') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
         @JsonKey(name: 'userid', defaultValue: '') String userId,
@@ -1622,7 +1622,7 @@ abstract class $CompleteProductCopyWith<$Res>
       _$CompleteProductCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'docid') String docId,
+      {@JsonKey(name: 'docid', defaultValue: '') String docId,
       String dt,
       @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
       @JsonKey(name: 'userid', defaultValue: '') String userId,
@@ -1676,7 +1676,7 @@ class _$CompleteProductCopyWithImpl<$Res>
 class _$CompleteProduct implements CompleteProduct {
   const _$CompleteProduct(
       {@required
-      @JsonKey(name: 'docid')
+      @JsonKey(name: 'docid', defaultValue: '')
           this.docId,
       @required
           this.dt,
@@ -1699,7 +1699,7 @@ class _$CompleteProduct implements CompleteProduct {
       _$_$CompleteProductFromJson(json);
 
   @override
-  @JsonKey(name: 'docid')
+  @JsonKey(name: 'docid', defaultValue: '')
   final String docId;
   @override
   final String dt;
@@ -1798,7 +1798,7 @@ class _$CompleteProduct implements CompleteProduct {
                 VehicleData data),
     @required
         TResult product(
-            @JsonKey(name: 'docid')
+            @JsonKey(name: 'docid', defaultValue: '')
                 String docId,
             String dt,
             @JsonKey(name: 'serviceproviderid', defaultValue: '')
@@ -1844,7 +1844,7 @@ class _$CompleteProduct implements CompleteProduct {
         @JsonKey(name: 'userid', defaultValue: '') String userId,
         @JsonKey(name: 'adata') VehicleData data),
     TResult product(
-        @JsonKey(name: 'docid') String docId,
+        @JsonKey(name: 'docid', defaultValue: '') String docId,
         String dt,
         @JsonKey(name: 'serviceproviderid', defaultValue: '') String serviceId,
         @JsonKey(name: 'userid', defaultValue: '') String userId,
@@ -1901,7 +1901,7 @@ class _$CompleteProduct implements CompleteProduct {
 abstract class CompleteProduct implements CompleteProductData {
   const factory CompleteProduct(
       {@required
-      @JsonKey(name: 'docid')
+      @JsonKey(name: 'docid', defaultValue: '')
           String docId,
       @required
           String dt,
@@ -1919,7 +1919,7 @@ abstract class CompleteProduct implements CompleteProductData {
       _$CompleteProduct.fromJson;
 
   @override
-  @JsonKey(name: 'docid')
+  @JsonKey(name: 'docid', defaultValue: '')
   String get docId;
   @override
   String get dt;
@@ -3004,37 +3004,52 @@ class _$ProductDataTearOff {
 
 // ignore: unused_element
   _ProductData call(
-      {@JsonKey(name: 'productid')
+      {@required
+      @JsonKey(name: 'productid', defaultValue: '')
           String productid,
+      @required
       @JsonKey(name: 'title')
           String title,
+      @required
       @JsonKey(name: 'description')
           String description,
+      @required
       @JsonKey(name: 'brand')
           String brand,
+      @required
       @JsonKey(name: 'category')
           String category,
-      @JsonKey(name: 'tilephoto')
-          String tilephoto,
+      @required
+      @JsonKey(name: 'tilephoto', defaultValue: '')
+          String tilePhoto,
+      @required
       @JsonKey(name: 'imagelist')
           List<String> imagelist,
+      @required
       @JsonKey(name: 'price')
           double price,
-      @JsonKey(name: 'discountedprice')
+      @required
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
           double discountedprice,
-      @JsonKey(name: 'ptype')
+      @required
+      @JsonKey(name: 'ptype', defaultValue: 0)
           int ptype,
-      @JsonKey(name: 'dynamicproperties')
-          List<dynaproperty> dynamicproperties,
+      @required
+      @JsonKey(name: 'dynamicproperties', defaultValue: const [])
+          List<DynamicProperty> dynamicproperties,
+      @required
       @JsonKey(name: 'varinattype')
           String varinattype,
       @JsonKey(name: 'nopackagedata')
           NoPackageData nopackagedata,
-      @JsonKey(name: 'packagedata')
+      @required
+      @JsonKey(name: 'packagedata', defaultValue: const [])
           List<PackageData> packagedata,
-      @JsonKey(name: 'sizeandcolordata')
+      @required
+      @JsonKey(name: 'sizeandcolordata', defaultValue: const [])
           List<SizeAndColorData> sizeandcolordata,
-      @JsonKey(name: 'custompackagedata')
+      @required
+      @JsonKey(name: 'custompackagedata', defaultValue: const [])
           List<CustomPackageData> custompackagedata}) {
     return _ProductData(
       productid: productid,
@@ -3042,7 +3057,7 @@ class _$ProductDataTearOff {
       description: description,
       brand: brand,
       category: category,
-      tilephoto: tilephoto,
+      tilePhoto: tilePhoto,
       imagelist: imagelist,
       price: price,
       discountedprice: discountedprice,
@@ -3068,7 +3083,7 @@ const $ProductData = _$ProductDataTearOff();
 
 /// @nodoc
 mixin _$ProductData {
-  @JsonKey(name: 'productid')
+  @JsonKey(name: 'productid', defaultValue: '')
   String get productid;
   @JsonKey(name: 'title')
   String get title;
@@ -3078,27 +3093,27 @@ mixin _$ProductData {
   String get brand;
   @JsonKey(name: 'category')
   String get category;
-  @JsonKey(name: 'tilephoto')
-  String get tilephoto;
+  @JsonKey(name: 'tilephoto', defaultValue: '')
+  String get tilePhoto;
   @JsonKey(name: 'imagelist')
   List<String> get imagelist;
   @JsonKey(name: 'price')
   double get price;
-  @JsonKey(name: 'discountedprice')
+  @JsonKey(name: 'discountedprice', defaultValue: 0)
   double get discountedprice;
-  @JsonKey(name: 'ptype')
+  @JsonKey(name: 'ptype', defaultValue: 0)
   int get ptype;
-  @JsonKey(name: 'dynamicproperties')
-  List<dynaproperty> get dynamicproperties;
+  @JsonKey(name: 'dynamicproperties', defaultValue: const [])
+  List<DynamicProperty> get dynamicproperties;
   @JsonKey(name: 'varinattype')
   String get varinattype;
   @JsonKey(name: 'nopackagedata')
   NoPackageData get nopackagedata;
-  @JsonKey(name: 'packagedata')
+  @JsonKey(name: 'packagedata', defaultValue: const [])
   List<PackageData> get packagedata;
-  @JsonKey(name: 'sizeandcolordata')
+  @JsonKey(name: 'sizeandcolordata', defaultValue: const [])
   List<SizeAndColorData> get sizeandcolordata;
-  @JsonKey(name: 'custompackagedata')
+  @JsonKey(name: 'custompackagedata', defaultValue: const [])
   List<CustomPackageData> get custompackagedata;
 
   Map<String, dynamic> toJson();
@@ -3112,7 +3127,7 @@ abstract class $ProductDataCopyWith<$Res> {
           ProductData value, $Res Function(ProductData) then) =
       _$ProductDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'productid')
+      {@JsonKey(name: 'productid', defaultValue: '')
           String productid,
       @JsonKey(name: 'title')
           String title,
@@ -3122,27 +3137,27 @@ abstract class $ProductDataCopyWith<$Res> {
           String brand,
       @JsonKey(name: 'category')
           String category,
-      @JsonKey(name: 'tilephoto')
-          String tilephoto,
+      @JsonKey(name: 'tilephoto', defaultValue: '')
+          String tilePhoto,
       @JsonKey(name: 'imagelist')
           List<String> imagelist,
       @JsonKey(name: 'price')
           double price,
-      @JsonKey(name: 'discountedprice')
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
           double discountedprice,
-      @JsonKey(name: 'ptype')
+      @JsonKey(name: 'ptype', defaultValue: 0)
           int ptype,
-      @JsonKey(name: 'dynamicproperties')
-          List<dynaproperty> dynamicproperties,
+      @JsonKey(name: 'dynamicproperties', defaultValue: const [])
+          List<DynamicProperty> dynamicproperties,
       @JsonKey(name: 'varinattype')
           String varinattype,
       @JsonKey(name: 'nopackagedata')
           NoPackageData nopackagedata,
-      @JsonKey(name: 'packagedata')
+      @JsonKey(name: 'packagedata', defaultValue: const [])
           List<PackageData> packagedata,
-      @JsonKey(name: 'sizeandcolordata')
+      @JsonKey(name: 'sizeandcolordata', defaultValue: const [])
           List<SizeAndColorData> sizeandcolordata,
-      @JsonKey(name: 'custompackagedata')
+      @JsonKey(name: 'custompackagedata', defaultValue: const [])
           List<CustomPackageData> custompackagedata});
 
   $NoPackageDataCopyWith<$Res> get nopackagedata;
@@ -3163,7 +3178,7 @@ class _$ProductDataCopyWithImpl<$Res> implements $ProductDataCopyWith<$Res> {
     Object description = freezed,
     Object brand = freezed,
     Object category = freezed,
-    Object tilephoto = freezed,
+    Object tilePhoto = freezed,
     Object imagelist = freezed,
     Object price = freezed,
     Object discountedprice = freezed,
@@ -3182,7 +3197,7 @@ class _$ProductDataCopyWithImpl<$Res> implements $ProductDataCopyWith<$Res> {
           description == freezed ? _value.description : description as String,
       brand: brand == freezed ? _value.brand : brand as String,
       category: category == freezed ? _value.category : category as String,
-      tilephoto: tilephoto == freezed ? _value.tilephoto : tilephoto as String,
+      tilePhoto: tilePhoto == freezed ? _value.tilePhoto : tilePhoto as String,
       imagelist:
           imagelist == freezed ? _value.imagelist : imagelist as List<String>,
       price: price == freezed ? _value.price : price as double,
@@ -3192,7 +3207,7 @@ class _$ProductDataCopyWithImpl<$Res> implements $ProductDataCopyWith<$Res> {
       ptype: ptype == freezed ? _value.ptype : ptype as int,
       dynamicproperties: dynamicproperties == freezed
           ? _value.dynamicproperties
-          : dynamicproperties as List<dynaproperty>,
+          : dynamicproperties as List<DynamicProperty>,
       varinattype:
           varinattype == freezed ? _value.varinattype : varinattype as String,
       nopackagedata: nopackagedata == freezed
@@ -3229,7 +3244,7 @@ abstract class _$ProductDataCopyWith<$Res>
       __$ProductDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'productid')
+      {@JsonKey(name: 'productid', defaultValue: '')
           String productid,
       @JsonKey(name: 'title')
           String title,
@@ -3239,27 +3254,27 @@ abstract class _$ProductDataCopyWith<$Res>
           String brand,
       @JsonKey(name: 'category')
           String category,
-      @JsonKey(name: 'tilephoto')
-          String tilephoto,
+      @JsonKey(name: 'tilephoto', defaultValue: '')
+          String tilePhoto,
       @JsonKey(name: 'imagelist')
           List<String> imagelist,
       @JsonKey(name: 'price')
           double price,
-      @JsonKey(name: 'discountedprice')
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
           double discountedprice,
-      @JsonKey(name: 'ptype')
+      @JsonKey(name: 'ptype', defaultValue: 0)
           int ptype,
-      @JsonKey(name: 'dynamicproperties')
-          List<dynaproperty> dynamicproperties,
+      @JsonKey(name: 'dynamicproperties', defaultValue: const [])
+          List<DynamicProperty> dynamicproperties,
       @JsonKey(name: 'varinattype')
           String varinattype,
       @JsonKey(name: 'nopackagedata')
           NoPackageData nopackagedata,
-      @JsonKey(name: 'packagedata')
+      @JsonKey(name: 'packagedata', defaultValue: const [])
           List<PackageData> packagedata,
-      @JsonKey(name: 'sizeandcolordata')
+      @JsonKey(name: 'sizeandcolordata', defaultValue: const [])
           List<SizeAndColorData> sizeandcolordata,
-      @JsonKey(name: 'custompackagedata')
+      @JsonKey(name: 'custompackagedata', defaultValue: const [])
           List<CustomPackageData> custompackagedata});
 
   @override
@@ -3283,7 +3298,7 @@ class __$ProductDataCopyWithImpl<$Res> extends _$ProductDataCopyWithImpl<$Res>
     Object description = freezed,
     Object brand = freezed,
     Object category = freezed,
-    Object tilephoto = freezed,
+    Object tilePhoto = freezed,
     Object imagelist = freezed,
     Object price = freezed,
     Object discountedprice = freezed,
@@ -3302,7 +3317,7 @@ class __$ProductDataCopyWithImpl<$Res> extends _$ProductDataCopyWithImpl<$Res>
           description == freezed ? _value.description : description as String,
       brand: brand == freezed ? _value.brand : brand as String,
       category: category == freezed ? _value.category : category as String,
-      tilephoto: tilephoto == freezed ? _value.tilephoto : tilephoto as String,
+      tilePhoto: tilePhoto == freezed ? _value.tilePhoto : tilePhoto as String,
       imagelist:
           imagelist == freezed ? _value.imagelist : imagelist as List<String>,
       price: price == freezed ? _value.price : price as double,
@@ -3312,7 +3327,7 @@ class __$ProductDataCopyWithImpl<$Res> extends _$ProductDataCopyWithImpl<$Res>
       ptype: ptype == freezed ? _value.ptype : ptype as int,
       dynamicproperties: dynamicproperties == freezed
           ? _value.dynamicproperties
-          : dynamicproperties as List<dynaproperty>,
+          : dynamicproperties as List<DynamicProperty>,
       varinattype:
           varinattype == freezed ? _value.varinattype : varinattype as String,
       nopackagedata: nopackagedata == freezed
@@ -3336,28 +3351,74 @@ class __$ProductDataCopyWithImpl<$Res> extends _$ProductDataCopyWithImpl<$Res>
 /// @nodoc
 class _$_ProductData implements _ProductData {
   _$_ProductData(
-      {@JsonKey(name: 'productid') this.productid,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'brand') this.brand,
-      @JsonKey(name: 'category') this.category,
-      @JsonKey(name: 'tilephoto') this.tilephoto,
-      @JsonKey(name: 'imagelist') this.imagelist,
-      @JsonKey(name: 'price') this.price,
-      @JsonKey(name: 'discountedprice') this.discountedprice,
-      @JsonKey(name: 'ptype') this.ptype,
-      @JsonKey(name: 'dynamicproperties') this.dynamicproperties,
-      @JsonKey(name: 'varinattype') this.varinattype,
-      @JsonKey(name: 'nopackagedata') this.nopackagedata,
-      @JsonKey(name: 'packagedata') this.packagedata,
-      @JsonKey(name: 'sizeandcolordata') this.sizeandcolordata,
-      @JsonKey(name: 'custompackagedata') this.custompackagedata});
+      {@required
+      @JsonKey(name: 'productid', defaultValue: '')
+          this.productid,
+      @required
+      @JsonKey(name: 'title')
+          this.title,
+      @required
+      @JsonKey(name: 'description')
+          this.description,
+      @required
+      @JsonKey(name: 'brand')
+          this.brand,
+      @required
+      @JsonKey(name: 'category')
+          this.category,
+      @required
+      @JsonKey(name: 'tilephoto', defaultValue: '')
+          this.tilePhoto,
+      @required
+      @JsonKey(name: 'imagelist')
+          this.imagelist,
+      @required
+      @JsonKey(name: 'price')
+          this.price,
+      @required
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
+          this.discountedprice,
+      @required
+      @JsonKey(name: 'ptype', defaultValue: 0)
+          this.ptype,
+      @required
+      @JsonKey(name: 'dynamicproperties', defaultValue: const [])
+          this.dynamicproperties,
+      @required
+      @JsonKey(name: 'varinattype')
+          this.varinattype,
+      @JsonKey(name: 'nopackagedata')
+          this.nopackagedata,
+      @required
+      @JsonKey(name: 'packagedata', defaultValue: const [])
+          this.packagedata,
+      @required
+      @JsonKey(name: 'sizeandcolordata', defaultValue: const [])
+          this.sizeandcolordata,
+      @required
+      @JsonKey(name: 'custompackagedata', defaultValue: const [])
+          this.custompackagedata})
+      : assert(productid != null),
+        assert(title != null),
+        assert(description != null),
+        assert(brand != null),
+        assert(category != null),
+        assert(tilePhoto != null),
+        assert(imagelist != null),
+        assert(price != null),
+        assert(discountedprice != null),
+        assert(ptype != null),
+        assert(dynamicproperties != null),
+        assert(varinattype != null),
+        assert(packagedata != null),
+        assert(sizeandcolordata != null),
+        assert(custompackagedata != null);
 
   factory _$_ProductData.fromJson(Map<String, dynamic> json) =>
       _$_$_ProductDataFromJson(json);
 
   @override
-  @JsonKey(name: 'productid')
+  @JsonKey(name: 'productid', defaultValue: '')
   final String productid;
   @override
   @JsonKey(name: 'title')
@@ -3372,8 +3433,8 @@ class _$_ProductData implements _ProductData {
   @JsonKey(name: 'category')
   final String category;
   @override
-  @JsonKey(name: 'tilephoto')
-  final String tilephoto;
+  @JsonKey(name: 'tilephoto', defaultValue: '')
+  final String tilePhoto;
   @override
   @JsonKey(name: 'imagelist')
   final List<String> imagelist;
@@ -3381,14 +3442,14 @@ class _$_ProductData implements _ProductData {
   @JsonKey(name: 'price')
   final double price;
   @override
-  @JsonKey(name: 'discountedprice')
+  @JsonKey(name: 'discountedprice', defaultValue: 0)
   final double discountedprice;
   @override
-  @JsonKey(name: 'ptype')
+  @JsonKey(name: 'ptype', defaultValue: 0)
   final int ptype;
   @override
-  @JsonKey(name: 'dynamicproperties')
-  final List<dynaproperty> dynamicproperties;
+  @JsonKey(name: 'dynamicproperties', defaultValue: const [])
+  final List<DynamicProperty> dynamicproperties;
   @override
   @JsonKey(name: 'varinattype')
   final String varinattype;
@@ -3396,18 +3457,18 @@ class _$_ProductData implements _ProductData {
   @JsonKey(name: 'nopackagedata')
   final NoPackageData nopackagedata;
   @override
-  @JsonKey(name: 'packagedata')
+  @JsonKey(name: 'packagedata', defaultValue: const [])
   final List<PackageData> packagedata;
   @override
-  @JsonKey(name: 'sizeandcolordata')
+  @JsonKey(name: 'sizeandcolordata', defaultValue: const [])
   final List<SizeAndColorData> sizeandcolordata;
   @override
-  @JsonKey(name: 'custompackagedata')
+  @JsonKey(name: 'custompackagedata', defaultValue: const [])
   final List<CustomPackageData> custompackagedata;
 
   @override
   String toString() {
-    return 'ProductData(productid: $productid, title: $title, description: $description, brand: $brand, category: $category, tilephoto: $tilephoto, imagelist: $imagelist, price: $price, discountedprice: $discountedprice, ptype: $ptype, dynamicproperties: $dynamicproperties, varinattype: $varinattype, nopackagedata: $nopackagedata, packagedata: $packagedata, sizeandcolordata: $sizeandcolordata, custompackagedata: $custompackagedata)';
+    return 'ProductData(productid: $productid, title: $title, description: $description, brand: $brand, category: $category, tilePhoto: $tilePhoto, imagelist: $imagelist, price: $price, discountedprice: $discountedprice, ptype: $ptype, dynamicproperties: $dynamicproperties, varinattype: $varinattype, nopackagedata: $nopackagedata, packagedata: $packagedata, sizeandcolordata: $sizeandcolordata, custompackagedata: $custompackagedata)';
   }
 
   @override
@@ -3427,9 +3488,9 @@ class _$_ProductData implements _ProductData {
             (identical(other.category, category) ||
                 const DeepCollectionEquality()
                     .equals(other.category, category)) &&
-            (identical(other.tilephoto, tilephoto) ||
+            (identical(other.tilePhoto, tilePhoto) ||
                 const DeepCollectionEquality()
-                    .equals(other.tilephoto, tilephoto)) &&
+                    .equals(other.tilePhoto, tilePhoto)) &&
             (identical(other.imagelist, imagelist) ||
                 const DeepCollectionEquality()
                     .equals(other.imagelist, imagelist)) &&
@@ -3468,7 +3529,7 @@ class _$_ProductData implements _ProductData {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(brand) ^
       const DeepCollectionEquality().hash(category) ^
-      const DeepCollectionEquality().hash(tilephoto) ^
+      const DeepCollectionEquality().hash(tilePhoto) ^
       const DeepCollectionEquality().hash(imagelist) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(discountedprice) ^
@@ -3493,44 +3554,59 @@ class _$_ProductData implements _ProductData {
 
 abstract class _ProductData implements ProductData {
   factory _ProductData(
-      {@JsonKey(name: 'productid')
+      {@required
+      @JsonKey(name: 'productid', defaultValue: '')
           String productid,
+      @required
       @JsonKey(name: 'title')
           String title,
+      @required
       @JsonKey(name: 'description')
           String description,
+      @required
       @JsonKey(name: 'brand')
           String brand,
+      @required
       @JsonKey(name: 'category')
           String category,
-      @JsonKey(name: 'tilephoto')
-          String tilephoto,
+      @required
+      @JsonKey(name: 'tilephoto', defaultValue: '')
+          String tilePhoto,
+      @required
       @JsonKey(name: 'imagelist')
           List<String> imagelist,
+      @required
       @JsonKey(name: 'price')
           double price,
-      @JsonKey(name: 'discountedprice')
+      @required
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
           double discountedprice,
-      @JsonKey(name: 'ptype')
+      @required
+      @JsonKey(name: 'ptype', defaultValue: 0)
           int ptype,
-      @JsonKey(name: 'dynamicproperties')
-          List<dynaproperty> dynamicproperties,
+      @required
+      @JsonKey(name: 'dynamicproperties', defaultValue: const [])
+          List<DynamicProperty> dynamicproperties,
+      @required
       @JsonKey(name: 'varinattype')
           String varinattype,
       @JsonKey(name: 'nopackagedata')
           NoPackageData nopackagedata,
-      @JsonKey(name: 'packagedata')
+      @required
+      @JsonKey(name: 'packagedata', defaultValue: const [])
           List<PackageData> packagedata,
-      @JsonKey(name: 'sizeandcolordata')
+      @required
+      @JsonKey(name: 'sizeandcolordata', defaultValue: const [])
           List<SizeAndColorData> sizeandcolordata,
-      @JsonKey(name: 'custompackagedata')
+      @required
+      @JsonKey(name: 'custompackagedata', defaultValue: const [])
           List<CustomPackageData> custompackagedata}) = _$_ProductData;
 
   factory _ProductData.fromJson(Map<String, dynamic> json) =
       _$_ProductData.fromJson;
 
   @override
-  @JsonKey(name: 'productid')
+  @JsonKey(name: 'productid', defaultValue: '')
   String get productid;
   @override
   @JsonKey(name: 'title')
@@ -3545,8 +3621,8 @@ abstract class _ProductData implements ProductData {
   @JsonKey(name: 'category')
   String get category;
   @override
-  @JsonKey(name: 'tilephoto')
-  String get tilephoto;
+  @JsonKey(name: 'tilephoto', defaultValue: '')
+  String get tilePhoto;
   @override
   @JsonKey(name: 'imagelist')
   List<String> get imagelist;
@@ -3554,14 +3630,14 @@ abstract class _ProductData implements ProductData {
   @JsonKey(name: 'price')
   double get price;
   @override
-  @JsonKey(name: 'discountedprice')
+  @JsonKey(name: 'discountedprice', defaultValue: 0)
   double get discountedprice;
   @override
-  @JsonKey(name: 'ptype')
+  @JsonKey(name: 'ptype', defaultValue: 0)
   int get ptype;
   @override
-  @JsonKey(name: 'dynamicproperties')
-  List<dynaproperty> get dynamicproperties;
+  @JsonKey(name: 'dynamicproperties', defaultValue: const [])
+  List<DynamicProperty> get dynamicproperties;
   @override
   @JsonKey(name: 'varinattype')
   String get varinattype;
@@ -3569,13 +3645,13 @@ abstract class _ProductData implements ProductData {
   @JsonKey(name: 'nopackagedata')
   NoPackageData get nopackagedata;
   @override
-  @JsonKey(name: 'packagedata')
+  @JsonKey(name: 'packagedata', defaultValue: const [])
   List<PackageData> get packagedata;
   @override
-  @JsonKey(name: 'sizeandcolordata')
+  @JsonKey(name: 'sizeandcolordata', defaultValue: const [])
   List<SizeAndColorData> get sizeandcolordata;
   @override
-  @JsonKey(name: 'custompackagedata')
+  @JsonKey(name: 'custompackagedata', defaultValue: const [])
   List<CustomPackageData> get custompackagedata;
   @override
   @JsonKey(ignore: true)
@@ -3592,10 +3668,18 @@ class _$NoPackageDataTearOff {
 
 // ignore: unused_element
   _NoPackageData call(
-      {@JsonKey(name: 'unit') String unit,
-      @JsonKey(name: 'priceperunit') double priceperunit,
-      @JsonKey(name: 'inventoryunits') double inventoryunits,
-      @JsonKey(name: 'discountedpriceperunit') double discountedpriceperunit}) {
+      {@required
+      @JsonKey(name: 'unit', defaultValue: '')
+          String unit,
+      @required
+      @JsonKey(name: 'priceperunit')
+          double priceperunit,
+      @required
+      @JsonKey(name: 'inventoryunits')
+          double inventoryunits,
+      @required
+      @JsonKey(name: 'discountedpriceperunit')
+          double discountedpriceperunit}) {
     return _NoPackageData(
       unit: unit,
       priceperunit: priceperunit,
@@ -3616,7 +3700,7 @@ const $NoPackageData = _$NoPackageDataTearOff();
 
 /// @nodoc
 mixin _$NoPackageData {
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   String get unit;
   @JsonKey(name: 'priceperunit')
   double get priceperunit;
@@ -3636,7 +3720,7 @@ abstract class $NoPackageDataCopyWith<$Res> {
           NoPackageData value, $Res Function(NoPackageData) then) =
       _$NoPackageDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'unit') String unit,
+      {@JsonKey(name: 'unit', defaultValue: '') String unit,
       @JsonKey(name: 'priceperunit') double priceperunit,
       @JsonKey(name: 'inventoryunits') double inventoryunits,
       @JsonKey(name: 'discountedpriceperunit') double discountedpriceperunit});
@@ -3681,7 +3765,7 @@ abstract class _$NoPackageDataCopyWith<$Res>
       __$NoPackageDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'unit') String unit,
+      {@JsonKey(name: 'unit', defaultValue: '') String unit,
       @JsonKey(name: 'priceperunit') double priceperunit,
       @JsonKey(name: 'inventoryunits') double inventoryunits,
       @JsonKey(name: 'discountedpriceperunit') double discountedpriceperunit});
@@ -3725,16 +3809,28 @@ class __$NoPackageDataCopyWithImpl<$Res>
 /// @nodoc
 class _$_NoPackageData implements _NoPackageData {
   _$_NoPackageData(
-      {@JsonKey(name: 'unit') this.unit,
-      @JsonKey(name: 'priceperunit') this.priceperunit,
-      @JsonKey(name: 'inventoryunits') this.inventoryunits,
-      @JsonKey(name: 'discountedpriceperunit') this.discountedpriceperunit});
+      {@required
+      @JsonKey(name: 'unit', defaultValue: '')
+          this.unit,
+      @required
+      @JsonKey(name: 'priceperunit')
+          this.priceperunit,
+      @required
+      @JsonKey(name: 'inventoryunits')
+          this.inventoryunits,
+      @required
+      @JsonKey(name: 'discountedpriceperunit')
+          this.discountedpriceperunit})
+      : assert(unit != null),
+        assert(priceperunit != null),
+        assert(inventoryunits != null),
+        assert(discountedpriceperunit != null);
 
   factory _$_NoPackageData.fromJson(Map<String, dynamic> json) =>
       _$_$_NoPackageDataFromJson(json);
 
   @override
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   final String unit;
   @override
   @JsonKey(name: 'priceperunit')
@@ -3789,12 +3885,16 @@ class _$_NoPackageData implements _NoPackageData {
 
 abstract class _NoPackageData implements NoPackageData {
   factory _NoPackageData(
-      {@JsonKey(name: 'unit')
+      {@required
+      @JsonKey(name: 'unit', defaultValue: '')
           String unit,
+      @required
       @JsonKey(name: 'priceperunit')
           double priceperunit,
+      @required
       @JsonKey(name: 'inventoryunits')
           double inventoryunits,
+      @required
       @JsonKey(name: 'discountedpriceperunit')
           double discountedpriceperunit}) = _$_NoPackageData;
 
@@ -3802,7 +3902,7 @@ abstract class _NoPackageData implements NoPackageData {
       _$_NoPackageData.fromJson;
 
   @override
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   String get unit;
   @override
   @JsonKey(name: 'priceperunit')
@@ -3828,15 +3928,33 @@ class _$PackageDataTearOff {
 
 // ignore: unused_element
   _PackageData call(
-      {@JsonKey(name: 'packageid') String packageid,
-      @JsonKey(name: 'barcodeid') String barcodeid,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'tileimage') String tileimage,
-      @JsonKey(name: 'listimages') List<String> listimages,
-      @JsonKey(name: 'unit') int unit,
-      @JsonKey(name: 'price') double price,
-      @JsonKey(name: 'discountedprice') double discountedprice,
-      @JsonKey(name: 'inventoryunits') int inventoryunits}) {
+      {@required
+      @JsonKey(name: 'packageid')
+          String packageid,
+      @required
+      @JsonKey(name: 'barcodeid')
+          String barcodeid,
+      @required
+      @JsonKey(name: 'title')
+          String title,
+      @required
+      @JsonKey(name: 'tileimage')
+          String tileimage,
+      @required
+      @JsonKey(name: 'listimages')
+          List<String> listimages,
+      @required
+      @JsonKey(name: 'unit', defaultValue: '')
+          int unit,
+      @required
+      @JsonKey(name: 'price')
+          double price,
+      @required
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
+          double discountedprice,
+      @required
+      @JsonKey(name: 'inventoryunits')
+          int inventoryunits}) {
     return _PackageData(
       packageid: packageid,
       barcodeid: barcodeid,
@@ -3872,11 +3990,11 @@ mixin _$PackageData {
   String get tileimage;
   @JsonKey(name: 'listimages')
   List<String> get listimages;
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   int get unit;
   @JsonKey(name: 'price')
   double get price;
-  @JsonKey(name: 'discountedprice')
+  @JsonKey(name: 'discountedprice', defaultValue: 0)
   double get discountedprice;
   @JsonKey(name: 'inventoryunits')
   int get inventoryunits;
@@ -3897,9 +4015,9 @@ abstract class $PackageDataCopyWith<$Res> {
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'tileimage') String tileimage,
       @JsonKey(name: 'listimages') List<String> listimages,
-      @JsonKey(name: 'unit') int unit,
+      @JsonKey(name: 'unit', defaultValue: '') int unit,
       @JsonKey(name: 'price') double price,
-      @JsonKey(name: 'discountedprice') double discountedprice,
+      @JsonKey(name: 'discountedprice', defaultValue: 0) double discountedprice,
       @JsonKey(name: 'inventoryunits') int inventoryunits});
 }
 
@@ -3956,9 +4074,9 @@ abstract class _$PackageDataCopyWith<$Res>
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'tileimage') String tileimage,
       @JsonKey(name: 'listimages') List<String> listimages,
-      @JsonKey(name: 'unit') int unit,
+      @JsonKey(name: 'unit', defaultValue: '') int unit,
       @JsonKey(name: 'price') double price,
-      @JsonKey(name: 'discountedprice') double discountedprice,
+      @JsonKey(name: 'discountedprice', defaultValue: 0) double discountedprice,
       @JsonKey(name: 'inventoryunits') int inventoryunits});
 }
 
@@ -4009,15 +4127,42 @@ class __$PackageDataCopyWithImpl<$Res> extends _$PackageDataCopyWithImpl<$Res>
 /// @nodoc
 class _$_PackageData implements _PackageData {
   _$_PackageData(
-      {@JsonKey(name: 'packageid') this.packageid,
-      @JsonKey(name: 'barcodeid') this.barcodeid,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'tileimage') this.tileimage,
-      @JsonKey(name: 'listimages') this.listimages,
-      @JsonKey(name: 'unit') this.unit,
-      @JsonKey(name: 'price') this.price,
-      @JsonKey(name: 'discountedprice') this.discountedprice,
-      @JsonKey(name: 'inventoryunits') this.inventoryunits});
+      {@required
+      @JsonKey(name: 'packageid')
+          this.packageid,
+      @required
+      @JsonKey(name: 'barcodeid')
+          this.barcodeid,
+      @required
+      @JsonKey(name: 'title')
+          this.title,
+      @required
+      @JsonKey(name: 'tileimage')
+          this.tileimage,
+      @required
+      @JsonKey(name: 'listimages')
+          this.listimages,
+      @required
+      @JsonKey(name: 'unit', defaultValue: '')
+          this.unit,
+      @required
+      @JsonKey(name: 'price')
+          this.price,
+      @required
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
+          this.discountedprice,
+      @required
+      @JsonKey(name: 'inventoryunits')
+          this.inventoryunits})
+      : assert(packageid != null),
+        assert(barcodeid != null),
+        assert(title != null),
+        assert(tileimage != null),
+        assert(listimages != null),
+        assert(unit != null),
+        assert(price != null),
+        assert(discountedprice != null),
+        assert(inventoryunits != null);
 
   factory _$_PackageData.fromJson(Map<String, dynamic> json) =>
       _$_$_PackageDataFromJson(json);
@@ -4038,13 +4183,13 @@ class _$_PackageData implements _PackageData {
   @JsonKey(name: 'listimages')
   final List<String> listimages;
   @override
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   final int unit;
   @override
   @JsonKey(name: 'price')
   final double price;
   @override
-  @JsonKey(name: 'discountedprice')
+  @JsonKey(name: 'discountedprice', defaultValue: 0)
   final double discountedprice;
   @override
   @JsonKey(name: 'inventoryunits')
@@ -4111,15 +4256,33 @@ class _$_PackageData implements _PackageData {
 
 abstract class _PackageData implements PackageData {
   factory _PackageData(
-      {@JsonKey(name: 'packageid') String packageid,
-      @JsonKey(name: 'barcodeid') String barcodeid,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'tileimage') String tileimage,
-      @JsonKey(name: 'listimages') List<String> listimages,
-      @JsonKey(name: 'unit') int unit,
-      @JsonKey(name: 'price') double price,
-      @JsonKey(name: 'discountedprice') double discountedprice,
-      @JsonKey(name: 'inventoryunits') int inventoryunits}) = _$_PackageData;
+      {@required
+      @JsonKey(name: 'packageid')
+          String packageid,
+      @required
+      @JsonKey(name: 'barcodeid')
+          String barcodeid,
+      @required
+      @JsonKey(name: 'title')
+          String title,
+      @required
+      @JsonKey(name: 'tileimage')
+          String tileimage,
+      @required
+      @JsonKey(name: 'listimages')
+          List<String> listimages,
+      @required
+      @JsonKey(name: 'unit', defaultValue: '')
+          int unit,
+      @required
+      @JsonKey(name: 'price')
+          double price,
+      @required
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
+          double discountedprice,
+      @required
+      @JsonKey(name: 'inventoryunits')
+          int inventoryunits}) = _$_PackageData;
 
   factory _PackageData.fromJson(Map<String, dynamic> json) =
       _$_PackageData.fromJson;
@@ -4140,13 +4303,13 @@ abstract class _PackageData implements PackageData {
   @JsonKey(name: 'listimages')
   List<String> get listimages;
   @override
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   int get unit;
   @override
   @JsonKey(name: 'price')
   double get price;
   @override
-  @JsonKey(name: 'discountedprice')
+  @JsonKey(name: 'discountedprice', defaultValue: 0)
   double get discountedprice;
   @override
   @JsonKey(name: 'inventoryunits')
@@ -4166,17 +4329,38 @@ class _$SizeAndColorDataTearOff {
 
 // ignore: unused_element
   _SizeAndColorData call(
-      {@JsonKey(name: 'sizecolorid') String sizecolorid,
-      @JsonKey(name: 'barcodeid') String barcodeid,
-      @JsonKey(name: 'sizetype') String sizetype,
-      @JsonKey(name: 'size') String size,
-      @JsonKey(name: 'color') String color,
-      @JsonKey(name: 'price') double price,
-      @JsonKey(name: 'discountedprice') double discountedprice,
-      @JsonKey(name: 'tileimage') String tileimage,
-      @JsonKey(name: 'listimages') List<String> listimages,
-      @JsonKey(name: 'unit') int unit,
-      @JsonKey(name: 'inventoryunits') int inventoryunits}) {
+      {@required
+      @JsonKey(name: 'sizecolorid')
+          String sizecolorid,
+      @required
+      @JsonKey(name: 'barcodeid')
+          String barcodeid,
+      @required
+      @JsonKey(name: 'sizetype', defaultValue: '')
+          String sizetype,
+      @required
+      @JsonKey(name: 'size')
+          String size,
+      @required
+      @JsonKey(name: 'color')
+          String color,
+      @required
+      @JsonKey(name: 'price')
+          double price,
+      @required
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
+          double discountedprice,
+      @JsonKey(name: 'tileimage')
+          String tileimage,
+      @required
+      @JsonKey(name: 'listimages')
+          List<String> listimages,
+      @required
+      @JsonKey(name: 'unit', defaultValue: '')
+          int unit,
+      @required
+      @JsonKey(name: 'inventoryunits')
+          int inventoryunits}) {
     return _SizeAndColorData(
       sizecolorid: sizecolorid,
       barcodeid: barcodeid,
@@ -4208,7 +4392,7 @@ mixin _$SizeAndColorData {
   String get sizecolorid;
   @JsonKey(name: 'barcodeid')
   String get barcodeid;
-  @JsonKey(name: 'sizetype')
+  @JsonKey(name: 'sizetype', defaultValue: '')
   String get sizetype;
   @JsonKey(name: 'size')
   String get size;
@@ -4216,13 +4400,13 @@ mixin _$SizeAndColorData {
   String get color;
   @JsonKey(name: 'price')
   double get price;
-  @JsonKey(name: 'discountedprice')
+  @JsonKey(name: 'discountedprice', defaultValue: 0)
   double get discountedprice;
   @JsonKey(name: 'tileimage')
   String get tileimage;
   @JsonKey(name: 'listimages')
   List<String> get listimages;
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   int get unit;
   @JsonKey(name: 'inventoryunits')
   int get inventoryunits;
@@ -4240,14 +4424,14 @@ abstract class $SizeAndColorDataCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'sizecolorid') String sizecolorid,
       @JsonKey(name: 'barcodeid') String barcodeid,
-      @JsonKey(name: 'sizetype') String sizetype,
+      @JsonKey(name: 'sizetype', defaultValue: '') String sizetype,
       @JsonKey(name: 'size') String size,
       @JsonKey(name: 'color') String color,
       @JsonKey(name: 'price') double price,
-      @JsonKey(name: 'discountedprice') double discountedprice,
+      @JsonKey(name: 'discountedprice', defaultValue: 0) double discountedprice,
       @JsonKey(name: 'tileimage') String tileimage,
       @JsonKey(name: 'listimages') List<String> listimages,
-      @JsonKey(name: 'unit') int unit,
+      @JsonKey(name: 'unit', defaultValue: '') int unit,
       @JsonKey(name: 'inventoryunits') int inventoryunits});
 }
 
@@ -4307,14 +4491,14 @@ abstract class _$SizeAndColorDataCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'sizecolorid') String sizecolorid,
       @JsonKey(name: 'barcodeid') String barcodeid,
-      @JsonKey(name: 'sizetype') String sizetype,
+      @JsonKey(name: 'sizetype', defaultValue: '') String sizetype,
       @JsonKey(name: 'size') String size,
       @JsonKey(name: 'color') String color,
       @JsonKey(name: 'price') double price,
-      @JsonKey(name: 'discountedprice') double discountedprice,
+      @JsonKey(name: 'discountedprice', defaultValue: 0) double discountedprice,
       @JsonKey(name: 'tileimage') String tileimage,
       @JsonKey(name: 'listimages') List<String> listimages,
-      @JsonKey(name: 'unit') int unit,
+      @JsonKey(name: 'unit', defaultValue: '') int unit,
       @JsonKey(name: 'inventoryunits') int inventoryunits});
 }
 
@@ -4371,17 +4555,48 @@ class __$SizeAndColorDataCopyWithImpl<$Res>
 /// @nodoc
 class _$_SizeAndColorData implements _SizeAndColorData {
   _$_SizeAndColorData(
-      {@JsonKey(name: 'sizecolorid') this.sizecolorid,
-      @JsonKey(name: 'barcodeid') this.barcodeid,
-      @JsonKey(name: 'sizetype') this.sizetype,
-      @JsonKey(name: 'size') this.size,
-      @JsonKey(name: 'color') this.color,
-      @JsonKey(name: 'price') this.price,
-      @JsonKey(name: 'discountedprice') this.discountedprice,
-      @JsonKey(name: 'tileimage') this.tileimage,
-      @JsonKey(name: 'listimages') this.listimages,
-      @JsonKey(name: 'unit') this.unit,
-      @JsonKey(name: 'inventoryunits') this.inventoryunits});
+      {@required
+      @JsonKey(name: 'sizecolorid')
+          this.sizecolorid,
+      @required
+      @JsonKey(name: 'barcodeid')
+          this.barcodeid,
+      @required
+      @JsonKey(name: 'sizetype', defaultValue: '')
+          this.sizetype,
+      @required
+      @JsonKey(name: 'size')
+          this.size,
+      @required
+      @JsonKey(name: 'color')
+          this.color,
+      @required
+      @JsonKey(name: 'price')
+          this.price,
+      @required
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
+          this.discountedprice,
+      @JsonKey(name: 'tileimage')
+          this.tileimage,
+      @required
+      @JsonKey(name: 'listimages')
+          this.listimages,
+      @required
+      @JsonKey(name: 'unit', defaultValue: '')
+          this.unit,
+      @required
+      @JsonKey(name: 'inventoryunits')
+          this.inventoryunits})
+      : assert(sizecolorid != null),
+        assert(barcodeid != null),
+        assert(sizetype != null),
+        assert(size != null),
+        assert(color != null),
+        assert(price != null),
+        assert(discountedprice != null),
+        assert(listimages != null),
+        assert(unit != null),
+        assert(inventoryunits != null);
 
   factory _$_SizeAndColorData.fromJson(Map<String, dynamic> json) =>
       _$_$_SizeAndColorDataFromJson(json);
@@ -4393,7 +4608,7 @@ class _$_SizeAndColorData implements _SizeAndColorData {
   @JsonKey(name: 'barcodeid')
   final String barcodeid;
   @override
-  @JsonKey(name: 'sizetype')
+  @JsonKey(name: 'sizetype', defaultValue: '')
   final String sizetype;
   @override
   @JsonKey(name: 'size')
@@ -4405,7 +4620,7 @@ class _$_SizeAndColorData implements _SizeAndColorData {
   @JsonKey(name: 'price')
   final double price;
   @override
-  @JsonKey(name: 'discountedprice')
+  @JsonKey(name: 'discountedprice', defaultValue: 0)
   final double discountedprice;
   @override
   @JsonKey(name: 'tileimage')
@@ -4414,7 +4629,7 @@ class _$_SizeAndColorData implements _SizeAndColorData {
   @JsonKey(name: 'listimages')
   final List<String> listimages;
   @override
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   final int unit;
   @override
   @JsonKey(name: 'inventoryunits')
@@ -4488,18 +4703,38 @@ class _$_SizeAndColorData implements _SizeAndColorData {
 
 abstract class _SizeAndColorData implements SizeAndColorData {
   factory _SizeAndColorData(
-          {@JsonKey(name: 'sizecolorid') String sizecolorid,
-          @JsonKey(name: 'barcodeid') String barcodeid,
-          @JsonKey(name: 'sizetype') String sizetype,
-          @JsonKey(name: 'size') String size,
-          @JsonKey(name: 'color') String color,
-          @JsonKey(name: 'price') double price,
-          @JsonKey(name: 'discountedprice') double discountedprice,
-          @JsonKey(name: 'tileimage') String tileimage,
-          @JsonKey(name: 'listimages') List<String> listimages,
-          @JsonKey(name: 'unit') int unit,
-          @JsonKey(name: 'inventoryunits') int inventoryunits}) =
-      _$_SizeAndColorData;
+      {@required
+      @JsonKey(name: 'sizecolorid')
+          String sizecolorid,
+      @required
+      @JsonKey(name: 'barcodeid')
+          String barcodeid,
+      @required
+      @JsonKey(name: 'sizetype', defaultValue: '')
+          String sizetype,
+      @required
+      @JsonKey(name: 'size')
+          String size,
+      @required
+      @JsonKey(name: 'color')
+          String color,
+      @required
+      @JsonKey(name: 'price')
+          double price,
+      @required
+      @JsonKey(name: 'discountedprice', defaultValue: 0)
+          double discountedprice,
+      @JsonKey(name: 'tileimage')
+          String tileimage,
+      @required
+      @JsonKey(name: 'listimages')
+          List<String> listimages,
+      @required
+      @JsonKey(name: 'unit', defaultValue: '')
+          int unit,
+      @required
+      @JsonKey(name: 'inventoryunits')
+          int inventoryunits}) = _$_SizeAndColorData;
 
   factory _SizeAndColorData.fromJson(Map<String, dynamic> json) =
       _$_SizeAndColorData.fromJson;
@@ -4511,7 +4746,7 @@ abstract class _SizeAndColorData implements SizeAndColorData {
   @JsonKey(name: 'barcodeid')
   String get barcodeid;
   @override
-  @JsonKey(name: 'sizetype')
+  @JsonKey(name: 'sizetype', defaultValue: '')
   String get sizetype;
   @override
   @JsonKey(name: 'size')
@@ -4523,7 +4758,7 @@ abstract class _SizeAndColorData implements SizeAndColorData {
   @JsonKey(name: 'price')
   double get price;
   @override
-  @JsonKey(name: 'discountedprice')
+  @JsonKey(name: 'discountedprice', defaultValue: 0)
   double get discountedprice;
   @override
   @JsonKey(name: 'tileimage')
@@ -4532,7 +4767,7 @@ abstract class _SizeAndColorData implements SizeAndColorData {
   @JsonKey(name: 'listimages')
   List<String> get listimages;
   @override
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   int get unit;
   @override
   @JsonKey(name: 'inventoryunits')
@@ -4552,9 +4787,9 @@ class _$CustomPackageDataTearOff {
 
 // ignore: unused_element
   _CustomPackageData call(
-      {@JsonKey(name: 'productid') String productid,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'unit') int unit}) {
+      {@required @JsonKey(name: 'productid', defaultValue: '') String productid,
+      @required @JsonKey(name: 'title') String title,
+      @required @JsonKey(name: 'unit', defaultValue: '') int unit}) {
     return _CustomPackageData(
       productid: productid,
       title: title,
@@ -4574,11 +4809,11 @@ const $CustomPackageData = _$CustomPackageDataTearOff();
 
 /// @nodoc
 mixin _$CustomPackageData {
-  @JsonKey(name: 'productid')
+  @JsonKey(name: 'productid', defaultValue: '')
   String get productid;
   @JsonKey(name: 'title')
   String get title;
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   int get unit;
 
   Map<String, dynamic> toJson();
@@ -4592,9 +4827,9 @@ abstract class $CustomPackageDataCopyWith<$Res> {
           CustomPackageData value, $Res Function(CustomPackageData) then) =
       _$CustomPackageDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'productid') String productid,
+      {@JsonKey(name: 'productid', defaultValue: '') String productid,
       @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'unit') int unit});
+      @JsonKey(name: 'unit', defaultValue: '') int unit});
 }
 
 /// @nodoc
@@ -4628,9 +4863,9 @@ abstract class _$CustomPackageDataCopyWith<$Res>
       __$CustomPackageDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'productid') String productid,
+      {@JsonKey(name: 'productid', defaultValue: '') String productid,
       @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'unit') int unit});
+      @JsonKey(name: 'unit', defaultValue: '') int unit});
 }
 
 /// @nodoc
@@ -4663,21 +4898,24 @@ class __$CustomPackageDataCopyWithImpl<$Res>
 /// @nodoc
 class _$_CustomPackageData implements _CustomPackageData {
   _$_CustomPackageData(
-      {@JsonKey(name: 'productid') this.productid,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'unit') this.unit});
+      {@required @JsonKey(name: 'productid', defaultValue: '') this.productid,
+      @required @JsonKey(name: 'title') this.title,
+      @required @JsonKey(name: 'unit', defaultValue: '') this.unit})
+      : assert(productid != null),
+        assert(title != null),
+        assert(unit != null);
 
   factory _$_CustomPackageData.fromJson(Map<String, dynamic> json) =>
       _$_$_CustomPackageDataFromJson(json);
 
   @override
-  @JsonKey(name: 'productid')
+  @JsonKey(name: 'productid', defaultValue: '')
   final String productid;
   @override
   @JsonKey(name: 'title')
   final String title;
   @override
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   final int unit;
 
   @override
@@ -4718,57 +4956,63 @@ class _$_CustomPackageData implements _CustomPackageData {
 
 abstract class _CustomPackageData implements CustomPackageData {
   factory _CustomPackageData(
-      {@JsonKey(name: 'productid') String productid,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'unit') int unit}) = _$_CustomPackageData;
+      {@required
+      @JsonKey(name: 'productid', defaultValue: '')
+          String productid,
+      @required
+      @JsonKey(name: 'title')
+          String title,
+      @required
+      @JsonKey(name: 'unit', defaultValue: '')
+          int unit}) = _$_CustomPackageData;
 
   factory _CustomPackageData.fromJson(Map<String, dynamic> json) =
       _$_CustomPackageData.fromJson;
 
   @override
-  @JsonKey(name: 'productid')
+  @JsonKey(name: 'productid', defaultValue: '')
   String get productid;
   @override
   @JsonKey(name: 'title')
   String get title;
   @override
-  @JsonKey(name: 'unit')
+  @JsonKey(name: 'unit', defaultValue: '')
   int get unit;
   @override
   @JsonKey(ignore: true)
   _$CustomPackageDataCopyWith<_CustomPackageData> get copyWith;
 }
 
-dynaproperty _$dynapropertyFromJson(Map<String, dynamic> json) {
-  return _dynaproperty.fromJson(json);
+DynamicProperty _$DynamicPropertyFromJson(Map<String, dynamic> json) {
+  return _DynamicProperty.fromJson(json);
 }
 
 /// @nodoc
-class _$dynapropertyTearOff {
-  const _$dynapropertyTearOff();
+class _$DynamicPropertyTearOff {
+  const _$DynamicPropertyTearOff();
 
 // ignore: unused_element
-  _dynaproperty call(
-      {@JsonKey(name: 'propertyname') String propertyname,
-      @JsonKey(name: 'values') List<String> values}) {
-    return _dynaproperty(
+  _DynamicProperty call(
+      {@required @JsonKey(name: 'propertyname') String propertyname,
+      @required @JsonKey(name: 'values') List<String> values}) {
+    return _DynamicProperty(
       propertyname: propertyname,
       values: values,
     );
   }
 
 // ignore: unused_element
-  dynaproperty fromJson(Map<String, Object> json) {
-    return dynaproperty.fromJson(json);
+  DynamicProperty fromJson(Map<String, Object> json) {
+    return DynamicProperty.fromJson(json);
   }
 }
 
 /// @nodoc
 // ignore: unused_element
-const $dynaproperty = _$dynapropertyTearOff();
+const $DynamicProperty = _$DynamicPropertyTearOff();
 
 /// @nodoc
-mixin _$dynaproperty {
+mixin _$DynamicProperty {
   @JsonKey(name: 'propertyname')
   String get propertyname;
   @JsonKey(name: 'values')
@@ -4776,26 +5020,27 @@ mixin _$dynaproperty {
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
-  $dynapropertyCopyWith<dynaproperty> get copyWith;
+  $DynamicPropertyCopyWith<DynamicProperty> get copyWith;
 }
 
 /// @nodoc
-abstract class $dynapropertyCopyWith<$Res> {
-  factory $dynapropertyCopyWith(
-          dynaproperty value, $Res Function(dynaproperty) then) =
-      _$dynapropertyCopyWithImpl<$Res>;
+abstract class $DynamicPropertyCopyWith<$Res> {
+  factory $DynamicPropertyCopyWith(
+          DynamicProperty value, $Res Function(DynamicProperty) then) =
+      _$DynamicPropertyCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'propertyname') String propertyname,
       @JsonKey(name: 'values') List<String> values});
 }
 
 /// @nodoc
-class _$dynapropertyCopyWithImpl<$Res> implements $dynapropertyCopyWith<$Res> {
-  _$dynapropertyCopyWithImpl(this._value, this._then);
+class _$DynamicPropertyCopyWithImpl<$Res>
+    implements $DynamicPropertyCopyWith<$Res> {
+  _$DynamicPropertyCopyWithImpl(this._value, this._then);
 
-  final dynaproperty _value;
+  final DynamicProperty _value;
   // ignore: unused_field
-  final $Res Function(dynaproperty) _then;
+  final $Res Function(DynamicProperty) _then;
 
   @override
   $Res call({
@@ -4812,11 +5057,11 @@ class _$dynapropertyCopyWithImpl<$Res> implements $dynapropertyCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$dynapropertyCopyWith<$Res>
-    implements $dynapropertyCopyWith<$Res> {
-  factory _$dynapropertyCopyWith(
-          _dynaproperty value, $Res Function(_dynaproperty) then) =
-      __$dynapropertyCopyWithImpl<$Res>;
+abstract class _$DynamicPropertyCopyWith<$Res>
+    implements $DynamicPropertyCopyWith<$Res> {
+  factory _$DynamicPropertyCopyWith(
+          _DynamicProperty value, $Res Function(_DynamicProperty) then) =
+      __$DynamicPropertyCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'propertyname') String propertyname,
@@ -4824,21 +5069,22 @@ abstract class _$dynapropertyCopyWith<$Res>
 }
 
 /// @nodoc
-class __$dynapropertyCopyWithImpl<$Res> extends _$dynapropertyCopyWithImpl<$Res>
-    implements _$dynapropertyCopyWith<$Res> {
-  __$dynapropertyCopyWithImpl(
-      _dynaproperty _value, $Res Function(_dynaproperty) _then)
-      : super(_value, (v) => _then(v as _dynaproperty));
+class __$DynamicPropertyCopyWithImpl<$Res>
+    extends _$DynamicPropertyCopyWithImpl<$Res>
+    implements _$DynamicPropertyCopyWith<$Res> {
+  __$DynamicPropertyCopyWithImpl(
+      _DynamicProperty _value, $Res Function(_DynamicProperty) _then)
+      : super(_value, (v) => _then(v as _DynamicProperty));
 
   @override
-  _dynaproperty get _value => super._value as _dynaproperty;
+  _DynamicProperty get _value => super._value as _DynamicProperty;
 
   @override
   $Res call({
     Object propertyname = freezed,
     Object values = freezed,
   }) {
-    return _then(_dynaproperty(
+    return _then(_DynamicProperty(
       propertyname: propertyname == freezed
           ? _value.propertyname
           : propertyname as String,
@@ -4850,13 +5096,15 @@ class __$dynapropertyCopyWithImpl<$Res> extends _$dynapropertyCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_dynaproperty implements _dynaproperty {
-  _$_dynaproperty(
-      {@JsonKey(name: 'propertyname') this.propertyname,
-      @JsonKey(name: 'values') this.values});
+class _$_DynamicProperty implements _DynamicProperty {
+  _$_DynamicProperty(
+      {@required @JsonKey(name: 'propertyname') this.propertyname,
+      @required @JsonKey(name: 'values') this.values})
+      : assert(propertyname != null),
+        assert(values != null);
 
-  factory _$_dynaproperty.fromJson(Map<String, dynamic> json) =>
-      _$_$_dynapropertyFromJson(json);
+  factory _$_DynamicProperty.fromJson(Map<String, dynamic> json) =>
+      _$_$_DynamicPropertyFromJson(json);
 
   @override
   @JsonKey(name: 'propertyname')
@@ -4867,13 +5115,13 @@ class _$_dynaproperty implements _dynaproperty {
 
   @override
   String toString() {
-    return 'dynaproperty(propertyname: $propertyname, values: $values)';
+    return 'DynamicProperty(propertyname: $propertyname, values: $values)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _dynaproperty &&
+        (other is _DynamicProperty &&
             (identical(other.propertyname, propertyname) ||
                 const DeepCollectionEquality()
                     .equals(other.propertyname, propertyname)) &&
@@ -4889,22 +5137,23 @@ class _$_dynaproperty implements _dynaproperty {
 
   @JsonKey(ignore: true)
   @override
-  _$dynapropertyCopyWith<_dynaproperty> get copyWith =>
-      __$dynapropertyCopyWithImpl<_dynaproperty>(this, _$identity);
+  _$DynamicPropertyCopyWith<_DynamicProperty> get copyWith =>
+      __$DynamicPropertyCopyWithImpl<_DynamicProperty>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_dynapropertyToJson(this);
+    return _$_$_DynamicPropertyToJson(this);
   }
 }
 
-abstract class _dynaproperty implements dynaproperty {
-  factory _dynaproperty(
-      {@JsonKey(name: 'propertyname') String propertyname,
-      @JsonKey(name: 'values') List<String> values}) = _$_dynaproperty;
+abstract class _DynamicProperty implements DynamicProperty {
+  factory _DynamicProperty(
+          {@required @JsonKey(name: 'propertyname') String propertyname,
+          @required @JsonKey(name: 'values') List<String> values}) =
+      _$_DynamicProperty;
 
-  factory _dynaproperty.fromJson(Map<String, dynamic> json) =
-      _$_dynaproperty.fromJson;
+  factory _DynamicProperty.fromJson(Map<String, dynamic> json) =
+      _$_DynamicProperty.fromJson;
 
   @override
   @JsonKey(name: 'propertyname')
@@ -4914,7 +5163,7 @@ abstract class _dynaproperty implements dynaproperty {
   List<String> get values;
   @override
   @JsonKey(ignore: true)
-  _$dynapropertyCopyWith<_dynaproperty> get copyWith;
+  _$DynamicPropertyCopyWith<_DynamicProperty> get copyWith;
 }
 
 PetData _$PetDataFromJson(Map<String, dynamic> json) {
