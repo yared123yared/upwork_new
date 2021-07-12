@@ -29,6 +29,8 @@ class OccupiedUnitLookupModel {
     oul.justunits  = new Map<String, List<UnitOccupants>>();
     oul.freeunits  = new Map<String, List<UnitOccupants>>();
     oul.occupiedunits  = new Map<String, List<UnitOccupants>>();
+    oul.hasfreeunits=false;
+    oul.hasoccupiedunits=false;
 
     for(String ounit in occupiedresidentlist)
       {
