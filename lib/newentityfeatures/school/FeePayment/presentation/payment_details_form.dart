@@ -11,8 +11,9 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart' as helputil;
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../itembloc/bloc.dart' as itembloc;
 import 'package:complex/newentityfeatures/Models/user_reg_fee_collection.dart';
@@ -85,7 +86,8 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
         _image.text = widget.paymentDetails.image;
 
         _lateFeeIncluded = widget.paymentDetails.lateFeeIncluded;
-        _paymentAmount.text = widget.paymentDetails.paymentAmount.toString() ?? "";
+        _paymentAmount.text =
+            widget.paymentDetails.paymentAmount.toString() ?? "";
         _paymentDate.text = widget.paymentDetails.paymentDate;
         _paymentMechanism.text = widget.paymentDetails.paymentMechanism;
         _receivedByMemberId.text = widget.paymentDetails.receivedByMemberId;
@@ -140,9 +142,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
         body: BlocListener<itembloc.FeePaymentBloc, itembloc.FeePaymentState>(
             listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }
@@ -229,7 +229,8 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue:
-                          widget?.paymentDetails?.checkDetails?.toString() ?? "",
+                          widget?.paymentDetails?.checkDetails?.toString() ??
+                              "",
                       title: "Check Details",
                       controller: _checkDetails,
                       validate: Validate.withOption(isRequired: true),
@@ -238,8 +239,9 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue: widget
-                          ?.paymentDetails?.creditCardTransactionNum
-                          ?.toString() ?? "",
+                              ?.paymentDetails?.creditCardTransactionNum
+                              ?.toString() ??
+                          "",
                       title: "Credit card transaction",
                       controller: _creditCardTransactionNum,
                       validate: Validate.withOption(isRequired: true),
@@ -265,7 +267,8 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue:
-                          widget?.paymentDetails?.paymentAmount?.toString() ?? "",
+                          widget?.paymentDetails?.paymentAmount?.toString() ??
+                              "",
                       title: "Payment Ammount",
                       controller: _paymentAmount,
                       validate: Validate.withOption(isRequired: true),
@@ -290,8 +293,9 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                     CustomTextField(
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
-                      initialValue:
-                          widget?.paymentDetails?.paymentMechanism?.toString() ?? "",
+                      initialValue: widget?.paymentDetails?.paymentMechanism
+                              ?.toString() ??
+                          "",
                       title: "Payment Mechanism",
                       controller: _paymentMechanism,
                       validate: Validate.withOption(isRequired: true),
@@ -301,7 +305,8 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue: widget?.paymentDetails?.receivedByMemberName
-                          ?.toString() ?? "",
+                              ?.toString() ??
+                          "",
                       controller: _receivedByMemberName,
                       loadData: () async => _membersList ?? [],
                       displayName: (x) => x.display,
@@ -319,7 +324,8 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       enabled:
                           !(widget?.userRegFeeCollectionModel?.closed ?? false),
                       initialValue: widget?.paymentDetails?.receivedByMemberId
-                          ?.toString() ?? "",
+                              ?.toString() ??
+                          "",
                       title: "Received by member id",
                       controller: _receivedByMemberId,
                       validate: Validate.withOption(isRequired: true),

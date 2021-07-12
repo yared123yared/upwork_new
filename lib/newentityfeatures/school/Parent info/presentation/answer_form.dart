@@ -11,8 +11,9 @@ import 'package:complex/newentityfeatures/Models/vrassignment_score_model.dart';
 import 'package:complex/newentityfeatures/school/Parent%20info/repo/parentinfomodel_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:asuka/asuka.dart' as asuka;
+//import 'package:asuka/asuka.dart' as asuka;
 import 'package:flutter/cupertino.dart' show CupertinoSlidingSegmentedControl;
 import 'package:complex/common/widgets/segment_tab.dart';
 import '../bloc/bloc.dart';
@@ -161,7 +162,6 @@ class _QuestionsAnswerFormState extends State<QuestionsAnswerForm> {
                             child: Text(
                               "There are no questions for this assignment",
                               textAlign: TextAlign.center,
-
                             ),
                           ),
                         ),
@@ -222,13 +222,8 @@ class _QuestionsAnswerFormState extends State<QuestionsAnswerForm> {
                         buildUrlPage(context, e);
                       } else {
                         ///this must not happens in real sitiution
-                        asuka.showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'The study material dosn`t has a link, inform the instractor of that',
-                            ),
-                          ),
-                        );
+                        EasyLoading.showInfo(
+                            'The study material dosn`t has a link, inform the instractor of that');
                       }
                     }),
               ))

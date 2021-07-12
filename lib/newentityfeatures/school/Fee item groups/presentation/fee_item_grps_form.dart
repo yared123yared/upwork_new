@@ -7,7 +7,8 @@ import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
-import "package:asuka/asuka.dart" as asuka;
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+//import "package:asuka/asuka.dart" as asuka;
 
 import '../itembloc/bloc.dart' as itembloc;
 import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
@@ -66,9 +67,7 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
 
   bool _validate() {
     if (_feeItems.isEmpty) {
-      asuka.showSnackBar(SnackBar(
-        content: Text("You must enter the The Items"),
-      ));
+      EasyLoading.showInfo("You must enter the The Items");
       return false;
     } else
       return _scheduleName.isValid &&
@@ -112,9 +111,7 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
         body: BlocListener<itembloc.FeeItemGroupsModelBloc,
             itembloc.FeeItemGroupsModelState>(listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }

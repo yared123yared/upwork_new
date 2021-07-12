@@ -11,8 +11,9 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 
 import 'package:complex/data/styles_colors.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 import '../bloc/bloc.dart';
@@ -300,9 +301,7 @@ class _ParentInfoPageState extends State<ParentInfoPage> {
                     );
                     if (resultState is IsSaved) {
                       print("Saved 22222222222");
-                      asuka.showSnackBar(SnackBar(
-                        content: Text("Question Submitted"),
-                      ));
+                      EasyLoading.showSuccess("Question Submitted");
                       setState(() {
                         timelineIndex = 1;
                       });
