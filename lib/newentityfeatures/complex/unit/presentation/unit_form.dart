@@ -144,6 +144,7 @@ class _UnitModelFormState extends State<UnitModelForm> {
                     CustomTextField(
                       initialValue: widget.unitModel?.address,
                       title: "Unit number",
+                      enabled: !_isUpdate,
                       controller: _address,
                       // enabled: false,
                       validate: Validate.withOption(isRequired: true),
@@ -162,6 +163,7 @@ class _UnitModelFormState extends State<UnitModelForm> {
                       initialValue:
                           widget.unitModel?.numVisitorParking?.toString(),
                       // enabled: isManager,
+                      enabled: !_isUpdate,
                       title: "Number of Visitor Parking",
                       controller: _noVisitorParking,
                       validate: Validate.withOption(
@@ -173,6 +175,7 @@ class _UnitModelFormState extends State<UnitModelForm> {
                       initialValue:
                           widget.unitModel?.numFixedParking?.toString(),
                       // enabled: isManager,
+                      enabled: !_isUpdate,
                       title: "Number of Fixed  Parking",
                       controller: _noFixedParking,
                       validate: Validate.withOption(

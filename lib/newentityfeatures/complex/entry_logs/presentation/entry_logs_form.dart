@@ -79,7 +79,7 @@ class _EntryLogsFormState extends State<EntryLogsForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Entry Logs'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.EntryLogsBloc, itembloc.EntryLogsState>(

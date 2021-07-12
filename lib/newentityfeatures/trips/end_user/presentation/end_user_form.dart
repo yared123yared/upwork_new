@@ -59,7 +59,7 @@ class _EndUserFormState extends State<EndUserForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('End User'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.EndUserBloc, itembloc.EndUserState>(

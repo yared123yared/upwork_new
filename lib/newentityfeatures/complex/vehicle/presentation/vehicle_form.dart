@@ -192,7 +192,7 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Vehicle'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.VehicleModelBloc,

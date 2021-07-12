@@ -253,8 +253,8 @@ class _OfferingWeeklyScheduleListListState
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Offerings Schedule List",
+                dynamicListState: "Offerings Schedule List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

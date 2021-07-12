@@ -138,7 +138,7 @@ class _PointOfInterestListListState extends State<PointOfInterestListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Attach Assignment List"),
+            title: Text("Point of Interest List"),
             centerTitle: true,
           ),
           body: BlocListener<listbloc.PointOfInterestListBloc,
@@ -251,8 +251,8 @@ class _PointOfInterestListListState extends State<PointOfInterestListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Point of Interest List",
+                dynamicListState: "Point of Interest List",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

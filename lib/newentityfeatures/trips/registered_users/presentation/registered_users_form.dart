@@ -84,7 +84,7 @@ class _RegisteredUsersFormState extends State<RegisteredUsersForm> {
         ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exam Form'),
+          title: Text('Registered Users'),
           centerTitle: true,
         ),
         body: BlocListener<itembloc.RegisteredUsersBloc,
