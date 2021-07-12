@@ -1,8 +1,8 @@
 import 'package:complex/view/product_pages/contact_details_form.dart';
-import 'package:complex/view/product_pages/package_detail_view.dart';
+import 'package:complex/view/product_pages/package_detail_form.dart';
 import 'package:complex/view/product_pages/package_list_view.dart';
 import 'package:complex/view/product_pages/size_and_color_list_view.dart';
-import 'package:complex/view/product_pages/size_color_detail_view.dart';
+import 'package:complex/view/product_pages/size_color_detail_form.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:flutter/material.dart';
@@ -57,10 +57,10 @@ class _ProductMainPageState extends State<ProductMainPage> {
             // Navigator.push(context, MaterialPageRoute(builder: (context) => GenericProperties()));
           }
           if (index == 3) {
-            Navigator.push(context, NextPageRoute(PackageDetailView()));
+            Navigator.push(context, NextPageRoute(PackageDetailForm()));
           }
           if (index == 4) {
-            Navigator.push(context, NextPageRoute(SizeAndColorDetailView()));
+            Navigator.push(context, NextPageRoute(SizeAndColorDetailForm()));
           }
           if (index == 5) {
             Navigator.push(context, NextPageRoute(PackageListView()));

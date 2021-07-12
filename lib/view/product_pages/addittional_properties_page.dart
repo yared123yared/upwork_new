@@ -6,6 +6,7 @@ import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_dropdown.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
 import 'package:complex/view/product_pages/package_list_view.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
@@ -20,12 +21,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AdditionalPropertiesPage extends StatefulWidget {
   final ProductType productType;
   final ProductModel model;
+  final CompleteProduct product;
   final Map<String, dynamic> dynamicProperties;
 
   AdditionalPropertiesPage({
     this.productType,
     this.model,
     this.dynamicProperties,
+    this.product,
   });
 
   @override

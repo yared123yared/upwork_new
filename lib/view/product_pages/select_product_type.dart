@@ -1,7 +1,7 @@
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
-import 'package:complex/view/product_pages/generic_prop.dart';
+import 'package:complex/view/product_pages/product_properties.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
@@ -53,7 +53,7 @@ class _SelectProductTypeState extends State<SelectProductType> {
                   Navigator.push(
                     context,
                     NextPageRoute(
-                      GenericProperties(
+                      ProductProperties(
                         withUnitPrice: true,
                         productType: ProductType.noPackage,
                         contactDetails: widget.contactDetail,
@@ -71,7 +71,7 @@ class _SelectProductTypeState extends State<SelectProductType> {
                   Navigator.push(
                     context,
                     NextPageRoute(
-                      GenericProperties(
+                      ProductProperties(
                         withUnitPrice: false,
                         productType: ProductType.package,
                         contactDetails: widget.contactDetail,
@@ -89,7 +89,7 @@ class _SelectProductTypeState extends State<SelectProductType> {
                   Navigator.push(
                     context,
                     NextPageRoute(
-                      GenericProperties(
+                      ProductProperties(
                         withUnitPrice: false,
                         productType: ProductType.multiColor,
                         contactDetails: widget.contactDetail,
@@ -107,7 +107,7 @@ class _SelectProductTypeState extends State<SelectProductType> {
                   Navigator.push(
                     context,
                     NextPageRoute(
-                      GenericProperties(
+                      ProductProperties(
                         withUnitPrice: false,
                         productType: ProductType.mySpecial,
                         contactDetails: widget.contactDetail,

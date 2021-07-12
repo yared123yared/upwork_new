@@ -5,7 +5,7 @@ import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
-import 'package:complex/view/product_pages/package_detail_view.dart';
+import 'package:complex/view/product_pages/package_detail_form.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/resource/colors.dart';
@@ -147,7 +147,7 @@ class _PackageListViewState extends State<PackageListView> {
               ),
             ),
             onTap: () {
-              Navigator.push(context, NextPageRoute(PackageDetailView()))
+              Navigator.push(context, NextPageRoute(PackageDetailForm()))
                   .then((value) {
                 Utility.waitForMili(500).then((value) => setState(() {}));
               });

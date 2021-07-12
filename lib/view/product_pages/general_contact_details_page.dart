@@ -77,7 +77,13 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
         if (_locationValue) {
           position = Position(
               latitude: initContactDetails.address.latitude,
-              longitude: initContactDetails.address.longitude);
+              longitude: initContactDetails.address.longitude,
+              speed: 0,
+              altitude: 0,
+              accuracy: 0,
+              heading: 0,
+              speedAccuracy: 0,
+              timestamp: DateTime.now());
         }
       });
     }
@@ -163,10 +169,10 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
                   EcomNavigationHelper.of(context).fromContactToAddProductPage(
                       type: widget.type,
                       data: widget.productData,
-                      isService: widget.isService,
-                      serviceId: widget.serviceId,
-                      serviceProviderId: widget.serviceProviderId,
-                      contactDetails: _contactDetail);
+                      contactDetails: _contactDetail,
+                      isService: false,
+                      serviceId: 'ABC',
+                      serviceProviderId: 'BCD');
                 }
               },
               borderColor: ColorConstants.primaryColor,
