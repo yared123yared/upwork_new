@@ -10,9 +10,10 @@ import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/newentityfeatures/Models/assignment_model.dart';
 import 'package:complex/newentityfeatures/vrassignment/itembloc/bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../itembloc/bloc.dart' as itembloc;
 
@@ -151,9 +152,7 @@ class _AttachedAssignmentFormState extends State<AttachedAssignmentForm> {
         body: BlocListener<VrAssignmentModelBloc, VrAssignmentModelState>(
             listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }

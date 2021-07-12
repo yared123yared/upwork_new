@@ -182,7 +182,7 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
       value: mlistbloc,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Attach Assignment List"),
+          title: Text("Payment Period List"),
           centerTitle: true,
         ),
         body: BlocListener<listbloc.FeePaymentListBloc,

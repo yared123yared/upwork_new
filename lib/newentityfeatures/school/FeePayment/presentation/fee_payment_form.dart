@@ -10,7 +10,8 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart' as helputil;
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../itembloc/bloc.dart' as itembloc;
 import 'package:complex/newentityfeatures/Models/user_reg_fee_collection.dart';
@@ -208,9 +209,7 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
         body: BlocListener<itembloc.FeePaymentBloc, itembloc.FeePaymentState>(
             listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }
