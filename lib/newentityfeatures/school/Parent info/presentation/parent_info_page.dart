@@ -264,6 +264,9 @@ class _ParentInfoPageState extends State<ParentInfoPage> {
                                       ),
                                     );
                                   }
+                                } else {
+                                  EasyLoading.showInfo(
+                                      "Please fill all fields");
                                 }
                               },
                             ),
@@ -465,43 +468,43 @@ class _ParentInfoPageState extends State<ParentInfoPage> {
           .map((e) => InkWell(
                 onTap: () {
                   if (e.length > 15) {
-                    asuka.showDialog(
-                      builder: (context) => AlertDialog(
-                        title: Text(
-                          widget.titles[index + 1],
-                          style: TextStyle(
-                            fontFamily: 'Merriweather',
-                            color: Colors.redAccent,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(e),
-                            MaterialButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(15.0),
-                                color: Colors.blueGrey,
-                                child: Text(
-                                  'Ok',
-                                  style: TextStyle(
-                                    fontFamily: 'Merriweather',
-                                    color: Colors.white,
-                                    fontSize: 18.0,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
+                    // asuka.showDialog(
+                    //   builder: (context) => AlertDialog(
+                    //     title: Text(
+                    //       widget.titles[index + 1],
+                    //       style: TextStyle(
+                    //         fontFamily: 'Merriweather',
+                    //         color: Colors.redAccent,
+                    //         fontWeight: FontWeight.bold,
+                    //         fontSize: 18.0,
+                    //       ),
+                    //     ),
+                    //     content: Column(
+                    //       mainAxisSize: MainAxisSize.min,
+                    //       children: [
+                    //         Text(e),
+                    //         MaterialButton(
+                    //           onPressed: () {
+                    //             Navigator.pop(context);
+                    //           },
+                    //           child: Container(
+                    //             padding: EdgeInsets.all(15.0),
+                    //             color: Colors.blueGrey,
+                    //             child: Text(
+                    //               'Ok',
+                    //               style: TextStyle(
+                    //                 fontFamily: 'Merriweather',
+                    //                 color: Colors.white,
+                    //                 fontSize: 18.0,
+                    //               ),
+                    //               textAlign: TextAlign.center,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // );
                   }
                 },
                 child: Container(

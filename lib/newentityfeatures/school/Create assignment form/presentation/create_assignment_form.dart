@@ -883,6 +883,8 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
                     //     ),
                     //   );
                     // }
+                  } else {
+                    EasyLoading.showInfo("Please fill all fields");
                   }
                 },
               ),

@@ -14,10 +14,11 @@ import 'package:complex/data/screen_size.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
 // import 'package:complex/common_models/common_model.dart' as model;
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/newentityfeatures/Models/leaverequest_model.dart';
 import 'package:complex/common/widgets/date_time_picker_newentity.dart'
     as newentitytimepicker;
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../itembloc/bloc.dart' as itembloc;
 
@@ -146,9 +147,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
         body: BlocListener<itembloc.LeaveRequestBloc,
             itembloc.LeaveRequestState>(listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }

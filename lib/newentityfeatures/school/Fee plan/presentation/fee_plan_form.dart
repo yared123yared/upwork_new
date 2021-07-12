@@ -302,6 +302,8 @@ class _FeePlanFormState extends State<FeePlanForm> {
                   ),
                 );
               }
+            } else {
+              EasyLoading.showInfo("Please fill all fields");
             }
           },
         ),

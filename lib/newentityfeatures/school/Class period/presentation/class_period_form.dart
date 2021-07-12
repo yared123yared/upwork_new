@@ -391,6 +391,8 @@ class _ClassPeriodModelFormState extends State<ClassPeriodModelForm> {
                     );
                   }
                 }
+              } else {
+                EasyLoading.showInfo("Please fill all fields");
               }
             },
           ),

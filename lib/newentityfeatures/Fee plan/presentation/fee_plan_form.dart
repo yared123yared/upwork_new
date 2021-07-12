@@ -11,7 +11,8 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
-import "package:asuka/asuka.dart" as asuka;
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+//import "package:asuka/asuka.dart" as asuka;
 
 import '../itembloc/bloc.dart' as itembloc;
 
@@ -79,16 +80,12 @@ class _FeePlanFormState extends State<FeePlanForm> {
       ]);
     } else if (timelineIndex >= 0) {
       if (feeDataControllers.isEmpty) {
-        asuka.showSnackBar(SnackBar(
-          content: Text("You must enter the periods of the payment"),
-        ));
+        EasyLoading.showInfo("You must enter the periods of the payment");
       }
       for (var controller in feeDataControllers[timelineIndex]) {
         if (controller.isValid != true) {
-          asuka.showSnackBar(SnackBar(
-            content: Text(
-                "Please fill the required information for Period $timelineIndex"),
-          ));
+          EasyLoading.showInfo(
+              "Please fill the required information for Period $timelineIndex");
           return false;
         } else {
           return true;
@@ -138,9 +135,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
         body: BlocListener<itembloc.FeePlanModelBloc,
             itembloc.FeePlanModelState>(listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }
@@ -403,6 +398,8 @@ class _FeePlanFormState extends State<FeePlanForm> {
                     );
                   }
                 }
+              } else {
+                EasyLoading.showInfo("Please fill all fields");
               }
             },
           ),

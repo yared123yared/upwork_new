@@ -204,6 +204,8 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
                   ),
                 );
               }
+            } else {
+              EasyLoading.showInfo("Please fill all fields");
             }
           },
         ),

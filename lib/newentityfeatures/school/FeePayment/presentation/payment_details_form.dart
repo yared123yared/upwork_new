@@ -390,6 +390,8 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       ),
                     );
                   }
+                } else {
+                  EasyLoading.showInfo("Please fill all fields");
                 }
               },
             ),

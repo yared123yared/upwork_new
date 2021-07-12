@@ -1,8 +1,9 @@
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../listbloc/bloc.dart' as listbloc;
 // import '../model/building_model.dart' as cmodel;
@@ -130,9 +131,7 @@ class _BuildingModelListListState extends State<BuildingModelListList> {
           body: BlocListener<listbloc.BuildingModelListBloc,
               listbloc.BuildingModelListState>(listener: (context, state) {
             if (state is listbloc.IsDeleted) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is deleted"),
-              ));
+              EasyLoading.showSuccess("Item is deleted");
               doreload(true);
             }
           }, child: BlocBuilder<listbloc.BuildingModelListBloc,

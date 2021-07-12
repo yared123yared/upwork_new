@@ -7,8 +7,9 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/helputil.dart' hide DateTimeMode;
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:logger/logger.dart';
 
 import '../itembloc/bloc.dart' as itembloc;
@@ -62,16 +63,12 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
     }
     if (timelineIndex >= 0) {
       if (controllers.isEmpty) {
-        asuka.showSnackBar(SnackBar(
-          content: Text("You must enter the periods of the payment"),
-        ));
+        EasyLoading.showInfo("You must enter the periods of the payment");
       }
       for (var controller in controllers[timelineIndex]) {
         if (controller.isValid != true) {
-          asuka.showSnackBar(SnackBar(
-            content: Text(
-                "Please fill the required information for Period $timelineIndex"),
-          ));
+          EasyLoading.showInfo(
+              "Please fill the required information for Period $timelineIndex");
           return false;
         }
       }
@@ -182,9 +179,7 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
         body: BlocListener<itembloc.PaymentModelBloc,
             itembloc.PaymentModelState>(listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }
@@ -399,6 +394,8 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
                     );
                   }
                 }
+              } else {
+                EasyLoading.showInfo("Please fill all fields");
               }
             },
           ),

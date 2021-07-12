@@ -14,7 +14,7 @@ import 'package:complex/common/helputil.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart' hide DateTimeMode;
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/widgets/date_time_picker_newentity.dart'
     as newentitytimepicker;
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -163,12 +163,7 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
       ]);
     } else if (i == 2) {
       if (!_startDate.isBefore(_endDate)) {
-        asuka.showSnackBar(SnackBar(
-          content: Text(
-            "Start date cannot be after end date",
-            style: TextStyle(fontFamily: 'Merriweather', color: C.red),
-          ),
-        ));
+        EasyLoading.showInfo("Start date cannot be after end date");
         return false;
       }
 

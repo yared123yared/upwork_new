@@ -1,6 +1,6 @@
 import 'package:complex/common/widgets/custom_action_button.dart';
 //
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/data/data.dart';
 import 'package:complex/newentityfeatures/Models/user_session_registration.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../listbloc/bloc.dart' as listbloc;
 import 'session_registration_form.dart';
@@ -158,9 +159,7 @@ class _SessionRegistrationListListState
                   listbloc.SessionRegistrationListState>(
               listener: (context, state) {
             if (state is listbloc.IsDeleted) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is deleted"),
-              ));
+              EasyLoading.showSuccess("Item is deleted");
               doreload(true);
             }
             if (state is listbloc.StudentSearchState) {
@@ -249,9 +248,7 @@ class _SessionRegistrationListListState
                   gradient: C.bgGradient,
                   onTap: () {
                     if (_card.text.isEmpty) {
-                      asuka.showSnackBar(
-                        SnackBar(content: Text("Please enter one item")),
-                      );
+                      EasyLoading.showInfo("Please enter one item");
                       return;
                     }
 

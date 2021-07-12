@@ -13,9 +13,10 @@ import 'package:complex/newentityfeatures/Appointment/models/slot_configuration_
 import 'package:complex/newentityfeatures/Appointment/services/slot_configuration_repository.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 //import 'package:toast/toast.dart';
 
@@ -868,5 +869,5 @@ Widget buildLoading() {
 }
 
 void showToast(String text, BuildContext ctx) {
-  asuka.showSnackBar(SnackBar(content: Text("Item is Created/Saved")));
+  EasyLoading.showSuccess("Item is Created/Saved");
 }

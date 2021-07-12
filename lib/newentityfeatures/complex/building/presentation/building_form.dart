@@ -8,7 +8,7 @@ import 'package:complex/common/presentation.dart';
 
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/helputil.dart';
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../itembloc/bloc.dart' as itembloc;
 
@@ -44,7 +44,7 @@ class _BuildingFormState extends State<BuildingForm> {
       _latitude,
       _longitude,
       _attachedGate,
-     _numfloor
+      _numfloor
     ]);
   }
 
@@ -135,16 +135,16 @@ class _BuildingFormState extends State<BuildingForm> {
                           Validate.withOption(isRequired: true, isNumber: true),
                     ),
                     if (!_isUpdate)
-                    CustomAddressPicker(
-                      initialValue: widget.buildingModel?.address,
-                      controller: _address,
-                      displayData: (l) => l.address,
-                      validate: Validate.withOption(isRequired: true),
-                      onPickLocation: (l) {
-                        _latitude.text = l.latitude.toString();
-                        _longitude.text = l.longitude.toString();
-                      },
-                    ),
+                      CustomAddressPicker(
+                        initialValue: widget.buildingModel?.address,
+                        controller: _address,
+                        displayData: (l) => l.address,
+                        validate: Validate.withOption(isRequired: true),
+                        onPickLocation: (l) {
+                          _latitude.text = l.latitude.toString();
+                          _longitude.text = l.longitude.toString();
+                        },
+                      ),
                     CustomTextField(
                       initialValue: widget.buildingModel?.latitude?.toString(),
                       enabled: false,

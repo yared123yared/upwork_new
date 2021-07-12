@@ -7,7 +7,8 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
-import "package:asuka/asuka.dart" as asuka;
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+//import "package:asuka/asuka.dart" as asuka;
 
 import '../itembloc/bloc.dart' as itembloc;
 import 'package:complex/newentityfeatures/trips/model/models/vehicle_model.dart';
@@ -149,9 +150,7 @@ class _VehicleRegistrationFormState extends State<VehicleRegistrationForm> {
         body: BlocListener<itembloc.VehicleRegistrationBloc,
             itembloc.VehicleRegistrationState>(listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }

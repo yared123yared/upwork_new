@@ -15,8 +15,9 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../itembloc/bloc.dart' as itembloc;
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
@@ -75,8 +76,7 @@ class _HandleRelationFormState extends State<HandleRelationForm> {
     super.initState();
     Future.delayed(
       Duration(seconds: 0),
-      () => _startDateController.text =
-          HelpUtil.formattedDateToString(
+      () => _startDateController.text = HelpUtil.formattedDateToString(
         DateTime.now(),
         DateTimeMode.DATE,
       ),
@@ -155,9 +155,7 @@ class _HandleRelationFormState extends State<HandleRelationForm> {
         body: BlocListener<itembloc.HandleRelationBloc,
             itembloc.HandleRelationState>(listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }
@@ -279,8 +277,7 @@ class _HandleRelationFormState extends State<HandleRelationForm> {
             setState(() {
               DatePicker.showDatePicker(context, onConfirm: (date) {
                 _startDate = date;
-                _startDateController.text =
-                    HelpUtil.formattedDateToString(
+                _startDateController.text = HelpUtil.formattedDateToString(
                   date,
                   DateTimeMode.DATE,
                 );

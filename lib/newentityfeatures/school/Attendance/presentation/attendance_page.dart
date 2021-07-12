@@ -7,6 +7,7 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../bloc/bloc.dart';
 import 'package:complex/newentityfeatures/Models/attendance_model.dart';
@@ -189,6 +190,8 @@ class _AttendancePage extends State<AttendancePage> {
                           setState(() {
                             timelineIndex = 2;
                           });
+                        } else {
+                          EasyLoading.showInfo("Please fill all fields");
                         }
                       },
                     ),

@@ -445,6 +445,8 @@ class _OfferingWeeklyScheduleFormState
                   ),
                 );
               }
+            } else {
+              EasyLoading.showInfo("Please fill all fields");
             }
           },
         ),

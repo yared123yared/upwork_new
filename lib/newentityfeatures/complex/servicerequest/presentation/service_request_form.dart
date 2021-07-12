@@ -24,7 +24,7 @@ import 'package:complex/data/screen_size.dart';
 
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/common/helputil.dart';
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/widgets/date_time_picker_newentity.dart'
     as newentitytimepicker;
 
@@ -64,7 +64,6 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
   CustomTextFieldController _floorNum = CustomTextFieldController();
   CustomTextFieldController _justunitcontroller = CustomTextFieldController();
   CustomTextFieldController _justresidentorowner = CustomTextFieldController();
-
 
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now();
@@ -117,69 +116,65 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
     "DELIVERY",
   ];
   List<String> serviceTypesWithAdhoc = [
-
     "ADHOCVISITOR",
-
   ];
   bool _validate() {
-    return ((_staffController?.isValid ?? false) || !_isStaff) && (_requestType.isValid) && (_requestType.text == "HOMEHELP" ? _phonecontroller.isValid :true)
-
-        && (_requestType.text == "HOMEHELP" || _requestType.text == "ADHOCVISITOR" || _requestType.text =="VISITOR" ? _name.isValid :true) &&
-    // _serviceProviderId.isValid &&
+    return ((_staffController?.isValid ?? false) || !_isStaff) &&
+        (_requestType.isValid) &&
+        (_requestType.text == "HOMEHELP" ? _phonecontroller.isValid : true) &&
+        (_requestType.text == "HOMEHELP" ||
+                _requestType.text == "ADHOCVISITOR" ||
+                _requestType.text == "VISITOR"
+            ? _name.isValid
+            : true) &&
+        // _serviceProviderId.isValid &&
         // _memberId.isValid &&
-          (_isStaff ? _staffController.isValid :true) &&
+        (_isStaff ? _staffController.isValid : true) &&
         _endDateController.isValid &&
-
-        (_isStaff || _unitAddress.isValid ) &&
+        (_isStaff || _unitAddress.isValid) &&
         _notes.isValid;
   }
 
   void _initFiledValue() {
-
-    if(widget.serviceRequestModel != null)
-      {
-        isrequesttypeenabled=true;
-        isbuildingidenabled=true;
-        isstaffsliderenabled=true;
-        isnameenabled=true;
-        isbuildingenabled=true;
-        isfloorenabled=true;
-        isunitaddressenabled=true;
-        isphonenumenabled=true;
-        isstartdateenabled=true;
-        isendDatedateenabled=true;
-        isnotesenabled=true;
-
-      }
-    else
-      {
-
-        isrequesttypeenabled=false;
-        isbuildingidenabled=false;
-        isstaffsliderenabled=false;
-        isnameenabled=false;
-        isbuildingenabled=false;
-        isfloorenabled=false;
-        isunitaddressenabled=false;
-        isphonenumenabled=false;
-        isstartdateenabled=true;
-        isendDatedateenabled=true;
-        isnotesenabled=true;
-      }
+    if (widget.serviceRequestModel != null) {
+      isrequesttypeenabled = true;
+      isbuildingidenabled = true;
+      isstaffsliderenabled = true;
+      isnameenabled = true;
+      isbuildingenabled = true;
+      isfloorenabled = true;
+      isunitaddressenabled = true;
+      isphonenumenabled = true;
+      isstartdateenabled = true;
+      isendDatedateenabled = true;
+      isnotesenabled = true;
+    } else {
+      isrequesttypeenabled = false;
+      isbuildingidenabled = false;
+      isstaffsliderenabled = false;
+      isnameenabled = false;
+      isbuildingenabled = false;
+      isfloorenabled = false;
+      isunitaddressenabled = false;
+      isphonenumenabled = false;
+      isstartdateenabled = true;
+      isendDatedateenabled = true;
+      isnotesenabled = true;
+    }
 
     if (widget.origintype == 1) {
       enabled = widget.serviceRequestModel == null ? true : false;
       Future.delayed(Duration(milliseconds: 80), () {
         _requestType.text = "ADHOCVISITOR";
       });
-      haveAccess=false;
+      haveAccess = false;
     } else if (widget.origintype == 2) {
       _isStaff = true;
-      haveAccess=true;
+      haveAccess = true;
       // serviceTypes = [];
     } else if (widget.origintype == 3) {
       _isStaff = false;
-      haveAccess=true;
+      haveAccess = true;
     }
 
     if (widget.serviceRequestModel != null) {
@@ -253,7 +248,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
             justunits = state.oul.justunits;
             stafflist = state.stafflist;
             buildinglist = state.buildinglist;
-            floormap=state.oul.floormap;
+            floormap = state.oul.floormap;
 
             _initFiledValue();
           }
@@ -331,22 +326,20 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     isRequired: true,
                   ),
                 ), */
-                  CustomTextField(
-                    title: "Name",
-                    enabled: enabled,
-                    initialValue:
-                        widget?.serviceRequestModel?.correspondingName,
-                    controller: _name,
-                    validate: Validate.withOption(
-                      isRequired: true,
-                    ),
+                CustomTextField(
+                  title: "Name",
+                  enabled: enabled,
+                  initialValue: widget?.serviceRequestModel?.correspondingName,
+                  controller: _name,
+                  validate: Validate.withOption(
+                    isRequired: true,
                   ),
+                ),
 
                 CustomTextField(
                   title: "Phone",
                   enabled: enabled,
-                  initialValue:
-                  widget?.serviceRequestModel?.phone,
+                  initialValue: widget?.serviceRequestModel?.phone,
                   controller: _phonecontroller,
                   validate: Validate.withOption(
                     isRequired: true,
@@ -354,7 +347,9 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                 ),
 
                 // this has to be shown only in case of add record
-                if (!_isStaff && widget.origintype == 1 && widget.serviceRequestModel ==null) ...[
+                if (!_isStaff &&
+                    widget.origintype == 1 &&
+                    widget.serviceRequestModel == null) ...[
                   CustomDropDownList<String>(
                     title: "Building Name",
                     controller: _building,
@@ -365,14 +360,16 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                       setState(() {
                         _building.text = value;
                         floors = [];
-                        
+
                         filteredUnits = [];
-                        floors =floormap.containsKey(value) ?floormap[value]:[];
+                        floors =
+                            floormap.containsKey(value) ? floormap[value] : [];
                       });
                     },
                   ),
                   CustomDropDownList<int>(
-                    enabled: _building.text !=null && _building.text.isNotEmpty,
+                    enabled:
+                        _building.text != null && _building.text.isNotEmpty,
                     loadData: () async => floors,
                     shouldReload: true,
                     displayName: (x) => x.toString(),
@@ -382,40 +379,46 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     onSelected: (floor, index) {
                       setState(() {
                         _floorNum.text = floor.toString();
-                        String buildingfloor= _building.text + "@" + _floorNum.text;
-                        filteredUnits = justunits.containsKey(buildingfloor)?justunits[buildingfloor]:[];
-                          }
-                        );
+                        String buildingfloor =
+                            _building.text + "@" + _floorNum.text;
+                        filteredUnits = justunits.containsKey(buildingfloor)
+                            ? justunits[buildingfloor]
+                            : [];
+                      });
                     },
                   ),
                   CustomDropDownList<UnitOccupants>(
                     title: "Unit Address",
-                    enabled: _building.text!=null &&_building.text.isNotEmpty && _floorNum!=null && _floorNum.text.isNotEmpty,
+                    enabled: _building.text != null &&
+                        _building.text.isNotEmpty &&
+                        _floorNum != null &&
+                        _floorNum.text.isNotEmpty,
                     controller: _justunitcontroller,
                     //initialValue: widget?.serviceRequestModel?.unitId,
-                    loadData: () async => filteredUnits ,
+                    loadData: () async => filteredUnits,
                     displayName: (x) => x.unitaddress,
                     validate: Validate.withOption(
                       isRequired: true,
                     ),
-                onSelected: (value, index) {
-                  setState(() {
-                    selectedUnitOcupant =value;
-                    residentownerlist=[];
-                    if(selectedUnitOcupant.hasowner)
-                      residentownerlist.add("ForOwner");
+                    onSelected: (value, index) {
+                      setState(() {
+                        selectedUnitOcupant = value;
+                        residentownerlist = [];
+                        if (selectedUnitOcupant.hasowner)
+                          residentownerlist.add("ForOwner");
 
-                    if(selectedUnitOcupant.hasresident)
-                      residentownerlist.add("ForResident");
-
-                  }
-                  );
-                },
+                        if (selectedUnitOcupant.hasresident)
+                          residentownerlist.add("ForResident");
+                      });
+                    },
                   ),
-
                   CustomDropDownList<String>(
                     title: "Owner/Resident",
-                    enabled: _building.text !=null && _building.text.isNotEmpty && _floorNum.text !=null && _floorNum.text.isNotEmpty && selectedUnitOcupant !=null,
+                    enabled: _building.text != null &&
+                        _building.text.isNotEmpty &&
+                        _floorNum.text != null &&
+                        _floorNum.text.isNotEmpty &&
+                        selectedUnitOcupant != null,
                     controller: _justresidentorowner,
                     //initialValue: widget?.serviceRequestModel?.unitId,
                     loadData: () async => residentownerlist,
@@ -425,18 +428,28 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     ),
                     onSelected: (value, index) {
                       setState(() {
-                        if(value == "ForOwner")
-                            _unitAddress.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_o" ;
-                        if(value == "ForResident")
-                            _unitAddress.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_r" ;
-                      }
-                      );
+                        if (value == "ForOwner")
+                          _unitAddress.text = _building.text +
+                              "@" +
+                              _floorNum.text +
+                              "@" +
+                              _justunitcontroller.text +
+                              "_o";
+                        if (value == "ForResident")
+                          _unitAddress.text = _building.text +
+                              "@" +
+                              _floorNum.text +
+                              "@" +
+                              _justunitcontroller.text +
+                              "_r";
+                      });
                     },
                   ),
-
-
                 ],
-                if ((widget.origintype == 3 && !_isStaff) || (widget.origintype == 1 && widget.serviceRequestModel !=null && !_isStaff ))
+                if ((widget.origintype == 3 && !_isStaff) ||
+                    (widget.origintype == 1 &&
+                        widget.serviceRequestModel != null &&
+                        !_isStaff))
                   CustomDropDownList<String>(
                     title: "Unit Address",
                     enabled: enabled,
@@ -450,13 +463,14 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                   ),
                 CustomDropDownList(
                   title: "Request Type",
-                  enabled: (
-                      widget.serviceRequestModel == null),
+                  enabled: (widget.serviceRequestModel == null),
                   controller: _requestType,
                   initialValue:
                       widget?.serviceRequestModel?.requestType?.toString() ??
                           "",
-                  loadData: () async =>widget.origintype ==1? serviceTypesWithAdhoc:serviceTypesWithOutAdhoc,
+                  loadData: () async => widget.origintype == 1
+                      ? serviceTypesWithAdhoc
+                      : serviceTypesWithOutAdhoc,
                   displayName: (data) => data,
                   validate: Validate.withOption(
                     isRequired: true,

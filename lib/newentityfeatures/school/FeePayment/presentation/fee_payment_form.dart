@@ -509,6 +509,8 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
                   // UserRegFeeByPeriodPayProcessingAddMasterEvent(
                   //   userRegFeeCollectionModel: reg,
                   // ),
+                } else {
+                  EasyLoading.showInfo("Please fill all fields");
                 }
               },
             ),

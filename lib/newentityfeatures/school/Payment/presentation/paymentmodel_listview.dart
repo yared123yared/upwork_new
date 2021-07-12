@@ -1,12 +1,13 @@
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../listbloc/bloc.dart' as listbloc;
 import './payment_form.dart';
@@ -145,9 +146,7 @@ class _PaymentModelListListState extends State<PaymentModelListList> {
           body: BlocListener<listbloc.PaymentModelListBloc,
               listbloc.PaymentModelListState>(listener: (context, state) {
             if (state is listbloc.IsDeleted) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is deleted"),
-              ));
+              EasyLoading.showSuccess("Item is deleted");
               doreload(true);
             }
 

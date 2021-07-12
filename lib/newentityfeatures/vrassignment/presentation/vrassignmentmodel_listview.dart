@@ -1,6 +1,6 @@
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -12,6 +12,7 @@ import 'package:complex/newentityfeatures/vrassignment/listbloc/bloc.dart'
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart'
     as cmodel;
 import 'package:complex/newentityfeatures/vrassignment/presentation/attach_assignment_form.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class AttachAssignmentListList extends StatefulWidget {
   final String entityid;
@@ -143,9 +144,7 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
           body: BlocListener<listbloc.VrAssignmentModelListBloc,
               listbloc.VrAssignmentModelListState>(listener: (context, state) {
             if (state is listbloc.IsDeleted) {
-              asuka.showSnackBar(SnackBar(
-                content: Text("Item is deleted"),
-              ));
+              EasyLoading.showSuccess("Item is deleted");
               doreload(true);
             }
 

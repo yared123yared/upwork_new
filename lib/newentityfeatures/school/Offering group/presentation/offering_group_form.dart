@@ -243,6 +243,8 @@ class _OfferingsByGradeFormState extends State<OfferingsByGradeForm> {
                   //   offeringModelGroup: newOfferingModel,
                   // ),
                 );
+              } else {
+                EasyLoading.showInfo("Please fill all fields");
               }
             },
           ),

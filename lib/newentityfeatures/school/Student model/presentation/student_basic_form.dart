@@ -12,8 +12,9 @@ import 'package:complex/common/presentation.dart';
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/data/styles_colors.dart';
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/helputil.dart' hide DateTimeMode;
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../itembloc/bloc.dart' as itembloc;
 
@@ -201,9 +202,7 @@ class _StudentBasicFormFormState extends State<StudentBasicFormForm> {
         body: BlocListener<itembloc.StudentBasicFormModelBloc,
             itembloc.StudentBasicFormModelState>(listener: (context, state) {
           if (state is itembloc.IsSaved) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is Created/Saved"),
-            ));
+            EasyLoading.showSuccess("Item is Created/Saved");
             widget.givenreloadaction(true);
             Navigator.of(context).pop(false);
           }
@@ -863,6 +862,8 @@ class _StudentBasicFormFormState extends State<StudentBasicFormForm> {
                   ),
                 );
               }
+            } else {
+              EasyLoading.showInfo("Please fill all fields");
             }
           },
         ),
