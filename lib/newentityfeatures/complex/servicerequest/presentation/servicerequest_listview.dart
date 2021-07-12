@@ -1,4 +1,4 @@
-import "package:asuka/asuka.dart" as asuka;
+//import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/data/models/response/user_response/residential_unit.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
 import 'package:complex/common/page/common_list_page_copy.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../listbloc/bloc.dart' as listbloc;
 // import '../model/service_request_model.dart' as cmodel;
@@ -21,19 +22,22 @@ class ServiceModelListList extends StatefulWidget {
   final List<ResidentUnits> residentunits;
   final String curuserid;
   ServiceModelListList(
-      {this.entitytype, this.entityid, this.fieldname, this.originlist,this.residentunits,this.curuserid});
+      {this.entitytype,
+      this.entityid,
+      this.fieldname,
+      this.originlist,
+      this.residentunits,
+      this.curuserid});
 
-  List<String> getUnitList()
-  {
+  List<String> getUnitList() {
     List<String> st = [];
-    if(residentunits !=null)
-      {
-        for(var k in residentunits)
-          st.add(k.rd);
-        return st;
-      }
+    if (residentunits != null) {
+      for (var k in residentunits) st.add(k.rd);
+      return st;
+    }
     return st;
   }
+
   @override
   _ServiceModelListListState createState() => _ServiceModelListListState();
 }
@@ -47,18 +51,14 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
     super.initState();
     mlistbloc = listbloc.ServiceRequestModelListBloc();
 
-
-
-
-      mlistbloc.add(listbloc.getListData(
+    mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype,
         entityid: widget.entityid,
-        originType: widget.originlist,residentunitlist: widget.getUnitList(),userid: widget.curuserid
-
-      ));
+        originType: widget.originlist,
+        residentunitlist: widget.getUnitList(),
+        userid: widget.curuserid));
 
     //staff self
-
   }
 
   @override
@@ -176,9 +176,7 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
         body: BlocListener<listbloc.ServiceRequestModelListBloc,
             listbloc.ServiceRequestModelListState>(listener: (context, state) {
           if (state is listbloc.IsDeleted) {
-            asuka.showSnackBar(SnackBar(
-              content: Text("Item is deleted"),
-            ));
+            EasyLoading.showSuccess("Item is deleted");
             doreload(true);
           }
         }, child: BlocBuilder<listbloc.ServiceRequestModelListBloc,
