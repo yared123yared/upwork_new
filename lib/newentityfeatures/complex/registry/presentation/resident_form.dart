@@ -26,6 +26,7 @@ List<GlobalKey<FormState>> formKeys = [
 class ResidentForm extends StatefulWidget {
   final ButtonState btnState;
   final RegistryModel registry;
+  final bool updateOwner;
   final String entityid;
   final String entitytype;
   final ReloadAction givenreloadaction;
@@ -34,17 +35,19 @@ class ResidentForm extends StatefulWidget {
   final bool isOwner;
   final List<String> unitlistForOwnerCase;
   final OccupiedUnitLookupModel oul;
-  ResidentForm(
-      {@required this.btnState,
-      @required this.entitytype,
-      @required this.entityid,
-      @required this.givenreloadaction,
-      @required this.origintype,
-      @required this.registry,
-      @required this.role,
-      @required this.isOwner,
-      @required this.unitlistForOwnerCase,
-      @required this.oul});
+  ResidentForm({
+    @required this.btnState,
+    @required this.entitytype,
+    @required this.entityid,
+    @required this.givenreloadaction,
+    @required this.origintype,
+    @required this.registry,
+    @required this.role,
+    @required this.isOwner,
+    @required this.unitlistForOwnerCase,
+    @required this.oul,
+    @required this.updateOwner
+  });
 
   @override
   _ResidentFormState createState() => _ResidentFormState();
@@ -76,6 +79,7 @@ class _ResidentFormState extends State<ResidentForm> {
   DateTime _endDate = DateTime.now();
 
   List<String> registeredAsRoles = [];
+
 
   List<String> buildings = [];
   List<int> floors = [];
@@ -178,9 +182,9 @@ class _ResidentFormState extends State<ResidentForm> {
     //   asuka.showSnackBar(SnackBar(
     //     content: Text("Item is deleted"),
     //   ));
-    String unitaddress = _unit.text;
-    if (widget.origintype == 1 && widget.registry == null)
-      unitaddress = _building.text + "@" + _floorNum.text + "@" + _unit.text;
+    String unitaddress= _unit.text;
+    if (widget.origintype == 1 && widget.registry ==null)
+      unitaddress=_building.text + "@" + _floorNum.text +"@" + _unit.text;
 
     if (_endDate.isAfter(_startDate)) {
       ResidentModel _residentModel = ResidentModel(
@@ -228,6 +232,7 @@ class _ResidentFormState extends State<ResidentForm> {
             newitem: registryModel,
             entityid: widget.entityid,
             entitytype: widget.entitytype,
+              updateOwner:widget.updateOwner
           ),
         );
       } else {
@@ -360,7 +365,8 @@ class _ResidentFormState extends State<ResidentForm> {
                         isRequired: true,
                       ),
                     ),
-                    if (widget.origintype == 1 && widget.registry == null) ...[
+
+                    if (widget.origintype == 1 && widget.registry ==null) ...[
                       CustomDropDownList<String>(
                         title: "Building Name",
                         controller: _building,
@@ -373,15 +379,12 @@ class _ResidentFormState extends State<ResidentForm> {
                             floors = [];
 
                             filteredUnits = [];
-                            floors = widget.oul.floormap.containsKey(value)
-                                ? widget.oul.floormap[value]
-                                : [];
+                            floors =widget.oul.floormap.containsKey(value) ?widget.oul.floormap[value]:[];
                           });
                         },
                       ),
                       CustomDropDownList<int>(
-                        enabled:
-                            _building.text != null && _building.text.isNotEmpty,
+                        enabled: _building.text !=null && _building.text.isNotEmpty,
                         loadData: () async => floors,
                         shouldReload: true,
                         displayName: (x) => x.toString(),
@@ -391,52 +394,42 @@ class _ResidentFormState extends State<ResidentForm> {
                         onSelected: (floor, index) {
                           setState(() {
                             _floorNum.text = floor.toString();
-                            String buildingfloor =
-                                _building.text + "@" + _floorNum.text;
-                            filteredUnits =
-                                widget.oul.freeunits.containsKey(buildingfloor)
-                                    ? widget.oul.freeunits[buildingfloor]
-                                    : [];
-                          });
+                            String buildingfloor= _building.text + "@" + _floorNum.text;
+                            filteredUnits = widget.oul.freeunits.containsKey(buildingfloor)?widget.oul.freeunits[buildingfloor]:[];
+                          }
+                          );
                         },
                       ),
                       CustomDropDownList<UnitOccupants>(
                         title: "Unit Address",
-                        enabled: _building.text != null &&
-                            _building.text.isNotEmpty &&
-                            _floorNum != null &&
-                            _floorNum.text.isNotEmpty,
+                        enabled: _building.text!=null &&_building.text.isNotEmpty && _floorNum!=null && _floorNum.text.isNotEmpty,
                         controller: _unit,
                         //initialValue: widget?.serviceRequestModel?.unitId,
-                        loadData: () async => filteredUnits,
+                        loadData: () async => filteredUnits ,
                         displayName: (x) => x.unitaddress,
                         validate: Validate.withOption(
                           isRequired: true,
                         ),
-                        onSelected: (value, index) {
-                          setState(() {
-                            _unit.text = _building.text +
-                                "@" +
-                                _floorNum.text +
-                                "@" +
-                                value.unitaddress;
-                          });
-                        },
+
                       ),
+
+
+
                     ],
-                    if (widget.origintype == 3 && widget.registry == null)
-                      CustomDropDownList<String>(
-                        title: "Select Unit",
-                        controller: _unit,
-                        enabled: _newItem,
-                        shouldReload: true,
-                        loadData: () async => widget.unitlistForOwnerCase,
-                        displayName: (x) => x,
-                        validate: Validate.withOption(
-                          isRequired: true,
-                        ),
+                    if (widget.origintype == 3 && widget.registry ==null)
+                    CustomDropDownList<String>(
+                      title: "Select Unit",
+                      controller: _unit,
+                      enabled: _newItem,
+                      shouldReload: true,
+                      loadData: () async =>widget.unitlistForOwnerCase,
+
+                      displayName: (x) => x,
+                      validate: Validate.withOption(
+                        isRequired: true,
                       ),
-                    if (widget.registry != null)
+                    ),
+                    if ( widget.registry !=null)
                       CustomTextField(
                         title: "Unit Address",
                         enabled: _newItem,
@@ -444,6 +437,8 @@ class _ResidentFormState extends State<ResidentForm> {
                         validate: Validate.withOption(
                             isRequired: true, isNumber: true),
                       ),
+
+
                     newentitytimepicker.CustomDateTimePicker(
                       controller: _startDateController,
                       enabled: _newItem,
@@ -558,6 +553,9 @@ class _ResidentFormState extends State<ResidentForm> {
             } else if (widget.origintype == 2 || widget.origintype == 3) {
               registeredAsRoles = ["resident"];
             }
+
+
+
 
             _initFiledValue();
           }

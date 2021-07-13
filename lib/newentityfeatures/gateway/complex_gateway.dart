@@ -138,7 +138,7 @@ class ComplexGateway {
 
   static Future<void> addFamilyMember(
       {@required FamilyMember member,
-      @required bool giveAccess,
+
       @required String entitytype,
       String entityid}) async {
     // ShareSubscriptionForResidentUnitRequest
@@ -146,26 +146,33 @@ class ComplexGateway {
       'ShareSubscriptionForResidentUnitRequestModified',
     );
     HttpsCallableResult resp = await callable.call(<String, dynamic>{
-      'actiontype': giveAccess ? 'share' : 'unshare',
+      'actiontype': 'share' ,
       'sharewithuserid': member.userId,
       'residentdetailsid': member.modelId,
       'entitytype': entitytype,
       'entityid': entityid,
     });
-
-    if (resp.data['id'] != null) {
-      if (giveAccess)
-        await FirebaseFirestore.instance
-            .collection("${entitytype}/${entityid}/FamilyMembers")
-            .doc("${member.modelId}-${member.email}")
-            .set(member.toJson());
-      else
-        await FirebaseFirestore.instance
-            .collection("${entitytype}/${entityid}/FamilyMembers")
-            .doc("${member.modelId}-${member.email}")
-            .delete();
-    } else {}
   }
+
+  static Future<void> removeFamilyMember(
+      {@required FamilyMember member,
+
+        @required String entitytype,
+        String entityid}) async {
+    // ShareSubscriptionForResidentUnitRequest
+    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+      'ShareSubscriptionForResidentUnitRequestModified',
+    );
+    HttpsCallableResult resp = await callable.call(<String, dynamic>{
+      'actiontype': 'unshare' ,
+      'sharewithuserid': member.userId,
+      'residentdetailsid': member.modelId,
+      'entitytype': entitytype,
+      'entityid': entityid,
+    });
+  }
+
+
 
   static Future<List<FamilyMember>> getFamilyMembersList({
     @required String entitytype,
@@ -173,13 +180,30 @@ class ComplexGateway {
     @required List<String> units,
     @required String userId,
   }) async {
-    return FirebaseFirestore.instance
-        .collection("${entitytype}/${entityid}/FamilyMembers")
-        .where('modelId', whereIn: units)
-        .get()
-        .then((value) {
-      return value.docs.map((e) => FamilyMember.fromJson(e.data())).toList();
-    });
+
+    List<FamilyMember> myfamilymembers=[];
+    var futures = <Future>[];
+    for(String s in units) {
+
+
+      var mi=   FirebaseFirestore.instance
+          .collection("${entitytype}/${entityid}/UNITGRPMEM/${s}")
+          .where('modelId', whereIn: units)
+          .get()
+          .then((value) {
+        return value.docs.map((e) => FamilyMember.fromJson(e.data())).toList();
+      });
+      futures.add(mi);
+    }
+
+    List<dynamic> mresultFuture = await Future.wait(futures);
+    for (var qrysnp in mresultFuture) {
+      QuerySnapshot qs = qrysnp as QuerySnapshot;
+      for (var doc in qs.docs) {
+        myfamilymembers.add(FamilyMember.fromJson(doc.data()));
+      }
+    }
+    return myfamilymembers;
   }
 }
 

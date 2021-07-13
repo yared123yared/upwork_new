@@ -55,28 +55,10 @@ class NewSchoolRepository {
     assignment = AssignmentRepository(lookup: lookup, virtualRoom: virtualRoom);
   }
 
-  Map<String, Map<String, UserRegistrationModel>> _usersList = {};
-  Map<String, List<FeeItemGroupsModel>> _feeItemGroupsList = {};
-  Map<String, List<ExamTermInfo>> _examTermInfoList = {};
-  Map<String, List<UserRegFeeCollectionModel>> _feeCollectionList = {};
-  Map<String, List<ClassPeriodInfo>> _classPeriodList = {};
-  Map<String, Map<String, UserRegistrationModel>> _studentsList = {};
+
 
   //user reg
-  Future<void> setUserRegList({@required String serviceID}) async {
-    try {
-      _usersList[serviceID] =
-          await UserRegistrationGateway.getUserRegistrationList(
-        serviceID: serviceID,
-      );
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Map<String, UserRegistrationModel> getUserRegList(
-          {@required String serviceID}) =>
-      _usersList[serviceID];
 
   //user session reg
   Future<void> addUserReg({
@@ -88,7 +70,7 @@ class NewSchoolRepository {
         userReg: userReg,
         serviceID: serviceID,
       );
-      await setUserRegList(serviceID: serviceID);
+
     } catch (e) {
       print(e);
     }
@@ -103,7 +85,7 @@ class NewSchoolRepository {
         userReg: userReg,
         serviceID: serviceID,
       );
-      await setUserRegList(serviceID: serviceID);
+
     } catch (e) {
       print(e);
     }
@@ -113,38 +95,11 @@ class NewSchoolRepository {
 
   //session
 
-  Future<void> setExamTermsList({@required String serviceID}) async {
-    try {
-      _examTermInfoList[serviceID] =
-          await LookupGateway.getExamTermInfo(serviceID);
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Future<void> setFeeICollection({@required String serviceID}) async {
-    try {
-      _feeCollectionList[serviceID] =
-          await UserFeeCollectionGateWay.getUserFeeCollectionList(
-              serviceID: serviceID);
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Future<List<UserRegFeeCollectionModel>> getFeeICollection(
-      {@required String serviceID}) async {
-    try {
-      if (_feeCollectionList[serviceID] == null ||
-          _feeCollectionList[serviceID].length == 0) {
-        await setFeeICollection(serviceID: serviceID);
-      }
-      return _feeCollectionList[serviceID];
-    } catch (e) {
-      print(e);
-      return e;
-    }
-  }
+
+
+
 
   Future<void> setUserRegFeePayProcessingAddMaster(
       {@required UserRegFeeCollectionModel userRegFeeCollectionModel,
@@ -163,8 +118,7 @@ class NewSchoolRepository {
       @required UserRegFeeCollectionModel oldData,
       @required String serviceID}) async {
     try {
-      if (_feeCollectionList[serviceID] != null ||
-          _feeCollectionList[serviceID].length != 0) {
+       {
         await UserFeeCollectionGateWay.userRegFeePayProcessingMasterUpdate(
             newData: newData, oldData: oldData, serviceID: serviceID);
       }
@@ -182,7 +136,7 @@ class NewSchoolRepository {
         feeItemGPRS: feeItemGPRS,
         serviceID: serviceID,
       );
-      await setFeeItemGroupList(serviceID: serviceID);
+
     } catch (e) {
       print(e);
     }
@@ -202,91 +156,39 @@ class NewSchoolRepository {
     }
   }
 
-  Future<void> setClassPeriodList({@required String serviceID}) async {
-    try {
-      _classPeriodList[serviceID] = await LookupGateway.getClassPeriodInfo(
-        serviceID,
-      );
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Future<void> addSchedule({
-    @required String serviceID,
-    String type,
-    Schedule schedule,
-  }) async {
-    ///update the service list
-    await setClassPeriodList(serviceID: serviceID);
-    List<ClassPeriodInfo> periods = _classPeriodList[serviceID];
 
-    ClassPeriodInfo added;
-    try {
-      added = periods.firstWhere((element) => element.type == type);
-      _classPeriodList[serviceID].remove(added);
 
-      added.schedule.removeWhere(
-        (element) => element.classPeriodName == schedule.classPeriodName,
-      );
-
-      added.schedule.add(schedule);
-    } catch (e) {
-      added = ClassPeriodInfo(
-        type: type,
-        schedule: [schedule],
-      );
-    }
-
-    //if not found the type mean create a new period froup
-    _classPeriodList[serviceID].insert(0, added);
-
-    await LookupGateway.setClassPeriodInfo(
-      serviceID: serviceID,
-      classPeriodInfoList: _classPeriodList[serviceID],
-    );
-  }
 
   Future<List<ExamTermInfo>> getExamTermList({
     @required String serviceID,
   }) async {
     try {
-      if (_examTermInfoList == null || _examTermInfoList.isEmpty)
-        await setExamTermsList(serviceID: serviceID);
-      return _examTermInfoList[serviceID];
+
+
+      return await LookupGateway.getExamTermInfo(serviceID);
     } catch (e) {
       print(e);
       return e;
     }
   }
 
-  Future<ExamTermInfo> getExamTermByIndex(
-          {@required String serviceID, @required int index}) async =>
-      getExamTermList(serviceID: serviceID).then((value) => value[index]);
 
-  List<ClassPeriodInfo> getClassPeriodInfoList({@required String serviceID}) {
-    return _classPeriodList[serviceID];
+
+  Future<List<ClassPeriodInfo>> getClassPeriodInfoList({@required String serviceID}) async {
+    return await LookupGateway.getClassPeriodInfo(
+      serviceID,
+    );
   }
 
   //feePlan + feeGroups
 
-  Future<void> setFeeItemGroupList({@required String serviceID}) async {
-    try {
-      _feeItemGroupsList = _feeItemGroupsList ?? {};
-      List<FeeItemGroupsModel> _list =
-          await FeeItemGroupsGateway.getFeeItemGroupsList(serviceID: serviceID);
-      _feeItemGroupsList[serviceID] = _list;
-    } catch (e) {
-      print(e);
-    }
-  }
+
 
   Future<List<FeeItemGroupsModel>> getFeeItemGroupList(
       {@required String serviceID}) async {
     try {
-      if (_feeItemGroupsList == null || _feeItemGroupsList.isEmpty)
-        await setFeeItemGroupList(serviceID: serviceID);
-      return _feeItemGroupsList[serviceID];
+      return await FeeItemGroupsGateway.getFeeItemGroupsList(serviceID: serviceID);
     } catch (e) {
       print(e);
       return e;
@@ -294,65 +196,12 @@ class NewSchoolRepository {
   }
 
   //user student
-  Future<void> setUserRegistrationList({@required String serviceID}) async {
-    try {
-      Map<String, UserRegistrationModel> _list =
-          await UserRegistrationGateway.getUserRegistrationList(
-        serviceID: serviceID,
-      );
-      print("user reg ${_list.length}");
-      _studentsList[serviceID] = _list;
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Future<Map<String, UserRegistrationModel>> getUserRegistrationMap(
-      {@required String serviceID}) async {
-    try {
-      if (_studentsList == null || _studentsList.isEmpty)
-        await setUserRegistrationList(serviceID: serviceID);
-      return _studentsList[serviceID];
-    } catch (e) {
-      print(e);
-      return e;
-    }
-  }
 
-  Future<List<UserRegistrationModel>> getUserRegistrationList(
-          {@required String serviceID}) async =>
-      await getUserRegistrationMap(serviceID: serviceID)
-          .then((value) => value.values.toList());
 
-  Future<UserRegistrationModel> getRegistgerdUserByID(
-      {@required String serviceID, String studentID}) async {
-    try {
-      return await getUserRegistrationMap(serviceID: serviceID)
-          .then((value) => value[studentID]);
-    } catch (e) {
-      print(e);
-      return e;
-    }
-  }
 
-  Future<UserRegistrationModel> getUserWithOneOf(
-    String serviceID, {
-    String cardNum,
-    String phone,
-    String guardianPhone,
-  }) {
-    try {
-      return UserRegistrationGateway.getUserWithOneOf(
-        serviceID: serviceID,
-        phone: phone.isEmpty ? null : phone,
-        cardNum: cardNum.isEmpty ? null : cardNum,
-        guardianPhone: guardianPhone.isEmpty ? null : guardianPhone,
-      );
-    } catch (e) {
-      print(e);
-      return e;
-    }
-  }
+
+
 
   Future<List<String>> getListOfGrades({@required String serviceID}) async {
     try {

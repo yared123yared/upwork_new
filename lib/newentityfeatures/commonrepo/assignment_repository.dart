@@ -1,5 +1,5 @@
-import 'package:complex/domain/entity/school/lookup/lookup.dart';
-import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
+
+
 import 'package:complex/newentityfeatures/Models/assignment_model.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_score_model.dart';
@@ -18,23 +18,7 @@ class AssignmentRepository {
   final VirtualRoomsRepository virtualRoom;
   AssignmentRepository({@required this.lookup, @required this.virtualRoom});
 
-  Map<String, Map<String, AssignmentModel>> _assignmentList = {};
-  Map<String, Map<String, Map<String, VrAssignmentModel>>>
-      _attachedAssignmentList = {};
-  Map<String, List<VrAssignmentScoreModel>> _assignmentScoreList = {};
 
-  Future<void> setAssignment({@required String serviceID}) async {
-    try {
-      List<AssignmentModel> _assignments =
-          await AssignmentGateway.getAssignmentList(serviceID: serviceID);
-      _assignmentList[serviceID] = _assignmentList[serviceID] ?? {};
-      _assignments.forEach((element) {
-        _assignmentList[serviceID][element.assignmentID] = element;
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
 
   Future addAssignment({
     @required AssignmentModel assignment,
@@ -45,7 +29,6 @@ class AssignmentRepository {
         assignment: assignment,
         serviceID: serviceID,
       );
-      await setAssignment(serviceID: serviceID);
     } catch (e) {
       print(e);
     }
@@ -60,7 +43,6 @@ class AssignmentRepository {
         assignment: assignment,
         serviceID: serviceID,
       );
-      await setAssignment(serviceID: serviceID);
     } catch (e) {
       print(e);
     }
@@ -94,99 +76,12 @@ class AssignmentRepository {
     }
   }
 
-  Future<Map<String, AssignmentModel>> getAssignmentList(
-      {@required String serviceID}) async {
-    try {
-      if (_assignmentList[serviceID] == null ||
-          _assignmentList[serviceID].length == 0) {
-        await setAssignment(serviceID: serviceID);
-      }
-      return _assignmentList[serviceID];
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  void updateQuestion({
-    @required Question newQuestion,
-    @required String serviceID,
-    @required String assignmentID,
-    @required int questIndex,
-  }) {
-    try {
-      _assignmentList[serviceID][assignmentID].questions[questIndex] =
-          newQuestion;
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  AssignmentModel getAssignmentByID({
-    @required String serviceID,
-    @required String assignmentID,
-  }) {
-    try {
-      return _assignmentList[serviceID][assignmentID];
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Future<void> setAttachedAssignment({@required String serviceID}) async {
-    try {
-      _attachedAssignmentList[serviceID] = {};
-      List<VrAssignmentModel> _tempAllAssignment = <VrAssignmentModel>[];
-      List<SessionTerm> _sessions =
-          await lookup.getSessionTermsList(serviceID: serviceID);
 
-      for (SessionTerm session in _sessions) {
-        List<VrAssignmentModel> _tempList =
-            await VrAssignmentGateway.getVrAssignmentListOffering(
-          serviceID: serviceID,
-          sessionTerm: session.termName,
-          offering: null,
-        );
 
-        _tempAllAssignment.addAll(_tempList);
-      }
-      Map<String, List<VirtualRoomModel>> _tempVrooms =
-          await virtualRoom.getVirtualRooms(serviceID: serviceID);
-      _tempVrooms.forEach((session, vRoomList) {
-        vRoomList.forEach((vRoom) {
-          _attachedAssignmentList[serviceID]
-              ["$session - ${vRoom.virtualRoomName}"] = {};
-        });
-      });
 
-      _tempAllAssignment.forEach((attachedAssignment) {
-        _attachedAssignmentList[serviceID][
-                "${attachedAssignment.session} - ${attachedAssignment.virtualRoom}"] ??=
-            Map();
-
-        _attachedAssignmentList[serviceID][
-                "${attachedAssignment.session} - ${attachedAssignment.virtualRoom}"]
-            [attachedAssignment.assignmentId] = attachedAssignment;
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future<Map<String, Map<String, VrAssignmentModel>>>
-      getAttachedAssignmentList({
-    @required String serviceID,
-  }) async {
-    try {
-      if (_attachedAssignmentList[serviceID] == null ||
-          _attachedAssignmentList[serviceID].length == 0) {
-        await setAttachedAssignment(serviceID: serviceID);
-      }
-
-      return _attachedAssignmentList[serviceID];
-    } catch (e) {
-      print(e);
-    }
-  }
 
   Future attachAssignment({
     @required VrAssignmentModel vrAssignmentModel,
@@ -202,7 +97,6 @@ class AssignmentRepository {
       );
       print("assignment calling set");
 
-      await setAttachedAssignment(serviceID: serviceID);
       print("assignment ending network call");
     } catch (e) {
       print("Assign create $e");
@@ -223,7 +117,6 @@ class AssignmentRepository {
         vrAssignmentModel: vrAssignmentModel,
         sessionTerm: vrAssignmentModel.session,
       );
-      await setAttachedAssignment(serviceID: serviceID);
       // await AssignmentGateway.attachAssignment(
       //   vrAssignmentModel: vrAssignmentModel,
       //   serviceID: serviceID,
@@ -272,43 +165,7 @@ class AssignmentRepository {
     }
   }
 
-  VrAssignmentModel getAttachedAssignment({
-    @required String serviceID,
-    @required String sessionVroom,
-    @required String assingmentID,
-  }) {
-    try {
-      _attachedAssignmentList[serviceID][sessionVroom][assingmentID];
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Future<void> setAssignmentScoreList({@required String serviceID}) async {
-    try {
-      _assignmentScoreList[serviceID] = [];
-      List<VrAssignmentScoreModel> _tempAllAssignment =
-          List<VrAssignmentScoreModel>();
-      List<SessionTerm> _sessions =
-          await lookup.getSessionTermsList(serviceID: serviceID);
-
-      for (SessionTerm session in _sessions) {
-        List<VrAssignmentScoreModel> _tempList =
-            await VRAssignmentScoreGateway.getVrAssignmentScoreList(
-          serviceID: serviceID,
-          sessionTerm: session,
-        );
-
-        _tempAllAssignment.addAll(_tempList);
-      }
-
-      _tempAllAssignment.forEach((attachedAssignment) {
-        _assignmentScoreList[serviceID].add(attachedAssignment);
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
 
   Future<VrAssignmentScoreModel> getAssignmentScore({
     @required String serviceID,
@@ -345,43 +202,7 @@ class AssignmentRepository {
     }
   }
 
-  Future<List<VrAssignmentScoreModel>> getAssignmentScoreList({
-    @required String serviceID,
-  }) async {
-    try {
-      if (_assignmentScoreList[serviceID] == null ||
-          _assignmentScoreList[serviceID].length == 0) {
-        await setAssignmentScoreList(serviceID: serviceID);
-      }
-      return _assignmentScoreList[serviceID];
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Future submitQuestion(
-      {@required String assignmentID, @required String serviceID}) async {
-    try {
-      await AssignmentGateway.submitQuestion(
-          assignmentModel: _assignmentList[serviceID][assignmentID],
-          serviceID: serviceID);
-      await setAssignment(serviceID: serviceID);
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future submitStudyMaterial(
-      {@required String assignmentID, @required String serviceID}) async {
-    try {
-      await AssignmentGateway.submitStudyMaterial(
-          assignmentModel: _assignmentList[serviceID][assignmentID],
-          serviceID: serviceID);
-      await setAssignment(serviceID: serviceID);
-    } catch (e) {
-      print(e);
-    }
-  }
 
   // New Repository
   Future addNewAssignmentToLocal({
@@ -393,7 +214,7 @@ class AssignmentRepository {
         assignment: assignment,
         serviceID: serviceID,
       );
-      await setAssignment(serviceID: serviceID);
+
     } catch (e) {
       print(e);
     }
@@ -408,7 +229,7 @@ class AssignmentRepository {
         assignment: assignment,
         serviceID: serviceID,
       );
-      await setAssignment(serviceID: serviceID);
+
     } catch (e) {
       print(e);
     }
@@ -418,41 +239,12 @@ class AssignmentRepository {
       {AssignmentModel assignment, String docId}) async {
     try {
       await AssignmentGateway.removeAssignmentToLocal(assignment, docId);
-      await setAssignment(serviceID: docId);
+
     } catch (e) {
       print(e);
     }
   }
 
-  Future submitQuestionToLocal({
-    @required String assignmentID,
-    @required String serviceID,
-  }) async {
-    try {
-      await AssignmentGateway.submitQuestionToLocal(
-        assignmentModel: _assignmentList[serviceID][assignmentID],
-        serviceID: serviceID,
-      );
-      await setAssignment(serviceID: serviceID);
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future submitStudyMaterialToLocal({
-    @required String assignmentID,
-    @required String serviceID,
-  }) async {
-    try {
-      await AssignmentGateway.submitStudyMaterialToLocal(
-        assignmentModel: _assignmentList[serviceID][assignmentID],
-        serviceID: serviceID,
-      );
-      await setAssignment(serviceID: serviceID);
-    } catch (e) {
-      print(e);
-    }
-  }
 
   Future publishAssigment({
     @required AssignmentModel assignment,
@@ -463,7 +255,7 @@ class AssignmentRepository {
         assignment: assignment,
         serviceID: serviceID,
       );
-      await setAssignment(serviceID: serviceID);
+
     } catch (e) {
       print(e);
     }

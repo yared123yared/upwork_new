@@ -38,12 +38,7 @@ class NewComplexRepository {
   UnitsRepository units;
   RegistryRepository registry;
   LeaveRequestRepository leaveRequest;
-  Map<String, ComplexModel> _complexList = {};
-  Map<String, List<BuildingModel>> _buildingList = {};
-  Map<String, List<UnitModel>> _unitList = {};
-  Map<String, Map<String, EntityRoles>> _myUnitList = {};
-  Map<String, List<ComplexVehicleModel>> _vehicleList = {};
-  Map<String, List<StaffModelx>> _staffList = {};
+
 
   NewComplexRepository() {
     this.setup();
@@ -55,50 +50,17 @@ class NewComplexRepository {
     leaveRequest = LeaveRequestRepository();
   }
 
-  void clear() {
-    _buildingList = {};
-    _unitList = {};
-    _myUnitList = {};
-    _vehicleList = {};
 
-    leaveRequest.clear();
-  }
 
   //complex
-  Future<void> setComplex({@required UserComplex complex}) async {
-    try {
-      print("complexEroor : ${complex.complexID}");
-      _complexList[complex.complexID] =
-          await ComplexGateway.getComplex(complex: complex);
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Map<String, ComplexModel> getComplexList() {
-    return _complexList;
-  }
+
+
 
   // ignore: missing_return
-  ComplexModel getComplex({@required String complexID}) {
-    try {
-      if (_complexList.containsKey(complexID)) return _complexList[complexID];
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Future<ComplexModel> getComplexAsync({@required UserComplex complex}) async {
-    try {
-      _complexList[complex.complexID] = await ComplexGateway.getComplex(
-        complex: complex,
-      );
-      return _complexList[complex.complexID];
-    } catch (e) {
-      print(e);
-      return e;
-    }
-  }
+
+
 
   /// get complex without the roles of the user
   Future<ComplexModel> fetchComplex({@required String complexId}) async =>
@@ -112,32 +74,8 @@ class NewComplexRepository {
   //   return _complexList[complex.complexID];
   // }
 
-  setMyUnitList({@required UserModel user, @required String complexID}) {
-    try {
-      user.complexes.forEach((complex) {
-        if (complex.roles.contains(EntityRoles.Owner)) {
-          complex.residentunits.forEach((unit) {
-            _myUnitList[complex.complexID] = {unit.rd: EntityRoles.Owner};
-          });
-          complex.ownerunits.forEach((unit) {
-            _myUnitList[complex.complexID] = {unit.rd: EntityRoles.Owner};
-          });
-        } else if (complex.roles.contains(EntityRoles.Resident)) {
-          complex.residentunits.forEach((unit) {
-            _myUnitList[complex.complexID] = {unit.rd: EntityRoles.Resident};
-          });
-          complex.ownerunits.forEach((unit) {
-            _myUnitList[complex.complexID] = {unit.rd: EntityRoles.Resident};
-          });
-        }
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Map<String, EntityRoles> getMyUnitList({@required String complexID}) =>
-      _myUnitList[complexID];
+
 
   Future<void> createComplex({@required ComplexModel complexModel}) async =>
       ComplexGateway.createComplex(complexModel: complexModel);
@@ -146,9 +84,6 @@ class NewComplexRepository {
       ComplexGateway.updateComplex(complexModel: complexModel);
 
   //building
-  Future<void> setBuildingList({@required String complexID}) async =>
-      _buildingList[complexID] = await BuildingGateway.getBuildingList(
-          complexID: _complexList[complexID].complexID);
 
   Future<List<BuildingModel>> getBuildingList(
       {@required String complexID}) async {
@@ -168,7 +103,6 @@ class NewComplexRepository {
       await BuildingGateway.updateBuilding(
           complexID: complexID, building: building);
 
-      await setBuildingList(complexID: complexID);
     } catch (e) {
       print(e);
     }
@@ -179,7 +113,6 @@ class NewComplexRepository {
     try {
       await BuildingGateway.addNewBuilding(
           complexID: complexID, building: building);
-      await setBuildingList(complexID: complexID);
     } catch (e) {
       print(e);
     }
@@ -193,41 +126,24 @@ class NewComplexRepository {
         building: building,
       );
 
-      await setBuildingList(complexID: complexID);
     } catch (e) {
       print(e);
     }
   }
 
   //vehicle
-  Future<void> setVehicleList({
-    @required String entitytype,
-    String entityid,
-    @required UserModel user,
-  }) async {
-    try {
-      await getUnitList(entitytype: entitytype, entityid: entityid, user: user);
 
-      List<ComplexVehicleModel> _tempVehicles =
-          await ComplexVehicleGateway.getVehicleList(
-        entitytype: entitytype,
-        entityid: entityid,
-      );
-      _vehicleList[entityid] = [];
-      _tempVehicles.forEach((vehicle) {
-        _unitList[entityid].forEach((unit) {
-          if (vehicle.unitAddress == unit.unitID) {
-            _vehicleList[entityid].add(vehicle);
-          }
-        });
-      });
-    } catch (e) {
-      print(e);
-    }
+  Future<List<ComplexVehicleModel>> getVehicleList({@required String entitytype,
+    @required String entityid,}) async
+  {
+
+    List<ComplexVehicleModel> _tempVehicles =
+    await ComplexVehicleGateway.getVehicleList(
+      entitytype: entitytype,
+      entityid: entityid,
+    );
+    return _tempVehicles;
   }
-
-  List<ComplexVehicleModel> getVehicleList({@required String complexID}) =>
-      _vehicleList[complexID];
 
   Future<void> updateVehicle(
       {@required String entitytype,
@@ -258,11 +174,12 @@ class NewComplexRepository {
           entitytype: entitytype,
           entityid: entityid);
 
-  Future<void> removeComplexVehicle(String complexID, String vehicleID) async {
+  Future<void> removeComplexVehicle(@required String entitytype,
+      @required String entityid, String vehicleID) async {
     try {
       return await FirebaseFirestore.instance
           .collection(
-              "COMPLEXES/${_complexList[complexID].complexID}/COMPLEXVEHICLEREG")
+              "${entitytype}/${entityid}/COMPLEXVEHICLEREG")
           .doc(vehicleID)
           .delete();
     } catch (e) {
@@ -280,9 +197,11 @@ class NewComplexRepository {
     } catch (e) {}
   }
 
-  List<StaffModelx> getStaffList({@required String complexID}) =>
-      _staffList[_complexList[complexID].complexID];
-
+  Future<List<StaffModelx>> getStaffList({@required String entitytype,
+    @required String entityid,}) async {
+    return await ComplexStaffGateway.getStaffList(
+        entitytype: entitytype, entityid: entityid);
+  }
   Future<void> addNewStaff(
       {@required String entitytype,
       @required String entityid,
@@ -342,34 +261,7 @@ class NewComplexRepository {
   }
 
   //unit
-  Future<void> setUnitList(
-      {@required String entitytype,
-      String entityid,
-      @required UserModel user}) async {
-    try {
-      List<UnitModel> _visibleUnitList = await UnitGateway.getUnitList(
-          entitytype: entitytype, entityid: entityid);
-      _unitList[_complexList[entityid].complexID] = [];
-      if (_complexList[entityid].roles.contains(EntityRoles.Manager)) {
-        _unitList[_complexList[entityid].complexID] = _visibleUnitList;
-      } else {
-        user.complexes.forEach((complex) {
-          print('hey ${complex.residentunits.map((e) => e.rd)}');
-          if (complex.complexID == _complexList[entityid].complexID) {
-            complex.residentunits.forEach((unit) {
-              _visibleUnitList.forEach((allUnit) {
-                if (unit.rd.split('_').first == allUnit.unitID) {
-                  _unitList[_complexList[entityid].complexID].add(allUnit);
-                }
-              });
-            });
-          }
-        });
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
+
 
   Future<List<UnitModel>> getUnitList(
       {@required String entitytype,
@@ -668,34 +560,7 @@ class NewComplexRepository {
     }
   }
 
-  Future addFamilyMember(
-      FamilyMember member, String entitytype, String entityid) async {
-    try {
-      await ComplexGateway.addFamilyMember(
-        member: member,
-        entitytype: entitytype,
-        entityid: entityid,
-        giveAccess: true,
-      );
-    } catch (e) {
-      print(e);
-    }
-  }
 
-  Future removeFamilyMember(
-    FamilyMember member,
-    String entitytype,
-    String entityid,
-  ) async {
-    try {
-      await ComplexGateway.addFamilyMember(
-        member: member,
-        entitytype: entitytype,
-        entityid: entityid,
-        giveAccess: false,
-      );
-    } catch (e) {
-      print(e);
-    }
-  }
+
+
 }

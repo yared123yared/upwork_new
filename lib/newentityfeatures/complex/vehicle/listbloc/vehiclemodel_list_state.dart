@@ -42,13 +42,13 @@ class IsDeleted extends VehicleModelListState {
 
 class IsSearchParaLoaded extends VehicleModelListState {
   IsSearchParaLoaded(
-      {@required this.gradelist,
-      @required this.sessiontermlist,
-      @required this.offeringModelGroupfunc});
-  final List<String> gradelist;
-  final List<String> sessiontermlist;
-  final Future<List<String>> Function(String, String) offeringModelGroupfunc;
+      {@required this.stafflist,
+      @required this.oul
+      });
+  final List<SchoolOwner> stafflist;
+  final OccupiedUnitLookupModel oul;
+
   @override
   List<Object> get props =>
-      [gradelist, sessiontermlist, offeringModelGroupfunc];
+      [stafflist, oul];
 }

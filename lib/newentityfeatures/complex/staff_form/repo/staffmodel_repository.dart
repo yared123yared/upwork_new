@@ -1,4 +1,4 @@
-import 'dart:convert';
+
 
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
@@ -9,6 +9,7 @@ import 'package:complex/data/models/response/user_response/user_model.dart';
 // import 'package:complex/newentityfeatures/complex/repository/repo/user_repository.dart';
 
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
+import 'package:complex/newentityfeatures/gateway/complex_staff_gateway.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
@@ -59,26 +60,7 @@ class StaffModelRepository {
     return grerror;
   }
 
-  Future<StaffEntryData> getItemFormNewEntryData(
-      String entitytype, String entityid) async {
-    StaffEntryData grerror = StaffEntryData();
-    grerror.errortype = -2;
-    grerror.error = "UNknown exception has occured";
 
-    try {
-      StaffEntryData gr = StaffEntryData();
-      gr.errortype = -1;
-      if (_user.defaultComplexEntity != null) {
-        gr.complexModel = await _complexRepository.getComplexAsync(
-          complex: _user.defaultComplexEntity,
-        );
-      }
-      return gr;
-    } catch (ex) {
-      print(ex);
-    }
-    return grerror;
-  }
 
   Future<StaffModelRepositoryReturnData> getStaffModelWithOfferingSearch(
       String entitytype,
@@ -107,7 +89,7 @@ class StaffModelRepository {
   Future<StaffModelRepositoryReturnData> createStaffModel(
       {StaffModelx item, String entitytype, String entityid}) async {
     StaffModelRepositoryReturnData myreturn = StaffModelRepositoryReturnData();
-    await _complexRepository.addNewStaff(
+    await ComplexStaffGateway.newStaffRequest(
         staffModel: item, entitytype: entitytype, entityid: entityid);
     myreturn.errortype = -1;
     return myreturn;
@@ -124,12 +106,12 @@ class StaffModelRepository {
       String entitytype,
       String entityid}) async {
     StaffModelRepositoryReturnData myreturn = StaffModelRepositoryReturnData();
-    await _complexRepository.updateStaff(
+    await ComplexStaffGateway.updateStaffRequest(
       entitytype: entitytype,
       entityid: entityid,
       newStaff: newitem,
       oldStaff: olditem,
-      user: _user,
+      userModel: _user,
     );
     myreturn.errortype = -1;
     return myreturn;
@@ -138,7 +120,7 @@ class StaffModelRepository {
   Future<StaffModelRepositoryReturnData> deleteStaffModelWithData(
       StaffModelx item, String entitytype, String entityid) async {
     StaffModelRepositoryReturnData myreturn = StaffModelRepositoryReturnData();
-    await _complexRepository.removeStaff(
+    await ComplexStaffGateway.deleteStaffRequest(
       entitytype: entitytype, entityid: entityid,
       staffModel: item,
       userModel: _user,

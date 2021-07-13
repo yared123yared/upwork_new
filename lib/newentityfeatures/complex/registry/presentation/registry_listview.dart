@@ -18,7 +18,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../listbloc/bloc.dart' as listbloc;
 import 'package:complex/newentityfeatures/Models/registry_model.dart' as cmodel;
 
-import './registry_form.dart';
+
 import './resident_form.dart';
 
 class RegistryListList extends StatefulWidget {
@@ -48,6 +48,8 @@ class _RegistryListListState extends State<RegistryListList> {
   List<String> roles = [];
   List<ResidentUnits> residentUnits = [];
   List<String> availableunitsforOwnerForTenant;
+
+
 
   void initState() {
     mlistbloc = listbloc.RegistryModelListBloc();
@@ -102,30 +104,38 @@ class _RegistryListListState extends State<RegistryListList> {
     } else {
       role = "owner";
     }
-    bool allowAdd = true;
+    bool allowAdd =false;
+    bool updateowner=false;
     //origintype =3 for owner/resident view
-    if (widget.origintype == 3 && availableunitsforOwnerForTenant.length > 0) {
-      allowAdd = true;
-    }
+    if(widget.origintype ==3 && availableunitsforOwnerForTenant.length >0)
+      {
+
+          allowAdd=true;
+
+      }
     //origintype =1 for manager view
-    else if (widget.origintype == 1 && oul.hasfreeunits) {
-      allowAdd = true;
-    }
-    if (allowAdd) {
+    else if (widget.origintype ==1 && oul.hasfreeunits)
+      {
+        allowAdd=true;
+
+      }
+    if(allowAdd) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ResidentForm(
-              entitytype: widget.entitytype,
-              entityid: widget.entityid,
-              givenreloadaction: doreload,
-              origintype: widget.origintype,
-              btnState: ButtonState.idle,
-              registry: null,
-              isOwner: isOwner,
-              role: role,
-              unitlistForOwnerCase: availableunitsforOwnerForTenant,
-              oul: oul),
+          builder: (context) =>
+              ResidentForm(
+                entitytype: widget.entitytype,
+                entityid: widget.entityid,
+                givenreloadaction: doreload,
+                origintype: widget.origintype,
+                btnState: ButtonState.idle,
+                registry: null,
+                isOwner: isOwner,
+                role: role,
+                unitlistForOwnerCase: availableunitsforOwnerForTenant,
+                oul:oul,updateOwner: false,
+              ),
         ),
       );
     }
@@ -141,6 +151,7 @@ class _RegistryListListState extends State<RegistryListList> {
             item?.residentPublishedContact ??
             "",
         tapAction: () {
+ /*
           if (roles.contains("resident")) {
             Navigator.push(
               context,
@@ -159,16 +170,17 @@ class _RegistryListListState extends State<RegistryListList> {
               context,
               MaterialPageRoute(
                 builder: (context) => ResidentForm(
-                    entitytype: widget.entitytype,
-                    entityid: widget.entityid,
-                    givenreloadaction: doreload,
-                    origintype: widget.origintype,
-                    btnState: ButtonState.idle,
-                    registry: item,
-                    isOwner: isOwner,
-                    role: "manager",
-                    unitlistForOwnerCase: [],
-                    oul: oul),
+                  entitytype: widget.entitytype,
+                  entityid: widget.entityid,
+                  givenreloadaction: doreload,
+                  origintype: widget.origintype,
+                  btnState: ButtonState.idle,
+                  registry: item,
+                  isOwner: isOwner,
+                  role: "manager",
+                  unitlistForOwnerCase: [],
+                  oul:oul
+                ),
               ),
             );
           } else {
@@ -176,21 +188,26 @@ class _RegistryListListState extends State<RegistryListList> {
               context,
               MaterialPageRoute(
                 builder: (context) => ResidentForm(
-                    entitytype: widget.entitytype,
-                    entityid: widget.entityid,
-                    givenreloadaction: doreload,
-                    origintype: widget.origintype,
-                    btnState: ButtonState.idle,
-                    registry: item,
-                    isOwner: isOwner,
-                    role: "owner",
+                  entitytype: widget.entitytype,
+                  entityid: widget.entityid,
+                  givenreloadaction: doreload,
+                  origintype: widget.origintype,
+                  btnState: ButtonState.idle,
+                  registry: item,
+                  isOwner: isOwner,
+                  role: "owner",
                     unitlistForOwnerCase: [],
-                    oul: oul),
+                    oul:oul
+
+                ),
               ),
             );
           }
+
+ */
         },
         deleteAction: () async {
+          /*
           bool docancel = await _asyncConfirmDialog(context);
           if (docancel) {
             BlocProvider.of<listbloc.RegistryModelListBloc>(context).add(
@@ -199,6 +216,8 @@ class _RegistryListListState extends State<RegistryListList> {
                     entityid: widget.entitytype,
                     item: listItems[index]));
           }
+          */
+
         },
       ));
     });
@@ -257,14 +276,15 @@ class _RegistryListListState extends State<RegistryListList> {
           }
           if (state is listbloc.IsSearchedListDataLoaded) {
             setState(() {
-              availableunitsforOwnerForTenant = state.availablefortenantunits;
+              availableunitsforOwnerForTenant=state.availablefortenantunits;
             });
           }
           if (state is listbloc.IsBuildingListDataLoaded) {
             setState(() {
-              oul = state.oul;
+              oul=state.oul;
             });
           }
+
         }, child: BlocBuilder<listbloc.RegistryModelListBloc,
             listbloc.RegistryModelListState>(builder: (context, state) {
           if (state is listbloc.IsBusy)
@@ -294,7 +314,10 @@ class _RegistryListListState extends State<RegistryListList> {
           if (state is listbloc.IsBuildingListDataLoaded) {
             List<cmodel.RegistryModel> em = [];
 
-            return _blocBuilder(context, em);
+
+
+
+            return _blocBuilder(context, em );
           }
           return Center(child: Text('Empty'));
         })),
@@ -313,74 +336,75 @@ class _RegistryListListState extends State<RegistryListList> {
     );
   }
 
-  Widget _blocBuilder(context, List<cmodel.RegistryModel> em) {
+  Widget _blocBuilder(
+      context, List<cmodel.RegistryModel> em) {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [
-        if (widget.origintype != 3)
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.0),
-              child: ExpansionTile(
-                title: Text("Select Parameters To Search"),
-                initiallyExpanded: true,
-                children: [
-                  CustomDropDownList(
-                    controller: _building,
-                    title: "Building",
-                    displayName: (data) => data,
-                    loadData: () async => oul.buildinglist,
-                    onSelected: (value, index) {
-                      setState(() {
-                        // floors = blist[value].keys.toList();
-                        floors = oul.floormap[value];
-                      });
-                    },
-                  ),
-                  CustomDropDownList(
-                    title: "Floor Number",
-                    controller: _floor,
-                    displayName: (data) => data.toString(),
-                    loadData: () async => floors,
-                  ),
-                  CustomActionButton(
-                    title: "Get Registries",
-                    gradient: C.bgGradient,
-                    onTap: () {
-                      if (_floor.text.isEmpty || _building.text.isEmpty) {
-                        EasyLoading.showToast(
-                            "Please fill the parameters to do the search",
-                            duration: Duration(seconds: 1));
-                      }
-                      if (widget.origintype == 1 || widget.origintype == 2) {
-                        BlocProvider.of<listbloc.RegistryModelListBloc>(context)
-                            .add(
-                          listbloc.getListDataByBuildingAndFloor(
-                            entityid: widget.entityid,
-                            entitytype: widget.entitytype,
-                            originType: widget.origintype,
-                            buildingName: _building.text,
-                            floorNum: int.parse(_floor.text),
-                          ),
-                        );
-                      } else if (widget.origintype == 4) {
-                        BlocProvider.of<listbloc.RegistryModelListBloc>(context)
-                            .add(
-                          listbloc.getListDataByBuildingAndFloor(
-                            entityid: widget.entityid,
-                            entitytype: widget.entitytype,
-                            originType: widget.origintype,
-                            buildingName: _building.text,
-                            floorNum: int.parse(_floor.text),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ],
-              ),
+        if (widget.origintype !=3)
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            child: ExpansionTile(
+              title: Text("Select Parameters To Search"),
+              initiallyExpanded: true,
+              children: [
+                CustomDropDownList(
+                  controller: _building,
+                  title: "Building",
+                  displayName: (data) => data,
+                  loadData: () async => oul.buildinglist,
+                  onSelected: (value, index) {
+                    setState(() {
+                      // floors = blist[value].keys.toList();
+                      floors = oul.floormap[value];
+                    });
+                  },
+                ),
+                CustomDropDownList(
+                  title: "Floor Number",
+                  controller: _floor,
+                  displayName: (data) => data.toString(),
+                  loadData: () async => floors,
+                ),
+                CustomActionButton(
+                  title: "Get Registries",
+                  gradient: C.bgGradient,
+                  onTap: () {
+                    if (_floor.text.isEmpty || _building.text.isEmpty) {
+                      EasyLoading.showToast(
+                          "Please fill the parameters to do the search",
+                          duration: Duration(seconds: 1));
+                    }
+                    if (widget.origintype == 1 || widget.origintype == 2) {
+                      BlocProvider.of<listbloc.RegistryModelListBloc>(context)
+                          .add(
+                        listbloc.getListDataByBuildingAndFloor(
+                          entityid: widget.entityid,
+                          entitytype: widget.entitytype,
+                          originType: widget.origintype,
+                          buildingName: _building.text,
+                          floorNum: int.parse(_floor.text),
+                        ),
+                      );
+                    } else if (widget.origintype == 4) {
+                      BlocProvider.of<listbloc.RegistryModelListBloc>(context)
+                          .add(
+                        listbloc.getListDataByBuildingAndFloor(
+                          entityid: widget.entityid,
+                          entitytype: widget.entitytype,
+                          originType: widget.origintype,
+                          buildingName: _building.text,
+                          floorNum: int.parse(_floor.text),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ],
             ),
           ),
+        ),
         // SliverToBoxAdapter(
         //     child: CommonListPage(
         //         canSearch: false,

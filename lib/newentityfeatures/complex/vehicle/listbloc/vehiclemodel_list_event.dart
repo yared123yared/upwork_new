@@ -14,13 +14,38 @@ class GetPreData extends VehicleModelListEvent {
 }
 
 //to get listdata
-class GetListData extends VehicleModelListEvent {
+
+
+class GetListDataByUnits extends VehicleModelListEvent {
   final String entityid;
   final String entitytype;
-  GetListData({@required this.entityid, @required this.entitytype});
-  @override
-  List<Object> get props => [entityid, entitytype];
+  final  List<String> residentialunitlist;
+
+  GetListDataByUnits({@required this.entityid, @required this.entitytype, @required this.residentialunitlist});
+@override
+List<Object> get props => [entityid, entitytype,residentialunitlist];
 }
+
+class GetListDataByStaffId extends VehicleModelListEvent {
+  final String entityid;
+  final String entitytype;
+  final  String staffid;
+
+  GetListDataByStaffId({@required this.entityid, @required this.entitytype, @required this.staffid});
+  @override
+  List<Object> get props => [entityid, entitytype,staffid];
+}
+class GetListDataByNumPlate extends VehicleModelListEvent {
+  final String entityid;
+  final String entitytype;
+  final  String numplate;
+
+  GetListDataByNumPlate({@required this.entityid, @required this.entitytype, @required this.numplate});
+  @override
+  List<Object> get props => [entityid, entitytype,numplate];
+}
+
+
 
 class GetListDataWithSearchParameter extends VehicleModelListEvent {
   final String entityid;

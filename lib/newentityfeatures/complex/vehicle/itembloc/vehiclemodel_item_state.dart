@@ -40,7 +40,7 @@ class IsReadyForDetailsPage extends VehicleModelState {
     @required this.entitytype,
     @required this.detailstype,
     @required this.vehicleIndex,
-    @required this.unitList,
+    @required this.oul,
     @required this.staff,
     @required this.isResident,
   });
@@ -50,8 +50,8 @@ class IsReadyForDetailsPage extends VehicleModelState {
   final String entitytype;
 
   final int vehicleIndex;
-  final List/* <UnitModel> */ unitList;
-  final List/* <StaffModelx> */ staff;
+  final OccupiedUnitLookupModel oul;
+  final List<SchoolOwner> staff;
   final bool isResident;
 
   @override
@@ -60,7 +60,7 @@ class IsReadyForDetailsPage extends VehicleModelState {
         entitytype,
         detailstype,
         vehicleIndex,
-        unitList,
+        oul,
         staff,
         isResident,
       ];

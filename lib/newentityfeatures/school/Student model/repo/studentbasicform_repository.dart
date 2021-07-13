@@ -93,26 +93,7 @@ class StudentBasicFormModelRepository {
     return grerror;
   }
 
-  Future<StudentBasicFormModelRepositoryReturnData>
-      getStudentBasicFormModelWithOfferingSearch(String entitytype,
-          String entityid, String sessionterm, String offeringgroup) async {
-    StudentBasicFormModelRepositoryReturnData grerror =
-        new StudentBasicFormModelRepositoryReturnData();
-    grerror.errortype = -2;
-    grerror.error = "UNknown exception has occured";
 
-    try {
-      List<UserRegistrationModel> list =
-          await _schoolRepo.getUserRegistrationList(serviceID: entityid);
-
-      StudentBasicFormModelRepositoryReturnData gr =
-          new StudentBasicFormModelRepositoryReturnData();
-      gr.errortype = -1;
-      gr.itemlist = list;
-      return gr;
-    } catch (ex) {}
-    return grerror;
-  }
 
   Future<StudentBasicFormModelRepositoryReturnData> createStudentBasicFormModel(
       UserRegistrationModel item, String entitytype, String entityid) async {
@@ -205,8 +186,8 @@ class StudentBasicFormModelRepository {
     StudentBasicFormModelRepositoryReturnData myreturn =
         StudentBasicFormModelRepositoryReturnData();
 
-    List<UserRegistrationModel> list =
-        await _schoolRepo.getUserRegistrationList(serviceID: entityid);
+    List<UserRegistrationModel> list =[];
+
 
     myreturn.itemlist = list;
     myreturn.errortype = -1;
@@ -221,60 +202,9 @@ class StudentBasicFormModelRepository {
     String entityid,
   }) async {
     List<UserRegistrationModel> users =
-        await _schoolRepo.getUserRegistrationList(
-      serviceID: entityid,
-    );
+        await UserRegistrationGateway.getUserWithOneOf(serviceID:entityid,cardNum: cardNum,phone:phone,guardianPhone:guardianPhone   );
 
-    List<UserRegistrationModel> filteredUsers = [];
-    users.forEach((user) {
-      if (user.idCardNum == cardNum ||
-          user.guardian1phone == phone ||
-          user.guardian2phone == phone) {
-        filteredUsers.add(user);
-        Logger().i(user);
-      }
-    });
-/* 
-    List<UserSessionRegModel> userSessions =
-        await _schoolRepo.userSessionReg.getUserSessionReg(
-      serviceID: entityid,
-    );
-
-    List<UserSessionRegModel> filteredSessions = [];
-    userSessions.forEach((session) {
-      if (session.idCardNum == cardNum) {
-        filteredSessions.add(session);
-      }
-    });
-
-    UserSessionRegModel userSession =
-        await _schoolRepo.userSessionReg.getUserSessionRegModel(
-      serviceID: entityid,
-      sessionterm: sessionterm,
-      idcardnum: cardNum,
-    );
- */
-/* 
-    // List<UserRegPaymentModel>
-    List<UserRegFeeCollectionModel> userFees =
-        await _schoolRepo.getFeeICollection(
-      serviceID: entityid,
-    );
-    List<UserRegFeeCollectionModel> filteredFees = [];
-    userFees.forEach((feeItem) {
-      if (feeItem.idCardNum == cardNum && feeItem.sessionTerm == cardNum) {
-        filteredFees.add(feeItem);
-      }
-    });
- */
-    // UserRegistrationModel user = await _schoolRepo.getUserWithOneOf(
-    //   entityid,
-    //   cardNum: cardNum,
-    //   phone: phone,
-    //   guardianPhone: guardianPhone,
-    // );
-
-    return filteredUsers;
+    return users;
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 // import '../model/building_model.dart';
 import 'package:complex/newentityfeatures/Models/building_model.dart';
+import 'package:complex/newentityfeatures/gateway/building_gateway.dart';
 
 import 'package:get/get.dart';
 
@@ -30,7 +31,7 @@ class BuildingModelRepository {
     // }
 
     myreturn.itemlist =
-        await _complexRepository.getBuildingList(complexID: entityid);
+        await BuildingGateway.getBuildingList(complexID: entityid);
     myreturn.errortype = -1;
     return myreturn;
   }
@@ -39,7 +40,7 @@ class BuildingModelRepository {
       BuildingModel item, String entitytype, String entityid) async {
     BuildingModelRepositoryReturnData myreturn =
         BuildingModelRepositoryReturnData();
-    await _complexRepository.addNewBuilding(
+    await BuildingGateway.addNewBuilding(
       complexID: entityid,
       building: item,
     );
@@ -52,7 +53,7 @@ class BuildingModelRepository {
       BuildingModel item, String entitytype, String entityid) async {
     BuildingModelRepositoryReturnData myreturn =
         BuildingModelRepositoryReturnData();
-    await _complexRepository.updateBuilding(
+    await BuildingGateway.updateBuilding(
       complexID: entityid,
       building: item,
     );
@@ -72,7 +73,7 @@ class BuildingModelRepository {
       BuildingModel item, String entitytype, String entityid) async {
     BuildingModelRepositoryReturnData myreturn =
         BuildingModelRepositoryReturnData();
-    await _complexRepository.removeBuilding(
+    await BuildingGateway.removeBuilding(
       building: item,
       complexID: entityid,
     );

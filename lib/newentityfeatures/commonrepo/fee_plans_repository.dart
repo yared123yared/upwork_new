@@ -5,13 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:complex/newentityfeatures/gateway/fee_plans_gateway.dart';
 
 class FeePlansRepository {
-  Map<String, List<FeePlanModel>> _feePlanList = {};
+
 
   Future<void> setFeeIPlanList({@required String serviceID}) async {
     try {
       List<FeePlanModel> _list =
           await FeePlanGateway.getFeePlanList(serviceID: serviceID);
-      _feePlanList[serviceID] = _list;
+
     } catch (e) {
       print(e);
     }
@@ -20,13 +20,11 @@ class FeePlansRepository {
   Future<List<FeePlanModel>> getFeePlanList(
       {@required String serviceID}) async {
     try {
-      if (_feePlanList[serviceID] == null ||
-          _feePlanList[serviceID].length == 0) {
-        await setFeeIPlanList(serviceID: serviceID);
+      List<FeePlanModel> _list =
+      await FeePlanGateway.getFeePlanList(serviceID: serviceID);
+      return _list;
       }
-
-      return _feePlanList[serviceID];
-    } catch (e) {
+     catch (e) {
       print(e);
     }
   }
@@ -40,7 +38,7 @@ class FeePlansRepository {
         feePlan: feePlan,
         serviceID: serviceID,
       );
-      await setFeeIPlanList(serviceID: serviceID);
+
     } catch (e) {
       print(e);
     }
@@ -51,13 +49,13 @@ class FeePlansRepository {
     String serviceID,
   }) async {
     try {
-      if (_feePlanList[serviceID] != null || _feePlanList.length != 0) {
+       {
         await FeePlanGateway.updateFeePlan(
           feePlan: feePlan,
           serviceID: serviceID,
         );
       }
-      await setFeeIPlanList(serviceID: serviceID);
+
     } catch (e) {
       print(e);
     }

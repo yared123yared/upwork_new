@@ -39,7 +39,7 @@ class IsReadyForDetailsPage extends StaffModelState {
     @required this.entityid,
     @required this.entitytype,
     @required this.detailstype,
-    @required this.complexModel,
+
     // @required this.staffRoleList,
     // @required this.btnState,
     // @required this.timeline,
@@ -50,7 +50,7 @@ class IsReadyForDetailsPage extends StaffModelState {
   final String entityid;
   final String entitytype;
 
-  final ComplexModel complexModel;
+
   // final ButtonState btnState;
   // final List<TimeLineModel> timeline;
   // final List<String> staffRoleList;
@@ -61,6 +61,6 @@ class IsReadyForDetailsPage extends StaffModelState {
         entityid,
         entitytype,
         detailstype,
-        complexModel,
+
       ];
 }

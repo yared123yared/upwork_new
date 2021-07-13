@@ -1,4 +1,4 @@
-import 'dart:convert';
+
 
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
@@ -8,6 +8,7 @@ import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 
 // import 'package:complex/newentityfeatures/Models/user_model.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
+import 'package:complex/newentityfeatures/gateway/complex_gateway.dart';
 // import 'package:complex/newentityfeatures/complex/repository/repo/user_repository.dart';
 
 import 'package:get/get_core/src/get_main.dart';
@@ -27,7 +28,7 @@ class FamilyMemberRepositoryReturnData {
 }
 
 class FamilyMemberRepository {
-  NewComplexRepository _complexRepository = Get.find();
+
   UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
 
@@ -35,19 +36,11 @@ class FamilyMemberRepository {
       String entitytype, String entityid) async {
     FamilyMemberRepositoryReturnData myreturn =
         FamilyMemberRepositoryReturnData();
-
-    List<String> units = (await _complexRepository.units.getUnitList(
-      entitytype: entitytype,
-      entityid: entityid,
-    ))
-        ?.map((unit) => unit.unitID)
-        ?.toList();
-
-    myreturn.itemlist = await _complexRepository.familyMembers(
+    myreturn.itemlist = await ComplexGateway.getFamilyMembersList(
       entitytype: entitytype,
       entityid: entityid,
       userId: _user.userID,
-      // units: units,
+      units :_user.defaultComplexEntity.getUnitList()
     );
 
     myreturn.errortype = -1;
@@ -66,14 +59,9 @@ class FamilyMemberRepository {
       GenericLookUpDataUsedForRegistration gr =
           new GenericLookUpDataUsedForRegistration();
 
-      List<String> units = (await _complexRepository.units.getUnitList(
-        entitytype: entitytype,
-        entityid: entityid,
-      ))
-          ?.map((unit) => unit.unitID)
-          ?.toList();
 
-      gr.grades = units;
+
+      gr.grades = _user.defaultComplexEntity.getUnitList();
       gr.errortype = -1;
       return gr;
     } catch (ex) {
@@ -91,16 +79,10 @@ class FamilyMemberRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      List<String> models = (await _complexRepository.units.getUnitList(
-        entitytype: entitytype,
-        entityid: entityid,
-      ))
-          ?.map((unit) => unit.unitID)
-          ?.toList();
 
       FamilyEntryData gr = FamilyEntryData();
 
-      gr.models = models;
+      gr.models = _user.defaultComplexEntity.getUnitList();
       gr.errortype = -1;
 
       return gr;
@@ -123,11 +105,11 @@ class FamilyMemberRepository {
     try {
       FamilyMemberRepositoryReturnData gr =
           new FamilyMemberRepositoryReturnData();
-      gr.itemlist = await _complexRepository.familyMembers(
-        entitytype: entitytype,
-        entityid: entityid,
-        userId: _user.userID,
-        units: units,
+      gr.itemlist = await ComplexGateway.getFamilyMembersList(
+          entitytype: entitytype,
+          entityid: entityid,
+          userId: _user.userID,
+          units :_user.defaultComplexEntity.getUnitList()
       );
 
       gr.errortype = -1;
@@ -140,32 +122,17 @@ class FamilyMemberRepository {
       FamilyMember item, String entitytype, String entityid) async {
     FamilyMemberRepositoryReturnData myreturn =
         FamilyMemberRepositoryReturnData();
-    await _complexRepository.addFamilyMember(item, entitytype, entityid);
+    await ComplexGateway.addFamilyMember(member:item,entitytype: entitytype,entityid: entityid);
     myreturn.errortype = -1;
     return myreturn;
   }
 
-  Future<FamilyMemberRepositoryReturnData> updateFamilyMember(
-      FamilyMember item, String entitytype, String entityid) async {
-    FamilyMemberRepositoryReturnData myreturn =
-        FamilyMemberRepositoryReturnData();
-    myreturn.errortype = -1;
-    return myreturn;
-  }
-
-  Future<FamilyMemberRepositoryReturnData> updateFamilyMemberWithDiff(
-      FamilyMember newitem,
-      FamilyMember olditem,
-      String entitytype,
-      String entityid) async {
-    return null;
-  }
 
   Future<FamilyMemberRepositoryReturnData> deleteFamilyMemberWithData(
       FamilyMember item, String entitytype, String entityid) async {
     FamilyMemberRepositoryReturnData myreturn =
         FamilyMemberRepositoryReturnData();
-    await _complexRepository.removeFamilyMember(item, entitytype, entityid);
+    await ComplexGateway.removeFamilyMember(member:item,entitytype: entitytype,entityid: entityid);
     myreturn.errortype = -1;
     return myreturn;
   }

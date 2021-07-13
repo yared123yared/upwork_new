@@ -80,26 +80,7 @@ class RegistryModelListBloc
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is getListData) {
-      yield IsBusy();
-      RegistryModelRepositoryReturnData ud =
-          await mrepository.getAllRegistryModels(
-        event.entitytype,
-        event.entityid,
-        event.originType,
-      );
 
-      if (ud.errortype == -1)
-        yield IsListDataLoaded(
-          buildingType: ud.listviewData.buildingType,
-          listdata: ud.itemlist,
-          roles: ud.listviewData.roles,
-        );
-      else if (ud.errortype == 1)
-        yield HasLogicalFaliur(error: ud.error);
-      else
-        yield HasExceptionFaliur(error: ud.error);
-    }
 
     if (event is getPreData) {
       yield IsBusy();
@@ -119,7 +100,7 @@ class RegistryModelListBloc
       yield IsBusy();
       RegistryModelRepositoryReturnData ud =
           await mrepository.deleteRegistryModelWithData(
-              event.item, event.entitytype, event.entityid);
+              event.item, event.entitytype, event.entityid,event.updateowner);
       if (ud.errortype == -1)
         yield IsDeleted();
       else if (ud.errortype == 1)

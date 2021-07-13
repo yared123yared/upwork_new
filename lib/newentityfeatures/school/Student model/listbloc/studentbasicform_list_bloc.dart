@@ -48,22 +48,7 @@ class StudentBasicFormModelListBloc extends Bloc<StudentBasicFormModelListEvent,
         yield HasExceptionFaliur(error: ud.error);
     }
 
-    if (event is getListDataWithSearchParameter) {
-      yield IsBusy();
-      StudentBasicFormModelRepositoryReturnData ud =
-          await mrepository.getStudentBasicFormModelWithOfferingSearch(
-              event.entitytype,
-              event.entityid,
-              event.sessionterm,
-              event.offeringmodelgroupname);
 
-      if (ud.errortype == -1)
-        yield IsListDataLoaded(listdata: ud.itemlist);
-      else if (ud.errortype == 1)
-        yield HasLogicalFaliur(error: ud.error);
-      else
-        yield HasExceptionFaliur(error: ud.error);
-    }
 
     if (event is getPreData) {
       yield IsBusy();

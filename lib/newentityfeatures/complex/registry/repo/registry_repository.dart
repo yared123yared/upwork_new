@@ -3,8 +3,10 @@
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
-import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
-import 'package:complex/newentityfeatures/Models/tempmodelforcomplex.dart';
+//import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
+//import 'package:complex/newentityfeatures/Models/tempmodelforcomplex.dart';
+import 'package:complex/newentityfeatures/gateway/registry_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/unit_gateway.dart';
 // import 'package:complex/newentityfeatures/Models/entity/entity_roles.dart';
 import 'package:get/get.dart';
 
@@ -41,62 +43,7 @@ class RegistryModelRepository {
   UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
 
-  Future<RegistryModelRepositoryReturnData> getAllRegistryModels(
-      String entitytype, String entityid, int originType) async {
-    RegistryModelRepositoryReturnData myreturn =
-        RegistryModelRepositoryReturnData();
 
-    ComplexModel _complexModel = await _complexRepository.getComplexAsync(
-      complex: _user.defaultComplexEntity,
-    );
-
-    List<String> roles;
-    if (_complexModel.roles.contains(EntityRoles.Manager)) {
-      roles = ["manager"];
-    } else if (_complexModel.roles.contains(EntityRoles.Owner)) {
-      roles = ["owner"];
-    } else if (_complexModel.roles.contains(EntityRoles.Resident)) {
-      roles = ["resident"];
-    }
-
-    myreturn.listviewData.roles = roles;
-    myreturn.listviewData.buildingType = _complexModel.buildingType;
-
-    List<RegistryModel> newRegistryList = [];
-
-    List<RegistryModel> registryList =
-        await _complexRepository.registry.getRegistryList(
-      entitytype: entitytype,
-      entityid: entityid,
-    );
-    registryList.forEach((registry) {
-      if (originType == 1) {
-        newRegistryList.add(registry);
-      } else if (originType == 2) {
-        if (registry?.ownerUserId == _user.userID) {
-          newRegistryList.add(registry);
-        }
-      } else if (originType == 3) {
-        newRegistryList.add(registry);
-      } else if (originType == 4) {
-        if (registry?.ownerUserId == _user.userID) {
-          newRegistryList.add(registry);
-        }
-      }
-      // if (roles?.contains("owner") ?? false) {
-      //   if (registry?.ownerUserId == _user.userID) {
-      //     newRegistryList.add(registry);
-      //   }
-      // } else {
-      //   newRegistryList.add(registry);
-      // }
-    });
-
-    myreturn.itemlist = newRegistryList;
-
-    myreturn.errortype = -1;
-    return myreturn;
-  }
 
   Future<RegistryModelRepositoryReturnData>
       getAllRegistryModelsByBuildingAndFloor(String entitytype, String entityid,
@@ -108,7 +55,7 @@ class RegistryModelRepository {
     bool isOwner = _user.userID.endsWith("o");
 
     List<RegistryModel> registryList =
-        await _complexRepository.registry.getRegistryListForBuildingAndFloor(
+        await RegistryGateway.getRegistryListForBuildingAndFloor(
       entitytype: entitytype,
       entityid: entityid,
       buildingid: buildingName,
@@ -144,7 +91,7 @@ class RegistryModelRepository {
     List<RegistryModel> registryList;
     if (unitList.isNotEmpty) {
       registryList =
-          await _complexRepository.registry.getRegistryListDataByListOfUnits(
+          await RegistryGateway.getRegistryListForListOfUnits(
         entitytype: entitytype,
         entityid: entityid,
         unitlist: unitList,
@@ -180,7 +127,7 @@ class RegistryModelRepository {
     bool isOwner = false;
 
     RegistryModel myreg =
-        await _complexRepository.registry.getRegistryListDataByUnitId(
+        await RegistryGateway.getRegistryListForUnitId(
       entitytype: entitytype,
       entityid: entityid,
       unitid: unitid,
@@ -192,28 +139,16 @@ class RegistryModelRepository {
     return myreturn;
   }
 
-  Future<RegistryModelRepositoryReturnData> createRegistryModel(
-      RegistryModel item, String entitytype, String entityid) async {
-    RegistryModelRepositoryReturnData myreturn =
-        RegistryModelRepositoryReturnData();
 
-    bool isOwner = _complexRepository
-        .getComplexList()[entityid]
-        .roles
-        .contains(EntityRoles.Owner);
-
-    myreturn.errortype = -1;
-    return myreturn;
-  }
 
   Future<RegistryModelRepositoryReturnData> createRegistryModelViaResidentModel(
       ResidentModel item, String entitytype, String entityid) async {
     RegistryModelRepositoryReturnData myreturn =
         RegistryModelRepositoryReturnData();
 
-    await _complexRepository.addResidentRequest(
-      residentRequest: item,
-      userModel: _user,
+    await RegistryGateway.addResidentRequest(
+      resident: item,
+
       entitytype: entitytype,
       entityid: entityid,
     );
@@ -221,34 +156,6 @@ class RegistryModelRepository {
     return myreturn;
   }
 
-  Future<RegistryModelRepositoryReturnData> updateResident(
-      ResidentModel item, String entitytype, String entityid) async {
-    RegistryModelRepositoryReturnData myreturn =
-        RegistryModelRepositoryReturnData();
-
-    ComplexModel complexModel = await _complexRepository.getComplexAsync(
-      complex: _user.defaultComplexEntity,
-    );
-
-    bool isOwner = complexModel.roles.contains(EntityRoles.Owner);
-
-    await _complexRepository.removeResident(
-      entitytype: entitytype,
-      unitadress: item.unitAddress,
-      entityid: entityid,
-      isOwner: isOwner,
-      userModel: _user,
-    );
-
-    await _complexRepository.addResidentRequest(
-      residentRequest: item,
-      userModel: _user,
-      entitytype: entitytype,
-      entityid: entityid,
-    );
-    myreturn.errortype = -1;
-    return myreturn;
-  }
 
   Future<RegistryModelRepositoryReturnData> updateRegistryModel(
       RegistryModel item, String entitytype, String entityid) async {
@@ -261,22 +168,19 @@ class RegistryModelRepository {
       RegistryModel newitem,
       RegistryModel olditem,
       String entitytype,
-      String entityid) async {
+      String entityid,bool updateowner) async {
     RegistryModelRepositoryReturnData myreturn =
         RegistryModelRepositoryReturnData();
 
-    ComplexModel complexModel = await _complexRepository.getComplexAsync(
-      complex: _user.defaultComplexEntity,
-    );
 
-    bool isOwner = complexModel.roles.contains(EntityRoles.Owner);
 
-    await _complexRepository.registry.updateRegistry(
+
+    await RegistryGateway.updateRegistry(
       entityid: entityid,
       entitytype: entitytype,
       oldRegistry: olditem,
       newRegistry: newitem,
-      isOwner: isOwner,
+      isOwner: updateowner,
       userModel: _user,
     );
     myreturn.errortype = -1;
@@ -284,20 +188,18 @@ class RegistryModelRepository {
   }
 
   Future<RegistryModelRepositoryReturnData> deleteRegistryModelWithData(
-      RegistryModel item, String entitytype, String entityid) async {
+      RegistryModel item, String entitytype, String entityid,bool updateowner) async {
     RegistryModelRepositoryReturnData myreturn =
         RegistryModelRepositoryReturnData();
 
-    ComplexModel complexModel = await _complexRepository.getComplexAsync(
-      complex: _user.defaultComplexEntity,
-    );
 
-    bool isOwner = complexModel.roles.contains(EntityRoles.Owner);
 
-    await _complexRepository.removeResident(
+
+
+    await RegistryGateway.deleteRegistry(
       entitytype: entitytype,
       unitadress: item.unitAddress,
-      isOwner: isOwner,
+      isOwner: updateowner,
       userModel: _user,
       entityid: entityid,
     );
@@ -326,30 +228,10 @@ class RegistryModelRepository {
       String entitytype, String entityid, RegistryModel registry) async {
     RegistryEntryData myreturn = RegistryEntryData();
 
-    ComplexModel _complexModel = await _complexRepository.getComplexAsync(
-      complex: _user.defaultComplexEntity,
-    );
 
-    if (registry != null) {
-      try {
-        List<ResidentModel> residents =
-            await _complexRepository.getResidentList(
-          entitytype: entitytype,
-          entityid: entityid,
-        );
-        ResidentModel resident;
-        residents?.forEach((residentItem) {
-          if (registry.residentUserId == residentItem.residentID) {
-            resident = residentItem;
-          }
-        });
-        myreturn.resident = resident;
-      } catch (e) {
-        print(e);
-      }
-    }
 
-    List<UnitModel> unitList = await _complexRepository.units.getUnitList(
+
+    List<UnitModel> unitList = await UnitGateway.getUnitList(
       entitytype: entitytype,
       entityid: entityid,
     );

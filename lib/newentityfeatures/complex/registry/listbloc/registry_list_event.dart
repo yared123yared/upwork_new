@@ -91,10 +91,12 @@ class deleteItemWithData extends RegistryModelListEvent {
   final RegistryModel item;
   final String entityid;
   final String entitytype;
+  final bool updateowner;
+
   const deleteItemWithData({
     @required this.item,
     @required this.entityid,
-    @required this.entitytype,
+    @required this.entitytype,@required this.updateowner
   });
-  List<Object> get() => [item, entityid, entitytype];
+  List<Object> get() => [item, entityid, entitytype,updateowner];
 }

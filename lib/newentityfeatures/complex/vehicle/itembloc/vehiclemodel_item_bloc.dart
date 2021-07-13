@@ -31,8 +31,8 @@ class VehicleModelBloc extends Bloc<VehicleModelEvent, VehicleModelState> {
           entityid: event.entityid,
           detailstype: "start",
           vehicleIndex: ud.vehicleIndex,
-          unitList: ud.unitList,
-          staff: ud.staff,
+          oul: ud.oul,
+          staff: ud.stafflist,
           isResident: ud.isResident,
         );
       else if (ud.errortype == 1)

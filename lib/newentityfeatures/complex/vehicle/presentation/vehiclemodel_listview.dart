@@ -1,7 +1,10 @@
+import 'package:complex/common/helputil.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/newentityfeatures/Models/complex_vehicle_model.dart';
+import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -15,7 +18,8 @@ import './vehicle_form.dart';
 class VehicleModelListList extends StatefulWidget {
   final String entityid;
   final String entitytype;
-  VehicleModelListList({this.entitytype, this.entityid});
+  final int origintype;
+  VehicleModelListList({this.entitytype, this.entityid,this.origintype});
 
   @override
   _VehicleModelListListState createState() => _VehicleModelListListState();
@@ -23,21 +27,40 @@ class VehicleModelListList extends StatefulWidget {
 
 class _VehicleModelListListState extends State<VehicleModelListList> {
   listbloc.VehicleModelListBloc mlistbloc;
-  CustomTextFieldController _grade = CustomTextFieldController();
-  CustomTextFieldController _sessionterm = CustomTextFieldController();
-  CustomTextFieldController _offering = CustomTextFieldController();
+  CustomTextFieldController _building = CustomTextFieldController();
+  CustomTextFieldController _floorNum = CustomTextFieldController();
+  CustomTextFieldController _justunitcontroller = CustomTextFieldController();
+  CustomTextFieldController _residentowner = CustomTextFieldController();
+  CustomTextFieldController _staffcomtroller = CustomTextFieldController();
+  CustomTextFieldController _numplate = CustomTextFieldController();
+  List<SchoolOwner> stafflist;
+  List<String> residentialunitlist;
+  OccupiedUnitLookupModel oul;
+  List<int> floors;
+  List<UnitOccupants> unitlist;
+  List<String>ownerresident;
+  UnitOccupants selectedUnitOcupant;
 
-  List<String> gradelist;
-  List<String> sessionterm;
-  Future<List<String>> offeringgrouplist;
   List<ComplexVehicleModel> em;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     mlistbloc = listbloc.VehicleModelListBloc();
-    mlistbloc.add(listbloc.GetPreData(
-        entitytype: widget.entitytype, entityid: widget.entityid));
-    mlistbloc.add(listbloc.GetListData(
-        entitytype: widget.entitytype, entityid: widget.entityid));
+    //security or manager
+    if(widget.origintype==1) {
+      mlistbloc.add(listbloc.GetPreData(
+          entitytype: widget.entitytype, entityid: widget.entityid));
+    }
+    //vehicle of a staff member
+    if(widget.origintype==2) {
+      mlistbloc.add(listbloc.GetListDataByStaffId(
+          entitytype: widget.entitytype, entityid: widget.entityid,staffid: HelpUtil.getUserRepository().getUser().userID));
+    }
+    else if(widget.origintype==3)
+      {
+        residentialunitlist = HelpUtil.getUserRepository().getUser().defaultComplexEntity.getUnitList();
+        mlistbloc.add(listbloc.GetListDataByUnits(
+            entitytype: widget.entitytype, entityid: widget.entityid,residentialunitlist:residentialunitlist ));
+      }
   }
 
   @override
@@ -49,8 +72,11 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
 
   void doreload(bool reloadtype) {
     if (reloadtype) {
+      /*
       mlistbloc.add(listbloc.GetListData(
           entitytype: widget.entitytype, entityid: widget.entityid));
+
+       */
     }
   }
 
@@ -64,7 +90,7 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
             vehicleModel: null,
             entitytype: widget.entitytype,
             entityid: widget.entityid,
-            givenreloadaction: doreload),
+            givenreloadaction: doreload ,origintype: widget.origintype,residentialunitlist: residentialunitlist,staffmemberlist: stafflist,oul:oul),
       ),
     );
   }
@@ -84,7 +110,7 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
                   vehicleModel: item,
                   entitytype: widget.entitytype,
                   entityid: widget.entityid,
-                  givenreloadaction: doreload),
+                  givenreloadaction: doreload,origintype: widget.origintype,residentialunitlist: [],staffmemberlist: [],oul:null),
             ),
           );
         },
@@ -152,9 +178,8 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
 
             if (state is listbloc.IsSearchParaLoaded) {
               setState(() {
-                gradelist = state.gradelist;
-                sessionterm = state.sessiontermlist;
-                offeringModelGroupfunc = state.offeringModelGroupfunc;
+                oul = state.oul;
+                stafflist=state.stafflist;
               });
             }
             if (state is listbloc.IsListDataLoaded) {
@@ -207,42 +232,86 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
             child: ExpansionTile(
               title: Text("Select Parameters To Search"),
               children: [
+
                 CustomDropDownList<String>(
-                  loadData: () async => sessionterm,
-                  shouldReload: true,
+                  title: "Building Name",
+                  controller: _building,
+                  loadData: () async => oul.buildinglist,
                   displayName: (x) => x,
-                  controller: _sessionterm,
-                  title: "SessionTerm",
+                  validate: Validate.withOption(isRequired: true),
+                  onSelected: (value, index) {
+                    setState(() {
+                      _building.text = value;
+                      floors =oul.floormap.containsKey(value) ?oul.floormap[value]:[];
+                    });
+                  },
                 ),
-                CustomDropDownList<String>(
-                  loadData: () async => gradelist,
+                CustomDropDownList<int>(
+                  enabled: _building.text !=null && _building.text.isNotEmpty,
+                  loadData: () async => floors,
                   shouldReload: true,
-                  displayName: (x) => x,
-                  controller: _grade,
-                  title: "Select Grade",
-                  onSelected: (item, index) => setState(() {
-                    offeringgrouplist =
-                        offeringModelGroupfunc(item, widget.entityid);
-                  }),
+                  displayName: (x) => x.toString(),
+                  title: "Floor Number",
+                  controller: _floorNum,
+                  validate: Validate.withOption(isRequired: true),
+                  onSelected: (floor, index) {
+                    setState(() {
+                      _floorNum.text = floor.toString();
+                      String buildingfloor= _building.text + "@" + _floorNum.text;
+                      unitlist = oul.occupiedunits.containsKey(buildingfloor)? oul.occupiedunits[buildingfloor]:[];
+                    }
+                    );
+                  },
                 ),
+                CustomDropDownList<UnitOccupants>(
+                  title: "Unit Address",
+                  enabled: _building.text!=null &&_building.text.isNotEmpty && _floorNum!=null && _floorNum.text.isNotEmpty,
+                  controller: _justunitcontroller,
+                  //initialValue: widget?.serviceRequestModel?.unitId,
+                  loadData: () async => unitlist ,
+                  displayName: (x) => x.unitaddress,
+                  validate: Validate.withOption(
+                    isRequired: true,
+                  ),
+                  onSelected: (value, index) {
+                    setState(() {
+                      selectedUnitOcupant =value;
+                      ownerresident=[];
+                      if(selectedUnitOcupant.hasowner)
+                        ownerresident.add("ForOwner");
+
+                      if(selectedUnitOcupant.hasresident)
+                        ownerresident.add("ForResident");
+
+                    }
+                    );
+                  },
+                ),
+
                 CustomDropDownList<String>(
-                    loadData: () async =>
-                        offeringgrouplist == null ? [] : offeringgrouplist,
-                    shouldReload: true,
-                    displayName: (x) => x,
-                    controller: _offering,
-                    title: "Select Offering Group",
-                    onSelected: (item, index) {
-                      if (item != null && item.length > 0) {
-                        setState(() {
-                          mlistbloc.add(listbloc.GetListDataWithSearchParameter(
-                              entitytype: widget.entitytype,
-                              entityid: widget.entityid,
-                              offeringmodelgroupname: item,
-                              sessionterm: _sessionterm.text));
-                        });
-                      }
-                    }),
+                  title: "Owner/Resident",
+                  enabled: _building.text !=null && _building.text.isNotEmpty && _floorNum.text !=null && _floorNum.text.isNotEmpty && selectedUnitOcupant !=null,
+                  controller: _residentowner,
+                  //initialValue: widget?.serviceRequestModel?.unitId,
+                  loadData: () async => ownerresident,
+                  displayName: (x) => x,
+                  validate: Validate.withOption(
+                    isRequired: true,
+                  ),
+                  onSelected: (value, index) {
+                    setState(() {
+                      /*
+                      if(value == "ForOwner")
+                        _unitAddress.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_o" ;
+                      if(value == "ForResident")
+                        _unitAddress.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_r" ;
+
+                    */
+                    }
+                    );
+                  },
+                ),
+
               ],
             ),
           ),

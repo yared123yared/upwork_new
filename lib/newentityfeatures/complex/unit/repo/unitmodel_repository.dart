@@ -1,12 +1,14 @@
-import 'dart:convert';
+//import 'dart:convert';
 
 import 'package:complex/common/helputil.dart';
 import 'package:complex/common/model/button_state.dart';
-import 'package:complex/data/models/response/user_response/user_entity.dart';
+
 import 'package:complex/data/repositories/user_repository.dart';
-import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
+
 import 'package:complex/newentityfeatures/Models/building_model.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
+import 'package:complex/newentityfeatures/gateway/building_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/unit_gateway.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 
@@ -32,19 +34,17 @@ class UnitModelRepositoryReturnData {
 }
 
 class UnitModelRepository {
-  NewComplexRepository _complexRepository = Get.find();
+  //NewComplexRepository _complexRepository = Get.find();
   UserRepository _userRepository = HelpUtil.getUserRepository();
-  UserModel get _user => _userRepository.getUser();
+  //UserModel get _user => _userRepository.getUser();
 
   Future<UnitModelRepositoryReturnData> getAllUnitModels(
       String entitytype, String entityid) async {
     UnitModelRepositoryReturnData myreturn = UnitModelRepositoryReturnData();
 
-    ComplexModel complexModel = _complexRepository.getComplex(
-      complexID: entityid,
-    );
 
-    myreturn.itemlist = await _complexRepository.units.getUnitList(
+
+    myreturn.itemlist = await UnitGateway.getUnitList(
       entitytype: entitytype,
       entityid: entityid,
       // complexID: entityid,
@@ -89,17 +89,11 @@ class UnitModelRepository {
       //   await _complexRepository.setBuildingList(complexID: entityid);
       // }
 
-      List buildingList = await _complexRepository.getBuildingList(
+      List buildingList = await BuildingGateway.getBuildingList(
         complexID: entityid,
       );
-      bool isOwner = _complexRepository
-          .getComplexList()[entityid]
-          .roles
-          .contains(EntityRoles.Owner);
-      bool isManager = _complexRepository
-          .getComplexList()[entityid]
-          .roles
-          .contains(EntityRoles.Manager);
+      bool isOwner = false;
+      bool isManager = true;
 
       gr.buildingList = buildingList;
       gr.isOwner = isOwner;
@@ -114,12 +108,12 @@ class UnitModelRepository {
   Future<UnitModelRepositoryReturnData> createUnitModel(
       UnitModel item, String entitytype, String entityid) async {
     UnitModelRepositoryReturnData myreturn = UnitModelRepositoryReturnData();
-    await _complexRepository.units.addNewUnit(
+    await UnitGateway.newUnitRequest(
       entitytype: entitytype,
       entityid: entityid,
       // complexID: entityid,
       unitModel: item,
-      user: _user,
+
     );
     myreturn.errortype = -1;
     return myreturn;
@@ -128,12 +122,12 @@ class UnitModelRepository {
   Future<UnitModelRepositoryReturnData> updateUnitModel(
       UnitModel item, String entitytype, String entityid) async {
     UnitModelRepositoryReturnData myreturn = UnitModelRepositoryReturnData();
-    await _complexRepository.units.updateUnit(
+    await  UnitGateway.updateUnit(
       entitytype: entitytype,
       entityid: entityid,
       // complexID: entityid,
       unitModel: item,
-      user: _user,
+
     );
     myreturn.errortype = -1;
     return myreturn;
@@ -150,12 +144,12 @@ class UnitModelRepository {
   Future<UnitModelRepositoryReturnData> deleteUnitModelWithData(
       UnitModel item, String entitytype, String entityid) async {
     UnitModelRepositoryReturnData myreturn = UnitModelRepositoryReturnData();
-    await _complexRepository.units.removeUnit(
+    await UnitGateway.removeUnit(
       entitytype: entitytype,
       entityid: entityid,
       // complexID: entityid,
       unitModel: item,
-      user: _user,
+
     );
 
     myreturn.errortype = -1;
@@ -166,11 +160,9 @@ class UnitModelRepository {
       String entitytype, String entityid) async {
     UnitModelRepositoryReturnData myreturn = UnitModelRepositoryReturnData();
 
-    ComplexModel complexModel = await _complexRepository.getComplexAsync(
-      complex: _user.defaultComplexEntity,
-    );
 
-    List<UnitModel> unitList = await _complexRepository.units.getUnitList(
+
+    List<UnitModel> unitList = await UnitGateway.getUnitList(
       entitytype: entitytype,
       entityid: entityid,
       // complexID: entityid,

@@ -1,8 +1,10 @@
 // import 'package:complex/newentityfeatures/Models/common/button_state.dart';
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
 import 'package:complex/newentityfeatures/Models/complex_vehicle_model.dart';
+import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/Models/unit_model.dart';
 import 'package:complex/common/widgets/custom_image_uploader.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +27,20 @@ class VehicleModelForm extends StatefulWidget {
   final String entityid;
   final String entitytype;
   final ReloadAction givenreloadaction;
+  final int origintype;
+  OccupiedUnitLookupModel oul;
+  List<String> residentialunitlist;
+  List<SchoolOwner> staffmemberlist;
 
   VehicleModelForm({
     @required this.vehicleModel,
     @required this.givenreloadaction,
-    this.entitytype,
-    this.entityid,
+    @required this.entitytype,
+    @required this.entityid,
+    @required this.origintype,
+    @required this.oul,
+    @required this.residentialunitlist,
+    @required this.staffmemberlist,
   });
 
   @override
@@ -56,7 +66,7 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
 
   bool _isActive = true;
   bool _isUpdate = false;
-
+  OccupiedUnitLookupModel oul;
   // final ComplexVehicleModel vehicleModel;
   // final List<TimeLineModel> timeline;
   // final int timelineIndex;
@@ -204,7 +214,7 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
           if (state is itembloc.IsReadyForDetailsPage) {
             btnState = ButtonState.idle;
             vehicleIndex = state.vehicleIndex;
-            unitList = state.unitList ?? [];
+            oul = state.oul ?? [];
             staffList = state.staff ?? [];
             isResident = state.isResident;
 

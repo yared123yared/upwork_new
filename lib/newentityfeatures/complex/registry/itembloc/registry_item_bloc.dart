@@ -46,18 +46,6 @@ class RegistryModelBloc extends Bloc<RegistryModelEvent, RegistryModelState> {
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is updateResident) {
-      yield IsBusy();
-      RegistryModelRepositoryReturnData ud = await mrepository.updateResident(
-          event.item, event.entitytype, event.entityid);
-
-      if (ud.errortype == -1)
-        yield IsSaved();
-      else if (ud.errortype == 1)
-        yield HasLogicalFaliur(error: ud.error);
-      else
-        yield HasExceptionFaliur(error: ud.error);
-    }
     if (event is updateItem) {
       yield IsBusy();
       RegistryModelRepositoryReturnData ud = await mrepository
@@ -75,7 +63,7 @@ class RegistryModelBloc extends Bloc<RegistryModelEvent, RegistryModelState> {
       yield IsBusy();
       RegistryModelRepositoryReturnData ud =
           await mrepository.updateRegistryModelWithDiff(
-              event.newitem, event.olditem, event.entitytype, event.entityid);
+              event.newitem, event.olditem, event.entitytype, event.entityid,event.updateOwner);
 
       if (ud.errortype == -1)
         yield IsSaved();

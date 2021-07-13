@@ -69,54 +69,7 @@ class CreateAssignmentRepository {
     return grerror;
   }
 
-  Future<CreateAssignmentEntryData> getItemFormNewEntryData(
-      String entitytype, String entityid) async {
-    CreateAssignmentEntryData grerror = CreateAssignmentEntryData();
-    grerror.errortype = -2;
-    grerror.error = "UNknown exception has occured";
 
-    try {
-      Future<List<TeacherOfferingsAssignment>> Function(String grade)
-          offerings = (String grade) async =>
-              await _schoolRepo.getTeacherOfferingsAssignmentListByGrade(
-                serviceID: entityid,
-              );
-
-      List<String> grades =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
-      // ButtonState buttonState;
-
-      dynamic dynamicListState = DynamicSchoolListState.StudyMaterials;
-      List<dynamic> listItems = await _schoolRepo.assignment
-          .getAssignmentList(serviceID: entityid)
-          .then((assignments) => assignments[entityid]?.studyMaterials);
-      bool emptyList;
-      // StudyMaterial studyMaterial =
-      //     (await _schoolRepo.assignment.getStudyMaterialList(entityid)).first;
-
-      Question question = _schoolRepo.assignment
-          .getAssignmentByID(serviceID: entityid, assignmentID: entitytype)
-          ?.questions
-          ?.first;
-
-      CreateAssignmentEntryData gr = CreateAssignmentEntryData(
-        offerings: offerings,
-        grades: grades,
-        index: 0,
-        question: question,
-        assignmentID: entityid,
-        // studyMaterial: studyMaterial,
-        dynamicListState: dynamicListState,
-        listItems: listItems ?? [],
-        emptyList: emptyList,
-        errortype: -1,
-      );
-      return gr;
-    } catch (ex) {
-      print(ex);
-    }
-    return grerror;
-  }
 
   Future<CreateAssignmentRepositoryReturnData>
       getCreateAssignmentWithOfferingSearch(String entitytype, String entityid,
@@ -166,23 +119,7 @@ class CreateAssignmentRepository {
     return myreturn;
   }
 
-  Future<CreateAssignmentRepositoryReturnData> updateQuestion({
-    Question newQuestion,
-    String entityid,
-    String assignmentID,
-    int questionIndex,
-  }) async {
-    CreateAssignmentRepositoryReturnData myreturn =
-        CreateAssignmentRepositoryReturnData();
-    _schoolRepo.assignment.updateQuestion(
-      newQuestion: newQuestion,
-      serviceID: entityid,
-      assignmentID: assignmentID,
-      questIndex: questionIndex,
-    );
-    myreturn.errortype = -1;
-    return myreturn;
-  }
+
 
   Future<CreateAssignmentRepositoryReturnData> publishAssignment(
       AssignmentModel item, String entityid) async {

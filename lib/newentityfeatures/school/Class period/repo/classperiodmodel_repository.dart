@@ -72,7 +72,7 @@ class ClassPeriodModelRepository {
     try {
       String type;
       List<ClassPeriodInfo> items =
-          _schoolRepo.getClassPeriodInfoList(serviceID: entityid);
+      await LookupGateway.getClassPeriodInfo( entityid);
 
       List<String> types = [];
       items.forEach((item) {
@@ -112,8 +112,8 @@ class ClassPeriodModelRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      List<ClassPeriodInfo> list = _schoolRepo.getClassPeriodInfoList(
-        serviceID: entityid,
+      List<ClassPeriodInfo> list = await LookupGateway.getClassPeriodInfo(
+        entityid
       );
       ClassPeriodModelRepositoryReturnData gr =
           new ClassPeriodModelRepositoryReturnData();
@@ -184,11 +184,11 @@ class ClassPeriodModelRepository {
         ClassPeriodModelRepositoryReturnData();
     // if (_schoolRepo.getClassPeriodInfoList(serviceID: entityid) == null ||
     //     _schoolRepo.getClassPeriodInfoList(serviceID: entityid).length == 0) {
-    await _schoolRepo.setClassPeriodList(serviceID: entityid);
+
     // }
 
-    List<ClassPeriodInfo> list = _schoolRepo.getClassPeriodInfoList(
-      serviceID: entityid,
+    List<ClassPeriodInfo> list = await LookupGateway.getClassPeriodInfo(
+        entityid
     );
 
     myreturn.errortype = -1;

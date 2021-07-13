@@ -23,46 +23,13 @@ class CreateAssignmentBloc
       else
         yield HasExceptionFaliur(error: ud.error);
     }
-    if (event is getForNewEntry) {
-      yield IsBusy();
-      CreateAssignmentEntryData ud = await mrepository.getItemFormNewEntryData(
-        event.entitytype,
-        event.entityid,
-      );
 
-      if (ud.errortype == -1)
-        yield IsReadyForDetailsPage(
-          entitytype: event.entitytype,
-          entityid: event.entityid,
-          detailstype: "start",
-          offerings: ud.offerings,
-          grades: ud.grades,
-          index: ud.index,
-          question: ud.question,
-          assignmentID: ud.assignmentID,
-          studyMaterial: ud.studyMaterial,
-          dynamicListState: ud.dynamicListState,
-          listItems: ud.listItems,
-          emptyList: ud.emptyList,
-        );
-      else if (ud.errortype == 1)
-        yield HasLogicalFaliur(error: ud.error);
-      else
-        yield HasExceptionFaliur(error: ud.error);
-    }
     if (event is QuestionFormSchoolEvent) {
       yield QuestionFormSchoolState(
         questionIndex: event.index,
         question: event.question,
         assignmentId: event.assignmentID,
         emptyList: event.emptyList,
-      );
-    } else if (event is NextQuestionFormSchoolEvent) {
-      mrepository.updateQuestion(
-        newQuestion: event.question,
-        entityid: event.entityid,
-        assignmentID: event.assignmentID,
-        questionIndex: event.index,
       );
     }
 

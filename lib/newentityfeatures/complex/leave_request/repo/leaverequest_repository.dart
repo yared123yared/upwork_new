@@ -1,9 +1,8 @@
-import 'dart:convert';
+
 
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
-import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
-import 'package:complex/newentityfeatures/Models/entity/entity_roles.dart';
+
 import 'package:complex/newentityfeatures/Models/leaverequest_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 // import 'package:complex/newentityfeatures/Models/user_model.dart';
@@ -103,18 +102,10 @@ class LeaveRequestRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      ComplexModel _complexModel = await _complexRepository.getComplexAsync(
-        complex: _user.defaultComplexEntity,
-      );
 
-      List<String> roles = [];
-      if (_complexModel.roles.contains(EntityRoles.Manager)) {
-        roles = ["manager"];
-      } else if (_complexModel.roles.contains(EntityRoles.Owner)) {
-        roles = ["owner"];
-      } else if (_complexModel.roles.contains(EntityRoles.Resident)) {
-        roles = ["resident"];
-      }
+
+      List<String> roles = _user.getrolesFromDefaultEntity();
+
 
       bool isManager = roles.contains("manager");
       // bool isManager = _complexRepository

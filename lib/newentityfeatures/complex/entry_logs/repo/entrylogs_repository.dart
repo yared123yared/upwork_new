@@ -1,8 +1,9 @@
-import 'dart:convert';
+
 
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
+import 'package:complex/newentityfeatures/gateway/entry_log_gateway.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:complex/newentityfeatures/Models/entry_logs_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
@@ -27,7 +28,7 @@ class EntryLogsRepositoryReturnData {
 }
 
 class EntryLogsRepository {
-  NewComplexRepository _complexRepository = Get.find();
+
   UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
 
@@ -35,10 +36,11 @@ class EntryLogsRepository {
       String entitytype, String entityid) async {
     EntryLogsRepositoryReturnData myreturn = EntryLogsRepositoryReturnData();
 
-    myreturn.itemlist = await _complexRepository.getEntryLogList(
+    //Need to restrict it
+    myreturn.itemlist = await EntryLogGateway.getEntryLogListGateway(
       entitytype: entitytype,
       entityid: entityid,
-      dt: DateTime.now(),
+
     );
     // myreturn.itemlist = await _complexRepository.getQrModel(
     //   entitytype: entitytype,
@@ -110,7 +112,7 @@ class EntryLogsRepository {
       EntryLogModel item, String entitytype, String entityid) async {
     EntryLogsRepositoryReturnData myreturn = EntryLogsRepositoryReturnData();
     myreturn.errortype = -1;
-    await _complexRepository.addNewEntryLog(
+    await EntryLogGateway.addNewEntryLog(
       entitytype: entitytype,
       entityid: entityid,
       entryLog: item,

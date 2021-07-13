@@ -7,6 +7,8 @@ import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
 
+import 'common/common_models/common_model.dart';
+
 class GenericLookUpDataUsedForRegistration {
   List<String> grades;
   List<String> sessionterm;
@@ -27,7 +29,7 @@ class GenericLookUpDataUsedForRegistration {
   Future<List<FeePlanModel>> Function(String, String) feeplanmodellistbyGrade;
   Future<List<FeeItemGroupsModel>> Function(String, String)
       feeitemgrpmodellistbyGrade;
-
+  OccupiedUnitLookupModel  oul;
   int errortype;
   String error;
 }

@@ -9,10 +9,34 @@ class VehicleModelListBloc
   Stream<VehicleModelListState> mapEventToState(
     VehicleModelListEvent event,
   ) async* {
-    if (event is GetListData) {
+    if (event is GetListDataByUnits) {
       yield IsBusy();
       VehicleModelRepositoryReturnData ud = await mrepository
-          .getAllVehicleModels(event.entitytype, event.entityid);
+          .getAllVehicleModelsByUnits(entitytype:event.entitytype,entityid: event.entityid,myUnits:event.residentialunitlist);
+
+      if (ud.errortype == -1)
+        yield IsListDataLoaded(listdata: ud.itemlist);
+      else if (ud.errortype == 1)
+        yield HasLogicalFaliur(error: ud.error);
+      else
+        yield HasExceptionFaliur(error: ud.error);
+    }
+    if (event is GetListDataByStaffId) {
+      yield IsBusy();
+      VehicleModelRepositoryReturnData ud = await mrepository
+          .getAllVehicleModelsByStaffId(entitytype:event.entitytype,entityid: event.entityid,staffid:event.staffid);
+
+      if (ud.errortype == -1)
+        yield IsListDataLoaded(listdata: ud.itemlist);
+      else if (ud.errortype == 1)
+        yield HasLogicalFaliur(error: ud.error);
+      else
+        yield HasExceptionFaliur(error: ud.error);
+    }
+    if (event is GetListDataByNumPlate) {
+      yield IsBusy();
+      VehicleModelRepositoryReturnData ud = await mrepository
+          .getAllVehicleModelsByNumPlate(entitytype:event.entitytype,entityid: event.entityid,numplate:event.numplate);
 
       if (ud.errortype == -1)
         yield IsListDataLoaded(listdata: ud.itemlist);
@@ -29,9 +53,9 @@ class VehicleModelListBloc
 
       if (ud.errortype == -1)
         yield IsSearchParaLoaded(
-            gradelist: ud.grades,
-            sessiontermlist: ud.sessionterm,
-            offeringModelGroupfunc: ud.offeringModelGroupfunc);
+            oul: ud.oul,
+            stafflist: ud.schoolownerlist,
+            );
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
       else

@@ -5,6 +5,7 @@ import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 
@@ -80,14 +81,11 @@ class OfferingWeeklyScheduleRepository {
               );
 
       List<ClassPeriodInfo> periods =
-          _schoolRepo.getClassPeriodInfoList(serviceID: entityid);
+      await LookupGateway.getClassPeriodInfo(
+          entityid
+      );
 
-      if (periods == null) {
-        await _schoolRepo.setClassPeriodList(serviceID: entityid);
-        periods = _schoolRepo.getClassPeriodInfoList(
-          serviceID: entityid,
-        );
-      }
+
 
       ///this function will be used to fill the primary and secondary owner fields
       Future<List<TeacherOfferingsAssignment>> getAssignment(String grade) {

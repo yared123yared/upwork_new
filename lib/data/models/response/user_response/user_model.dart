@@ -45,7 +45,15 @@ class UserModel {
     this.complexes,
     this.services,
   });
-
+  List<String> getrolesFromDefaultEntity()
+  {
+    List<String> myroles =[];
+    if(defaultType ==entityT.complex)
+      myroles = defaultComplexEntity.roles;
+    else  if(defaultType ==entityT.service)
+      myroles = defaultServiceEntity.roles;
+    return myroles;
+  }
   String getNameForEntity(String entitytype, String entityid) {
     if (entitytype == "c") {
       if (complexNames.containsKey(entityid))

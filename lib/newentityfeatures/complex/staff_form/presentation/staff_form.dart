@@ -2,9 +2,9 @@ import 'package:complex/common/model/timeline_model.dart';
 import 'package:complex/common/presentation.dart';
 import 'package:complex/common/widgets/custom_image_uploader.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
-import 'package:complex/data/models/response/user_response/user_entity.dart';
+//import 'package:complex/data/models/response/user_response/user_entity.dart';
 // import 'package:complex/entity/model/complex_model.dart';
-import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
+//import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +84,7 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
   bool _isUpdate = false;
 
   int timelineIndex = 1;
-  ComplexModel _complexModel;
+
 
   List<TimeLineModel> _timeline = [
     TimeLineModel(text: 'Basic\ninfo', isChecked: true),
@@ -98,13 +98,12 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
   StaffModelx _staffModelx;
 
   void _initFiledValue() {
-    if (_complexModel != null) {
-      staffRoleList = _complexModel.roles.contains(EntityRoles.Manager)
-          ? ["staff", "security", "maid", 'manager', 'instructor']
-          : ["staff", "security", "maid"];
-    } else {
-      staffRoleList = ["staff", "security", "maid"];
-    }
+
+      staffRoleList = widget.entitytype == "COMPLEXES"
+        ? ["STAFF", "SECURITY", "MANAGER"]
+          : ["STAFF", "SECURITY", "MANAGER", 'INSTRUCTOR',"INSTRUCTORMANAGER"];
+
+
     if (widget.staffModel != null) {
       _isUpdate = widget.staffModel.staffID != null;
       _dateOfBirth = widget.staffModel.dob ?? DateTime.now();
@@ -221,7 +220,7 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
 
             if (state is itembloc.IsReadyForDetailsPage) {
               _staffModelx = widget?.staffModel ?? StaffModelx();
-              _complexModel = state.complexModel;
+
 
               _initFiledValue();
             }

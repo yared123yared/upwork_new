@@ -28,6 +28,10 @@ class ComplexVehicleGateway {
     }
   }
 
+
+
+
+
   static Future<List<ComplexVehicleModel>> getMyVehicleList({
     @required String entitytype,
     String entityid,
@@ -48,6 +52,46 @@ class ComplexVehicleGateway {
       throw e;
     }
   }
+
+  static Future<List<ComplexVehicleModel>> getVehicleListByStaff({
+    @required String entitytype,
+    String entityid,
+    @required String staffid,
+  }) async {
+    try {
+      return await FirebaseFirestore.instance
+          .collection("$entitytype/$entityid/COMPLEXVEHICLEREG")
+          .where('forstaffid', isEqualTo: staffid)
+          .get()
+          .then((x) {
+        return ComplexVehicleModel.listFromJson(
+            x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+
+  static Future<ComplexVehicleModel> getVehicleListByNumPlate({
+    @required String entitytype,
+    String entityid,
+    @required String numplate,
+  }) async {
+
+      return await FirebaseFirestore.instance
+          .doc("$entitytype/$entityid/COMPLEXVEHICLEREG")
+
+          .get()
+          .then((x) {
+        return ComplexVehicleModel.fromJson(x.data(),x.id);
+
+      });
+
+  }
+
 
   static Future newComplexVehicleCreateRequest(
       {@required ComplexVehicleModel vehicle,

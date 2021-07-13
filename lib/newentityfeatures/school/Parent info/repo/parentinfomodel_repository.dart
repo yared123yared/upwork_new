@@ -198,7 +198,7 @@ class ParentInfoModelRepository {
 
     try {
       //Please put your code here
-      await _schoolRepo.assignment.setAssignment(serviceID: event.entityid);
+
       var assignment = await _schoolRepo.assignment.getPublishedAssignmentById(
         serviceID: event.entityid,
         assignmentID: event.vrAssignment.assignmentId,
