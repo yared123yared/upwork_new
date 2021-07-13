@@ -1132,6 +1132,7 @@ class UiSchoolHandler {
                     builder: (buildContext) => VehicleModelListList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
+                      origintype: 1,
                     ),
                   ));
             });
