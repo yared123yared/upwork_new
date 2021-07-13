@@ -1,7 +1,7 @@
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/offering_schedule_model.dart';
 
-import 'package:complex/newentityfeatures/commonrepo/lookup_repository.dart';
+
 
 import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 
@@ -9,26 +9,17 @@ import 'package:flutter/cupertino.dart';
 
 @Deprecated('this is no longer used')
 class OfferingScheduleRepository {
-  final LookupRepository lookup;
 
-  OfferingScheduleRepository({@required this.lookup});
+
+  OfferingScheduleRepository();
 
   Map<String, Map<String, List<OfferingsScheduleModel>>> _offeringsSchedule =
       {};
 
   Future<void> setOfferingsSchedule({@required String serviceID}) async {
     try {
-      List<SessionTerm> _sessionTermsList =
-          await lookup.getSessionTermsList(serviceID: serviceID);
-      _offeringsSchedule[serviceID] = {};
-      for (SessionTerm session in _sessionTermsList) {
-        List<OfferingsScheduleModel> _tempList =
-            await SessionTermGateway.getOfferingDocList(
-                serviceID, session.termName);
 
-        _offeringsSchedule[serviceID][session.termName] = _tempList;
-        print(_offeringsSchedule);
-      }
+
     } catch (e) {
       print(e);
     }

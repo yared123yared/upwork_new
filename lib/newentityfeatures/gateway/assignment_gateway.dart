@@ -30,12 +30,12 @@ mixin AssignmentGateway {
 
   static Future<void> removeAssignment(
     AssignmentModel assignment,
-    String docId,
+    String docId,String serviceid
   ) async {
     try {
       await FirebaseFirestore.instance
           .doc(
-              "SERVICEPROVIDERINFO/${UserModel.serviceProviderDocumentId}/ASSIGNMENT/$docId")
+              "SERVICEPROVIDERINFO/${serviceid}/ASSIGNMENT/$docId")
           .delete();
     } on Exception {}
   }
@@ -58,7 +58,7 @@ mixin AssignmentGateway {
     try {
       await FirebaseFirestore.instance
           .collection(
-            "SERVICEPROVIDERINFO/${UserModel.serviceProviderDocumentId}/ASSIGNMENT",
+            "SERVICEPROVIDERINFO/${serviceID}/ASSIGNMENT",
           )
           .doc()
           .set(vrAssignmentModel.toJson());
@@ -266,11 +266,11 @@ mixin AssignmentGateway {
   }
 
   static Future<void> removeAssignmentToLocal(
-      AssignmentModel assignment, String docId) async {
+      AssignmentModel assignment, String docId,String serviceid) async {
     try {
       await FirebaseFirestore.instance
           .doc(
-              "SERVICEPROVIDERINFO/${UserModel.serviceProviderDocumentId}/ASSIGNMENT/$docId")
+              "SERVICEPROVIDERINFO/${serviceid}/ASSIGNMENT/$docId")
           .update({
         "data": FieldValue.arrayRemove([assignment.toJson()])
       });

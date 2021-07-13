@@ -1,6 +1,8 @@
 import 'package:complex/common/model/button_state.dart';
 
 import 'package:complex/newentityfeatures/gateway/assignment_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -47,9 +49,9 @@ class CreateAssignmentRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -81,8 +83,8 @@ class CreateAssignmentRepository {
 
     try {
       List<AssignmentModel> list =
-          await _schoolRepo.assignment.getPublishedAssignmentsByOfferingGroup(
-        offeringgroupname: offeringgroup,
+          await AssignmentGateway.getPublishedAssignmentsByOfferingGroup(
+            offeringgroup: offeringgroup,
         serviceID: entityid,
       );
 
@@ -99,7 +101,7 @@ class CreateAssignmentRepository {
       AssignmentModel item, String entitytype, String entityid) async {
     CreateAssignmentRepositoryReturnData myreturn =
         CreateAssignmentRepositoryReturnData();
-    await _schoolRepo.assignment.addAssignment(
+    await AssignmentGateway.addNewAssignment(
       assignment: item,
       serviceID: entityid,
     );
@@ -111,7 +113,7 @@ class CreateAssignmentRepository {
       AssignmentModel item, String entitytype, String entityid) async {
     CreateAssignmentRepositoryReturnData myreturn =
         CreateAssignmentRepositoryReturnData();
-    await _schoolRepo.assignment.updateAssignment(
+    await AssignmentGateway.updateAssignment(
       assignment: item,
       serviceID: entityid,
     );
@@ -125,7 +127,7 @@ class CreateAssignmentRepository {
       AssignmentModel item, String entityid) async {
     CreateAssignmentRepositoryReturnData myreturn =
         CreateAssignmentRepositoryReturnData();
-    await _schoolRepo.assignment.publishAssigment(
+    await AssignmentGateway.publishAssignment(
       assignment: item,
       serviceID: entityid,
     );
@@ -149,9 +151,9 @@ class CreateAssignmentRepository {
     //   item,
     //   null,
     // );
-    await _schoolRepo.assignment.removeAssignmentToLocal(
-      assignment: item,
-      docId: null,
+    await AssignmentGateway.removeAssignmentToLocal(
+       item,
+      item.assignmentID,entityid
     );
     myreturn.errortype = -1;
     return myreturn;

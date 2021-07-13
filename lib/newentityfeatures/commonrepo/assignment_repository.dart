@@ -4,7 +4,7 @@ import 'package:complex/newentityfeatures/Models/assignment_model.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_score_model.dart';
 
-import 'package:complex/newentityfeatures/commonrepo/lookup_repository.dart';
+
 import 'package:complex/newentityfeatures/commonrepo/virtual_rooms_repository.dart';
 
 import 'package:complex/newentityfeatures/gateway/assignment_gateway.dart';
@@ -14,9 +14,9 @@ import 'package:complex/newentityfeatures/gateway/vr_assignment_score_gateway.da
 import 'package:flutter/cupertino.dart';
 
 class AssignmentRepository {
-  final LookupRepository lookup;
+
   final VirtualRoomsRepository virtualRoom;
-  AssignmentRepository({@required this.lookup, @required this.virtualRoom});
+  AssignmentRepository({ @required this.virtualRoom});
 
 
 
@@ -238,7 +238,7 @@ class AssignmentRepository {
   Future removeAssignmentToLocal(
       {AssignmentModel assignment, String docId}) async {
     try {
-      await AssignmentGateway.removeAssignmentToLocal(assignment, docId);
+      await AssignmentGateway.removeAssignmentToLocal(assignment, docId,null);
 
     } catch (e) {
       print(e);

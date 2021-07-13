@@ -2,8 +2,7 @@ part of 'bloc.dart';
 
 class CreateAssignmentBloc
     extends Bloc<CreateAssignmentEvent, CreateAssignmentState> {
-  AssignmentRepository cmrepository =
-      AssignmentRepository(lookup: null, virtualRoom: null);
+
   CreateAssignmentRepository mrepository = CreateAssignmentRepository();
   CreateAssignmentBloc() : super(CreateAssignmentState());
 

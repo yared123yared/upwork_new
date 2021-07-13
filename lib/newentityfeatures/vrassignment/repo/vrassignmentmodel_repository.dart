@@ -1,12 +1,14 @@
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/vr_assignment_gateway.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart'
     as asmyvr;
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
+//import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
 
 class VrAssignmentModelRepositoryReturnData {
   List<asmyvr.VrAssignmentModel> itemlist;
@@ -22,7 +24,7 @@ class VrAssignmentModelRepositoryReturnData {
 }
 
 class VrAssignmentModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
 
   Future<VrAssignmentModelRepositoryReturnData> getAllVrAssignmentModels(
       String entitytype, String entityid) async {
@@ -42,9 +44,9 @@ class VrAssignmentModelRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -73,15 +75,15 @@ class VrAssignmentModelRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
       List<ExamTermInfo> examtermlist =
-          await _schoolRepo.lookup.getExamTermsList(
-        serviceID: entityid,
+          await LookupGateway.getExamTermInfo(
+        entityid,
       );
 
       //Please put your code here
@@ -131,9 +133,9 @@ class VrAssignmentModelRepository {
     print("assignment calling from repository");
 
     //Please put your code here
-    await _schoolRepo.assignment.attachAssignment(
+    await VrAssignmentGateway.addNewVrAssignment(
       vrAssignmentModel: item,
-      serviceID: entityid,
+      serviceID: entityid,sessionTerm: item.session,
     );
     print("assignment returning error from repository");
 
@@ -142,9 +144,9 @@ class VrAssignmentModelRepository {
 
   Future<VrAssignmentModelRepositoryReturnData> updateVrAssignmentModel(
       asmyvr.VrAssignmentModel item, String entitytype, String entityid) async {
-    await _schoolRepo.assignment.updateAttachedAssignment(
+    await VrAssignmentGateway.updateVrAssignment(
       vrAssignmentModel: item,
-      serviceID: entityid,
+      serviceID: entityid,sessionTerm: item.session
     );
     return null;
   }

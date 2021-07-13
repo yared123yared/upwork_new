@@ -79,7 +79,7 @@ class FeeItemGroupsGateway {
     try {
       return await FirebaseFirestore.instance
           .collection(
-              "SERVICEPROVIDERINFO/${UserModel.serviceProviderDocumentId}/FEEITEMGPRS")
+              "SERVICEPROVIDERINFO/${serviceID}/FEEITEMGPRS")
           .doc(feeItemGPRS.scheduleName)
           .update(feeItemGPRS.toJson());
     } catch (e) {

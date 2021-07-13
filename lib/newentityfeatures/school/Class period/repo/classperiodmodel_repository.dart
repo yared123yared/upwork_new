@@ -4,6 +4,7 @@ import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -21,7 +22,7 @@ class ClassPeriodModelRepositoryReturnData {
 }
 
 class ClassPeriodModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
 
   Future<ClassPeriodModelRepositoryReturnData> getAllClassPeriodModels(
       String entitytype, String entityid) async {
@@ -41,9 +42,9 @@ class ClassPeriodModelRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -81,19 +82,13 @@ class ClassPeriodModelRepository {
         }
       });
 
-      List<PaymentPeriodInfo> paymentPeriods =
-          await _schoolRepo.lookup.getPaymentPeriodInfoList(
-        serviceID: entityid,
-      );
 
-      List<FeeItemGroupsModel> feeItemsGroups =
-          await _schoolRepo.getFeeItemGroupList(serviceID: entityid);
 
       ClassPeriodDataEntry gr = ClassPeriodDataEntry(
         type: type,
         types: types,
-        paymentPeriods: paymentPeriods,
-        feeItemsGroups: feeItemsGroups,
+        paymentPeriods: null,
+        feeItemsGroups: null,
         errortype: -1,
       );
       return gr;

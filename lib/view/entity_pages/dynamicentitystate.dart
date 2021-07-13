@@ -6,7 +6,7 @@ import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/newentityfeatures/Attendance/presentation/attendance_page.dart';
-import 'package:complex/newentityfeatures/Fee%20plan/presentation/feeplan_listview.dart';
+//import 'package:complex/newentityfeatures/Fee%20plan/presentation/feeplan_listview.dart';
 import 'package:complex/newentityfeatures/Models/common_enum_methods.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 
@@ -25,10 +25,13 @@ import 'package:complex/newentityfeatures/ecommerce-admin/views/orders/orders_vi
 import 'package:complex/newentityfeatures/ecommerce-admin/views/trip/trips_view.dart';
 import 'package:complex/newentityfeatures/ecommerce-admin/views/vendor/vendor_view.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 import 'package:complex/newentityfeatures/school/Class%20period/presentation/classperiodmodel_listview.dart';
 import 'package:complex/newentityfeatures/school/Create%20assignment%20form/presentation/createassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Event/presentation/event_page.dart';
 import 'package:complex/newentityfeatures/school/Fee%20item%20groups/presentation/feeitemgrps_listview.dart';
+import 'package:complex/newentityfeatures/school/Fee%20plan/presentation/feeplan_listview.dart';
 import 'package:complex/newentityfeatures/school/Offering%20by%20grade/presentation/offeringschedule_listview.dart';
 import 'package:complex/newentityfeatures/school/Offering%20group/presentation/offeringmodelgroup_listview.dart';
 import 'package:complex/newentityfeatures/school/Parent%20info/presentation/parent_info_page.dart';
@@ -1314,10 +1317,10 @@ class UiSchoolHandler {
               UserRepository _userRepository = Get.find();
 
               String entityid = getCurEntity().entityid;
-              var sessionTerms = await _schoolRepo.lookup.getSessionStringList(
+              var sessionTerms = await SessionTermGateway.getSessionStringList(
                 serviceID: entityid,
               );
-              var grades = await _schoolRepo.lookup.getGradesList(
+              var grades = await LookupGateway.getGradeList(
                 serviceID: entityid,
               );
               var instructorData =
@@ -1565,16 +1568,16 @@ class UiSchoolHandler {
               UserRepository _userRepository = Get.find();
 
               String entityid = getCurEntity().entityid;
-              var offeringList = await _schoolRepo.lookup.getOfferingList(
+              var offeringList = await LookupGateway.getOfferingsList(
+                entityid,
+              );
+              var examtermlist = await LookupGateway.getExamTermInfo(
+                 entityid,
+              );
+              var sessionTerms = await SessionTermGateway.getSessionStringList(
                 serviceID: entityid,
               );
-              var examtermlist = await _schoolRepo.lookup.getExamTermsList(
-                serviceID: entityid,
-              );
-              var sessionTerms = await _schoolRepo.lookup.getSessionStringList(
-                serviceID: entityid,
-              );
-              var grades = await _schoolRepo.lookup.getGradesList(
+              var grades = await LookupGateway.getGradeList(
                 serviceID: entityid,
               );
               var virtualRoomList =
@@ -1614,10 +1617,10 @@ class UiSchoolHandler {
               UserRepository _userRepository = Get.find();
 
               String entityid = getCurEntity().entityid;
-              var sessionTerms = await _schoolRepo.lookup.getSessionStringList(
+              var sessionTerms = await SessionTermGateway.getSessionStringList(
                 serviceID: entityid,
               );
-              var grades = await _schoolRepo.lookup.getGradesList(
+              var grades = await LookupGateway.getGradeList(
                 serviceID: entityid,
               );
               var instructorData =

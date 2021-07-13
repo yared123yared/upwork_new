@@ -14,7 +14,7 @@ import 'package:complex/newentityfeatures/Models/user_reg_fee_collection.dart';
 import 'package:complex/newentityfeatures/commonrepo/assignment_repository.dart';
 import 'package:complex/newentityfeatures/commonrepo/fee_plans_repository.dart';
 import 'package:complex/newentityfeatures/commonrepo/instructor_repository.dart';
-import 'package:complex/newentityfeatures/commonrepo/lookup_repository.dart';
+
 import 'package:complex/newentityfeatures/commonrepo/offering_schedule_repository.dart';
 import 'package:complex/newentityfeatures/commonrepo/parents_repository.dart';
 import 'package:complex/newentityfeatures/commonrepo/progress_repository.dart';
@@ -32,7 +32,7 @@ import 'package:complex/newentityfeatures/gateway/user_fee_collection_gateway.da
 import 'package:complex/newentityfeatures/gateway/user_registration_gateway.dart';
 
 class NewSchoolRepository {
-  LookupRepository lookup;
+
   AssignmentRepository assignment;
   VirtualRoomsRepository virtualRoom;
   ParentsRepository parent;
@@ -46,13 +46,13 @@ class NewSchoolRepository {
   NewSchoolRepository() {
     instructor = InstructorRepository();
     parent = ParentsRepository();
-    lookup = LookupRepository();
+
     progress = ProgressRepository();
     feePlans = FeePlansRepository();
     userSessionReg = UserSessionRegRepository();
 
-    virtualRoom = VirtualRoomsRepository(lookup: lookup);
-    assignment = AssignmentRepository(lookup: lookup, virtualRoom: virtualRoom);
+    virtualRoom = VirtualRoomsRepository();
+    assignment = AssignmentRepository(virtualRoom: virtualRoom);
   }
 
 
@@ -205,7 +205,7 @@ class NewSchoolRepository {
 
   Future<List<String>> getListOfGrades({@required String serviceID}) async {
     try {
-      return await LookupGateway.getGradeList(serviceID);
+      return await LookupGateway.getGradeList(serviceID:serviceID);
     } catch (e) {
       print(e);
       return e;
@@ -500,7 +500,7 @@ class NewSchoolRepository {
 
   Future<int> getRegistrationModel(String serviceId) {
     try {
-      return SchoolGateway.getRegistrationNumber(serviceId);
+      return UserRegistrationGateway.getRegistrationNumber(serviceId);
     } catch (e) {
       print(e);
     }

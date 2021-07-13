@@ -1,11 +1,36 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:meta/meta.dart';
 
 import 'package:complex/newentityfeatures/Models/user_registration_model.dart';
 
 class UserRegistrationGateway {
+
+
+  static Future<int> getRegistrationNumber(String serviceid) async {
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'GetRegistrationNumberRequest',
+      );
+      print("CloudFunction " + "end");
+      HttpsCallableResult resp = await callable.call(<String, dynamic>{
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceid,
+        "prefix": "",
+        "startcount": 1
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+
+      return resp.data['id'] as int;
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
   static Future<Map<String, UserRegistrationModel>> getUserRegistrationList({
     @required String serviceID,
   }) async {

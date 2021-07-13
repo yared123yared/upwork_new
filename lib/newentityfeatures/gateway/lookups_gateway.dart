@@ -28,8 +28,8 @@ class LookupGateway {
     }
   }
 
-  static Future<List<String>> getGradeList(String serviceID) async {
-    try {
+  static Future<List<String>> getGradeList({@required String serviceID}) async {
+
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
           .get()
@@ -45,11 +45,10 @@ class LookupGateway {
 
         return _grades;
       });
-    } catch (e) {
-      print("session term error: $e");
-      throw e;
-    }
+
   }
+
+
 
   static Future<void> addGrade({
     @required String serviceID,
@@ -374,9 +373,29 @@ class LookupGateway {
     }
   }
 
-  static Future<List<PaymentPeriodInfo>> getPaymentPeriodInfo(
+  static Future<void> updatePaymentPeriodInfo({
+    @required String serviceID,
+    @required PaymentPeriodInfo paymentPeriodInfo,
+    @required PaymentPeriodInfo oldPaymentPeriodInfo,
+  }) async {
+    try {
+      await LookupGateway.deletePaymentPeriodInfo(
+        serviceID: serviceID,
+        paymentPeriodInfo: oldPaymentPeriodInfo,
+      );
+      await LookupGateway.addPaymentPeriodInfo(
+        serviceID: serviceID,
+        paymentPeriodInfo: paymentPeriodInfo,
+      );
+
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<List<PaymentPeriodInfo>> getPaymentPeriodInfo({
     String serviceID,
-  ) async {
+  }) async {
     try {
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")

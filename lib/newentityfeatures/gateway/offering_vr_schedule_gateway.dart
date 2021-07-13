@@ -11,6 +11,96 @@ import 'package:complex/common/helputil.dart';
 import 'package:complex/newentityfeatures/Models/attendance_model.dart';
 
 class OfferingsVrManagementGateway {
+
+ static Future submitAttendance(
+      {@required Attendancetype attendanceType,
+        @required AttendanceModel attendanceModel,
+        @required String name,
+        @required String sessionTerm,
+        @required String serviceID}) async {
+    try {
+      if (attendanceType == Attendancetype.Vr) {
+        await OfferingsVrManagementGateway.submitAttendanceVirtualRoom(
+            attendanceModel: attendanceModel,
+            virtualroomname: name,
+            serviceID: serviceID,
+            sessionTermName: sessionTerm);
+      } else {
+        await OfferingsVrManagementGateway.submitAttendanceOfr(
+            attendanceModel: attendanceModel,
+            offeringname: name,
+            serviceID: serviceID,
+            sessionTermName: sessionTerm);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+ static Future<AttendanceModel> getAttendance({
+    @required Attendancetype attendanceType,
+    @required String name,
+    @required String sessionTerm,
+    @required String serviceID,
+    @required DateTime dateTime,
+    @required String kind,
+  }) async {
+    try {
+      AttendanceModel att;
+      if (attendanceType == Attendancetype.Ofr) {
+        att = await OfferingsVrManagementGateway.getAttendanceOFR(
+          offeringname: name,
+          sessionTerm: sessionTerm,
+          dateTime: dateTime,
+          kind: kind,
+          serviceID: serviceID,
+        );
+      } else {
+        att = await OfferingsVrManagementGateway.getAttendanceVR(
+          serviceID: serviceID,
+          dateTime: dateTime,
+          sessionTerm: sessionTerm,
+          kind: kind,
+          virtualroomname: name,
+        );
+      }
+
+      return att;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+
+  static Future<Map<String, List<OfferingWeeklySchedule>>> getOfferingWeeklyForGrade({
+    @required String grade,
+    @required String entityid,
+  }) async {
+    try {
+      print("Get Kind List For Grade");
+
+      Map<String, List<OfferingWeeklySchedule>> _ofrMap = {};
+      List<OfferingWeeklySchedule> _ofrList =
+      await OfferingsVrManagementGateway.getOfferingScheduleGradeList(
+        grade: grade,
+        serviceID: entityid,
+      );
+      _ofrList.forEach((offering) {
+        _ofrMap[offering.grade] = _ofrMap[offering.grade] ?? [];
+        _ofrMap[offering.grade].add(offering);
+      });
+      print(_ofrMap);
+      return _ofrMap;
+    } catch (e) {
+      print(e);
+      return e;
+    }
+  }
+
+
+
+
+
+
   static Future<List<OfferingModelGroup>> getKindListForGrade(
       {@required String grade,
       @required String entitytype,
@@ -948,10 +1038,10 @@ IDCARD-ATTENDENCE Data
     }
   }
 
-  static Future<InstructorOfferingDataModel> getInstructorScheduleData(
-    String serviceID,
-    String staffid,
-  ) async {
+  static Future<InstructorOfferingDataModel> getInstructorScheduleData({
+    @required String serviceID,
+    @required String staffid,
+  }) async {
     try {
       print("SERVICEPROVIDERINFO/$serviceID/STAFFEXTRADATA/$staffid");
       return await FirebaseFirestore.instance
