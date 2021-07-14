@@ -292,7 +292,7 @@ class _RegistryListListState extends State<RegistryListList> {
         })),
         floatingActionButton: widget.origintype == 1 ||
                 widget.origintype == 2 ||
-                (widget.origintype == 3 && isOwner)
+                (widget.origintype == 3)
             ? FloatingActionButton.extended(
                 onPressed: () async {
                   addButtonActions(context: context);
