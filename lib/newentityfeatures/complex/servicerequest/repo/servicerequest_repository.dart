@@ -51,7 +51,7 @@ class ServiceRequestModelRepository {
   NewComplexRepository _complexRepository = Get.find();
   UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
-  FirebaseMessaging _firebaseMessaging = Get.find();
+  static FirebaseMessaging _firebaseMessaging=FirebaseMessaging.instance;
 
   Future<ServiceRequestModelRepositoryReturnData> getAllServiceRequestModels(
       String entitytype, String entityid) async {
