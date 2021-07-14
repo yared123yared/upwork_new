@@ -4,6 +4,9 @@ import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 
@@ -42,9 +45,9 @@ class VirtualRoomModelRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -71,14 +74,13 @@ class VirtualRoomModelRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      List<String> grades = await _schoolRepo.lookup.getGradesList(
+      List<String> grades = await LookupGateway.getGradeList(
         serviceID: entityid,
       );
-      List<String> rooms = await _schoolRepo.lookup
-          .getRoomInfoList(serviceID: entityid)
+      List<String> rooms = await LookupGateway.getRoomsInfo( entityid)
           .then((value) => value.map((e) => e.roomName).toList());
 
-      List<SchoolOwner> schoolOwners = await _schoolRepo.getSchoolOwner(
+      List<SchoolOwner> schoolOwners = await OfferingsVrManagementGateway.getListOfStaff(
         entitytype: entitytype,
         entityid: entityid,
         staffcategory: 'instructor',
@@ -123,7 +125,7 @@ class VirtualRoomModelRepository {
       String entityid) async {
     VirtualRoomModelRepositoryReturnData myreturn =
         VirtualRoomModelRepositoryReturnData();
-    await _schoolRepo.addVirtualRoomModified(
+    await OfferingsVrManagementGateway.addVirtualRoomActionRequest(
         virtualRoomsModelMod: item, serviceID: entityid);
     myreturn.errortype = -1;
     return myreturn;
@@ -135,7 +137,7 @@ class VirtualRoomModelRepository {
       String entityid) async {
     VirtualRoomModelRepositoryReturnData myreturn =
         VirtualRoomModelRepositoryReturnData();
-    await _schoolRepo.updateVirtualRoomModified(
+    await OfferingsVrManagementGateway.updateVirtualRoom(
         newdata: item, oldData: item, serviceID: entityid);
     myreturn.errortype = -1;
     return myreturn;
@@ -155,7 +157,7 @@ class VirtualRoomModelRepository {
       String entityid) async {
     VirtualRoomModelRepositoryReturnData myreturn =
         VirtualRoomModelRepositoryReturnData();
-    await _schoolRepo.deleteVirtualRoomModified(
+    await OfferingsVrManagementGateway.deleteVirtualRoom(
       virtualroomname: item.virtualRoomName,
       serviceID: entityid,
     );
@@ -168,9 +170,10 @@ class VirtualRoomModelRepository {
     VirtualRoomModelRepositoryReturnData myreturn =
         VirtualRoomModelRepositoryReturnData();
 
-    myreturn.itemlist = await _schoolRepo.getVirtualRoomsList(
-      serviceID: entityid,
-      grade: null,
+    myreturn.itemlist = await OfferingsVrManagementGateway
+        .getVirtualRoomModelNewFormatList(
+       entityid,
+       null,
     );
 
     myreturn.errortype = -1;

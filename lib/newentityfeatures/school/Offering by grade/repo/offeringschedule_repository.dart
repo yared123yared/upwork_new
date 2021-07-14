@@ -2,12 +2,14 @@ import 'package:complex/common/model/button_state.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
 import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
+//import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
 
 class OfferingWeeklyScheduleRepositoryReturnData {
   List<OfferingWeeklySchedule> itemlist;
@@ -23,7 +25,7 @@ class OfferingWeeklyScheduleRepositoryReturnData {
 }
 
 class OfferingWeeklyScheduleRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
 
   Future<OfferingWeeklyScheduleRepositoryReturnData>
       getAllOfferingWeeklySchedules(String entitytype, String entityid) async {
@@ -44,9 +46,9 @@ class OfferingWeeklyScheduleRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -74,7 +76,7 @@ class OfferingWeeklyScheduleRepository {
 
     try {
       Future<List<OfferingModelGroup>> Function(String) _offeringModelGroup =
-          (String grade) async => await _schoolRepo.getKindListForGrade(
+          (String grade) async => await OfferingsVrManagementGateway.getKindListForGrade(
                 grade: grade,
                 entitytype: 'SERVICEPROVIDERINFO',
                 entityid: entityid,
@@ -89,9 +91,10 @@ class OfferingWeeklyScheduleRepository {
 
       ///this function will be used to fill the primary and secondary owner fields
       Future<List<TeacherOfferingsAssignment>> getAssignment(String grade) {
-        return _schoolRepo.getTeacherOfferingsAssignmentListByGrade(
-          serviceID: entityid,
-          grade: grade,
+        return OfferingsVrManagementGateway
+            .getTeacherOfferingsAssignmentList(
+           entityid,
+          grade,
         );
       }
 
@@ -100,15 +103,14 @@ class OfferingWeeklyScheduleRepository {
       OfferingWeeklyDataEntry gr = OfferingWeeklyDataEntry(
         buttonstate: ButtonState.idle,
         offeringsScheduleModel: null,
-        rooms: await _schoolRepo.lookup
-            .getRoomInfoList(serviceID: entityid)
+        rooms: await await LookupGateway.getRoomsInfo( entityid)
             .then((v) => v.map((e) => e.roomName).toList()),
-        schoolOwner: await _schoolRepo.getSchoolOwner(
+        schoolOwner: await OfferingsVrManagementGateway.getListOfStaff(
           entityid: entityid,
           staffcategory: 'instructor',
           entitytype: 'SERVICEPROVIDERINFO',
         ),
-        grades: await _schoolRepo.getListOfGrades(serviceID: entityid),
+        grades: await LookupGateway.getGradeList(serviceID: entityid),
         getOfferingGroupModel: _offeringModelGroup,
         periods: periods,
         errortype: -1,
@@ -148,7 +150,7 @@ class OfferingWeeklyScheduleRepository {
           String entitytype, String entityid) async {
     OfferingWeeklyScheduleRepositoryReturnData myreturn =
         OfferingWeeklyScheduleRepositoryReturnData();
-    await _schoolRepo.getOfferingWeeklyScheduleModel(
+    await OfferingsVrManagementGateway.offeringWeeklyScheduleDBActions(
       data: item,
       actiontype: "add",
       entitytype: entitytype,
@@ -171,7 +173,7 @@ class OfferingWeeklyScheduleRepository {
     grerror.error = "UNknown exception has occured";
     try {
       Map<String, List<OfferingWeeklySchedule>> list =
-          await _schoolRepo.getOfferingWeeklyForGrade(
+          await OfferingsVrManagementGateway.getOfferingWeeklyForGrade(
         grade: grade,
         entityid: entityid,
       );
@@ -192,7 +194,7 @@ class OfferingWeeklyScheduleRepository {
           String entitytype, String entityid) async {
     OfferingWeeklyScheduleRepositoryReturnData myreturn =
         OfferingWeeklyScheduleRepositoryReturnData();
-    await _schoolRepo.getOfferingWeeklyScheduleModel(
+    await OfferingsVrManagementGateway.offeringWeeklyScheduleDBActions(
       data: item,
       actiontype: "update",
       entitytype: entitytype,
@@ -222,7 +224,7 @@ class OfferingWeeklyScheduleRepository {
     OfferingWeeklyScheduleRepositoryReturnData myreturn =
         OfferingWeeklyScheduleRepositoryReturnData();
 
-    List list = await _schoolRepo.getOfferingWeekly(serviceID: entityid);
+    List list = await OfferingsVrManagementGateway.getOfferingWeeklyScheduleList( entityid ,"");
 
     myreturn.itemlist = list;
     myreturn.errortype = -1;

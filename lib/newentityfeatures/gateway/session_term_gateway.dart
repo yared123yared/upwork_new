@@ -14,6 +14,19 @@ import 'package:complex/newentityfeatures/Models/offering_schedule_model.dart';
 import 'package:complex/newentityfeatures/Models/registered_id_model.dart';
 
 class SessionTermGateway {
+
+  static Future<List<String>> getSessionStringList({
+    @required String serviceID,
+  }) async {
+    try {
+      return await getSessionTerms(serviceID: serviceID)
+          .then((items) => items.map((e) => e.termName).toList());
+    } catch (e) {
+      print(e);
+      return e;
+    }
+  }
+
   static Future<List<SessionTerm>> getSessionTerms(
       {@required String serviceID}) async {
     try {
@@ -132,6 +145,16 @@ class SessionTermGateway {
       throw e;
     }
   }
+
+  static Future<Map<String, List<VirtualRoomModel>>> getVirtualRoomListPerSessionTerm(
+      String serviceID,
+
+      ) async {
+
+      return new Map<String, List<VirtualRoomModel>>();
+
+  }
+
 
   static Future<List<VirtualRoomModel>> getVirtualRoomList(
     String serviceID,

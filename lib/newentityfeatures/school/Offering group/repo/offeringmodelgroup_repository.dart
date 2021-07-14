@@ -1,9 +1,12 @@
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
+//import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
 
 class OfferingModelGroupRepositoryReturnData {
   List<OfferingModelGroup> itemlist;
@@ -19,7 +22,7 @@ class OfferingModelGroupRepositoryReturnData {
 }
 
 class OfferingModelGroupRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
 
   Future<OfferingModelGroupRepositoryReturnData> getAllOfferingModelGroups(
       String entitytype, String entityid) async {
@@ -40,9 +43,9 @@ class OfferingModelGroupRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -78,9 +81,9 @@ class OfferingModelGroupRepository {
 
     try {
       List<String> grades =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> subject =
-          await _schoolRepo.getListOfSubject(serviceID: entityid);
+          await LookupGateway.getSubjectList(entityid);
 
       //Please put your code here
       OfferingDataEntry gr = OfferingDataEntry(
@@ -88,7 +91,7 @@ class OfferingModelGroupRepository {
         // : event.offeringModelGroup,
         grades: grades,
         groups: (String grade) {
-          return _schoolRepo.getListOfVirtualRoomByGrade(
+          return OfferingsVrManagementGateway.getVirtualRoomsListForGrade(
             entityid: entityid,
             entitytype: "SERVICEPROVIDERINFO",
             grade: grade,
@@ -122,7 +125,7 @@ class OfferingModelGroupRepository {
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
     try {
-      List<OfferingModelGroup> list = await _schoolRepo.getKindListForGrade(
+      List<OfferingModelGroup> list = await OfferingsVrManagementGateway.getKindListForGrade(
         grade: grade,
         entitytype: entitytype,
         entityid: entityid,
@@ -143,7 +146,7 @@ class OfferingModelGroupRepository {
       OfferingModelGroup item, String entitytype, String entityid) async {
     OfferingModelGroupRepositoryReturnData myreturn =
         OfferingModelGroupRepositoryReturnData();
-    await _schoolRepo.getOfferingModel(
+    await OfferingsVrManagementGateway.offeringModelGroupDBActions(
       entityid: entityid,
       entitytype: entitytype,
       actiontype: "add",
@@ -157,7 +160,7 @@ class OfferingModelGroupRepository {
       OfferingModelGroup item, String entitytype, String entityid) async {
     OfferingModelGroupRepositoryReturnData myreturn =
         OfferingModelGroupRepositoryReturnData();
-    await _schoolRepo.getOfferingModel(
+    await OfferingsVrManagementGateway.offeringModelGroupDBActions(
       entityid: entityid,
       entitytype: entitytype,
       actiontype: "update",
@@ -187,7 +190,7 @@ class OfferingModelGroupRepository {
     OfferingModelGroupRepositoryReturnData myreturn =
         OfferingModelGroupRepositoryReturnData();
 
-    myreturn.itemlist = await _schoolRepo.getListOfOfferingModelGroup(
+    myreturn.itemlist = await OfferingsVrManagementGateway.getOfferingMdelList(
       serviceID: entityid,
       grade: null,
     );

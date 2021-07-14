@@ -5,11 +5,13 @@ import 'package:complex/newentityfeatures/Models/assignment_model.dart';
 import 'package:complex/newentityfeatures/Models/common_enum_methods.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_model.dart';
 import 'package:complex/newentityfeatures/Models/vrassignment_score_model.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+import 'package:complex/newentityfeatures/gateway/assignment_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/vr_assignment_gateway.dart';
 import '../bloc/bloc.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
+//import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
 import 'package:complex/newentityfeatures/Models/attendance_model.dart';
 
 enum AnswerFormState { studnetAnswer, teacherGiveScore, studentShowScore }
@@ -28,7 +30,7 @@ class ParentInfoModelRepositoryReturnData {
 }
 
 class ParentInfoModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
   UserRepository _userRepository = HelpUtil.getUserRepository();
 
   Future<ParentInfoDataModel> viewEvent(ParentViewEvent event) async {
@@ -71,12 +73,12 @@ class ParentInfoModelRepository {
         virtualRooms:
             HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
         mode: ParentViewMode.Attendance,
-        data: await _schoolRepo.parent.getAttendenceForIDCardGaurdian(
+        data: await OfferingsVrManagementGateway.getAttendenceForIDCardGaurdian(entitytype: event.entitytype,
           entityid: event.entityid,
           sessionterm: event.sessionTerm,
-          idCardNumber: event.idNumber,
-          startdate: event.startDate,
-          enddate: event.endDate,
+          idcardnum: event.idNumber,
+          startdate: HelpUtil.toTimeStamp(dateTime: event.startDate),
+            enddate: HelpUtil.toTimeStamp(dateTime: event.endDate)
         ),
         idNumbers:
             HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
@@ -102,12 +104,12 @@ class ParentInfoModelRepository {
             HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
         assignmentListGetter: vrAssignmentGetter,
         mode: ParentViewMode.Event,
-        data: await _schoolRepo.parent.getEventForIDCardGaurdian(
+        data: await OfferingsVrManagementGateway.getEventForIDCardGaurdian(entitytype: event.entitytype,
             entityid: event.entityid,
             virtualroomname: event.vrRoom,
             sessionterm: event.sessionTerm,
-            startdate: event.startDate,
-            enddate: event.endDate),
+            startdate:HelpUtil.toTimeStamp(dateTime: event.startDate),
+            enddate: HelpUtil.toTimeStamp(dateTime:event.endDate)),
         idNumbers:
             HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
         errortype: -1,
@@ -133,10 +135,10 @@ class ParentInfoModelRepository {
         virtualRooms:
             HelpUtil.getUserModel().defaultServiceEntity.getVirtualRooms(),
         mode: ParentViewMode.Progress,
-        data: await _schoolRepo.parent.getProgressForGaurdian(
+        data: await OfferingsVrManagementGateway.getProgressForGaurdian(entitytype: event.entitytype,
           entityid: event.entityid,
           sessionterm: event.sessionTerm,
-          idCardNumber: event.idNumber,
+          idcardnum: event.idNumber,
         ),
         idNumbers:
             HelpUtil.getUserModel().defaultServiceEntity.getIdCardNumbers(),
@@ -161,14 +163,14 @@ class ParentInfoModelRepository {
       AnswerFormDataModel gr;
 
       var vrAssignmentScore =
-          await _schoolRepo.assignment.getVrAssignmentScoreForSingleStudent(
+          await VrAssignmentGateway.getVrAssignmentScoreForSingleStudent(
         sessionterm: event.sessionTerm,
         vrid: event.vrAssignment.vrid,
         idcardnum: event.idCard,
         entityid: event.entityid,
       );
 
-      var assignment = await _schoolRepo.assignment.getPublishedAssignmentById(
+      var assignment = await AssignmentGateway.getPublishedAssignmentById(
         serviceID: event.entityid,
         assignmentID: event.vrAssignment.assignmentId,
       );
@@ -199,7 +201,7 @@ class ParentInfoModelRepository {
     try {
       //Please put your code here
 
-      var assignment = await _schoolRepo.assignment.getPublishedAssignmentById(
+      var assignment = await AssignmentGateway.getPublishedAssignmentById(
         serviceID: event.entityid,
         assignmentID: event.vrAssignment.assignmentId,
       );
@@ -223,10 +225,10 @@ class ParentInfoModelRepository {
     String sessionTerm,
     String virtualRoom,
   }) {
-    return _schoolRepo.assignment.getVrAssignmentsForIdCard(
+    return VrAssignmentGateway.getVrAssignmentModelForIDCardNum(
       entityid: idNumber, // _serviceID,
       sessionterm: sessionTerm,
-      virtualRoomName: virtualRoom,
+      virtualroomname: virtualRoom,
     );
   }
 
@@ -306,13 +308,13 @@ class ParentInfoModelRepository {
     try {
       AnswerFormDataModel gr = AnswerFormDataModel();
 
-      var r = await _schoolRepo.assignment
-          .getVrAssignmentScoreIndependentOfferingForAllStudent(
+      var r = await VrAssignmentGateway
+          .getVrAssignmentScoreNotIndependentOfferingForAllStudent(entitytype: event.entitytype,
         offeringname: event.vrAssignmentID.offering,
-        serviceID: event.entityid,
+        entityid: event.entityid,
         sessionterm: event.vrAssignmentID.session,
         vrid: event.vrAssignmentID.vrid,
-        virtualRoom: event.vrAssignmentID.virtualRoom,
+        virtualroomname: event.vrAssignmentID.virtualRoom,
       );
 
       r.forEach((element) {

@@ -3,6 +3,9 @@ import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +23,7 @@ class TeacherAssignmentModelRepositoryReturnData {
 }
 
 class TeacherAssignmentModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
 
   Future<TeacherAssignmentModelRepositoryReturnData>
       getAllTeacherAssignmentModels(String entitytype, String entityid) async {
@@ -41,9 +44,9 @@ class TeacherAssignmentModelRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -70,19 +73,18 @@ class TeacherAssignmentModelRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      List<String> grades = await _schoolRepo.lookup.getGradesList(
+      List<String> grades = await LookupGateway.getGradeList(
         serviceID: entityid,
       );
 
-      List<SchoolOwner> schoolOwners = await _schoolRepo.getSchoolOwner(
+      List<SchoolOwner> schoolOwners = await OfferingsVrManagementGateway.getListOfStaff(
         entityid: entityid,
         entitytype: entitytype,
         staffcategory: 'instructor',
       );
 
       Future<List<String>> Function(String) offeringModelGroup =
-          (String grade) async => await _schoolRepo
-              .getKindListForGrade(
+          (String grade) async => await OfferingsVrManagementGateway.getKindListForGrade(
                 grade: grade,
                 entitytype: entitytype,
                 entityid: entityid,
@@ -92,7 +94,7 @@ class TeacherAssignmentModelRepository {
               );
 
       Future<List<String>> Function(String grade) virtualRooms =
-          (String grade) async => await _schoolRepo.getListOfVirtualRoomByGrade(
+          (String grade) async => await OfferingsVrManagementGateway.getVirtualRoomsListForGrade(
                 entityid: entityid,
                 entitytype: entitytype,
                 grade: grade,
@@ -121,9 +123,10 @@ class TeacherAssignmentModelRepository {
 
     try {
       List<TeacherOfferingsAssignment> list =
-          await _schoolRepo.getTeacherOfferingsAssignmentListByGrade(
-        serviceID: entityid,
-        grade: grade,
+          await OfferingsVrManagementGateway
+              .getTeacherOfferingsAssignmentList(
+         entityid,
+         grade,
       );
       TeacherAssignmentModelRepositoryReturnData gr =
           new TeacherAssignmentModelRepositoryReturnData();
@@ -139,7 +142,7 @@ class TeacherAssignmentModelRepository {
           String entitytype, String entityid) async {
     TeacherAssignmentModelRepositoryReturnData myreturn =
         TeacherAssignmentModelRepositoryReturnData();
-    await _schoolRepo.addTeacherOfferingAssignment(
+    await OfferingsVrManagementGateway.createTeacherOfferingsAssignment(
       model: item,
       serviceID: entityid,
     );
@@ -152,7 +155,7 @@ class TeacherAssignmentModelRepository {
           String entitytype, String entityid) async {
     TeacherAssignmentModelRepositoryReturnData myreturn =
         TeacherAssignmentModelRepositoryReturnData();
-    await _schoolRepo.updateTeacherOfferingAssignment(
+    await OfferingsVrManagementGateway.updateOfferingSchedule(
       oldData: item,
       newData: item,
       serviceID: entityid,
@@ -175,7 +178,7 @@ class TeacherAssignmentModelRepository {
           String entitytype, String entityid) async {
     TeacherAssignmentModelRepositoryReturnData myreturn =
         TeacherAssignmentModelRepositoryReturnData();
-    await _schoolRepo.deleteTeacherOfferingAssignment(
+    await OfferingsVrManagementGateway.deleteOfferingSchedule(
       model: item,
       serviceID: entityid,
     );
@@ -190,9 +193,10 @@ class TeacherAssignmentModelRepository {
         TeacherAssignmentModelRepositoryReturnData();
 
     myreturn.itemlist =
-        await _schoolRepo.getTeacherOfferingsAssignmentListByGrade(
-      serviceID: entityid,
-      grade: null,
+        await OfferingsVrManagementGateway
+            .getTeacherOfferingsAssignmentList(
+       entityid,
+       null,
     );
 
     myreturn.errortype = -1;

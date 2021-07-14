@@ -3,10 +3,14 @@ import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/Models/progress_model.dart';
 import 'package:complex/newentityfeatures/Models/virtual_room_model.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/progress_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 import '../bloc/bloc.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
+//import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
 import 'package:complex/newentityfeatures/Models/attendance_model.dart';
 
 class ProgressModelRepositoryReturnData {
@@ -23,7 +27,7 @@ class ProgressModelRepositoryReturnData {
 }
 
 class ProgressModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+  //NewSchoolRepository _schoolRepo = Get.find();
   // UserSessionRegRepository _userRepository;
 
   Future<ProgressDataModel> loadData(LoadDataEvent event) async {
@@ -38,58 +42,61 @@ class ProgressModelRepository {
           event.sessionTerm == null &&
           event.kind == null) {
         gr = ProgressDataModel(
-          offeringList: await _schoolRepo.lookup
-              .getOfferingList(serviceID: event.entityid),
-          examtermlist: await _schoolRepo.lookup
-              .getExamTermsList(serviceID: event.entityid),
-          sessionTerms: await _schoolRepo.lookup
+          offeringList: await LookupGateway
+              .getOfferingsList(event.entityid),
+          examtermlist: await LookupGateway
+              .getExamTermInfo( event.entityid),
+          sessionTerms: await SessionTermGateway
               .getSessionStringList(serviceID: event.entityid),
           grades:
-              await _schoolRepo.lookup.getGradesList(serviceID: event.entityid),
-          virtualRoomList: await _schoolRepo.virtualRoom
-              .getVirtualRooms(serviceID: event.entityid),
+              await LookupGateway.getGradeList(serviceID: event.entityid),
+          virtualRoomList: await SessionTermGateway.getVirtualRoomListPerSessionTerm(event.entityid),
           loadButtonState: ButtonState.idle,
           instructorData:
-              await _schoolRepo.instructor.setInstructorScheduleData(
+              await OfferingsVrManagementGateway.getInstructorScheduleData(
             serviceID: event.entityid,
-            staffID: null,
+                staffid: null,
             // staffID: _userRepository.getUser().userID,
           ),
           submitButtonState: ButtonState.idle,
           progressModel: null,
         );
       } else {
+        DateTime now = new DateTime.now();
+        DateTime date = new DateTime(now.year, now.month, now.day);
         gr = ProgressDataModel(
-          offeringList: await _schoolRepo.lookup
-              .getOfferingList(serviceID: event.entityid),
-          examtermlist: await _schoolRepo.lookup
-              .getExamTermsList(serviceID: event.entityid),
-          sessionTerms: await _schoolRepo.lookup
+          offeringList: await LookupGateway
+              .getOfferingsList(event.entityid),
+          examtermlist: await LookupGateway
+              .getExamTermInfo( event.entityid),
+          sessionTerms: await SessionTermGateway
               .getSessionStringList(serviceID: event.entityid),
-          virtualRoomList: await _schoolRepo.virtualRoom
-              .getVirtualRooms(serviceID: event.entityid),
+          virtualRoomList: await  SessionTermGateway.getVirtualRoomListPerSessionTerm(event.entityid),
           grades:
-              await _schoolRepo.lookup.getGradesList(serviceID: event.entityid),
+              await LookupGateway.getGradeList(serviceID: event.entityid),
           loadButtonState: ButtonState.idle,
           submitButtonState: ButtonState.idle,
           instructorData:
-              await _schoolRepo.instructor.setInstructorScheduleData(
+              await OfferingsVrManagementGateway.getInstructorScheduleData(
             serviceID: event.entityid,
-            staffID: null,
+                staffid: null,
             // staffID: _userRepository.getUser().userID,
           ),
           progressModel: event.isofferingindependent
-              ? await _schoolRepo.progress.getProgressIndependentOfr(
+              ? await ProgressGateway.getProgressOFR(
                   serviceID: event.entityid,
                   offeringname: event.offeringname,
                   sessionTerm: event.sessionTerm,
                   kind: event.kind,
+            dateTime: date
                 )
-              : await _schoolRepo.progress.getProgressVR(
+
+              : await ProgressGateway.getProgressVR(
                   serviceID: event.entityid,
-                  virtualRoomName: event.virtualRoom,
+            virtualroomname: event.virtualRoom,
                   sessionTerm: event.sessionTerm,
                   kind: event.kind,
+              dateTime: date
                 ),
         );
       }
@@ -107,13 +114,13 @@ class ProgressModelRepository {
     try {
       //Please put your code here
       event.progressModel.atttype == "vr"
-          ? await _schoolRepo.progress.submitProgressVirtualRoom(
+          ? await ProgressGateway.submitProgressVirtualRoom(
               progressModel: event.progressModel,
               sessionTermName: event.sessionTermName,
               virtualroomname: event.progressModel.virtualrooname,
               serviceID: event.entityid,
             )
-          : await _schoolRepo.progress.submitProgressIndependentOffering(
+          : await ProgressGateway.submitProgressOfr(
               progressModel: event.progressModel,
               sessionTermName: event.sessionTermName,
               offeringname: event.progressModel.offeringname,
@@ -121,21 +128,24 @@ class ProgressModelRepository {
             );
 
       ProgressDataModel gr = ProgressDataModel(
-        offeringList:
-            await _schoolRepo.lookup.getOfferingList(serviceID: event.entityid),
-        examtermlist: await _schoolRepo.lookup
-            .getExamTermsList(serviceID: event.entityid),
-        grades:
-            await _schoolRepo.lookup.getGradesList(serviceID: event.entityid),
-        sessionTerms: await _schoolRepo.lookup
+
+        offeringList: await LookupGateway
+            .getOfferingsList(event.entityid),
+        examtermlist: await LookupGateway
+            .getExamTermInfo( event.entityid),
+        sessionTerms: await SessionTermGateway
             .getSessionStringList(serviceID: event.entityid),
-        virtualRoomList: await _schoolRepo.virtualRoom
-            .getVirtualRooms(serviceID: event.entityid),
-        instructorData: await _schoolRepo.instructor.setInstructorScheduleData(
+        virtualRoomList: await  SessionTermGateway.getVirtualRoomListPerSessionTerm(event.entityid),
+        grades:
+        await LookupGateway.getGradeList(serviceID: event.entityid),
+
+        instructorData:
+        await OfferingsVrManagementGateway.getInstructorScheduleData(
           serviceID: event.entityid,
-          staffID: null,
+          staffid: null,
           // staffID: _userRepository.getUser().userID,
         ),
+
         loadButtonState: ButtonState.idle,
         submitButtonState: ButtonState.success,
         progressModel: event.progressModel,

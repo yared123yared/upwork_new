@@ -3,13 +3,16 @@ import 'package:complex/common/model/button_state.dart';
 
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import '../bloc/bloc.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
+//import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
 import 'package:complex/newentityfeatures/Models/attendance_model.dart';
 
 class AttendanceModelRepositoryReturnData {
@@ -26,7 +29,7 @@ class AttendanceModelRepositoryReturnData {
 }
 
 class AttendanceModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
   // UserSessionRegRepository _userRepository;
 
   final String userId = FirebaseAuth.instance.currentUser.uid;
@@ -47,18 +50,18 @@ class AttendanceModelRepository {
     try {
       //Please put your code here
       AttendanceDataModel gr = AttendanceDataModel(
-        sessionTerms: await _schoolRepo.lookup
+        sessionTerms: await SessionTermGateway
             .getSessionStringList(serviceID: event.entityid),
         grades:
-            await _schoolRepo.lookup.getGradesList(serviceID: event.entityid),
-        instructorData: await _schoolRepo.instructor.setInstructorScheduleData(
+            await LookupGateway.getGradeList(serviceID: event.entityid),
+        instructorData: await OfferingsVrManagementGateway.getInstructorScheduleData(
           serviceID: event.entityid,
-          staffID: HelpUtil.getUserModel().userID,
+          staffid: HelpUtil.getUserModel().userID,
           // staffID: _userRepository.getUser().userID,
         ),
         loadButtonState: ButtonState.idle,
         submitButtonState: ButtonState.idle,
-        attendanceModel: await _schoolRepo.instructor.getAttendance(
+        attendanceModel: await OfferingsVrManagementGateway.getAttendance(
           serviceID: event.entityid,
           name: event.name,
           sessionTerm: event.sessionTerm,
@@ -90,7 +93,7 @@ class AttendanceModelRepository {
 
     try {
       //Please put your code here
-      await _schoolRepo.instructor.submitAttendance(
+      await OfferingsVrManagementGateway.submitAttendance(
         attendanceModel: event.attendance,
         sessionTerm: event.sessionTerm,
         attendanceType: event.type,
@@ -99,15 +102,15 @@ class AttendanceModelRepository {
       );
 
       AttendanceDataModel gr = AttendanceDataModel(
-        sessionTerms: await _schoolRepo.lookup
+        sessionTerms: await SessionTermGateway
             .getSessionStringList(serviceID: event.entityid),
         grades:
-            await _schoolRepo.lookup.getGradesList(serviceID: event.entityid),
+            await LookupGateway.getGradeList(serviceID: event.entityid),
         loadButtonState: ButtonState.idle,
         submitButtonState: ButtonState.success,
         attendanceModel: event.attendance,
-        instructorData: await _schoolRepo.instructor.setInstructorScheduleData(
-          serviceID: event.entityid, staffID: userId,
+        instructorData: await OfferingsVrManagementGateway.getInstructorScheduleData(
+          serviceID: event.entityid, staffid: userId,
           // staffID: _userRepository.getUser().userID,
         ),
         errortype: -1,

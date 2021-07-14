@@ -92,7 +92,7 @@ class FeePaymentRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
           await _schoolRepo.lookup.getSessionStringList(
         serviceID: entityid,

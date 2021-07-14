@@ -2,16 +2,18 @@ import 'package:complex/common/helputil.dart';
 import 'package:complex/common/model/place.dart';
 import 'package:complex/data/models/request/auth_request/signup_request.dart';
 import 'package:complex/data/models/response/general_response.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 
 import 'package:complex/newentityfeatures/gateway/user_registration_gateway.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
+//import 'package:get/get_core/src/get_main.dart';
 
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/Models/user_registration_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
-import 'package:logger/logger.dart';
+//import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+//import 'package:logger/logger.dart';
 
 class StudentBasicFormModelRepositoryReturnData {
   List<UserRegistrationModel> itemlist;
@@ -27,7 +29,7 @@ class StudentBasicFormModelRepositoryReturnData {
 }
 
 class StudentBasicFormModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
 
   Future<StudentBasicFormModelRepositoryReturnData>
       getAllStudentBasicFormModels(String entitytype, String entityid) async {
@@ -48,9 +50,9 @@ class StudentBasicFormModelRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -77,7 +79,7 @@ class StudentBasicFormModelRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      int studentId = await _schoolRepo.getRegistrationModel(entityid);
+      int studentId = await UserRegistrationGateway.getRegistrationNumber(entityid);
       int formIndex = 1;
       List<Place> availablePlaces = await Place.places;
       // bool update;
@@ -141,7 +143,7 @@ class StudentBasicFormModelRepository {
     item.guardian2appUserId = guardian2Id;
     item.appuserid = appuserid;
 
-    await _schoolRepo.addUserReg(
+    await UserRegistrationGateway.addNewUserRegistration(
       userReg: item,
       serviceID: entityid,
     );

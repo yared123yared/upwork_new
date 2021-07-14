@@ -18,8 +18,8 @@ class InstructorRepository {
       _instructorData[serviceID][staffID] =
           _instructorData[serviceID][staffID] ??
               await OfferingsVrManagementGateway.getInstructorScheduleData(
-                serviceID,
-                staffID,
+                serviceID:serviceID,
+                staffid:staffID,
               );
       return _instructorData[serviceID][staffID];
     } catch (e) {

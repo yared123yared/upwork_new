@@ -1,12 +1,15 @@
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
+import 'package:complex/newentityfeatures/gateway/fee_item_groups_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/fee_plans_gateway.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
+//import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
 
 class FeePlanModelRepositoryReturnData {
   List<FeePlanModel> itemlist;
@@ -22,7 +25,7 @@ class FeePlanModelRepositoryReturnData {
 }
 
 class FeePlanModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
 
   Future<FeePlanModelRepositoryReturnData> getAllFeePlanModels(
       String entitytype, String entityid) async {
@@ -43,9 +46,9 @@ class FeePlanModelRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -72,17 +75,17 @@ class FeePlanModelRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      List<String> sessions = await _schoolRepo.lookup.getSessionStringList(
+      List<String> sessions = await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
       List<String> grades =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<PaymentPeriodInfo> paymentPeriods =
-          await _schoolRepo.lookup.getPaymentPeriodInfoList(
+          await LookupGateway.getPaymentPeriodInfo(
         serviceID: entityid,
       );
       List<FeeItemGroupsModel> feeItemsGroups =
-          await _schoolRepo.getFeeItemGroupList(serviceID: entityid);
+          await FeeItemGroupsGateway.getFeeItemGroupsList(serviceID: entityid);
 
       bool editable = true;
 
@@ -123,7 +126,7 @@ class FeePlanModelRepository {
       FeePlanModel item, String entitytype, String entityid) async {
     FeePlanModelRepositoryReturnData myreturn =
         FeePlanModelRepositoryReturnData();
-    await _schoolRepo.feePlans.addFeePlan(
+    await FeePlanGateway.addNewFeePlan(
       serviceID: entityid,
       feePlan: item,
     );
@@ -135,7 +138,7 @@ class FeePlanModelRepository {
       FeePlanModel item, String entitytype, String entityid) async {
     FeePlanModelRepositoryReturnData myreturn =
         FeePlanModelRepositoryReturnData();
-    await _schoolRepo.feePlans.updateFeePlan(
+    await FeePlanGateway.updateFeePlan(
       serviceID: entityid,
       feePlan: item,
     );

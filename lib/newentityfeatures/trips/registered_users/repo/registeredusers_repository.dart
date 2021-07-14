@@ -2,6 +2,8 @@ import 'package:complex/common/helputil.dart';
 import 'package:complex/data/models/request/auth_request/signup_request.dart';
 import 'package:complex/data/models/response/general_response.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 
 import 'package:complex/newentityfeatures/trips/repository/repo/registered_user_repository.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
@@ -45,9 +47,9 @@ class RegisteredUsersRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -75,17 +77,17 @@ class RegisteredUsersRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      List<String> grades = await _schoolRepo.lookup.getGradesList(
+      List<String> grades = await LookupGateway.getGradeList(
         serviceID: entityid,
       );
 
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
       List<ExamTermInfo> examtermlist =
-          await _schoolRepo.lookup.getExamTermsList(
-        serviceID: entityid,
+          await LookupGateway.getExamTermInfo(
+        entityid,
       );
 
       //Please put your code here

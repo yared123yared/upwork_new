@@ -1,9 +1,11 @@
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
+//import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
 
 class PaymentModelRepositoryReturnData {
   List<PaymentPeriodInfo> itemlist;
@@ -19,7 +21,7 @@ class PaymentModelRepositoryReturnData {
 }
 
 class PaymentModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
 
   Future<PaymentModelRepositoryReturnData> getAllPaymentModels(
       String entitytype, String entityid) async {
@@ -39,9 +41,9 @@ class PaymentModelRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -69,7 +71,7 @@ class PaymentModelRepository {
 
     try {
       PaymentPeriodInfo paymentPeriodInfo;
-      List<String> sessions = await _schoolRepo.lookup.getSessionStringList(
+      List<String> sessions = await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
       bool editable = true;
@@ -96,8 +98,7 @@ class PaymentModelRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      List<PaymentPeriodInfo> list = await _schoolRepo.lookup
-          .getPaymentPeriodInfoList(serviceID: entityid);
+      List<PaymentPeriodInfo> list = await LookupGateway.getPaymentPeriodInfo(serviceID: entityid);
 
       // await VrAssignmentGateway.getVrAssignmentListForOfferingGroup(
       //     serviceID: entityid,
@@ -117,7 +118,7 @@ class PaymentModelRepository {
       PaymentPeriodInfo item, String entitytype, String entityid) async {
     PaymentModelRepositoryReturnData myreturn =
         PaymentModelRepositoryReturnData();
-    await _schoolRepo.lookup.addPaymentPeriodInfo(
+    await LookupGateway.addPaymentPeriodInfo(
       serviceID: entityid,
       paymentPeriodInfo: item,
     );
@@ -137,7 +138,7 @@ class PaymentModelRepository {
       String entityid) async {
     PaymentModelRepositoryReturnData myreturn =
         PaymentModelRepositoryReturnData();
-    await _schoolRepo.lookup.updatePaymentPeriodInfo(
+    await LookupGateway.updatePaymentPeriodInfo(
       serviceID: entityid,
       oldPaymentPeriodInfo: olditem,
       paymentPeriodInfo: newitem,
@@ -150,7 +151,7 @@ class PaymentModelRepository {
       PaymentPeriodInfo item, String entitytype, String entityid) async {
     PaymentModelRepositoryReturnData myreturn =
         PaymentModelRepositoryReturnData();
-    await _schoolRepo.lookup.deletePaymentPeriodInfo(
+    await LookupGateway.deletePaymentPeriodInfo(
       serviceID: entityid,
       paymentPeriodInfo: item,
     );
@@ -161,7 +162,7 @@ class PaymentModelRepository {
   Future<PaymentModelRepositoryReturnData> getInitialData(
       String entitytype, String entityid) async {
     List<PaymentPeriodInfo> list =
-        await _schoolRepo.lookup.getPaymentPeriodInfoList(serviceID: entityid);
+        await LookupGateway.getPaymentPeriodInfo(serviceID: entityid);
 
     PaymentModelRepositoryReturnData myreturn =
         PaymentModelRepositoryReturnData();

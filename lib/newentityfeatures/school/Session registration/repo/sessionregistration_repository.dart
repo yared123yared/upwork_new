@@ -7,6 +7,11 @@ import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
+import 'package:complex/newentityfeatures/gateway/fee_plans_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/user_session_registration_gateway.dart';
 
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
@@ -46,9 +51,9 @@ class SessionRegistrationRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -82,32 +87,32 @@ class SessionRegistrationRepository {
       bool update = false;
 
       List<VirtualRoomModelNewFormat> virtualRoomList =
-          await _schoolRepo.getVirtualRoomsList(serviceID: entityid);
+          await OfferingsVrManagementGateway
+              .getVirtualRoomModelNewFormatList( entityid,"");
 
       List<FeePlanModel> feePlanList =
-          await _schoolRepo.feePlans.getFeePlanList(serviceID: entityid);
+          await FeePlanGateway.getFeePlanList(serviceID: entityid);
 
-      List<PaymentPeriodInfo> paymentPeriods = await _schoolRepo.lookup
-          .getPaymentPeriodInfoList(serviceID: entityid);
+      List<PaymentPeriodInfo> paymentPeriods = await LookupGateway.getPaymentPeriodInfo(serviceID: entityid);
 
       List<OfferingWeeklySchedule> offeringScheduleList =
-          await _schoolRepo.getOfferingWeekly(serviceID: entityid);
+          await OfferingsVrManagementGateway.getOfferingWeeklyScheduleList(entityid,"");
 
       List<String> activeSessions =
-          await _schoolRepo.lookup.getSessionStringList(serviceID: entityid);
+          await SessionTermGateway.getSessionStringList(serviceID: entityid);
 
       Future<List<OfferingModelGroup>> Function(String) offeringModelGroup =
-          (String grade) async => await _schoolRepo.getListOfOfferingModelGroup(
+          (String grade) async => await OfferingsVrManagementGateway.getOfferingMdelList(
                 serviceID: entityid,
                 grade: grade,
               );
       // List all = await _schoolRepo.userSessionReg
       //     .getUserSessionReg(serviceID: entityid);
       UserSessionRegModel userSessionRegModel =
-          await _schoolRepo.userSessionReg.getUserSessionRegModel(
-        serviceID: entityid,
-        sessionterm: sessionTerm,
-        idcardnum: cardNum,
+          await UserSessionRegGateway.getUserSessionRegModel(
+         entityid,
+        sessionTerm,
+         cardNum,
       );
 
       if (userSessionRegModel != null) {
@@ -140,10 +145,10 @@ class SessionRegistrationRepository {
 
     try {
       UserSessionRegModel item =
-          await _schoolRepo.userSessionReg.getUserSessionRegModel(
-        serviceID: entityid,
-        sessionterm: sessionterm,
-        idcardnum: null,
+          await UserSessionRegGateway.getUserSessionRegModel(
+        entityid,
+        sessionterm,
+         null,
       );
       SessionRegistrationRepositoryReturnData gr =
           new SessionRegistrationRepositoryReturnData();
@@ -158,7 +163,7 @@ class SessionRegistrationRepository {
       UserSessionRegModel item, String entitytype, String entityid) async {
     SessionRegistrationRepositoryReturnData myreturn =
         SessionRegistrationRepositoryReturnData();
-    await _schoolRepo.userSessionReg.addUserSessionRegistration(
+    await UserSessionRegGateway.addUserSessionRegistration(
       userSession: item,
       serviceID: entityid,
     );
@@ -179,7 +184,7 @@ class SessionRegistrationRepository {
           String entityid) async {
     SessionRegistrationRepositoryReturnData myreturn =
         SessionRegistrationRepositoryReturnData();
-    await _schoolRepo.userSessionReg.updateUserSessionRegistration(
+    await UserSessionRegGateway.updateUserSessonRegistrationNumber(
       oldData: olditem,
       newData: newitem,
       serviceID: entityid,
@@ -194,8 +199,8 @@ class SessionRegistrationRepository {
     SessionRegistrationRepositoryReturnData myreturn =
         SessionRegistrationRepositoryReturnData();
     myreturn.itemlist =
-        await _schoolRepo.userSessionReg.closeUserSessionRegistration(
-      userSession: item,
+        await UserSessionRegGateway.closeUserSessonRegistrationNumber(
+          data: item,
       serviceID: entityid,
     );
     myreturn.errortype = -1;
@@ -206,7 +211,7 @@ class SessionRegistrationRepository {
       String entitytype, String entityid) async {
     SessionRegistrationRepositoryReturnData myreturn =
         SessionRegistrationRepositoryReturnData();
-    myreturn.itemlist = await _schoolRepo.userSessionReg.getUserSessionReg(
+    myreturn.itemlist = await UserSessionRegGateway.getUserSessionReg(
       serviceID: entityid,
     );
     myreturn.errortype = -1;

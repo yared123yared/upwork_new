@@ -245,27 +245,7 @@ class SchoolGateway {
     }
   }
 
-  static Future<int> getRegistrationNumber(String serviceid) async {
-    try {
-      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-        'GetRegistrationNumberRequest',
-      );
-      print("CloudFunction " + "end");
-      HttpsCallableResult resp = await callable.call(<String, dynamic>{
-        "entitytype": "SERVICEPROVIDERINFO",
-        "entityid": serviceid,
-        "prefix": "",
-        "startcount": 1
-      });
-      print("CloudFunction " + callable.toString());
-      print("CloudFunction " + resp.data.toString());
 
-      return resp.data['id'] as int;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
-  }
 
   static Future<dynamic> uploadFileStorage({
     final String uploadType,

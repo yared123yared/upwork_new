@@ -1,7 +1,9 @@
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/newentityfeatures/Models/offering_model.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../bloc/bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -22,7 +24,7 @@ class EvtModelRepositoryReturnData {
 }
 
 class EvtModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
   // UserSessionRegRepository _userRepository;
 
   Future<EventDataModel> loadData(LoadDataEvent event) async {
@@ -34,14 +36,14 @@ class EvtModelRepository {
     try {
       EventDataModel gr;
       gr = EventDataModel(
-          sessionTerms: await _schoolRepo.lookup
+          sessionTerms: await SessionTermGateway
               .getSessionStringList(serviceID: event.entityid),
           grades:
-              await _schoolRepo.lookup.getGradesList(serviceID: event.entityid),
+              await LookupGateway.getGradeList(serviceID: event.entityid),
           instructorData:
-              await _schoolRepo.instructor.setInstructorScheduleData(
+              await OfferingsVrManagementGateway.getInstructorScheduleData(
             serviceID: event.entityid,
-            staffID: userId,
+                staffid: userId,
             // staffID: _userRepository.getUser().userID,
           ),
           loadButtonState: ButtonState.loading,
@@ -51,31 +53,31 @@ class EvtModelRepository {
           event.sessionTerm == null &&
           event.kind == null) {
         gr = EventDataModel(
-            sessionTerms: await _schoolRepo.lookup
+            sessionTerms: await SessionTermGateway
                 .getSessionStringList(serviceID: event.entityid),
-            grades: await _schoolRepo.lookup
-                .getGradesList(serviceID: event.entityid),
+            grades: await LookupGateway
+                .getGradeList(serviceID: event.entityid),
             loadButtonState: ButtonState.idle,
             instructorData:
-                await _schoolRepo.instructor.setInstructorScheduleData(
+                await OfferingsVrManagementGateway.getInstructorScheduleData(
               serviceID: event.entityid,
-              staffID: userId,
+                  staffid: userId,
               // staffID: _userRepository.getUser().userID,
             ),
             submitButtonState: ButtonState.idle,
             evtdata: null);
       } else {
         gr = EventDataModel(
-          sessionTerms: await _schoolRepo.lookup
+          sessionTerms: await SessionTermGateway
               .getSessionStringList(serviceID: event.entityid),
           grades:
-              await _schoolRepo.lookup.getGradesList(serviceID: event.entityid),
+              await LookupGateway.getGradeList(serviceID: event.entityid),
           loadButtonState: ButtonState.idle,
           submitButtonState: ButtonState.idle,
           instructorData:
-              await _schoolRepo.instructor.setInstructorScheduleData(
+              await OfferingsVrManagementGateway.getInstructorScheduleData(
             serviceID: event.entityid,
-            staffID: userId,
+                staffid: userId,
             // staffID: _userRepository.getUser().userID,
           ),
           evtdata: event.isofferingindependent
@@ -128,13 +130,13 @@ class EvtModelRepository {
 
       EventDataModel gr = EventDataModel(
           grades:
-              await _schoolRepo.lookup.getGradesList(serviceID: event.entityid),
-          sessionTerms: await _schoolRepo.lookup
+              await LookupGateway.getGradeList(serviceID: event.entityid),
+          sessionTerms: await SessionTermGateway
               .getSessionStringList(serviceID: event.entityid),
           instructorData:
-              await _schoolRepo.instructor.setInstructorScheduleData(
+              await OfferingsVrManagementGateway.getInstructorScheduleData(
             serviceID: event.entityid,
-            staffID: null,
+                staffid: null,
             // staffID: _userRepository.getUser().userID,
           ),
           loadButtonState: ButtonState.idle,

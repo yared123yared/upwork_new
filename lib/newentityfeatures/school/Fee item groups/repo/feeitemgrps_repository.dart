@@ -4,13 +4,15 @@ import 'package:complex/newentityfeatures/Models/fee_item_groups_model.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/repo/i_lookup_provider.dart';
 import 'package:complex/newentityfeatures/f_lookups/common/repo/stringlookup/lookup_provider.dart';
 import 'package:complex/newentityfeatures/gateway/fee_item_groups_gateway.dart';
-import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
 import 'package:complex/newentityfeatures/commonrepo/helperrepository.dart';
+import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
+//import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
 
 class FeeItemGroupsModelRepositoryReturnData {
   List<FeeItemGroupsModel> itemlist;
@@ -26,7 +28,7 @@ class FeeItemGroupsModelRepositoryReturnData {
 }
 
 class FeeItemGroupsModelRepository {
-  NewSchoolRepository _schoolRepo = Get.find();
+
   ILookupProvider provider = LookupProvider();
   Future<FeeItemGroupsModelRepositoryReturnData> getAllFeeItemGroupsModels(
       String entitytype, String entityid) async {
@@ -47,9 +49,9 @@ class FeeItemGroupsModelRepository {
 
     try {
       List<String> gradelist =
-          await _schoolRepo.lookup.getGradesList(serviceID: entityid);
+          await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
+          await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
@@ -77,7 +79,7 @@ class FeeItemGroupsModelRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      List<String> grades = await _schoolRepo.lookup.getGradesList(
+      List<String> grades = await LookupGateway.getGradeList(
         serviceID: entityid,
       );
 
@@ -141,7 +143,7 @@ class FeeItemGroupsModelRepository {
     FeeItemGroupsModelRepositoryReturnData myreturn =
         FeeItemGroupsModelRepositoryReturnData();
     // await FeeItemGroupsGateway.updateFeeItemGPRS(
-    await _schoolRepo.addFeeItemGPRS(
+    await FeeItemGroupsGateway.addNewFeeItemGPRS(
       feeItemGPRS: item,
       serviceID: entityid,
     );
@@ -153,8 +155,7 @@ class FeeItemGroupsModelRepository {
       FeeItemGroupsModel item, String entitytype, String entityid) async {
     FeeItemGroupsModelRepositoryReturnData myreturn =
         FeeItemGroupsModelRepositoryReturnData();
-    await _schoolRepo
-        .updatesFeeItemGPRS(
+    await FeeItemGroupsGateway.updateFeeItemGPRS(
           feeItemGPRS: item,
           serviceID: entityid,
         )
