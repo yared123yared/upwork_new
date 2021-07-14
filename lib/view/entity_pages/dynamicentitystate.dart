@@ -129,6 +129,7 @@ enum DynamicEntityGridState {
   selfstaffservicerequest,
   selfleaverequest,
   leaverequestapproval,
+  leaverequestapprovalhistory,
   newBuilding,
   newUnits,
   newRegistry,
@@ -300,6 +301,8 @@ class UiEntityPageStateList {
     }
 
     setupP.add(DynamicEntityGridState.newStaff);
+    setupP.add(DynamicEntityGridState.leaverequestapproval);
+    setupP.add(DynamicEntityGridState.leaverequestapprovalhistory);
     return setupP;
   }
 
@@ -315,6 +318,8 @@ class UiEntityPageStateList {
     setupP.add(DynamicEntityGridState.newBuilding);
     setupP.add(DynamicEntityGridState.newUnits);
     setupP.add(DynamicEntityGridState.newStaff);
+    setupP.add(DynamicEntityGridState.leaverequestapproval);
+    setupP.add(DynamicEntityGridState.leaverequestapprovalhistory);
     if (_userRepository.getUser().defaultComplexModel.complexType ==
         "SINGLEOWNER")
       setupP.add(DynamicEntityGridState.managerregistrySingleOwner);
@@ -1093,7 +1098,7 @@ class UiSchoolHandler {
       case DynamicEntityGridState.selfleaverequest:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
-            title: 'newleaverequest',
+            title: 'Leave Request',
             tapAction: () {
               Navigator.push(
                   context,
@@ -1110,7 +1115,7 @@ class UiSchoolHandler {
       case DynamicEntityGridState.leaverequestapproval:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
-            title: 'newleaverequest',
+            title: 'Approve Leaves',
             tapAction: () {
               Navigator.push(
                   context,
@@ -1123,6 +1128,24 @@ class UiSchoolHandler {
                   ));
             });
         break;
+// origin =3 , for staff, history
+      case DynamicEntityGridState.leaverequestapprovalhistory:
+        _customGrid = CustomGridClass(
+            icon: Icons.import_contacts,
+            title: 'Active Leave Request',
+            tapAction: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (buildContext) => LeaveRequestListList(
+                      entitytype: getCurEntity().entitytype,
+                      entityid: getCurEntity().entityid,
+                      origintype: 3,
+                    ),
+                  ));
+            });
+        break;
+
 
       case DynamicEntityGridState.newVehicle:
         _customGrid = CustomGridClass(

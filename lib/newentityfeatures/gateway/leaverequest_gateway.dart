@@ -78,8 +78,12 @@ class LeaveRequestGateway {
   static Future<List<LeaveRequestModel>> getLeaveRequestWaitingForApprovalNext180Days(
       {@required String entitytype, String entityid}) async {
     try {
+      DateTime now = new DateTime.now();
+      DateTime date = new DateTime(now.year, now.month, now.day);
+      date =date.add(new Duration(days:180));
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/LEAVEREQUESTS")
+          .where("startdate",isLessThan: HelpUtil.toTimeStamp(dateTime: date))
 
           .where("leavestatus",
           isEqualTo: LeaveRequestStatus.WAITINGFORAPPROVAL.index)

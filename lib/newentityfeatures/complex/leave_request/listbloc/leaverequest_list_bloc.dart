@@ -12,7 +12,7 @@ class LeaveRequestListBloc
     if (event is getListData) {
       LeaveRequestRepositoryReturnData ud = new LeaveRequestRepositoryReturnData();
       yield IsBusy();
-      if(event.originType==1) {
+      if(event.originType==2) {
          ud =
         await mrepository.getLeaveRequestWaitingForApprovalNext180Days(
           event.entitytype,
@@ -20,7 +20,7 @@ class LeaveRequestListBloc
           event.originType,
         );
       }
-      else if(event.originType==2) {
+      else if(event.originType==1) {
         ud =
         await mrepository.getLeaveRequestParticularStaff(
           event.entitytype,
