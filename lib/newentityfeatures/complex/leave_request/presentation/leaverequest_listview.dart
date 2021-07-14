@@ -35,8 +35,7 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     mlistbloc = listbloc.LeaveRequestListBloc();
-    mlistbloc.add(listbloc.getPreData(
-        entitytype: widget.entitytype, entityid: widget.entityid));
+
     mlistbloc.add(listbloc.getListData(
       entitytype: widget.entitytype,
       entityid: widget.entityid,

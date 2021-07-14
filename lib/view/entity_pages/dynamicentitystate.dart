@@ -972,7 +972,7 @@ class UiSchoolHandler {
                     builder: (buildContext) => RegistryListList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      origintype: 1,
+                      origintype: 1,residentUnits:[]
                     ),
                   ));
             });
@@ -989,7 +989,7 @@ class UiSchoolHandler {
                     builder: (buildContext) => RegistryListList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      origintype: 2,
+                      origintype: 2,residentUnits: []
                     ),
                   ));
             });
@@ -1006,7 +1006,7 @@ class UiSchoolHandler {
                     builder: (buildContext) => RegistryListList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      origintype: 4,
+                      origintype: 4,residentUnits: [],
                     ),
                   ));
             });
@@ -1023,7 +1023,7 @@ class UiSchoolHandler {
                     builder: (buildContext) => RegistryListList(
                       entitytype: getCurEntity().entitytype,
                       entityid: getCurEntity().entityid,
-                      origintype: 3,
+                      origintype: 3,residentUnits: _userRepository.getUser().defaultComplexEntity.residentunits,
                     ),
                   ));
             });

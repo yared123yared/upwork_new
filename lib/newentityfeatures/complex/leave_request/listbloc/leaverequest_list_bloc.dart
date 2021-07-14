@@ -4,19 +4,38 @@ class LeaveRequestListBloc
     extends Bloc<LeaveRequestListEvent, LeaveRequestListState> {
   LeaveRequestRepository mrepository = LeaveRequestRepository();
   LeaveRequestListBloc() : super(LeaveRequestListState());
-
+//origintype 1 -waiting for approval, 2 - for particular staff, 3 - History for Manager
   @override
   Stream<LeaveRequestListState> mapEventToState(
     LeaveRequestListEvent event,
   ) async* {
     if (event is getListData) {
+      LeaveRequestRepositoryReturnData ud = new LeaveRequestRepositoryReturnData();
       yield IsBusy();
-      LeaveRequestRepositoryReturnData ud =
-          await mrepository.getAllLeaveRequests(
-        event.entitytype,
-        event.entityid,
-        event.originType,
-      );
+      if(event.originType==1) {
+         ud =
+        await mrepository.getLeaveRequestWaitingForApprovalNext180Days(
+          event.entitytype,
+          event.entityid,
+          event.originType,
+        );
+      }
+      else if(event.originType==2) {
+        ud =
+        await mrepository.getLeaveRequestParticularStaff(
+          event.entitytype,
+          event.entityid,
+          event.originType,
+        );
+      }
+      if(event.originType==3) {
+        ud =
+        await mrepository.getLeaveRequestActiveAllStaff(
+          event.entitytype,
+          event.entityid,
+          event.originType,
+        );
+      }
 
       if (ud.errortype == -1)
         yield IsListDataLoaded(listdata: ud.itemlist);

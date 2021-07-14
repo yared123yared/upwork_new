@@ -4,14 +4,15 @@ import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 
 import 'package:complex/newentityfeatures/Models/leaverequest_model.dart';
-import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 // import 'package:complex/newentityfeatures/Models/user_model.dart';
 import 'package:complex/data/models/response/user_response/user_model.dart';
 // import 'package:complex/newentityfeatures/complex/repository/repo/user_repository.dart';
 
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
+import 'package:complex/newentityfeatures/gateway/leaverequest_gateway.dart';
+//import 'package:get/get_core/src/get_main.dart';
+//import 'package:get/get.dart';
 
 class LeaveRequestRepositoryReturnData {
   List<LeaveRequestModel> itemlist;
@@ -27,11 +28,11 @@ class LeaveRequestRepositoryReturnData {
 }
 
 class LeaveRequestRepository {
-  NewComplexRepository _complexRepository = Get.find();
+
   UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
 
-  Future<LeaveRequestRepositoryReturnData> getAllLeaveRequests(
+  Future<LeaveRequestRepositoryReturnData> getLeaveRequestActiveAllStaff(
       String entitytype, String entityid, int originType) async {
     LeaveRequestRepositoryReturnData grerror =
         new LeaveRequestRepositoryReturnData();
@@ -42,28 +43,13 @@ class LeaveRequestRepository {
           LeaveRequestRepositoryReturnData();
 
       List<LeaveRequestModel> leaveRequests =
-          await _complexRepository.leaveRequest.getLeaveRequestForAll(
-        entitytype: entitytype,
-        entityid: entityid,
-        user: _user,
+          await LeaveRequestGateway.getLeaveRequestActiveAllStaff(
+            entitytype: entitytype,
+            entityid: entityid,
+        //user: _user,
       );
-      List<LeaveRequestModel> filteredLeaveRequests = [];
 
-      leaveRequests.forEach((leaveRequest) {
-        DateTime now = DateTime.now();
-        if ((leaveRequest.startDate.difference(now).inDays < 90) &&
-            (leaveRequest.endDate.difference(now).inDays < 90)) {
-          if (originType == 1) {
-            if (leaveRequest.staffID == _user.userID) {
-              filteredLeaveRequests.add(leaveRequest);
-            }
-          } else if (originType == 2) {
-            filteredLeaveRequests.add(leaveRequest);
-          }
-        }
-      });
-
-      myreturn.itemlist = filteredLeaveRequests;
+      myreturn.itemlist = leaveRequests;
       myreturn.errortype = -1;
       return myreturn;
     } catch (ex) {
@@ -73,6 +59,64 @@ class LeaveRequestRepository {
     }
     return grerror;
   }
+
+  Future<LeaveRequestRepositoryReturnData> getLeaveRequestWaitingForApprovalNext180Days(
+      String entitytype, String entityid, int originType) async {
+    LeaveRequestRepositoryReturnData grerror =
+    new LeaveRequestRepositoryReturnData();
+    grerror.errortype = -2;
+    grerror.error = "UNknown exception has occured";
+    try {
+      LeaveRequestRepositoryReturnData myreturn =
+      LeaveRequestRepositoryReturnData();
+
+      List<LeaveRequestModel> leaveRequests =
+      await LeaveRequestGateway.getLeaveRequestWaitingForApprovalNext180Days(
+        entitytype: entitytype,
+        entityid: entityid,
+        //user: _user,
+      );
+
+      myreturn.itemlist = leaveRequests;
+      myreturn.errortype = -1;
+      return myreturn;
+    } catch (ex) {
+      grerror.errortype = -2;
+      print(ex.toString());
+      grerror.error = "UNknown exception has occured";
+    }
+    return grerror;
+  }
+  Future<LeaveRequestRepositoryReturnData> getLeaveRequestParticularStaff(
+      String entitytype, String entityid, int originType) async {
+    LeaveRequestRepositoryReturnData grerror =
+    new LeaveRequestRepositoryReturnData();
+    grerror.errortype = -2;
+    grerror.error = "UNknown exception has occured";
+    try {
+      LeaveRequestRepositoryReturnData myreturn =
+      LeaveRequestRepositoryReturnData();
+
+      List<LeaveRequestModel> leaveRequests =
+      await LeaveRequestGateway.getLeaveRequestParticularStaff(
+        entitytype: entitytype,
+        entityid: entityid,
+        //user: _user,
+      );
+
+      myreturn.itemlist = leaveRequests;
+      myreturn.errortype = -1;
+      return myreturn;
+    } catch (ex) {
+      grerror.errortype = -2;
+      print(ex.toString());
+      grerror.error = "UNknown exception has occured";
+    }
+    return grerror;
+  }
+
+
+
 
   Future<GenericLookUpDataUsedForRegistration> getListFormPreLoadData(
       String entitytype, String entityid) async {
@@ -133,11 +177,11 @@ class LeaveRequestRepository {
     //   complex: _user.defaultComplexEntity,
     // );
 
-    await _complexRepository.leaveRequest.addNewLeaveRequest(
+    await LeaveRequestGateway.makeLeaveRequest(
       leaveRequest: item,
-      entitytype: entitytype,
-      entityid: entityid,
-      user: _user,
+      entityType: entitytype,
+      entityId: entityid,
+      byUserId: _user.userID,
     );
 
     // await _complexRepository.leaveRequest
@@ -156,9 +200,9 @@ class LeaveRequestRepository {
     //   complex: _user.defaultComplexEntity,
     // );
 
-    await _complexRepository.leaveRequest.updateStatus(
+    await LeaveRequestGateway.updateStatus(
       leaveRequest: item,
-      complexID: entityid,
+      entityID: entityid,entityType:entitytype
     );
 
     // await _complexRepository.leaveRequest

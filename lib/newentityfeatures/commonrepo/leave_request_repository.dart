@@ -27,18 +27,7 @@ class LeaveRequestRepository {
     }
   }
 
-  Future<List<LeaveRequestModel>> getLeaveRequestForStaff(
-      {@required String entitytype,
-      @required String entityid,
-      @required UserModel user}) async {
-    try {
-      return await LeaveRequestGateway.getLeaveRequestActiveParticularStaff(
-          entitytype: entitytype, entityid: entityid, staffid: user.userID);
-    } catch (e) {
-      print(e);
-      return e;
-    }
-  }
+
 
   Future<List<LeaveRequestModel>> getLeaveRequestForAll(
       {@required String entitytype,

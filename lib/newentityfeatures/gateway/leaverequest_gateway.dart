@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:complex/common/helputil.dart';
 import 'package:meta/meta.dart';
 
 import 'package:complex/newentityfeatures/Models/leaverequest_model.dart';
@@ -27,14 +28,16 @@ class LeaveRequestGateway {
     }
   }
 
-  static Future<List<LeaveRequestModel>> getLeaveRequestActiveParticularStaff(
+  static Future<List<LeaveRequestModel>> getLeaveRequestParticularStaff(
       {@required String entitytype, String entityid, String staffid}) async {
     try {
+      DateTime now = new DateTime.now();
+      DateTime date = new DateTime(now.year, now.month, now.day);
+      date =date.add(new Duration(days:180));
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/LEAVEREQUESTS")
           .where('staffid', isEqualTo: staffid)
-          .where("leavestatus",
-              isEqualTo: LeaveRequestStatus.WAITINGFORAPPROVAL.index)
+          .where("startdate",isLessThan: HelpUtil.toTimeStamp(dateTime: date))
           .get()
           .then((x) {
         return LeaveRequestModel.listFromJson(
@@ -46,6 +49,53 @@ class LeaveRequestGateway {
       throw e;
     }
   }
+
+  static Future<List<LeaveRequestModel>> getLeaveRequestActiveAllStaff(
+      {@required String entitytype, String entityid}) async {
+    try {
+      DateTime now = new DateTime.now();
+      DateTime date = new DateTime(now.year, now.month, now.day);
+      date =date.add(new Duration(days:180));
+
+      return await FirebaseFirestore.instance
+          .collection("$entitytype/$entityid/LEAVEREQUESTS")
+
+          .where("leavestatus",
+          isEqualTo: LeaveRequestStatus.APPROVED.index)
+          .where("startdate",isLessThan: HelpUtil.toTimeStamp(dateTime: date))
+          .get()
+          .then((x) {
+        return LeaveRequestModel.listFromJson(
+            x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  static Future<List<LeaveRequestModel>> getLeaveRequestWaitingForApprovalNext180Days(
+      {@required String entitytype, String entityid}) async {
+    try {
+      return await FirebaseFirestore.instance
+          .collection("$entitytype/$entityid/LEAVEREQUESTS")
+
+          .where("leavestatus",
+          isEqualTo: LeaveRequestStatus.WAITINGFORAPPROVAL.index)
+          .get()
+          .then((x) {
+        return LeaveRequestModel.listFromJson(
+            x.docs.map((d) => d.data).toList(),
+            x.docs.map((d) => d.id).toList());
+      });
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+
 
   static Future<List<LeaveRequestModel>> getLeaveRequestHistoryAllStaff(
       {@required String entityType, @required String entityID}) async {
