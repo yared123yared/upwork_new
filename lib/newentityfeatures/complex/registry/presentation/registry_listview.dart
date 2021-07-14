@@ -387,7 +387,6 @@ class _RegistryListListState extends State<RegistryListList> {
               itemBuilder: (context, index) {
                 return ExtentionWidgetTile(
                   em[index],
-                  em[index].ownerName,
                   entitytype: widget.entitytype,
                   entityid: widget.entityid,
                   givenreloadaction: doreload,
@@ -407,7 +406,6 @@ class _RegistryListListState extends State<RegistryListList> {
 
 class ExtentionWidgetTile extends StatefulWidget {
   RegistryModel registry;
-  String currentKey;
   bool isOwner;
   final String entityid;
   final String entitytype;
@@ -417,8 +415,7 @@ class ExtentionWidgetTile extends StatefulWidget {
   // ChannelsBloc channelsBloc;
 
   ExtentionWidgetTile(
-    this.registry,
-    this.currentKey, {
+    this.registry, {
     this.entityid,
     this.entitytype,
     this.givenreloadaction,
@@ -509,78 +506,97 @@ class _ExtentionWidgetTileState extends State<ExtentionWidgetTile> {
       color: Colors.grey.withOpacity(0.1),
       child: Column(
         children: [
-          for (int i = 0; i < 2; i++)
+          // for (int i = 0; i < 2; i++)
+          if (widget.registry.ownerName != null)
+            // owner
             Visibility(
-                visible: _isOpen,
-                child: CommonListTile(
-                  listState: ListStateClass(
-                    title: i == 0
-                        ? widget.registry.ownerName
-                        : widget.registry.residentName,
-                    subtitle: i == 0
-                        ? widget.registry.ownerPublishedContact
-                        : widget.registry.residentPublishedContact,
-                    tapAction: () {
-                      bool isOwner = (i == 0);
-                      if (isOwner) {
-                        // if (widget.origintype == 1)
-                        Navigator.push(
-                          // owner
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ResidentForm(
-                              entitytype: widget.entitytype,
-                              entityid: widget.entityid,
-                              givenreloadaction: widget.givenreloadaction,
-                              origintype: widget.origintype,
-                              btnState: ButtonState.idle,
-                              registry: widget.registry,
-                              isOwner: isOwner,
-                              role: "owner",
-                              unitlistForOwnerCase: [],
-                              oul: widget.oul,
-                              updateOwner: false,
-                            ),
-                          ),
-                        );
-                      } else {
-                        // if (widget.origintype == 2 || widget.origintype == 3)
-                        Navigator.push(
-                          // resident
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ResidentForm(
-                              entitytype: widget.entitytype,
-                              entityid: widget.entityid,
-                              givenreloadaction: widget.givenreloadaction,
-                              origintype: widget.origintype,
-                              btnState: ButtonState.idle,
-                              registry: widget.registry,
-                              isOwner: isOwner,
-                              role: "owner",
-                              unitlistForOwnerCase: [],
-                              oul: widget.oul,
-                              updateOwner: false,
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    deleteAction: () async {
-                      // bool docancel = await _asyncConfirmDialog(context);
-                      // if (docancel) {
-                      //   BlocProvider.of<listbloc.RegistryModelListBloc>(context)
-                      //       .add(
-                      //     listbloc.deleteItemWithData(
-                      //       entitytype: widget.entitytype,
-                      //       entityid: widget.entitytype,
-                      //       item: widget.registry,
-                      //     ),
-                      //   );
-                      // }
-                    },
-                  ),
-                )),
+              visible: _isOpen,
+              child: CommonListTile(
+                listState: ListStateClass(
+                  title: widget.registry.ownerName,
+                  subtitle: widget.registry.ownerPublishedContact,
+                  tapAction: () {
+                    // if (widget.origintype == 1)
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResidentForm(
+                          entitytype: widget.entitytype,
+                          entityid: widget.entityid,
+                          givenreloadaction: widget.givenreloadaction,
+                          origintype: widget.origintype,
+                          btnState: ButtonState.idle,
+                          registry: widget.registry,
+                          isOwner: true,
+                          role: "owner",
+                          unitlistForOwnerCase: [],
+                          oul: widget.oul,
+                          updateOwner: false,
+                        ),
+                      ),
+                    );
+                  },
+                  deleteAction: () async {
+                    // bool docancel = await _asyncConfirmDialog(context);
+                    // if (docancel) {
+                    //   BlocProvider.of<listbloc.RegistryModelListBloc>(context)
+                    //       .add(
+                    //     listbloc.deleteItemWithData(
+                    //       entitytype: widget.entitytype,
+                    //       entityid: widget.entitytype,
+                    //       item: widget.registry,
+                    //     ),
+                    //   );
+                    // }
+                  },
+                ),
+              ),
+            ),
+          if (widget.registry.residentName != null)
+            // resident
+            Visibility(
+              visible: _isOpen,
+              child: CommonListTile(
+                listState: ListStateClass(
+                  title: widget.registry.residentName,
+                  subtitle: widget.registry.residentPublishedContact,
+                  tapAction: () {
+                    // if (widget.origintype == 2 || widget.origintype == 3)
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResidentForm(
+                          entitytype: widget.entitytype,
+                          entityid: widget.entityid,
+                          givenreloadaction: widget.givenreloadaction,
+                          origintype: widget.origintype,
+                          btnState: ButtonState.idle,
+                          registry: widget.registry,
+                          isOwner: false,
+                          role: "owner",
+                          unitlistForOwnerCase: [],
+                          oul: widget.oul,
+                          updateOwner: false,
+                        ),
+                      ),
+                    );
+                  },
+                  deleteAction: () async {
+                    // bool docancel = await _asyncConfirmDialog(context);
+                    // if (docancel) {
+                    //   BlocProvider.of<listbloc.RegistryModelListBloc>(context)
+                    //       .add(
+                    //     listbloc.deleteItemWithData(
+                    //       entitytype: widget.entitytype,
+                    //       entityid: widget.entitytype,
+                    //       item: widget.registry,
+                    //     ),
+                    //   );
+                    // }
+                  },
+                ),
+              ),
+            ),
         ],
       ),
     );

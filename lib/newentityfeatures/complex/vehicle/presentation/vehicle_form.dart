@@ -62,6 +62,15 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
   CustomTextFieldController _startDateController = CustomTextFieldController();
   CustomTextFieldController _endDateController = CustomTextFieldController();
 
+  CustomTextFieldController _building = CustomTextFieldController();
+  CustomTextFieldController _floorNum = CustomTextFieldController();
+  CustomTextFieldController _justunitcontroller = CustomTextFieldController();
+  CustomTextFieldController _residentowner = CustomTextFieldController();
+  UnitOccupants selectedUnitOcupant;
+  List<int> floors;
+  List<UnitOccupants> unitlist;
+  List<String> ownerresident;
+
   StaffModelx staff;
 
   bool _isActive = true;
@@ -91,8 +100,10 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
     'PICKUP TRUCK',
   ];
 
+  // List<String> get types =>
+  //     isResident ? ['resident'] : ['resident', 'visitor', 'staff'];
   List<String> get types =>
-      isResident ? ['resident'] : ['resident', 'visitor', 'staff'];
+      widget.origintype != 1 ? ['resident'] : ['resident', 'visitor', 'staff'];
 
   bool get _isVisitor => _typeController.text == 'visitor';
   bool get _isStaff => _typeController.text == 'staff';
@@ -216,7 +227,7 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
             vehicleIndex = state.vehicleIndex;
             oul = state.oul ?? [];
             staffList = state.staff ?? [];
-            isResident = state.isResident;
+            // isResident = state.isResident;
 
             _initFiledValue();
           }
@@ -388,7 +399,7 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
                 title: 'For',
                 onSelected: (value, index) => setState(() {}),
               ),
-              if (_isStaff)
+              if (_isStaff && widget.origintype == 1 && !_isUpdate)
                 CustomDropDownList<StaffModelx>(
                   title: "Staff",
                   controller: _staffController,
@@ -397,14 +408,90 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
                   onSelected: (s, index) => staff = s,
                   validate: Validate.withOption(isRequired: true),
                 ),
-              if (!_isStaff)
+              if (!_isStaff && widget.origintype == 1 && !_isUpdate) ...[
                 CustomDropDownList<String>(
-                  title: "Unit Address",
-                  controller: _unitNumber,
-                  loadData: () async => _units,
+                  title: "Building Name",
+                  controller: _building,
+                  loadData: () async => oul.buildinglist,
                   displayName: (x) => x,
                   validate: Validate.withOption(isRequired: true),
+                  onSelected: (value, index) {
+                    setState(() {
+                      _building.text = value;
+                      floors = oul.floormap.containsKey(value)
+                          ? oul.floormap[value]
+                          : [];
+                    });
+                  },
                 ),
+                CustomDropDownList<int>(
+                  enabled: _building.text != null && _building.text.isNotEmpty,
+                  loadData: () async => floors,
+                  shouldReload: true,
+                  displayName: (x) => x.toString(),
+                  title: "Floor Number",
+                  controller: _floorNum,
+                  validate: Validate.withOption(isRequired: true),
+                  onSelected: (floor, index) {
+                    setState(() {
+                      _floorNum.text = floor.toString();
+                      String buildingfloor =
+                          _building.text + "@" + _floorNum.text;
+                      unitlist = oul.occupiedunits.containsKey(buildingfloor)
+                          ? oul.occupiedunits[buildingfloor]
+                          : [];
+                    });
+                  },
+                ),
+                CustomDropDownList<UnitOccupants>(
+                  title: "Unit Address",
+                  enabled: _building.text != null &&
+                      _building.text.isNotEmpty &&
+                      _floorNum != null &&
+                      _floorNum.text.isNotEmpty,
+                  controller: _justunitcontroller,
+                  //initialValue: widget?.serviceRequestModel?.unitId,
+                  loadData: () async => unitlist,
+                  displayName: (x) => x.unitaddress,
+                  validate: Validate.withOption(
+                    isRequired: true,
+                  ),
+                  onSelected: (value, index) {
+                    setState(() {
+                      selectedUnitOcupant = value;
+                      ownerresident = [];
+                      if (selectedUnitOcupant.hasowner)
+                        ownerresident.add("ForOwner");
+
+                      if (selectedUnitOcupant.hasresident)
+                        ownerresident.add("ForResident");
+                    });
+                  },
+                ),
+                CustomDropDownList<String>(
+                  title: "Owner/Resident",
+                  enabled: _building.text != null &&
+                      _building.text.isNotEmpty &&
+                      _floorNum.text != null &&
+                      _floorNum.text.isNotEmpty &&
+                      selectedUnitOcupant != null,
+                  controller: _residentowner,
+                  //initialValue: widget?.serviceRequestModel?.unitId,
+                  loadData: () async => ownerresident,
+                  displayName: (x) => x,
+                  validate: Validate.withOption(
+                    isRequired: true,
+                  ),
+                  onSelected: (value, index) {
+                    setState(() {
+                      if(value == "ForOwner")
+                        _unitNumber.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_o" ;
+                      if(value == "ForResident")
+                        _unitNumber.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_r" ;
+                    });
+                  },
+                ),
+              ],
               CustomTextField(
                 enabled: !_isUpdate,
                 title: "Owner's Name",
