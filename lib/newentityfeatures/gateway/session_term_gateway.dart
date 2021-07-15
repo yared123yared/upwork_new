@@ -18,18 +18,15 @@ class SessionTermGateway {
   static Future<List<String>> getSessionStringList({
     @required String serviceID,
   }) async {
-    try {
+
       return await getSessionTerms(serviceID: serviceID)
           .then((items) => items.map((e) => e.termName).toList());
-    } catch (e) {
-      print(e);
-      return e;
-    }
+
   }
 
   static Future<List<SessionTerm>> getSessionTerms(
       {@required String serviceID}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
           .get()
@@ -40,9 +37,7 @@ class SessionTermGateway {
           return [];
         }
       });
-    } on Exception {
-      return [];
-    }
+
   }
 
   static Future<List<ParentInteractionSingleValueListModel>>
@@ -52,7 +47,7 @@ class SessionTermGateway {
     @required String sessionterm,
     @required String idcardnum,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'StudentDataForParentsRequest',
       );
@@ -80,10 +75,7 @@ class SessionTermGateway {
       print("CloudFunction " + resp.data.toString());
       print(resp.data);
       return <ParentInteractionSingleValueListModel>[];
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<ParentInteractionSingleValueListModel>>
@@ -93,7 +85,7 @@ class SessionTermGateway {
     @required String sessionterm,
     @required String idcardnum,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'StudentDataForParentsRequest',
       );
@@ -111,39 +103,33 @@ class SessionTermGateway {
       print("CloudFunction " + resp.data.toString());
       print(resp.data);
       return <ParentInteractionSingleValueListModel>[];
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<void> addSessionTerm(
       {@required String serviceID, @required SessionTerm sessionTerm}) async {
     print("calling add session gateway");
     print(serviceID.toString());
-    try {
+
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
           .update({
         'sessionterm': FieldValue.arrayUnion([sessionTerm.toJson()])
       });
-    } on Exception {}
+
   }
 
   static Future<void> deleteSessionTerm({
     @required String serviceID,
     @required SessionTerm sessionTerm,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/LOOKUPS/FIRST")
           .update({
         'sessionterm': FieldValue.arrayRemove([sessionTerm.toJson()])
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<Map<String, List<VirtualRoomModel>>> getVirtualRoomListPerSessionTerm(
@@ -160,7 +146,7 @@ class SessionTermGateway {
     String serviceID,
     String sessionID,
   ) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection(
               "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionID/VIRTUALROOMS")
@@ -171,9 +157,7 @@ class SessionTermGateway {
           x.docs.map((e) => e.id).toList(),
         );
       });
-    } on Exception {
-      return [];
-    }
+
   }
 
   // virtualRoom
@@ -182,7 +166,7 @@ class SessionTermGateway {
     @required String sessionID,
     @required VirtualRoomModel virtualRoomModel,
   }) async {
-    try {
+
       print(serviceID.toString());
       await FirebaseFirestore.instance
           .collection(
@@ -190,10 +174,7 @@ class SessionTermGateway {
           )
           .doc(virtualRoomModel.virtualRoomName)
           .set(virtualRoomModel.toJson());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   // offering Schedule
@@ -202,23 +183,20 @@ class SessionTermGateway {
     @required String sessionID,
     @required OfferingsScheduleModel offeringsScheduleModel,
   }) async {
-    try {
+
       await FirebaseFirestore.instance
           .collection(
             "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionID/OFFERINGSCHEDULE",
           )
           .doc()
           .set(offeringsScheduleModel.toJson());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future getVirtualRoomActionRequest(
       {@required VirtualRoomModel virtualRoomsModel,
       @required List<SchoolOwner> secondaryOwnerList}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'VirtualRoomActionRequest',
       );
@@ -260,10 +238,7 @@ class SessionTermGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future updateVirtualRoom(
@@ -274,7 +249,7 @@ class SessionTermGateway {
       @required List<SchoolOwner> newData1,
       @required VirtualRoomModel newData,
       @required VirtualRoomModel oldData}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserSessionRegistrationActionRequest',
       );
@@ -291,15 +266,12 @@ class SessionTermGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> toData(List<SchoolOwner> secondaryOwnerList,
       VirtualRoomModel virtualRoomsModel) {
-    try {
+
       return {
         "version": virtualRoomsModel.version,
         "virtualroomname": virtualRoomsModel.virtualRoomName,
@@ -325,10 +297,7 @@ class SessionTermGateway {
         "serversidetimestamp": virtualRoomsModel.sessionTermName,
         "associatedchatroomid": virtualRoomsModel.sessionTermName
       };
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> toUpdateData(
@@ -379,7 +348,7 @@ class SessionTermGateway {
 
   static Future<OfferingsScheduleModel> getofferingfromofferingschedule(
       String serviceID, String sessionID, String offeringkeyid) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc(
               "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionID/OFFERINGSCHEDULE/$offeringkeyid")
@@ -387,15 +356,12 @@ class SessionTermGateway {
           .then((x) {
         return OfferingsScheduleModel.fromJsonForSubject(x.data());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<OfferingsScheduleModel> getattendencetypefromvirtualroom(
       String serviceID, String sessionID, String virtualroomname) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc(
               "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionID/OFFERINGSCHEDULE/$virtualroomname")
@@ -403,15 +369,12 @@ class SessionTermGateway {
           .then((x) {
         return OfferingsScheduleModel.fromJsonForSubject(x.data());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<String>> getjustOfferingDocList(
       String serviceID, String grade) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/OFFERINGS")
           .where('grade', isEqualTo: grade)
@@ -420,16 +383,14 @@ class SessionTermGateway {
         print(x.docs);
         return x.docs.map((d) => d.id).toList();
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
+
   }
 
   static Future<List<RegisteredIdModel>>
       getRegisterdIdListForOfferingScheduleOptional(
           String serviceID, String sessionID, String offeringid) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc(
               "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionID/OFFERINGSCHEDULE/$offeringid")
@@ -437,14 +398,11 @@ class SessionTermGateway {
           .then((x) {
         return getRegisterIdList(x.data());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static List<RegisteredIdModel> getRegisterIdList(Map<String, dynamic> json) {
-    try {
+
       List<RegisteredIdModel> mylist = List<RegisteredIdModel>();
       if (json['listofregisteredid'] != null) {
         json['listofregisteredid'].forEach((v) {
@@ -452,15 +410,12 @@ class SessionTermGateway {
         });
       }
       return mylist;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<OfferingsScheduleModel>> getOfferingDocList(
       String serviceID, String sessionID) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection(
               "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionID/OFFERINGSCHEDULE")
@@ -472,16 +427,13 @@ class SessionTermGateway {
           x.docs.map((d) => d.id).toList(),
         );
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future createOfferingSchedule(
       {@required OfferingsScheduleModel offeringsScheduleModel,
       @required String serviceID}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'OfferingScheduleActionRequest',
       );
@@ -499,17 +451,14 @@ class SessionTermGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future updateOfferingSchedule(
       {@required OfferingsScheduleModel offeringsScheduleModel,
       OfferingsScheduleModel oldData,
       OfferingsScheduleModel newData}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'OfferingScheduleActionRequest',
       );
@@ -527,10 +476,7 @@ class SessionTermGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> toDataOfr(
@@ -579,7 +525,7 @@ class SessionTermGateway {
     String sessionID,
     UserModel userModel,
   }) async {
-    try {
+
       Map<String, List<VirtualRoomModel>> _vrRoomsMap = {};
       return await FirebaseFirestore.instance
           .collection(
@@ -598,10 +544,7 @@ class SessionTermGateway {
         );
         return _vrRoomsMap;
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
 // static Future<List<VirtualRoomModel>> getVirtualRoomListbySecondaryOwnerID(

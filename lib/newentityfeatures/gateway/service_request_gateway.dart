@@ -20,7 +20,7 @@ class ServiceRequestGateway {
         FirebaseFunctions.instance.httpsCallable(
       'NewServiceRequestCreateRequestModified',
     );
-    try {
+
       final HttpsCallableResult result =
           await newServiceRequestCreateRequest.call(<String, dynamic>{
         'servicerequestdata': toData(
@@ -33,15 +33,7 @@ class ServiceRequestGateway {
       });
       print("CloudFunction " + result.toString());
       print(result.data);
-    } on FirebaseFunctionsException catch (e) {
-      print('caught firebase functions exception');
-      print(e.code);
-      print(e.message);
-      print(e.details);
-    } catch (e) {
-      print('caught generic exception');
-      print(e);
-    }
+
   }
 
   static Future<void> updateServiceRequest(
@@ -231,7 +223,7 @@ class ServiceRequestGateway {
     var func = FirebaseFunctions.instance
         .httpsCallable('SubmitAdHocVisitorRequestResponse');
 
-    try {
+
       await func.call({
         'entitytype': "COMPLEXES",
         'entityid': entityId,
@@ -248,9 +240,7 @@ class ServiceRequestGateway {
           Get.showSnackbar(GetBar(message: value.data['error']));
         }
       });
-    } catch (e) {
-      Get.showSnackbar(GetBar(message: e.toString()));
-    }
+
   }
 
   static Future<List<ServiceRequestModel>> getQRCodeDetails({
@@ -258,7 +248,7 @@ class ServiceRequestGateway {
     String entityid,
     @required String qrCodeID,
   }) async {
-    try {
+
       String mycol ="${entitytype}/${entityid}/SERVICEREQUESTS";
       return await FirebaseFirestore.instance
           .collection(mycol)
@@ -269,10 +259,7 @@ class ServiceRequestGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
 //todo : Need to replace it with cloud function
@@ -281,23 +268,20 @@ class ServiceRequestGateway {
     String entityid,
     @required ServiceRequestModel serviceRequest,
   }) async {
-    try {
+
       String mycol ="${entitytype}/${entityid}/SERVICEREQUESTS";
       return await FirebaseFirestore.instance
           .collection(mycol)
           .doc(serviceRequest.requestID)
           .delete();
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<ServiceRequestModel>> getServiceRequestFromQrCode(
       {@required String code,
       @required String entitytype,
       String entityid}) async {
-    try {
+
       String mycol ="${entitytype}/${entityid}/SERVICEREQUESTS";
       return await FirebaseFirestore.instance
           .collection(mycol)
@@ -309,9 +293,6 @@ class ServiceRequestGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 }

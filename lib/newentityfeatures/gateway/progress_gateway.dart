@@ -11,7 +11,7 @@ class ProgressGateway {
   static Future submitProgressOfrSch(
       {@required OfferingsScheduleModel offeringsScheduleModel,
       @required ProgressModel progressModel}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'SubmitProgressRequest',
       );
@@ -31,10 +31,7 @@ class ProgressGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<ProgressModel> getProgress({
@@ -43,7 +40,7 @@ class ProgressGateway {
     @required String serviceID,
     @required String kind,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc(
               "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VIRTUALROOMS/${virtualRoom.virtualRoomName}/PROGRESS/$kind")
@@ -62,10 +59,7 @@ class ProgressGateway {
         }
         return _progress;
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<ProgressModel> getProgressVR({
@@ -75,7 +69,7 @@ class ProgressGateway {
     @required DateTime dateTime,
     @required String kind,
   }) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -117,10 +111,7 @@ class ProgressGateway {
           totalScore: totalscore,
           kind: kind);
       return promod;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<ProgressModel> getProgressOFR({
@@ -130,7 +121,7 @@ class ProgressGateway {
     @required DateTime dateTime,
     @required String kind,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'GenericQueryActionRequest',
       );
@@ -172,10 +163,7 @@ class ProgressGateway {
         kind: kind,
       );
       return promod;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future submitProgressVirtualRoom({
@@ -184,7 +172,7 @@ class ProgressGateway {
     @required String sessionTermName,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'SubmitProgressRequest',
       );
@@ -206,10 +194,7 @@ class ProgressGateway {
       dynamic resp = await callable.call(data);
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future submitProgressOfr(
@@ -217,7 +202,7 @@ class ProgressGateway {
       @required String offeringname,
       @required String sessionTermName,
       @required String serviceID}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'SubmitProgressRequest',
       );
@@ -239,9 +224,6 @@ class ProgressGateway {
       dynamic resp = await callable.call(data);
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 }

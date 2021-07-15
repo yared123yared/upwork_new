@@ -12,7 +12,7 @@ class LeaveRequestGateway {
       {@required String entityType,
       @required String entityID,
       @required String staffID}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("$entityType/$entityID/LEAVEREQUESTS")
           .where('staffid', isEqualTo: staffID)
@@ -22,15 +22,12 @@ class LeaveRequestGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<LeaveRequestModel>> getLeaveRequestParticularStaff(
       {@required String entitytype, String entityid, String staffid}) async {
-    try {
+
       DateTime now = new DateTime.now();
       DateTime date = new DateTime(now.year, now.month, now.day);
       date =date.add(new Duration(days:180));
@@ -44,15 +41,12 @@ class LeaveRequestGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<LeaveRequestModel>> getLeaveRequestActiveAllStaff(
       {@required String entitytype, String entityid}) async {
-    try {
+
       DateTime now = new DateTime.now();
       DateTime date = new DateTime(now.year, now.month, now.day);
       date =date.add(new Duration(days:180));
@@ -68,15 +62,12 @@ class LeaveRequestGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<LeaveRequestModel>> getLeaveRequestWaitingForApprovalNext180Days(
       {@required String entitytype, String entityid}) async {
-    try {
+
       DateTime now = new DateTime.now();
       DateTime date = new DateTime(now.year, now.month, now.day);
       date =date.add(new Duration(days:180));
@@ -92,17 +83,14 @@ class LeaveRequestGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
 
 
   static Future<List<LeaveRequestModel>> getLeaveRequestHistoryAllStaff(
       {@required String entityType, @required String entityID}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("$entityType/$entityID/LEAVEREQUESTS")
           .get()
@@ -112,17 +100,14 @@ class LeaveRequestGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future updateStatus(
       {@required String entityID,
       @required String entityType,
       @required LeaveRequestModel leaveRequest}) async {
-    try {
+
       if (leaveRequest.id != null) {
         print('id is not null ${leaveRequest.id}');
         await FirebaseFirestore.instance
@@ -132,15 +117,12 @@ class LeaveRequestGateway {
       } else {
         print('id is null');
       }
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<LeaveRequestModel>> getLeaveRequestAllStaff(
       {@required String entitytype, String entityid, String staffid}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/LEAVEREQUESTS")
           .where("leavestatus",
@@ -156,10 +138,7 @@ class LeaveRequestGateway {
             x.docs.map((d) => d.data()).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
 //byuserid - u can get from current user model
@@ -169,7 +148,7 @@ class LeaveRequestGateway {
       @required String byUserId,
       @required String entityType,
       @required String entityId}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'LeaveManagementRequest',
       );
@@ -182,15 +161,12 @@ class LeaveRequestGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<LeaveRequestModel>> getLeaveRequestByStaffID(
       {@required String entitytype, String entityid, String staffid}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/LEAVEREQUESTS")
           .where('staffid', isEqualTo: staffid)
@@ -200,9 +176,6 @@ class LeaveRequestGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 }

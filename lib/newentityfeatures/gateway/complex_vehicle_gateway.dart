@@ -13,7 +13,7 @@ class ComplexVehicleGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/COMPLEXVEHICLEREG")
           .get()
@@ -22,10 +22,7 @@ class ComplexVehicleGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
 
@@ -37,7 +34,7 @@ class ComplexVehicleGateway {
     String entityid,
     @required List<String> myUnits,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/COMPLEXVEHICLEREG")
           .where('unitaddress', whereIn: myUnits)
@@ -47,10 +44,7 @@ class ComplexVehicleGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<ComplexVehicleModel>> getVehicleListByStaff({
@@ -58,7 +52,7 @@ class ComplexVehicleGateway {
     String entityid,
     @required String staffid,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/COMPLEXVEHICLEREG")
           .where('forstaffid', isEqualTo: staffid)
@@ -68,10 +62,7 @@ class ComplexVehicleGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
 
@@ -98,7 +89,7 @@ class ComplexVehicleGateway {
       @required UserModel user,
       @required String entitytype,
       String entityid}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'NewComplexVehicleCreateRequestModified',
       );
@@ -125,10 +116,7 @@ class ComplexVehicleGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<void> updateVehicle(
@@ -137,7 +125,7 @@ class ComplexVehicleGateway {
       @required ComplexVehicleModel oldVehicle,
       @required ComplexVehicleModel newVehicle,
       @required UserModel user}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance
           .httpsCallable('ComplexVehicleUpdateRequestModified');
 
@@ -156,10 +144,7 @@ class ComplexVehicleGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<void> deleteVehicle(
@@ -167,7 +152,7 @@ class ComplexVehicleGateway {
       String entityid,
       @required String numplate,
       @required UserModel user}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance
           .httpsCallable('ComplexVehicleUpdateRequestModified');
 
@@ -179,10 +164,7 @@ class ComplexVehicleGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> toData(
@@ -210,14 +192,11 @@ class ComplexVehicleGateway {
   static Map<String, dynamic> toUpdateData(
       {@required ComplexVehicleModel newVehicle,
       @required ComplexVehicleModel oldVehicle}) {
-    try {
+
       return {
         if (oldVehicle.endDate != newVehicle.startDate)
           'enddate': HelpUtil.toTimeStamp(dateTime: newVehicle.endDate),
       };
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 }

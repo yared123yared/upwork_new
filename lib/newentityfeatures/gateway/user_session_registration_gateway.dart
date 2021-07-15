@@ -12,7 +12,7 @@ class UserSessionRegGateway {
     String sessionterm,
     String idcardnum,
   ) async {
-    try {
+
       String idkey = idcardnum + "@" + sessionterm;
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/USERSESSIONREGISTRATION/$idkey")
@@ -21,16 +21,13 @@ class UserSessionRegGateway {
         if (!x.exists) return null;
         return UserSessionRegModel.fromJson(x.data(), x.id);
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<UserSessionRegModel>> getUserSessionReg({
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERSESSIONREGISTRATION/")
           .get()
@@ -39,17 +36,14 @@ class UserSessionRegGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future addUserSessionRegistration({
     @required UserSessionRegModel userSession,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserSessionRegistrationActionRequest',
       );
@@ -65,17 +59,14 @@ class UserSessionRegGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future closeUserSessonRegistrationNumber({
     @required UserSessionRegModel data,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserSessionRegistrationActionRequest',
       );
@@ -92,17 +83,15 @@ class UserSessionRegGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
+
   }
 
   static Future updateUserSessonRegistrationNumber(
       {@required UserSessionRegModel oldData,
       @required UserSessionRegModel newData,
       @required String serviceID}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserSessionRegistrationActionRequest',
       );
@@ -120,9 +109,6 @@ class UserSessionRegGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 }

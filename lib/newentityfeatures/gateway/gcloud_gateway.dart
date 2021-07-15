@@ -18,7 +18,7 @@ class SchoolGateway {
         FirebaseFunctions.instance.httpsCallable(
       'NewEntityCreateRequest',
     );
-    try {
+
       final HttpsCallableResult result =
           await newEntityCreateRequest.call(<String, dynamic>{
         'entitydata': {
@@ -45,15 +45,7 @@ class SchoolGateway {
         'entitytype': "COMPLEXES",
       });
       print(result.data);
-    } on FirebaseFunctionsException catch (e) {
-      print('caught firebase functions exception');
-      print(e.code);
-      print(e.message);
-      print(e.details);
-    } catch (e) {
-      print('caught generic exception');
-      print(e);
-    }
+
   }
 
 //  static Future submitAttendenceVirtualRoom(
@@ -87,7 +79,7 @@ class SchoolGateway {
   static Future getUserSessonRegistrationNumber(
       {@required UserSessionRegModel userSessionRegModel,
       @required FeePlanModel feePlanModel}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserSessionRegistrationActionRequest',
       );
@@ -128,17 +120,13 @@ class SchoolGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future userRegFeePayProcessing(
       {@required UserRegFeeCollectionModel userRegFeeCollectionModel}) async {
-    try {
-      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-        'UserRegistrationFeePaymentProcessingActionRequest',
+
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('UserRegistrationFeePaymentProcessingActionRequest',
       );
       print("CloudFunction " + "end");
       dynamic resp = await callable.call(<String, dynamic>{
@@ -179,10 +167,7 @@ class SchoolGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   // static Future submitAttendenceOfferingSch(
@@ -226,7 +211,7 @@ class SchoolGateway {
 
   static Future getRollNumber(
       VirtualRoomModel virtualRoomModel, String serviceid) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'GetRollNumberRequest',
       );
@@ -239,10 +224,7 @@ class SchoolGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
 
@@ -253,7 +235,7 @@ class SchoolGateway {
     final String fileName,
     String entityid,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'geturlforstorage',
       );
@@ -268,9 +250,6 @@ class SchoolGateway {
       print("CloudFunction " + callable.toString());
       //print("CloudFunction " + resp.data.toString());
       return resp;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 }

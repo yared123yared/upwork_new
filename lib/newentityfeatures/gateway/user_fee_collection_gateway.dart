@@ -11,7 +11,7 @@ class UserFeeCollectionGateWay {
     String idcardnum,
     String periodname,
   ) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERFEEPAYMENT")
           .where('idcardnum', isEqualTo: idcardnum)
@@ -27,16 +27,13 @@ class UserFeeCollectionGateWay {
         }
         return mdata;
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<UserRegFeeCollectionModel>> getUserFeeCollectionList({
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERFEEPAYMENT")
           .get()
@@ -45,17 +42,14 @@ class UserFeeCollectionGateWay {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<PaymentDetails>> getPaymentDetailsList({
     @required String serviceID,
     @required UserRegFeeCollectionModel userRegFeeCollectionModel,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection(
               "SERVICEPROVIDERINFO/$serviceID/USERFEEPAYMENT/${userRegFeeCollectionModel.docID}/PINFO")
@@ -64,17 +58,14 @@ class UserFeeCollectionGateWay {
         return PaymentDetails.listFromJson(x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future userRegFeePayProcessingAddMaster({
     @required UserRegFeeCollectionModel userRegFeeCollectionModel,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserRegistrationFeePaymentProcessingActionRequest',
       );
@@ -94,10 +85,7 @@ class UserFeeCollectionGateWay {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future userRegFeePayProcessingMasterUpdate({
@@ -105,7 +93,7 @@ class UserFeeCollectionGateWay {
     @required UserRegFeeCollectionModel oldData,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserRegistrationFeePaymentProcessingActionRequest',
       );
@@ -125,17 +113,14 @@ class UserFeeCollectionGateWay {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future userRegFeePayProcessingMasterDelete({
     @required String prid,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserRegistrationFeePaymentProcessingActionRequest',
       );
@@ -155,10 +140,7 @@ class UserFeeCollectionGateWay {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future userRegFeePayProcessingChildAdd({
@@ -168,7 +150,7 @@ class UserFeeCollectionGateWay {
     @required String idCardNum,
     @required String sessionTerm,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserRegistrationFeePaymentProcessingActionRequest',
       );
@@ -188,10 +170,7 @@ class UserFeeCollectionGateWay {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future userRegFeePayProcessingChildUpdate({
@@ -201,7 +180,7 @@ class UserFeeCollectionGateWay {
     @required PaymentDetails newchData,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserRegistrationFeePaymentProcessingActionRequest',
       );
@@ -221,10 +200,7 @@ class UserFeeCollectionGateWay {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   //not implemented , need to think more , even if we should have it
@@ -233,7 +209,7 @@ class UserFeeCollectionGateWay {
     @required String chid,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'UserRegistrationFeePaymentProcessingActionRequest',
       );
@@ -253,10 +229,7 @@ class UserFeeCollectionGateWay {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> payrecordtoUpdateData(

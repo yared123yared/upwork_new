@@ -10,7 +10,7 @@ class EventGateway {
     @required List<HomeWork> homeWorkList,
     @required RegisteredIdModel listOfRegisteredId,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'SubmitEventRequest',
       );
@@ -26,10 +26,7 @@ class EventGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future updateEventOfferings(
@@ -40,7 +37,7 @@ class EventGateway {
       HomeWork oldData,
       RegisteredIdModel newData1,
       RegisteredIdModel oldData1}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'SubmitEventRequest',
       );
@@ -57,25 +54,19 @@ class EventGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> infoForAdd(
       List<HomeWork> homeWorkList, RegisteredIdModel listOfRegisteredId) {
-    try {
+
       return {
         "evtype": "hw",
         "newval": homeWorkList.map((homework) => homework.toData()).toList(),
         "oldval": "None",
         "vr": listOfRegisteredId.vr
       };
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> infoForUpdate(
@@ -85,22 +76,19 @@ class EventGateway {
       RegisteredIdModel oldData1,
       List<HomeWork> homeWorkList,
       RegisteredIdModel listOfRegisteredId) {
-    try {
+
       return {
         "evtype": "hw",
         "newval": toUpdateData(newData, oldData, newData1, oldData1),
         "oldval": homeWorkList.map((homework) => homework.toData()).toList(),
         "vr": listOfRegisteredId.vr
       };
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> toUpdateData(HomeWork newData, HomeWork oldData,
       RegisteredIdModel newData1, RegisteredIdModel oldData1) {
-    try {
+
       if (oldData.info != newData.info) {
         print("correct: ${oldData.info} and new ${newData.info} ");
       } else {
@@ -110,17 +98,14 @@ class EventGateway {
         if (oldData.info != newData.info) 'info': newData.info,
         if (oldData.ofr != newData.ofr) 'ofr': newData.ofr,
       };
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future submitEventVirtualRoom(
       {@required EventModel eventModel,
       @required List<HomeWork> homeWorkList,
       @required RegisteredIdModel listOfRegisteredId}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'SubmitEventRequest',
       );
@@ -136,10 +121,7 @@ class EventGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future updateEventVirtualRoom(
@@ -150,7 +132,7 @@ class EventGateway {
       HomeWork oldData,
       RegisteredIdModel newData1,
       RegisteredIdModel oldData1}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'SubmitEventRequest',
       );
@@ -167,42 +149,33 @@ class EventGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> infoForAddV(List<HomeWork> homeWorkList) {
-    try {
+
       return {
         "evtype": "hw",
         "newval": homeWorkList.map((homework) => homework.toData()).toList(),
         "oldval": "None",
       };
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> infoForUpdateV(HomeWork newData, HomeWork oldData,
       List<HomeWork> homeWorkList, RegisteredIdModel listOfRegisteredId) {
-    try {
+
       return {
         "evtype": "hw",
         "newval": toUpdateDataV(newData, oldData),
         "oldval": homeWorkList.map((homework) => homework.toData()).toList(),
       };
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> toUpdateDataV(
       HomeWork newData, HomeWork oldData) {
-    try {
+
       if (oldData.info != newData.info) {
         print("correct: ${oldData.info} and new ${newData.info} ");
       } else {
@@ -212,9 +185,6 @@ class EventGateway {
         if (oldData.info != newData.info) 'info': newData.info,
         if (oldData.ofr != newData.ofr) 'ofr': newData.ofr,
       };
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 }

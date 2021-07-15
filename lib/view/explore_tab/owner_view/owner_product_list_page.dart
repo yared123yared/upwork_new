@@ -8,7 +8,10 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class OwnerProductListPage extends StatelessWidget {
   final EcomProductType type;
-  const OwnerProductListPage({Key key, @required this.type}) : super(key: key);
+  final String entitytype;
+  final String entityid;
+  final isService;
+  const OwnerProductListPage({Key key, @required this.type,@required String this.entitytype, @required String this.entityid,@required this.isService}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

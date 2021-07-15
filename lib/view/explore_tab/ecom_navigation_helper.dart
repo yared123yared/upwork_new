@@ -25,11 +25,11 @@ class EcomNavigationHelper {
       EcomNavigationHelper._(context);
 
   void toListPage({
-    @required EcomProductType type,
+    @required EcomProductType type,@required String entitytype, @required String entityid,@required isService
   }) async {
     Logger().i(type.toString());
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => OwnerProductListPage(type: type)));
+        builder: (context) => OwnerProductListPage(type: type,entitytype: entitytype,entityid:entityid,isService:isService )));
 
     await Future.delayed(Duration(milliseconds: 100));
 

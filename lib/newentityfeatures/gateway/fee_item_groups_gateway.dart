@@ -10,7 +10,7 @@ class FeeItemGroupsGateway {
   static Future<List<FeeItemGroupsModel>> getFeeItemGroupsList({
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/FEEITEMGRPS")
           .get()
@@ -19,9 +19,7 @@ class FeeItemGroupsGateway {
           x.docs.map((d) => d.data).toList(),
         );
       });
-    } on Exception {
-      return [];
-    }
+
   }
 
   // ignore: missing_return
@@ -29,7 +27,7 @@ class FeeItemGroupsGateway {
     @required String docId,
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc(
             "SERVICEPROVIDERINFO/$serviceID/FEEITEMGPRS/$docId",
@@ -39,9 +37,7 @@ class FeeItemGroupsGateway {
         print(x.data);
         return FeeItemGroupsModel.fromJson(x.data());
       });
-    } catch (e) {
-      print("feeItem error");
-    }
+
   }
 
   static Future<void> removeFeeItemGPRS({
@@ -49,41 +45,37 @@ class FeeItemGroupsGateway {
     @required String docId,
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/FEEITEMGPRS/$docId")
           .update({
         "data": FieldValue.arrayRemove([feeItemGPRS.toJson()])
       });
-    } on Exception {}
+
   }
 
   static Future addNewFeeItemGPRS({
     @required FeeItemGroupsModel feeItemGPRS,
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/FEEITEMGRPS")
           .doc(feeItemGPRS.scheduleName)
           .set(feeItemGPRS.toJson());
-    } catch (e) {
-      print(e);
-    }
+
   }
 
   static Future updateFeeItemGPRS({
     @required FeeItemGroupsModel feeItemGPRS,
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection(
               "SERVICEPROVIDERINFO/${serviceID}/FEEITEMGPRS")
           .doc(feeItemGPRS.scheduleName)
           .update(feeItemGPRS.toJson());
-    } catch (e) {
-      print(e); // I Don't Know
-    }
+
   }
 }

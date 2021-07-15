@@ -10,7 +10,7 @@ class UserRegistrationGateway {
 
 
   static Future<int> getRegistrationNumber(String serviceid) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'GetRegistrationNumberRequest',
       );
@@ -25,16 +25,13 @@ class UserRegistrationGateway {
       print("CloudFunction " + resp.data.toString());
 
       return resp.data['id'] as int;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<Map<String, UserRegistrationModel>> getUserRegistrationList({
     @required String serviceID,
   }) async {
-    try {
+
       List<UserRegistrationModel> _users = await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERREGISTRATION")
           .get()
@@ -51,10 +48,7 @@ class UserRegistrationGateway {
         _usersMap[user.idCardNum] = user;
       });
       return _usersMap;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   ///must two of these are null and one is valid
@@ -89,7 +83,7 @@ class UserRegistrationGateway {
   static Future<Map<String, UserRegistrationModel>> getUserRegistrationListByID(
       {@required String serviceID,
       @required UserRegistrationModel userReg}) async {
-    try {
+
       List<UserRegistrationModel> _users = await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERREGISTRATION")
           .where('idcardnumber', isEqualTo: userReg.idCardNum)
@@ -103,15 +97,12 @@ class UserRegistrationGateway {
         _usersMap[user.idCardNum] = user;
       });
       return _usersMap;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<UserRegistrationModel> getUserRegistration(
       String channelID) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc(
               "SERVICEPROVIDERINFO/kF2P9uwiLfYuhYUQbsGK/USERREGISTRATION/$channelID")
@@ -119,16 +110,13 @@ class UserRegistrationGateway {
           .then((x) {
         return UserRegistrationModel.fromJson(x.data());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<Map<String, UserRegistrationModel>>
       getUserRegistrationListByIDForLookUp(
           {@required String serviceID, @required String idCardNum}) async {
-    try {
+
       List<UserRegistrationModel> _users = await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERREGISTRATION")
           .where('idcardnumber', isEqualTo: idCardNum)
@@ -142,10 +130,7 @@ class UserRegistrationGateway {
         _usersMap[user.idCardNum] = user;
       });
       return _usersMap;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<Map<String, UserRegistrationModel>>
@@ -153,7 +138,7 @@ class UserRegistrationGateway {
     @required String serviceID,
     @required String studentname,
   }) async {
-    try {
+
       List<UserRegistrationModel> _users = await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERREGISTRATION")
           .where('name', isEqualTo: studentname)
@@ -167,10 +152,7 @@ class UserRegistrationGateway {
         _usersMap[user.idCardNum] = user;
       });
       return _usersMap;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<Map<String, UserRegistrationModel>>
@@ -178,7 +160,7 @@ class UserRegistrationGateway {
     @required String serviceID,
     @required String gaurdian1phone,
   }) async {
-    try {
+
       List<UserRegistrationModel> _users = await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERREGISTRATION")
           .where('gaurdian1phone', isEqualTo: gaurdian1phone)
@@ -192,10 +174,7 @@ class UserRegistrationGateway {
         _usersMap[user.idCardNum] = user;
       });
       return _usersMap;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<Map<String, UserRegistrationModel>>
@@ -203,7 +182,7 @@ class UserRegistrationGateway {
     @required String serviceID,
     @required String gaurdian2phone,
   }) async {
-    try {
+
       List<UserRegistrationModel> _users = await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERREGISTRATION")
           .where('gaurdian2phone', isEqualTo: gaurdian2phone)
@@ -217,52 +196,42 @@ class UserRegistrationGateway {
         _usersMap[user.idCardNum] = user;
       });
       return _usersMap;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<void> removeUserRegistration(
     UserRegistrationModel userReg,
     String serviceID,
   ) async {
-    try {
+
       String stuid = userReg.idCardNum;
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/USERREGISTRATION/$stuid")
           .delete();
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future addNewUserRegistration({
     @required UserRegistrationModel userReg,
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERREGISTRATION")
           .doc(userReg.idCardNum)
           .set(userReg.toJson());
-    } catch (e) {
-      print(e);
-    }
+
   }
 
   static Future updateUserRegistration({
     @required UserRegistrationModel userReg,
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/USERREGISTRATION")
           .doc(userReg.idCardNum)
           .update(userReg.toJson());
-    } catch (e) {
-      print(e);
-    }
+
   }
 }
