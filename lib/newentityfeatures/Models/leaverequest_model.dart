@@ -121,7 +121,7 @@ class LeaveRequestModel extends Equatable {
     plType = stringtoPeriodLeaveType(json['pltype']);
     leavreqType = stringtoLeaveRequestType(json['leavreqtype']);
     leavestatus = stringToRequestStatus(json['leavestatus']);
-    endDate = HelpUtil.toDate(timestamp: json['enddate']);
+    //endDate = HelpUtil.toDate(timestamp: json['enddate']);
   }
 
   Map<String, dynamic> toJson() {
@@ -129,7 +129,7 @@ class LeaveRequestModel extends Equatable {
 
     json['startdate'] = HelpUtil.toTimeStamp(dateTime: this.startDate);
     json["enddate"] = HelpUtil.toTimeStamp(dateTime: this.endDate);
-    json["startdate"] = HelpUtil.toTimeStamp(dateTime: this.startDate);
+    //json["startdate"] = HelpUtil.toTimeStamp(dateTime: this.startDate);
     json["staffid"] = this.staffID;
     json["staffname"] = this.staffName;
     json["leavreqtype"] = this.leavreqType.toString().split('.').last;

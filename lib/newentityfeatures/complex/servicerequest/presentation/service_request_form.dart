@@ -8,17 +8,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 // import 'package:complex/newentityfeatures/complex/building/model/building_model.dart';
 
-
 // import 'package:complex/newentityfeatures/staff/model/staff_model.dart';
 
 // import 'package:complex/newentityfeatures/unit/model/unit_model.dart';
-
 
 // import '../model/service_request_model.dart';
 import 'package:complex/newentityfeatures/Models/service_request_model.dart';
 
 import 'package:complex/common/presentation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:logger/logger.dart';
 import '../itembloc/bloc.dart' as itembloc;
 import 'package:complex/data/screen_size.dart';
 
@@ -77,6 +76,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
   List<int> floors = [];
   UnitOccupants selectedUnitOcupant;
   List<String> residentownerlist;
+  String unitaddress;
 
   // bool isStaff;
   var btnState;
@@ -131,7 +131,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
         // _memberId.isValid &&
         (_isStaff ? _staffController.isValid : true) &&
         _endDateController.isValid &&
-        (_isStaff || _unitAddress.isValid) &&
+        // (_isStaff || _unitAddress.isValid) &&
         _notes.isValid;
   }
 
@@ -402,6 +402,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     ),
                     onSelected: (value, index) {
                       setState(() {
+                        _justunitcontroller.text = value.unitaddress.toString();
                         selectedUnitOcupant = value;
                         residentownerlist = [];
                         if (selectedUnitOcupant.hasowner)
@@ -429,12 +430,18 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     onSelected: (value, index) {
                       setState(() {
                         if (value == "ForOwner")
-                          _unitAddress.text = _building.text +
-                              "@" +
+                          Logger().i(_building.text +
                               _floorNum.text +
-                              "@" +
-                              _justunitcontroller.text +
-                              "_o";
+                              _justunitcontroller.text);
+                        unitaddress = (_building.text +
+                                "@" +
+                                _floorNum.text +
+                                "@" +
+                                _justunitcontroller.text +
+                                "_o")
+                            .toString();
+                        _unitAddress.text = unitaddress;
+                        Logger().i(_unitAddress.text);
                         if (value == "ForResident")
                           _unitAddress.text = _building.text +
                               "@" +
@@ -520,7 +527,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                     ServiceRequestModel _serviceRequest = ServiceRequestModel(
                         correspondingName: _name.text,
                         requesterID: user.userID,
-                        requestType: ServiceRequestType.GATEPASS,
+                        requestType: ServiceRequestType.ADHOCVISITOR,
                         notesInstructions: _notes.text,
                         forstaff: _isStaff,
                         forstaffid: staff?.id,
@@ -529,7 +536,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                         requesterType: _requestType.text,
                         startDate: _startDate ??
                             _endDate.subtract(Duration(minutes: 5)),
-                        unitId: _unitAddress.text,
+                        unitId: unitaddress,
                         endDate: _endDate,
                         requireNotificationEntry: false,
                         phone: _phonecontroller.text);

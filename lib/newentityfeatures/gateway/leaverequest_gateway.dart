@@ -33,11 +33,11 @@ class LeaveRequestGateway {
     try {
       DateTime now = new DateTime.now();
       DateTime date = new DateTime(now.year, now.month, now.day);
-      date =date.add(new Duration(days:180));
+      date = date.add(new Duration(days: 180));
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/LEAVEREQUESTS")
           .where('staffid', isEqualTo: staffid)
-          .where("startdate",isLessThan: HelpUtil.toTimeStamp(dateTime: date))
+          .where("startdate", isLessThan: HelpUtil.toTimeStamp(dateTime: date))
           .get()
           .then((x) {
         return LeaveRequestModel.listFromJson(
@@ -55,13 +55,13 @@ class LeaveRequestGateway {
     try {
       DateTime now = new DateTime.now();
       DateTime date = new DateTime(now.year, now.month, now.day);
-      date =date.add(new Duration(days:180));
-      String mleavestatus=LeaveRequestStatus.APPROVED.toString().split('.').last;
+      date = date.add(new Duration(days: 180));
+      String mleavestatus =
+          LeaveRequestStatus.APPROVED.toString().split('.').last;
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/LEAVEREQUESTS")
-
-          .where("leavestatus",isEqualTo: mleavestatus)
-          .where("startdate",isLessThan: HelpUtil.toTimeStamp(dateTime: date))
+          .where("leavestatus", isEqualTo: mleavestatus)
+          .where("startdate", isLessThan: HelpUtil.toTimeStamp(dateTime: date))
           .get()
           .then((x) {
         return LeaveRequestModel.listFromJson(
@@ -74,18 +74,19 @@ class LeaveRequestGateway {
     }
   }
 
-  static Future<List<LeaveRequestModel>> getLeaveRequestWaitingForApprovalNext180Days(
-      {@required String entitytype, String entityid}) async {
+  static Future<List<LeaveRequestModel>>
+      getLeaveRequestWaitingForApprovalNext180Days(
+          {@required String entitytype, String entityid}) async {
     try {
       DateTime now = new DateTime.now();
       DateTime date = new DateTime(now.year, now.month, now.day);
-      date =date.add(new Duration(days:180));
-      String mleavestatus=LeaveRequestStatus.WAITINGFORAPPROVAL.toString().split('.').last;
+      date = date.add(new Duration(days: 180));
+      String mleavestatus =
+          LeaveRequestStatus.WAITINGFORAPPROVAL.toString().split('.').last;
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/LEAVEREQUESTS")
-          .where("startdate",isLessThan: HelpUtil.toTimeStamp(dateTime: date))
-
-          .where("leavestatus",isEqualTo: mleavestatus)
+          .where("startdate", isLessThan: HelpUtil.toTimeStamp(dateTime: date))
+          .where("leavestatus", isEqualTo: mleavestatus)
           .get()
           .then((x) {
         return LeaveRequestModel.listFromJson(
@@ -97,8 +98,6 @@ class LeaveRequestGateway {
       throw e;
     }
   }
-
-
 
   static Future<List<LeaveRequestModel>> getLeaveRequestHistoryAllStaff(
       {@required String entityType, @required String entityID}) async {

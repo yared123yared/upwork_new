@@ -57,7 +57,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
   DateTime _endDate = DateTime.now();
   bool _isUpdate = false;
 
-  bool enabled = true;
+  bool enabled = false;
 
   List<String> leaveRequest = [
     'SICK',
@@ -97,10 +97,8 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
 
     if (widget.leaveRequestModel != null) {
       _isUpdate = true;
-      _startDate = HelpUtil.formattedStringToDate(
-          widget.leaveRequestModel.startDate.toString(), DateTimeMode.DATE);
-      _startDate = HelpUtil.formattedStringToDate(
-          widget.leaveRequestModel.endDate.toString(), DateTimeMode.DATE);
+      _startDate = widget.leaveRequestModel.startDate;
+      _endDate = widget.leaveRequestModel.endDate;
 
       Future.delayed(Duration(milliseconds: 80), () {
         _staffName.text = widget.leaveRequestModel.staffName;
@@ -215,20 +213,20 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
               isRequired: true,
             ),
           ),
-          newentitytimepicker.CustomDateTimePicker(
+          CustomDateTimePicker(
             controller: _startDateController,
             enabled: enabled,
             dateTime: _startDate,
             title: 'Start Date',
-            mode: DateTimeMode.DATETIME,
+            mode: DateTimeMode.DATE,
             onChange: (x) => _startDate = x,
           ),
-          newentitytimepicker.CustomDateTimePicker(
+          CustomDateTimePicker(
             controller: _endDateController,
             enabled: enabled,
             dateTime: _endDate,
             title: 'End Date',
-            mode: DateTimeMode.DATETIME,
+            mode: DateTimeMode.DATE,
             onChange: (x) => _endDate = x,
           ),
           CustomDropDownList<String>(
