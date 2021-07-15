@@ -518,21 +518,21 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                 onTap: () async {
                   if (_validate()) {
                     ServiceRequestModel _serviceRequest = ServiceRequestModel(
-                      correspondingName: _name.text,
-                      requesterID: user.userID,
-                      requestType: ServiceRequestType.GATEPASS,
-                      notesInstructions: _notes.text,
-                      forstaff: _isStaff,
-                      forstaffid: staff?.id,
-                      forstaffname: staff?.display,
-                      requestedDate: DateTime.now(),
-                      requesterType: _requestType.text,
-                      startDate:
-                          _startDate ?? _endDate.subtract(Duration(minutes: 5)),
-                      unitId: _unitAddress.text,
-                      endDate: _endDate,
-                      requireNotificationEntry: false,
-                    );
+                        correspondingName: _name.text,
+                        requesterID: user.userID,
+                        requestType: ServiceRequestType.GATEPASS,
+                        notesInstructions: _notes.text,
+                        forstaff: _isStaff,
+                        forstaffid: staff?.id,
+                        forstaffname: staff?.display,
+                        requestedDate: DateTime.now(),
+                        requesterType: _requestType.text,
+                        startDate: _startDate ??
+                            _endDate.subtract(Duration(minutes: 5)),
+                        unitId: _unitAddress.text,
+                        endDate: _endDate,
+                        requireNotificationEntry: false,
+                        phone: _phonecontroller.text);
                     if (_isUpdate) {
                       BlocProvider.of<itembloc.ServiceRequestModelBloc>(context)
                           .add(
@@ -557,24 +557,24 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
             if (!_isStaff && _isUpdate)
               Row(
                 children: [
-                  Expanded(
+                  Container(
                     child: CustomActionButton(
-                      state: btnState,
+                      // state: btnState,
                       title: "Entry In",
 //              color: Colors.white12,
                       gradient: C.bgGradient,
-                      isExpanded: true,
+                      isExpanded: false,
                       padding: EdgeInsets.symmetric(vertical: height * 1.5),
 //                  margin: EdgeInsets.symmetric(horizontal: width * 25, vertical: height * 6),
                       onTap: () async {},
                     ),
                   ),
-                  Expanded(
+                  Container(
                     child: CustomActionButton(
-                      state: btnState,
+                      // state: btnState,
                       title: "Entry Out",
 //              color: Colors.white12,
-                      isExpanded: true,
+                      isExpanded: false,
                       gradient: C.bgGradient,
                       padding: EdgeInsets.symmetric(vertical: height * 1.5),
                       onTap: () async {},

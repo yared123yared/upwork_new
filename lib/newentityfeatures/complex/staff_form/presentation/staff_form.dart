@@ -85,7 +85,6 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
 
   int timelineIndex = 1;
 
-
   List<TimeLineModel> _timeline = [
     TimeLineModel(text: 'Basic\ninfo', isChecked: true),
     TimeLineModel(text: 'Additional\nInfo', isChecked: false),
@@ -98,11 +97,9 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
   StaffModelx _staffModelx;
 
   void _initFiledValue() {
-
-      staffRoleList = widget.entitytype == "COMPLEXES"
+    staffRoleList = widget.entitytype == "COMPLEXES"
         ? ["STAFF", "SECURITY", "MANAGER"]
-          : ["STAFF", "SECURITY", "MANAGER", 'INSTRUCTOR',"INSTRUCTORMANAGER"];
-
+        : ["STAFF", "SECURITY", "MANAGER", 'INSTRUCTOR', "INSTRUCTORMANAGER"];
 
     if (widget.staffModel != null) {
       _isUpdate = widget.staffModel.staffID != null;
@@ -220,7 +217,6 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
 
             if (state is itembloc.IsReadyForDetailsPage) {
               _staffModelx = widget?.staffModel ?? StaffModelx();
-
 
               _initFiledValue();
             }
@@ -489,8 +485,14 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
             initialValue: widget.staffModel?.category,
             title: "Category",
             controller: _category,
-            loadData: () async =>
-                ["gardener", "driver", "maid", "manager", "instructor"],
+            loadData: () async => [
+              "gardener",
+              "driver",
+              "maid",
+              "manager",
+              "instructor",
+              "security"
+            ],
             displayName: (x) => x,
             validate: Validate.withOption(
               isRequired: true,

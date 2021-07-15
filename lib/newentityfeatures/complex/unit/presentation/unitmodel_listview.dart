@@ -100,7 +100,7 @@ class _UnitModelListListState extends State<UnitModelListList> {
             BlocProvider.of<listbloc.UnitModelListBloc>(context).add(
                 listbloc.deleteItemWithData(
                     entitytype: widget.entitytype,
-                    entityid: widget.entitytype,
+                    entityid: widget.entityid,
                     item: listItems[index]));
           }
         },

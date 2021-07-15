@@ -119,7 +119,9 @@ class _BuildingFormState extends State<BuildingForm> {
                       validate: Validate.withOption(isRequired: true),
                     ),
                     CustomTextField(
-                      initialValue: widget.buildingModel?.numfloor.toString(),
+                      initialValue: (widget.buildingModel?.numfloor != null)
+                          ? widget.buildingModel?.numfloor.toString()
+                          : "",
                       title: "Number of Floor",
                       enabled: !_isUpdate,
                       controller: _numfloor,

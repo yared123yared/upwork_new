@@ -4,6 +4,7 @@ import 'package:complex/newentityfeatures/Models/building_model.dart';
 import 'package:complex/newentityfeatures/gateway/building_gateway.dart';
 
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 class BuildingModelRepositoryReturnData {
   List<BuildingModel> itemlist;
@@ -77,6 +78,7 @@ class BuildingModelRepository {
       building: item,
       complexID: entityid,
     );
+    Logger().i(entityid);
 
     myreturn.errortype = -1;
     return myreturn;

@@ -82,7 +82,7 @@ class _BuildingModelListListState extends State<BuildingModelListList> {
             BlocProvider.of<listbloc.BuildingModelListBloc>(context).add(
                 listbloc.deleteItemWithData(
                     entitytype: widget.entitytype,
-                    entityid: widget.entitytype,
+                    entityid: widget.entityid,
                     item: listItems[index]));
           }
         },
