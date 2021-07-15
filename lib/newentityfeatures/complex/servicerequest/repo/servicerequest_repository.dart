@@ -1,19 +1,19 @@
-import 'dart:convert';
+//import 'dart:convert';
 
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
-import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
-import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
+//import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
+//import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/gateway/complex_staff_gateway.dart';
-import 'package:complex/newentityfeatures/gateway/complex_staff_gateway.dart';
+//import 'package:complex/newentityfeatures/gateway/complex_staff_gateway.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
-import 'package:complex/newentityfeatures/Models/building_model.dart';
-import 'package:complex/newentityfeatures/Models/unit_model.dart';
-import 'package:complex/newentityfeatures/Models/tempmodelforcomplex.dart';
+//import 'package:complex/newentityfeatures/Models/building_model.dart';
+//import 'package:complex/newentityfeatures/Models/unit_model.dart';
+//import 'package:complex/newentityfeatures/Models/tempmodelforcomplex.dart';
 
 // import 'package:complex/entity/model/entity_roles.dart';
 import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
@@ -87,7 +87,7 @@ class ServiceRequestModelRepository {
     ServiceRequestModelRepositoryReturnData myreturn =
         ServiceRequestModelRepositoryReturnData();
 
-    List<String> roles;
+    //List<String> roles;
 
     // List<String> role = _complexModel.stringRoles;
     List<ServiceRequestModel> services =
@@ -96,7 +96,7 @@ class ServiceRequestModelRepository {
       entityid: entityid,
       userid: staffid,
     );
-    List<ServiceRequestModel> filteredServices = [];
+    //List<ServiceRequestModel> filteredServices = [];
 
     myreturn.itemlist = services;
 
@@ -118,7 +118,7 @@ class ServiceRequestModelRepository {
     ServiceRequestModelRepositoryReturnData myreturn =
         ServiceRequestModelRepositoryReturnData();
 
-    List<String> roles;
+    //List<String> roles;
 
     // List<String> role = _complexModel.stringRoles;
     List<ServiceRequestModel> services =
@@ -127,7 +127,7 @@ class ServiceRequestModelRepository {
       entityid: entityid,
       residentunitlist: residentunitlist,
     );
-    List<ServiceRequestModel> filteredServices = [];
+    //List<ServiceRequestModel> filteredServices = [];
 
     myreturn.itemlist = services;
 
@@ -252,7 +252,7 @@ class ServiceRequestModelRepository {
 
 
 
-    var btnState;
+    //var btnState;
     var user = _user;
 
 

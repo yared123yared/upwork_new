@@ -12,7 +12,7 @@ import 'package:meta/meta.dart';
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/building_model.dart';
 import 'package:complex/newentityfeatures/Models/unit_model.dart';
-import 'package:complex/newentityfeatures/Models/tempmodelforcomplex.dart';
+//import 'package:complex/newentityfeatures/Models/tempmodelforcomplex.dart';
 import 'package:complex/newentityfeatures/Models/complex_vehicle_model.dart';
 import 'package:complex/newentityfeatures/Models/entry_logs_model.dart';
 import 'package:complex/newentityfeatures/Models/resident_model.dart';
@@ -29,7 +29,7 @@ import 'package:complex/newentityfeatures/gateway/service_request_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/resident_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/registry_gateway.dart';
 
-import 'package:complex/data/models/response/user_response/user_complex.dart';
+//import 'package:complex/data/models/response/user_response/user_complex.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 
 class NewComplexRepository {

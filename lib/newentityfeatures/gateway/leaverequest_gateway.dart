@@ -56,12 +56,11 @@ class LeaveRequestGateway {
       DateTime now = new DateTime.now();
       DateTime date = new DateTime(now.year, now.month, now.day);
       date =date.add(new Duration(days:180));
-
+      String mleavestatus=LeaveRequestStatus.APPROVED.toString().split('.').last;
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/LEAVEREQUESTS")
 
-          .where("leavestatus",
-          isEqualTo: LeaveRequestStatus.APPROVED.index)
+          .where("leavestatus",isEqualTo: mleavestatus)
           .where("startdate",isLessThan: HelpUtil.toTimeStamp(dateTime: date))
           .get()
           .then((x) {
@@ -81,12 +80,12 @@ class LeaveRequestGateway {
       DateTime now = new DateTime.now();
       DateTime date = new DateTime(now.year, now.month, now.day);
       date =date.add(new Duration(days:180));
+      String mleavestatus=LeaveRequestStatus.WAITINGFORAPPROVAL.toString().split('.').last;
       return await FirebaseFirestore.instance
           .collection("$entitytype/$entityid/LEAVEREQUESTS")
           .where("startdate",isLessThan: HelpUtil.toTimeStamp(dateTime: date))
 
-          .where("leavestatus",
-          isEqualTo: LeaveRequestStatus.WAITINGFORAPPROVAL.index)
+          .where("leavestatus",isEqualTo: mleavestatus)
           .get()
           .then((x) {
         return LeaveRequestModel.listFromJson(
