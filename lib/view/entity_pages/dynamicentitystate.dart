@@ -1856,7 +1856,8 @@ class UiSchoolHandler {
             title: 'Pet/FarmAnimals',
             tapAction: () {
               EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.pet());
+                  .toListPage(type: EcomProductType.pet(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false);
             });
         break;
       case DynamicEntityGridState.classifiedjob:
@@ -1865,7 +1866,8 @@ class UiSchoolHandler {
             title: 'Job',
             tapAction: () {
               EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.job());
+                  .toListPage(type: EcomProductType.job(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false);
             });
         break;
       case DynamicEntityGridState.classifiedvehicle:
@@ -1874,7 +1876,8 @@ class UiSchoolHandler {
             title: 'Vehicle',
             tapAction: () {
               EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.vehicle());
+                  .toListPage(type: EcomProductType.vehicle(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false);
             });
         break;
       case DynamicEntityGridState.brokerclassifiedvehicle:
@@ -1883,7 +1886,8 @@ class UiSchoolHandler {
             title: 'Vehicle',
             tapAction: () {
               EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.vehicle());
+                  .toListPage(type: EcomProductType.vehicle(),entitytype: getCurEntity().entitytype,
+                entityid: getCurEntity().entityid,isService:false);
             });
         break;
 
@@ -1893,7 +1897,8 @@ class UiSchoolHandler {
             title: 'Real Estate',
             tapAction: () {
               EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.realEstate());
+                  .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false);
             });
         break;
       case DynamicEntityGridState.classifiedrealestate:
@@ -1902,7 +1907,8 @@ class UiSchoolHandler {
             title: 'Real Estate',
             tapAction: () {
               EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.realEstate());
+                  .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false);
             });
         break;
 
@@ -1941,7 +1947,8 @@ class UiSchoolHandler {
             title: 'Classified Product',
             tapAction: () {
               EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.product());
+                  .toListPage(type: EcomProductType.product(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false);
             });
         break;
       case DynamicEntityGridState.neworder:

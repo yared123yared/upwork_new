@@ -63,7 +63,7 @@ class ResidentGateway {
 
   static Future<List<ResidentModel>> getResidents(
       {@required String entitytype, String entityid}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("${entitytype}/${entityid}/REGISTRY")
           .get()
@@ -71,10 +71,7 @@ class ResidentGateway {
         return ResidentModel.listFromJson(x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<ResidentModel>> getResidentsByBuildingAndFloor(
@@ -82,7 +79,7 @@ class ResidentGateway {
       @required String entityid,
       @required String buildingname,
       @required int floornum}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("${entitytype}/${entityid}/REGISTRY")
           .get()
@@ -90,17 +87,14 @@ class ResidentGateway {
         return ResidentModel.listFromJson(x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<ResidentModel>> getResidentsByUnitList(
       {@required String entitytype,
       @required String entityid,
       @required List<String> unitlist}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("${entitytype}/${entityid}/REGISTRY")
           .get()
@@ -108,9 +102,6 @@ class ResidentGateway {
         return ResidentModel.listFromJson(x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 }

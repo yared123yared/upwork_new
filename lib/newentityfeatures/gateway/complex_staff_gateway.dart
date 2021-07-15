@@ -17,7 +17,7 @@ import 'package:complex/data/models/response/user_response/user_model.dart';
 class ComplexStaffGateway {
   static Future<List<StaffModelx>> getStaffList(
       {@required String entitytype, @required String entityid}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("${entitytype}/${entityid}/STAFF")
           .get()
@@ -27,10 +27,7 @@ class ComplexStaffGateway {
           x.docs.map((d) => d.id).toList(),
         );
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<SchoolOwner>> getListOfAllStaff({
@@ -65,7 +62,7 @@ class ComplexStaffGateway {
       @required String entityid,
       StaffModelx staffModel,
       ComplexModel complexModel}) async {
-    try {
+
       SignUpRequest _signUpModel = SignUpRequest(
           password: "secretPassword",
           username: staffModel.name,
@@ -98,10 +95,7 @@ class ComplexStaffGateway {
       } else {
         print("malfunction");
       }
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<void> updateStaffRequest(
@@ -110,7 +104,7 @@ class ComplexStaffGateway {
       @required StaffModelx oldStaff,
       @required StaffModelx newStaff,
       @required UserModel userModel}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance
           .httpsCallable('StaffUpdateRequestModified');
 
@@ -122,10 +116,7 @@ class ComplexStaffGateway {
         'byuserid': userModel.userID,
         'entityid': entityid,
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<dynamic> deleteStaffRequest(
@@ -136,7 +127,7 @@ class ComplexStaffGateway {
     final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
       'StaffDeleteRequestModified',
     );
-    try {
+
       dynamic resp = await callable.call(<String, dynamic>{
         'entitytype': entitytype,
         'staffid': staffModel.appUserId,
@@ -147,8 +138,6 @@ class ComplexStaffGateway {
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
       return resp.data;
-    } catch (e) {
-      return {'error': e};
-    }
+
   }
 }

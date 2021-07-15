@@ -12,7 +12,7 @@ mixin AssignmentGateway {
   static Future<List<AssignmentModel>> getAssignmentList({
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/ASSIGNMENT")
           .get()
@@ -23,15 +23,13 @@ mixin AssignmentGateway {
           x.docs.map((e) => e.id).toList(),
         );
       });
-    } on Exception {
-      return [];
-    }
+
   }
 
   static Future<List<AssignmentModel>> getAssignmentListByStaffId({
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/ASSIGNMENT")
           .get()
@@ -42,9 +40,7 @@ mixin AssignmentGateway {
           x.docs.map((e) => e.id).toList(),
         );
       });
-    } on Exception {
-      return [];
-    }
+
   }
 
 
@@ -52,59 +48,53 @@ mixin AssignmentGateway {
     AssignmentModel assignment,
     String docId,String serviceid
   ) async {
-    try {
+
       await FirebaseFirestore.instance
           .doc(
               "SERVICEPROVIDERINFO/${serviceid}/ASSIGNMENT/$docId")
           .delete();
-    } on Exception {}
+
   }
 
   static Future<void> addNewAssignment({
     @required AssignmentModel assignment,
     @required String serviceID,
   }) async {
-    try {
+
       await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/ASSIGNMENT")
           .add(assignment.toJson());
-    } on Exception {}
+
   }
 
   static Future<void> attachAssignment({
     @required VrAssignmentModel vrAssignmentModel,
     @required String serviceID,
   }) async {
-    try {
+
       await FirebaseFirestore.instance
           .collection(
             "SERVICEPROVIDERINFO/${serviceID}/ASSIGNMENT",
           )
           .doc()
           .set(vrAssignmentModel.toJson());
-    } catch (e) {
-      print("assignment error $e");
-    }
+
   }
 
   static Future updateAssignment({
     @required AssignmentModel assignment,
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/ASSIGNMENT")
           .doc(assignment.assignmentID)
           .set(assignment.toJson());
-    } catch (e) {
-      print("assignment error $e");
-      print(assignment.assignmentID);
-      print(assignment.toJson());
-    }
+
   }
 
   static Future<List<Question>> getQuestionsList(String serviceID) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/ASSIGNMENT")
           .get()
@@ -117,15 +107,12 @@ mixin AssignmentGateway {
         }
         return _questions;
       });
-    } catch (e) {
-      print("session term error: $e");
-      throw e;
-    }
+
   }
 
   static Future<List<StudyMaterial>> getStudyMaterialList(
       String serviceID) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/ASSIGNMENT")
           .get()
@@ -138,10 +125,7 @@ mixin AssignmentGateway {
         }
         return _studyMaterial;
       });
-    } catch (e) {
-      print("session term error: $e");
-      throw e;
-    }
+
   }
 
   static Future submitAssignment( // needs update
@@ -149,7 +133,7 @@ mixin AssignmentGateway {
     @required AssignmentModel assignmentModel,
     @required Question question,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'AssignmentOperationRequest',
       );
@@ -189,17 +173,14 @@ mixin AssignmentGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future submitQuestion({
     @required AssignmentModel assignmentModel,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'AssignmentOperationRequest',
       );
@@ -219,17 +200,14 @@ mixin AssignmentGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future submitStudyMaterial({
     @required AssignmentModel assignmentModel,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'AssignmentOperationRequest',
       );
@@ -248,10 +226,7 @@ mixin AssignmentGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   // New Gateways
@@ -260,48 +235,42 @@ mixin AssignmentGateway {
     @required AssignmentModel assignment,
     @required String serviceID,
   }) async {
-    try {
+
       await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/ASSIGNMENT")
           .add(assignment.toJson());
-    } catch (e) {
-      print("assignment error $e");
-    }
+
   }
 
   static Future updateAssignmentToLocal({
     @required AssignmentModel assignment,
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/ASSIGNMENT")
           .doc(assignment.assignmentID)
           .update(assignment.toJson());
-    } catch (e) {
-      print("assignment error $e");
-      print(assignment.assignmentID);
-      print(assignment.toJson());
-    }
+
   }
 
   static Future<void> removeAssignmentToLocal(
       AssignmentModel assignment, String docId,String serviceid) async {
-    try {
+
       await FirebaseFirestore.instance
           .doc(
               "SERVICEPROVIDERINFO/${serviceid}/ASSIGNMENT/$docId")
           .update({
         "data": FieldValue.arrayRemove([assignment.toJson()])
       });
-    } on Exception {}
+
   }
 
   static Future submitQuestionToLocal({
     @required AssignmentModel assignmentModel,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'AssignmentOperationRequest',
       );
@@ -321,14 +290,14 @@ mixin AssignmentGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } on Exception {}
+
   }
 
   static Future submitStudyMaterialToLocal({
     @required AssignmentModel assignmentModel,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'AssignmentOperationRequest',
       );
@@ -347,14 +316,14 @@ mixin AssignmentGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } on Exception {}
+
   }
 
   static Future publishAssignment({
     @required AssignmentModel assignment,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'AssignmentOperationRequest',
       );
@@ -367,14 +336,14 @@ mixin AssignmentGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } on Exception {}
+
   }
 
   static Future<List<AssignmentModel>> getPublishedAssignmentsByOfferingGroup({
     @required String offeringgroup,
     @required String serviceID,
   }) async {
-    try {
+
       var res = await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/FINALASSIGNMENT")
           .where('offering', isEqualTo: offeringgroup)
@@ -383,16 +352,14 @@ mixin AssignmentGateway {
       return res.docs
           .map((e) => AssignmentModel.fromJson(e.data(), e.id))
           .toList();
-    } on Exception {
-      return [];
-    }
+
   }
 
   static Future<AssignmentModel> getPublishedAssignmentById({
     @required String serviceID,
     @required String assignmentID,
   }) async {
-    try {
+
       var res = await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/FINALASSIGNMENT/$assignmentID")
           .get();
@@ -401,21 +368,18 @@ mixin AssignmentGateway {
         return AssignmentModel.fromJson(res.data(), res.id);
       else
         return null;
-    } on Exception {}
+
   }
 
   static Future<AssignmentModel> getAssignmentDataFromLocal(
       String asgid, String serviceID) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/ASSIGNMENT/$asgid")
           .get()
           .then((x) {
         return AssignmentModel.fromJson(x.data(), x.id);
       });
-    } catch (e) {
-      print("session term error: $e");
-      throw e;
-    }
+
   }
 }

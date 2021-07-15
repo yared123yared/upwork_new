@@ -9,7 +9,7 @@ class FeePlanGateway {
   static Future<List<FeePlanModel>> getFeePlanList({
     @required String serviceID,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/FEEPLANS")
           .where("version", isEqualTo: 2)
@@ -17,32 +17,24 @@ class FeePlanGateway {
           .then((x) {
         return FeePlanModel.listFromJson(x.docs.map((d) => d.data).toList());
       });
-    } on Exception {
-      return [];
-    }
+
   }
 
   static Future addNewFeePlan({FeePlanModel feePlan, String serviceID}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/FEEPLANS")
           .doc(feePlan.feePlanName)
           .set(feePlan.toJson());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future updateFeePlan({FeePlanModel feePlan, String serviceID}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/FEEPLANS")
           .doc(feePlan.feePlanName)
           .update(feePlan.toJson());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 }

@@ -37,9 +37,7 @@ class VrAssignmentGateway {
     @required String sessionTerm,
     @required String grade,
   }) async {
-    try {} catch (e) {
-      return [];
-    }
+
     return await FirebaseFirestore.instance
         .collection(
           "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VRASSIGNMENT",
@@ -59,9 +57,7 @@ class VrAssignmentGateway {
     @required String sessionTerm,
     @required String offering,
   }) async {
-    try {} catch (e) {
-      return [];
-    }
+
     return await FirebaseFirestore.instance
         .collection(
           "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VRASSIGNMENT",
@@ -81,9 +77,7 @@ class VrAssignmentGateway {
     @required String sessionTerm,
     @required String virtualroomname,
   }) async {
-    try {} catch (e) {
-      return [];
-    }
+
     return await FirebaseFirestore.instance
         .collection(
           "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VRASSIGNMENT",
@@ -105,9 +99,7 @@ class VrAssignmentGateway {
     @required String virtualroomname,
     @required String offering,
   }) async {
-    try {} catch (e) {
-      return [];
-    }
+
     return await FirebaseFirestore.instance
         .collection(
           "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VRASSIGNMENT",
@@ -176,9 +168,7 @@ class VrAssignmentGateway {
     @required String sessionterm,
     @required String entityid,
   }) async {
-    try {} catch (e) {
-      return [];
-    }
+
     return FirebaseFirestore.instance
         .collection(
           'SERVICEPROVIDERINFO/$entityid/SESSIONTERM/$sessionterm/VRASSIGNMENT',

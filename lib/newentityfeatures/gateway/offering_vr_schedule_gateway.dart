@@ -18,7 +18,7 @@ class OfferingsVrManagementGateway {
         @required String name,
         @required String sessionTerm,
         @required String serviceID}) async {
-    try {
+
       if (attendanceType == Attendancetype.Vr) {
         await OfferingsVrManagementGateway.submitAttendanceVirtualRoom(
             attendanceModel: attendanceModel,
@@ -32,9 +32,7 @@ class OfferingsVrManagementGateway {
             serviceID: serviceID,
             sessionTermName: sessionTerm);
       }
-    } catch (e) {
-      print(e);
-    }
+
   }
  static Future<AttendanceModel> getAttendance({
     @required Attendancetype attendanceType,
@@ -44,7 +42,7 @@ class OfferingsVrManagementGateway {
     @required DateTime dateTime,
     @required String kind,
   }) async {
-    try {
+
       AttendanceModel att;
       if (attendanceType == Attendancetype.Ofr) {
         att = await OfferingsVrManagementGateway.getAttendanceOFR(
@@ -65,9 +63,7 @@ class OfferingsVrManagementGateway {
       }
 
       return att;
-    } catch (e) {
-      print(e);
-    }
+
   }
 
 
@@ -75,7 +71,7 @@ class OfferingsVrManagementGateway {
     @required String grade,
     @required String entityid,
   }) async {
-    try {
+
       print("Get Kind List For Grade");
 
       Map<String, List<OfferingWeeklySchedule>> _ofrMap = {};
@@ -90,10 +86,7 @@ class OfferingsVrManagementGateway {
       });
       print(_ofrMap);
       return _ofrMap;
-    } catch (e) {
-      print(e);
-      return e;
-    }
+
   }
 
 
@@ -105,7 +98,7 @@ class OfferingsVrManagementGateway {
       {@required String grade,
       @required String entitytype,
       @required String entityid}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -126,17 +119,14 @@ class OfferingsVrManagementGateway {
         kindlist.add(OfferingModelGroup.fromString(d));
 
       return kindlist;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<OfferingModelGroup>> getIndependentKindListForGrade(
       {@required String grade,
       @required String entitytype,
       @required String entityid}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -157,10 +147,7 @@ class OfferingsVrManagementGateway {
         kindlist.add(OfferingModelGroup.fromString(d));
 
       return kindlist;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<String>> getVirtualRoomsListForGrade({
@@ -168,7 +155,7 @@ class OfferingsVrManagementGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    try {
+
       List<String> abc = [];
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
@@ -185,10 +172,7 @@ class OfferingsVrManagementGateway {
 
       List<String> v = List<String>.from(mdata['l']);
       return v;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<RegisteredIdModel>> getListOfRegisteredIdForVirtualRoom(
@@ -196,7 +180,7 @@ class OfferingsVrManagementGateway {
       @required String sessionterm,
       @required String entitytype,
       @required String entityid}) async {
-    try {
+
       List<String> abc = [];
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
@@ -216,10 +200,7 @@ class OfferingsVrManagementGateway {
         rm.add(RegisteredIdModel.fromData(data: Map<String, dynamic>.from(d)));
 
       return rm;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<RegisteredIdModel>> getListOfRegisteredIdForOffering(
@@ -227,7 +208,7 @@ class OfferingsVrManagementGateway {
       @required String sessionterm,
       @required String entitytype,
       @required String entityid}) async {
-    try {
+
       List<String> abc = [];
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
@@ -247,10 +228,7 @@ class OfferingsVrManagementGateway {
         rm.add(RegisteredIdModel.fromData(data: Map<String, dynamic>.from(d)));
 
       return rm;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<SchoolOwner>> getListOfStaff({
@@ -258,7 +236,7 @@ class OfferingsVrManagementGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -281,10 +259,7 @@ class OfferingsVrManagementGateway {
       //  rm.add(SchoolOwner.fromData(d));
 
       return rm;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future offeringModelGroupDBActions(
@@ -292,7 +267,7 @@ class OfferingsVrManagementGateway {
       @required String actiontype,
       @required String entitytype,
       @required String entityid}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance
           .httpsCallable('GenericDBStorageActionRequest');
       print("CloudFunction " + "end");
@@ -308,10 +283,8 @@ class OfferingsVrManagementGateway {
       print("CloudFunction " + resp.data.toString());
 
       //m = resp.data
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
+
   }
 
   static Future offeringWeeklyScheduleDBActions({
@@ -320,7 +293,7 @@ class OfferingsVrManagementGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance
           .httpsCallable('GenericDBStorageActionRequest');
       print("CloudFunction " + "end");
@@ -336,17 +309,14 @@ class OfferingsVrManagementGateway {
       print("CloudFunction " + resp.data.toString());
 
       //m = resp.data
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future addVirtualRoomActionRequest({
     @required VirtualRoomModelNewFormat virtualRoomsModelMod,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'VirtualRoomActionRequestNewFormat',
       );
@@ -359,10 +329,7 @@ class OfferingsVrManagementGateway {
         "virtualroomname": virtualRoomsModelMod.virtualRoomName,
         "actiontype": "add"
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future updateVirtualRoom({
@@ -370,7 +337,7 @@ class OfferingsVrManagementGateway {
     @required VirtualRoomModelNewFormat oldData,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance
           .httpsCallable('VirtualRoomActionRequestNewFormat');
       print("CloudFunction " + "end");
@@ -388,15 +355,12 @@ class OfferingsVrManagementGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future deleteVirtualRoom(
       {@required String virtualroomname, @required String serviceID}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance
           .httpsCallable('VirtualRoomActionRequestNewFormat');
       print("CloudFunction " + "end");
@@ -411,16 +375,13 @@ class OfferingsVrManagementGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future createTeacherOfferingsAssignment(
       {@required TeacherOfferingsAssignment model,
       @required String serviceID}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'OfferingScheduleActionRequestNewFormat',
       );
@@ -435,16 +396,13 @@ class OfferingsVrManagementGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future deleteOfferingSchedule(
       {@required TeacherOfferingsAssignment model,
       @required String serviceID}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'OfferingScheduleActionRequestNewFormat',
       );
@@ -460,17 +418,14 @@ class OfferingsVrManagementGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future updateOfferingSchedule(
       {@required TeacherOfferingsAssignment oldData,
       @required TeacherOfferingsAssignment newData,
       @required serviceID}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'OfferingScheduleActionRequestNewFormat',
       );
@@ -488,10 +443,7 @@ class OfferingsVrManagementGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
 /*
@@ -513,7 +465,7 @@ IDCARD-ATTENDENCE Data
           @required int enddate,
           @required String entitytype,
           @required String entityid}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -550,10 +502,7 @@ IDCARD-ATTENDENCE Data
       }
 
       return mydata;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<Map<String, Map<String, dynamic>>> getProgressForGaurdian({
@@ -562,7 +511,7 @@ IDCARD-ATTENDENCE Data
     @required String entitytype,
     @required String entityid,
   }) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -599,10 +548,7 @@ IDCARD-ATTENDENCE Data
       }
 
       return mydata;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<Map<String, Map<String, dynamic>>> getEventForIDCardGaurdian(
@@ -612,7 +558,7 @@ IDCARD-ATTENDENCE Data
       @required int enddate,
       @required String entitytype,
       @required String entityid}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -649,10 +595,7 @@ IDCARD-ATTENDENCE Data
       }
 
       return mydata;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future submitAttendanceVirtualRoom(
@@ -660,7 +603,7 @@ IDCARD-ATTENDENCE Data
       @required String virtualroomname,
       @required String sessionTermName,
       @required String serviceID}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'SubmitAttendenceRequest',
       );
@@ -680,10 +623,7 @@ IDCARD-ATTENDENCE Data
       dynamic resp = await callable.call(data);
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future submitAttendanceOfr(
@@ -691,7 +631,7 @@ IDCARD-ATTENDENCE Data
       @required String offeringname,
       @required String sessionTermName,
       @required String serviceID}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('SubmitAttendenceRequest');
       print("CloudFunction " + "end");
@@ -711,13 +651,7 @@ IDCARD-ATTENDENCE Data
       dynamic resp = await callable.call(data);
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    }
 
-    //{'sti': [{'id': '1', 'val': 'A'}, {'id': '2', 'val': 'A'}, {'id': '3', 'val': 'A'}, {'id': '4', 'val': 'A'}, {'id': '5', 'val': 'A'}, {'id': '6', 'val': 'A'}], 'kind': 'FIRST', 'mdate': 1594008000}
-    catch (e) {
-      print(e);
-      throw e;
-    }
   }
 
   static Future<AttendanceModel> getAttendanceVR({
@@ -727,7 +661,7 @@ IDCARD-ATTENDENCE Data
     @required DateTime dateTime,
     @required String kind,
   }) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -761,10 +695,7 @@ IDCARD-ATTENDENCE Data
           attendanceList: attendanceList,
           kind: kind);
       return _attendanceModel;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<AttendanceModel> getAttendanceOFR(
@@ -773,7 +704,7 @@ IDCARD-ATTENDENCE Data
       @required String serviceID,
       @required DateTime dateTime,
       @required String kind}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -809,10 +740,7 @@ IDCARD-ATTENDENCE Data
       );
 
       return _attendanceModel;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<String> getEventVR(
@@ -821,7 +749,7 @@ IDCARD-ATTENDENCE Data
       @required String serviceID,
       @required DateTime dateTime,
       @required String kind}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -840,10 +768,7 @@ IDCARD-ATTENDENCE Data
 
       Map<String, dynamic> data = Map<String, dynamic>.from(mdata['m']);
       return data['sti'];
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<String> getEventOFR(
@@ -852,7 +777,7 @@ IDCARD-ATTENDENCE Data
       @required String serviceID,
       @required DateTime dateTime,
       @required String kind}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -870,10 +795,7 @@ IDCARD-ATTENDENCE Data
 
       Map<String, dynamic> data = Map<String, dynamic>.from(mdata['m']);
       return data['sti'];
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future submitEventVirtualRoom(
@@ -883,7 +805,7 @@ IDCARD-ATTENDENCE Data
       @required String kind,
       DateTime mdate,
       @required String serviceID}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('SubmitEventRequest');
       print("CloudFunction " + "end");
@@ -902,10 +824,7 @@ IDCARD-ATTENDENCE Data
       dynamic resp = await callable.call(data);
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future submitEventOfr(
@@ -916,7 +835,7 @@ IDCARD-ATTENDENCE Data
       @required String kind,
       DateTime mdate,
       @required String serviceID}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('SubmitEventRequest');
       print("CloudFunction " + "end");
@@ -935,17 +854,15 @@ IDCARD-ATTENDENCE Data
       dynamic resp = await callable.call(data);
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
+
   }
 
   static Future<List<OfferingModelGroup>> getOfferingMdelList({
     @required String serviceID,
     @required String grade,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/OFFERINGMODEL")
           .where('grade', isEqualTo: grade)
@@ -956,15 +873,12 @@ IDCARD-ATTENDENCE Data
           x.docs.map((d) => d.id).toList(),
         );
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<TeacherOfferingsAssignment>>
       getTeacherOfferingsAssignmentList(String serviceID, String grade) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection(
               "SERVICEPROVIDERINFO/$serviceID/TEACHEROFFERINGASSIGNMENT")
@@ -976,15 +890,12 @@ IDCARD-ATTENDENCE Data
           x.docs.map((d) => d.id).toList(),
         );
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<OfferingWeeklySchedule>> getOfferingWeeklyScheduleList(
       String serviceID, String grade) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/OFFERINGWEEKLYSCHEDULE")
           .where('grade', isEqualTo: grade)
@@ -995,15 +906,12 @@ IDCARD-ATTENDENCE Data
           x.docs.map((d) => d.id).toList(),
         );
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<OfferingWeeklySchedule>> getOfferingScheduleGradeList(
       {String grade, String serviceID}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/OFFERINGWEEKLYSCHEDULE")
           .where('grade', isEqualTo: grade)
@@ -1014,15 +922,12 @@ IDCARD-ATTENDENCE Data
           x.docs.map((d) => d.id).toList(),
         );
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<VirtualRoomModelNewFormat>>
       getVirtualRoomModelNewFormatList(String serviceID, String grade) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("SERVICEPROVIDERINFO/$serviceID/VIRTUALROOMS")
           .where('grade', isEqualTo: grade)
@@ -1032,17 +937,14 @@ IDCARD-ATTENDENCE Data
           x.docs.map((d) => d.data()).toList(),
         );
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<InstructorOfferingDataModel> getInstructorScheduleData({
     @required String serviceID,
     @required String staffid,
   }) async {
-    try {
+
       print("SERVICEPROVIDERINFO/$serviceID/STAFFEXTRADATA/$staffid");
       return await FirebaseFirestore.instance
           .doc("SERVICEPROVIDERINFO/$serviceID/STAFFEXTRADATA/$staffid")
@@ -1052,9 +954,6 @@ IDCARD-ATTENDENCE Data
         if (x.data() == null) return null;
         return InstructorOfferingDataModel.fromJson(x.data());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 }

@@ -14,7 +14,7 @@ import 'package:complex/common/helputil.dart';
 class RegistryGateway {
   static Future<List<RegistryModel>> getRegistryList(
       {@required String entitytype, @required String entityid}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("${entitytype}/${entityid}/REGISTRY")
           .get()
@@ -22,10 +22,7 @@ class RegistryGateway {
         print(x.docs);
         return RegistryModel.listFromJson(x.docs.map((d) => d.data).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<RegistryModel>> getRegistryListForBuildingAndFloor(
@@ -33,7 +30,7 @@ class RegistryGateway {
       @required String entityid,
       @required String buildingid,
       int floor}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("${entitytype}/${entityid}/REGISTRY")
           .where("bldf", isEqualTo: buildingid + "@" + floor.toString())
@@ -42,34 +39,29 @@ class RegistryGateway {
         print(x.docs);
         return RegistryModel.listFromJson(x.docs.map((d) => d.data).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<RegistryModel> getRegistryListForUnitId(
       {@required String entitytype,
       @required String entityid,
       @required String unitid}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .doc("${entitytype}/${entityid}/REGISTRY/${unitid}")
           .get()
           .then((x) {
         return RegistryModel.fromJson(x.data());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
+
   }
 
   static Future<List<RegistryModel>> getRegistryListForListOfUnits(
       {@required String entitytype,
       @required String entityid,
       @required List<String> unitlist}) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection("${entitytype}/${entityid}/REGISTRY")
           .where(FieldPath.documentId, whereIn: unitlist)
@@ -78,10 +70,7 @@ class RegistryGateway {
         print(x.docs);
         return RegistryModel.listFromJson(x.docs.map((d) => d.data).toList());
       });
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<void> updateRegistry(
@@ -91,7 +80,7 @@ class RegistryGateway {
       @required RegistryModel newRegistry,
       @required bool isOwner,
       @required UserModel userModel}) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance
           .httpsCallable('UpdateResidentRequestModified');
       final HttpsCallableResult resp = await callable.call(<String, dynamic>{
@@ -110,13 +99,7 @@ class RegistryGateway {
       });
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } on FirebaseFunctionsException catch (e) {
-      print('caught firebase functions exception');
-      print(e.code);
-      print(e.message);
-      print(e.details);
-      return e;
-    }
+
   }
 
   // ignore: missing_return
@@ -128,7 +111,7 @@ class RegistryGateway {
       @required UserModel userModel}) async {
     final HttpsCallable callable = FirebaseFunctions.instance
         .httpsCallable('DeleteResidentRequestModified');
-    try {
+
       final HttpsCallableResult resp = await callable.call(<String, dynamic>{
         'residentdetailid': isOwner ? unitadress + "_o" : unitadress + "_r",
         'entitytype': entitytype,
@@ -139,13 +122,7 @@ class RegistryGateway {
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
       return resp.data;
-    } on FirebaseFunctionsException catch (e) {
-      print('caught firebase functions exception');
-      print(e.code);
-      print(e.message);
-      print(e.details);
-      return e;
-    }
+
   }
 
 //  static Future<void> deleteRegistry(){
@@ -156,7 +133,7 @@ class RegistryGateway {
       {@required RegistryModel oldRegistry,
       @required RegistryModel newRegistry,
       @required bool isOwner}) {
-    try {
+
       if (isOwner) {
         return {
           if (oldRegistry.ownerPublishedContact !=
@@ -190,10 +167,7 @@ class RegistryGateway {
             'managementposition': newRegistry.residentManagementPosition,
         };
       }
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Map<String, dynamic> toData({
