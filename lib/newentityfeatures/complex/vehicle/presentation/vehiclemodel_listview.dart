@@ -417,11 +417,16 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
                             ),
                           );
                       } else if (_search == "Unit") {
-                        if (_building.isValid &&
+                        if (!(_building.isValid &&
                             _floorNum.isValid &&
                             _justunitcontroller.isValid &&
-                            _residentowner.isValid)
-                          residentialunitlist = HelpUtil.getUserRepository()
+                            _residentowner.isValid))
+                              EasyLoading.showInfo("Please fill the dropdowns");
+
+                        String myunit = _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "@" + _residentowner.text =="ForOwner" ?"_o" :"_r";
+                        List<String>  myunitlist= [];
+                        myunitlist.add(myunit);
+                        residentialunitlist = HelpUtil.getUserRepository()
                               .getUser()
                               .defaultComplexEntity
                               .getUnitList();
@@ -429,10 +434,11 @@ class _VehicleModelListListState extends State<VehicleModelListList> {
                           listbloc.GetListDataByUnits(
                             entitytype: widget.entitytype,
                             entityid: widget.entityid,
-                            residentialunitlist: residentialunitlist,
+                            residentialunitlist: myunitlist,
                           ),
                         );
-                      }
+                        }
+
                       if (_search == "Number Plate") {
                         if (_numplate.isValid)
                           mlistbloc.add(
