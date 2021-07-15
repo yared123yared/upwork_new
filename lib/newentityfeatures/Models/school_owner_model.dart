@@ -29,7 +29,7 @@ class SchoolOwner extends Equatable {
       else
         return false;
     }
-    return false;
+
   }
 
   static bool arelistequal(List<SchoolOwner> mem1, List<SchoolOwner> mem2) {

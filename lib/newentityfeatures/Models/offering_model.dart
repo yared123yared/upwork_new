@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
-import 'package:collection/collection.dart';
+
 
 // ignore: must_be_immutable
 class OfferingModelGroup extends Equatable {
@@ -376,7 +376,7 @@ class OfferingWeeklySchedule {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
 
-    List<String> classsch = [];
+
     List<String> listOfvirtualroom = [];
     if (vrlist != null) {
       listOfvirtualroom = [];
@@ -484,8 +484,8 @@ class VirtualRoomModelNewFormat {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    List<Map> listOfRegisteredId = [];
-    List<String> listOfOfferings = [];
+
+
     data['associatedroom'] = this.associatedRoom;
     data['attendencetype'] = this.attendenceType;
     data['chatRoomType'] = this.chatRoomType;
@@ -496,7 +496,7 @@ class VirtualRoomModelNewFormat {
     data['primaryowner'] = primaryOwner.toData();
     List<Map> listOfsecondaryowner = [];
     if (secondaryOwnerV != null) {
-      listOfsecondaryowner = List<Map>();
+      listOfsecondaryowner = [];
       secondaryOwnerV.forEach((element) {
         listOfsecondaryowner.add(element.toData());
       });
@@ -795,7 +795,7 @@ class InstructorOfferingDataModel {
   static List<OfferingKind> getOfferingListFromElement(dynamic element) {
     List<OfferingKind> vrlist = [];
     if (element != null) {
-      vrlist = List<OfferingKind>();
+      vrlist =[];
       element.forEach((v) {
         vrlist.add(OfferingKind.fromString(v));
       });

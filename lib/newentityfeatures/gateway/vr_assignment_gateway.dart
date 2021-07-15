@@ -17,7 +17,7 @@ class VrAssignmentGateway {
     @required String sessionTerm,
     @required String offering,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection(
             "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/${sessionTerm..replaceAll('/', '\/')}/VRASSIGNMENT",
@@ -30,9 +30,7 @@ class VrAssignmentGateway {
           x.docs.map((d) => d.id).toList(),
         );
       });
-    } on Exception {
-      return [];
-    }
+
   }
 
   static Future<List<VrAssignmentModel>> getVrAssignmentListForGrade({
@@ -54,7 +52,7 @@ class VrAssignmentGateway {
         x.docs.map((d) => d.data).toList(),
         x.docs.map((d) => d.id).toList(),
       );
-    }).catchError((e) => []);
+    });
   }
 
   static Future<List<VrAssignmentModel>> getVrAssignmentListForOfferingGroup({
@@ -76,7 +74,7 @@ class VrAssignmentGateway {
         x.docs.map((d) => d.data).toList(),
         x.docs.map((d) => d.id).toList(),
       );
-    }).catchError((e) => []);
+    });
   }
 
   static Future<List<VrAssignmentModel>> getVrAssignmentListVirtualRoom({
@@ -91,15 +89,39 @@ class VrAssignmentGateway {
         .collection(
           "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VRASSIGNMENT",
         )
-        .where("virtualRoom")
+        .where("virtualRoom",arrayContains:virtualroomname)
         .get()
         .then((x) {
       return VrAssignmentModel.listFromJson(
         x.docs.map((d) => d.data).toList(),
         x.docs.map((d) => d.id).toList(),
       );
-    }).catchError((e) => []);
+    });
   }
+
+  static Future<List<VrAssignmentModel>> getVrAssignmentListVirtualRoomAndOffering({
+    @required String serviceID,
+    @required String sessionTerm,
+    @required String virtualroomname,@required String offering,
+  }) async {
+    try {} catch (e) {
+      return [];
+    }
+    return await FirebaseFirestore.instance
+        .collection(
+      "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VRASSIGNMENT",
+    )
+        .where("virtualRoom",arrayContains:virtualroomname)
+        .where("offering",isEqualTo:offering)
+        .get()
+        .then((x) {
+      return VrAssignmentModel.listFromJson(
+        x.docs.map((d) => d.data).toList(),
+        x.docs.map((d) => d.id).toList(),
+      );
+    });
+  }
+
 
   static Future<void> removeVrAssignment(
       {@required String serviceID,
@@ -110,42 +132,45 @@ class VrAssignmentGateway {
             "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/${sessionTerm.termName}/VRASSIGNMENT")
         .update({
       "data": FieldValue.arrayRemove([vrAssignmentModel.toJson()])
-    }).catchError((e) => []);
+    });
   }
+
 
   static Future addNewVrAssignment({
     @required String serviceID,
     @required String sessionTerm,
     @required VrAssignmentModel vrAssignmentModel,
   }) async {
-    try {
-      print("asignmenr serevice id: $serviceID");
-      print("asignmenr vr id: ${vrAssignmentModel.vrid}");
 
-      return FirebaseFirestore.instance
-          .collection(
-              "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VRASSIGNMENT")
-          .doc(vrAssignmentModel.vrid)
-          .set(vrAssignmentModel.toJson());
-    } catch (e) {
-      print(e);
-    }
+      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+        'AssignmentOperationRequest',
+      );
+      dynamic resp = await callable.call(<String, dynamic>{
+        "optype": "a",
+        "asgid": vrAssignmentModel.assignmentId,
+        "entitytype": "SERVICEPROVIDERINFO",
+        "entityid": serviceID,
+        "data": vrAssignmentModel.toJson()
+      });
+      print("CloudFunction " + callable.toString());
+      print("CloudFunction " + resp.data.toString());
+
   }
+
+
 
   static Future updateVrAssignment({
     @required String serviceID,
     @required String sessionTerm,
     @required VrAssignmentModel vrAssignmentModel,
   }) async {
-    try {
+
       return await FirebaseFirestore.instance
           .collection(
               "SERVICEPROVIDERINFO/$serviceID/SESSIONTERM/$sessionTerm/VRASSIGNMENT")
           .doc(vrAssignmentModel.vrid)
           .update(vrAssignmentModel.toJson());
-    } catch (e) {
-      print(e);
-    }
+
   }
 
   static Future<List<VrAssignmentModel>> getVrAssignmentModelForIDCardNum({
@@ -167,8 +192,8 @@ class VrAssignmentGateway {
             x.docs.map((d) => d.data).toList(),
             x.docs.map((d) => d.id).toList(),
           ),
-        )
-        .catchError((e) => []);
+        );
+
     // final HttpsCallable callable = CloudFunctions.instance
     //     .getHttpsCallable(functionName: 'GenericQueryActionRequest');
     // print("CloudFunction " + "end");
@@ -204,7 +229,7 @@ class VrAssignmentGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -230,10 +255,7 @@ class VrAssignmentGateway {
       }
 
       return kindlist;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<VrAssignmentModel>>
@@ -242,7 +264,7 @@ class VrAssignmentGateway {
           @required String offeringname,
           @required String entitytype,
           @required String entityid}) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -266,10 +288,7 @@ class VrAssignmentGateway {
       }
 
       return kindlist;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<AnsweredPaper>> getVrAssignmentScoreForSingleStudent({
@@ -278,7 +297,7 @@ class VrAssignmentGateway {
     @required String idcardnum,
     @required String entityid,
   }) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -301,10 +320,7 @@ class VrAssignmentGateway {
         kindlist.add(AnsweredPaper.fromMap1(bk));
       }
       return kindlist;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future<List<AnsweredPaper>>
@@ -315,7 +331,7 @@ class VrAssignmentGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       List<AnsweredPaper> kindlist = [];
@@ -337,10 +353,7 @@ class VrAssignmentGateway {
         kindlist.add(AnsweredPaper.fromMap1(bk));
       }
       return kindlist;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+
   }
 
   static Future submitScoreForTeacher({
@@ -351,7 +364,7 @@ class VrAssignmentGateway {
     DateTime submitdate,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'SaveAssignmentScoreRequest',
       );
@@ -372,9 +385,7 @@ class VrAssignmentGateway {
       dynamic resp = await callable.call(data);
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-    }
+
   }
 
   static Future submitScoreForStudent({
@@ -385,7 +396,7 @@ class VrAssignmentGateway {
     DateTime submitdate,
     @required String serviceID,
   }) async {
-    try {
+
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'SaveAssignmentScoreRequest',
       );
@@ -404,9 +415,7 @@ class VrAssignmentGateway {
 
       print("CloudFunction " + callable.toString());
       print("CloudFunction " + resp.data.toString());
-    } catch (e) {
-      print(e);
-    }
+
   }
 
   static Future<List<AnsweredPaper>>
@@ -418,7 +427,7 @@ class VrAssignmentGateway {
     @required String entitytype,
     @required String entityid,
   }) async {
-    try {
+
       final HttpsCallable callable =
           FirebaseFunctions.instance.httpsCallable('GenericQueryActionRequest');
       print("CloudFunction " + "end");
@@ -440,9 +449,7 @@ class VrAssignmentGateway {
         kindlist.add(AnsweredPaper.fromMap1(bk));
       }
       return kindlist;
-    } catch (e) {
-      print(e);
-    }
+
   }
 
   static Future<AssignmentModel> getAssignmentDataForAttachedAssignment(
@@ -452,6 +459,6 @@ class VrAssignmentGateway {
         .get()
         .then((x) {
       return AssignmentModel.fromJson(x.data(), x.id);
-    }).catchError((e) => []);
+    });
   }
 }

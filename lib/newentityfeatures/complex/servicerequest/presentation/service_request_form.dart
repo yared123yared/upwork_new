@@ -1,18 +1,18 @@
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart'
     hide DateTimeMode;
-import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
+
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 // import 'package:complex/newentityfeatures/complex/building/model/building_model.dart';
-import 'package:complex/newentityfeatures/Models/building_model.dart';
+
 
 // import 'package:complex/newentityfeatures/staff/model/staff_model.dart';
 
 // import 'package:complex/newentityfeatures/unit/model/unit_model.dart';
-import 'package:complex/newentityfeatures/Models/unit_model.dart';
+
 
 // import '../model/service_request_model.dart';
 import 'package:complex/newentityfeatures/Models/service_request_model.dart';
@@ -245,7 +245,7 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
             haveAccess = state.haveAccess;
             user = state.user;
             btnState = state.btnState;
-            justunits = state.oul.justunits;
+            justunits = state.oul.occupiedunits;
             stafflist = state.stafflist;
             buildinglist = state.buildinglist;
             floormap = state.oul.floormap;

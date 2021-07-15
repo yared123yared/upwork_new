@@ -1,9 +1,9 @@
-import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
+//import 'package:complex/newentityfeatures/commonrepo/complex_repository.dart';
 // import '../model/building_model.dart';
 import 'package:complex/newentityfeatures/Models/building_model.dart';
 import 'package:complex/newentityfeatures/gateway/building_gateway.dart';
 
-import 'package:get/get.dart';
+//import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 class BuildingModelRepositoryReturnData {
@@ -20,7 +20,7 @@ class BuildingModelRepositoryReturnData {
 }
 
 class BuildingModelRepository {
-  NewComplexRepository _complexRepository = Get.find();
+
 
   Future<BuildingModelRepositoryReturnData> getAllBuildingModels(
       String entitytype, String entityid) async {

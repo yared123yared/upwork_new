@@ -377,5 +377,6 @@ class ServiceModelAddProps extends Equatable {
     json["t_routetype"] = t_routetype;
     json["t_reqticketing"] = t_reqticketing;
     json["t_reqremotemanagement"] = t_reqremotemanagement;
+    return json;
   }
 }
