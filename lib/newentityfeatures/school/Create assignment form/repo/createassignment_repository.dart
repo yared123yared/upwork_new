@@ -2,6 +2,7 @@ import 'package:complex/common/model/button_state.dart';
 
 import 'package:complex/newentityfeatures/gateway/assignment_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
@@ -121,7 +122,42 @@ class CreateAssignmentRepository {
     return myreturn;
   }
 
+  Future<CreateAssignmentEntryData> getItemFormNewEntryData(
+      String entitytype, String entityid) async {
+    CreateAssignmentEntryData grerror = CreateAssignmentEntryData();
+    grerror.errortype = -2;
+    grerror.error = "UNknown exception has occured";
 
+    try {
+      Future<List<TeacherOfferingsAssignment>> Function(String grade)
+      offerings = (String grade) async =>
+      await OfferingsVrManagementGateway.getTeacherOfferingsAssignmentList(
+         entityid,grade
+      );
+
+      List<String> grades =
+      await LookupGateway.getGradeList(serviceID: entityid);
+      // ButtonState buttonState;
+
+
+      CreateAssignmentEntryData gr = CreateAssignmentEntryData(
+        offerings: offerings,
+        grades: grades,
+        index: 0,
+        question: null,
+        assignmentID: entityid,
+        // studyMaterial: studyMaterial,
+        dynamicListState: null,
+        listItems: null,
+        emptyList: false,
+        errortype: -1,
+      );
+      return gr;
+    } catch (ex) {
+      print(ex);
+    }
+    return grerror;
+  }
 
   Future<CreateAssignmentRepositoryReturnData> publishAssignment(
       AssignmentModel item, String entityid) async {

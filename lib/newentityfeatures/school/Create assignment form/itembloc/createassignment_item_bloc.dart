@@ -31,7 +31,23 @@ class CreateAssignmentBloc
         emptyList: event.emptyList,
       );
     }
+    if (event is getForNewEntry) {
+      yield IsBusy();
+      CreateAssignmentEntryData ud = await mrepository.getItemFormNewEntryData(
+        event.entitytype,
+        event.entityid,
+      );
 
+      if (ud.errortype == -1)
+        yield IsReadyForDetailsPage(
+          entitytype: event.entitytype,
+          entityid: event.entityid,
+
+          offerings: ud.offerings,
+          grades: ud.grades,
+
+        );
+    }
     if (event is StudyMaterialsFormSchoolEvent) {
       yield StudyMaterialsFormSchoolState(
         studyMaterialIndex: event.index,

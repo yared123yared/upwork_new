@@ -28,6 +28,26 @@ mixin AssignmentGateway {
     }
   }
 
+  static Future<List<AssignmentModel>> getAssignmentListByStaffId({
+    @required String serviceID,
+  }) async {
+    try {
+      return await FirebaseFirestore.instance
+          .collection("SERVICEPROVIDERINFO/$serviceID/ASSIGNMENT")
+          .get()
+          .then((x) {
+        print(x.docs);
+        return AssignmentModel.listFromJson(
+          x.docs.map((d) => d.data).toList(),
+          x.docs.map((e) => e.id).toList(),
+        );
+      });
+    } on Exception {
+      return [];
+    }
+  }
+
+
   static Future<void> removeAssignment(
     AssignmentModel assignment,
     String docId,String serviceid

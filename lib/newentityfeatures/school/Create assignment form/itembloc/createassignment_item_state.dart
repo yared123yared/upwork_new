@@ -35,7 +35,7 @@ class HasExceptionFaliur extends CreateAssignmentState {
 // this state marks that entry form is ready to be displayed
 
 class IsReadyForDetailsPage extends CreateAssignmentState {
-  final String detailstype;
+
   final String entityid;
   final String entitytype;
 
@@ -44,67 +44,40 @@ class IsReadyForDetailsPage extends CreateAssignmentState {
   final List<String> grades;
   // final ButtonState buttonState;
 
-  final Question question;
-  final int index;
-  // final ButtonState buttonState;
-  final String assignmentID;
-
-  final StudyMaterial studyMaterial;
-  // final String assignmentID;
-
-  final dynamic dynamicListState;
-  final List<dynamic> listItems;
   // final String assignmentID;
   // final VoidCallback addItemAction;
   // final String appBarTitle;
   // final String inAppTitle;
-  final bool emptyList;
+
 
   IsReadyForDetailsPage({
-    @required this.detailstype,
+
     @required this.entityid,
     @required this.entitytype,
     @required this.offerings,
     @required this.grades,
     // @required this.buttonState,
-    @required this.question,
-    @required this.index,
+   // @required this.question,
+   // @required this.index,
     // @required this.buttonState,
-    @required this.assignmentID,
-    @required this.studyMaterial,
+   // @required this.assignmentID,
+    //@required this.studyMaterial,
     // @required this.assignmentID,
-    @required this.dynamicListState,
-    @required this.listItems,
+    //@required this.dynamicListState,
+  //  @required this.listItems,
     // @required this.assignmentID,
     // @required this.addItemAction,
     // @required this.appBarTitle,
     // @required this.inAppTitle,
-    @required this.emptyList,
+//    @required this.emptyList,
   });
 
   @override
   List<Object> get props => [
         entityid,
         entitytype,
-        detailstype,
-        detailstype,
-        entityid,
-        entitytype,
+    offerings,
         grades,
-        // buttonState,
-        question,
-        index,
-        // buttonState,
-        assignmentID,
-        studyMaterial,
-        // assignmentID,
-        dynamicListState,
-        listItems,
-        // assignmentID,
-        // addItemAction,
-        // appBarTitle,
-        // inAppTitle,
-        emptyList,
       ];
 }
 

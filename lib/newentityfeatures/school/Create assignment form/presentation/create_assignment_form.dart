@@ -288,30 +288,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
               offeringsFunction = state.offerings;
               grades = state.grades;
               buttonState = ButtonState.idle;
-
-              question = state.question;
-              index = state.index;
-              // buttonState = state.buttonState;
-              assignmentID = state.assignmentID;
-
-              studyMaterial = state.studyMaterial;
-              // assignmentID = state.assignmentID;
-
-              dynamicListState = state.dynamicListState;
-              listItems = state.listItems;
-              // assignmentID = state.assignmentID;
-              // addItemAction = state.addItemAction;
-              // appBarTitle = state.appBarTitle;
-              // inAppTitle = state.inAppTitle;
-              emptyList = state.emptyList;
-
-              // _assignmentModel = state.assignmentModel;
-              // _questionModel = state.questionModel;
-              // _studyMaterialModel = state.studyMaterialModel;
-              // _questionStudyMateriaModel = state.questionStudyMateriaModel;
-
               _assignmentModel = widget.assignmentModel ?? AssignmentModel();
-
               timelineIndex = widget.formMode;
 
               _initFiledValue();
