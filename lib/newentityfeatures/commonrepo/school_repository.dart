@@ -11,16 +11,6 @@ import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/Models/user_registration_model.dart';
 import 'package:complex/newentityfeatures/Models/user_reg_fee_collection.dart';
 
-import 'package:complex/newentityfeatures/commonrepo/assignment_repository.dart';
-import 'package:complex/newentityfeatures/commonrepo/fee_plans_repository.dart';
-import 'package:complex/newentityfeatures/commonrepo/instructor_repository.dart';
-
-import 'package:complex/newentityfeatures/commonrepo/offering_schedule_repository.dart';
-import 'package:complex/newentityfeatures/commonrepo/parents_repository.dart';
-import 'package:complex/newentityfeatures/commonrepo/progress_repository.dart';
-
-import 'package:complex/newentityfeatures/commonrepo/user_session_reg_repository.dart';
-import 'package:complex/newentityfeatures/commonrepo/virtual_rooms_repository.dart';
 
 import 'package:complex/newentityfeatures/gateway/fee_item_groups_gateway.dart';
 
@@ -33,26 +23,12 @@ import 'package:complex/newentityfeatures/gateway/user_registration_gateway.dart
 
 class NewSchoolRepository {
 
-  AssignmentRepository assignment;
-  VirtualRoomsRepository virtualRoom;
-  ParentsRepository parent;
-  OfferingScheduleRepository offeringSchedule;
-  ProgressRepository progress;
-  FeePlansRepository feePlans;
-  UserSessionRegRepository userSessionReg;
 
-  InstructorRepository instructor;
+
+
 
   NewSchoolRepository() {
-    instructor = InstructorRepository();
-    parent = ParentsRepository();
 
-    progress = ProgressRepository();
-    feePlans = FeePlansRepository();
-    userSessionReg = UserSessionRegRepository();
-
-    virtualRoom = VirtualRoomsRepository();
-    assignment = AssignmentRepository(virtualRoom: virtualRoom);
   }
 
 

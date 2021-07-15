@@ -226,7 +226,7 @@ class SessionRegistrationRepository {
     String entityid,
   }) async {
     List<UserSessionRegModel> users =
-        await _schoolRepo.userSessionReg.getUserSessionReg(
+        await UserSessionRegGateway.getUserSessionReg(
       serviceID: entityid,
     );
 

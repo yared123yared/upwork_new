@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:complex/newentityfeatures/gateway/assignment_gateway.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import 'package:get/get.dart';
@@ -44,9 +45,9 @@ class HelperRepository {
   static Future<List<AssignmentModel>> assignmentModellistbyofferinggroupfunc(
       String offeringgroupname, String entityid) async {
     try {
-      return await _schoolRepo.assignment
+      return await AssignmentGateway
           .getPublishedAssignmentsByOfferingGroup(
-        offeringgroupname: offeringgroupname,
+        offeringgroup: offeringgroupname,
         serviceID: entityid,
       );
     } catch (e) {

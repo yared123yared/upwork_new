@@ -282,18 +282,5 @@ class ServiceRequestModelRepository {
   }
 
 
-  Future<bool> _haveAccess(ServiceRequestModel serviceRequest, complexModel,
-      entityid, entitytype) async {
-    if (serviceRequest != null) {
-      String _unitID = serviceRequest.unitId;
-      return await _complexRepository.units
-          .getUnitList(entitytype: entitytype, entityid: entityid)
-          // .getUnitList(complex: complexModel, user: _user)
-          .then((units) {
-        return units.map((unit) => unit.unitID).toList().contains(_unitID);
-      });
-    } else {
-      return false;
-    }
-  }
+
 }

@@ -2,7 +2,9 @@ import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:complex/newentityfeatures/Models/user_session_registration.dart';
 import 'package:complex/newentityfeatures/commonrepo/school_repository.dart';
+import 'package:complex/newentityfeatures/gateway/fee_plans_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/user_fee_collection_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/user_session_registration_gateway.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
 import 'package:complex/newentityfeatures/Models/user_reg_fee_collection.dart';
@@ -64,7 +66,7 @@ class FeePaymentRepository {
     );
 
     List<FeePlanModel> feePlanModels =
-        await _schoolRepo.feePlans.getFeePlanList(
+        await FeePlanGateway.getFeePlanList(
       serviceID: entityid,
     );
 
@@ -125,12 +127,12 @@ class FeePaymentRepository {
 
     try {
       List<UserSessionRegModel> users =
-          await _schoolRepo.userSessionReg.getUserSessionReg(
+          await UserSessionRegGateway.getUserSessionReg(
         serviceID: entityid,
       );
 
       List<FeePlanModel> feePlanList =
-          await _schoolRepo.feePlans.getFeePlanList(
+          await FeePlanGateway.getFeePlanList(
         serviceID: entityid,
       );
 

@@ -26,7 +26,9 @@ import 'package:complex/newentityfeatures/ecommerce-admin/views/trip/trips_view.
 import 'package:complex/newentityfeatures/ecommerce-admin/views/vendor/vendor_view.dart';
 import 'package:complex/newentityfeatures/f_lookups/cf_lookuptypes/feeitems/presentation/feeItem_listview.dart';
 import 'package:complex/newentityfeatures/gateway/lookups_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/offering_vr_schedule_gateway.dart';
 import 'package:complex/newentityfeatures/gateway/session_term_gateway.dart';
+import 'package:complex/newentityfeatures/gateway/vr_assignment_gateway.dart';
 import 'package:complex/newentityfeatures/school/Class%20period/presentation/classperiodmodel_listview.dart';
 import 'package:complex/newentityfeatures/school/Create%20assignment%20form/presentation/createassignment_listview.dart';
 import 'package:complex/newentityfeatures/school/Event/presentation/event_page.dart';
@@ -1348,9 +1350,9 @@ class UiSchoolHandler {
                 serviceID: entityid,
               );
               var instructorData =
-                  await _schoolRepo.instructor.setInstructorScheduleData(
+                  await OfferingsVrManagementGateway.getInstructorScheduleData(
                 serviceID: entityid,
-                staffID: _userRepository.getUser().userID,
+                    staffid: _userRepository.getUser().userID,
               );
               Navigator.push(
                   context,
@@ -1382,10 +1384,10 @@ class UiSchoolHandler {
                 String sessionTerm,
                 String virtualRoom,
               }) {
-                return _schoolRepo.assignment.getVrAssignmentsForIdCard(
+                return VrAssignmentGateway.getVrAssignmentModelForIDCardNum(
                   entityid: entityid,
                   sessionterm: sessionTerm,
-                  virtualRoomName: virtualRoom,
+                  virtualroomname: virtualRoom,
                 );
               }
 
@@ -1425,10 +1427,10 @@ class UiSchoolHandler {
                 String sessionTerm,
                 String virtualRoom,
               }) {
-                return _schoolRepo.assignment.getVrAssignmentsForIdCard(
+                return VrAssignmentGateway.getVrAssignmentModelForIDCardNum(
                   entityid: entityid,
                   sessionterm: sessionTerm,
-                  virtualRoomName: virtualRoom,
+                  virtualroomname: virtualRoom,
                 );
               }
 
@@ -1468,10 +1470,10 @@ class UiSchoolHandler {
                 String sessionTerm,
                 String virtualRoom,
               }) {
-                return _schoolRepo.assignment.getVrAssignmentsForIdCard(
+                return VrAssignmentGateway.getVrAssignmentModelForIDCardNum(
                   entityid: entityid,
                   sessionterm: sessionTerm,
-                  virtualRoomName: virtualRoom,
+                  virtualroomname: virtualRoom,
                 );
               }
 
@@ -1511,10 +1513,10 @@ class UiSchoolHandler {
                 String sessionTerm,
                 String virtualRoom,
               }) {
-                return _schoolRepo.assignment.getVrAssignmentsForIdCard(
+                return VrAssignmentGateway.getVrAssignmentModelForIDCardNum(
                   entityid: entityid,
                   sessionterm: sessionTerm,
-                  virtualRoomName: virtualRoom,
+                  virtualroomname: virtualRoom,
                 );
               }
 
@@ -1554,10 +1556,10 @@ class UiSchoolHandler {
                 String sessionTerm,
                 String virtualRoom,
               }) {
-                return _schoolRepo.assignment.getVrAssignmentsForIdCard(
+                return VrAssignmentGateway.getVrAssignmentModelForIDCardNum(
                   entityid: entityid,
                   sessionterm: sessionTerm,
-                  virtualRoomName: virtualRoom,
+                  virtualroomname: virtualRoom,
                 );
               }
 
@@ -1604,14 +1606,18 @@ class UiSchoolHandler {
               var grades = await LookupGateway.getGradeList(
                 serviceID: entityid,
               );
-              var virtualRoomList =
-                  await _schoolRepo.virtualRoom.getVirtualRooms(
-                serviceID: entityid,
+              var virtualRoomList = null;
+              /*
+                  await OfferingsVrManagementGateway
+                      .getVirtualRoomModelNewFormatList(
+                entityid,""
               );
+
+              */
               var instructorData =
-                  await _schoolRepo.instructor.setInstructorScheduleData(
+                  await OfferingsVrManagementGateway.getInstructorScheduleData(
                 serviceID: entityid,
-                staffID: _userRepository.getUser().userID,
+                staffid: _userRepository.getUser().userID,
               );
 
               Navigator.push(
@@ -1648,9 +1654,9 @@ class UiSchoolHandler {
                 serviceID: entityid,
               );
               var instructorData =
-                  await _schoolRepo.instructor.setInstructorScheduleData(
+                  await OfferingsVrManagementGateway.getInstructorScheduleData(
                 serviceID: entityid,
-                staffID: _userRepository.getUser().userID,
+                staffid: _userRepository.getUser().userID,
               );
               var attendanceModel;
               // await _schoolRepo.instructor.getAttendance(

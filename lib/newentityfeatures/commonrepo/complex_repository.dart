@@ -7,9 +7,7 @@ import 'package:complex/newentityfeatures/Models/entity/staff_model.dart';
 import 'package:complex/newentityfeatures/gateway/complex_staff_gateway.dart';
 import 'package:meta/meta.dart';
 
-import 'leave_request_repository.dart';
-import 'registry_repository.dart';
-import 'unit_repository.dart';
+
 
 import 'package:complex/newentityfeatures/Models/entity/complex_model.dart';
 import 'package:complex/newentityfeatures/Models/building_model.dart';
@@ -35,9 +33,7 @@ import 'package:complex/data/models/response/user_response/user_complex.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 
 class NewComplexRepository {
-  UnitsRepository units;
-  RegistryRepository registry;
-  LeaveRequestRepository leaveRequest;
+
 
 
   NewComplexRepository() {
@@ -45,9 +41,7 @@ class NewComplexRepository {
   }
 
   setup() {
-    registry = RegistryRepository();
-    units = UnitsRepository();
-    leaveRequest = LeaveRequestRepository();
+
   }
 
 
