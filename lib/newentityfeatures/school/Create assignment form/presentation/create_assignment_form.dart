@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flow_builder/flow_builder.dart';
@@ -257,9 +258,8 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
           entitytype: widget.entitytype,
         )),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Assignment Details'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Assignment Details',
         ),
         body: BlocListener<CreateAssignmentBloc, CreateAssignmentState>(
           listener: (context, state) {
@@ -478,13 +478,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
             CustomActionButton(
               state: buttonState,
               title: "Update and Publish",
-              gradient: C.bgGradient,
-              padding: EdgeInsets.symmetric(
-                  vertical: height * 1.5, horizontal: width * 10),
-              margin: EdgeInsets.symmetric(
-                horizontal: width * 5,
-                vertical: 10,
-              ),
+              color: Theme.of(context).primaryColor,
               onTap: () {
                 if (_validate()) {
                   _assignmentModel = AssignmentModel(
@@ -527,13 +521,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
             state: buttonState,
             title: _update ? "Update" : "Add",
             // title: "Next",
-            gradient: C.bgGradient,
-            padding: EdgeInsets.symmetric(
-                vertical: height * 1.5, horizontal: width * 10),
-            margin: EdgeInsets.symmetric(
-              horizontal: width * 5,
-              vertical: 10,
-            ),
+            color: Theme.of(context).primaryColor,
             onTap: () async {
               if (buttonState == ButtonState.idle) {
                 if (_validate()) {
@@ -800,10 +788,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
                 // title: index < choice_length ? "Next" : "Submit",
                 // title: question != null ? "UPDATE" : "ADD",
                 title: "Update",
-                gradient: C.bgGradient,
-                padding: EdgeInsets.symmetric(vertical: height * 1.5),
-                margin: EdgeInsets.symmetric(
-                    horizontal: width * 25, vertical: height * 6),
+                color: Theme.of(context).primaryColor,
                 onTap: () {
                   print('add userSession');
                   if (_validate()) {
@@ -1171,12 +1156,7 @@ class _CreateAssignmentFormState extends State<CreateAssignmentForm> {
             CustomActionButton(
               // state: btnState,
               title: widget.assignmentModel != null ? "Update" : "Add",
-              gradient: C.bgGradient,
-              padding: EdgeInsets.symmetric(vertical: height * 1.5),
-              margin: EdgeInsets.symmetric(
-                horizontal: width * 25,
-                vertical: height,
-              ),
+              color: Theme.of(context).primaryColor,
               onTap: () async {
                 // if (btnState != ButtonState.idle) return;
                 // if (!_validate()(timelineIndex)) return;

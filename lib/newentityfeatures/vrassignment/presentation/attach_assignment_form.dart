@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:flutter/material.dart';
@@ -145,9 +146,8 @@ class _AttachedAssignmentFormState extends State<AttachedAssignmentForm> {
         ..add(getForNewEntry(
             entityid: widget.entityid, entitytype: widget.entitytype)),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Attach Assignment'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Attach Assignment',
         ),
         body: BlocListener<VrAssignmentModelBloc, VrAssignmentModelState>(
             listener: (context, state) {
@@ -381,10 +381,7 @@ class _AttachedAssignmentFormState extends State<AttachedAssignmentForm> {
           child: CustomActionButton(
             state: ButtonState.idle,
             title: update ? "Update" : "Add",
-            gradient: C.bgGradient,
-            padding: EdgeInsets.symmetric(vertical: height * 1.5),
-            margin: EdgeInsets.symmetric(
-                horizontal: width * 25, vertical: height * 6),
+            color: Theme.of(context).primaryColor,
             onTap: () {
               print("id ashe na ${widget.vrAssignmentModel?.vrid}");
               if (_validate()) {

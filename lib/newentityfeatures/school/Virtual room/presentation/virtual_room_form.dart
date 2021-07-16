@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -131,9 +132,8 @@ class _VirtualRoomFormState extends State<VirtualRoomForm> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Class Form'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Virtual Room Form',
         ),
         body: BlocListener<itembloc.VirtualRoomModelBloc,
             itembloc.VirtualRoomModelState>(listener: (context, state) {
@@ -299,10 +299,7 @@ class _VirtualRoomFormState extends State<VirtualRoomForm> {
         CustomActionButton(
           state: ButtonState.idle,
           title: buttonTitle,
-          gradient: C.bgGradient,
-          padding: EdgeInsets.symmetric(vertical: height * 1.5),
-          margin: EdgeInsets.symmetric(
-              horizontal: width * 25, vertical: height * 6),
+          color: Theme.of(context).primaryColor,
           onTap: () {
             if (_validate()) {
               VirtualRoomModelNewFormat _virtualRoomModelNewFormat =

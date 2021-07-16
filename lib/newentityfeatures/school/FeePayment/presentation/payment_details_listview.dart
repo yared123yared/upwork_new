@@ -1,5 +1,6 @@
 //
 //import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:complex/newentityfeatures/Models/user_reg_fee_collection.dart';
 
@@ -159,9 +160,8 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Payment Details List"),
-            centerTitle: true,
+          appBar: CustomAppBar(
+            title: "Payment Details List",
           ),
           body: BlocListener<listbloc.FeePaymentListBloc,
               listbloc.FeePaymentListState>(listener: (context, state) {

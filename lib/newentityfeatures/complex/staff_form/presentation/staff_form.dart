@@ -1,5 +1,6 @@
 import 'package:complex/common/model/timeline_model.dart';
 import 'package:complex/common/presentation.dart';
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_image_uploader.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 //import 'package:complex/data/models/response/user_response/user_entity.dart';
@@ -202,9 +203,8 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Staff Form'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Staff Form',
         ),
         body: BlocListener<itembloc.StaffModelBloc, itembloc.StaffModelState>(
           listener: (context, state) {
@@ -275,12 +275,7 @@ class _StaffFormComplexState extends State<StaffFormComplex> {
                     ? "Update"
                     : "Add"
                 : 'Next',
-            gradient: C.bgGradient,
-            padding: EdgeInsets.symmetric(vertical: height * 1.5),
-            margin: EdgeInsets.symmetric(
-              horizontal: width * 25,
-              vertical: height,
-            ),
+            color: Theme.of(context).primaryColor,
             onTap: () async {
               // if (widget.btnState != ButtonState.idle) return;
               // if (!_validate(timelineIndex)) return;

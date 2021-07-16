@@ -1,5 +1,6 @@
 import 'package:complex/common/model/button_state.dart';
 import 'package:complex/common/presentation.dart';
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/newentityfeatures/Models/leaverequest_model.dart';
 // import 'package:complex/newentityfeatures/Models/ui/dynamic_complex_state.dart' as ui;
 
@@ -138,9 +139,8 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Leave Request'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Leave Request',
         ),
         body: BlocListener<itembloc.LeaveRequestBloc,
             itembloc.LeaveRequestState>(listener: (context, state) {
@@ -256,10 +256,7 @@ class _LeaveRequestFormState extends State<LeaveRequestForm> {
           CustomActionButton(
             title: _isUpdate ? 'Update' : "Add",
             state: ButtonState.idle,
-            gradient: C.bgGradient,
-            padding: EdgeInsets.symmetric(vertical: height * 1.5),
-            margin:
-                EdgeInsets.symmetric(horizontal: width * 25, vertical: height),
+            color: Theme.of(context).primaryColor,
             onTap: () {
               LeaveRequestModel _leaveRequestModel = LeaveRequestModel(
                 endDate: _endDate,

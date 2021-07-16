@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -62,9 +63,9 @@ class _BuildingFormState extends State<BuildingForm> {
     return BlocProvider.value(
       value: mbloc,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Building'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Building',
+          // centerTitle: true,
         ),
         body: BlocListener<itembloc.BuildingModelBloc,
             itembloc.BuildingModelState>(listener: (context, state) {
@@ -175,9 +176,9 @@ class _BuildingFormState extends State<BuildingForm> {
           title: _isUpdate ? "Update" : "Add",
           color: Theme.of(context).primaryColor,
           // gradient: C.bgGradient,
-          padding: EdgeInsets.symmetric(vertical: height * 1.5),
-          margin: EdgeInsets.symmetric(
-              horizontal: width * 25, vertical: height * 3),
+          //padding: EdgeInsets.symmetric(vertical: height * 1.5),
+          // margin: EdgeInsets.symmetric(
+          //   horizontal: width * 25, vertical: height * 3),
           onTap: () async {
             {
               if (_validate()) {

@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -107,9 +108,8 @@ class _TeacherAssignmentModelFormState
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Tescher Offering Assignment'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Teacher Offering Assignment',
         ),
         body: BlocListener<itembloc.TeacherAssignmentModelBloc,
             itembloc.TeacherAssignmentModelState>(listener: (context, state) {
@@ -277,11 +277,7 @@ class _TeacherAssignmentModelFormState
         CustomActionButton(
           state: ButtonState.idle,
           title: buttonTitle,
-          gradient: C.bgGradient,
-          padding: EdgeInsets.symmetric(
-              vertical: height * 1.5, horizontal: width * 5),
-          margin: EdgeInsets.symmetric(
-              horizontal: width * 25, vertical: height * 6),
+          color: Theme.of(context).primaryColor,
           onTap: () async {
             print('add userSession');
 

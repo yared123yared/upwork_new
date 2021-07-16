@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/newentityfeatures/Models/family_member.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,9 +60,8 @@ class _FamilyMemberFormState extends State<FamilyMemberForm> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Family Members'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Family Members',
         ),
         body: BlocListener<itembloc.FamilyMemberBloc,
             itembloc.FamilyMemberState>(listener: (context, state) {
@@ -139,6 +139,7 @@ class _FamilyMemberFormState extends State<FamilyMemberForm> {
         if (!update)
           CustomActionButton(
             title: 'Add Member',
+            color: Theme.of(context).primaryColor,
             onTap: () {
               if (validate()) {
                 BlocProvider.of<itembloc.FamilyMemberBloc>(context).add(

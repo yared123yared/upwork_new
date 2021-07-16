@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 
 //import "package:asuka/asuka.dart" as asuka;
@@ -137,9 +138,8 @@ class _AttachAssignmentListListState extends State<AttachAssignmentListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Attach Assignment List"),
-            centerTitle: true,
+          appBar: CustomAppBar(
+            title: "Attach Assignment List",
           ),
           body: BlocListener<listbloc.VrAssignmentModelListBloc,
               listbloc.VrAssignmentModelListState>(listener: (context, state) {

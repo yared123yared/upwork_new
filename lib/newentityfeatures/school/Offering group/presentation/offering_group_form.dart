@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,9 +94,8 @@ class _OfferingsByGradeFormState extends State<OfferingsByGradeForm> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Offering Group'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Offering Group',
         ),
         body: BlocListener<itembloc.OfferingModelGroupBloc,
             itembloc.OfferingModelGroupState>(listener: (context, state) {
@@ -214,11 +214,7 @@ class _OfferingsByGradeFormState extends State<OfferingsByGradeForm> {
           CustomActionButton(
             state: ButtonState.idle,
             title: buttonTitle,
-            gradient: C.bgGradient,
-            padding: EdgeInsets.symmetric(
-                vertical: height * 1.5, horizontal: width * 5),
-            margin: EdgeInsets.symmetric(
-                horizontal: width * 12, vertical: height * 3),
+            color: Theme.of(context).primaryColor,
             onTap: () async {
               print('add userSession');
               if (_validate()) {

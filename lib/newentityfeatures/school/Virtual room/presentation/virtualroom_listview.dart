@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
@@ -138,9 +139,8 @@ class _VirtualRoomModelListListState extends State<VirtualRoomModelListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Virtual Room List"),
-            centerTitle: true,
+          appBar: CustomAppBar(
+            title: "Virtual Room List",
           ),
           body: BlocListener<listbloc.VirtualRoomModelListBloc,
               listbloc.VirtualRoomModelListState>(listener: (context, state) {

@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
@@ -139,9 +140,8 @@ class _PaymentModelListListState extends State<PaymentModelListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Payment Period List"),
-            centerTitle: true,
+          appBar: CustomAppBar(
+            title: "Payment Period List",
           ),
           body: BlocListener<listbloc.PaymentModelListBloc,
               listbloc.PaymentModelListState>(listener: (context, state) {

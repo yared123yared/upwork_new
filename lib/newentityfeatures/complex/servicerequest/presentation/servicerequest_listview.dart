@@ -1,4 +1,5 @@
 //import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/data/models/response/user_response/residential_unit.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
@@ -169,9 +170,8 @@ class _ServiceModelListListState extends State<ServiceModelListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Service Request"),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: "Service Request",
         ),
         body: BlocListener<listbloc.ServiceRequestModelListBloc,
             listbloc.ServiceRequestModelListState>(listener: (context, state) {
