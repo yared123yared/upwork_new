@@ -14,6 +14,7 @@ class FeePaymentRepositoryReturnData {
   List<PaymentDetails> paymentDetailsList;
   UserRegFeeCollectionModel item;
   FeePlanModel feePlan;
+  String startPeriod;
   String id;
   int errortype;
   String error;
@@ -46,7 +47,26 @@ class FeePaymentRepository {
         filteredUsersRegFee.add(element);
     });
 
+    // await _schoolRepo.
+    UserSessionRegModel userSession = await UserSessionRegGateway.getUserSessionRegModel(
+      entityid,
+      sessionTerm,
+      cardNum,
+    );
+
+    List<FeePlanModel> feePlanModels = await FeePlanGateway.getFeePlanList(
+      serviceID: entityid,
+    );
+    FeePlanModel feePlan;
+    feePlanModels?.forEach((feePlanModel) {
+      if (feePlanModel.feePlanName == filteredUsersRegFee?.first?.feePlaneName) {
+        feePlan = feePlanModel;
+      }
+    });
+
     myreturn.itemlist = filteredUsersRegFee;
+    myreturn.startPeriod = userSession.startPeriod;
+    myreturn.feePlan = feePlan;
     myreturn.errortype = -1;
 
     return myreturn;
@@ -65,57 +85,24 @@ class FeePaymentRepository {
       userRegFeeCollectionModel: userRegFeeCollectionModel,
     );
 
-    List<FeePlanModel> feePlanModels =
-        await FeePlanGateway.getFeePlanList(
-      serviceID: entityid,
-    );
+    // List<FeePlanModel> feePlanModels = await FeePlanGateway.getFeePlanList(
+    //   serviceID: entityid,
+    // );
 
-    FeePlanModel feePlan;
-    feePlanModels.forEach((feePlanModel) {
-      if (feePlanModel.feePlanName == userRegFeeCollectionModel.feePlaneName) {
-        feePlan = feePlanModel;
-      }
-    });
+    // FeePlanModel feePlan;
+    // feePlanModels.forEach((feePlanModel) {
+    //   if (feePlanModel.feePlanName == userRegFeeCollectionModel.feePlaneName) {
+    //     feePlan = feePlanModel;
+    //   }
+    // });
 
     myreturn.paymentDetailsList = paymentDetails;
-    myreturn.feePlan = feePlan;
+    // myreturn.feePlan = feePlan;
     myreturn.errortype = -1;
 
     return myreturn;
   }
 
-/* 
-  Future<GenericLookUpDataUsedForRegistration> getListFormPreLoadData(
-      String entitytype, String entityid) async {
-    GenericLookUpDataUsedForRegistration grerror =
-        new GenericLookUpDataUsedForRegistration();
-    grerror.errortype = -2;
-    grerror.error = "UNknown exception has occured";
-
-    try {
-      List<String> gradelist =
-          await LookupGateway.getGradeList(serviceID: entityid);
-      List<String> sessiontermlist =
-          await _schoolRepo.lookup.getSessionStringList(
-        serviceID: entityid,
-      );
-
-      //Please put your code here
-      GenericLookUpDataUsedForRegistration gr =
-          new GenericLookUpDataUsedForRegistration();
-      gr.errortype = -1;
-      gr.grades = gradelist;
-      gr.sessionterm = sessiontermlist;
-      gr.offeringModelGroupfunc = helperrepository.offeringModelGroupfunc;
-      return gr;
-    } catch (ex) {
-      grerror.errortype = -2;
-      print(ex.toString());
-      grerror.error = "UNknown exception has occured";
-    }
-    return grerror;
-  }
- */
   Future<FeePaymentEntryData> getItemFormNewEntryData(
     UserRegFeeCollectionModel userRegFeeCollectionModel,
     String entitytype,
@@ -131,8 +118,7 @@ class FeePaymentRepository {
         serviceID: entityid,
       );
 
-      List<FeePlanModel> feePlanList =
-          await FeePlanGateway.getFeePlanList(
+      List<FeePlanModel> feePlanList = await FeePlanGateway.getFeePlanList(
         serviceID: entityid,
       );
 
@@ -154,25 +140,6 @@ class FeePaymentRepository {
     return grerror;
   }
 
-/* 
-  Future<FeePaymentRepositoryReturnData> getFeePaymentWithOfferingSearch(
-      String entitytype,
-      String entityid,
-      String sessionterm,
-      String offeringgroup) async {
-    FeePaymentRepositoryReturnData grerror =
-        new FeePaymentRepositoryReturnData();
-    grerror.errortype = -2;
-    grerror.error = "UNknown exception has occured";
-
-    try {
-      FeePaymentRepositoryReturnData gr = FeePaymentRepositoryReturnData();
-      gr.errortype = -1;
-      return gr;
-    } catch (ex) {}
-    return grerror;
-  }
- */
   Future<FeePaymentRepositoryReturnData> addPaymentDetailsItem(
       UserRegFeeCollectionModel item,
       PaymentDetails paymentDetails,

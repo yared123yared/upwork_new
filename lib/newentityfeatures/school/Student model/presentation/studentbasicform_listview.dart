@@ -27,9 +27,6 @@ class StudentBasicFormModelListList extends StatefulWidget {
 class _StudentBasicFormModelListListState
     extends State<StudentBasicFormModelListList> {
   listbloc.StudentBasicFormModelListBloc mlistbloc;
-  CustomTextFieldController _grade = CustomTextFieldController();
-  CustomTextFieldController _sessionterm = CustomTextFieldController();
-  CustomTextFieldController _offering = CustomTextFieldController();
 
   List<String> gradelist;
   List<String> sessionterm;
@@ -96,7 +93,6 @@ class _StudentBasicFormModelListListState
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
         title: "${item.name ?? ''} ${item.feePlan ?? ""}",
-        // subtitle: "grade: ${item.grade}",
         tapAction: () {
           Navigator.push(
             context,

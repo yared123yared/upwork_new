@@ -19,7 +19,10 @@ class FeePaymentListBloc
       );
 
       if (ud.errortype == -1)
-        yield IsPaymentDetailsListDataLoaded(listdata: ud.paymentDetailsList, feePlan: ud.feePlan);
+        yield IsPaymentDetailsListDataLoaded(
+          listdata: ud.paymentDetailsList,
+          // feePlan: ud.feePlan,
+        );
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
       else
@@ -29,7 +32,11 @@ class FeePaymentListBloc
       yield IsBusy();
       FeePaymentRepositoryReturnData ud =
           await mrepository.deletePaymentDetailsWithData(
-              event.item, event.paymentDetails, event.entitytype, event.entityid);
+        event.item,
+        event.paymentDetails,
+        event.entitytype,
+        event.entityid,
+      );
       if (ud.errortype == -1)
         yield IsDeleted();
       else if (ud.errortype == 1)
@@ -48,7 +55,11 @@ class FeePaymentListBloc
       );
 
       if (ud.errortype == -1)
-        yield IsListDataLoaded(listdata: ud.itemlist);
+        yield IsListDataLoaded(
+          listdata: ud.itemlist,
+          feePlan: ud.feePlan,
+          startPeriod: ud.startPeriod,
+        );
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
       else

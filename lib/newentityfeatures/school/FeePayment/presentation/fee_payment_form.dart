@@ -21,6 +21,9 @@ class FeePaymentForm extends StatefulWidget {
   final String entityid;
   final String entitytype;
   final String sessionTerm;
+  final FeeData feeData;
+  final FeePlanModel firstPeriod;
+  final PaymentDetails lastPaymentPeriod;
   final helputil.ReloadAction givenreloadaction;
 
   FeePaymentForm({
@@ -29,6 +32,9 @@ class FeePaymentForm extends StatefulWidget {
     @required this.sessionTerm,
     this.entitytype,
     this.entityid,
+    this.firstPeriod,
+    this.lastPaymentPeriod,
+    this.feeData,
   });
 
   @override
@@ -160,11 +166,11 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
       /* FeePlanModel feePlan */ UserSessionRegModel user) async {
     FeePlanModel _feePlan;
     //  = user.feeplandata;
-    _feePlanList.forEach((feePlan) {
-      if (feePlan.feePlanName == user.feePLan) {
-        _feePlan = feePlan;
-      }
-    });
+    // _feePlanList.forEach((feePlan) {
+    //   if (feePlan.feePlanName == user.feePLan) {
+    //     _feePlan = feePlan;
+    //   }
+    // });
     Future.delayed(Duration(milliseconds: 80), () {
       _idCardNumber.text = user.idCardNum;
       _userName.text = user.activeSession;
@@ -173,19 +179,21 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
       _feePlanType.text = user.feePlanType;
       _feePlanName.text = user.feePLan;
       _paymentPeriodType.text = user.feePlanPeriodType;
-      _paymentPeriodName.text = user.feePLan;
-      _periodStartDate = _feePlan?.startDate;
-      _periodEndDate = _feePlan?.endDate;
+      _transportFee.text = user?.allocatedTransportCost?.toString();
       // _feeAmount.text = _feePlan.feeData[1].fe;
 
-      _transportFee.text = user?.allocatedTransportCost?.toString();
-      int totalFeeAmount = 0;
-      _feePlan?.feeData?.forEach((feeDataItem) {
-        totalFeeAmount = feeDataItem.totalAmount + totalFeeAmount;
-      });
-      // _feeAmount.text = _feePlan?.feeData. ?? 0;
+      // int totalFeeAmount = 0;
+      // _feePlan?.feeData?.forEach((feeDataItem) {
+      //   totalFeeAmount = feeDataItem.totalAmount + totalFeeAmount;
+      // });
+      // _totalFeeAmount.text = totalFeeAmount?.toString();
+
+      _totalFeeAmount.text = widget.feeData.totalAmount.toString();
+      _periodEndDate = widget.feeData.endDate;
+      _paymentPeriodName.text = widget.feeData.paymentPeriodName;
+      _periodStartDate = widget.feeData.startDate;
+
       _feeAmount.text = widget.userRegFeeCollectionModel?.feeAmount?.toString();
-      _totalFeeAmount.text = totalFeeAmount?.toString();
       // _totalPaymentMade.text = user.feeplandata.
     });
   }

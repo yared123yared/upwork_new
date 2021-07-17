@@ -84,6 +84,44 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
     );
   }
 
+  List<ListStateClass> toCommonListState(
+      List<PaymentDetails> listItems, BuildContext context) {
+    List<ListStateClass> _dynamicList = [];
+    listItems.asMap().forEach((index, item) {
+      _dynamicList.add(ListStateClass(
+        title: "${item.receivedByMemberName ?? ''} ${item ?? ""}",
+        tapAction: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PaymentDetailsForm(
+                paymentDetails: item,
+                userRegFeeCollectionModel: widget.userRegFeeCollectionModel,
+                feeData: null,
+                entitytype: widget.entitytype,
+                entityid: widget.entityid,
+                givenreloadaction: doreload,
+              ),
+            ),
+          );
+        },
+        // deleteAction: () async {
+        //   bool docancel = await _asyncConfirmDialog(context);
+        //   if (docancel) {
+        //     BlocProvider.of<listbloc.FeePaymentListBloc>(context).add(
+        //         listbloc.deletePaymentDetailsItemWithData(
+        //             entitytype: widget.entitytype,
+        //             entityid: widget.entitytype,
+        //             item: listItems[index]));
+        //   }
+        // },
+      ));
+    });
+
+    return _dynamicList;
+  }
+
+/* 
   List<ListStateClass> toCommonListState(List<PaymentDetails> listItems,
       List<FeeData> feePlanItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
@@ -126,7 +164,7 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
 
     return _dynamicList;
   }
-
+ */
   Future<bool> _asyncConfirmDialog(BuildContext context) async {
     return showDialog(
       context: context,
@@ -175,12 +213,27 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
             if (state is listbloc.IsPaymentDetailsListDataLoaded) {
               setState(() {
                 em = state.listdata ?? [];
+                /* 
                 feePlan = state.feePlan ?? [];
+
+                List<FeeData> feeDataList = [];
+                feePlan.feeData.forEach((feeData) {
+                  bool hasEncounteredStartPeriod = false;
+                  if (widget.userRegFeeCollectionModel.paymentPeriodName ==
+                      feeData.paymentPeriodName) {
+                    hasEncounteredStartPeriod = true;
+                  }
+                  if (hasEncounteredStartPeriod == true) {
+                    feeDataList.add(feeData);
+                  }
+                });
+                feePlan.feeData = feeDataList;
 
                 // We will receive a list with all the payment details defined, so we'll just take the length of that list and use it to select the feeData to send to the form
                 numPeriodsDefined = em?.length ?? 0;
                 nextPaymentDetailsFeeData =
                     state.feePlan.feeData[numPeriodsDefined];
+                 */
               });
             }
           }, child: BlocBuilder<listbloc.FeePaymentListBloc,
@@ -216,7 +269,7 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
               addButtonActions(context: context);
             },
             icon: Icon(Icons.arrow_right_alt),
-            label: Text("Fill Next Period"),
+            label: Text("Add New"),
           )
           // : null,
           ),
@@ -234,7 +287,7 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
                 appBarTitle: "Payment Details List",
                 dynamicListState: "Payment Details List",
                 listItems: em != null
-                    ? toCommonListState(em, feePlan.feeData, context)
+                    ? toCommonListState(em /* , feePlan.feeData */, context)
                     : [])),
       ],
     );

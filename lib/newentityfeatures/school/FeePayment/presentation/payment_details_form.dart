@@ -40,8 +40,8 @@ class PaymentDetailsForm extends StatefulWidget {
 }
 
 class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
-  List<FeePlanModel> _feePlanList;
-  List<UserSessionRegModel> _userSessionList;
+  // List<FeePlanModel> _feePlanList;
+  // List<UserSessionRegModel> _userSessionList;
   List<SchoolOwner> _membersList;
 
   CustomTextFieldController _amountReceivedDate = CustomTextFieldController();
@@ -93,10 +93,10 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
         _receivedByMemberId.text = widget.paymentDetails.receivedByMemberId;
         _receivedByMemberName.text = widget.paymentDetails.receivedByMemberName;
       } else {
-        _amountReceivedDate.text = widget.feeData.startDate.toString() ?? "";
-        _amountValidateDate.text = widget.feeData.endDate.toString() ?? "";
-        _paymentDate.text = widget.feeData.dueDate.toString() ?? "";
-        _paymentAmount.text = widget.feeData.totalAmount.toString() ?? "";
+        _amountReceivedDate.text = widget.feeData?.startDate?.toString() ?? "";
+        _amountValidateDate.text = widget.feeData.endDate?.toString() ?? "";
+        _paymentDate.text = widget.feeData?.dueDate?.toString() ?? "";
+        _paymentAmount.text = widget.feeData?.totalAmount?.toString() ?? "";
       }
     });
   }
@@ -148,7 +148,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
           }
 
           if (state is itembloc.IsReadyForDetailsPage) {
-            _userSessionList = state.userSessionList ?? [];
+            // _userSessionList = state.userSessionList ?? [];
             _membersList = state.membersList ?? [];
 
             _initFiledValue();

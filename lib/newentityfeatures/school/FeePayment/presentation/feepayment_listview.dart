@@ -1,5 +1,6 @@
 //
 //import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:complex/newentityfeatures/Models/user_reg_fee_collection.dart';
 
 import 'package:flutter/material.dart';
@@ -34,20 +35,15 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
 
   bool isAllPaid = false;
 
-  CustomTextFieldController _grade = CustomTextFieldController();
-  CustomTextFieldController _sessionterm = CustomTextFieldController();
-  CustomTextFieldController _offering = CustomTextFieldController();
-
-  List<String> gradelist;
-  List<String> sessionterm;
-  Future<List<String>> offeringgrouplist;
   List<UserRegFeeCollectionModel> em;
-  Future<List<String>> Function(String, String) offeringModelGroupfunc;
+  FeePlanModel feePlan;
+  FeeData nextPeriodFeeData;
+  List<FeeData> feeDataListToPay;
+  int numPeriodsDefined = 0;
+  int paidPeriods = 0;
 
   void initState() {
     mlistbloc = listbloc.FeePaymentListBloc();
-    // mlistbloc.add(listbloc.getPreData(
-    //     entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(
       listbloc.getListData(
         entitytype: widget.entitytype,
@@ -94,58 +90,91 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
     );
   }
 
+  // listItems.asMap().forEach((index, item) {
+  //   _dynamicList.add(ListStateClass(
+  //     title: "${item.userName ?? ''} ${item.paymentPeriodName ?? ""}",
+  //     // subtitle: "grade: ${item.grade}",
+  //     // info1: item.closed ? "Not Paid" : null,
+  //     // info1color: Colors.red.value,
+  //     subtitle: item.closed ? "Paid" : "Not Paid",
   List<ListStateClass> toCommonListState(
-      List<UserRegFeeCollectionModel> listItems, BuildContext context) {
+      List<UserRegFeeCollectionModel> listItems,
+      List<FeeData> feePlanItems,
+      BuildContext context) {
     List<ListStateClass> _dynamicList = [];
-    listItems.asMap().forEach((index, item) {
-      _dynamicList.add(ListStateClass(
-        title: "${item.userName ?? ''} ${item.paymentPeriodName ?? ""}",
-        // subtitle: "grade: ${item.grade}",
-        // info1: item.closed ? "Not Paid" : null,
-        // info1color: Colors.red.value,
-        subtitle: item.closed ? "Paid" : "Not Paid",
-
-        tapAction: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FeePaymentForm(
-                userRegFeeCollectionModel: item,
-                sessionTerm: widget.sessionTerm,
-                entitytype: widget.entitytype,
-                entityid: widget.entityid,
-                givenreloadaction: doreload,
-              ),
+    feePlanItems.asMap().forEach(
+      (index, item) {
+        _dynamicList.add(
+          ListStateClass(
+            title: numPeriodsDefined > index
+                ? "${listItems[index].userName ?? ''} ${item ?? ""}"
+                : "${item.paymentPeriodName ?? ''} ${item ?? ""}",
+            subtitle: numPeriodsDefined > index
+                ? listItems[index].closed
+                    ? "Closed"
+                    : "Not Closed"
+                : "Not Defined",
+            customAction_1: CustomAction(
+              title: "Master form",
+              action: () {
+                if (numPeriodsDefined > index ||
+                    (numPeriodsDefined == index &&
+                        numPeriodsDefined == paidPeriods)) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FeePaymentForm(
+                        userRegFeeCollectionModel:
+                            numPeriodsDefined <= index ? null : listItems[index],
+                        // listItems[index] != null ? listItems[index] : null,
+                        // paidPeriods < index ? listItems[index] : null,
+                        feeData: feePlan.feeData[index],
+                        sessionTerm: widget.sessionTerm,
+                        entitytype: widget.entitytype,
+                        entityid: widget.entityid,
+                        givenreloadaction: doreload,
+                      ),
+                    ),
+                  );
+                }
+              },
             ),
-          );
-        },
-        customAction_1: CustomAction(
-          title: "Payment Details",
-          action: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PaymentDetailsListList(
-                  userRegFeeCollectionModel: item,
-                  entitytype: widget.entitytype,
-                  entityid: widget.entityid,
-                ),
-              ),
-            );
-          },
-        ),
-        deleteAction: () async {
-          bool docancel = await _asyncConfirmDialog(context);
-          if (docancel) {
-            BlocProvider.of<listbloc.FeePaymentListBloc>(context).add(
+            customAction_2: CustomAction(
+              // title: "Payment Details",
+              title: "Collect",
+              action: () {
+                if (paidPeriods >= index) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PaymentDetailsListList(
+                        userRegFeeCollectionModel: listItems[index],
+                        entitytype: widget.entitytype,
+                        entityid: widget.entityid,
+                      ),
+                    ),
+                  );
+                }
+              },
+            ),
+            deleteAction: () async {
+              /* if (numPeriodsDefined == index) {
+            bool docancel = await _asyncConfirmDialog(context);
+            if (docancel) {
+              BlocProvider.of<listbloc.FeePaymentListBloc>(context).add(
                 listbloc.deleteItemWithData(
-                    entitytype: widget.entitytype,
-                    entityid: widget.entitytype,
-                    item: listItems[index]));
-          }
-        },
-      ));
-    });
+                  entitytype: widget.entitytype,
+                  entityid: widget.entitytype,
+                  item: listItems[index],
+                ),
+              );
+            }
+          } */
+            },
+          ),
+        );
+      },
+    );
 
     return _dynamicList;
   }
@@ -193,26 +222,41 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
             doreload(true);
           }
 
-          if (state is listbloc.IsSearchParaLoaded) {
-            setState(() {
-              gradelist = state.gradelist;
-              sessionterm = state.sessiontermlist;
-              offeringModelGroupfunc = state.offeringModelGroupfunc;
-            });
-          }
           if (state is listbloc.IsListDataLoaded) {
             bool paid = true;
+            int _paidPeriods = 0;
             if (state.listdata.length > 0) {
               state.listdata.forEach((item) {
                 if (!item.closed) {
                   paid = false;
+                } else {
+                  _paidPeriods++;
                 }
               });
             } else {
               paid = false;
             }
             setState(() {
-              em = state.listdata;
+              em = state.listdata ?? [];
+              feePlan = state.feePlan ?? [];
+
+              List<FeeData> feeDataList = [];
+              bool hasEncounteredStartPeriod = false;
+              feePlan.feeData.forEach((feeData) {
+                if (state.startPeriod == feeData.paymentPeriodName) {
+                  hasEncounteredStartPeriod = true;
+                }
+                if (hasEncounteredStartPeriod == true) {
+                  feeDataList.add(feeData);
+                }
+              });
+              feePlan.feeData = feeDataList;
+
+              // We will receive a list with all the payment details defined, so we'll just take the length of that list and use it to select the feeData to send to the form
+              numPeriodsDefined = em?.length ?? paidPeriods;
+              paidPeriods = _paidPeriods;
+              // nextPeriodFeeData = state.feePlan.feeData[numPeriodsDefined];
+              // feeDataListToPay = 
               isAllPaid = paid;
             });
           }
@@ -232,10 +276,6 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
           if (state is listbloc.IsDeleted) {
             return Center(child: Text("Deleted item"));
           }
-          if (state is listbloc.IsSearchParaLoaded) {
-            return _blocBuilder(context);
-          }
-
           if (state is listbloc.IsListDataLoaded) {
             return _blocBuilder(context);
           }
@@ -247,7 +287,8 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
                   addButtonActions(context: context);
                 },
                 icon: Icon(Icons.add),
-                label: Text("Add New"),
+                // label: Text("Add New"),
+                label: Text("Fill Next Period"),
               )
             : null,
       ),
@@ -258,59 +299,17 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [
-        // SliverToBoxAdapter(
-        //   child: Padding(
-        //     padding: EdgeInsets.symmetric(horizontal: 30.0),
-        //     child: ExpansionTile(
-        //       title: Text("Select Parameters To Search"),
-        //       children: [
-        //         CustomDropDownList<String>(
-        //           loadData: () async => sessionterm,
-        //           shouldReload: true,
-        //           displayName: (x) => x,
-        //           controller: _sessionterm,
-        //           title: "SessionTerm",
-        //         ),
-        //         CustomDropDownList<String>(
-        //           loadData: () async => gradelist,
-        //           shouldReload: true,
-        //           displayName: (x) => x,
-        //           controller: _grade,
-        //           title: "Select Grade",
-        //           onSelected: (item, index) => setState(() {
-        //             offeringgrouplist =
-        //                 offeringModelGroupfunc(item, widget.entityid);
-        //           }),
-        //         ),
-        //         CustomDropDownList<String>(
-        //             loadData: () async =>
-        //                 offeringgrouplist == null ? [] : offeringgrouplist,
-        //             shouldReload: true,
-        //             displayName: (x) => x,
-        //             controller: _offering,
-        //             title: "Select Offering Group",
-        //             onSelected: (item, index) {
-        //               if (item != null && item.length > 0) {
-        //                 setState(() {
-        //                   mlistbloc.add(listbloc.getListDataWithSearchParameter(
-        //                       entitytype: widget.entitytype,
-        //                       entityid: widget.entityid,
-        //                       offeringmodelgroupname: item,
-        //                       sessionterm: _sessionterm.text));
-        //                 });
-        //               }
-        //             }),
-        //       ],
-        //     ),
-        //   ),
-        // ),
         SliverToBoxAdapter(
-            child: CommonListPage(
-                canSearch: false,
-                updateAction: null,
-                appBarTitle: "Fee Payment List",
-                dynamicListState: "Fee Payment List",
-                listItems: em != null ? toCommonListState(em, context) : [])),
+          child: CommonListPage(
+            canSearch: false,
+            updateAction: null,
+            appBarTitle: "Fee Payment List",
+            dynamicListState: "Fee Payment List",
+            listItems: em != null
+                ? toCommonListState(em, feePlan.feeData, context)
+                : [],
+          ),
+        ),
       ],
     );
   }

@@ -27,21 +27,29 @@ class HasExceptionFaliur extends FeePaymentListState {
 }
 
 class IsListDataLoaded extends FeePaymentListState {
-  IsListDataLoaded({@required this.listdata});
+  IsListDataLoaded({
+    @required this.listdata,
+    @required this.feePlan,
+    @required this.startPeriod,
+  });
 
   final List<UserRegFeeCollectionModel> listdata;
+  final FeePlanModel feePlan;
+  final String startPeriod;
   @override
-  List<Object> get props => [listdata];
+  List<Object> get props => [listdata, feePlan, startPeriod];
 }
 
 class IsPaymentDetailsListDataLoaded extends FeePaymentListState {
-  IsPaymentDetailsListDataLoaded(
-      {@required this.listdata, @required this.feePlan});
-  FeePlanModel feePlan;
+  IsPaymentDetailsListDataLoaded({
+    @required this.listdata,
+    // @required this.feePlan,
+  });
+  // FeePlanModel feePlan;
 
   final List<PaymentDetails> listdata;
   @override
-  List<Object> get props => [listdata, feePlan];
+  List<Object> get props => [listdata];
 }
 
 class IsDeleted extends FeePaymentListState {

@@ -29,8 +29,6 @@ class StudentBasicFormModelRepositoryReturnData {
 }
 
 class StudentBasicFormModelRepository {
-
-
   Future<StudentBasicFormModelRepositoryReturnData>
       getAllStudentBasicFormModels(String entitytype, String entityid) async {
     StudentBasicFormModelRepositoryReturnData myreturn =
@@ -79,7 +77,8 @@ class StudentBasicFormModelRepository {
     grerror.error = "UNknown exception has occured";
 
     try {
-      int studentId = await UserRegistrationGateway.getRegistrationNumber(entityid);
+      int studentId =
+          await UserRegistrationGateway.getRegistrationNumber(entityid);
       int formIndex = 1;
       List<Place> availablePlaces = await Place.places;
       // bool update;
@@ -94,8 +93,6 @@ class StudentBasicFormModelRepository {
     } catch (ex) {}
     return grerror;
   }
-
-
 
   Future<StudentBasicFormModelRepositoryReturnData> createStudentBasicFormModel(
       UserRegistrationModel item, String entitytype, String entityid) async {
@@ -188,8 +185,7 @@ class StudentBasicFormModelRepository {
     StudentBasicFormModelRepositoryReturnData myreturn =
         StudentBasicFormModelRepositoryReturnData();
 
-    List<UserRegistrationModel> list =[];
-
+    List<UserRegistrationModel> list = [];
 
     myreturn.itemlist = list;
     myreturn.errortype = -1;
@@ -204,8 +200,12 @@ class StudentBasicFormModelRepository {
     String entityid,
   }) async {
     List<UserRegistrationModel> users =
-        await UserRegistrationGateway.getUserWithOneOf(serviceID:entityid,cardNum: cardNum,phone:phone,guardianPhone:guardianPhone   );
-
+        await UserRegistrationGateway.getUserWithOneOf(
+      serviceID: entityid,
+      cardNum: cardNum,
+      phone: phone,
+      guardianPhone: guardianPhone,
+    );
     return users;
   }
 }

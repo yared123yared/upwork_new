@@ -47,34 +47,6 @@ class StudentItemPage extends StatelessWidget {
                   ),
                 ),
               );
-              // showDialog(
-              //   context: context,
-              //   builder: (context) => AlertDialog(
-              //     title: Text("Session Term"),
-              //     content: CustomDropDownList<String>(
-              //       displayName: (data) => data,
-              //       loadData: () async => sessionTerm,
-              //       title: "Session Term",
-              //       controller: _sessionTerm,
-              //       onSelected: (value, index) {
-              //         Navigator.pop(context);
-              //         Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //             builder: (context) => SessionRegistrationForm(
-              //               // userRegistrationModel: userRegistrationModel,
-              //               entitytype: entitytype,
-              //               entityid: entityid,
-              //               givenreloadaction: givenreloadaction,
-              //               cardNum: userRegistrationModel.idCardNum,
-              //               sessionTerm: value,
-              //             ),
-              //           ),
-              //         );
-              //       },
-              //     ),
-              //   ),
-              // );
             },
           ),
           CustomActionButton(
