@@ -2,6 +2,7 @@
 import 'package:complex/common/helputil.dart';
 import 'package:complex/common/widgets/common_list_tile.dart';
 import 'package:complex/common/widgets/custom_action_button.dart';
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
 import 'package:complex/data/data.dart';
@@ -25,13 +26,15 @@ import '../listbloc/bloc.dart' as listbloc;
 import 'package:complex/newentityfeatures/Models/registry_model.dart' as cmodel;
 
 import './resident_form.dart';
+
 //origintype =1 (manager -multiowner ,2 = manager -singleowner , 3 - owner/resident , 4 -justlisting
 class RegistryListList extends StatefulWidget {
   final String entityid;
   final String entitytype;
   final int origintype;
   final List<ResidentUnits> residentUnits;
-  RegistryListList({this.entitytype, this.entityid, this.origintype,this.residentUnits});
+  RegistryListList(
+      {this.entitytype, this.entityid, this.origintype, this.residentUnits});
 
   @override
   _RegistryListListState createState() => _RegistryListListState();
@@ -54,8 +57,6 @@ class _RegistryListListState extends State<RegistryListList> {
   List<String> roles = [];
 
   List<String> availableunitsforOwnerForTenant;
-
-
 
   void initState() {
     mlistbloc = listbloc.RegistryModelListBloc();
@@ -230,9 +231,8 @@ class _RegistryListListState extends State<RegistryListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Registry"),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: "Registry",
         ),
         body: BlocListener<listbloc.RegistryModelListBloc,
             listbloc.RegistryModelListState>(listener: (context, state) {
@@ -419,65 +419,48 @@ class ExtentionWidgetTile extends StatefulWidget {
   final List<ResidentUnits> residentUnits;
   // ChannelsBloc channelsBloc;
 
-  ExtentionWidgetTile(
-    this.registry, {
-    this.entityid,
-    this.entitytype,
-    this.givenreloadaction,
-    this.oul,
-    this.origintype,
-        this.residentUnits
-  });
+  ExtentionWidgetTile(this.registry,
+      {this.entityid,
+      this.entitytype,
+      this.givenreloadaction,
+      this.oul,
+      this.origintype,
+      this.residentUnits});
 
-  bool  hasOwneredAccess()
-  {
-    if(origintype==1)
+  bool hasOwneredAccess() {
+    if (origintype == 1)
       return true;
-    else if(origintype==4)
+    else if (origintype == 4)
       return false;
-    else if (origintype==3 && residentUnits!=null)
-    {
+    else if (origintype == 3 && residentUnits != null) {
       String cunitaddress = registry.unitAddress;
-      for(var p in residentUnits)
-      {
-        if(p.rd.contains(cunitaddress))
-        {
-          if(p.rd.contains("_o"))
+      for (var p in residentUnits) {
+        if (p.rd.contains(cunitaddress)) {
+          if (p.rd.contains("_o"))
             return true;
           else
             return false;
         }
       }
-    }
-    else
+    } else
       return false;
   }
 
-
-  bool hasResidentAccess()
-  {
-    if(origintype==2)
+  bool hasResidentAccess() {
+    if (origintype == 2)
       return true;
-    else if(origintype==4)
+    else if (origintype == 4)
       return false;
-    else if (origintype==3 && residentUnits!=null)
-    {
+    else if (origintype == 3 && residentUnits != null) {
       String cunitaddress = registry.unitAddress;
-      for(var p in residentUnits)
-      {
-        if(p.rd.contains(cunitaddress))
-        {
-
+      for (var p in residentUnits) {
+        if (p.rd.contains(cunitaddress)) {
           return true;
-
         }
       }
-    }
-    else
+    } else
       return false;
   }
-
-
 
   @override
   _ExtentionWidgetTileState createState() => _ExtentionWidgetTileState();
@@ -576,23 +559,23 @@ class _ExtentionWidgetTileState extends State<ExtentionWidgetTile> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              ResidentForm(
-                                entitytype: widget.entitytype,
-                                entityid: widget.entityid,
-                                givenreloadaction: widget.givenreloadaction,
-                                origintype: widget.origintype,
-                                btnState: ButtonState.idle,
-                                registry: widget.registry,
-                                isOwner: true,
-                                role: "owner",
-                                unitlistForOwnerCase: [],
-                                oul: widget.oul,
-                                updateOwner: false,
-                              ),
+                          builder: (context) => ResidentForm(
+                            entitytype: widget.entitytype,
+                            entityid: widget.entityid,
+                            givenreloadaction: widget.givenreloadaction,
+                            origintype: widget.origintype,
+                            btnState: ButtonState.idle,
+                            registry: widget.registry,
+                            isOwner: true,
+                            role: "owner",
+                            unitlistForOwnerCase: [],
+                            oul: widget.oul,
+                            updateOwner: false,
+                          ),
                         ),
                       );
-                    };
+                    }
+                    ;
                   },
                   deleteAction: () async {
                     // bool docancel = await _asyncConfirmDialog(context);
@@ -624,23 +607,23 @@ class _ExtentionWidgetTileState extends State<ExtentionWidgetTile> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              ResidentForm(
-                                entitytype: widget.entitytype,
-                                entityid: widget.entityid,
-                                givenreloadaction: widget.givenreloadaction,
-                                origintype: widget.origintype,
-                                btnState: ButtonState.idle,
-                                registry: widget.registry,
-                                isOwner: false,
-                                role: "owner",
-                                unitlistForOwnerCase: [],
-                                oul: widget.oul,
-                                updateOwner: false,
-                              ),
+                          builder: (context) => ResidentForm(
+                            entitytype: widget.entitytype,
+                            entityid: widget.entityid,
+                            givenreloadaction: widget.givenreloadaction,
+                            origintype: widget.origintype,
+                            btnState: ButtonState.idle,
+                            registry: widget.registry,
+                            isOwner: false,
+                            role: "owner",
+                            unitlistForOwnerCase: [],
+                            oul: widget.oul,
+                            updateOwner: false,
+                          ),
                         ),
                       );
-                    };
+                    }
+                    ;
                   },
                   deleteAction: () async {
                     // bool docancel = await _asyncConfirmDialog(context);

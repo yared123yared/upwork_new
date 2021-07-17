@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
@@ -146,9 +147,8 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Leave Request List"),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: "Leave Request List",
         ),
         body: BlocListener<listbloc.LeaveRequestListBloc,
             listbloc.LeaveRequestListState>(listener: (context, state) {

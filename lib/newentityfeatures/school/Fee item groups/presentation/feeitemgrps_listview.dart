@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
@@ -139,9 +140,8 @@ class _FeeItemGroupsModelListListState
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("FeeItem Group List"),
-            centerTitle: true,
+          appBar: CustomAppBar(
+            title: "FeeItem Group List",
           ),
           body: BlocListener<listbloc.FeeItemGroupsModelListBloc,
               listbloc.FeeItemGroupsModelListState>(listener: (context, state) {

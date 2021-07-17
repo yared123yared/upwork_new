@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart'
     hide DateTimeMode;
@@ -228,9 +229,8 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
     return BlocProvider.value(
       value: mbloc,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Service Request'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Service Request',
         ),
         body: BlocListener<itembloc.ServiceRequestModelBloc,
             itembloc.ServiceRequestModelState>(listener: (context, state) {
@@ -515,13 +515,11 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
             SizedBox(height: height * 4),
             if ((!_isUpdate || haveAccess) && enabled)
               CustomActionButton(
+                color: Theme.of(context).primaryColor,
                 // state: btnState,
                 title: _isUpdate ? "Update" : "Add",
 //              color: Colors.white12,
-                gradient: C.bgGradient,
-                padding: EdgeInsets.symmetric(vertical: height * 1.5),
-                margin: EdgeInsets.symmetric(
-                    horizontal: width * 25, vertical: height * 6),
+
                 onTap: () async {
                   if (_validate()) {
                     ServiceRequestModel _serviceRequest = ServiceRequestModel(

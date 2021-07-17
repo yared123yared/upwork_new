@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
@@ -147,9 +148,8 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Class Period List"),
-            centerTitle: true,
+          appBar: CustomAppBar(
+            title: "Class Period List",
           ),
           body: BlocListener<listbloc.ClassPeriodModelListBloc,
               listbloc.ClassPeriodModelListState>(listener: (context, state) {

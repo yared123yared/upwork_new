@@ -1,4 +1,6 @@
 //import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/common/presentation.dart';
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -124,9 +126,9 @@ class _BuildingModelListListState extends State<BuildingModelListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Buildings"),
-            centerTitle: true,
+          appBar: CustomAppBar(
+            title: "Buildings",
+            // centerTitle: true,
           ),
           body: BlocListener<listbloc.BuildingModelListBloc,
               listbloc.BuildingModelListState>(listener: (context, state) {
@@ -158,12 +160,12 @@ class _BuildingModelListListState extends State<BuildingModelListList> {
             }
             return Center(child: Text('Empty'));
           })),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
+          floatingActionButton: CustomActionButton(
+            title: "Add New",
+            color: Theme.of(context).primaryColor,
+            onTap: () async {
               addButtonActions(context: context);
             },
-            icon: Icon(Icons.add),
-            label: Text("Add New"),
           )),
     );
   }

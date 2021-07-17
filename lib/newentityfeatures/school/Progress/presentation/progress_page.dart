@@ -191,9 +191,7 @@ class _ProgressPageState extends State<ProgressPage> {
                   child: CustomActionButton(
                     state: widget.loadButtonState,
                     title: "Load Data",
-                    gradient: C.bgGradient,
-                    padding: EdgeInsets.symmetric(vertical: height * 1.5),
-                    margin: EdgeInsets.symmetric(vertical: height * 6),
+                    color: Theme.of(context).primaryColor,
                     onTap: () {
                       if (_validate() &&
                           widget.loadButtonState == ButtonState.idle) {

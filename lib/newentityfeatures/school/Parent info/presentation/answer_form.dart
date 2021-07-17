@@ -117,7 +117,7 @@ class _QuestionsAnswerFormState extends State<QuestionsAnswerForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Assignemtn"),
+      appBar: CustomAppBar(title: "Answer"),
       body: BlocListener<ParentInfoModelBloc, ParentInfoModelState>(
         listener: (context, state) {
           if (state is IsSaved) {
@@ -169,7 +169,7 @@ class _QuestionsAnswerFormState extends State<QuestionsAnswerForm> {
                         CustomActionButton(
                           title: "SUBMIT",
                           onTap: () => submit(context),
-                          gradient: C.bgGradient,
+                          color: Theme.of(context).primaryColor,
                         ),
                     ],
                   ),

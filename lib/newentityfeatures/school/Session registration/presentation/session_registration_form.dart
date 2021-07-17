@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
@@ -132,9 +133,8 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Session Registration'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Session Registration',
         ),
         body: BlocListener<itembloc.SessionRegistrationBloc,
             itembloc.SessionRegistrationState>(
@@ -382,10 +382,7 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
         CustomActionButton(
           // state: btnState,
           title: _isUpdate ? "Update" : "Add",
-          gradient: C.bgGradient,
-          padding: EdgeInsets.symmetric(vertical: height * 1.5),
-          margin:
-              EdgeInsets.symmetric(horizontal: width * 25, vertical: height),
+          color: Theme.of(context).primaryColor,
           onTap: () async {
             if (_validate()) {
               List<String> _offeringTaken = [];

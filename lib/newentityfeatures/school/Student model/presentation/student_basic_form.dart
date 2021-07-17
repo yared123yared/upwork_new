@@ -1,5 +1,6 @@
 import 'package:complex/common/helputil.dart';
 import 'package:complex/common/model/place.dart';
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_image_uploader.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 
@@ -195,10 +196,7 @@ class _StudentBasicFormFormState extends State<StudentBasicFormForm> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('User Registration'),
-          centerTitle: true,
-        ),
+        appBar: CustomAppBar(title: 'User Registration'),
         body: BlocListener<itembloc.StudentBasicFormModelBloc,
             itembloc.StudentBasicFormModelState>(listener: (context, state) {
           if (state is itembloc.IsSaved) {
@@ -485,10 +483,7 @@ class _StudentBasicFormFormState extends State<StudentBasicFormForm> {
               : update
                   ? "Update"
                   : "Add",
-          gradient: C.bgGradient,
-          padding: EdgeInsets.symmetric(vertical: height * 1.5),
-          margin: EdgeInsets.symmetric(
-              horizontal: width * 25, vertical: height * 6),
+          color: Theme.of(context).primaryColor,
           onTap: () async {
             if (_validate()) {
               // if (formIndex == 3) {}

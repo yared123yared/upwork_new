@@ -1,4 +1,5 @@
 import 'package:complex/common/widgets/common_list_tile.dart';
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
@@ -142,9 +143,8 @@ class _UnitModelListListState extends State<UnitModelListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Unit List"),
-            centerTitle: true,
+          appBar: CustomAppBar(
+            title: "Unit List",
           ),
           body: BlocListener<listbloc.UnitModelListBloc,
               listbloc.UnitModelListState>(listener: (context, state) {

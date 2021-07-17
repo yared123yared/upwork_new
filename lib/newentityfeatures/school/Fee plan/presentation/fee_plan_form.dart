@@ -266,10 +266,7 @@ class _FeePlanFormState extends State<FeePlanForm> {
         CustomActionButton(
           state: ButtonState.idle,
           title: _update ? "Update" : "ADD",
-          gradient: C.bgGradient,
-          padding: EdgeInsets.symmetric(vertical: height * 1.5),
-          margin: EdgeInsets.symmetric(
-              horizontal: width * 25, vertical: height * 6),
+          color: Theme.of(context).primaryColor,
           onTap: () async {
             print(_validate());
             if (_validate()) {

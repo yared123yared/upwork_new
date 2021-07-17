@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
 //
 //
@@ -139,9 +140,8 @@ class _FamilyMemberListListState extends State<FamilyMemberListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Family Members"),
-            centerTitle: true,
+          appBar: CustomAppBar(
+            title: "Family Members",
           ),
           body: BlocListener<listbloc.FamilyMemberListBloc,
               listbloc.FamilyMemberListState>(listener: (context, state) {

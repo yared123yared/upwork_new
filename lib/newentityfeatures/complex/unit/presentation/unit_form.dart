@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -77,9 +78,8 @@ class _UnitModelFormState extends State<UnitModelForm> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Unit Form'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Unit Form',
         ),
         body: BlocListener<itembloc.UnitModelBloc, itembloc.UnitModelState>(
             listener: (context, state) {

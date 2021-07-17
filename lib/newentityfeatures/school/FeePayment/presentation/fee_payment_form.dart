@@ -1,4 +1,5 @@
 import 'package:complex/common/helputil.dart';
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:complex/newentityfeatures/Models/user_session_registration.dart';
@@ -210,9 +211,8 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Fee Payment'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Fee Payment',
         ),
         body: BlocListener<itembloc.FeePaymentBloc, itembloc.FeePaymentState>(
             listener: (context, state) {
@@ -466,7 +466,7 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
               fontSize: 13,
               state: ButtonState.idle,
               title: "Make\nPayment",
-              gradient: C.bgGradient,
+              color: Theme.of(context).primaryColor,
               onTap: () async {
                 if (_validate()) {
                   UserRegFeeCollectionModel reg =

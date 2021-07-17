@@ -1,4 +1,5 @@
 import 'package:complex/common/helputil.dart';
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -172,9 +173,8 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('payment period'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'payment period',
         ),
         body: BlocListener<itembloc.PaymentModelBloc,
             itembloc.PaymentModelState>(listener: (context, state) {
@@ -305,7 +305,7 @@ class _PaymentModelFormState extends State<PaymentModelForm> {
           CustomActionButton(
             state: ButtonState.idle,
             title: "Next",
-            gradient: C.bgGradient,
+            color: Theme.of(context).primaryColor,
             // padding: EdgeInsets.symmetric(vertical: height * 1.5),
             // margin: EdgeInsets.symmetric(
             //     horizontal: width * 25, vertical: height * 6),

@@ -1,4 +1,5 @@
 import 'package:complex/common/helputil.dart';
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 import 'package:complex/newentityfeatures/Models/registry_model.dart';
 import 'package:flutter/material.dart';
@@ -480,6 +481,24 @@ class _ResidentFormState extends State<ResidentForm> {
         children: <Widget>[
           Expanded(
             child: Stepper(
+              controlsBuilder: (BuildContext context,
+                  {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+                return Row(
+                  children: <Widget>[
+                    CustomActionButton(
+                      padding: EdgeInsets.all(15),
+                      title: "Continue",
+                      onTap: onStepContinue,
+                    ),
+                    CustomActionButton(
+                      color: Theme.of(context).primaryColor,
+                      padding: EdgeInsets.all(15),
+                      title: "Cancel",
+                      onTap: onStepCancel,
+                    ),
+                  ],
+                );
+              },
               steps: getSteps(context),
               type: StepperType.vertical,
               currentStep: this.currStep,
@@ -534,9 +553,8 @@ class _ResidentFormState extends State<ResidentForm> {
     return BlocProvider.value(
       value: mbloc,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Building'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Registration',
         ),
         body: BlocListener<itembloc.RegistryModelBloc,
             itembloc.RegistryModelState>(listener: (context, state) {

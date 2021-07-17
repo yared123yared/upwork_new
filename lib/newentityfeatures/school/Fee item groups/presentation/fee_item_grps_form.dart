@@ -1,3 +1,4 @@
+import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -104,9 +105,8 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
           ),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Fee Item Group'),
-          centerTitle: true,
+        appBar: CustomAppBar(
+          title: 'Fee Item Group',
         ),
         body: BlocListener<itembloc.FeeItemGroupsModelBloc,
             itembloc.FeeItemGroupsModelState>(listener: (context, state) {
@@ -175,10 +175,7 @@ class _FeeItemGroupsModelFormState extends State<FeeItemGroupsModelForm> {
         CustomActionButton(
           state: ButtonState.idle,
           title: edit ? "Update" : "Add",
-          color: green,
-          padding: EdgeInsets.symmetric(vertical: height * 1.5),
-          margin: EdgeInsets.symmetric(
-              horizontal: width * 25, vertical: height * 6),
+          color: Theme.of(context).primaryColor,
           onTap: () async {
             print('add userSession');
             if (_validate()) {

@@ -177,11 +177,7 @@ class _ParentInfoPageState extends State<ParentInfoPage> {
                             child: CustomActionButton(
                               // state: Bu,
                               title: "Load Data",
-                              gradient: C.bgGradient,
-                              padding:
-                                  EdgeInsets.symmetric(vertical: height * 1.5),
-                              margin:
-                                  EdgeInsets.symmetric(vertical: height * 2),
+                              color: Theme.of(context).primaryColor,
                               onTap: () {
                                 if (_validate()) {
                                   setState(() {

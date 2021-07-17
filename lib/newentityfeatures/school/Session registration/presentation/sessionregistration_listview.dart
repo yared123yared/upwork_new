@@ -1,4 +1,5 @@
 import 'package:complex/common/widgets/custom_action_button.dart';
+import 'package:complex/common/widgets/custom_app_bar.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/data/data.dart';
@@ -151,9 +152,8 @@ class _SessionRegistrationListListState
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Session Registration List"),
-            centerTitle: true,
+          appBar: CustomAppBar(
+            title: "Session Registration List",
           ),
           body: BlocListener<listbloc.SessionRegistrationListBloc,
                   listbloc.SessionRegistrationListState>(
