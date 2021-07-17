@@ -3,12 +3,29 @@ part of 'bloc.dart';
 class ServiceRequestModelBloc
     extends Bloc<ServiceRequestModelEvent, ServiceRequestModelState> {
   ServiceRequestModelRepository mrepository = ServiceRequestModelRepository();
+  EntryLogsRepository entryLogsRepository = EntryLogsRepository();
   ServiceRequestModelBloc() : super(ServiceRequestModelState());
 
   @override
   Stream<ServiceRequestModelState> mapEventToState(
     ServiceRequestModelEvent event,
   ) async* {
+    if (event is createEntryLog) {
+      yield IsBusy();
+      EntryLogsRepositoryReturnData ud =
+          await entryLogsRepository.createEntryLogs(
+        event.item,
+        event.entitytype,
+        event.entityid,
+      );
+
+      if (ud.errortype == -1)
+        yield IsSaved();
+      else if (ud.errortype == 1)
+        yield HasLogicalFaliur(error: ud.error);
+      else
+        yield HasExceptionFaliur(error: ud.error);
+    }
     if (event is createItem) {
       yield IsBusy();
       ServiceRequestModelRepositoryReturnData ud =
@@ -36,18 +53,18 @@ class ServiceRequestModelBloc
 
       if (ud.errortype == -1)
         yield IsReadyForDetailsPage(
-          entitytype: event.entitytype,
-          entityid: event.entityid,
-          detailstype: "start",
-          isStaff: ud.isStaff,
-          haveAccess: ud.haveAccess,
-          user: ud.user,
-          units: ud.unitlist,
-          stafflist: ud.stafflist,
-          buildinglist: ud.buildings,
-          roles: ud.roles,
-          btnState: ud.btnState,oul:ud.oul
-        );
+            entitytype: event.entitytype,
+            entityid: event.entityid,
+            detailstype: "start",
+            isStaff: ud.isStaff,
+            haveAccess: ud.haveAccess,
+            user: ud.user,
+            units: ud.unitlist,
+            stafflist: ud.stafflist,
+            buildinglist: ud.buildings,
+            roles: ud.roles,
+            btnState: ud.btnState,
+            oul: ud.oul);
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);
       else

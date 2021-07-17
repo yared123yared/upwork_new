@@ -2,17 +2,15 @@ import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_switchWithTitle.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart'
     hide DateTimeMode;
+import 'package:complex/newentityfeatures/Models/entry_logs_model.dart';
 
 import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 // import 'package:complex/newentityfeatures/complex/building/model/building_model.dart';
-
 // import 'package:complex/newentityfeatures/staff/model/staff_model.dart';
-
 // import 'package:complex/newentityfeatures/unit/model/unit_model.dart';
-
 // import '../model/service_request_model.dart';
 import 'package:complex/newentityfeatures/Models/service_request_model.dart';
 
@@ -551,15 +549,16 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                       BlocProvider.of<itembloc.ServiceRequestModelBloc>(context)
                           .add(
                         itembloc.createItem(
-                            item: _serviceRequest,
-                            entitytype: widget.entitytype,
-                            entityid: widget.entityid),
+                          item: _serviceRequest,
+                          entitytype: widget.entitytype,
+                          entityid: widget.entityid,
+                        ),
                       );
                     }
                   }
                 },
               ),
-            if (!_isStaff && _isUpdate)
+            if (widget.origintype == 1 && _isUpdate)
               Row(
                 children: [
                   Container(
@@ -571,7 +570,24 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                       isExpanded: false,
                       padding: EdgeInsets.symmetric(vertical: height * 1.5),
 //                  margin: EdgeInsets.symmetric(horizontal: width * 25, vertical: height * 6),
-                      onTap: () async {},
+                      onTap: () async {
+                        BlocProvider.of<itembloc.ServiceRequestModelBloc>(
+                                context)
+                            .add(
+                          itembloc.createEntryLog(
+                            item: EntryLogModel(
+                              userId: user.userID,
+                              identity: _name.text,
+                              timeDate: _endDate,
+                              logType: _requestType.text,
+                              unitaddress: !_isStaff ? _unitAddress.text : null,
+                              entrytype: 'in',
+                            ),
+                            entitytype: widget.entitytype,
+                            entityid: widget.entityid,
+                          ),
+                        );
+                      },
                     ),
                   ),
                   Container(
@@ -582,7 +598,30 @@ class _ServiceRequestFormState extends State<ServiceRequestForm> {
                       isExpanded: false,
                       gradient: C.bgGradient,
                       padding: EdgeInsets.symmetric(vertical: height * 1.5),
-                      onTap: () async {},
+                      onTap: () async {
+                        BlocProvider.of<itembloc.ServiceRequestModelBloc>(
+                                context)
+                            .add(
+                          itembloc.createEntryLog(
+                            item: EntryLogModel(
+                              userId: user.userID,
+                              identity: _name.text,
+                              timeDate: _endDate,
+                              logType: _requestType.text,
+                              unitaddress: !_isStaff ? _unitAddress.text : null,
+                              entrytype: 'out',
+                              // userId: widget.entryLogModel?.userId,
+                              // identity: widget.entryLogModel?.identity,
+                              // timeDate: _endDate,
+                              // logType: _type.text,
+                              // loggedInSecurity: _securityId,
+                              // entrytype: 'out',
+                            ),
+                            entitytype: widget.entitytype,
+                            entityid: widget.entityid,
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],

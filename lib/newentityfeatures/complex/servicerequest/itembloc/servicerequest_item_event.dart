@@ -6,6 +6,19 @@ class ServiceRequestModelEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class createEntryLog extends ServiceRequestModelEvent {
+  final EntryLogModel item;
+  final String entityid;
+  final String entitytype;
+  const createEntryLog({
+    @required this.item,
+    @required this.entityid,
+    @required this.entitytype,
+  });
+  List<Object> get() => [item, entityid, entitytype];
+}
+
+
 class createItem extends ServiceRequestModelEvent {
   final ServiceRequestModel item;
   final String entityid;

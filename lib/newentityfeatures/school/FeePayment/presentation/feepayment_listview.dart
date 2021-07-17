@@ -96,13 +96,13 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
       List<FeeData> feePlanItems,
       BuildContext context) {
     List<ListStateClass> _dynamicList = [];
-    feePlanItems.asMap().forEach(
+    listItems.asMap().forEach(
       (index, item) {
         _dynamicList.add(
           ListStateClass(
             title: numPeriodsDefined > index
-                ? "${listItems[index].userName ?? ''} ${item ?? ""}"
-                : "${item.paymentPeriodName ?? ''} ${item ?? ""}",
+                ? "${listItems[index].userName ?? ''} ${feePlanItems[index] ?? ""}"
+                : "${feePlanItems[index].paymentPeriodName ?? ''} ${feePlanItems[index] ?? ""}",
             subtitle: numPeriodsDefined > index
                 ? listItems[index].closed
                     ? "Closed"
@@ -118,8 +118,9 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => FeePaymentForm(
-                        userRegFeeCollectionModel:
-                            numPeriodsDefined <= index ? null : listItems[index],
+                        userRegFeeCollectionModel: numPeriodsDefined <= index
+                            ? null
+                            : listItems[index],
                         // listItems[index] != null ? listItems[index] : null,
                         // paidPeriods < index ? listItems[index] : null,
                         feeData: feePlan.feeData[index],
@@ -249,7 +250,7 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
               numPeriodsDefined = em?.length ?? paidPeriods;
               paidPeriods = _paidPeriods;
               // nextPeriodFeeData = state.feePlan.feeData[numPeriodsDefined];
-              // feeDataListToPay = 
+              // feeDataListToPay =
               isAllPaid = paid;
             });
           }
@@ -274,14 +275,13 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
           }
           return Center(child: Text('Empty'));
         })),
-        floatingActionButton: !isAllPaid
+        floatingActionButton: isAllPaid
             ? FloatingActionButton.extended(
                 onPressed: () async {
                   addButtonActions(context: context);
                 },
                 icon: Icon(Icons.add),
-                // label: Text("Add New"),
-                label: Text("Fill Next Period"),
+                label: Text("Add New"),
               )
             : null,
       ),
