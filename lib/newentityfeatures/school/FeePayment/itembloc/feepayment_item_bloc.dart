@@ -70,9 +70,9 @@ class FeePaymentBloc extends Bloc<FeePaymentEvent, FeePaymentState> {
           entitytype: event.entitytype,
           entityid: event.entityid,
           detailstype: "start",
-          feePlanList: ud.feePlanList,
           userSessionList: ud.userSessionList,
           membersList: ud.membersList,
+          // feePlanList: ud.feePlanList,
         );
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);

@@ -39,25 +39,25 @@ class IsReadyForDetailsPage extends FeePaymentState {
     @required this.entityid,
     @required this.entitytype,
     @required this.detailstype,
-    @required this.feePlanList,
     @required this.userSessionList,
     @required this.membersList,
+    // @required this.feePlanList,
   });
 
   final String detailstype; //create or update
   final String entityid;
   final String entitytype;
-  final List<FeePlanModel> feePlanList;
   final List<UserSessionRegModel> userSessionList;
   final List<SchoolOwner> membersList;
+  // final List<FeePlanModel> feePlanList;
 
   @override
   List<Object> get props => [
         entityid,
         entitytype,
         detailstype,
-        feePlanList,
         userSessionList,
         membersList,
+        // feePlanList,
       ];
 }

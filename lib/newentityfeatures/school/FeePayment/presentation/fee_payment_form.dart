@@ -43,8 +43,8 @@ class FeePaymentForm extends StatefulWidget {
 }
 
 class _FeePaymentFormState extends State<FeePaymentForm> {
-  List<FeePlanModel> _feePlanList;
   List<UserSessionRegModel> _userSessionList;
+  // List<FeePlanModel> _feePlanList;
 
   //
 
@@ -126,23 +126,19 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
 
         _lateFeeAmount.text =
             widget.userRegFeeCollectionModel.lateFeeAmount?.toString();
-        _lateFeeAmountAgreed.text =
-            widget.userRegFeeCollectionModel.lateFeeAmountAgreed?.toString();
-        _otherAmount.text =
-            widget.userRegFeeCollectionModel.otherAmount?.toString();
 
-        // _feeAmount.text =
-        //     widget.userRegFeeCollectionModel?.feeAmount?.toString() ?? "0";
-        _transportFee.text =
-            widget.userRegFeeCollectionModel?.transportFee?.toString() ?? "0";
         _totalFeeAmount.text =
             widget.userRegFeeCollectionModel.totalFeeAmount?.toString();
-        // _totalPaymentMade.text =
-        //     widget.userRegFeeCollectionModel.totalpaymentmade?.toString() ??
-        //         "0";
       }
       _feeAmount.text =
           widget.userRegFeeCollectionModel?.feeAmount?.toString() ?? "0";
+      _otherAmount.text =
+          widget.userRegFeeCollectionModel.otherAmount?.toString() ?? "0";
+      _transportFee.text =
+          widget.userRegFeeCollectionModel?.transportFee?.toString() ?? "0";
+      _lateFeeAmountAgreed.text =
+          widget.userRegFeeCollectionModel.lateFeeAmountAgreed?.toString() ??
+              "0";
       _totalPaymentMade.text =
           widget.userRegFeeCollectionModel?.totalpaymentmade?.toString() ?? "0";
       updateTotal();
@@ -163,9 +159,8 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
     super.initState();
   }
 
-  void filedFeePlanFields(
-      /* FeePlanModel feePlan */ UserSessionRegModel user) async {
-    FeePlanModel _feePlan;
+  void filedFeePlanFields(UserSessionRegModel user) async {
+    // FeePlanModel _feePlan;
     //  = user.feeplandata;
     // _feePlanList.forEach((feePlan) {
     //   if (feePlan.feePlanName == user.feePLan) {
@@ -193,9 +188,6 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
       _periodEndDate = widget.feeData.endDate;
       _paymentPeriodName.text = widget.feeData.paymentPeriodName;
       _periodStartDate = widget.feeData.startDate;
-
-      _feeAmount.text = widget.userRegFeeCollectionModel?.feeAmount?.toString();
-      // _totalPaymentMade.text = user.feeplandata.
     });
   }
 
@@ -223,8 +215,8 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
           }
 
           if (state is itembloc.IsReadyForDetailsPage) {
-            _feePlanList = state.feePlanList ?? [];
             _userSessionList = state.userSessionList ?? [];
+            // _feePlanList = state.feePlanList ?? [];
 
             _initFiledValue();
           }
@@ -270,19 +262,12 @@ class _FeePaymentFormState extends State<FeePaymentForm> {
                         return _userSessionList
                             .map((userSession) => userSession.idCardNum)
                             .toList();
-                        // return _feePlanList
-                        //     .map((feePlan) => feePlan.feePlanName)
-                        //     .toList();
                       },
-                      // initialValue:
-                      //     widget.userRegFeeCollectionModel?.feePlanType,
                       title: "User Session",
                       controller: _idCardNumber,
-                      // controller: _feePlanType,
                       validate: Validate.withOption(isRequired: true),
                       onSelected: (item, index) {
                         filedFeePlanFields(_userSessionList[index]);
-                        // filedFeePlanFields(_feePlanList[index]);
                       },
                     ),
                     CustomTextField(

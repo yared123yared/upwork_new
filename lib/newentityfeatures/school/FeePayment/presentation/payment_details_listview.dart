@@ -122,50 +122,6 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
     return _dynamicList;
   }
 
-/* 
-  List<ListStateClass> toCommonListState(List<PaymentDetails> listItems,
-      List<FeeData> feePlanItems, BuildContext context) {
-    List<ListStateClass> _dynamicList = [];
-    feePlanItems.asMap().forEach((index, item) {
-      _dynamicList.add(ListStateClass(
-        title: numPeriodsDefined > index
-            ? "${listItems[index].receivedByMemberName ?? ''} ${item ?? ""}"
-            : "${item.paymentPeriodName ?? ''} ${item ?? ""}",
-        subtitle: numPeriodsDefined > index ? null : "Not Paid",
-        tapAction: () {
-          if (numPeriodsDefined == index) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PaymentDetailsForm(
-                  paymentDetails:
-                      numPeriodsDefined > index ? listItems[index] : null,
-                  userRegFeeCollectionModel: widget.userRegFeeCollectionModel,
-                  feeData: item,
-                  entitytype: widget.entitytype,
-                  entityid: widget.entityid,
-                  givenreloadaction: doreload,
-                ),
-              ),
-            );
-          }
-        },
-        // deleteAction: () async {
-        //   bool docancel = await _asyncConfirmDialog(context);
-        //   if (docancel) {
-        //     BlocProvider.of<listbloc.FeePaymentListBloc>(context).add(
-        //         listbloc.deletePaymentDetailsItemWithData(
-        //             entitytype: widget.entitytype,
-        //             entityid: widget.entitytype,
-        //             item: listItems[index]));
-        //   }
-        // },
-      ));
-    });
-
-    return _dynamicList;
-  }
- */
   Future<bool> _asyncConfirmDialog(BuildContext context) async {
     return showDialog(
       context: context,

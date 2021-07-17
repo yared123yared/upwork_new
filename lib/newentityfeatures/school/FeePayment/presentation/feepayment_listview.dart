@@ -91,13 +91,6 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
     );
   }
 
-  // listItems.asMap().forEach((index, item) {
-  //   _dynamicList.add(ListStateClass(
-  //     title: "${item.userName ?? ''} ${item.paymentPeriodName ?? ""}",
-  //     // subtitle: "grade: ${item.grade}",
-  //     // info1: item.closed ? "Not Paid" : null,
-  //     // info1color: Colors.red.value,
-  //     subtitle: item.closed ? "Paid" : "Not Paid",
   List<ListStateClass> toCommonListState(
       List<UserRegFeeCollectionModel> listItems,
       List<FeeData> feePlanItems,

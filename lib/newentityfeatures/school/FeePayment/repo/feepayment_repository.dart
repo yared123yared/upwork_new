@@ -47,8 +47,8 @@ class FeePaymentRepository {
         filteredUsersRegFee.add(element);
     });
 
-    // await _schoolRepo.
-    UserSessionRegModel userSession = await UserSessionRegGateway.getUserSessionRegModel(
+    UserSessionRegModel userSession =
+        await UserSessionRegGateway.getUserSessionRegModel(
       entityid,
       sessionTerm,
       cardNum,
@@ -59,7 +59,8 @@ class FeePaymentRepository {
     );
     FeePlanModel feePlan;
     feePlanModels?.forEach((feePlanModel) {
-      if (feePlanModel.feePlanName == filteredUsersRegFee?.first?.feePlaneName) {
+      if (feePlanModel.feePlanName ==
+          filteredUsersRegFee?.first?.feePlaneName) {
         feePlan = feePlanModel;
       }
     });
@@ -85,19 +86,7 @@ class FeePaymentRepository {
       userRegFeeCollectionModel: userRegFeeCollectionModel,
     );
 
-    // List<FeePlanModel> feePlanModels = await FeePlanGateway.getFeePlanList(
-    //   serviceID: entityid,
-    // );
-
-    // FeePlanModel feePlan;
-    // feePlanModels.forEach((feePlanModel) {
-    //   if (feePlanModel.feePlanName == userRegFeeCollectionModel.feePlaneName) {
-    //     feePlan = feePlanModel;
-    //   }
-    // });
-
     myreturn.paymentDetailsList = paymentDetails;
-    // myreturn.feePlan = feePlan;
     myreturn.errortype = -1;
 
     return myreturn;
@@ -118,9 +107,9 @@ class FeePaymentRepository {
         serviceID: entityid,
       );
 
-      List<FeePlanModel> feePlanList = await FeePlanGateway.getFeePlanList(
-        serviceID: entityid,
-      );
+      // List<FeePlanModel> feePlanList = await FeePlanGateway.getFeePlanList(
+      //   serviceID: entityid,
+      // );
 
       List<SchoolOwner> membersList = await _schoolRepo.getSchoolOwner(
         entitytype: entitytype,
@@ -130,7 +119,7 @@ class FeePaymentRepository {
 
       FeePaymentEntryData gr = FeePaymentEntryData();
 
-      gr.feePlanList = feePlanList;
+      // gr.feePlanList = feePlanList;
       gr.userSessionList = users;
       gr.membersList = membersList;
       gr.errortype = -1;
