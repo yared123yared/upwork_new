@@ -25,24 +25,50 @@ class ProductProvider {
     @required
         String type,@required String entitytype,@required String entityid,@required bool isservice,@required int origin,@required int limit,@required String lastdocumentid
   }) async {
+    String collectionname ="";
+    if(   entityid ==null || entityid.isEmpty)
+      collectionname="CLASSIFIED";
+    else {
+      collectionname = "${entitytype}/${entityid}}/${type}/";
+    }
+
     try {
-      final QuerySnapshot querySnapshot = await _firestoreInstance
-          .collection('CLASSIFIED')
-          .where('userid', isEqualTo: userID)
-          .where('dt', isEqualTo: type)
-          .get();
+      QuerySnapshot querySnapshot =null;
+      if(entityid ==null || entityid.isEmpty) {
+        querySnapshot = await _firestoreInstance
+            .collection(collectionname)
+            .where('userid', isEqualTo: userID)
+            .where('dt', isEqualTo: type)
+            .get();
+      }
+      else
+        {
+            if(lastdocumentid ==null)
+              {
+                querySnapshot = await _firestoreInstance
+                    .collection(collectionname).orderBy('docid').limit(limit)
+                    .get();
+              }
+            else
+              {
+                querySnapshot = await _firestoreInstance
+                    .collection(collectionname).orderBy('docid').startAfter([lastdocumentid]).limit(limit)
+                    .get();
+                
+              }
+        }
       List<Map<String, dynamic>> dataList = List<Map<String, dynamic>>.from(
           querySnapshot.docs.map((e) => e.data()));
       final T typedResponse = fromListData(dataList);
       return right(typedResponse);
     } on FirebaseException catch (e) {
       LogicalFailure failure = LogicalFailure(
-          returnType: T.toString(), path: 'CLASSIFIED', error: e.toString());
+          returnType: T.toString(), path: collectionname, error: e.toString());
       Logger().e(failure.toString());
       return left(failure);
     } catch (e) {
       ExceptionFailure failure = ExceptionFailure(
-          returnType: T.toString(), path: 'CLASSIFIED', error: e.toString());
+          returnType: T.toString(), path: collectionname, error: e.toString());
       Logger().e(failure.toString());
       return left(failure);
     }
@@ -63,8 +89,16 @@ class ProductProvider {
     String productid,@required String entitytype,@required String entityid,@required bool isservice,@required int origin
   }) async {
     try {
+      String collectionname ="";
+      if(   entityid ==null || entityid.isEmpty)
+        collectionname="CLASSIFIED";
+      else {
+        collectionname = "${entitytype}/${entityid}}/${type}/";
+      }
+
+
       final DocumentSnapshot docdata = await _firestoreInstance
-          .doc('CLASSIFIED')
+          .doc(collectionname+productid)
           
           .get();
       List<Map<String, dynamic>> dataList =[];
