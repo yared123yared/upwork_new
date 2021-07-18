@@ -19,22 +19,23 @@ import 'package:logger/logger.dart';
 
 class EcomNavigationHelper {
   final BuildContext context;
+
   EcomNavigationHelper._(this.context);
 
   factory EcomNavigationHelper.of(BuildContext context) =>
       EcomNavigationHelper._(context);
 
   void toListPage({
-    @required EcomProductType type,@required String entitytype, @required String entityid,@required isService
+    @required EcomProductType type,@required String entitytype, @required String entityid,@required isService, @required origin
   }) async {
     Logger().i(type.toString());
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => OwnerProductListPage(type: type,entitytype: entitytype,entityid:entityid,isService:isService )));
+        builder: (context) => OwnerProductListPage(type: type,entitytype: entitytype,entityid:entityid,isService:isService,origin:origin )));
 
     await Future.delayed(Duration(milliseconds: 100));
 
     BlocProvider.of<ProductOwnerBloc>(context)
-        .add(ProductOwnerEvent.get(type: type));
+        .add(ProductOwnerEvent.get(type: type,entitytype: entitytype,entityid:entityid,isservice:isService,origin:origin,lastdocumentid: "",limit:20));
   }
 
   void toDetailsPage({@required LimitedData data}) {
@@ -60,47 +61,47 @@ class EcomNavigationHelper {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
   }
 
-  void toContactFormPage({@required EcomProductType type}) {
+  void toContactFormPage({@required EcomProductType type,@required String entitytype, @required String entityid,@required isService, @required origin}) {
     final Widget page = type.map(
         realEstate: (realEstate) => GeneralContactDetailPage(
-              type: EcomProductType.realEstate(),
+              type: EcomProductType.realEstate(),productData: null,entitytype: entitytype,serviceId:entityid,isService:isService,origintype:origin
             ),
         job: (job) => GeneralContactDetailPage(
-              type: EcomProductType.job(),
+              type: EcomProductType.job(),productData: null,entitytype: entitytype,serviceId:entityid,isService:isService,origintype:origin
             ),
         pet: (pet) => GeneralContactDetailPage(
-              type: EcomProductType.pet(),
+              type: EcomProductType.pet(),productData: null,entitytype: entitytype,serviceId:entityid,isService:isService,origintype:origin
             ),
         vehicle: (vehicle) => GeneralContactDetailPage(
-              type: EcomProductType.vehicle(),
+              type: EcomProductType.vehicle(),productData: null,entitytype: entitytype,serviceId:entityid,isService:isService,origintype:origin
             ),
         product: (product) => GeneralContactDetailPage(
-              type: EcomProductType.product(),
+              type: EcomProductType.product(),productData: null,entitytype: entitytype,serviceId:entityid,isService:isService,origintype:origin
             ));
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
   }
 
-  void fromPrductToContactForm({@required CompleteProductData data}) {
+  void fromPrductToContactForm({@required CompleteProductData data,@required String entitytype, @required String entityid,@required isService, @required origin}) {
     final Widget page = data.map(
         realEstate: (realEstate) => GeneralContactDetailPage(
               productData: realEstate,
-              type: EcomProductType.realEstate(),
+              type: EcomProductType.realEstate(),entitytype: entitytype,serviceId:entityid,isService:isService,origintype:origin
             ),
         job: (job) => GeneralContactDetailPage(
               productData: job,
-              type: EcomProductType.job(),
+              type: EcomProductType.job(),entitytype: entitytype,serviceId:entityid,isService:isService,origintype:origin,
             ),
         pet: (pet) => GeneralContactDetailPage(
-              productData: pet,
+              productData: pet,entitytype: entitytype,serviceId:entityid,isService:isService,origintype:origin,
               type: EcomProductType.pet(),
             ),
         vehicle: (vehicle) => GeneralContactDetailPage(
-              productData: vehicle,
+              productData: vehicle,entitytype: entitytype,serviceId:entityid,isService:isService,origintype:origin,
               type: EcomProductType.vehicle(),
             ),
         product: (product) => GeneralContactDetailPage(
               productData: product,
-              type: EcomProductType.product(),
+              type: EcomProductType.product(),entitytype: entitytype,serviceId:entityid,isService:isService,origintype:origin
             ));
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
   }
@@ -109,29 +110,29 @@ class EcomNavigationHelper {
       {@required EcomProductType type,
       @required CompleteProductData data,
       @required bool isService,
-      @required String serviceId,
-      @required String serviceProviderId,
+      @required String serviceId,@required String entitytype, @required int origintype,
+
       @required ContactDetails contactDetails}) {
     final Widget page = type.map(
       pet: (pet) => AddPetPage(
         contactDetails,
-        completePet: data,
+        completePet: data,entitytype: entitytype,entityid: serviceId,isService: isService,origin:origintype ,
       ),
       vehicle: (vehicle) =>
-          VehicleCreatePage(contactDetails, completeVehicle: data),
+          VehicleCreatePage(contactDetails, completeVehicle: data,entitytype: entitytype,entityid: serviceId,isService: isService,origin:origintype),
       realEstate: (realEstate) => AddPropertyPage(
         contactDetails,
-        realEstate: data,
+        realEstate: data,entitytype: entitytype,entityid: serviceId,isService: isService,origin:origintype
       ),
       job: (job) => AddJobPage(
         contactDetails,
-        completeJob: data,
+        completeJob: data,entitytype: entitytype,entityid: serviceId,isService: isService,origin:origintype
       ),
       product: (product) => SelectProductType(
         contactDetails,
         isService: isService,
         serviceId: serviceId,
-        serviceProviderId: serviceProviderId,
+        entitytype: entitytype,origintype:origintype
       ),
     );
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));

@@ -1859,11 +1859,9 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Pet/FarmAnimals',
             tapAction: () {
-              EcomNavigationHelper.of(context).toListPage(
-                  type: EcomProductType.pet(),
-                  entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,
-                  isService: false);
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.pet(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false,origin:1);
             });
         break;
       case DynamicEntityGridState.classifiedjob:
@@ -1871,11 +1869,9 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Job',
             tapAction: () {
-              EcomNavigationHelper.of(context).toListPage(
-                  type: EcomProductType.job(),
-                  entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,
-                  isService: false);
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.job(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false,origin:1);
             });
         break;
       case DynamicEntityGridState.classifiedvehicle:
@@ -1883,11 +1879,9 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Vehicle',
             tapAction: () {
-              EcomNavigationHelper.of(context).toListPage(
-                  type: EcomProductType.vehicle(),
-                  entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,
-                  isService: false);
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.vehicle(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false,origin:1);
             });
         break;
       case DynamicEntityGridState.brokerclassifiedvehicle:
@@ -1895,11 +1889,9 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Vehicle',
             tapAction: () {
-              EcomNavigationHelper.of(context).toListPage(
-                  type: EcomProductType.vehicle(),
-                  entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,
-                  isService: false);
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.vehicle(),entitytype: getCurEntity().entitytype,
+                entityid: getCurEntity().entityid,isService:false,origin:1);
             });
         break;
 
@@ -1908,11 +1900,9 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Real Estate',
             tapAction: () {
-              EcomNavigationHelper.of(context).toListPage(
-                  type: EcomProductType.realEstate(),
-                  entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,
-                  isService: false);
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false,origin:1);
             });
         break;
       case DynamicEntityGridState.classifiedrealestate:
@@ -1920,11 +1910,9 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Real Estate',
             tapAction: () {
-              EcomNavigationHelper.of(context).toListPage(
-                  type: EcomProductType.realEstate(),
-                  entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,
-                  isService: false);
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false,origin:1);
             });
         break;
 
@@ -1950,11 +1938,9 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Shop Product',
             tapAction: () {
-              Navigator.push(
-                  context,
-                  NextPageRoute(GeneralContactDetailPage(
-                    type: EcomProductType.product(),
-                  )));
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.product(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false,origin:1);
             });
         break;
       case DynamicEntityGridState.classifiedproduct:
@@ -1962,11 +1948,9 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Classified Product',
             tapAction: () {
-              EcomNavigationHelper.of(context).toListPage(
-                  type: EcomProductType.product(),
-                  entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,
-                  isService: false);
+              EcomNavigationHelper.of(context)
+                  .toListPage(type: EcomProductType.product(),entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,isService:false,origin:1);
             });
         break;
       case DynamicEntityGridState.neworder:

@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:complex/domain/core/failure/failure.dart';
+import 'package:complex/domain/explore/ecom/lucene_search_suggestion/lucene_search_suggestion_data.dart';
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_provider.dart';
+//import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRelatedModels.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -24,31 +26,31 @@ class ProductOwnerBloc extends Bloc<ProductOwnerEvent, ProductOwnerState> {
       yield ProductOwnerState.initial().copyWith(isLoading: true);
       final ProductOwnerState finalState = await get.type.map(pet: (pet) async {
         Either<Failure, CompletePetList> data =
-            await provider.getCompletePetList();
+            await provider.getCompletePetList(entitytype: get.entitytype,entityid:get.entityid,isservice:get.isservice,origin:get.origin,lastdocumentid: get.lastdocumentid,limit:get.limit);
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, vehicle: (vehicle) async {
         Either<Failure, CompleteVehicleList> data =
-            await provider.getCompleteVehicleList();
+            await provider.getCompleteVehicleList(entitytype: get.entitytype,entityid:get.entityid,isservice:get.isservice,origin:get.origin,lastdocumentid: get.lastdocumentid,limit:get.limit);
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, realEstate: (realEstate) async {
         Either<Failure, CompleteRealEstateList> data =
-            await provider.getCompleteRealEstateList();
+            await provider.getCompleteRealEstateList(entitytype: get.entitytype,entityid:get.entityid,isservice:get.isservice,origin:get.origin,lastdocumentid: get.lastdocumentid,limit:get.limit);
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, job: (job) async {
         Either<Failure, CompleteJobList> data =
-            await provider.getCompleteJobsList();
+            await provider.getCompleteJobsList(entitytype: get.entitytype,entityid:get.entityid,isservice:get.isservice,origin:get.origin,lastdocumentid: get.lastdocumentid,limit:get.limit);
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
       }, product: (product) async {
         Either<Failure, CompleteProductList> data =
-            await provider.getCompleteProductList();
+            await provider.getCompleteProductList(entitytype: get.entitytype,entityid:get.entityid,isservice:get.isservice,origin:get.origin,lastdocumentid: get.lastdocumentid,limit:get.limit);
         return data.fold(
             (l) => state.copyWith(isLoading: false, failure: some(l)),
             (r) => state.copyWith(isLoading: false, listData: r));
@@ -57,7 +59,7 @@ class ProductOwnerBloc extends Bloc<ProductOwnerEvent, ProductOwnerState> {
       yield finalState;
     }, add: (_AddProduct value) async* {
       yield ProductOwnerState.initial().copyWith(isLoading: true);
-      Option<Failure> data = await provider.addProduct(data: value.productData);
+      Option<Failure> data = await provider.addProduct(data: value.productData,entitytype: value.entitytype,entityid:value.entityid,isservice:value.isservice,origin:value.origin);
       yield data.fold(
           () => state.copyWith(
               isLoading: false, message: 'Product created succesfully'),
@@ -65,11 +67,73 @@ class ProductOwnerBloc extends Bloc<ProductOwnerEvent, ProductOwnerState> {
     }, update: (_UpdateProduct value) async* {
       yield ProductOwnerState.initial().copyWith(isLoading: true);
       Option<Failure> data =
-          await provider.updateProduct(data: value.productData);
+          await provider.updateProduct(data: value.productData,entitytype: value.entitytype,entityid:value.entityid,isservice:value.isservice,origin:value.origin);
       yield data.fold(
           () => state.copyWith(
               isLoading: false, message: 'Product updated succesfully'),
           (a) => state.copyWith(isLoading: false, failure: some(a)));
-    });
+    },
+
+        getProductSuggestion: (_GetProductSuggestion value) async* {
+      yield ProductOwnerState.initial().copyWith(isLoading: true);
+      Either<Failure, List<LuceneSearchSuggestionData>> data =
+      await provider.getProductSuggestion(entitytype: value.entitytype,entityid:value.entityid,isservice:value.isservice,origin:value.origin,texttosearch: value.texttosearch,type:value.type);
+      yield data.fold(
+              (l) => state.copyWith(isLoading: false, failure: some(l)),
+              (r) => state.copyWith(isLoading: false, lucenesuggestiondata: r));
+    }, delete: (_DeleteProduct value) async* {
+      yield ProductOwnerState.initial().copyWith(isLoading: true);
+      Option<Failure> data =
+      await provider.deleteProduct(data: value.productData,entitytype: value.entitytype,entityid:value.entityid,isservice:value.isservice,origin:value.origin);
+      yield data.fold(
+              () => state.copyWith(
+              isLoading: false, message: 'Product updated succesfully'),
+              (a) => state.copyWith(isLoading: false, failure: some(a)));
+    },
+        getProductById: (_GetProductById value) async* {
+          yield ProductOwnerState.initial().copyWith(isLoading: true);
+          final ProductOwnerState finalState = await value.type.map(pet: (pet) async {
+            Either<Failure, CompletePetList> data =
+            await provider.getSinglePetList(entitytype: value.entitytype,entityid:value.entityid,isservice:value.isservice,origin:value.origin,productid: value.productid);
+            return data.fold(
+                    (l) => state.copyWith(isLoading: false, failure: some(l)),
+                    (r) => state.copyWith(isLoading: false, listData: r));
+          }, vehicle: (vehicle) async {
+            Either<Failure, CompleteVehicleList> data =
+            await provider.getSingleVehicleList(entitytype: value.entitytype,entityid:value.entityid,isservice:value.isservice,origin:value.origin,productid: value.productid);
+            return data.fold(
+                    (l) => state.copyWith(isLoading: false, failure: some(l)),
+                    (r) => state.copyWith(isLoading: false, listData: r));
+          }, realEstate: (realEstate) async {
+            Either<Failure, CompleteRealEstateList> data =
+            await provider.getSingleRealEstateList(entitytype: value.entitytype,entityid:value.entityid,isservice:value.isservice,origin:value.origin,productid: value.productid);
+            return data.fold(
+                    (l) => state.copyWith(isLoading: false, failure: some(l)),
+                    (r) => state.copyWith(isLoading: false, listData: r));
+          }, job: (job) async {
+            Either<Failure, CompleteJobList> data =
+            await provider.getSingleJobsList(entitytype: value.entitytype,entityid:value.entityid,isservice:value.isservice,origin:value.origin,productid: value.productid);
+            return data.fold(
+                    (l) => state.copyWith(isLoading: false, failure: some(l)),
+                    (r) => state.copyWith(isLoading: false, listData: r));
+          }, product: (product) async {
+            Either<Failure, CompleteProductList> data =
+            await provider.getSingleProductList(entitytype: value.entitytype,entityid:value.entityid,isservice:value.isservice,origin:value.origin,productid: value.productid);
+            return data.fold(
+                    (l) => state.copyWith(isLoading: false, failure: some(l)),
+                    (r) => state.copyWith(isLoading: false, listData: r));
+          });
+          yield finalState;
+
+
+
+        }
+
+
+
+
+
+
+    );
   }
 }

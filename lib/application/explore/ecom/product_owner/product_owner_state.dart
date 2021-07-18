@@ -7,13 +7,22 @@ abstract class ProductOwnerState with _$ProductOwnerState {
     @required bool workDone,
     @required Option<Failure> failure,
     @required String message,
+    @required int returneddatatype,
     @required CompleteProductDataList listData,
+
+    @required List<LuceneSearchSuggestionData> lucenesuggestiondata
+
   }) = _ProductListState;
 
   factory ProductOwnerState.initial() => _ProductListState(
-      failure: none(),
-      isLoading: false,
-      listData: CompleteProductDataList.empty(),
-      workDone: false,
-      message: '');
+    failure: none(),
+    isLoading: false,
+    listData: CompleteProductDataList.empty(),
+    workDone: false,
+    message: '',
+
+    lucenesuggestiondata:null,
+    returneddatatype:-1,
+
+  );
 }

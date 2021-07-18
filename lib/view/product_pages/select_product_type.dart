@@ -13,10 +13,11 @@ class SelectProductType extends StatefulWidget {
   final ContactDetails contactDetail;
   final bool isService;
   final String serviceId;
-  final String serviceProviderId;
+  final String entitytype;
+  final int origintype;
 
   SelectProductType(this.contactDetail,
-      {this.isService, this.serviceId, this.serviceProviderId});
+      {this.isService, this.serviceId, this.entitytype,this.origintype});
 
   @override
   _SelectProductTypeState createState() => _SelectProductTypeState();
@@ -58,7 +59,7 @@ class _SelectProductTypeState extends State<SelectProductType> {
                         productType: ProductType.noPackage,
                         contactDetails: widget.contactDetail,
                         serviceId: widget.serviceId,
-                        serviceProviderId: widget.serviceProviderId,
+                        entitytype: widget.entitytype,
                         isService: widget.isService,
                       ),
                     ),
@@ -76,7 +77,7 @@ class _SelectProductTypeState extends State<SelectProductType> {
                         productType: ProductType.package,
                         contactDetails: widget.contactDetail,
                         serviceId: widget.serviceId,
-                        serviceProviderId: widget.serviceProviderId,
+                        entitytype: widget.entitytype,
                         isService: widget.isService,
                       ),
                     ),
@@ -94,7 +95,7 @@ class _SelectProductTypeState extends State<SelectProductType> {
                         productType: ProductType.multiColor,
                         contactDetails: widget.contactDetail,
                         serviceId: widget.serviceId,
-                        serviceProviderId: widget.serviceProviderId,
+                        entitytype: widget.entitytype,
                         isService: widget.isService,
                       ),
                     ),
@@ -112,7 +113,7 @@ class _SelectProductTypeState extends State<SelectProductType> {
                         productType: ProductType.mySpecial,
                         contactDetails: widget.contactDetail,
                         serviceId: widget.serviceId,
-                        serviceProviderId: widget.serviceProviderId,
+                        entitytype: widget.entitytype,
                         isService: widget.isService,
                       ),
                     ),

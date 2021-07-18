@@ -18,14 +18,17 @@ class GeneralContactDetailPage extends StatefulWidget {
   final CompleteProductData productData;
   final bool isService;
   final String serviceId;
-  final String serviceProviderId;
+
+  final int origintype;
+  final String entitytype;
 
   GeneralContactDetailPage({
-    this.serviceId,
-    this.productData,
-    this.isService = false,
-    this.serviceProviderId,
+    @required this.serviceId,
+    @required this.productData,
+    @required  this.isService = false,
+    @required  this.origintype,
     @required this.type,
+    @required this.entitytype,
   });
 
   @override
@@ -170,9 +173,9 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
                       type: widget.type,
                       data: widget.productData,
                       contactDetails: _contactDetail,
-                      isService: false,
-                      serviceId: 'ABC',
-                      serviceProviderId: 'BCD');
+                      isService: widget.isService,
+                      serviceId: widget.serviceId,origintype: widget.origintype,entitytype: widget.entitytype
+                      );
                 }
               },
               borderColor: ColorConstants.primaryColor,

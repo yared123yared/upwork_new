@@ -6,7 +6,7 @@ import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/data/providers/product_provider_old.dart';
 import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
+//import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
 import 'package:complex/main.dart';
 import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
@@ -30,8 +30,12 @@ import 'package:injector/injector.dart';
 class VehicleCreatePage extends StatefulWidget {
   final ContactDetails contactDetail;
   final CompleteVehicle completeVehicle;
+  final String entitytype;
+  final String entityid;
+  final bool isService;
+  final int origin;
 
-  VehicleCreatePage(this.contactDetail, {this.completeVehicle});
+  VehicleCreatePage(this.contactDetail, {this.completeVehicle,@required String this.entitytype, @required String this.entityid,@required this.isService,@required this.origin});
 
   @override
   _VehicleCreatePageState createState() => _VehicleCreatePageState();
@@ -1055,7 +1059,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
             bodytype: _bodyType,
           ));
       _bloc.add(
-        ProductOwnerEvent.add(productData: newVehicle),
+        ProductOwnerEvent.add(productData: newVehicle,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     } else {
       newVehicle = CompleteVehicle(
@@ -1091,7 +1095,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
           ));
 
       _bloc.add(
-        ProductOwnerEvent.add(productData: newVehicle),
+        ProductOwnerEvent.add(productData: newVehicle,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     }
   }

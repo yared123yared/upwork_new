@@ -10,8 +10,9 @@ class OwnerProductListPage extends StatelessWidget {
   final EcomProductType type;
   final String entitytype;
   final String entityid;
-  final isService;
-  const OwnerProductListPage({Key key, @required this.type,@required String this.entitytype, @required String this.entityid,@required this.isService}) : super(key: key);
+  final bool isService;
+  final int origin;
+  const OwnerProductListPage({Key key, @required this.type,@required String this.entitytype, @required String this.entityid,@required this.isService,@required this.origin}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,28 +49,28 @@ class OwnerProductListPage extends StatelessWidget {
             return ListView.builder(
                 itemCount: pet.pets.length,
                 itemBuilder: (context, index) =>
-                    OwnerProductCard.fromCompleteData(pet.pets[index]));
+                    OwnerProductCard.fromCompleteData(data:pet.pets[index],entitytype: entitytype,entityid:entityid,isService:isService,origin:origin));
           }, vehicle: (vehicle) {
             return ListView.builder(
                 itemCount: vehicle.vehicles.length,
                 itemBuilder: (context, index) =>
-                    OwnerProductCard.fromCompleteData(vehicle.vehicles[index]));
+                    OwnerProductCard.fromCompleteData(data:vehicle.vehicles[index],entitytype: entitytype,entityid:entityid,isService:isService,origin:origin));
           }, realEstate: (realEstate) {
             return ListView.builder(
                 itemCount: realEstate.properties.length,
                 itemBuilder: (context, index) =>
-                    OwnerProductCard.fromCompleteData(
-                        realEstate.properties[index]));
+                    OwnerProductCard.fromCompleteData(data:
+                        realEstate.properties[index],entitytype: entitytype,entityid:entityid,isService:isService,origin:origin));
           }, job: (job) {
             return ListView.builder(
                 itemCount: job.jobs.length,
                 itemBuilder: (context, index) =>
-                    OwnerProductCard.fromCompleteData(job.jobs[index]));
+                    OwnerProductCard.fromCompleteData(data:job.jobs[index],entitytype: entitytype,entityid:entityid,isService:isService,origin:origin));
           }, product: (product) {
             return ListView.builder(
                 itemCount: product.products.length,
                 itemBuilder: (context, index) =>
-                    OwnerProductCard.fromCompleteData(product.products[index]));
+                    OwnerProductCard.fromCompleteData(data:product.products[index],entitytype: entitytype,entityid:entityid,isService:isService,origin:origin));
           }, empty: (empty) {
             return Center(
               child: Text('Empty'),

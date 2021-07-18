@@ -1,8 +1,8 @@
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
-import 'package:complex/view/product_pages/general_contact_details_page.dart';
+//import 'package:complex/view/product_pages/general_contact_details_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+//import 'package:get/route_manager.dart';
 
 class OwnerProductCard extends StatelessWidget {
   final String imageUrl;
@@ -11,7 +11,10 @@ class OwnerProductCard extends StatelessWidget {
   final String price;
   final Map<String, String> details;
   final CompleteProductData data;
-
+  final String entitytype;
+  final String entityid;
+  final bool isService;
+  final int origin;
   const OwnerProductCard({
     Key key,
     @required this.title,
@@ -20,6 +23,7 @@ class OwnerProductCard extends StatelessWidget {
     @required this.details,
     @required this.imageUrl,
     @required this.data,
+    @required String this.entitytype, @required String this.entityid,@required this.isService,@required this.origin
   }) : super(key: key);
 
   @override
@@ -186,7 +190,7 @@ class OwnerProductCard extends StatelessWidget {
     );
   }
 
-  factory OwnerProductCard.fromCompleteData(CompleteProductData data) {
+  factory OwnerProductCard.fromCompleteData({@required CompleteProductData data,@required String entitytype, @required String entityid,@required isService,@required origin}) {
     return data.map(
         pet: (v) => OwnerProductCard(
               data: v,
@@ -194,7 +198,7 @@ class OwnerProductCard extends StatelessWidget {
               imageUrl: '',
               price: '',
               subtitle: '',
-              title: '',
+              title: '',entitytype: entitytype,entityid:entityid,isService:isService,origin:origin
             ),
         product: (v) => OwnerProductCard(
               data: v,
@@ -202,7 +206,7 @@ class OwnerProductCard extends StatelessWidget {
               imageUrl: '',
               price: '',
               subtitle: '',
-              title: '',
+              title: '',entitytype: entitytype,entityid:entityid,isService:isService,origin:origin
             ),
         vehicle: (v) => OwnerProductCard(
               data: v,
@@ -214,7 +218,7 @@ class OwnerProductCard extends StatelessWidget {
               imageUrl: v.data.tileimage,
               price: v.data.price.toString(),
               subtitle: v.data.make,
-              title: v.data.title,
+              title: v.data.title,entitytype: entitytype,entityid:entityid,isService:isService,origin:origin
             ),
         realEstate: (v) => OwnerProductCard(
               data: v,
@@ -226,7 +230,7 @@ class OwnerProductCard extends StatelessWidget {
               imageUrl: v.data.tileimage,
               price: v.data.price.toString(),
               subtitle: v.data.contactdetails.address.addressline,
-              title: v.data.propertytype,
+              title: v.data.propertytype,entitytype: entitytype,entityid:entityid,isService:isService,origin:origin
             ),
         job: (v) => OwnerProductCard(
               data: v,
@@ -238,7 +242,7 @@ class OwnerProductCard extends StatelessWidget {
               imageUrl: v.data.companylogo,
               price: '(${v.data.minsalaryrange} - ${v.data.maxsalaryrange})',
               subtitle: v.data.companyname,
-              title: v.data.title,
+              title: v.data.title,entitytype: entitytype,entityid:entityid,isService:isService,origin:origin
             ));
   }
 }

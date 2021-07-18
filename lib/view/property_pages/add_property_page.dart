@@ -28,7 +28,11 @@ import 'package:intl/intl.dart';
 class AddPropertyPage extends StatefulWidget {
   final ContactDetails contactDetail;
   final CompleteRealEstate realEstate;
-  AddPropertyPage(this.contactDetail, {this.realEstate});
+  final String entitytype;
+  final String entityid;
+  final bool isService;
+  final int origin;
+  AddPropertyPage(this.contactDetail, {this.realEstate,@required String this.entitytype, @required String this.entityid,@required this.isService,@required this.origin});
 
   _AddPropertyPage createState() => _AddPropertyPage();
 }
@@ -1667,7 +1671,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
           ));
 
       _productBloc.add(
-        ProductOwnerEvent.update(productData: newRealEstate),
+        ProductOwnerEvent.update(productData: newRealEstate,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     } else {
       newRealEstate = CompleteRealEstate(
@@ -1707,7 +1711,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
           ));
 
       _productBloc.add(
-        ProductOwnerEvent.add(productData: newRealEstate),
+        ProductOwnerEvent.add(productData: newRealEstate,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     }
   }

@@ -26,7 +26,7 @@ import 'package:injector/injector.dart';
 
 class ProductProperties extends StatefulWidget {
   final bool withUnitPrice;
-  final String serviceProviderId;
+  final String entitytype;
   final ContactDetails contactDetails;
   final ProductType productType;
   final bool isService;
@@ -37,7 +37,7 @@ class ProductProperties extends StatefulWidget {
     this.withUnitPrice,
     this.contactDetails,
     this.productType,
-    this.serviceProviderId,
+    this.entitytype,
     this.serviceId,
     this.isService,
     this.product,
@@ -100,8 +100,8 @@ class _ProductPropertiesState extends State<ProductProperties> {
     super.initState();
     _productProvider
         .getCategory(
-            levelName: widget.serviceProviderId != null
-                ? "SERVICEPROVIDERINFO/${widget.serviceProviderId}/PRODUCTCATEGORYINFO/L1"
+            levelName: widget.serviceId != null
+                ? "SERVICEPROVIDERINFO/${widget.serviceId}/PRODUCTCATEGORYINFO/L1"
                 : "PRODUCTCATEGORYINFO/L1")
         .then((result) {
       print("result ${json.encode(result)}");
@@ -315,15 +315,15 @@ class _ProductPropertiesState extends State<ProductProperties> {
         context,
         NextPageRoute(SelectCategoryPage(
           documentname: a,
-          serviceProviderId: widget.serviceProviderId,
+          serviceProviderId: widget.serviceId,
         )));
     _category = result;
     _categoryController.text = result.split("->").last ?? "";
     if (_categoryController.text.trim().isNotEmpty) {
       _productProvider
           .getBrandAndDyanmicProperty(
-              levelName: widget.serviceProviderId != null
-                  ? "SERVICEPROVIDERINFO/${widget.serviceProviderId}/PRODUCTCATEGORYPROPERTIES/${_categoryController.text.trim()}"
+              levelName: widget.serviceId != null
+                  ? "SERVICEPROVIDERINFO/${widget.serviceId}/PRODUCTCATEGORYPROPERTIES/${_categoryController.text.trim()}"
                   : "PRODUCTCATEGORYPROPERTIES/${_categoryController.text.trim()}")
           .then((result) {
         LogPrint("result ===> ${json.encode(result)}");
@@ -367,7 +367,7 @@ class _ProductPropertiesState extends State<ProductProperties> {
             widget.productType == ProductType.noPackage ? 0.0 : null,
         ptype: _setPType(),
         userid: UserSession.userId,
-        serviceproviderid: widget.serviceProviderId,
+        serviceproviderid: widget.serviceId,
         varinattype: widget.productType == ProductType.noPackage
             ? "NOPACKAGE"
             : widget.productType == ProductType.package

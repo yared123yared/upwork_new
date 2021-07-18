@@ -23,8 +23,12 @@ import 'package:injector/injector.dart';
 class AddJobPage extends StatefulWidget {
   final ContactDetails contactDetail;
   final CompleteJob completeJob;
+  final String entitytype;
+  final String entityid;
+  final bool isService;
+  final int origin;
 
-  AddJobPage(this.contactDetail, {this.completeJob});
+  AddJobPage(this.contactDetail, {this.completeJob,@required String this.entitytype, @required String this.entityid,@required this.isService,@required this.origin});
 
   @override
   State<StatefulWidget> createState() {
@@ -347,7 +351,7 @@ class _AddJobPageState extends State<AddJobPage> {
             worktype: '',
           ));
       _productBloc.add(
-        ProductOwnerEvent.update(productData: newJob),
+        ProductOwnerEvent.update(productData: newJob,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     } else {
       newJob = CompleteJob(
@@ -372,7 +376,7 @@ class _AddJobPageState extends State<AddJobPage> {
           ));
 
       _productBloc.add(
-        ProductOwnerEvent.add(productData: newJob),
+        ProductOwnerEvent.add(productData: newJob,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     }
   }

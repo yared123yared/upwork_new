@@ -23,8 +23,11 @@ import 'package:injector/injector.dart';
 class AddPetPage extends StatefulWidget {
   final ContactDetails contactDetail;
   final CompletePet completePet;
-
-  AddPetPage(this.contactDetail, {this.completePet});
+  final String entitytype;
+  final String entityid;
+  final bool isService;
+  final int origin;
+  AddPetPage(this.contactDetail, {this.completePet,@required String this.entitytype, @required String this.entityid,@required this.isService,@required this.origin});
 
   @override
   State<StatefulWidget> createState() {
@@ -478,7 +481,7 @@ class _AddPetPageState extends State<AddPetPage> {
         ),
       );
       _productBloc.add(
-        ProductOwnerEvent.update(productData: newPet),
+        ProductOwnerEvent.update(productData: newPet,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     } else {
       newPet = CompletePet(
@@ -505,7 +508,7 @@ class _AddPetPageState extends State<AddPetPage> {
             vaccinated: false,
           ));
       _productBloc.add(
-        ProductOwnerEvent.add(productData: newPet),
+        ProductOwnerEvent.add(productData: newPet,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     }
   }
