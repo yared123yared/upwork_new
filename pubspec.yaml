@@ -80,6 +80,7 @@ flutter:
   assets:
     - assets/
     - assets/other_util/zip_codes.json
+    - assets/listViewIcons/
 
 fonts:
   - family: Merriweather

@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 class ListStateClass extends Equatable {
   final String title;
+  final String tittleH1;
+  final String tittleH2;
   final String subtitle;
+  final String formName;
   final VoidCallback tapAction;
   final VoidCallback deleteAction;
   final VoidCallback editAction;
@@ -16,21 +19,23 @@ class ListStateClass extends Equatable {
   final int info2color;
   final String textforsearch;
 
-  ListStateClass({
-    @required this.title,
-    this.subtitle,
-    this.tapAction,
-    this.customAction_1,
-    this.customAction_2,
-    this.deleteAction,
-    this.editAction,
-    this.iconpath,
-    this.info1,
-    this.info2,
-    this.info1color,
-    this.info2color,
-    this.textforsearch
-  });
+  ListStateClass(
+      {@required this.title,
+      this.tittleH1,
+      this.tittleH2,
+      this.subtitle,
+      this.formName,
+      this.tapAction,
+      this.customAction_1,
+      this.customAction_2,
+      this.deleteAction,
+      this.editAction,
+      this.iconpath,
+      this.info1,
+      this.info2,
+      this.info1color,
+      this.info2color,
+      this.textforsearch});
 
   ListStateClass copyWith({
     VoidCallback tapAction,
@@ -47,22 +52,12 @@ class ListStateClass extends Equatable {
         customAction_2: customAction_2 ?? this.customAction_2,
         subtitle: this.subtitle,
         title: this.title,
-        textforsearch: textforsearch
-
-    );
+        textforsearch: textforsearch);
   }
 
   @override
-  List<Object> get props => [
-        title,
-        subtitle,
-        iconpath,
-        info1,
-        info2,
-        info1color,
-        info2color
-
-      ];
+  List<Object> get props =>
+      [title, subtitle, iconpath, info1, info2, info1color, info2color];
 }
 
 class CustomAction extends Equatable {

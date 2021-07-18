@@ -75,7 +75,9 @@ class _StaffModelListListState extends State<StaffModelListList> {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: "${item.name ?? ''}: ${item.isSuspended ?? ""}",
+        tittleH2: "Role: ${item.category}",
+        tittleH1: "Phone: ${item.phoneNumStr}",
+        title: "${item.name.split("+_+").first ?? ''}",
         tapAction: () {
           Navigator.push(
             context,

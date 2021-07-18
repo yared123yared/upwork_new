@@ -22,7 +22,7 @@ class _CommonListTileState extends State<CommonListTile> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
+      color: const Color.fromRGBO(23, 37, 42, 1),
       elevation: 3,
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.symmetric(vertical: height, horizontal: 10),
@@ -52,34 +52,54 @@ class _CommonListTileState extends State<CommonListTile> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Icon(
-                Icons.account_balance,
-                size: width * 10,
-                color: green,
-              ),
+              if (widget.listState.formName == "building")
+                CircleAvatar(
+                  radius: 30,
+                  foregroundImage:
+                      AssetImage('assets/listViewIcons/EntryLogsIcon.png'),
+                ),
+              if (widget.listState.formName == null)
+                Icon(
+                  Icons.account_balance,
+                  size: width * 10,
+                  color: green,
+                ),
               SizedBox(width: width * 2),
               if (!showDeleteButton)
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsets.only(top: 8.0, left: 8, bottom: 8),
+                        padding: const EdgeInsets.only(top: 1.0, left: 8),
                         child: Container(
-                          height: 45,
+                          height: 30,
                           //todo convert this to scrollable text
                           child: Text(
                             widget.listState.title ?? "Error",
                             style: TextStyle(
                               fontFamily: 'Merriweather',
-                              color: green,
+                              color: const Color.fromRGBO(228, 247, 243, 1),
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
                       ),
+                      if (widget.listState.tittleH1 != null)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            widget.listState.tittleH1 ?? "Error",
+                            style: TextStyle(
+                              fontFamily: 'Merriweather',
+                              color: const Color.fromRGBO(228, 247, 243, 1),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
                       if (!showDeleteButton &&
                               widget.listState.subtitle != null ||
                           widget.listState.customAction_1 != null ||
@@ -154,7 +174,7 @@ class _CommonListTileState extends State<CommonListTile> {
                                         border: Border.all(
                                             color: C.secondaryTextBlue)),
                                   ),
-                                )
+                                ),
                             ],
                           ),
                         ),
@@ -230,10 +250,14 @@ class _CommonListTileState extends State<CommonListTile> {
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
-                        )
+                        ),
                     ],
                   ),
                 ),
+              Icon(
+                Icons.more_vert,
+                color: Colors.white,
+              ),
             ],
           ),
         ),
