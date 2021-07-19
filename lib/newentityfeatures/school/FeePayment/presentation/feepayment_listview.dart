@@ -82,11 +82,13 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
       context,
       MaterialPageRoute(
         builder: (context) => FeePaymentForm(
-            userRegFeeCollectionModel: null,
-            sessionTerm: widget.sessionTerm,
-            entitytype: widget.entitytype,
-            entityid: widget.entityid,
-            givenreloadaction: doreload),
+          userRegFeeCollectionModel: null,
+          sessionTerm: widget.sessionTerm,
+          cardNum: widget.cardNum,
+          entitytype: widget.entitytype,
+          entityid: widget.entityid,
+          givenreloadaction: doreload,
+        ),
       ),
     );
   }
@@ -125,6 +127,7 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
                         // paidPeriods < index ? listItems[index] : null,
                         feeData: feePlan.feeData[index],
                         sessionTerm: widget.sessionTerm,
+                        cardNum: widget.cardNum,
                         entitytype: widget.entitytype,
                         entityid: widget.entityid,
                         givenreloadaction: doreload,
@@ -146,6 +149,8 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
                         userRegFeeCollectionModel: listItems[index],
                         entitytype: widget.entitytype,
                         entityid: widget.entityid,
+                        sessionTerm: widget.sessionTerm,
+                        cardNum: widget.cardNum,
                       ),
                     ),
                   );

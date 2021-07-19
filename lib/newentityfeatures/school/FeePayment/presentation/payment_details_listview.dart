@@ -16,11 +16,15 @@ import 'payment_details_form.dart';
 class PaymentDetailsListList extends StatefulWidget {
   final String entityid;
   final String entitytype;
+  final String sessionTerm;
+  final String cardNum;
   final UserRegFeeCollectionModel userRegFeeCollectionModel;
   PaymentDetailsListList({
-    this.entitytype,
-    this.entityid,
+    @required this.entitytype,
+    @required this.entityid,
     @required this.userRegFeeCollectionModel,
+    @required this.sessionTerm,
+    @required this.cardNum,
   });
 
   @override

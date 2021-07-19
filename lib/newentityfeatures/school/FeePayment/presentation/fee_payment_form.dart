@@ -22,6 +22,7 @@ class FeePaymentForm extends StatefulWidget {
   final String entityid;
   final String entitytype;
   final String sessionTerm;
+  final String cardNum;
   final FeeData feeData;
   final FeePlanModel firstPeriod;
   final PaymentDetails lastPaymentPeriod;
@@ -31,6 +32,7 @@ class FeePaymentForm extends StatefulWidget {
     @required this.userRegFeeCollectionModel,
     @required this.givenreloadaction,
     @required this.sessionTerm,
+    @required this.cardNum,
     this.entitytype,
     this.entityid,
     this.firstPeriod,
