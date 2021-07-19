@@ -7,7 +7,7 @@ import 'package:complex/newentityfeatures/ecommerce/views/explore/ecom/ecommerce
 import 'package:complex/common/bottom_bar/persistent-tab-view.dart';
 import 'package:complex/utils/log_print.dart';
 import 'package:complex/utils/notification_helper.dart';
-import 'package:complex/utils/resource/colors.dart';
+//import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/view/chat_pages/channel_list_page.dart';
 import 'package:complex/view/entity_pages/entity_page.dart';
 import 'package:complex/view/profile_pages/profile_page.dart';
@@ -33,7 +33,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   PersistentTabController _controller;
-  Color _tabColor = ColorConstants.primaryColorMaterial;
+  Color _tabColor = const Color.fromRGBO(39, 122, 150, 1);
   Color _inactiveTabColor = Colors.white;
   NotificationHelper _helper = NotificationHelper.getInstance();
   UserRepository _repo = Injector.appInstance.get<UserRepository>();
@@ -151,6 +151,7 @@ class _HomePageState extends State<HomePage> {
         break;
       case DynamicTabState.Explore:
         _tab = PersistentBottomNavBarItem(
+          inactiveColorSecondary: _tabColor,
           icon: Icon(Icons.memory),
           title: 'Explore',
           iconPosition: 1,

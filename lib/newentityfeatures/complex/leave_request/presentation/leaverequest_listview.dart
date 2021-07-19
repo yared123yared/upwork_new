@@ -1,5 +1,6 @@
 import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
+import 'package:complex/common/widgets/custom_floating_action.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/newentityfeatures/Models/leaverequest_model.dart';
@@ -195,13 +196,12 @@ class _LeaveRequestListListState extends State<LeaveRequestListList> {
           return Center(child: Text('Empty'));
         })),
         floatingActionButton: widget.origintype == 1
-            ? FloatingActionButton.extended(
-                onPressed: () async {
-                  addButtonActions(context: context);
-                },
-                icon: Icon(Icons.add),
-                label: Text("Add New"),
-              )
+            ? CustomFloatingButton(
+          onTap: () async {
+            addButtonActions(context: context);
+          },
+          text: 'Add New',
+        )
             : null,
       ),
     );

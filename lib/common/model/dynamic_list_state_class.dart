@@ -5,6 +5,8 @@ class ListStateClass extends Equatable {
   final String title;
   final String tittleH1;
   final String tittleH2;
+  final String tittleH3;
+
   final String subtitle;
   final String formName;
   final VoidCallback tapAction;
@@ -23,6 +25,7 @@ class ListStateClass extends Equatable {
       {@required this.title,
       this.tittleH1,
       this.tittleH2,
+      this.tittleH3,
       this.subtitle,
       this.formName,
       this.tapAction,

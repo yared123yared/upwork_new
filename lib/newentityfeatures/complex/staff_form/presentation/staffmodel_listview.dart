@@ -1,5 +1,6 @@
 import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
+import 'package:complex/common/widgets/custom_floating_action.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
@@ -136,8 +137,8 @@ class _StaffModelListListState extends State<StaffModelListList> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: mlistbloc,
-      child: Scaffold(
+        value: mlistbloc,
+        child: Scaffold(
           appBar: CustomAppBar(
             title: "Staff List",
           ),
@@ -185,14 +186,12 @@ class _StaffModelListListState extends State<StaffModelListList> {
             }
             return Center(child: Text('Empty'));
           })),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
-              addButtonActions(context: context);
-            },
-            icon: Icon(Icons.add),
-            label: Text("Add New"),
-          )),
-    );
+          floatingActionButton: CustomFloatingButton(
+              onTap: () async {
+                addButtonActions(context: context);
+              },
+              text: "Add New"),
+        ));
   }
 
   Widget _blocBuilder(context) {

@@ -1,3 +1,4 @@
+import 'package:complex/utils/resource/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/data.dart';
@@ -22,7 +23,7 @@ class _CommonListTileState extends State<CommonListTile> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromRGBO(23, 37, 42, 1),
+      color: ColorConstants.primaryColor,
       elevation: 3,
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.symmetric(vertical: height, horizontal: 10),
@@ -74,7 +75,7 @@ class _CommonListTileState extends State<CommonListTile> {
                       Padding(
                         padding: const EdgeInsets.only(top: 1.0, left: 8),
                         child: Container(
-                          height: 30,
+                          height: 28,
                           //todo convert this to scrollable text
                           child: Text(
                             widget.listState.title ?? "Error",
@@ -89,9 +90,22 @@ class _CommonListTileState extends State<CommonListTile> {
                       ),
                       if (widget.listState.tittleH1 != null)
                         Padding(
-                          padding: const EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8, bottom: 4),
                           child: Text(
                             widget.listState.tittleH1 ?? "Error",
+                            style: TextStyle(
+                              fontFamily: 'Merriweather',
+                              color: const Color.fromRGBO(228, 247, 243, 1),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      if (widget.listState.tittleH2 != null)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            widget.listState.tittleH2 ?? "Error",
                             style: TextStyle(
                               fontFamily: 'Merriweather',
                               color: const Color.fromRGBO(228, 247, 243, 1),

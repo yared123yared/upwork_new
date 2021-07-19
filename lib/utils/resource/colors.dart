@@ -17,7 +17,7 @@ class ColorConstants {
       900: const Color(0xFF49AA74),
     },
   );
-  static const Color primaryColor = green;
+  static const Color primaryColor = const Color.fromRGBO(39, 122, 150, 1);
   static const Color lightGreen = Color(0xFFC2FFDD);
   static const Color white = Colors.white;
   static const Color blue = Colors.blue;

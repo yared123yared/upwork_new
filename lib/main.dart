@@ -144,7 +144,7 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
         child: GetMaterialApp(
           title: "VThePeople",
           theme: ThemeData(
-            primaryColor: const Color.fromRGBO(23, 37, 42, 1),
+            primaryColor: const Color.fromRGBO(39, 122, 150, 1),
           ),
           debugShowCheckedModeBanner: false,
           home: SplashPage(),
