@@ -15,7 +15,7 @@ class PropertyModel {
   int discountstartdate;
   int discountenddate;
   String occupancytype;
-  String tenantgenderfamilypreference;
+  List<String> tenantgenderfamilypreference;
   String ownershiptype;
   int sqfeetarea;
   int numrooms;
@@ -101,7 +101,7 @@ class PropertyModel {
         ? (json['discountenddate'].seconds)
         : json['discountenddate'];
     occupancytype = json['occupancytype'];
-    tenantgenderfamilypreference = json['tenantgenderfamilypreference'];
+    tenantgenderfamilypreference = json['tenantgenderfamilypreference']== null ? [] : new List<String>.from(json['tenantgenderfamilypreference']);;
     ownershiptype = json['ownershiptype'];
     sqfeetarea = json['sqfeetarea'];
     numrooms = json['numrooms'];

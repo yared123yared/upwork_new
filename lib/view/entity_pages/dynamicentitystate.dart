@@ -49,10 +49,10 @@ import 'package:complex/view/job_pages/job_detail_page.dart';
 import 'package:complex/view/medical_pages/case_view.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
 import 'package:complex/view/product_pages/dynamic_category_page.dart';
-import 'package:complex/view/product_pages/general_contact_details_page.dart';
+
 import 'package:complex/view/property_pages/property_detail_page.dart';
 import 'package:complex/view/vehicle/vehicle_detail_page.dart';
-import 'package:complex/utils/next_page_routing.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -502,7 +502,7 @@ class UiEntityPageStateList {
     //panelmem.add(DynamicEntityGridState.MyAppointmentMembersView);
     // panelmem.add(DynamicEntityGridState.Appointment_Products);
 
-    return panelmem;
+
   }
 
   static List<DynamicEntityGridState> fillStaffPanelService() {
@@ -1343,7 +1343,7 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'neweventpage',
             tapAction: () async {
-              NewSchoolRepository _schoolRepo = Get.find();
+
               UserRepository _userRepository = Get.find();
 
               String entityid = getCurEntity().entityid;
@@ -1379,7 +1379,7 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newparentattendanceinfopage',
             tapAction: () async {
-              NewSchoolRepository _schoolRepo = Get.find();
+
 
               String entityid = getCurEntity().entityid;
 
@@ -1422,7 +1422,7 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newparentprogressinfopage',
             tapAction: () async {
-              NewSchoolRepository _schoolRepo = Get.find();
+
 
               String entityid = getCurEntity().entityid;
 
@@ -1465,7 +1465,7 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newparenteventinfopage',
             tapAction: () async {
-              NewSchoolRepository _schoolRepo = Get.find();
+
 
               String entityid = getCurEntity().entityid;
 
@@ -1508,7 +1508,7 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newparentassignmentscoreinfopage',
             tapAction: () async {
-              NewSchoolRepository _schoolRepo = Get.find();
+
 
               String entityid = getCurEntity().entityid;
 
@@ -1551,7 +1551,7 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newparentassignmentslistinfopage',
             tapAction: () async {
-              NewSchoolRepository _schoolRepo = Get.find();
+
 
               String entityid = getCurEntity().entityid;
 
@@ -1594,7 +1594,7 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newprogresspage',
             tapAction: () async {
-              NewSchoolRepository _schoolRepo = Get.find();
+
               UserRepository _userRepository = HelpUtil.getUserRepository();
 
               String entityid = getCurEntity().entityid;
@@ -1647,7 +1647,7 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newattendancepage',
             tapAction: () async {
-              NewSchoolRepository _schoolRepo = Get.find();
+              
               UserRepository _userRepository = HelpUtil.getUserRepository();
 
               String entityid = getCurEntity().entityid;
@@ -1911,8 +1911,12 @@ class UiSchoolHandler {
             title: 'Real Estate',
             tapAction: () {
               EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,isService:false,origin:1);
+                 // .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype, //79gE5SnVjQPtQ2weFsncv19TWrY2
+                 // entityid: getCurEntity().entityid,isService:false,origin:1);
+              .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype, //79gE5SnVjQPtQ2weFsncv19TWrY2
+              entityid: getCurEntity().entityid,isService:false,origin:1);
+
+
             });
         break;
 

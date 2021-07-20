@@ -63,7 +63,11 @@ abstract class CompleteProductData with _$CompleteProductData {
 
   factory CompleteProductData.fromJson(Map<String, dynamic> json) =>
       _$CompleteProductDataFromJson(json);
+
+
 }
+
+
 
 @freezed
 abstract class CompleteProductDataList with _$CompleteProductDataList {

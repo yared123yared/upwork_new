@@ -37,8 +37,8 @@ class FeePaymentRepository {
     FeePaymentRepositoryReturnData myreturn = FeePaymentRepositoryReturnData();
 
     List<UserRegFeeCollectionModel> usersRegFee =
-        await UserFeeCollectionGateWay.getUserFeeCollectionList(
-      serviceID: entityid,
+        await UserFeeCollectionGateWay.getPaymentDataForIDCardSessionTerm(
+      entitytype: entitytype,serviceID:entityid,idcardnum: cardNum,session:sessionTerm
     );
 
     List<UserRegFeeCollectionModel> filteredUsersRegFee = [];

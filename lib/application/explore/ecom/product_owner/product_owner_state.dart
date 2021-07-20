@@ -21,7 +21,7 @@ abstract class ProductOwnerState with _$ProductOwnerState {
     workDone: false,
     message: '',
 
-    lucenesuggestiondata:null,
+    lucenesuggestiondata:[],
     returneddatatype:-1,
 
   );

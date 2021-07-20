@@ -26,34 +26,59 @@ class ProductProvider {
         String type,@required String entitytype,@required String entityid,@required bool isservice,@required int origin,@required int limit,@required String lastdocumentid
   }) async {
     String collectionname ="";
-    if(   entityid ==null || entityid.isEmpty)
+    String finaltype = type.toUpperCase();
+    if(entitytype== 'SELF' ||  finaltype== "REALESTATE" ||  finaltype== "JOB" ||  finaltype== "VEHICLE" ||  finaltype== "PET"  )
       collectionname="CLASSIFIED";
     else {
-      collectionname = "${entitytype}/${entityid}}/${type}/";
+      collectionname = "${entitytype}/${entityid}}/PRODUCT";
     }
 
     try {
       QuerySnapshot querySnapshot =null;
-      if(entityid ==null || entityid.isEmpty) {
+      if(entitytype== 'SELF') {   //in case of entitytype=SELF , entityid =userid
         querySnapshot = await _firestoreInstance
             .collection(collectionname)
             .where('userid', isEqualTo: userID)
-            .where('dt', isEqualTo: type)
+            .where('dt', isEqualTo: finaltype)
             .get();
       }
       else
         {
-            if(lastdocumentid ==null)
+
+          if(lastdocumentid ==null || lastdocumentid.isEmpty )
               {
-                querySnapshot = await _firestoreInstance
-                    .collection(collectionname).orderBy('docid').limit(limit)
-                    .get();
+                if(finaltype=="PRODUCT") {
+                  querySnapshot = await _firestoreInstance
+                      .collection(collectionname).orderBy('docid').limit(limit)
+                      .get();
+                }
+                else
+                  {
+                    querySnapshot = await _firestoreInstance
+                        .collection(collectionname)
+                        .where('serviceproviderid', isEqualTo: entityid)
+                        .where('dt', isEqualTo: finaltype).orderBy('docid').limit(limit)
+                        .get();
+                  }
               }
             else
               {
-                querySnapshot = await _firestoreInstance
-                    .collection(collectionname).orderBy('docid').startAfter([lastdocumentid]).limit(limit)
-                    .get();
+                if(finaltype=="PRODUCT") {
+                  querySnapshot = await _firestoreInstance
+                      .collection(collectionname).orderBy('docid').startAfter(
+                      [lastdocumentid]).limit(limit)
+                      .get();
+                }
+                else
+                  {
+                    querySnapshot = await _firestoreInstance
+                        .collection(collectionname)
+                        .where('serviceproviderid', isEqualTo: entityid)
+                        .where('dt', isEqualTo: finaltype).orderBy('docid').startAfter(
+                        [lastdocumentid]).limit(limit)
+                        .get();
+
+                  }
                 
               }
         }
@@ -216,6 +241,7 @@ class ProductProvider {
             fromListData: (listJson) =>
                 CompleteRealEstateList.fromJson({'properties': listJson}),
             userID: UserSession.userId,
+
             type: 'realestate',entitytype: entitytype,entityid:entityid,isservice:isservice,origin:origin,lastdocumentid: lastdocumentid,limit:limit);
 
     return response;
@@ -240,11 +266,12 @@ class ProductProvider {
   
   Future<Option<Failure>> addProduct(
       {@required CompleteProductData data,@required String entitytype,@required String entityid,@required bool isservice,@required int origin}) async {
+     final String finaldttype=data.dt.toUpperCase();
     final Map<String, dynamic> productAction = {
       "qtype": null,
       "action": "add",
-      "origin": "USER",
-      "serviceid": null,
+      "origin": entityid ==null?"USER":"SERVICE",
+      "serviceid": entityid,
       "userid": data.userId,
       "producttype": null,
       "classifiedtype": data.dt.toUpperCase(),
@@ -254,7 +281,7 @@ class ProductProvider {
       "jobrequestmodel": null,
       'realestatemodel': null,
     };
-    data.map(
+    var k =data.map(
         realEstate: (realEstate) => productAction.update('realestatemodel',
             (value) => realEstate.data.toJson()..remove('runtimeType')),
         job: (job) => productAction.update('jobrequestmodel',
@@ -266,8 +293,30 @@ class ProductProvider {
         product: (product) => productAction.update('productmodel',
             (value) => product.data.toJson()..remove('runtimeType')));
 
+    if(finaldttype =="REALESTATE") {
+      productAction['realestatemodel']=k;
+    }
+    else if(finaldttype =="JOB") {
+      productAction['jobrequestmodel']=k;
+    }
+    else if(finaldttype =="VEHICLE") {
+      productAction['vehiclemodel']=k;
+    }
+    else if(finaldttype =="PET") {
+      productAction['petmodel']=k;
+    }
+    else if(finaldttype =="PRODUCT") {
+      productAction['productmodel']=k;
+    }
+    else
+    {
+      return Future.error("Undefined Product type", StackTrace.fromString("This is its trace"));
+    }
+
+
+
     final Option<Failure> response = await ApiHelper(ApiHelper.dgOcnEp)
-        .httpPost<CompleteProductData>(data.toJson());
+        .httpPost<Map<String, dynamic>>(productAction);
 
     return response;
   }

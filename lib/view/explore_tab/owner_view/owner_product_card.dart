@@ -1,7 +1,9 @@
+import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
 //import 'package:complex/view/product_pages/general_contact_details_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 //import 'package:get/route_manager.dart';
 
 class OwnerProductCard extends StatelessWidget {
@@ -156,8 +158,67 @@ class OwnerProductCard extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              EcomNavigationHelper.of(context)
-                                  .completeToDetailsPage(data: data);
+
+                              if(data.dt =="realestate") {
+                                CompleteRealEstate cme =data;
+                                EcomNavigationHelper.of(context)
+                                //.completeToDetailsPage(data: data);
+                                    .fromContactToAddProductPage(data: data,contactDetails:cme.data.contactdetails,
+                                    isService: isService,
+                                    entitytype: entitytype,
+                                    serviceId: entityid,
+                                    origintype: origin,type:EcomProductType.realEstate()
+                                    );
+                              }
+                              else if(data.dt =="job") {
+                                CompleteJob cme =data;
+                                EcomNavigationHelper.of(context)
+                                //.completeToDetailsPage(data: data);
+                                    .fromContactToAddProductPage(data: data,contactDetails:cme.data.contactdetails,
+                                    isService: isService,
+                                    entitytype: entitytype,
+                                    serviceId: entityid,
+                                    origintype: origin,type:EcomProductType.job()
+                                );
+                              }
+                              else if(data.dt =="vehicle") {
+                                CompleteVehicle cme =data;
+                                EcomNavigationHelper.of(context)
+                                //.completeToDetailsPage(data: data);
+                                    .fromContactToAddProductPage(data: data,contactDetails:cme.data.contactdetails,
+                                    isService: isService,
+                                    entitytype: entitytype,
+                                    serviceId: entityid,
+                                    origintype: origin,type:EcomProductType.vehicle()
+                                );
+                              }
+                              else if(data.dt =="pet") {
+                                CompletePet cme =data;
+                                EcomNavigationHelper.of(context)
+                                //.completeToDetailsPage(data: data);
+                                    .fromContactToAddProductPage(data: data,contactDetails:cme.data.contactdetails,
+                                    isService: isService,
+                                    entitytype: entitytype,
+                                    serviceId: entityid,
+                                    origintype: origin,type:EcomProductType.pet()
+                                );
+                              }
+                              else if(data.dt =="product") {
+                                CompleteRealEstate cme =data;
+                                EcomNavigationHelper.of(context)
+                                //.completeToDetailsPage(data: data);
+                                    .fromContactToAddProductPage(data: data,contactDetails:cme.data.contactdetails,
+                                    isService: isService,
+                                    entitytype: entitytype,
+                                    serviceId: entityid,
+                                    origintype: origin,type:EcomProductType.product()
+                                );
+                              }
+                              else
+                                {
+                                  EasyLoading.showError('Unknown error has oocured');
+                                }
+
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(

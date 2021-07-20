@@ -29,7 +29,25 @@ class UserFeeCollectionGateWay {
       });
 
   }
+  static Future<List<UserRegFeeCollectionModel>>
+  getPaymentDataForIDCardSessionTerm({String entitytype,
+      String serviceID,
+      String idcardnum,
+      String session,
+}) async {
 
+    return await FirebaseFirestore.instance
+        .collection("${entitytype}/$serviceID/USERFEEPAYMENT")
+        .where('idcardnum', isEqualTo: idcardnum)
+        .where('session', isEqualTo: session)
+        .get()
+        .then((x) {
+      return UserRegFeeCollectionModel.listFromJson(
+          x.docs.map((d) => d.data).toList(),
+          x.docs.map((d) => d.id).toList());
+    });
+
+  }
   static Future<List<UserRegFeeCollectionModel>> getUserFeeCollectionList({
     @required String serviceID,
   }) async {

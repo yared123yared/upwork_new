@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import '../ecom_navigation_helper.dart';
+
 class OwnerProductListPage extends StatelessWidget {
   final EcomProductType type;
   final String entitytype;
@@ -45,7 +47,10 @@ class OwnerProductListPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           floatingActionButton: CustomFloatingButton(
-            onTap: () {},
+            onTap: () {
+              EcomNavigationHelper.of(context).toContactFormPage(type: type,  isService: isService, entityid: entityid, entitytype: entitytype, origin: origin);
+
+            },
             text: "Add New",
           ),
           appBar: AppBar(

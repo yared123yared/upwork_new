@@ -5,6 +5,6 @@ class JsonHelper {
   static DateTime fromJsonTimeStamp(Timestamp val) => val != null
       ? DateTime.fromMillisecondsSinceEpoch(val.millisecondsSinceEpoch)
       : DateTime.now();
-  static Timestamp toJsonTimeStamp(DateTime time) =>
-      Timestamp.fromMillisecondsSinceEpoch(time.millisecondsSinceEpoch);
+  static dynamic toJsonTimeStamp(DateTime time) =>time !=null ?
+      Timestamp.fromMillisecondsSinceEpoch(time.millisecondsSinceEpoch):null;
 }
