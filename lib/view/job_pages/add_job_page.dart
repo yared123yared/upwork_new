@@ -7,7 +7,7 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
-import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 // import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
 import 'package:complex/utils/resource/colors.dart';
@@ -21,7 +21,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:injector/injector.dart';
 
 class AddJobPage extends StatefulWidget {
-  final ContactDetails contactDetail;
+  final ContactDetailsModel contactDetail;
   final CompleteJob completeJob;
   final String entitytype;
   final String entityid;
@@ -359,7 +359,7 @@ class _AddJobPageState extends State<AddJobPage> {
           dt: 'job',
           serviceId: '',
           userId: UserSession.userId,
-          data: JobData(
+          data: JobPosting(
             contactdetails: widget.contactDetail,
             listingownertype: null,
             title: _title.text.trim(),

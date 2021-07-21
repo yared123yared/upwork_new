@@ -6,6 +6,58 @@ part of 'ExplorePageRelatedModels.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$_ProductActionModel _$_$_ProductActionModelFromJson(
+    Map<String, dynamic> json) {
+  return _$_ProductActionModel(
+    qtype: json['qtype'] as String,
+    action: json['action'] as String,
+    origin: json['origin'] as String,
+    serviceid: json['serviceid'] as String,
+    userid: json['userid'] as String,
+    producttype: json['producttype'] as String,
+    classifiedtype: json['classifiedtype'] as String,
+    realestatemodel: json['realestatemodel'],
+    petmodel: json['petmodel'],
+    productmodel: json['productmodel'],
+    vehiclemodel: json['vehiclemodel'],
+    jobrequestmodel: json['jobrequestmodel'],
+  );
+}
+
+Map<String, dynamic> _$_$_ProductActionModelToJson(
+        _$_ProductActionModel instance) =>
+    <String, dynamic>{
+      'qtype': instance.qtype,
+      'action': instance.action,
+      'origin': instance.origin,
+      'serviceid': instance.serviceid,
+      'userid': instance.userid,
+      'producttype': instance.producttype,
+      'classifiedtype': instance.classifiedtype,
+      'realestatemodel': instance.realestatemodel,
+      'petmodel': instance.petmodel,
+      'productmodel': instance.productmodel,
+      'vehiclemodel': instance.vehiclemodel,
+      'jobrequestmodel': instance.jobrequestmodel,
+    };
+
+_$_ProductActionResponse _$_$_ProductActionResponseFromJson(
+    Map<String, dynamic> json) {
+  return _$_ProductActionResponse(
+    errorid: json['errorid'] as int,
+    errormsg: json['errormsg'] as String,
+    productid: json['productid'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$_ProductActionResponseToJson(
+        _$_ProductActionResponse instance) =>
+    <String, dynamic>{
+      'errorid': instance.errorid,
+      'errormsg': instance.errormsg,
+      'productid': instance.productid,
+    };
+
 _$_DimData _$_$_DimDataFromJson(Map<String, dynamic> json) {
   return _$_DimData(
     dimname: json['dimname'] as String,
@@ -16,20 +68,11 @@ _$_DimData _$_$_DimDataFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_DimDataToJson(_$_DimData instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('dimname', instance.dimname);
-  writeNotNull(
-      'fieldvalues', instance.fieldvalues?.map((e) => e?.toJson())?.toList());
-  return val;
-}
+Map<String, dynamic> _$_$_DimDataToJson(_$_DimData instance) =>
+    <String, dynamic>{
+      'dimname': instance.dimname,
+      'fieldvalues': instance.fieldvalues,
+    };
 
 _$_DimItem _$_$_DimItemFromJson(Map<String, dynamic> json) {
   return _$_DimItem(
@@ -38,19 +81,11 @@ _$_DimItem _$_$_DimItemFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_DimItemToJson(_$_DimItem instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('fieldvalue', instance.fieldvalue);
-  writeNotNull('count', instance.count);
-  return val;
-}
+Map<String, dynamic> _$_$_DimItemToJson(_$_DimItem instance) =>
+    <String, dynamic>{
+      'fieldvalue': instance.fieldvalue,
+      'count': instance.count,
+    };
 
 _$_AreaInfo _$_$_AreaInfoFromJson(Map<String, dynamic> json) {
   return _$_AreaInfo(
@@ -61,25 +96,18 @@ _$_AreaInfo _$_$_AreaInfoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_AreaInfoToJson(_$_AreaInfo instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('state', instance.state);
-  writeNotNull('district', instance.district);
-  writeNotNull('areaname', instance.areaname);
-  writeNotNull('zipcode', instance.zipcode);
-  return val;
-}
+Map<String, dynamic> _$_$_AreaInfoToJson(_$_AreaInfo instance) =>
+    <String, dynamic>{
+      'state': instance.state,
+      'district': instance.district,
+      'areaname': instance.areaname,
+      'zipcode': instance.zipcode,
+    };
 
 _$_Categoryinfo _$_$_CategoryinfoFromJson(Map<String, dynamic> json) {
   return _$_Categoryinfo(
     category: json['category'] as String,
+    count: json['count'] as int,
     pricerange: (json['pricerange'] as List)?.map((e) => e as int)?.toList(),
     priceareadependent: json['priceareadependent'] as bool,
     iconpath: json['iconpath'] as String,
@@ -92,26 +120,17 @@ _$_Categoryinfo _$_$_CategoryinfoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_CategoryinfoToJson(_$_Categoryinfo instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('category', instance.category);
-  writeNotNull('pricerange', instance.pricerange);
-  writeNotNull('priceareadependent', instance.priceareadependent);
-  writeNotNull('iconpath', instance.iconpath);
-  writeNotNull('imagepath', instance.imagepath);
-  writeNotNull(
-      'dynamicpropertiesidentifier', instance.dynamicpropertiesidentifier);
-  writeNotNull('childcategory',
-      instance.childcategory?.map((e) => e?.toJson())?.toList());
-  return val;
-}
+Map<String, dynamic> _$_$_CategoryinfoToJson(_$_Categoryinfo instance) =>
+    <String, dynamic>{
+      'category': instance.category,
+      'count': instance.count,
+      'pricerange': instance.pricerange,
+      'priceareadependent': instance.priceareadependent,
+      'iconpath': instance.iconpath,
+      'imagepath': instance.imagepath,
+      'dynamicpropertiesidentifier': instance.dynamicpropertiesidentifier,
+      'childcategory': instance.childcategory,
+    };
 
 _$_productinorder _$_$_productinorderFromJson(Map<String, dynamic> json) {
   return _$_productinorder(
@@ -130,35 +149,27 @@ _$_productinorder _$_$_productinorderFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_productinorderToJson(_$_productinorder instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  writeNotNull('productid', instance.productid);
-  writeNotNull('itemid', instance.itemid);
-  writeNotNull('tileimage', instance.tileimage);
-  writeNotNull('title', instance.title);
-  writeNotNull('unit', instance.unit);
-  writeNotNull('unitprice', instance.unitprice);
-  writeNotNull('qty', instance.qty);
-  writeNotNull('price', instance.price);
-  writeNotNull('discountedprice', instance.discountedprice);
-  writeNotNull('taxid', instance.taxid);
-  writeNotNull('totalprice', instance.totalprice);
-  return val;
-}
+Map<String, dynamic> _$_$_productinorderToJson(_$_productinorder instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'productid': instance.productid,
+      'itemid': instance.itemid,
+      'tileimage': instance.tileimage,
+      'title': instance.title,
+      'unit': instance.unit,
+      'unitprice': instance.unitprice,
+      'qty': instance.qty,
+      'price': instance.price,
+      'discountedprice': instance.discountedprice,
+      'taxid': instance.taxid,
+      'totalprice': instance.totalprice,
+    };
 
 _$_orderinfomodel _$_$_orderinfomodelFromJson(Map<String, dynamic> json) {
   return _$_orderinfomodel(
     custaddress: json['custaddress'] == null
         ? null
-        : Addressmodel.fromJson(json['custaddress'] as Map<String, dynamic>),
+        : AddressModel.fromJson(json['custaddress'] as Map<String, dynamic>),
     customerid: json['customerid'] as String,
     custuserid: json['custuserid'] as String,
     custname: json['custname'] as String,
@@ -180,56 +191,43 @@ _$_orderinfomodel _$_$_orderinfomodelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_orderinfomodelToJson(_$_orderinfomodel instance) {
-  final val = <String, dynamic>{};
+Map<String, dynamic> _$_$_orderinfomodelToJson(_$_orderinfomodel instance) =>
+    <String, dynamic>{
+      'custaddress': instance.custaddress,
+      'customerid': instance.customerid,
+      'custuserid': instance.custuserid,
+      'custname': instance.custname,
+      'advanceamount': instance.advanceamount,
+      'productlist': instance.productlist,
+      'totaltax': instance.totaltax,
+      'totalcalculatedprice': instance.totalcalculatedprice,
+      'extradiscount': instance.extradiscount,
+      'askedprice': instance.askedprice,
+      'orderdate': JsonHelper.toJsonTimeStamp(instance.orderdate),
+      'orderstate': instance.orderstate,
+      'serviceproviderid': instance.serviceproviderid,
+      'custphonenum': instance.custphonenum,
+      'id': instance.id,
+    };
 
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('custaddress', instance.custaddress?.toJson());
-  writeNotNull('customerid', instance.customerid);
-  writeNotNull('custuserid', instance.custuserid);
-  writeNotNull('custname', instance.custname);
-  writeNotNull('advanceamount', instance.advanceamount);
-  writeNotNull(
-      'productlist', instance.productlist?.map((e) => e?.toJson())?.toList());
-  writeNotNull('totaltax', instance.totaltax);
-  writeNotNull('totalcalculatedprice', instance.totalcalculatedprice);
-  writeNotNull('extradiscount', instance.extradiscount);
-  writeNotNull('askedprice', instance.askedprice);
-  writeNotNull('orderdate', JsonHelper.toJsonTimeStamp(instance.orderdate));
-  writeNotNull('orderstate', instance.orderstate);
-  writeNotNull('serviceproviderid', instance.serviceproviderid);
-  writeNotNull('custphonenum', instance.custphonenum);
-  writeNotNull('id', instance.id);
-  return val;
-}
-
-_$_ProductSuggestionData _$_$_ProductSuggestionDataFromJson(
+_$_LuceneSearchSuggestionData _$_$_LuceneSearchSuggestionDataFromJson(
     Map<String, dynamic> json) {
-  return _$_ProductSuggestionData(
+  return _$_LuceneSearchSuggestionData(
     pid: json['pid'] as String,
     text: json['text'] as String,
+    luceneid: json['luceneid'] as int,
+    tileimage: json['tileimage'] as String,
   );
 }
 
-Map<String, dynamic> _$_$_ProductSuggestionDataToJson(
-    _$_ProductSuggestionData instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('pid', instance.pid);
-  writeNotNull('text', instance.text);
-  return val;
-}
+Map<String, dynamic> _$_$_LuceneSearchSuggestionDataToJson(
+        _$_LuceneSearchSuggestionData instance) =>
+    <String, dynamic>{
+      'pid': instance.pid,
+      'text': instance.text,
+      'luceneid': instance.luceneid,
+      'tileimage': instance.tileimage,
+    };
 
 _$_Sortfielddata _$_$_SortfielddataFromJson(Map<String, dynamic> json) {
   return _$_Sortfielddata(
@@ -238,19 +236,11 @@ _$_Sortfielddata _$_$_SortfielddataFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_SortfielddataToJson(_$_Sortfielddata instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('fieldname', instance.fieldname);
-  writeNotNull('desc', instance.desc);
-  return val;
-}
+Map<String, dynamic> _$_$_SortfielddataToJson(_$_Sortfielddata instance) =>
+    <String, dynamic>{
+      'fieldname': instance.fieldname,
+      'desc': instance.desc,
+    };
 
 _$_NumericFilterData _$_$_NumericFilterDataFromJson(Map<String, dynamic> json) {
   return _$_NumericFilterData(
@@ -261,20 +251,12 @@ _$_NumericFilterData _$_$_NumericFilterDataFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$_$_NumericFilterDataToJson(
-    _$_NumericFilterData instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('fieldname', instance.fieldname);
-  writeNotNull('minval', instance.minval);
-  writeNotNull('maxval', instance.maxval);
-  return val;
-}
+        _$_NumericFilterData instance) =>
+    <String, dynamic>{
+      'fieldname': instance.fieldname,
+      'minval': instance.minval,
+      'maxval': instance.maxval,
+    };
 
 _$_FacetParaFilter _$_$_FacetParaFilterFromJson(Map<String, dynamic> json) {
   return _$_FacetParaFilter(
@@ -284,19 +266,11 @@ _$_FacetParaFilter _$_$_FacetParaFilterFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_FacetParaFilterToJson(_$_FacetParaFilter instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('paraname', instance.paraname);
-  writeNotNull('fieldvalues', instance.fieldvalues);
-  return val;
-}
+Map<String, dynamic> _$_$_FacetParaFilterToJson(_$_FacetParaFilter instance) =>
+    <String, dynamic>{
+      'paraname': instance.paraname,
+      'fieldvalues': instance.fieldvalues,
+    };
 
 _$_ProductFilterModel _$_$_ProductFilterModelFromJson(
     Map<String, dynamic> json) {
@@ -327,59 +301,42 @@ _$_ProductFilterModel _$_$_ProductFilterModelFromJson(
 }
 
 Map<String, dynamic> _$_$_ProductFilterModelToJson(
-    _$_ProductFilterModel instance) {
-  final val = <String, dynamic>{};
+        _$_ProductFilterModel instance) =>
+    <String, dynamic>{
+      'filtertype': instance.filtertype,
+      'psc': instance.psc,
+      'categorytype': instance.categorytype,
+      'reqfacet': instance.reqfacet,
+      'offset': instance.offset,
+      'termquery': instance.termquery,
+      'sortf': instance.sortf,
+      'filters': instance.filters,
+      'facetparalist': instance.facetparalist,
+    };
 
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('filtertype', instance.filtertype);
-  writeNotNull('psc', instance.psc?.toJson());
-  writeNotNull('categorytype', instance.categorytype);
-  writeNotNull('reqfacet', instance.reqfacet);
-  writeNotNull('offset', instance.offset);
-  writeNotNull('termquery', instance.termquery);
-  writeNotNull('sortf', instance.sortf?.toJson());
-  writeNotNull('filters', instance.filters?.map((e) => e?.toJson())?.toList());
-  writeNotNull('facetparalist',
-      instance.facetparalist?.map((e) => e?.toJson())?.toList());
-  return val;
-}
-
-_$_Customerinfo _$_$_CustomerinfoFromJson(Map<String, dynamic> json) {
-  return _$_Customerinfo(
+_$_customerinfo _$_$_customerinfoFromJson(Map<String, dynamic> json) {
+  return _$_customerinfo(
     infotype: json['infotype'] as int,
     customerid: json['customerid'] as String,
     customeruserid: json['customeruserid'] as String,
     name: json['name'] as String,
     maddr: json['maddr'] == null
         ? null
-        : Addressmodel.fromJson(json['maddr'] as Map<String, dynamic>),
+        : AddressModel.fromJson(json['maddr'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$_$_CustomerinfoToJson(_$_Customerinfo instance) {
-  final val = <String, dynamic>{};
+Map<String, dynamic> _$_$_customerinfoToJson(_$_customerinfo instance) =>
+    <String, dynamic>{
+      'infotype': instance.infotype,
+      'customerid': instance.customerid,
+      'customeruserid': instance.customeruserid,
+      'name': instance.name,
+      'maddr': instance.maddr,
+    };
 
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('infotype', instance.infotype);
-  writeNotNull('customerid', instance.customerid);
-  writeNotNull('customeruserid', instance.customeruserid);
-  writeNotNull('name', instance.name);
-  writeNotNull('maddr', instance.maddr?.toJson());
-  return val;
-}
-
-_$_Addressmodel _$_$_AddressmodelFromJson(Map<String, dynamic> json) {
-  return _$_Addressmodel(
+_$_AddressModel _$_$_AddressModelFromJson(Map<String, dynamic> json) {
+  return _$_AddressModel(
     id: json['id'] as String,
     country: json['country'] as String,
     state: json['state'] as String,
@@ -392,57 +349,31 @@ _$_Addressmodel _$_$_AddressmodelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_AddressmodelToJson(_$_Addressmodel instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  writeNotNull('country', instance.country);
-  writeNotNull('state', instance.state);
-  writeNotNull('district', instance.district);
-  writeNotNull('village', instance.village);
-  writeNotNull('areaname', instance.areaname);
-  writeNotNull('addressinfo', instance.addressinfo);
-  writeNotNull('lati', instance.lati);
-  writeNotNull('longi', instance.longi);
-  return val;
-}
+Map<String, dynamic> _$_$_AddressModelToJson(_$_AddressModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'country': instance.country,
+      'state': instance.state,
+      'district': instance.district,
+      'village': instance.village,
+      'areaname': instance.areaname,
+      'addressinfo': instance.addressinfo,
+      'lati': instance.lati,
+      'longi': instance.longi,
+    };
 
 _$_ProductFilterResultModel _$_$_ProductFilterResultModelFromJson(
     Map<String, dynamic> json) {
   return _$_ProductFilterResultModel(
     totalcount: json['totalcount'] as int,
     serviceproviderid: json['serviceproviderid'] as String,
-    docwithdata1: (json['docwithdata1'] as List)
-        ?.map((e) => e == null
-            ? null
-            : LimitedProductData.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    docwithdata2: (json['docwithdata2'] as List)
-        ?.map((e) => e == null
-            ? null
-            : LimitedJobData.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    docwithdata3: (json['docwithdata3'] as List)
-        ?.map((e) => e == null
-            ? null
-            : LimitedRealEstateData.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    docwithdata4: (json['docwithdata4'] as List)
-        ?.map((e) => e == null
-            ? null
-            : LimitedVehicleData.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    docwithdata5: (json['docwithdata5'] as List)
-        ?.map((e) => e == null
-            ? null
-            : LimitedPetData.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    docwithdata1: json['docwithdata1'] as List,
+    docwithdata2: json['docwithdata2'] as List,
+    docwithdata3: json['docwithdata3'] as List,
+    docwithdata4: json['docwithdata4'] as List,
+    docwithdata5: json['docwithdata5'] as List,
+    longrangelist:
+        (json['longrangelist'] as List)?.map((e) => e as String)?.toList(),
     pidlist: (json['pidlist'] as List)?.map((e) => e as String)?.toList(),
     diminfo: (json['diminfo'] as List)
         ?.map((e) =>
@@ -458,34 +389,22 @@ _$_ProductFilterResultModel _$_$_ProductFilterResultModelFromJson(
 }
 
 Map<String, dynamic> _$_$_ProductFilterResultModelToJson(
-    _$_ProductFilterResultModel instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('totalcount', instance.totalcount);
-  writeNotNull('serviceproviderid', instance.serviceproviderid);
-  writeNotNull(
-      'docwithdata1', instance.docwithdata1?.map((e) => e?.toJson())?.toList());
-  writeNotNull(
-      'docwithdata2', instance.docwithdata2?.map((e) => e?.toJson())?.toList());
-  writeNotNull(
-      'docwithdata3', instance.docwithdata3?.map((e) => e?.toJson())?.toList());
-  writeNotNull(
-      'docwithdata4', instance.docwithdata4?.map((e) => e?.toJson())?.toList());
-  writeNotNull(
-      'docwithdata5', instance.docwithdata5?.map((e) => e?.toJson())?.toList());
-  writeNotNull('pidlist', instance.pidlist);
-  writeNotNull('diminfo', instance.diminfo?.map((e) => e?.toJson())?.toList());
-  writeNotNull('catinfo', instance.catinfo?.map((e) => e?.toJson())?.toList());
-  writeNotNull('topleveltiletype', instance.topleveltiletype);
-  writeNotNull('hasmoreresults', instance.hasmoreresults);
-  return val;
-}
+        _$_ProductFilterResultModel instance) =>
+    <String, dynamic>{
+      'totalcount': instance.totalcount,
+      'serviceproviderid': instance.serviceproviderid,
+      'docwithdata1': instance.docwithdata1,
+      'docwithdata2': instance.docwithdata2,
+      'docwithdata3': instance.docwithdata3,
+      'docwithdata4': instance.docwithdata4,
+      'docwithdata5': instance.docwithdata5,
+      'longrangelist': instance.longrangelist,
+      'pidlist': instance.pidlist,
+      'diminfo': instance.diminfo,
+      'catinfo': instance.catinfo,
+      'topleveltiletype': instance.topleveltiletype,
+      'hasmoreresults': instance.hasmoreresults,
+    };
 
 _$_SpatialData _$_$_SpatialDataFromJson(Map<String, dynamic> json) {
   return _$_SpatialData(
@@ -502,25 +421,16 @@ _$_SpatialData _$_$_SpatialDataFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_SpatialDataToJson(_$_SpatialData instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull(
-      'locationname', instance.locationname?.map((e) => e?.toJson())?.toList());
-  writeNotNull('curstatename', instance.curStatename);
-  writeNotNull('statename', instance.statename);
-  writeNotNull('lati', instance.lati);
-  writeNotNull('longi', instance.longi);
-  writeNotNull('radius', instance.radius);
-  writeNotNull('type', instance.type);
-  return val;
-}
+Map<String, dynamic> _$_$_SpatialDataToJson(_$_SpatialData instance) =>
+    <String, dynamic>{
+      'locationname': instance.locationname,
+      'curstatename': instance.curStatename,
+      'statename': instance.statename,
+      'lati': instance.lati,
+      'longi': instance.longi,
+      'radius': instance.radius,
+      'type': instance.type,
+    };
 
 _$_ServiceFilterParameter _$_$_ServiceFilterParameterFromJson(
     Map<String, dynamic> json) {
@@ -535,21 +445,12 @@ _$_ServiceFilterParameter _$_$_ServiceFilterParameterFromJson(
 }
 
 Map<String, dynamic> _$_$_ServiceFilterParameterToJson(
-    _$_ServiceFilterParameter instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('serviceofferedselectedvalues',
-      instance.serviceofferedselectedvalues?.toJson());
-  writeNotNull('textsearch', instance.textsearch);
-  writeNotNull('offset', instance.offset);
-  return val;
-}
+        _$_ServiceFilterParameter instance) =>
+    <String, dynamic>{
+      'serviceofferedselectedvalues': instance.serviceofferedselectedvalues,
+      'textsearch': instance.textsearch,
+      'offset': instance.offset,
+    };
 
 _$_ExplorePageAd _$_$_ExplorePageAdFromJson(Map<String, dynamic> json) {
   return _$_ExplorePageAd(
@@ -558,27 +459,17 @@ _$_ExplorePageAd _$_$_ExplorePageAdFromJson(Map<String, dynamic> json) {
     lm: json['lm'] == null
         ? null
         : LimitedServiceModel.fromJson(json['lm'] as Map<String, dynamic>),
-    lpd: json['lpd'] == null
-        ? null
-        : LimitedProductData.fromJson(json['lpd'] as Map<String, dynamic>),
+    lpd: json['lpd'],
   );
 }
 
-Map<String, dynamic> _$_$_ExplorePageAdToJson(_$_ExplorePageAd instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('imagepath', instance.imagepath);
-  writeNotNull('message', instance.message);
-  writeNotNull('lm', instance.lm?.toJson());
-  writeNotNull('lpd', instance.lpd?.toJson());
-  return val;
-}
+Map<String, dynamic> _$_$_ExplorePageAdToJson(_$_ExplorePageAd instance) =>
+    <String, dynamic>{
+      'imagepath': instance.imagepath,
+      'message': instance.message,
+      'lm': instance.lm,
+      'lpd': instance.lpd,
+    };
 
 _$_ServiceFilterResultData _$_$_ServiceFilterResultDataFromJson(
     Map<String, dynamic> json) {
@@ -595,25 +486,22 @@ _$_ServiceFilterResultData _$_$_ServiceFilterResultDataFromJson(
             ? null
             : ExplorePageAd.fromJson(e as Map<String, dynamic>))
         ?.toList(),
+    diminfo: (json['diminfo'] as List)
+        ?.map((e) =>
+            e == null ? null : DimData.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
 Map<String, dynamic> _$_$_ServiceFilterResultDataToJson(
-    _$_ServiceFilterResultData instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('smlist', instance.smlist?.map((e) => e?.toJson())?.toList());
-  writeNotNull('smidlist', instance.smidlist);
-  writeNotNull('totcount', instance.totcount);
-  writeNotNull('curads', instance.curads?.map((e) => e?.toJson())?.toList());
-  return val;
-}
+        _$_ServiceFilterResultData instance) =>
+    <String, dynamic>{
+      'smlist': instance.smlist,
+      'smidlist': instance.smidlist,
+      'totcount': instance.totcount,
+      'curads': instance.curads,
+      'diminfo': instance.diminfo,
+    };
 
 _$_LimitedServiceModel _$_$_LimitedServiceModelFromJson(
     Map<String, dynamic> json) {
@@ -622,6 +510,7 @@ _$_LimitedServiceModel _$_$_LimitedServiceModelFromJson(
     servicetype:
         (json['servicetype'] as List)?.map((e) => e as String)?.toList(),
     address: json['address'] as String,
+    adm: json['adm'],
     email: json['email'] as String,
     photo1: json['photo1'] as String,
     serviceName: json['servicename'] as String,
@@ -635,37 +524,33 @@ _$_LimitedServiceModel _$_$_LimitedServiceModelFromJson(
     hasproductcatalog: json['hasproductcatalog'] as bool,
     lati: (json['lati'] as num)?.toDouble(),
     longi: (json['longi'] as num)?.toDouble(),
+    serviceOffered:
+        (json['serviceoffered'] as List)?.map((e) => e as String)?.toList(),
   );
 }
 
 Map<String, dynamic> _$_$_LimitedServiceModelToJson(
-    _$_LimitedServiceModel instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('phone', instance.phone);
-  writeNotNull('servicetype', instance.servicetype);
-  writeNotNull('address', instance.address);
-  writeNotNull('email', instance.email);
-  writeNotNull('photo1', instance.photo1);
-  writeNotNull('servicename', instance.serviceName);
-  writeNotNull('timeinfo', instance.timeinfo);
-  writeNotNull('serviceid', instance.serviceID);
-  writeNotNull('ratingcount', instance.ratingcount);
-  writeNotNull('totalratings', instance.totalratings);
-  writeNotNull('hasapt', instance.hasapt);
-  writeNotNull('hasadhoctrips', instance.hasadhoctrips);
-  writeNotNull('hasecom', instance.hasecom);
-  writeNotNull('hasproductcatalog', instance.hasproductcatalog);
-  writeNotNull('lati', instance.lati);
-  writeNotNull('longi', instance.longi);
-  return val;
-}
+        _$_LimitedServiceModel instance) =>
+    <String, dynamic>{
+      'phone': instance.phone,
+      'servicetype': instance.servicetype,
+      'address': instance.address,
+      'adm': instance.adm,
+      'email': instance.email,
+      'photo1': instance.photo1,
+      'servicename': instance.serviceName,
+      'timeinfo': instance.timeinfo,
+      'serviceid': instance.serviceID,
+      'ratingcount': instance.ratingcount,
+      'totalratings': instance.totalratings,
+      'hasapt': instance.hasapt,
+      'hasadhoctrips': instance.hasadhoctrips,
+      'hasecom': instance.hasecom,
+      'hasproductcatalog': instance.hasproductcatalog,
+      'lati': instance.lati,
+      'longi': instance.longi,
+      'serviceoffered': instance.serviceOffered,
+    };
 
 _$_ProductSearchInformationConfig _$_$_ProductSearchInformationConfigFromJson(
     Map<String, dynamic> json) {
@@ -681,7 +566,7 @@ _$_ProductSearchInformationConfig _$_$_ProductSearchInformationConfigFromJson(
         : SpatialData.fromJson(json['sp'] as Map<String, dynamic>),
     cust: json['cust'] == null
         ? null
-        : Customerinfo.fromJson(json['cust'] as Map<String, dynamic>),
+        : customerinfo.fromJson(json['cust'] as Map<String, dynamic>),
     entrypoint: json['entrypoint'] as int,
     servicesselected:
         (json['servicesselected'] as List)?.map((e) => e as String)?.toList(),
@@ -690,26 +575,18 @@ _$_ProductSearchInformationConfig _$_$_ProductSearchInformationConfigFromJson(
 }
 
 Map<String, dynamic> _$_$_ProductSearchInformationConfigToJson(
-    _$_ProductSearchInformationConfig instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('lsm', instance.lsm?.toJson());
-  writeNotNull('servicetype', instance.servicetype);
-  writeNotNull('grouptype', instance.grouptype);
-  writeNotNull('isshop', instance.isshop);
-  writeNotNull('sp', instance.sp?.toJson());
-  writeNotNull('cust', instance.cust?.toJson());
-  writeNotNull('entrypoint', instance.entrypoint);
-  writeNotNull('servicesselected', instance.servicesselected);
-  writeNotNull('spoffset', instance.spoffset);
-  return val;
-}
+        _$_ProductSearchInformationConfig instance) =>
+    <String, dynamic>{
+      'lsm': instance.lsm,
+      'servicetype': instance.servicetype,
+      'grouptype': instance.grouptype,
+      'isshop': instance.isshop,
+      'sp': instance.sp,
+      'cust': instance.cust,
+      'entrypoint': instance.entrypoint,
+      'servicesselected': instance.servicesselected,
+      'spoffset': instance.spoffset,
+    };
 
 _$_SPCustomerModel _$_$_SPCustomerModelFromJson(Map<String, dynamic> json) {
   return _$_SPCustomerModel(
@@ -718,41 +595,23 @@ _$_SPCustomerModel _$_$_SPCustomerModelFromJson(Map<String, dynamic> json) {
     phoneNum: json['phonenum'] as String,
     email: json['email'] as String,
     names: (json['names'] as List)
-        ?.map((e) => (e as List)
-            ?.map((e) => e == null
-                ? null
-                : CustomerNameAgeIngo.fromJson(e as Map<String, dynamic>))
-            ?.toList())
+        ?.map((e) => e == null
+            ? null
+            : CustomerNameAgeIngo.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    addressInfolist: (json['addressinfolist'] as List)
-        ?.map((e) =>
-            e == null ? null : Addressmodel.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    addressInfolist: json['addressinfolist'] as List,
   );
 }
 
-Map<String, dynamic> _$_$_SPCustomerModelToJson(_$_SPCustomerModel instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('customerid', instance.customerId);
-  writeNotNull('userid', instance.userId);
-  writeNotNull('phonenum', instance.phoneNum);
-  writeNotNull('email', instance.email);
-  writeNotNull(
-      'names',
-      instance.names
-          ?.map((e) => e?.map((e) => e?.toJson())?.toList())
-          ?.toList());
-  writeNotNull('addressinfolist',
-      instance.addressInfolist?.map((e) => e?.toJson())?.toList());
-  return val;
-}
+Map<String, dynamic> _$_$_SPCustomerModelToJson(_$_SPCustomerModel instance) =>
+    <String, dynamic>{
+      'customerid': instance.customerId,
+      'userid': instance.userId,
+      'phonenum': instance.phoneNum,
+      'email': instance.email,
+      'names': instance.names,
+      'addressinfolist': instance.addressInfolist,
+    };
 
 _$_CustomerNameAgeIngo _$_$_CustomerNameAgeIngoFromJson(
     Map<String, dynamic> json) {
@@ -764,20 +623,12 @@ _$_CustomerNameAgeIngo _$_$_CustomerNameAgeIngoFromJson(
 }
 
 Map<String, dynamic> _$_$_CustomerNameAgeIngoToJson(
-    _$_CustomerNameAgeIngo instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  writeNotNull('dob', JsonHelper.toJsonTimeStamp(instance.dob));
-  writeNotNull('gender', instance.gender);
-  return val;
-}
+        _$_CustomerNameAgeIngo instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'dob': JsonHelper.toJsonTimeStamp(instance.dob),
+      'gender': instance.gender,
+    };
 
 _$_ServiceGroup _$_$_ServiceGroupFromJson(Map<String, dynamic> json) {
   return _$_ServiceGroup(
@@ -793,24 +644,15 @@ _$_ServiceGroup _$_$_ServiceGroupFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_ServiceGroupToJson(_$_ServiceGroup instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('sectionname', instance.sectionname);
-  writeNotNull('icon', instance.icon);
-  writeNotNull('displaylist', instance.displaylist);
-  writeNotNull('ordernum', instance.ordernum);
-  writeNotNull('type', instance.type);
-  writeNotNull('servicetypelist',
-      instance.servicetypelist?.map((e) => e?.toJson())?.toList());
-  return val;
-}
+Map<String, dynamic> _$_$_ServiceGroupToJson(_$_ServiceGroup instance) =>
+    <String, dynamic>{
+      'sectionname': instance.sectionname,
+      'icon': instance.icon,
+      'displaylist': instance.displaylist,
+      'ordernum': instance.ordernum,
+      'type': instance.type,
+      'servicetypelist': instance.servicetypelist,
+    };
 
 _$_ServiceType _$_$_ServiceTypeFromJson(Map<String, dynamic> json) {
   return _$_ServiceType(
@@ -831,26 +673,17 @@ _$_ServiceType _$_$_ServiceTypeFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_ServiceTypeToJson(_$_ServiceType instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('servicetype', instance.servicetype);
-  writeNotNull('querystr', instance.querystr);
-  writeNotNull('icon', instance.icon);
-  writeNotNull('displaylist', instance.displaylist);
-  writeNotNull('ordernum', instance.ordernum);
-  writeNotNull('childservicetype',
-      instance.childservicetype?.map((e) => e?.toJson())?.toList());
-  writeNotNull('filtertype', instance.filtertype);
-  writeNotNull('filterdata', instance.filterdata?.toJson());
-  return val;
-}
+Map<String, dynamic> _$_$_ServiceTypeToJson(_$_ServiceType instance) =>
+    <String, dynamic>{
+      'servicetype': instance.servicetype,
+      'querystr': instance.querystr,
+      'icon': instance.icon,
+      'displaylist': instance.displaylist,
+      'ordernum': instance.ordernum,
+      'childservicetype': instance.childservicetype,
+      'filtertype': instance.filtertype,
+      'filterdata': instance.filterdata,
+    };
 
 _$_ServiceTypeFilterData _$_$_ServiceTypeFilterDataFromJson(
     Map<String, dynamic> json) {
@@ -867,20 +700,12 @@ _$_ServiceTypeFilterData _$_$_ServiceTypeFilterDataFromJson(
 }
 
 Map<String, dynamic> _$_$_ServiceTypeFilterDataToJson(
-    _$_ServiceTypeFilterData instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('filterheading', instance.filterheading);
-  writeNotNull('depth', instance.depth);
-  writeNotNull('values', instance.values?.map((e) => e?.toJson())?.toList());
-  return val;
-}
+        _$_ServiceTypeFilterData instance) =>
+    <String, dynamic>{
+      'filterheading': instance.filterheading,
+      'depth': instance.depth,
+      'values': instance.values,
+    };
 
 _$_ServiceTypeFilterValues _$_$_ServiceTypeFilterValuesFromJson(
     Map<String, dynamic> json) {
@@ -892,19 +717,11 @@ _$_ServiceTypeFilterValues _$_$_ServiceTypeFilterValuesFromJson(
 }
 
 Map<String, dynamic> _$_$_ServiceTypeFilterValuesToJson(
-    _$_ServiceTypeFilterValues instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('value', instance.value);
-  writeNotNull('childvalues', instance.childvalues);
-  return val;
-}
+        _$_ServiceTypeFilterValues instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+      'childvalues': instance.childvalues,
+    };
 
 _$_ExplorePageParameters _$_$_ExplorePageParametersFromJson(
     Map<String, dynamic> json) {
@@ -923,17 +740,37 @@ _$_ExplorePageParameters _$_$_ExplorePageParametersFromJson(
 }
 
 Map<String, dynamic> _$_$_ExplorePageParametersToJson(
-    _$_ExplorePageParameters instance) {
-  final val = <String, dynamic>{};
+        _$_ExplorePageParameters instance) =>
+    <String, dynamic>{
+      'adlist': instance.adlist,
+      'favsplist': instance.favsplist,
+    };
 
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('adlist', instance.adlist?.map((e) => e?.toJson())?.toList());
-  writeNotNull(
-      'favsplist', instance.favsplist?.map((e) => e?.toJson())?.toList());
-  return val;
+_$_NumericFilterForIndex _$_$_NumericFilterForIndexFromJson(
+    Map<String, dynamic> json) {
+  return _$_NumericFilterForIndex(
+    fieldname: json['fieldname'] as String,
+    value: json['value'] as int,
+  );
 }
+
+Map<String, dynamic> _$_$_NumericFilterForIndexToJson(
+        _$_NumericFilterForIndex instance) =>
+    <String, dynamic>{
+      'fieldname': instance.fieldname,
+      'value': instance.value,
+    };
+
+_$_SingleFacetField _$_$_SingleFacetFieldFromJson(Map<String, dynamic> json) {
+  return _$_SingleFacetField(
+    fieldname: json['fieldname'] as String,
+    value: json['value'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$_SingleFacetFieldToJson(
+        _$_SingleFacetField instance) =>
+    <String, dynamic>{
+      'fieldname': instance.fieldname,
+      'value': instance.value,
+    };

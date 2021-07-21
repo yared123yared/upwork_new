@@ -1,7 +1,7 @@
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_switch.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
-import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/view/explore_tab/ecom_navigation_helper.dart';
@@ -42,7 +42,7 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
   bool _phoneShare = true;
   bool _addressShare = true;
   bool _locationValue = false;
-  ContactDetails initContactDetails = null;
+  ContactDetailsModel initContactDetails = null;
   CustomTextFieldController _nameController = CustomTextFieldController();
   CustomTextFieldController _emailController = CustomTextFieldController();
   CustomTextFieldController _areaSectorController = CustomTextFieldController();
@@ -130,9 +130,9 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
             _renderTextField('Select your District', _districtController,
                 initialValue: initContactDetails?.address?.district),
             _renderTextField('Select your Village', _villageController,
-                initialValue: initContactDetails?.address?.townVillage),
+                initialValue: initContactDetails?.address?.town_village),
             _renderTextField('Area/Sector', _areaSectorController,
-                initialValue: initContactDetails?.address?.areaSector),
+                initialValue: initContactDetails?.address?.area_sector),
             _renderTextField('Society Name', _societyNameController,
                 initialValue: initContactDetails?.address?.societyname),
             _renderTextField('Address Line 1', _addressLine1Controller,
@@ -150,20 +150,20 @@ class _GeneralContactDetailPageState extends State<GeneralContactDetailPage> {
                       message:
                           "Please enable location for better accessibility");
                 } else if (_validate()) {
-                  ContactDetails _contactDetail = ContactDetails(
+                  ContactDetailsModel _contactDetail = ContactDetailsModel(
                       name: _nameController.text.trim(),
                       phonenum: _phoneController.text.trim(),
                       sharephone: _phoneShare,
                       email: _emailController.text.trim(),
                       shareemail: _emailShare,
-                      address: Address(
+                      address: AddressDataModel(
                         latitude: position?.latitude,
                         longitude: position?.longitude,
                         country: _address?.country,
                         state: _stateController.text.trim(),
                         district: _districtController.text.trim(),
-                        townVillage: _villageController.text.trim(),
-                        areaSector: _areaSectorController.text.trim(),
+                        town_village: _villageController.text.trim(),
+                        area_sector: _areaSectorController.text.trim(),
                         societyname: _societyNameController.text.trim(),
                         addressline: _addressLine1Controller.text.trim(),
                       ),

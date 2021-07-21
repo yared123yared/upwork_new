@@ -1,3 +1,4 @@
+import 'package:complex/application/explore/ecom/product_owner/product_owner_bloc.dart';
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
@@ -7,7 +8,8 @@ import 'package:complex/common/widgets/custom_dropdown.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+
+
 import 'package:complex/view/product_pages/package_list_view.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
 import 'package:complex/view/product_pages/size_and_color_list_view.dart';
@@ -39,7 +41,7 @@ class AdditionalPropertiesPage extends StatefulWidget {
 class _AdditionalPropertiesPageState extends State<AdditionalPropertiesPage> {
   var _isLoading = false;
   var _key = GlobalKey<ScaffoldState>();
-  ProductBloc _productBloc;
+  ProductOwnerBloc _productBloc;
 
   @override
   void initState() {
@@ -79,7 +81,7 @@ class _AdditionalPropertiesPageState extends State<AdditionalPropertiesPage> {
 
   @override
   Widget build(BuildContext context) {
-    _productBloc = BlocProvider.of<ProductBloc>(context);
+    _productBloc = BlocProvider.of<ProductOwnerBloc>(context);
     return BlocListener<ProductBloc, ProductState>(
       listener: (context, state) {
         if (state is AddNoPackageState) _handleAddNoPackageResponse(state);
@@ -139,20 +141,22 @@ class _AdditionalPropertiesPageState extends State<AdditionalPropertiesPage> {
             padding: const EdgeInsets.all(20.0),
             child: CustomButton(
               onTap: () {
-                List<Dynamicproperties> _dp = [];
+                List<dynaproperty> _dp = [];
                 widget.dynamicProperties.forEach((key, value) {
                   if (value['selectedValues'].length > 0) {
-                    _dp.add(Dynamicproperties(
+                    _dp.add(new dynaproperty(
                       propertyname: key,
                       values: List.castFrom(value['selectedValues']),
                     ));
                   }
                 });
                 ProductModel _model = widget.model;
-                _model.dynamicproperties = _dp;
+                _model.copyWith(dynamicproperties :_dp);
                 if (widget.productType == ProductType.noPackage) {
-                  _productBloc.add(AddNoPackageEvent(
-                      model: _model, userId: UserSession.userId));
+                 // _productBloc.add(
+                  //  ProductOwnerEvent.add(productData: _model,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+                  //)
+
                 } else if (widget.productType == ProductType.package) {
                   Navigator.push(
                     context,

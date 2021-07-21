@@ -3,11 +3,8 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/pet_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
+
 
 import 'package:complex/utils/log_print.dart';
 import 'package:http/http.dart' as http;
@@ -18,7 +15,7 @@ class ProductProviderOld {
 
   ApiService api;
 
-  Future<List<VehicleModel>> getVehicleList(String userId) {
+  Future<List<EcomVehicleModel>> getVehicleList(String userId) {
     // todo write your code and return data
   }
 
@@ -26,11 +23,11 @@ class ProductProviderOld {
     // todo write your code and return data
   }
 
-  Future<List<PropertyModel>> getPropertyList(String userId) {
+  Future<List<RealEstateModel>> getPropertyList(String userId) {
     // todo write your code and return data
   }
 
-  Future<List<JobModel>> getJobList(String userId) {
+  Future<List<JobPosting>> getJobList(String userId) {
     // todo write your code and return data
   }
   Future<List<ProductModel>> getProductList(String userId) {
@@ -126,7 +123,7 @@ class ProductProviderOld {
     return null;
   }
 
-  Future<bool> addNewProperty({PropertyModel model, String userId}) async {
+  Future<bool> addNewProperty({RealEstateModel model, String userId}) async {
     var request = json.encode({
       'data': {
         'productactionrequest': {
@@ -160,7 +157,7 @@ class ProductProviderOld {
     }
   }
 
-  Future<bool> addNewVehicle({VehicleModel model, String userId}) async {
+  Future<bool> addNewVehicle({EcomVehicleModel model, String userId}) async {
     var request = json.encode({
       'data': {
         'productactionrequest': {
@@ -228,7 +225,7 @@ class ProductProviderOld {
     }
   }
 
-  Future<bool> addNewJob({JobModel model, String userId}) async {
+  Future<bool> addNewJob({JobPosting model, String userId}) async {
     var request = json.encode({
       'data': {
         'productactionrequest': {

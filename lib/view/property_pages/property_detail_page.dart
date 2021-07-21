@@ -6,7 +6,8 @@ import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/slider.dart';
 import 'package:complex/common/widgets/slider_list.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
+
 import 'package:complex/view/product_pages/share_widget.dart';
 import 'package:complex/utils/log_print.dart';
 import 'package:complex/utils/resource/colors.dart';
@@ -32,7 +33,7 @@ class _PropertyDetailPageState extends State<PropertyDetailPage> {
   var _productBloc;
   var _key = GlobalKey<ScaffoldState>();
   bool _isLoading = false;
-  PropertyModel _model;
+  RealEstateModel _model;
 
   void _handleProductDetailResponse(GetProductDetailState state) {
     switch (state.apiState) {
@@ -43,7 +44,7 @@ class _PropertyDetailPageState extends State<PropertyDetailPage> {
         _isLoading = false;
         if (state.response.data != null) {
           LogPrint(state.response.data['adata']);
-          _model = PropertyModel.fromJson(state.response.data['adata']);
+          _model = RealEstateModel.fromJson(state.response.data['adata']);
         }
         break;
       case ApiStatus.ERROR:
@@ -319,7 +320,7 @@ class _PropertyDetailPageState extends State<PropertyDetailPage> {
               children: [
                 _renderTitle('Address'),
                 itemBuilder(
-                    "${_model.contactdetails.address.addressline}, ${_model.contactdetails.address.areaSector}, ${_model.contactdetails.address.district}, ${_model.contactdetails.address.state}"),
+                    "${_model.contactdetails.address.addressline}, ${_model.contactdetails.address.area_sector}, ${_model.contactdetails.address.district}, ${_model.contactdetails.address.state}"),
                 _emptyRow()
               ],
             );

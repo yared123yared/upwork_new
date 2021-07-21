@@ -14,7 +14,7 @@ _$CompleteRealEstate _$_$CompleteRealEstateFromJson(Map<String, dynamic> json) {
     userId: json['userid'] as String ?? '',
     data: json['adata'] == null
         ? null
-        : RealEstateData.fromJson(json['adata'] as Map<String, dynamic>),
+        : RealEstateModel.fromJson(json['adata'] as Map<String, dynamic>),
   );
 }
 
@@ -25,7 +25,7 @@ Map<String, dynamic> _$_$CompleteRealEstateToJson(
       'dt': instance.dt,
       'serviceproviderid': instance.serviceId,
       'userid': instance.userId,
-      'adata': instance.data?.toJson(),
+      'adata': instance.data,
     };
 
 _$CompleteJob _$_$CompleteJobFromJson(Map<String, dynamic> json) {
@@ -36,7 +36,7 @@ _$CompleteJob _$_$CompleteJobFromJson(Map<String, dynamic> json) {
     userId: json['userid'] as String ?? '',
     data: json['adata'] == null
         ? null
-        : JobData.fromJson(json['adata'] as Map<String, dynamic>),
+        : JobPosting.fromJson(json['adata'] as Map<String, dynamic>),
   );
 }
 
@@ -46,7 +46,7 @@ Map<String, dynamic> _$_$CompleteJobToJson(_$CompleteJob instance) =>
       'dt': instance.dt,
       'serviceproviderid': instance.serviceId,
       'userid': instance.userId,
-      'adata': instance.data?.toJson(),
+      'adata': instance.data,
     };
 
 _$CompletePet _$_$CompletePetFromJson(Map<String, dynamic> json) {
@@ -57,7 +57,7 @@ _$CompletePet _$_$CompletePetFromJson(Map<String, dynamic> json) {
     userId: json['userid'] as String ?? '',
     data: json['adata'] == null
         ? null
-        : PetData.fromJson(json['adata'] as Map<String, dynamic>),
+        : PetModel.fromJson(json['adata'] as Map<String, dynamic>),
   );
 }
 
@@ -67,7 +67,7 @@ Map<String, dynamic> _$_$CompletePetToJson(_$CompletePet instance) =>
       'dt': instance.dt,
       'serviceproviderid': instance.serviceId,
       'userid': instance.userId,
-      'adata': instance.data?.toJson(),
+      'adata': instance.data,
     };
 
 _$CompleteVehicle _$_$CompleteVehicleFromJson(Map<String, dynamic> json) {
@@ -78,7 +78,7 @@ _$CompleteVehicle _$_$CompleteVehicleFromJson(Map<String, dynamic> json) {
     userId: json['userid'] as String ?? '',
     data: json['adata'] == null
         ? null
-        : VehicleData.fromJson(json['adata'] as Map<String, dynamic>),
+        : EcomVehicleModel.fromJson(json['adata'] as Map<String, dynamic>),
   );
 }
 
@@ -88,7 +88,7 @@ Map<String, dynamic> _$_$CompleteVehicleToJson(_$CompleteVehicle instance) =>
       'dt': instance.dt,
       'serviceproviderid': instance.serviceId,
       'userid': instance.userId,
-      'adata': instance.data?.toJson(),
+      'adata': instance.data,
     };
 
 _$CompleteProduct _$_$CompleteProductFromJson(Map<String, dynamic> json) {
@@ -99,7 +99,7 @@ _$CompleteProduct _$_$CompleteProductFromJson(Map<String, dynamic> json) {
     userId: json['userid'] as String ?? '',
     data: json['adata'] == null
         ? null
-        : ProductData.fromJson(json['adata'] as Map<String, dynamic>),
+        : ProductModel.fromJson(json['adata'] as Map<String, dynamic>),
   );
 }
 
@@ -109,7 +109,7 @@ Map<String, dynamic> _$_$CompleteProductToJson(_$CompleteProduct instance) =>
       'dt': instance.dt,
       'serviceproviderid': instance.serviceId,
       'userid': instance.userId,
-      'adata': instance.data?.toJson(),
+      'adata': instance.data,
     };
 
 _$CompletePetList _$_$CompletePetListFromJson(Map<String, dynamic> json) {
@@ -123,7 +123,7 @@ _$CompletePetList _$_$CompletePetListFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$CompletePetListToJson(_$CompletePetList instance) =>
     <String, dynamic>{
-      'pets': instance.pets?.map((e) => e?.toJson())?.toList(),
+      'pets': instance.pets,
     };
 
 _$CompleteVehicleList _$_$CompleteVehicleListFromJson(
@@ -140,7 +140,7 @@ _$CompleteVehicleList _$_$CompleteVehicleListFromJson(
 Map<String, dynamic> _$_$CompleteVehicleListToJson(
         _$CompleteVehicleList instance) =>
     <String, dynamic>{
-      'vehicles': instance.vehicles?.map((e) => e?.toJson())?.toList(),
+      'vehicles': instance.vehicles,
     };
 
 _$CompleteRealEstateList _$_$CompleteRealEstateListFromJson(
@@ -157,7 +157,7 @@ _$CompleteRealEstateList _$_$CompleteRealEstateListFromJson(
 Map<String, dynamic> _$_$CompleteRealEstateListToJson(
         _$CompleteRealEstateList instance) =>
     <String, dynamic>{
-      'properties': instance.properties?.map((e) => e?.toJson())?.toList(),
+      'properties': instance.properties,
     };
 
 _$CompleteJobList _$_$CompleteJobListFromJson(Map<String, dynamic> json) {
@@ -171,7 +171,7 @@ _$CompleteJobList _$_$CompleteJobListFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$CompleteJobListToJson(_$CompleteJobList instance) =>
     <String, dynamic>{
-      'jobs': instance.jobs?.map((e) => e?.toJson())?.toList(),
+      'jobs': instance.jobs,
     };
 
 _$CompleteProductList _$_$CompleteProductListFromJson(
@@ -188,7 +188,7 @@ _$CompleteProductList _$_$CompleteProductListFromJson(
 Map<String, dynamic> _$_$CompleteProductListToJson(
         _$CompleteProductList instance) =>
     <String, dynamic>{
-      'products': instance.products?.map((e) => e?.toJson())?.toList(),
+      'products': instance.products,
     };
 
 _$CompleteProductDataEmptyList _$_$CompleteProductDataEmptyListFromJson(
@@ -200,293 +200,39 @@ Map<String, dynamic> _$_$CompleteProductDataEmptyListToJson(
         _$CompleteProductDataEmptyList instance) =>
     <String, dynamic>{};
 
-_$_ProductData _$_$_ProductDataFromJson(Map<String, dynamic> json) {
-  return _$_ProductData(
-    productid: json['productid'] as String ?? '',
-    title: json['title'] as String,
-    description: json['description'] as String,
-    brand: json['brand'] as String,
-    category: json['category'] as String,
-    tilePhoto: json['tilephoto'] as String ?? '',
-    imagelist: (json['imagelist'] as List)?.map((e) => e as String)?.toList(),
-    price: (json['price'] as num)?.toDouble(),
-    discountedprice: (json['discountedprice'] as num)?.toDouble() ?? 0,
-    ptype: json['ptype'] as int ?? 0,
-    dynamicproperties: (json['dynamicproperties'] as List)
-            ?.map((e) => e == null
-                ? null
-                : DynamicProperty.fromJson(e as Map<String, dynamic>))
-            ?.toList() ??
-        [],
-    varinattype: json['varinattype'] as String,
-    nopackagedata: json['nopackagedata'] == null
-        ? null
-        : NoPackageData.fromJson(json['nopackagedata'] as Map<String, dynamic>),
-    packagedata: (json['packagedata'] as List)
-            ?.map((e) => e == null
-                ? null
-                : PackageData.fromJson(e as Map<String, dynamic>))
-            ?.toList() ??
-        [],
-    sizeandcolordata: (json['sizeandcolordata'] as List)
-            ?.map((e) => e == null
-                ? null
-                : SizeAndColorData.fromJson(e as Map<String, dynamic>))
-            ?.toList() ??
-        [],
-    custompackagedata: (json['custompackagedata'] as List)
-            ?.map((e) => e == null
-                ? null
-                : CustomPackageData.fromJson(e as Map<String, dynamic>))
-            ?.toList() ??
-        [],
-  );
-}
-
-Map<String, dynamic> _$_$_ProductDataToJson(_$_ProductData instance) =>
-    <String, dynamic>{
-      'productid': instance.productid,
-      'title': instance.title,
-      'description': instance.description,
-      'brand': instance.brand,
-      'category': instance.category,
-      'tilephoto': instance.tilePhoto,
-      'imagelist': instance.imagelist,
-      'price': instance.price,
-      'discountedprice': instance.discountedprice,
-      'ptype': instance.ptype,
-      'dynamicproperties':
-          instance.dynamicproperties?.map((e) => e?.toJson())?.toList(),
-      'varinattype': instance.varinattype,
-      'nopackagedata': instance.nopackagedata?.toJson(),
-      'packagedata': instance.packagedata?.map((e) => e?.toJson())?.toList(),
-      'sizeandcolordata':
-          instance.sizeandcolordata?.map((e) => e?.toJson())?.toList(),
-      'custompackagedata':
-          instance.custompackagedata?.map((e) => e?.toJson())?.toList(),
-    };
-
-_$_NoPackageData _$_$_NoPackageDataFromJson(Map<String, dynamic> json) {
-  return _$_NoPackageData(
-    unit: json['unit'] as String ?? '',
-    priceperunit: (json['priceperunit'] as num)?.toDouble(),
-    inventoryunits: (json['inventoryunits'] as num)?.toDouble(),
-    discountedpriceperunit: (json['discountedpriceperunit'] as num)?.toDouble(),
-  );
-}
-
-Map<String, dynamic> _$_$_NoPackageDataToJson(_$_NoPackageData instance) =>
-    <String, dynamic>{
-      'unit': instance.unit,
-      'priceperunit': instance.priceperunit,
-      'inventoryunits': instance.inventoryunits,
-      'discountedpriceperunit': instance.discountedpriceperunit,
-    };
-
-_$_PackageData _$_$_PackageDataFromJson(Map<String, dynamic> json) {
-  return _$_PackageData(
-    packageid: json['packageid'] as String,
-    barcodeid: json['barcodeid'] as String,
-    title: json['title'] as String,
-    tileimage: json['tileimage'] as String,
-    listimages: (json['listimages'] as List)?.map((e) => e as String)?.toList(),
-    unit: json['unit'] as int ?? '',
-    price: (json['price'] as num)?.toDouble(),
-    discountedprice: (json['discountedprice'] as num)?.toDouble() ?? 0,
-    inventoryunits: json['inventoryunits'] as int,
-  );
-}
-
-Map<String, dynamic> _$_$_PackageDataToJson(_$_PackageData instance) =>
-    <String, dynamic>{
-      'packageid': instance.packageid,
-      'barcodeid': instance.barcodeid,
-      'title': instance.title,
-      'tileimage': instance.tileimage,
-      'listimages': instance.listimages,
-      'unit': instance.unit,
-      'price': instance.price,
-      'discountedprice': instance.discountedprice,
-      'inventoryunits': instance.inventoryunits,
-    };
-
-_$_SizeAndColorData _$_$_SizeAndColorDataFromJson(Map<String, dynamic> json) {
-  return _$_SizeAndColorData(
-    sizecolorid: json['sizecolorid'] as String,
-    barcodeid: json['barcodeid'] as String,
-    sizetype: json['sizetype'] as String ?? '',
-    size: json['size'] as String,
-    color: json['color'] as String,
-    price: (json['price'] as num)?.toDouble(),
-    discountedprice: (json['discountedprice'] as num)?.toDouble() ?? 0,
-    tileimage: json['tileimage'] as String,
-    listimages: (json['listimages'] as List)?.map((e) => e as String)?.toList(),
-    unit: json['unit'] as int ?? '',
-    inventoryunits: json['inventoryunits'] as int,
-  );
-}
-
-Map<String, dynamic> _$_$_SizeAndColorDataToJson(
-        _$_SizeAndColorData instance) =>
-    <String, dynamic>{
-      'sizecolorid': instance.sizecolorid,
-      'barcodeid': instance.barcodeid,
-      'sizetype': instance.sizetype,
-      'size': instance.size,
-      'color': instance.color,
-      'price': instance.price,
-      'discountedprice': instance.discountedprice,
-      'tileimage': instance.tileimage,
-      'listimages': instance.listimages,
-      'unit': instance.unit,
-      'inventoryunits': instance.inventoryunits,
-    };
-
-_$_CustomPackageData _$_$_CustomPackageDataFromJson(Map<String, dynamic> json) {
-  return _$_CustomPackageData(
-    productid: json['productid'] as String ?? '',
-    title: json['title'] as String,
-    unit: json['unit'] as int ?? '',
-  );
-}
-
-Map<String, dynamic> _$_$_CustomPackageDataToJson(
-        _$_CustomPackageData instance) =>
-    <String, dynamic>{
-      'productid': instance.productid,
-      'title': instance.title,
-      'unit': instance.unit,
-    };
-
-_$_DynamicProperty _$_$_DynamicPropertyFromJson(Map<String, dynamic> json) {
-  return _$_DynamicProperty(
-    propertyname: json['propertyname'] as String,
-    values: (json['values'] as List)?.map((e) => e as String)?.toList(),
-  );
-}
-
-Map<String, dynamic> _$_$_DynamicPropertyToJson(_$_DynamicProperty instance) =>
-    <String, dynamic>{
-      'propertyname': instance.propertyname,
-      'values': instance.values,
-    };
-
-_$_PetData _$_$_PetDataFromJson(Map<String, dynamic> json) {
-  return _$_PetData(
-    animaltype: json['animaltype'] as String,
-    age: json['age'] as int,
-    latitude: (json['latitude'] as num)?.toDouble(),
-    longitude: (json['longitude'] as num)?.toDouble(),
-    petname: json['petname'] as String,
-    gender: json['gender'] as String,
-    tileimage: json['tileimage'] as String,
-    imagelist: (json['imagelist'] as List)?.map((e) => e as String)?.toList(),
-    title: json['title'] as String,
-    description: json['description'] as String,
-    listingownertype: json['listingownertype'] as String,
-    contactdetails: json['contactdetails'] == null
-        ? null
-        : ContactDetails.fromJson(
-            json['contactdetails'] as Map<String, dynamic>),
-    breed: json['breed'] as String,
-    vaccinated: json['vaccinated'] as bool,
-    ismilking: json['ismilking'] as bool,
-    milkqty: json['milkqty'] as int,
-    price: json['price'] as int,
-  );
-}
-
-Map<String, dynamic> _$_$_PetDataToJson(_$_PetData instance) =>
-    <String, dynamic>{
-      'animaltype': instance.animaltype,
-      'age': instance.age,
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'petname': instance.petname,
-      'gender': instance.gender,
-      'tileimage': instance.tileimage,
-      'imagelist': instance.imagelist,
-      'title': instance.title,
-      'description': instance.description,
-      'listingownertype': instance.listingownertype,
-      'contactdetails': instance.contactdetails?.toJson(),
-      'breed': instance.breed,
-      'vaccinated': instance.vaccinated,
-      'ismilking': instance.ismilking,
-      'milkqty': instance.milkqty,
-      'price': instance.price,
-    };
-
-_$_JobData _$_$_JobDataFromJson(Map<String, dynamic> json) {
-  return _$_JobData(
-    arefreshersallowed: json['arefreshersallowed'] as bool,
-    companylogo: json['companylogo'] as String,
-    companyname: json['companyname'] as String,
-    contactdetails: json['contactdetails'] == null
-        ? null
-        : ContactDetails.fromJson(
-            json['contactdetails'] as Map<String, dynamic>),
-    description: json['description'] as String,
-    educationqualification: json['educationqualification'] as String ?? 'N/A',
-    isparttime: json['isparttime'] as bool,
-    listingownertype: json['listingownertype'] as String ?? 'N/A',
-    maxsalaryrange: json['maxsalaryrange'] as int,
-    minsalaryrange: json['minsalaryrange'] as int,
-    minyearexperience: json['minyearexperience'] as int,
-    title: json['title'] as String,
-    worktype: json['worktype'] as String ?? 'N/A',
-  );
-}
-
-Map<String, dynamic> _$_$_JobDataToJson(_$_JobData instance) =>
-    <String, dynamic>{
-      'arefreshersallowed': instance.arefreshersallowed,
-      'companylogo': instance.companylogo,
-      'companyname': instance.companyname,
-      'contactdetails': instance.contactdetails?.toJson(),
-      'description': instance.description,
-      'educationqualification': instance.educationqualification,
-      'isparttime': instance.isparttime,
-      'listingownertype': instance.listingownertype,
-      'maxsalaryrange': instance.maxsalaryrange,
-      'minsalaryrange': instance.minsalaryrange,
-      'minyearexperience': instance.minyearexperience,
-      'title': instance.title,
-      'worktype': instance.worktype,
-    };
-
-_$_RealEstateData _$_$_RealEstateDataFromJson(Map<String, dynamic> json) {
-  return _$_RealEstateData(
+_$_RealEstateModel _$_$_RealEstateModelFromJson(Map<String, dynamic> json) {
+  return _$_RealEstateModel(
+    docid: json['docid'] as String,
+    serviceproviderid: json['serviceproviderid'] as String,
+    userid: json['userid'] as String,
     servicetype: json['servicetype'] as String,
     usagetype: json['usagetype'] as String,
     propertytype: json['propertytype'] as String,
     tileimage: json['tileimage'] as String,
-    imagelist:
-        (json['imagelist'] as List)?.map((e) => e as String)?.toList() ?? [],
+    imagelist: (json['imagelist'] as List)?.map((e) => e as String)?.toList(),
     constructionstatus: json['constructionstatus'] as String,
     saletype: json['saletype'] as String,
     discountstartdate:
         JsonHelper.fromJsonTimeStamp(json['discountstartdate'] as Timestamp),
     discountenddate:
         JsonHelper.fromJsonTimeStamp(json['discountenddate'] as Timestamp),
-    occupancytype: json['occupancytype'] as String ?? '',
+    occupancytype: json['occupancytype'] as String,
     tenantgenderfamilypreference: (json['tenantgenderfamilypreference'] as List)
-            ?.map((e) => e as String)
-            ?.toList() ??
-        [],
+        ?.map((e) => e as String)
+        ?.toList(),
     ownershiptype: json['ownershiptype'] as String,
     sqfeetarea: json['sqfeetarea'] as int,
     numrooms: json['numrooms'] as int,
     numbath: json['numbath'] as int,
-    furnishedstatus: json['furnishedstatus'] as String ?? 'N/A',
-    haspowerbackup: json['haspowerbackup'] as bool ?? false,
+    furnishedstatus: json['furnishedstatus'] as String,
+    haspowerbackup: json['haspowerbackup'] as bool,
     hasclubhouse: json['hasclubhouse'] as bool,
     hassecurity: json['hassecurity'] as bool,
     has24hrwater: json['has24hrwater'] as bool,
-    hasgaspipeline: json['hasgaspipeline'] as bool ?? false,
+    hasgaspipeline: json['hasgaspipeline'] as bool,
     hasparking: json['hasparking'] as bool,
     hasgreenarea: json['hasgreenarea'] as bool,
-    hasinternet: json['hasinternet'] as bool ?? false,
+    hasinternet: json['hasinternet'] as bool,
     hasairconditioner: json['hasairconditioner'] as bool,
     hascooler: json['hascooler'] as bool,
     hasfridge: json['hasfridge'] as bool,
@@ -500,13 +246,16 @@ _$_RealEstateData _$_$_RealEstateDataFromJson(Map<String, dynamic> json) {
     price: json['price'] as int,
     contactdetails: json['contactdetails'] == null
         ? null
-        : ContactDetails.fromJson(
+        : ContactDetailsModel.fromJson(
             json['contactdetails'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$_$_RealEstateDataToJson(_$_RealEstateData instance) =>
+Map<String, dynamic> _$_$_RealEstateModelToJson(_$_RealEstateModel instance) =>
     <String, dynamic>{
+      'docid': instance.docid,
+      'serviceproviderid': instance.serviceproviderid,
+      'userid': instance.userid,
       'servicetype': instance.servicetype,
       'usagetype': instance.usagetype,
       'propertytype': instance.propertytype,
@@ -542,41 +291,64 @@ Map<String, dynamic> _$_$_RealEstateDataToJson(_$_RealEstateData instance) =>
       'description': instance.description,
       'listingownertype': instance.listingownertype,
       'price': instance.price,
-      'contactdetails': instance.contactdetails?.toJson(),
+      'contactdetails': instance.contactdetails,
     };
 
-_$_VehicleData _$_$_VehicleDataFromJson(Map<String, dynamic> json) {
-  return _$_VehicleData(
+_$_EcomVehicleModel _$_$_EcomVehicleModelFromJson(Map<String, dynamic> json) {
+  return _$_EcomVehicleModel(
+    serviceproviderid: json['serviceproviderid'] as String,
+    userid: json['userid'] as String,
+    docid: json['docid'] as String,
     servicetype: json['servicetype'] as String,
     vehicletype: json['vehicletype'] as String,
     propertytype: json['propertytype'] as String,
-    tileimage: json['tileimage'] as String ?? '',
+    tileimage: json['tileimage'] as String,
     imagelist: (json['imagelist'] as List)?.map((e) => e as String)?.toList(),
     title: json['title'] as String,
     description: json['description'] as String,
     listingownertype: json['listingownertype'] as String,
     contactdetails: json['contactdetails'] == null
         ? null
-        : ContactDetails.fromJson(
+        : ContactDetailsModel.fromJson(
             json['contactdetails'] as Map<String, dynamic>),
     make: json['make'] as String,
     model: json['model'] as String,
     yearbuild: json['yearbuild'] as int,
     milage: json['milage'] as int,
     exteriorcolor: json['exteriorcolor'] as String,
-    interiorcolor: json['interiorcolor'] as String ?? '',
-    cylinder: json['cylinder'] as int ?? 0,
+    interiorcolor: json['interiorcolor'] as String,
+    cylinder: json['cylinder'] as int,
     fueltype: json['fueltype'] as String,
     bodytype: json['bodytype'] as String,
     drivetype: json['drivetype'] as String,
     transmission: json['transmission'] as String,
     ownershiptransfer: json['ownershiptransfer'] as String,
     price: json['price'] as int,
+    seatingcapacity: json['seatingcapacity'] as int,
+    creationdate:
+        JsonHelper.fromJsonTimeStamp(json['creationdate'] as Timestamp),
+    turboengine: json['turboengine'] as bool,
+    powersteering: json['powersteering'] as bool,
+    parkingsensors: json['parkingsensors'] as bool,
+    airbags: json['airbags'] as bool,
+    cruisecontrol: json['cruisecontrol'] as bool,
+    keylessentry: json['keylessentry'] as bool,
+    sunroof: json['sunroof'] as bool,
+    moonroof: json['moonroof'] as bool,
+    alloywheels: json['alloywheels'] as bool,
+    antilockbrakingsystem: json['antilockbrakingsystem'] as bool,
+    automaticclimatecontrol: json['automaticclimatecontrol'] as bool,
+    rearacvents: json['rearacvents'] as bool,
+    remotetrunkopener: json['remotetrunkopener'] as bool,
   );
 }
 
-Map<String, dynamic> _$_$_VehicleDataToJson(_$_VehicleData instance) =>
+Map<String, dynamic> _$_$_EcomVehicleModelToJson(
+        _$_EcomVehicleModel instance) =>
     <String, dynamic>{
+      'serviceproviderid': instance.serviceproviderid,
+      'userid': instance.userid,
+      'docid': instance.docid,
       'servicetype': instance.servicetype,
       'vehicletype': instance.vehicletype,
       'propertytype': instance.propertytype,
@@ -585,7 +357,7 @@ Map<String, dynamic> _$_$_VehicleDataToJson(_$_VehicleData instance) =>
       'title': instance.title,
       'description': instance.description,
       'listingownertype': instance.listingownertype,
-      'contactdetails': instance.contactdetails?.toJson(),
+      'contactdetails': instance.contactdetails,
       'make': instance.make,
       'model': instance.model,
       'yearbuild': instance.yearbuild,
@@ -599,4 +371,350 @@ Map<String, dynamic> _$_$_VehicleDataToJson(_$_VehicleData instance) =>
       'transmission': instance.transmission,
       'ownershiptransfer': instance.ownershiptransfer,
       'price': instance.price,
+      'seatingcapacity': instance.seatingcapacity,
+      'creationdate': JsonHelper.toJsonTimeStamp(instance.creationdate),
+      'turboengine': instance.turboengine,
+      'powersteering': instance.powersteering,
+      'parkingsensors': instance.parkingsensors,
+      'airbags': instance.airbags,
+      'cruisecontrol': instance.cruisecontrol,
+      'keylessentry': instance.keylessentry,
+      'sunroof': instance.sunroof,
+      'moonroof': instance.moonroof,
+      'alloywheels': instance.alloywheels,
+      'antilockbrakingsystem': instance.antilockbrakingsystem,
+      'automaticclimatecontrol': instance.automaticclimatecontrol,
+      'rearacvents': instance.rearacvents,
+      'remotetrunkopener': instance.remotetrunkopener,
+    };
+
+_$_PetModel _$_$_PetModelFromJson(Map<String, dynamic> json) {
+  return _$_PetModel(
+    docid: json['docid'] as String,
+    serviceproviderid: json['serviceproviderid'] as String,
+    userid: json['userid'] as String,
+    petclass: json['petclass'] as String,
+    animaltype: json['animaltype'] as String,
+    age: json['age'] as int,
+    petname: json['petname'] as String,
+    gender: json['gender'] as String,
+    tileimage: json['tileimage'] as String,
+    imagelist: (json['imagelist'] as List)?.map((e) => e as String)?.toList(),
+    title: json['title'] as String,
+    description: json['description'] as String,
+    listingownertype: json['listingownertype'] as String,
+    contactdetails: json['contactdetails'] == null
+        ? null
+        : ContactDetailsModel.fromJson(
+            json['contactdetails'] as Map<String, dynamic>),
+    breed: json['breed'] as String,
+    vaccinated: json['vaccinated'] as bool,
+    ismilking: json['ismilking'] as bool,
+    milkqty: json['milkqty'] as int,
+    price: json['price'] as int,
+    creationdate:
+        JsonHelper.fromJsonTimeStamp(json['creationdate'] as Timestamp),
+  );
+}
+
+Map<String, dynamic> _$_$_PetModelToJson(_$_PetModel instance) =>
+    <String, dynamic>{
+      'docid': instance.docid,
+      'serviceproviderid': instance.serviceproviderid,
+      'userid': instance.userid,
+      'petclass': instance.petclass,
+      'animaltype': instance.animaltype,
+      'age': instance.age,
+      'petname': instance.petname,
+      'gender': instance.gender,
+      'tileimage': instance.tileimage,
+      'imagelist': instance.imagelist,
+      'title': instance.title,
+      'description': instance.description,
+      'listingownertype': instance.listingownertype,
+      'contactdetails': instance.contactdetails,
+      'breed': instance.breed,
+      'vaccinated': instance.vaccinated,
+      'ismilking': instance.ismilking,
+      'milkqty': instance.milkqty,
+      'price': instance.price,
+      'creationdate': JsonHelper.toJsonTimeStamp(instance.creationdate),
+    };
+
+_$_JobPosting _$_$_JobPostingFromJson(Map<String, dynamic> json) {
+  return _$_JobPosting(
+    docid: json['docid'] as String,
+    serviceproviderid: json['serviceproviderid'] as String,
+    userid: json['userid'] as String,
+    title: json['title'] as String,
+    description: json['description'] as String,
+    listingownertype: json['listingownertype'] as String,
+    contactdetails: json['contactdetails'] == null
+        ? null
+        : ContactDetailsModel.fromJson(
+            json['contactdetails'] as Map<String, dynamic>),
+    companyname: json['companyname'] as String,
+    companylogo: json['companylogo'] as String,
+    isparttime: json['isparttime'] as bool,
+    minsalaryrange: json['minsalaryrange'] as int,
+    maxsalaryrange: json['maxsalaryrange'] as int,
+    educationqualification: json['educationqualification'] as String,
+    arefreshersallowed: json['arefreshersallowed'] as bool,
+    minyearexperience: json['minyearexperience'] as int,
+    worktype: json['worktype'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$_JobPostingToJson(_$_JobPosting instance) =>
+    <String, dynamic>{
+      'docid': instance.docid,
+      'serviceproviderid': instance.serviceproviderid,
+      'userid': instance.userid,
+      'title': instance.title,
+      'description': instance.description,
+      'listingownertype': instance.listingownertype,
+      'contactdetails': instance.contactdetails,
+      'companyname': instance.companyname,
+      'companylogo': instance.companylogo,
+      'isparttime': instance.isparttime,
+      'minsalaryrange': instance.minsalaryrange,
+      'maxsalaryrange': instance.maxsalaryrange,
+      'educationqualification': instance.educationqualification,
+      'arefreshersallowed': instance.arefreshersallowed,
+      'minyearexperience': instance.minyearexperience,
+      'worktype': instance.worktype,
+    };
+
+_$_ProductModel _$_$_ProductModelFromJson(Map<String, dynamic> json) {
+  return _$_ProductModel(
+    productid: json['productid'] as String,
+    title: json['title'] as String,
+    description: json['description'] as String,
+    brand: json['brand'] as String,
+    category: json['category'] as String,
+    tilephoto: json['tilephoto'] as String,
+    imagelist: (json['imagelist'] as List)?.map((e) => e as String)?.toList(),
+    price: (json['price'] as num)?.toDouble(),
+    discountedprice: (json['discountedprice'] as num)?.toDouble(),
+    ptype: json['ptype'] as int,
+    dynamicproperties: (json['dynamicproperties'] as List)
+        ?.map((e) =>
+            e == null ? null : dynaproperty.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    varinattype: json['varinattype'] as String,
+    sizetype: json['sizetype'] as String,
+    nopackagedata: json['nopackagedata'] == null
+        ? null
+        : NoPackageModel.fromJson(
+            json['nopackagedata'] as Map<String, dynamic>),
+    packagedata: (json['packagedata'] as List)
+        ?.map((e) =>
+            e == null ? null : PackageModel.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    sizeandcolordata: (json['sizeandcolordata'] as List)
+        ?.map((e) => e == null
+            ? null
+            : SizeAndColorModel.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    custompackagedata: (json['custompackagedata'] as List)
+        ?.map((e) => e == null
+            ? null
+            : CustomPackageModel.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    addressarea: json['addressarea'] == null
+        ? null
+        : ContactDetailsModel.fromJson(
+            json['addressarea'] as Map<String, dynamic>),
+    serviceproviderid: json['serviceproviderid'] as String,
+    userid: json['userid'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$_ProductModelToJson(_$_ProductModel instance) =>
+    <String, dynamic>{
+      'productid': instance.productid,
+      'title': instance.title,
+      'description': instance.description,
+      'brand': instance.brand,
+      'category': instance.category,
+      'tilephoto': instance.tilephoto,
+      'imagelist': instance.imagelist,
+      'price': instance.price,
+      'discountedprice': instance.discountedprice,
+      'ptype': instance.ptype,
+      'dynamicproperties': instance.dynamicproperties,
+      'varinattype': instance.varinattype,
+      'sizetype': instance.sizetype,
+      'nopackagedata': instance.nopackagedata,
+      'packagedata': instance.packagedata,
+      'sizeandcolordata': instance.sizeandcolordata,
+      'custompackagedata': instance.custompackagedata,
+      'addressarea': instance.addressarea,
+      'serviceproviderid': instance.serviceproviderid,
+      'userid': instance.userid,
+    };
+
+_$_NoPackageModel _$_$_NoPackageModelFromJson(Map<String, dynamic> json) {
+  return _$_NoPackageModel(
+    unitmeasure: json['unitmeasure'] as String,
+    qty: json['qty'] as int,
+    priceperunit: (json['priceperunit'] as num)?.toDouble(),
+    inventoryunits: (json['inventoryunits'] as num)?.toDouble(),
+    discountedpriceperunit: (json['discountedpriceperunit'] as num)?.toDouble(),
+  );
+}
+
+Map<String, dynamic> _$_$_NoPackageModelToJson(_$_NoPackageModel instance) =>
+    <String, dynamic>{
+      'unitmeasure': instance.unitmeasure,
+      'qty': instance.qty,
+      'priceperunit': instance.priceperunit,
+      'inventoryunits': instance.inventoryunits,
+      'discountedpriceperunit': instance.discountedpriceperunit,
+    };
+
+_$_PackageModel _$_$_PackageModelFromJson(Map<String, dynamic> json) {
+  return _$_PackageModel(
+    packageid: json['packageid'] as String,
+    barcodeid: json['barcodeid'] as String,
+    title: json['title'] as String,
+    tileimage: json['tileimage'] as String,
+    listimages: (json['listimages'] as List)?.map((e) => e as String)?.toList(),
+    unit: json['unit'] as int,
+    price: (json['price'] as num)?.toDouble(),
+    discountedprice: (json['discountedprice'] as num)?.toDouble(),
+    inventoryunits: json['inventoryunits'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$_PackageModelToJson(_$_PackageModel instance) =>
+    <String, dynamic>{
+      'packageid': instance.packageid,
+      'barcodeid': instance.barcodeid,
+      'title': instance.title,
+      'tileimage': instance.tileimage,
+      'listimages': instance.listimages,
+      'unit': instance.unit,
+      'price': instance.price,
+      'discountedprice': instance.discountedprice,
+      'inventoryunits': instance.inventoryunits,
+    };
+
+_$_SizeAndColorModel _$_$_SizeAndColorModelFromJson(Map<String, dynamic> json) {
+  return _$_SizeAndColorModel(
+    sizecolorid: json['sizecolorid'] as String,
+    barcodeid: json['barcodeid'] as String,
+    sizetype: json['sizetype'] as String,
+    size: json['size'] as String,
+    color: json['color'] as String,
+    price: (json['price'] as num)?.toDouble(),
+    discountedprice: (json['discountedprice'] as num)?.toDouble(),
+    tileimage: json['tileimage'] as String,
+    listimages: (json['listimages'] as List)?.map((e) => e as String)?.toList(),
+    unit: json['unit'] as int,
+    inventoryunits: json['inventoryunits'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$_SizeAndColorModelToJson(
+        _$_SizeAndColorModel instance) =>
+    <String, dynamic>{
+      'sizecolorid': instance.sizecolorid,
+      'barcodeid': instance.barcodeid,
+      'sizetype': instance.sizetype,
+      'size': instance.size,
+      'color': instance.color,
+      'price': instance.price,
+      'discountedprice': instance.discountedprice,
+      'tileimage': instance.tileimage,
+      'listimages': instance.listimages,
+      'unit': instance.unit,
+      'inventoryunits': instance.inventoryunits,
+    };
+
+_$_CustomPackageModel _$_$_CustomPackageModelFromJson(
+    Map<String, dynamic> json) {
+  return _$_CustomPackageModel(
+    productid: json['productid'] as String,
+    title: json['title'] as String,
+    unit: json['unit'] as int,
+    image1: json['image1'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$_CustomPackageModelToJson(
+        _$_CustomPackageModel instance) =>
+    <String, dynamic>{
+      'productid': instance.productid,
+      'title': instance.title,
+      'unit': instance.unit,
+      'image1': instance.image1,
+    };
+
+_$_dynaproperty _$_$_dynapropertyFromJson(Map<String, dynamic> json) {
+  return _$_dynaproperty(
+    propertyname: json['propertyname'] as String,
+    values: (json['values'] as List)?.map((e) => e as String)?.toList(),
+  );
+}
+
+Map<String, dynamic> _$_$_dynapropertyToJson(_$_dynaproperty instance) =>
+    <String, dynamic>{
+      'propertyname': instance.propertyname,
+      'values': instance.values,
+    };
+
+_$_ContactDetailsModel _$_$_ContactDetailsModelFromJson(
+    Map<String, dynamic> json) {
+  return _$_ContactDetailsModel(
+    name: json['name'] as String,
+    phonenum: json['phonenum'] as String,
+    sharephone: json['sharephone'] as bool,
+    email: json['email'] as String,
+    shareemail: json['shareemail'] as bool,
+    address: json['address'] == null
+        ? null
+        : AddressDataModel.fromJson(json['address'] as Map<String, dynamic>),
+    shareaddress: json['shareaddress'] as bool,
+  );
+}
+
+Map<String, dynamic> _$_$_ContactDetailsModelToJson(
+        _$_ContactDetailsModel instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'phonenum': instance.phonenum,
+      'sharephone': instance.sharephone,
+      'email': instance.email,
+      'shareemail': instance.shareemail,
+      'address': instance.address,
+      'shareaddress': instance.shareaddress,
+    };
+
+_$_AddressDataModel _$_$_AddressDataModelFromJson(Map<String, dynamic> json) {
+  return _$_AddressDataModel(
+    country: json['country'] as String,
+    state: json['state'] as String,
+    district: json['district'] as String,
+    town_village: json['town_village'] as String,
+    area_sector: json['area_sector'] as String,
+    societyname: json['societyname'] as String,
+    addressline: json['addressline'] as String,
+    latitude: (json['latitude'] as num)?.toDouble(),
+    longitude: (json['longitude'] as num)?.toDouble(),
+  );
+}
+
+Map<String, dynamic> _$_$_AddressDataModelToJson(
+        _$_AddressDataModel instance) =>
+    <String, dynamic>{
+      'country': instance.country,
+      'state': instance.state,
+      'district': instance.district,
+      'town_village': instance.town_village,
+      'area_sector': instance.area_sector,
+      'societyname': instance.societyname,
+      'addressline': instance.addressline,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
     };

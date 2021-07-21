@@ -7,7 +7,7 @@ import 'package:complex/common/widgets/custom_dropdown.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
-import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
@@ -21,7 +21,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:injector/injector.dart';
 
 class AddPetPage extends StatefulWidget {
-  final ContactDetails contactDetail;
+  final ContactDetailsModel contactDetail;
   final CompletePet completePet;
   final String entitytype;
   final String entityid;
@@ -489,7 +489,7 @@ class _AddPetPageState extends State<AddPetPage> {
           dt: 'pet',
           serviceId: '',
           userId: UserSession.userId,
-          data: PetData(
+          data: PetModel(
             description: _descriptionController.text.trim(),
             title: _titleController.text.trim(),
             contactdetails: widget.contactDetail,

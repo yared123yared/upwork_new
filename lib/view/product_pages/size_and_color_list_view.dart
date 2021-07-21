@@ -6,7 +6,8 @@ import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_dropdown.dart';
 import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
+
 import 'package:complex/view/product_pages/select_product_type.dart';
 import 'package:complex/view/product_pages/size_color_detail_form.dart';
 import 'package:complex/utils/next_page_routing.dart';
@@ -32,7 +33,7 @@ class SizeAndColorListView extends StatefulWidget {
   }
 }
 
-List<Sizeandcolordata> sizeAndColor = [];
+List<SizeAndColorModel> sizeAndColor = [];
 
 class _SizeAndColorListViewState extends State<SizeAndColorListView> {
   CustomTextFieldController _sizeTypeController = CustomTextFieldController();
@@ -116,7 +117,7 @@ class _SizeAndColorListViewState extends State<SizeAndColorListView> {
                         text: 'SAVE',
                         onTap: () {
                           ProductModel _model = widget.model;
-                          _model.sizeandcolordata = sizeAndColor;
+                          _model.copyWith(sizeandcolordata : sizeAndColor);
                           _productBloc.add(AddMultiColorEvent(
                               model: _model, userId: UserSession.userId));
                         },
@@ -197,7 +198,7 @@ class _SizeAndColorListViewState extends State<SizeAndColorListView> {
     );
   }
 
-  Widget cardModel(Sizeandcolordata sizeAndColor) {
+  Widget cardModel(SizeAndColorModel sizeAndColor) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(10)),
       child: Container(

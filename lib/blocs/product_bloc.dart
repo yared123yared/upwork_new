@@ -4,11 +4,8 @@ import 'package:complex/data/models/response/general_response.dart';
 import 'package:complex/data/models/response/generic_response.dart';
 
 import 'package:complex/data/repositories/product_repository.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/pet_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
+
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 
@@ -60,7 +57,7 @@ class GetPropertyListEvent extends ProductEvent {
 }
 
 class AddNewPropertyEvent extends ProductEvent {
-  final PropertyModel model;
+  final RealEstateModel model;
   final String userId;
 
   AddNewPropertyEvent({@required this.model, @required this.userId})
@@ -68,7 +65,7 @@ class AddNewPropertyEvent extends ProductEvent {
 }
 
 class AddNewJobEvent extends ProductEvent {
-  final JobModel model;
+  final JobPosting model;
   final String userId;
 
   AddNewJobEvent({@required this.model, @required this.userId})
@@ -84,7 +81,7 @@ class AddNewPetEvent extends ProductEvent {
 }
 
 class AddNewVehicleEvent extends ProductEvent {
-  final VehicleModel model;
+  final EcomVehicleModel model;
   final String userId;
 
   AddNewVehicleEvent({@required this.model, @required this.userId})
@@ -386,13 +383,13 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       }
     } else if (event is GetPropertyListEvent) {
       yield ProductListState(ApiStatus.LOADING, [], 'Property List');
-      final GenericResponse<List<PropertyModel>> response =
+      final GenericResponse<List<RealEstateModel>> response =
           await productRepository.getPropertyList(event.userID);
       if (response.success) {
-        yield ProductListState<PropertyModel>(
+        yield ProductListState<RealEstateModel>(
             ApiStatus.SUCCESS, response.data, 'Property List');
       } else {
-        yield ProductListState<PropertyModel>(
+        yield ProductListState<RealEstateModel>(
             ApiStatus.ERROR, [], 'Property List',
             message: response.message);
       }
@@ -412,10 +409,10 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       }
     } else if (event is GetJobListEvent) {
       yield ProductListState(ApiStatus.LOADING, [], 'Job List');
-      final GenericResponse<List<JobModel>> response =
+      final GenericResponse<List<JobPosting>> response =
           await productRepository.getJobList(event.userID);
       if (response.success) {
-        yield ProductListState<JobModel>(
+        yield ProductListState<JobPosting>(
           ApiStatus.SUCCESS,
           response.data,
           'Job List',
@@ -427,16 +424,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       }
     } else if (event is GetVehicleListEvent) {
       yield ProductListState(ApiStatus.LOADING, [], 'Vehicle List');
-      final GenericResponse<List<VehicleModel>> response =
+      final GenericResponse<List<EcomVehicleModel>> response =
           await productRepository.getVehicleList(event.userID);
       if (response.success) {
-        yield ProductListState<VehicleModel>(
+        yield ProductListState<EcomVehicleModel>(
           ApiStatus.SUCCESS,
           response.data,
           'Product List',
         );
       } else {
-        yield ProductListState<VehicleModel>(
+        yield ProductListState<EcomVehicleModel>(
             ApiStatus.ERROR, [], 'Product List',
             message: response.message);
       }

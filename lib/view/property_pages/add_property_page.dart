@@ -2,7 +2,7 @@ import 'package:complex/application/explore/ecom/product_owner/product_owner_blo
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/data/providers/channel_provider.dart';
-import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/main.dart';
 import 'package:complex/common/widgets/custom_button.dart';
@@ -26,7 +26,7 @@ import 'package:injector/injector.dart';
 import 'package:intl/intl.dart';
 
 class AddPropertyPage extends StatefulWidget {
-  final ContactDetails contactDetail;
+  final ContactDetailsModel contactDetail;
   final CompleteRealEstate realEstate;
   final String entitytype;
   final String entityid;
@@ -412,7 +412,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                         children: [
                           Icon(Icons.location_on, size: 2),
                           Text(
-                            '${widget.contactDetail.address.areaSector}, ${widget.contactDetail.address.townVillage}, ${widget.contactDetail.address.district}, ${widget.contactDetail.address.state}',
+                            '${widget.contactDetail.address.area_sector}, ${widget.contactDetail.address.town_village}, ${widget.contactDetail.address.district}, ${widget.contactDetail.address.state}',
                             style: TextStyle(
                               fontFamily: 'Merriweather',
                               color: Colors.black.withOpacity(0.8),
@@ -1679,7 +1679,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
           dt: 'realestate',
           serviceId: '',
           userId: UserSession.userId,
-          data: RealEstateData(
+          data: RealEstateModel(
             title: _title.text.trim(),
             description: _description.text.trim(),
             contactdetails: widget.contactDetail,

@@ -290,8 +290,8 @@ class OwnerProductCard extends StatelessWidget {
               },
               imageUrl: v.data.tileimage,
               price: v.data.price.toString(),
-              subtitle: v.data.contactdetails.address.addressline,
-              title: v.data.propertytype,entitytype: entitytype,entityid:entityid,isService:isService,origin:origin
+              subtitle: v.data.contactdetails.address.addressline==null?"":v.data.contactdetails.address.addressline,
+              title: v.data.propertytype==null?"":v.data.propertytype,entitytype: entitytype,entityid:entityid,isService:isService,origin:origin
             ),
         job: (v) => OwnerProductCard(
               data: v,

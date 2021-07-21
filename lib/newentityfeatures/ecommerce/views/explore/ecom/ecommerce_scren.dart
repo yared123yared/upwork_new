@@ -34,7 +34,7 @@ class _ECommerceScreenState extends State<ECommerceScreen> {
         _bloc.add(
           UpdateSearchConfig(
             _bloc.state.productSearchInformationConfig?.copyWith(
-                  cust: Customerinfo(
+                  cust: customerinfo(
                     customeruserid: FirebaseAuth.instance.currentUser.uid,
                   ),
                   sp: SpatialData(
@@ -43,7 +43,7 @@ class _ECommerceScreenState extends State<ECommerceScreen> {
                   ),
                 ) ??
                 ProductSearchInformationConfig(
-                  cust: Customerinfo(
+                  cust: customerinfo(
                     customeruserid: FirebaseAuth.instance.currentUser.uid,
                   ),
                   sp: SpatialData(

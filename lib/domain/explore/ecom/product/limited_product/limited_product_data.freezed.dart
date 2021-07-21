@@ -34,8 +34,7 @@ class _$LimitedDataTearOff {
 
 // ignore: unused_element
   LimitedPetData pet(
-      {String docid,
-      @JsonKey(name: 'petclass')
+      {@JsonKey(name: 'petclass')
           String petclass,
       @JsonKey(name: 'name')
           String name,
@@ -49,16 +48,21 @@ class _$LimitedDataTearOff {
           int age,
       @JsonKey(name: 'tileimage')
           String tileimage,
+      @JsonKey(name: 'title')
+          String title,
       @JsonKey(name: 'price')
           double price,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) {
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid,
+      @JsonKey(name: 'docid')
+          String docid}) {
     return LimitedPetData(
-      docid: docid,
       petclass: petclass,
       name: name,
       breed: breed,
@@ -66,10 +70,13 @@ class _$LimitedDataTearOff {
       animalclass: animalclass,
       age: age,
       tileimage: tileimage,
+      title: title,
       price: price,
       postedon: postedon,
       addressarea: addressarea,
       serviceproviderid: serviceproviderid,
+      userid: userid,
+      docid: docid,
     );
   }
 
@@ -101,7 +108,10 @@ class _$LimitedDataTearOff {
       @JsonKey(name: 'discountedprice') double discountedprice,
       @JsonKey(name: 'varianttype') String varianttype,
       @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-      @JsonKey(name: 'contenttype') String contenttype}) {
+      @JsonKey(name: 'userid') String userid,
+      @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+      @JsonKey(name: 'contenttype') String contenttype,
+      @JsonKey(name: 'addressarea') ContactDetailsModel addressarea}) {
     return LimitedProductData(
       id: id,
       title: title,
@@ -115,7 +125,10 @@ class _$LimitedDataTearOff {
       discountedprice: discountedprice,
       varianttype: varianttype,
       packdata: packdata,
+      userid: userid,
+      serviceproviderid: serviceproviderid,
       contenttype: contenttype,
+      addressarea: addressarea,
     );
   }
 
@@ -142,9 +155,11 @@ class _$LimitedDataTearOff {
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) {
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid}) {
     return LimitedVehicleData(
       productid: productid,
       title: title,
@@ -158,6 +173,7 @@ class _$LimitedDataTearOff {
       postedon: postedon,
       addressarea: addressarea,
       serviceproviderid: serviceproviderid,
+      userid: userid,
     );
   }
 
@@ -174,21 +190,25 @@ class _$LimitedDataTearOff {
       @JsonKey(name: 'numbathroom')
           int numbathroom,
       @JsonKey(name: 'sharingallowed')
-          bool sharingallowed,
+          String sharingallowed,
       @JsonKey(name: 'sqrfootage')
           int sqrfootage,
-      @JsonKey(name: 'floorNumber')
-          int floorNumber,
       @JsonKey(name: 'price')
           double price,
+      @JsonKey(name: 'title')
+          String title,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'tileimage')
           String tileimage,
+      @JsonKey(name: 'serviceprovidername')
+          String serviceprovidername,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) {
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid}) {
     return LimitedRealEstateData(
       productid: productid,
       listingtype: listingtype,
@@ -197,12 +217,14 @@ class _$LimitedDataTearOff {
       numbathroom: numbathroom,
       sharingallowed: sharingallowed,
       sqrfootage: sqrfootage,
-      floorNumber: floorNumber,
       price: price,
+      title: title,
       addressarea: addressarea,
       postedon: postedon,
       tileimage: tileimage,
+      serviceprovidername: serviceprovidername,
       serviceproviderid: serviceproviderid,
+      userid: userid,
     );
   }
 
@@ -214,25 +236,28 @@ class _$LimitedDataTearOff {
           String title,
       @JsonKey(name: 'companyname')
           String companyname,
-      @JsonKey(name: 'companyicon')
-          String companyicon,
       @JsonKey(name: 'salaryrange')
           String salaryrange,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'jobtype')
           String jobtype,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon}) {
+          DateTime postedon,
+      @JsonKey(name: 'serviceproviderid')
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid}) {
     return LimitedJobData(
       productid: productid,
       title: title,
       companyname: companyname,
-      companyicon: companyicon,
       salaryrange: salaryrange,
       addressarea: addressarea,
       jobtype: jobtype,
       postedon: postedon,
+      serviceproviderid: serviceproviderid,
+      userid: userid,
     );
   }
 
@@ -252,7 +277,6 @@ mixin _$LimitedData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
-            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -267,14 +291,20 @@ mixin _$LimitedData {
                 int age,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'price')
                 double price,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid,
+            @JsonKey(name: 'docid')
+                String docid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -295,7 +325,10 @@ mixin _$LimitedData {
             @JsonKey(name: 'discountedprice') double discountedprice,
             @JsonKey(name: 'varianttype') String varianttype,
             @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-            @JsonKey(name: 'contenttype') String contenttype),
+            @JsonKey(name: 'userid') String userid,
+            @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+            @JsonKey(name: 'contenttype') String contenttype,
+            @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     @required
         TResult vehicle(
             @JsonKey(name: 'productid')
@@ -319,9 +352,11 @@ mixin _$LimitedData {
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult realEstate(
             @JsonKey(name: 'productid')
@@ -335,21 +370,25 @@ mixin _$LimitedData {
             @JsonKey(name: 'numbathroom')
                 int numbathroom,
             @JsonKey(name: 'sharingallowed')
-                bool sharingallowed,
+                String sharingallowed,
             @JsonKey(name: 'sqrfootage')
                 int sqrfootage,
-            @JsonKey(name: 'floorNumber')
-                int floorNumber,
             @JsonKey(name: 'price')
                 double price,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'serviceprovidername')
+                String serviceprovidername,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult job(
             @JsonKey(name: 'productid')
@@ -358,21 +397,22 @@ mixin _$LimitedData {
                 String title,
             @JsonKey(name: 'companyname')
                 String companyname,
-            @JsonKey(name: 'companyicon')
-                String companyicon,
             @JsonKey(name: 'salaryrange')
                 String salaryrange,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'jobtype')
                 String jobtype,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-                DateTime postedon),
+                DateTime postedon,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
-        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -387,14 +427,20 @@ mixin _$LimitedData {
             int age,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'price')
             double price,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid,
+        @JsonKey(name: 'docid')
+            String docid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
@@ -413,7 +459,10 @@ mixin _$LimitedData {
         @JsonKey(name: 'discountedprice') double discountedprice,
         @JsonKey(name: 'varianttype') String varianttype,
         @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-        @JsonKey(name: 'contenttype') String contenttype),
+        @JsonKey(name: 'userid') String userid,
+        @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+        @JsonKey(name: 'contenttype') String contenttype,
+        @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     TResult vehicle(
         @JsonKey(name: 'productid')
             String productid,
@@ -436,9 +485,11 @@ mixin _$LimitedData {
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult realEstate(
         @JsonKey(name: 'productid')
             String productid,
@@ -451,21 +502,25 @@ mixin _$LimitedData {
         @JsonKey(name: 'numbathroom')
             int numbathroom,
         @JsonKey(name: 'sharingallowed')
-            bool sharingallowed,
+            String sharingallowed,
         @JsonKey(name: 'sqrfootage')
             int sqrfootage,
-        @JsonKey(name: 'floorNumber')
-            int floorNumber,
         @JsonKey(name: 'price')
             double price,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'serviceprovidername')
+            String serviceprovidername,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult job(
         @JsonKey(name: 'productid')
             String productid,
@@ -473,16 +528,18 @@ mixin _$LimitedData {
             String title,
         @JsonKey(name: 'companyname')
             String companyname,
-        @JsonKey(name: 'companyicon')
-            String companyicon,
         @JsonKey(name: 'salaryrange')
             String salaryrange,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'jobtype')
             String jobtype,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-            DateTime postedon),
+            DateTime postedon,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -529,8 +586,7 @@ abstract class $LimitedPetDataCopyWith<$Res> {
           LimitedPetData value, $Res Function(LimitedPetData) then) =
       _$LimitedPetDataCopyWithImpl<$Res>;
   $Res call(
-      {String docid,
-      @JsonKey(name: 'petclass')
+      {@JsonKey(name: 'petclass')
           String petclass,
       @JsonKey(name: 'name')
           String name,
@@ -544,16 +600,22 @@ abstract class $LimitedPetDataCopyWith<$Res> {
           int age,
       @JsonKey(name: 'tileimage')
           String tileimage,
+      @JsonKey(name: 'title')
+          String title,
       @JsonKey(name: 'price')
           double price,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid});
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid,
+      @JsonKey(name: 'docid')
+          String docid});
 
-  $AddressmodelCopyWith<$Res> get addressarea;
+  $ContactDetailsModelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -568,7 +630,6 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object docid = freezed,
     Object petclass = freezed,
     Object name = freezed,
     Object breed = freezed,
@@ -576,13 +637,15 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
     Object animalclass = freezed,
     Object age = freezed,
     Object tileimage = freezed,
+    Object title = freezed,
     Object price = freezed,
     Object postedon = freezed,
     Object addressarea = freezed,
     Object serviceproviderid = freezed,
+    Object userid = freezed,
+    Object docid = freezed,
   }) {
     return _then(LimitedPetData(
-      docid: docid == freezed ? _value.docid : docid as String,
       petclass: petclass == freezed ? _value.petclass : petclass as String,
       name: name == freezed ? _value.name : name as String,
       breed: breed == freezed ? _value.breed : breed as String,
@@ -591,23 +654,26 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
           animalclass == freezed ? _value.animalclass : animalclass as String,
       age: age == freezed ? _value.age : age as int,
       tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
+      title: title == freezed ? _value.title : title as String,
       price: price == freezed ? _value.price : price as double,
       postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
       addressarea: addressarea == freezed
           ? _value.addressarea
-          : addressarea as Addressmodel,
+          : addressarea as ContactDetailsModel,
       serviceproviderid: serviceproviderid == freezed
           ? _value.serviceproviderid
           : serviceproviderid as String,
+      userid: userid == freezed ? _value.userid : userid as String,
+      docid: docid == freezed ? _value.docid : docid as String,
     ));
   }
 
   @override
-  $AddressmodelCopyWith<$Res> get addressarea {
+  $ContactDetailsModelCopyWith<$Res> get addressarea {
     if (_value.addressarea == null) {
       return null;
     }
-    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
+    return $ContactDetailsModelCopyWith<$Res>(_value.addressarea, (value) {
       return _then(_value.copyWith(addressarea: value));
     });
   }
@@ -618,8 +684,7 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
 /// @nodoc
 class _$LimitedPetData implements LimitedPetData {
   const _$LimitedPetData(
-      {this.docid,
-      @JsonKey(name: 'petclass')
+      {@JsonKey(name: 'petclass')
           this.petclass,
       @JsonKey(name: 'name')
           this.name,
@@ -633,6 +698,8 @@ class _$LimitedPetData implements LimitedPetData {
           this.age,
       @JsonKey(name: 'tileimage')
           this.tileimage,
+      @JsonKey(name: 'title')
+          this.title,
       @JsonKey(name: 'price')
           this.price,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
@@ -640,13 +707,15 @@ class _$LimitedPetData implements LimitedPetData {
       @JsonKey(name: 'addressarea')
           this.addressarea,
       @JsonKey(name: 'serviceproviderid')
-          this.serviceproviderid});
+          this.serviceproviderid,
+      @JsonKey(name: 'userid')
+          this.userid,
+      @JsonKey(name: 'docid')
+          this.docid});
 
   factory _$LimitedPetData.fromJson(Map<String, dynamic> json) =>
       _$_$LimitedPetDataFromJson(json);
 
-  @override
-  final String docid;
   @override
   @JsonKey(name: 'petclass')
   final String petclass;
@@ -669,6 +738,9 @@ class _$LimitedPetData implements LimitedPetData {
   @JsonKey(name: 'tileimage')
   final String tileimage;
   @override
+  @JsonKey(name: 'title')
+  final String title;
+  @override
   @JsonKey(name: 'price')
   final double price;
   @override
@@ -679,22 +751,26 @@ class _$LimitedPetData implements LimitedPetData {
   final DateTime postedon;
   @override
   @JsonKey(name: 'addressarea')
-  final Addressmodel addressarea;
+  final ContactDetailsModel addressarea;
   @override
   @JsonKey(name: 'serviceproviderid')
   final String serviceproviderid;
+  @override
+  @JsonKey(name: 'userid')
+  final String userid;
+  @override
+  @JsonKey(name: 'docid')
+  final String docid;
 
   @override
   String toString() {
-    return 'LimitedData.pet(docid: $docid, petclass: $petclass, name: $name, breed: $breed, gender: $gender, animalclass: $animalclass, age: $age, tileimage: $tileimage, price: $price, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid)';
+    return 'LimitedData.pet(petclass: $petclass, name: $name, breed: $breed, gender: $gender, animalclass: $animalclass, age: $age, tileimage: $tileimage, title: $title, price: $price, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid, userid: $userid, docid: $docid)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is LimitedPetData &&
-            (identical(other.docid, docid) ||
-                const DeepCollectionEquality().equals(other.docid, docid)) &&
             (identical(other.petclass, petclass) ||
                 const DeepCollectionEquality()
                     .equals(other.petclass, petclass)) &&
@@ -712,6 +788,8 @@ class _$LimitedPetData implements LimitedPetData {
             (identical(other.tileimage, tileimage) ||
                 const DeepCollectionEquality()
                     .equals(other.tileimage, tileimage)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.price, price) ||
                 const DeepCollectionEquality().equals(other.price, price)) &&
             (identical(other.postedon, postedon) ||
@@ -722,13 +800,16 @@ class _$LimitedPetData implements LimitedPetData {
                     .equals(other.addressarea, addressarea)) &&
             (identical(other.serviceproviderid, serviceproviderid) ||
                 const DeepCollectionEquality()
-                    .equals(other.serviceproviderid, serviceproviderid)));
+                    .equals(other.serviceproviderid, serviceproviderid)) &&
+            (identical(other.userid, userid) ||
+                const DeepCollectionEquality().equals(other.userid, userid)) &&
+            (identical(other.docid, docid) ||
+                const DeepCollectionEquality().equals(other.docid, docid)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(docid) ^
       const DeepCollectionEquality().hash(petclass) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(breed) ^
@@ -736,10 +817,13 @@ class _$LimitedPetData implements LimitedPetData {
       const DeepCollectionEquality().hash(animalclass) ^
       const DeepCollectionEquality().hash(age) ^
       const DeepCollectionEquality().hash(tileimage) ^
+      const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(postedon) ^
       const DeepCollectionEquality().hash(addressarea) ^
-      const DeepCollectionEquality().hash(serviceproviderid);
+      const DeepCollectionEquality().hash(serviceproviderid) ^
+      const DeepCollectionEquality().hash(userid) ^
+      const DeepCollectionEquality().hash(docid);
 
   @JsonKey(ignore: true)
   @override
@@ -751,7 +835,6 @@ class _$LimitedPetData implements LimitedPetData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
-            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -766,14 +849,20 @@ class _$LimitedPetData implements LimitedPetData {
                 int age,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'price')
                 double price,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid,
+            @JsonKey(name: 'docid')
+                String docid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -794,7 +883,10 @@ class _$LimitedPetData implements LimitedPetData {
             @JsonKey(name: 'discountedprice') double discountedprice,
             @JsonKey(name: 'varianttype') String varianttype,
             @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-            @JsonKey(name: 'contenttype') String contenttype),
+            @JsonKey(name: 'userid') String userid,
+            @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+            @JsonKey(name: 'contenttype') String contenttype,
+            @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     @required
         TResult vehicle(
             @JsonKey(name: 'productid')
@@ -818,9 +910,11 @@ class _$LimitedPetData implements LimitedPetData {
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult realEstate(
             @JsonKey(name: 'productid')
@@ -834,21 +928,25 @@ class _$LimitedPetData implements LimitedPetData {
             @JsonKey(name: 'numbathroom')
                 int numbathroom,
             @JsonKey(name: 'sharingallowed')
-                bool sharingallowed,
+                String sharingallowed,
             @JsonKey(name: 'sqrfootage')
                 int sqrfootage,
-            @JsonKey(name: 'floorNumber')
-                int floorNumber,
             @JsonKey(name: 'price')
                 double price,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'serviceprovidername')
+                String serviceprovidername,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult job(
             @JsonKey(name: 'productid')
@@ -857,16 +955,18 @@ class _$LimitedPetData implements LimitedPetData {
                 String title,
             @JsonKey(name: 'companyname')
                 String companyname,
-            @JsonKey(name: 'companyicon')
-                String companyicon,
             @JsonKey(name: 'salaryrange')
                 String salaryrange,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'jobtype')
                 String jobtype,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-                DateTime postedon),
+                DateTime postedon,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
   }) {
     assert(pet != null);
     assert(package != null);
@@ -874,15 +974,14 @@ class _$LimitedPetData implements LimitedPetData {
     assert(vehicle != null);
     assert(realEstate != null);
     assert(job != null);
-    return pet(docid, petclass, name, breed, gender, animalclass, age,
-        tileimage, price, postedon, addressarea, serviceproviderid);
+    return pet(petclass, name, breed, gender, animalclass, age, tileimage,
+        title, price, postedon, addressarea, serviceproviderid, userid, docid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
-        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -897,14 +996,20 @@ class _$LimitedPetData implements LimitedPetData {
             int age,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'price')
             double price,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid,
+        @JsonKey(name: 'docid')
+            String docid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
@@ -923,7 +1028,10 @@ class _$LimitedPetData implements LimitedPetData {
         @JsonKey(name: 'discountedprice') double discountedprice,
         @JsonKey(name: 'varianttype') String varianttype,
         @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-        @JsonKey(name: 'contenttype') String contenttype),
+        @JsonKey(name: 'userid') String userid,
+        @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+        @JsonKey(name: 'contenttype') String contenttype,
+        @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     TResult vehicle(
         @JsonKey(name: 'productid')
             String productid,
@@ -946,9 +1054,11 @@ class _$LimitedPetData implements LimitedPetData {
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult realEstate(
         @JsonKey(name: 'productid')
             String productid,
@@ -961,21 +1071,25 @@ class _$LimitedPetData implements LimitedPetData {
         @JsonKey(name: 'numbathroom')
             int numbathroom,
         @JsonKey(name: 'sharingallowed')
-            bool sharingallowed,
+            String sharingallowed,
         @JsonKey(name: 'sqrfootage')
             int sqrfootage,
-        @JsonKey(name: 'floorNumber')
-            int floorNumber,
         @JsonKey(name: 'price')
             double price,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'serviceprovidername')
+            String serviceprovidername,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult job(
         @JsonKey(name: 'productid')
             String productid,
@@ -983,22 +1097,37 @@ class _$LimitedPetData implements LimitedPetData {
             String title,
         @JsonKey(name: 'companyname')
             String companyname,
-        @JsonKey(name: 'companyicon')
-            String companyicon,
         @JsonKey(name: 'salaryrange')
             String salaryrange,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'jobtype')
             String jobtype,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-            DateTime postedon),
+            DateTime postedon,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (pet != null) {
-      return pet(docid, petclass, name, breed, gender, animalclass, age,
-          tileimage, price, postedon, addressarea, serviceproviderid);
+      return pet(
+          petclass,
+          name,
+          breed,
+          gender,
+          animalclass,
+          age,
+          tileimage,
+          title,
+          price,
+          postedon,
+          addressarea,
+          serviceproviderid,
+          userid,
+          docid);
     }
     return orElse();
   }
@@ -1048,8 +1177,7 @@ class _$LimitedPetData implements LimitedPetData {
 
 abstract class LimitedPetData implements LimitedData {
   const factory LimitedPetData(
-      {String docid,
-      @JsonKey(name: 'petclass')
+      {@JsonKey(name: 'petclass')
           String petclass,
       @JsonKey(name: 'name')
           String name,
@@ -1063,19 +1191,24 @@ abstract class LimitedPetData implements LimitedData {
           int age,
       @JsonKey(name: 'tileimage')
           String tileimage,
+      @JsonKey(name: 'title')
+          String title,
       @JsonKey(name: 'price')
           double price,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) = _$LimitedPetData;
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid,
+      @JsonKey(name: 'docid')
+          String docid}) = _$LimitedPetData;
 
   factory LimitedPetData.fromJson(Map<String, dynamic> json) =
       _$LimitedPetData.fromJson;
 
-  String get docid;
   @JsonKey(name: 'petclass')
   String get petclass;
   @JsonKey(name: 'name')
@@ -1090,6 +1223,8 @@ abstract class LimitedPetData implements LimitedData {
   int get age;
   @JsonKey(name: 'tileimage')
   String get tileimage;
+  @JsonKey(name: 'title')
+  String get title;
   @JsonKey(name: 'price')
   double get price;
   @JsonKey(
@@ -1098,9 +1233,13 @@ abstract class LimitedPetData implements LimitedData {
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get postedon;
   @JsonKey(name: 'addressarea')
-  Addressmodel get addressarea;
+  ContactDetailsModel get addressarea;
   @JsonKey(name: 'serviceproviderid')
   String get serviceproviderid;
+  @JsonKey(name: 'userid')
+  String get userid;
+  @JsonKey(name: 'docid')
+  String get docid;
   @JsonKey(ignore: true)
   $LimitedPetDataCopyWith<LimitedPetData> get copyWith;
 }
@@ -1211,7 +1350,6 @@ class _$LimitedPackageData implements LimitedPackageData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
-            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -1226,14 +1364,20 @@ class _$LimitedPackageData implements LimitedPackageData {
                 int age,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'price')
                 double price,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid,
+            @JsonKey(name: 'docid')
+                String docid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -1254,7 +1398,10 @@ class _$LimitedPackageData implements LimitedPackageData {
             @JsonKey(name: 'discountedprice') double discountedprice,
             @JsonKey(name: 'varianttype') String varianttype,
             @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-            @JsonKey(name: 'contenttype') String contenttype),
+            @JsonKey(name: 'userid') String userid,
+            @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+            @JsonKey(name: 'contenttype') String contenttype,
+            @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     @required
         TResult vehicle(
             @JsonKey(name: 'productid')
@@ -1278,9 +1425,11 @@ class _$LimitedPackageData implements LimitedPackageData {
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult realEstate(
             @JsonKey(name: 'productid')
@@ -1294,21 +1443,25 @@ class _$LimitedPackageData implements LimitedPackageData {
             @JsonKey(name: 'numbathroom')
                 int numbathroom,
             @JsonKey(name: 'sharingallowed')
-                bool sharingallowed,
+                String sharingallowed,
             @JsonKey(name: 'sqrfootage')
                 int sqrfootage,
-            @JsonKey(name: 'floorNumber')
-                int floorNumber,
             @JsonKey(name: 'price')
                 double price,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'serviceprovidername')
+                String serviceprovidername,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult job(
             @JsonKey(name: 'productid')
@@ -1317,16 +1470,18 @@ class _$LimitedPackageData implements LimitedPackageData {
                 String title,
             @JsonKey(name: 'companyname')
                 String companyname,
-            @JsonKey(name: 'companyicon')
-                String companyicon,
             @JsonKey(name: 'salaryrange')
                 String salaryrange,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'jobtype')
                 String jobtype,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-                DateTime postedon),
+                DateTime postedon,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
   }) {
     assert(pet != null);
     assert(package != null);
@@ -1341,7 +1496,6 @@ class _$LimitedPackageData implements LimitedPackageData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
-        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -1356,14 +1510,20 @@ class _$LimitedPackageData implements LimitedPackageData {
             int age,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'price')
             double price,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid,
+        @JsonKey(name: 'docid')
+            String docid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
@@ -1382,7 +1542,10 @@ class _$LimitedPackageData implements LimitedPackageData {
         @JsonKey(name: 'discountedprice') double discountedprice,
         @JsonKey(name: 'varianttype') String varianttype,
         @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-        @JsonKey(name: 'contenttype') String contenttype),
+        @JsonKey(name: 'userid') String userid,
+        @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+        @JsonKey(name: 'contenttype') String contenttype,
+        @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     TResult vehicle(
         @JsonKey(name: 'productid')
             String productid,
@@ -1405,9 +1568,11 @@ class _$LimitedPackageData implements LimitedPackageData {
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult realEstate(
         @JsonKey(name: 'productid')
             String productid,
@@ -1420,21 +1585,25 @@ class _$LimitedPackageData implements LimitedPackageData {
         @JsonKey(name: 'numbathroom')
             int numbathroom,
         @JsonKey(name: 'sharingallowed')
-            bool sharingallowed,
+            String sharingallowed,
         @JsonKey(name: 'sqrfootage')
             int sqrfootage,
-        @JsonKey(name: 'floorNumber')
-            int floorNumber,
         @JsonKey(name: 'price')
             double price,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'serviceprovidername')
+            String serviceprovidername,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult job(
         @JsonKey(name: 'productid')
             String productid,
@@ -1442,16 +1611,18 @@ class _$LimitedPackageData implements LimitedPackageData {
             String title,
         @JsonKey(name: 'companyname')
             String companyname,
-        @JsonKey(name: 'companyicon')
-            String companyicon,
         @JsonKey(name: 'salaryrange')
             String salaryrange,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'jobtype')
             String jobtype,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-            DateTime postedon),
+            DateTime postedon,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1545,7 +1716,12 @@ abstract class $LimitedProductDataCopyWith<$Res> {
       @JsonKey(name: 'discountedprice') double discountedprice,
       @JsonKey(name: 'varianttype') String varianttype,
       @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-      @JsonKey(name: 'contenttype') String contenttype});
+      @JsonKey(name: 'userid') String userid,
+      @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+      @JsonKey(name: 'contenttype') String contenttype,
+      @JsonKey(name: 'addressarea') ContactDetailsModel addressarea});
+
+  $ContactDetailsModelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -1573,7 +1749,10 @@ class _$LimitedProductDataCopyWithImpl<$Res>
     Object discountedprice = freezed,
     Object varianttype = freezed,
     Object packdata = freezed,
+    Object userid = freezed,
+    Object serviceproviderid = freezed,
     Object contenttype = freezed,
+    Object addressarea = freezed,
   }) {
     return _then(LimitedProductData(
       id: id == freezed ? _value.id : id as String,
@@ -1595,9 +1774,26 @@ class _$LimitedProductDataCopyWithImpl<$Res>
       packdata: packdata == freezed
           ? _value.packdata
           : packdata as List<LimitedPackageData>,
+      userid: userid == freezed ? _value.userid : userid as String,
+      serviceproviderid: serviceproviderid == freezed
+          ? _value.serviceproviderid
+          : serviceproviderid as String,
       contenttype:
           contenttype == freezed ? _value.contenttype : contenttype as String,
+      addressarea: addressarea == freezed
+          ? _value.addressarea
+          : addressarea as ContactDetailsModel,
     ));
+  }
+
+  @override
+  $ContactDetailsModelCopyWith<$Res> get addressarea {
+    if (_value.addressarea == null) {
+      return null;
+    }
+    return $ContactDetailsModelCopyWith<$Res>(_value.addressarea, (value) {
+      return _then(_value.copyWith(addressarea: value));
+    });
   }
 }
 
@@ -1618,7 +1814,10 @@ class _$LimitedProductData implements LimitedProductData {
       @JsonKey(name: 'discountedprice') this.discountedprice,
       @JsonKey(name: 'varianttype') this.varianttype,
       @JsonKey(name: 'packdata') this.packdata,
-      @JsonKey(name: 'contenttype') this.contenttype});
+      @JsonKey(name: 'userid') this.userid,
+      @JsonKey(name: 'serviceproviderid') this.serviceproviderid,
+      @JsonKey(name: 'contenttype') this.contenttype,
+      @JsonKey(name: 'addressarea') this.addressarea});
 
   factory _$LimitedProductData.fromJson(Map<String, dynamic> json) =>
       _$_$LimitedProductDataFromJson(json);
@@ -1660,12 +1859,21 @@ class _$LimitedProductData implements LimitedProductData {
   @JsonKey(name: 'packdata')
   final List<LimitedPackageData> packdata;
   @override
+  @JsonKey(name: 'userid')
+  final String userid;
+  @override
+  @JsonKey(name: 'serviceproviderid')
+  final String serviceproviderid;
+  @override
   @JsonKey(name: 'contenttype')
   final String contenttype;
+  @override
+  @JsonKey(name: 'addressarea')
+  final ContactDetailsModel addressarea;
 
   @override
   String toString() {
-    return 'LimitedData.product(id: $id, title: $title, tileimage: $tileimage, reqqty: $reqqty, isvegetarian: $isvegetarian, spicetype: $spicetype, ispackage: $ispackage, unitmeasure: $unitmeasure, origprice: $origprice, discountedprice: $discountedprice, varianttype: $varianttype, packdata: $packdata, contenttype: $contenttype)';
+    return 'LimitedData.product(id: $id, title: $title, tileimage: $tileimage, reqqty: $reqqty, isvegetarian: $isvegetarian, spicetype: $spicetype, ispackage: $ispackage, unitmeasure: $unitmeasure, origprice: $origprice, discountedprice: $discountedprice, varianttype: $varianttype, packdata: $packdata, userid: $userid, serviceproviderid: $serviceproviderid, contenttype: $contenttype, addressarea: $addressarea)';
   }
 
   @override
@@ -1705,9 +1913,17 @@ class _$LimitedProductData implements LimitedProductData {
             (identical(other.packdata, packdata) ||
                 const DeepCollectionEquality()
                     .equals(other.packdata, packdata)) &&
+            (identical(other.userid, userid) ||
+                const DeepCollectionEquality().equals(other.userid, userid)) &&
+            (identical(other.serviceproviderid, serviceproviderid) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceproviderid, serviceproviderid)) &&
             (identical(other.contenttype, contenttype) ||
                 const DeepCollectionEquality()
-                    .equals(other.contenttype, contenttype)));
+                    .equals(other.contenttype, contenttype)) &&
+            (identical(other.addressarea, addressarea) ||
+                const DeepCollectionEquality()
+                    .equals(other.addressarea, addressarea)));
   }
 
   @override
@@ -1725,7 +1941,10 @@ class _$LimitedProductData implements LimitedProductData {
       const DeepCollectionEquality().hash(discountedprice) ^
       const DeepCollectionEquality().hash(varianttype) ^
       const DeepCollectionEquality().hash(packdata) ^
-      const DeepCollectionEquality().hash(contenttype);
+      const DeepCollectionEquality().hash(userid) ^
+      const DeepCollectionEquality().hash(serviceproviderid) ^
+      const DeepCollectionEquality().hash(contenttype) ^
+      const DeepCollectionEquality().hash(addressarea);
 
   @JsonKey(ignore: true)
   @override
@@ -1737,7 +1956,6 @@ class _$LimitedProductData implements LimitedProductData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
-            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -1752,14 +1970,20 @@ class _$LimitedProductData implements LimitedProductData {
                 int age,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'price')
                 double price,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid,
+            @JsonKey(name: 'docid')
+                String docid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -1780,7 +2004,10 @@ class _$LimitedProductData implements LimitedProductData {
             @JsonKey(name: 'discountedprice') double discountedprice,
             @JsonKey(name: 'varianttype') String varianttype,
             @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-            @JsonKey(name: 'contenttype') String contenttype),
+            @JsonKey(name: 'userid') String userid,
+            @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+            @JsonKey(name: 'contenttype') String contenttype,
+            @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     @required
         TResult vehicle(
             @JsonKey(name: 'productid')
@@ -1804,9 +2031,11 @@ class _$LimitedProductData implements LimitedProductData {
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult realEstate(
             @JsonKey(name: 'productid')
@@ -1820,21 +2049,25 @@ class _$LimitedProductData implements LimitedProductData {
             @JsonKey(name: 'numbathroom')
                 int numbathroom,
             @JsonKey(name: 'sharingallowed')
-                bool sharingallowed,
+                String sharingallowed,
             @JsonKey(name: 'sqrfootage')
                 int sqrfootage,
-            @JsonKey(name: 'floorNumber')
-                int floorNumber,
             @JsonKey(name: 'price')
                 double price,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'serviceprovidername')
+                String serviceprovidername,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult job(
             @JsonKey(name: 'productid')
@@ -1843,16 +2076,18 @@ class _$LimitedProductData implements LimitedProductData {
                 String title,
             @JsonKey(name: 'companyname')
                 String companyname,
-            @JsonKey(name: 'companyicon')
-                String companyicon,
             @JsonKey(name: 'salaryrange')
                 String salaryrange,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'jobtype')
                 String jobtype,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-                DateTime postedon),
+                DateTime postedon,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
   }) {
     assert(pet != null);
     assert(package != null);
@@ -1873,14 +2108,16 @@ class _$LimitedProductData implements LimitedProductData {
         discountedprice,
         varianttype,
         packdata,
-        contenttype);
+        userid,
+        serviceproviderid,
+        contenttype,
+        addressarea);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
-        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -1895,14 +2132,20 @@ class _$LimitedProductData implements LimitedProductData {
             int age,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'price')
             double price,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid,
+        @JsonKey(name: 'docid')
+            String docid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
@@ -1921,7 +2164,10 @@ class _$LimitedProductData implements LimitedProductData {
         @JsonKey(name: 'discountedprice') double discountedprice,
         @JsonKey(name: 'varianttype') String varianttype,
         @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-        @JsonKey(name: 'contenttype') String contenttype),
+        @JsonKey(name: 'userid') String userid,
+        @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+        @JsonKey(name: 'contenttype') String contenttype,
+        @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     TResult vehicle(
         @JsonKey(name: 'productid')
             String productid,
@@ -1944,9 +2190,11 @@ class _$LimitedProductData implements LimitedProductData {
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult realEstate(
         @JsonKey(name: 'productid')
             String productid,
@@ -1959,21 +2207,25 @@ class _$LimitedProductData implements LimitedProductData {
         @JsonKey(name: 'numbathroom')
             int numbathroom,
         @JsonKey(name: 'sharingallowed')
-            bool sharingallowed,
+            String sharingallowed,
         @JsonKey(name: 'sqrfootage')
             int sqrfootage,
-        @JsonKey(name: 'floorNumber')
-            int floorNumber,
         @JsonKey(name: 'price')
             double price,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'serviceprovidername')
+            String serviceprovidername,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult job(
         @JsonKey(name: 'productid')
             String productid,
@@ -1981,16 +2233,18 @@ class _$LimitedProductData implements LimitedProductData {
             String title,
         @JsonKey(name: 'companyname')
             String companyname,
-        @JsonKey(name: 'companyicon')
-            String companyicon,
         @JsonKey(name: 'salaryrange')
             String salaryrange,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'jobtype')
             String jobtype,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-            DateTime postedon),
+            DateTime postedon,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2008,7 +2262,10 @@ class _$LimitedProductData implements LimitedProductData {
           discountedprice,
           varianttype,
           packdata,
-          contenttype);
+          userid,
+          serviceproviderid,
+          contenttype,
+          addressarea);
     }
     return orElse();
   }
@@ -2058,19 +2315,23 @@ class _$LimitedProductData implements LimitedProductData {
 
 abstract class LimitedProductData implements LimitedData {
   const factory LimitedProductData(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'tileimage') String tileimage,
-      @JsonKey(name: 'reqqty') bool reqqty,
-      @JsonKey(name: 'isvegetarian') bool isvegetarian,
-      @JsonKey(name: 'spicetype') int spicetype,
-      @JsonKey(name: 'ispackage') bool ispackage,
-      @JsonKey(name: 'unitmeasure') String unitmeasure,
-      @JsonKey(name: 'origprice') double origprice,
-      @JsonKey(name: 'discountedprice') double discountedprice,
-      @JsonKey(name: 'varianttype') String varianttype,
-      @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-      @JsonKey(name: 'contenttype') String contenttype}) = _$LimitedProductData;
+          {@JsonKey(name: 'id') String id,
+          @JsonKey(name: 'title') String title,
+          @JsonKey(name: 'tileimage') String tileimage,
+          @JsonKey(name: 'reqqty') bool reqqty,
+          @JsonKey(name: 'isvegetarian') bool isvegetarian,
+          @JsonKey(name: 'spicetype') int spicetype,
+          @JsonKey(name: 'ispackage') bool ispackage,
+          @JsonKey(name: 'unitmeasure') String unitmeasure,
+          @JsonKey(name: 'origprice') double origprice,
+          @JsonKey(name: 'discountedprice') double discountedprice,
+          @JsonKey(name: 'varianttype') String varianttype,
+          @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
+          @JsonKey(name: 'userid') String userid,
+          @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+          @JsonKey(name: 'contenttype') String contenttype,
+          @JsonKey(name: 'addressarea') ContactDetailsModel addressarea}) =
+      _$LimitedProductData;
 
   factory LimitedProductData.fromJson(Map<String, dynamic> json) =
       _$LimitedProductData.fromJson;
@@ -2099,8 +2360,14 @@ abstract class LimitedProductData implements LimitedData {
   String get varianttype;
   @JsonKey(name: 'packdata')
   List<LimitedPackageData> get packdata;
+  @JsonKey(name: 'userid')
+  String get userid;
+  @JsonKey(name: 'serviceproviderid')
+  String get serviceproviderid;
   @JsonKey(name: 'contenttype')
   String get contenttype;
+  @JsonKey(name: 'addressarea')
+  ContactDetailsModel get addressarea;
   @JsonKey(ignore: true)
   $LimitedProductDataCopyWith<LimitedProductData> get copyWith;
 }
@@ -2132,11 +2399,13 @@ abstract class $LimitedVehicleDataCopyWith<$Res> {
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid});
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid});
 
-  $AddressmodelCopyWith<$Res> get addressarea;
+  $ContactDetailsModelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -2164,6 +2433,7 @@ class _$LimitedVehicleDataCopyWithImpl<$Res>
     Object postedon = freezed,
     Object addressarea = freezed,
     Object serviceproviderid = freezed,
+    Object userid = freezed,
   }) {
     return _then(LimitedVehicleData(
       productid: productid == freezed ? _value.productid : productid as String,
@@ -2179,19 +2449,20 @@ class _$LimitedVehicleDataCopyWithImpl<$Res>
       postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
       addressarea: addressarea == freezed
           ? _value.addressarea
-          : addressarea as Addressmodel,
+          : addressarea as ContactDetailsModel,
       serviceproviderid: serviceproviderid == freezed
           ? _value.serviceproviderid
           : serviceproviderid as String,
+      userid: userid == freezed ? _value.userid : userid as String,
     ));
   }
 
   @override
-  $AddressmodelCopyWith<$Res> get addressarea {
+  $ContactDetailsModelCopyWith<$Res> get addressarea {
     if (_value.addressarea == null) {
       return null;
     }
-    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
+    return $ContactDetailsModelCopyWith<$Res>(_value.addressarea, (value) {
       return _then(_value.copyWith(addressarea: value));
     });
   }
@@ -2225,7 +2496,9 @@ class _$LimitedVehicleData implements LimitedVehicleData {
       @JsonKey(name: 'addressarea')
           this.addressarea,
       @JsonKey(name: 'serviceproviderid')
-          this.serviceproviderid});
+          this.serviceproviderid,
+      @JsonKey(name: 'userid')
+          this.userid});
 
   factory _$LimitedVehicleData.fromJson(Map<String, dynamic> json) =>
       _$_$LimitedVehicleDataFromJson(json);
@@ -2265,14 +2538,17 @@ class _$LimitedVehicleData implements LimitedVehicleData {
   final DateTime postedon;
   @override
   @JsonKey(name: 'addressarea')
-  final Addressmodel addressarea;
+  final ContactDetailsModel addressarea;
   @override
   @JsonKey(name: 'serviceproviderid')
   final String serviceproviderid;
+  @override
+  @JsonKey(name: 'userid')
+  final String userid;
 
   @override
   String toString() {
-    return 'LimitedData.vehicle(productid: $productid, title: $title, vehicletype: $vehicletype, make: $make, model: $model, yearmade: $yearmade, milage: $milage, price: $price, tileimage: $tileimage, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid)';
+    return 'LimitedData.vehicle(productid: $productid, title: $title, vehicletype: $vehicletype, make: $make, model: $model, yearmade: $yearmade, milage: $milage, price: $price, tileimage: $tileimage, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid, userid: $userid)';
   }
 
   @override
@@ -2309,7 +2585,9 @@ class _$LimitedVehicleData implements LimitedVehicleData {
                     .equals(other.addressarea, addressarea)) &&
             (identical(other.serviceproviderid, serviceproviderid) ||
                 const DeepCollectionEquality()
-                    .equals(other.serviceproviderid, serviceproviderid)));
+                    .equals(other.serviceproviderid, serviceproviderid)) &&
+            (identical(other.userid, userid) ||
+                const DeepCollectionEquality().equals(other.userid, userid)));
   }
 
   @override
@@ -2326,7 +2604,8 @@ class _$LimitedVehicleData implements LimitedVehicleData {
       const DeepCollectionEquality().hash(tileimage) ^
       const DeepCollectionEquality().hash(postedon) ^
       const DeepCollectionEquality().hash(addressarea) ^
-      const DeepCollectionEquality().hash(serviceproviderid);
+      const DeepCollectionEquality().hash(serviceproviderid) ^
+      const DeepCollectionEquality().hash(userid);
 
   @JsonKey(ignore: true)
   @override
@@ -2338,7 +2617,6 @@ class _$LimitedVehicleData implements LimitedVehicleData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
-            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -2353,14 +2631,20 @@ class _$LimitedVehicleData implements LimitedVehicleData {
                 int age,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'price')
                 double price,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid,
+            @JsonKey(name: 'docid')
+                String docid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -2381,7 +2665,10 @@ class _$LimitedVehicleData implements LimitedVehicleData {
             @JsonKey(name: 'discountedprice') double discountedprice,
             @JsonKey(name: 'varianttype') String varianttype,
             @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-            @JsonKey(name: 'contenttype') String contenttype),
+            @JsonKey(name: 'userid') String userid,
+            @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+            @JsonKey(name: 'contenttype') String contenttype,
+            @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     @required
         TResult vehicle(
             @JsonKey(name: 'productid')
@@ -2405,9 +2692,11 @@ class _$LimitedVehicleData implements LimitedVehicleData {
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult realEstate(
             @JsonKey(name: 'productid')
@@ -2421,21 +2710,25 @@ class _$LimitedVehicleData implements LimitedVehicleData {
             @JsonKey(name: 'numbathroom')
                 int numbathroom,
             @JsonKey(name: 'sharingallowed')
-                bool sharingallowed,
+                String sharingallowed,
             @JsonKey(name: 'sqrfootage')
                 int sqrfootage,
-            @JsonKey(name: 'floorNumber')
-                int floorNumber,
             @JsonKey(name: 'price')
                 double price,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'serviceprovidername')
+                String serviceprovidername,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult job(
             @JsonKey(name: 'productid')
@@ -2444,16 +2737,18 @@ class _$LimitedVehicleData implements LimitedVehicleData {
                 String title,
             @JsonKey(name: 'companyname')
                 String companyname,
-            @JsonKey(name: 'companyicon')
-                String companyicon,
             @JsonKey(name: 'salaryrange')
                 String salaryrange,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'jobtype')
                 String jobtype,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-                DateTime postedon),
+                DateTime postedon,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
   }) {
     assert(pet != null);
     assert(package != null);
@@ -2462,14 +2757,13 @@ class _$LimitedVehicleData implements LimitedVehicleData {
     assert(realEstate != null);
     assert(job != null);
     return vehicle(productid, title, vehicletype, make, model, yearmade, milage,
-        price, tileimage, postedon, addressarea, serviceproviderid);
+        price, tileimage, postedon, addressarea, serviceproviderid, userid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
-        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -2484,14 +2778,20 @@ class _$LimitedVehicleData implements LimitedVehicleData {
             int age,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'price')
             double price,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid,
+        @JsonKey(name: 'docid')
+            String docid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
@@ -2510,7 +2810,10 @@ class _$LimitedVehicleData implements LimitedVehicleData {
         @JsonKey(name: 'discountedprice') double discountedprice,
         @JsonKey(name: 'varianttype') String varianttype,
         @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-        @JsonKey(name: 'contenttype') String contenttype),
+        @JsonKey(name: 'userid') String userid,
+        @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+        @JsonKey(name: 'contenttype') String contenttype,
+        @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     TResult vehicle(
         @JsonKey(name: 'productid')
             String productid,
@@ -2533,9 +2836,11 @@ class _$LimitedVehicleData implements LimitedVehicleData {
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult realEstate(
         @JsonKey(name: 'productid')
             String productid,
@@ -2548,21 +2853,25 @@ class _$LimitedVehicleData implements LimitedVehicleData {
         @JsonKey(name: 'numbathroom')
             int numbathroom,
         @JsonKey(name: 'sharingallowed')
-            bool sharingallowed,
+            String sharingallowed,
         @JsonKey(name: 'sqrfootage')
             int sqrfootage,
-        @JsonKey(name: 'floorNumber')
-            int floorNumber,
         @JsonKey(name: 'price')
             double price,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'serviceprovidername')
+            String serviceprovidername,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult job(
         @JsonKey(name: 'productid')
             String productid,
@@ -2570,22 +2879,36 @@ class _$LimitedVehicleData implements LimitedVehicleData {
             String title,
         @JsonKey(name: 'companyname')
             String companyname,
-        @JsonKey(name: 'companyicon')
-            String companyicon,
         @JsonKey(name: 'salaryrange')
             String salaryrange,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'jobtype')
             String jobtype,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-            DateTime postedon),
+            DateTime postedon,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (vehicle != null) {
-      return vehicle(productid, title, vehicletype, make, model, yearmade,
-          milage, price, tileimage, postedon, addressarea, serviceproviderid);
+      return vehicle(
+          productid,
+          title,
+          vehicletype,
+          make,
+          model,
+          yearmade,
+          milage,
+          price,
+          tileimage,
+          postedon,
+          addressarea,
+          serviceproviderid,
+          userid);
     }
     return orElse();
   }
@@ -2656,9 +2979,11 @@ abstract class LimitedVehicleData implements LimitedData {
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) = _$LimitedVehicleData;
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid}) = _$LimitedVehicleData;
 
   factory LimitedVehicleData.fromJson(Map<String, dynamic> json) =
       _$LimitedVehicleData.fromJson;
@@ -2687,9 +3012,11 @@ abstract class LimitedVehicleData implements LimitedData {
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get postedon;
   @JsonKey(name: 'addressarea')
-  Addressmodel get addressarea;
+  ContactDetailsModel get addressarea;
   @JsonKey(name: 'serviceproviderid')
   String get serviceproviderid;
+  @JsonKey(name: 'userid')
+  String get userid;
   @JsonKey(ignore: true)
   $LimitedVehicleDataCopyWith<LimitedVehicleData> get copyWith;
 }
@@ -2711,23 +3038,27 @@ abstract class $LimitedRealEstateDataCopyWith<$Res> {
       @JsonKey(name: 'numbathroom')
           int numbathroom,
       @JsonKey(name: 'sharingallowed')
-          bool sharingallowed,
+          String sharingallowed,
       @JsonKey(name: 'sqrfootage')
           int sqrfootage,
-      @JsonKey(name: 'floorNumber')
-          int floorNumber,
       @JsonKey(name: 'price')
           double price,
+      @JsonKey(name: 'title')
+          String title,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'tileimage')
           String tileimage,
+      @JsonKey(name: 'serviceprovidername')
+          String serviceprovidername,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid});
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid});
 
-  $AddressmodelCopyWith<$Res> get addressarea;
+  $ContactDetailsModelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -2750,12 +3081,14 @@ class _$LimitedRealEstateDataCopyWithImpl<$Res>
     Object numbathroom = freezed,
     Object sharingallowed = freezed,
     Object sqrfootage = freezed,
-    Object floorNumber = freezed,
     Object price = freezed,
+    Object title = freezed,
     Object addressarea = freezed,
     Object postedon = freezed,
     Object tileimage = freezed,
+    Object serviceprovidername = freezed,
     Object serviceproviderid = freezed,
+    Object userid = freezed,
   }) {
     return _then(LimitedRealEstateData(
       productid: productid == freezed ? _value.productid : productid as String,
@@ -2769,28 +3102,31 @@ class _$LimitedRealEstateDataCopyWithImpl<$Res>
           numbathroom == freezed ? _value.numbathroom : numbathroom as int,
       sharingallowed: sharingallowed == freezed
           ? _value.sharingallowed
-          : sharingallowed as bool,
+          : sharingallowed as String,
       sqrfootage: sqrfootage == freezed ? _value.sqrfootage : sqrfootage as int,
-      floorNumber:
-          floorNumber == freezed ? _value.floorNumber : floorNumber as int,
       price: price == freezed ? _value.price : price as double,
+      title: title == freezed ? _value.title : title as String,
       addressarea: addressarea == freezed
           ? _value.addressarea
-          : addressarea as Addressmodel,
+          : addressarea as ContactDetailsModel,
       postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
       tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
+      serviceprovidername: serviceprovidername == freezed
+          ? _value.serviceprovidername
+          : serviceprovidername as String,
       serviceproviderid: serviceproviderid == freezed
           ? _value.serviceproviderid
           : serviceproviderid as String,
+      userid: userid == freezed ? _value.userid : userid as String,
     ));
   }
 
   @override
-  $AddressmodelCopyWith<$Res> get addressarea {
+  $ContactDetailsModelCopyWith<$Res> get addressarea {
     if (_value.addressarea == null) {
       return null;
     }
-    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
+    return $ContactDetailsModelCopyWith<$Res>(_value.addressarea, (value) {
       return _then(_value.copyWith(addressarea: value));
     });
   }
@@ -2815,18 +3151,22 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
           this.sharingallowed,
       @JsonKey(name: 'sqrfootage')
           this.sqrfootage,
-      @JsonKey(name: 'floorNumber')
-          this.floorNumber,
       @JsonKey(name: 'price')
           this.price,
+      @JsonKey(name: 'title')
+          this.title,
       @JsonKey(name: 'addressarea')
           this.addressarea,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           this.postedon,
       @JsonKey(name: 'tileimage')
           this.tileimage,
+      @JsonKey(name: 'serviceprovidername')
+          this.serviceprovidername,
       @JsonKey(name: 'serviceproviderid')
-          this.serviceproviderid});
+          this.serviceproviderid,
+      @JsonKey(name: 'userid')
+          this.userid});
 
   factory _$LimitedRealEstateData.fromJson(Map<String, dynamic> json) =>
       _$_$LimitedRealEstateDataFromJson(json);
@@ -2848,19 +3188,19 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
   final int numbathroom;
   @override
   @JsonKey(name: 'sharingallowed')
-  final bool sharingallowed;
+  final String sharingallowed;
   @override
   @JsonKey(name: 'sqrfootage')
   final int sqrfootage;
   @override
-  @JsonKey(name: 'floorNumber')
-  final int floorNumber;
-  @override
   @JsonKey(name: 'price')
   final double price;
   @override
+  @JsonKey(name: 'title')
+  final String title;
+  @override
   @JsonKey(name: 'addressarea')
-  final Addressmodel addressarea;
+  final ContactDetailsModel addressarea;
   @override
   @JsonKey(
       name: 'postedon',
@@ -2871,12 +3211,18 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
   @JsonKey(name: 'tileimage')
   final String tileimage;
   @override
+  @JsonKey(name: 'serviceprovidername')
+  final String serviceprovidername;
+  @override
   @JsonKey(name: 'serviceproviderid')
   final String serviceproviderid;
+  @override
+  @JsonKey(name: 'userid')
+  final String userid;
 
   @override
   String toString() {
-    return 'LimitedData.realEstate(productid: $productid, listingtype: $listingtype, propertytype: $propertytype, numbedroom: $numbedroom, numbathroom: $numbathroom, sharingallowed: $sharingallowed, sqrfootage: $sqrfootage, floorNumber: $floorNumber, price: $price, addressarea: $addressarea, postedon: $postedon, tileimage: $tileimage, serviceproviderid: $serviceproviderid)';
+    return 'LimitedData.realEstate(productid: $productid, listingtype: $listingtype, propertytype: $propertytype, numbedroom: $numbedroom, numbathroom: $numbathroom, sharingallowed: $sharingallowed, sqrfootage: $sqrfootage, price: $price, title: $title, addressarea: $addressarea, postedon: $postedon, tileimage: $tileimage, serviceprovidername: $serviceprovidername, serviceproviderid: $serviceproviderid, userid: $userid)';
   }
 
   @override
@@ -2904,11 +3250,10 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
             (identical(other.sqrfootage, sqrfootage) ||
                 const DeepCollectionEquality()
                     .equals(other.sqrfootage, sqrfootage)) &&
-            (identical(other.floorNumber, floorNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.floorNumber, floorNumber)) &&
             (identical(other.price, price) ||
                 const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.addressarea, addressarea) ||
                 const DeepCollectionEquality()
                     .equals(other.addressarea, addressarea)) &&
@@ -2918,9 +3263,14 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
             (identical(other.tileimage, tileimage) ||
                 const DeepCollectionEquality()
                     .equals(other.tileimage, tileimage)) &&
+            (identical(other.serviceprovidername, serviceprovidername) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceprovidername, serviceprovidername)) &&
             (identical(other.serviceproviderid, serviceproviderid) ||
                 const DeepCollectionEquality()
-                    .equals(other.serviceproviderid, serviceproviderid)));
+                    .equals(other.serviceproviderid, serviceproviderid)) &&
+            (identical(other.userid, userid) ||
+                const DeepCollectionEquality().equals(other.userid, userid)));
   }
 
   @override
@@ -2933,12 +3283,14 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
       const DeepCollectionEquality().hash(numbathroom) ^
       const DeepCollectionEquality().hash(sharingallowed) ^
       const DeepCollectionEquality().hash(sqrfootage) ^
-      const DeepCollectionEquality().hash(floorNumber) ^
       const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(addressarea) ^
       const DeepCollectionEquality().hash(postedon) ^
       const DeepCollectionEquality().hash(tileimage) ^
-      const DeepCollectionEquality().hash(serviceproviderid);
+      const DeepCollectionEquality().hash(serviceprovidername) ^
+      const DeepCollectionEquality().hash(serviceproviderid) ^
+      const DeepCollectionEquality().hash(userid);
 
   @JsonKey(ignore: true)
   @override
@@ -2951,7 +3303,6 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
-            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -2966,14 +3317,20 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
                 int age,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'price')
                 double price,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid,
+            @JsonKey(name: 'docid')
+                String docid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -2994,7 +3351,10 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
             @JsonKey(name: 'discountedprice') double discountedprice,
             @JsonKey(name: 'varianttype') String varianttype,
             @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-            @JsonKey(name: 'contenttype') String contenttype),
+            @JsonKey(name: 'userid') String userid,
+            @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+            @JsonKey(name: 'contenttype') String contenttype,
+            @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     @required
         TResult vehicle(
             @JsonKey(name: 'productid')
@@ -3018,9 +3378,11 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult realEstate(
             @JsonKey(name: 'productid')
@@ -3034,21 +3396,25 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
             @JsonKey(name: 'numbathroom')
                 int numbathroom,
             @JsonKey(name: 'sharingallowed')
-                bool sharingallowed,
+                String sharingallowed,
             @JsonKey(name: 'sqrfootage')
                 int sqrfootage,
-            @JsonKey(name: 'floorNumber')
-                int floorNumber,
             @JsonKey(name: 'price')
                 double price,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'serviceprovidername')
+                String serviceprovidername,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult job(
             @JsonKey(name: 'productid')
@@ -3057,16 +3423,18 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
                 String title,
             @JsonKey(name: 'companyname')
                 String companyname,
-            @JsonKey(name: 'companyicon')
-                String companyicon,
             @JsonKey(name: 'salaryrange')
                 String salaryrange,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'jobtype')
                 String jobtype,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-                DateTime postedon),
+                DateTime postedon,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
   }) {
     assert(pet != null);
     assert(package != null);
@@ -3082,19 +3450,20 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
         numbathroom,
         sharingallowed,
         sqrfootage,
-        floorNumber,
         price,
+        title,
         addressarea,
         postedon,
         tileimage,
-        serviceproviderid);
+        serviceprovidername,
+        serviceproviderid,
+        userid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
-        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -3109,14 +3478,20 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
             int age,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'price')
             double price,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid,
+        @JsonKey(name: 'docid')
+            String docid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
@@ -3135,7 +3510,10 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
         @JsonKey(name: 'discountedprice') double discountedprice,
         @JsonKey(name: 'varianttype') String varianttype,
         @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-        @JsonKey(name: 'contenttype') String contenttype),
+        @JsonKey(name: 'userid') String userid,
+        @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+        @JsonKey(name: 'contenttype') String contenttype,
+        @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     TResult vehicle(
         @JsonKey(name: 'productid')
             String productid,
@@ -3158,9 +3536,11 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult realEstate(
         @JsonKey(name: 'productid')
             String productid,
@@ -3173,21 +3553,25 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
         @JsonKey(name: 'numbathroom')
             int numbathroom,
         @JsonKey(name: 'sharingallowed')
-            bool sharingallowed,
+            String sharingallowed,
         @JsonKey(name: 'sqrfootage')
             int sqrfootage,
-        @JsonKey(name: 'floorNumber')
-            int floorNumber,
         @JsonKey(name: 'price')
             double price,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'serviceprovidername')
+            String serviceprovidername,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult job(
         @JsonKey(name: 'productid')
             String productid,
@@ -3195,16 +3579,18 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
             String title,
         @JsonKey(name: 'companyname')
             String companyname,
-        @JsonKey(name: 'companyicon')
-            String companyicon,
         @JsonKey(name: 'salaryrange')
             String salaryrange,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'jobtype')
             String jobtype,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-            DateTime postedon),
+            DateTime postedon,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3217,12 +3603,14 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
           numbathroom,
           sharingallowed,
           sqrfootage,
-          floorNumber,
           price,
+          title,
           addressarea,
           postedon,
           tileimage,
-          serviceproviderid);
+          serviceprovidername,
+          serviceproviderid,
+          userid);
     }
     return orElse();
   }
@@ -3284,21 +3672,25 @@ abstract class LimitedRealEstateData implements LimitedData {
       @JsonKey(name: 'numbathroom')
           int numbathroom,
       @JsonKey(name: 'sharingallowed')
-          bool sharingallowed,
+          String sharingallowed,
       @JsonKey(name: 'sqrfootage')
           int sqrfootage,
-      @JsonKey(name: 'floorNumber')
-          int floorNumber,
       @JsonKey(name: 'price')
           double price,
+      @JsonKey(name: 'title')
+          String title,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
           DateTime postedon,
       @JsonKey(name: 'tileimage')
           String tileimage,
+      @JsonKey(name: 'serviceprovidername')
+          String serviceprovidername,
       @JsonKey(name: 'serviceproviderid')
-          String serviceproviderid}) = _$LimitedRealEstateData;
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid}) = _$LimitedRealEstateData;
 
   factory LimitedRealEstateData.fromJson(Map<String, dynamic> json) =
       _$LimitedRealEstateData.fromJson;
@@ -3314,15 +3706,15 @@ abstract class LimitedRealEstateData implements LimitedData {
   @JsonKey(name: 'numbathroom')
   int get numbathroom;
   @JsonKey(name: 'sharingallowed')
-  bool get sharingallowed;
+  String get sharingallowed;
   @JsonKey(name: 'sqrfootage')
   int get sqrfootage;
-  @JsonKey(name: 'floorNumber')
-  int get floorNumber;
   @JsonKey(name: 'price')
   double get price;
+  @JsonKey(name: 'title')
+  String get title;
   @JsonKey(name: 'addressarea')
-  Addressmodel get addressarea;
+  ContactDetailsModel get addressarea;
   @JsonKey(
       name: 'postedon',
       fromJson: JsonHelper.fromJsonTimeStamp,
@@ -3330,8 +3722,12 @@ abstract class LimitedRealEstateData implements LimitedData {
   DateTime get postedon;
   @JsonKey(name: 'tileimage')
   String get tileimage;
+  @JsonKey(name: 'serviceprovidername')
+  String get serviceprovidername;
   @JsonKey(name: 'serviceproviderid')
   String get serviceproviderid;
+  @JsonKey(name: 'userid')
+  String get userid;
   @JsonKey(ignore: true)
   $LimitedRealEstateDataCopyWith<LimitedRealEstateData> get copyWith;
 }
@@ -3348,18 +3744,20 @@ abstract class $LimitedJobDataCopyWith<$Res> {
           String title,
       @JsonKey(name: 'companyname')
           String companyname,
-      @JsonKey(name: 'companyicon')
-          String companyicon,
       @JsonKey(name: 'salaryrange')
           String salaryrange,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'jobtype')
           String jobtype,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon});
+          DateTime postedon,
+      @JsonKey(name: 'serviceproviderid')
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid});
 
-  $AddressmodelCopyWith<$Res> get addressarea;
+  $ContactDetailsModelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -3377,35 +3775,38 @@ class _$LimitedJobDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
     Object productid = freezed,
     Object title = freezed,
     Object companyname = freezed,
-    Object companyicon = freezed,
     Object salaryrange = freezed,
     Object addressarea = freezed,
     Object jobtype = freezed,
     Object postedon = freezed,
+    Object serviceproviderid = freezed,
+    Object userid = freezed,
   }) {
     return _then(LimitedJobData(
       productid: productid == freezed ? _value.productid : productid as String,
       title: title == freezed ? _value.title : title as String,
       companyname:
           companyname == freezed ? _value.companyname : companyname as String,
-      companyicon:
-          companyicon == freezed ? _value.companyicon : companyicon as String,
       salaryrange:
           salaryrange == freezed ? _value.salaryrange : salaryrange as String,
       addressarea: addressarea == freezed
           ? _value.addressarea
-          : addressarea as Addressmodel,
+          : addressarea as ContactDetailsModel,
       jobtype: jobtype == freezed ? _value.jobtype : jobtype as String,
       postedon: postedon == freezed ? _value.postedon : postedon as DateTime,
+      serviceproviderid: serviceproviderid == freezed
+          ? _value.serviceproviderid
+          : serviceproviderid as String,
+      userid: userid == freezed ? _value.userid : userid as String,
     ));
   }
 
   @override
-  $AddressmodelCopyWith<$Res> get addressarea {
+  $ContactDetailsModelCopyWith<$Res> get addressarea {
     if (_value.addressarea == null) {
       return null;
     }
-    return $AddressmodelCopyWith<$Res>(_value.addressarea, (value) {
+    return $ContactDetailsModelCopyWith<$Res>(_value.addressarea, (value) {
       return _then(_value.copyWith(addressarea: value));
     });
   }
@@ -3422,8 +3823,6 @@ class _$LimitedJobData implements LimitedJobData {
           this.title,
       @JsonKey(name: 'companyname')
           this.companyname,
-      @JsonKey(name: 'companyicon')
-          this.companyicon,
       @JsonKey(name: 'salaryrange')
           this.salaryrange,
       @JsonKey(name: 'addressarea')
@@ -3431,7 +3830,11 @@ class _$LimitedJobData implements LimitedJobData {
       @JsonKey(name: 'jobtype')
           this.jobtype,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          this.postedon});
+          this.postedon,
+      @JsonKey(name: 'serviceproviderid')
+          this.serviceproviderid,
+      @JsonKey(name: 'userid')
+          this.userid});
 
   factory _$LimitedJobData.fromJson(Map<String, dynamic> json) =>
       _$_$LimitedJobDataFromJson(json);
@@ -3446,14 +3849,11 @@ class _$LimitedJobData implements LimitedJobData {
   @JsonKey(name: 'companyname')
   final String companyname;
   @override
-  @JsonKey(name: 'companyicon')
-  final String companyicon;
-  @override
   @JsonKey(name: 'salaryrange')
   final String salaryrange;
   @override
   @JsonKey(name: 'addressarea')
-  final Addressmodel addressarea;
+  final ContactDetailsModel addressarea;
   @override
   @JsonKey(name: 'jobtype')
   final String jobtype;
@@ -3463,10 +3863,16 @@ class _$LimitedJobData implements LimitedJobData {
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   final DateTime postedon;
+  @override
+  @JsonKey(name: 'serviceproviderid')
+  final String serviceproviderid;
+  @override
+  @JsonKey(name: 'userid')
+  final String userid;
 
   @override
   String toString() {
-    return 'LimitedData.job(productid: $productid, title: $title, companyname: $companyname, companyicon: $companyicon, salaryrange: $salaryrange, addressarea: $addressarea, jobtype: $jobtype, postedon: $postedon)';
+    return 'LimitedData.job(productid: $productid, title: $title, companyname: $companyname, salaryrange: $salaryrange, addressarea: $addressarea, jobtype: $jobtype, postedon: $postedon, serviceproviderid: $serviceproviderid, userid: $userid)';
   }
 
   @override
@@ -3481,9 +3887,6 @@ class _$LimitedJobData implements LimitedJobData {
             (identical(other.companyname, companyname) ||
                 const DeepCollectionEquality()
                     .equals(other.companyname, companyname)) &&
-            (identical(other.companyicon, companyicon) ||
-                const DeepCollectionEquality()
-                    .equals(other.companyicon, companyicon)) &&
             (identical(other.salaryrange, salaryrange) ||
                 const DeepCollectionEquality()
                     .equals(other.salaryrange, salaryrange)) &&
@@ -3495,7 +3898,12 @@ class _$LimitedJobData implements LimitedJobData {
                     .equals(other.jobtype, jobtype)) &&
             (identical(other.postedon, postedon) ||
                 const DeepCollectionEquality()
-                    .equals(other.postedon, postedon)));
+                    .equals(other.postedon, postedon)) &&
+            (identical(other.serviceproviderid, serviceproviderid) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceproviderid, serviceproviderid)) &&
+            (identical(other.userid, userid) ||
+                const DeepCollectionEquality().equals(other.userid, userid)));
   }
 
   @override
@@ -3504,11 +3912,12 @@ class _$LimitedJobData implements LimitedJobData {
       const DeepCollectionEquality().hash(productid) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(companyname) ^
-      const DeepCollectionEquality().hash(companyicon) ^
       const DeepCollectionEquality().hash(salaryrange) ^
       const DeepCollectionEquality().hash(addressarea) ^
       const DeepCollectionEquality().hash(jobtype) ^
-      const DeepCollectionEquality().hash(postedon);
+      const DeepCollectionEquality().hash(postedon) ^
+      const DeepCollectionEquality().hash(serviceproviderid) ^
+      const DeepCollectionEquality().hash(userid);
 
   @JsonKey(ignore: true)
   @override
@@ -3520,7 +3929,6 @@ class _$LimitedJobData implements LimitedJobData {
   TResult when<TResult extends Object>({
     @required
         TResult pet(
-            String docid,
             @JsonKey(name: 'petclass')
                 String petclass,
             @JsonKey(name: 'name')
@@ -3535,14 +3943,20 @@ class _$LimitedJobData implements LimitedJobData {
                 int age,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'price')
                 double price,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid,
+            @JsonKey(name: 'docid')
+                String docid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -3563,7 +3977,10 @@ class _$LimitedJobData implements LimitedJobData {
             @JsonKey(name: 'discountedprice') double discountedprice,
             @JsonKey(name: 'varianttype') String varianttype,
             @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-            @JsonKey(name: 'contenttype') String contenttype),
+            @JsonKey(name: 'userid') String userid,
+            @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+            @JsonKey(name: 'contenttype') String contenttype,
+            @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     @required
         TResult vehicle(
             @JsonKey(name: 'productid')
@@ -3587,9 +4004,11 @@ class _$LimitedJobData implements LimitedJobData {
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult realEstate(
             @JsonKey(name: 'productid')
@@ -3603,21 +4022,25 @@ class _$LimitedJobData implements LimitedJobData {
             @JsonKey(name: 'numbathroom')
                 int numbathroom,
             @JsonKey(name: 'sharingallowed')
-                bool sharingallowed,
+                String sharingallowed,
             @JsonKey(name: 'sqrfootage')
                 int sqrfootage,
-            @JsonKey(name: 'floorNumber')
-                int floorNumber,
             @JsonKey(name: 'price')
                 double price,
+            @JsonKey(name: 'title')
+                String title,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
                 DateTime postedon,
             @JsonKey(name: 'tileimage')
                 String tileimage,
+            @JsonKey(name: 'serviceprovidername')
+                String serviceprovidername,
             @JsonKey(name: 'serviceproviderid')
-                String serviceproviderid),
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
     @required
         TResult job(
             @JsonKey(name: 'productid')
@@ -3626,16 +4049,18 @@ class _$LimitedJobData implements LimitedJobData {
                 String title,
             @JsonKey(name: 'companyname')
                 String companyname,
-            @JsonKey(name: 'companyicon')
-                String companyicon,
             @JsonKey(name: 'salaryrange')
                 String salaryrange,
             @JsonKey(name: 'addressarea')
-                Addressmodel addressarea,
+                ContactDetailsModel addressarea,
             @JsonKey(name: 'jobtype')
                 String jobtype,
             @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-                DateTime postedon),
+                DateTime postedon,
+            @JsonKey(name: 'serviceproviderid')
+                String serviceproviderid,
+            @JsonKey(name: 'userid')
+                String userid),
   }) {
     assert(pet != null);
     assert(package != null);
@@ -3643,15 +4068,14 @@ class _$LimitedJobData implements LimitedJobData {
     assert(vehicle != null);
     assert(realEstate != null);
     assert(job != null);
-    return job(productid, title, companyname, companyicon, salaryrange,
-        addressarea, jobtype, postedon);
+    return job(productid, title, companyname, salaryrange, addressarea, jobtype,
+        postedon, serviceproviderid, userid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult pet(
-        String docid,
         @JsonKey(name: 'petclass')
             String petclass,
         @JsonKey(name: 'name')
@@ -3666,14 +4090,20 @@ class _$LimitedJobData implements LimitedJobData {
             int age,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'price')
             double price,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid,
+        @JsonKey(name: 'docid')
+            String docid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
@@ -3692,7 +4122,10 @@ class _$LimitedJobData implements LimitedJobData {
         @JsonKey(name: 'discountedprice') double discountedprice,
         @JsonKey(name: 'varianttype') String varianttype,
         @JsonKey(name: 'packdata') List<LimitedPackageData> packdata,
-        @JsonKey(name: 'contenttype') String contenttype),
+        @JsonKey(name: 'userid') String userid,
+        @JsonKey(name: 'serviceproviderid') String serviceproviderid,
+        @JsonKey(name: 'contenttype') String contenttype,
+        @JsonKey(name: 'addressarea') ContactDetailsModel addressarea),
     TResult vehicle(
         @JsonKey(name: 'productid')
             String productid,
@@ -3715,9 +4148,11 @@ class _$LimitedJobData implements LimitedJobData {
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult realEstate(
         @JsonKey(name: 'productid')
             String productid,
@@ -3730,21 +4165,25 @@ class _$LimitedJobData implements LimitedJobData {
         @JsonKey(name: 'numbathroom')
             int numbathroom,
         @JsonKey(name: 'sharingallowed')
-            bool sharingallowed,
+            String sharingallowed,
         @JsonKey(name: 'sqrfootage')
             int sqrfootage,
-        @JsonKey(name: 'floorNumber')
-            int floorNumber,
         @JsonKey(name: 'price')
             double price,
+        @JsonKey(name: 'title')
+            String title,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
             DateTime postedon,
         @JsonKey(name: 'tileimage')
             String tileimage,
+        @JsonKey(name: 'serviceprovidername')
+            String serviceprovidername,
         @JsonKey(name: 'serviceproviderid')
-            String serviceproviderid),
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     TResult job(
         @JsonKey(name: 'productid')
             String productid,
@@ -3752,22 +4191,24 @@ class _$LimitedJobData implements LimitedJobData {
             String title,
         @JsonKey(name: 'companyname')
             String companyname,
-        @JsonKey(name: 'companyicon')
-            String companyicon,
         @JsonKey(name: 'salaryrange')
             String salaryrange,
         @JsonKey(name: 'addressarea')
-            Addressmodel addressarea,
+            ContactDetailsModel addressarea,
         @JsonKey(name: 'jobtype')
             String jobtype,
         @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-            DateTime postedon),
+            DateTime postedon,
+        @JsonKey(name: 'serviceproviderid')
+            String serviceproviderid,
+        @JsonKey(name: 'userid')
+            String userid),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (job != null) {
-      return job(productid, title, companyname, companyicon, salaryrange,
-          addressarea, jobtype, postedon);
+      return job(productid, title, companyname, salaryrange, addressarea,
+          jobtype, postedon, serviceproviderid, userid);
     }
     return orElse();
   }
@@ -3823,16 +4264,18 @@ abstract class LimitedJobData implements LimitedData {
           String title,
       @JsonKey(name: 'companyname')
           String companyname,
-      @JsonKey(name: 'companyicon')
-          String companyicon,
       @JsonKey(name: 'salaryrange')
           String salaryrange,
       @JsonKey(name: 'addressarea')
-          Addressmodel addressarea,
+          ContactDetailsModel addressarea,
       @JsonKey(name: 'jobtype')
           String jobtype,
       @JsonKey(name: 'postedon', fromJson: JsonHelper.fromJsonTimeStamp, toJson: JsonHelper.toJsonTimeStamp)
-          DateTime postedon}) = _$LimitedJobData;
+          DateTime postedon,
+      @JsonKey(name: 'serviceproviderid')
+          String serviceproviderid,
+      @JsonKey(name: 'userid')
+          String userid}) = _$LimitedJobData;
 
   factory LimitedJobData.fromJson(Map<String, dynamic> json) =
       _$LimitedJobData.fromJson;
@@ -3843,12 +4286,10 @@ abstract class LimitedJobData implements LimitedData {
   String get title;
   @JsonKey(name: 'companyname')
   String get companyname;
-  @JsonKey(name: 'companyicon')
-  String get companyicon;
   @JsonKey(name: 'salaryrange')
   String get salaryrange;
   @JsonKey(name: 'addressarea')
-  Addressmodel get addressarea;
+  ContactDetailsModel get addressarea;
   @JsonKey(name: 'jobtype')
   String get jobtype;
   @JsonKey(
@@ -3856,6 +4297,10 @@ abstract class LimitedJobData implements LimitedData {
       fromJson: JsonHelper.fromJsonTimeStamp,
       toJson: JsonHelper.toJsonTimeStamp)
   DateTime get postedon;
+  @JsonKey(name: 'serviceproviderid')
+  String get serviceproviderid;
+  @JsonKey(name: 'userid')
+  String get userid;
   @JsonKey(ignore: true)
   $LimitedJobDataCopyWith<LimitedJobData> get copyWith;
 }

@@ -9,9 +9,9 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
-import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+
 import 'package:complex/view/product_pages/addittional_properties_page.dart';
 import 'package:complex/view/product_pages/select_category_page.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
@@ -27,11 +27,11 @@ import 'package:injector/injector.dart';
 class ProductProperties extends StatefulWidget {
   final bool withUnitPrice;
   final String entitytype;
-  final ContactDetails contactDetails;
+  final ContactDetailsModel contactDetails;
   final ProductType productType;
   final bool isService;
   final String serviceId;
-  final CompleteProduct product;
+  final ProductModel product;
 
   ProductProperties({
     this.withUnitPrice,
@@ -101,7 +101,7 @@ class _ProductPropertiesState extends State<ProductProperties> {
     _productProvider
         .getCategory(
             levelName: widget.serviceId != null
-                ? "SERVICEPROVIDERINFO/${widget.serviceId}/PRODUCTCATEGORYINFO/L1"
+                ?  "SERVICEPROVIDERINFO/${widget.serviceId}/PRODUCTCATEGORYINFO/L1"
                 : "PRODUCTCATEGORYINFO/L1")
         .then((result) {
       print("result ${json.encode(result)}");
@@ -146,9 +146,9 @@ class _ProductPropertiesState extends State<ProductProperties> {
   Widget _renderForm() {
     return Column(
       children: [
-        _renderTextField("Title", _titleController,initialValue: widget.product?.data?.title
+        _renderTextField("Title", _titleController,initialValue: widget.product?.title
         ),
-        _renderTextField("Descripton", _descController,initialValue: widget.product?.data?.description),
+        _renderTextField("Descripton", _descController,initialValue: widget.product?.description),
         _renderDropDown("Category", _categoryController, _categoryIds,
             onSelect: (a, v) {
           _onCategoryClick(a);
@@ -204,8 +204,8 @@ class _ProductPropertiesState extends State<ProductProperties> {
         children: [
           _renderDropDown("Unit", _unitController, _unitList),
           _renderTextField("Price/ Per Unit", _unitPriceController,
-              isInt: true,initialValue: widget.product?.data?.price.toString()),
-          _renderTextField("Inventonary Unit", _invUnitController, isInt: true,initialValue: widget.product?.data?.nopackagedata?.inventoryunits?.toString()),
+              isInt: true,initialValue: widget.product?.price.toString()),
+          _renderTextField("Inventonary Unit", _invUnitController, isInt: true,initialValue: widget.product?.nopackagedata?.inventoryunits?.toString()),
         ],
       );
     }
@@ -213,12 +213,17 @@ class _ProductPropertiesState extends State<ProductProperties> {
     Widget _price() {
       return Stack(
         children: [
-          _renderTextField("Price", _pricePriceController, isInt: true,initialValue: widget.product?.data?.price.toString()),
+          _renderTextField("Price", _pricePriceController, isInt: true,initialValue: widget.product?.price.toString()),
         ],
       );
     }
 
     return widget.withUnitPrice ? _unitPrice() : _price();
+  }
+
+  bool requireDynamicPropertiesPage( dynamic dynamicProperties)
+  {
+
   }
 
   Widget _renderPhotosGrid() {
@@ -323,15 +328,18 @@ class _ProductPropertiesState extends State<ProductProperties> {
       _productProvider
           .getBrandAndDyanmicProperty(
               levelName: widget.serviceId != null
-                  ? "SERVICEPROVIDERINFO/${widget.serviceId}/PRODUCTCATEGORYPROPERTIES/${_categoryController.text.trim()}"
-                  : "PRODUCTCATEGORYPROPERTIES/${_categoryController.text.trim()}")
+                  ? "SERVICEPROVIDERINFO/${widget.serviceId}/PRODUCTCATEGORYPROPERTIES/${_category}"
+                  : "PRODUCTCATEGORYPROPERTIES/${_category}")
           .then((result) {
         LogPrint("result ===> ${json.encode(result)}");
         if (result != null) {
           _dynamicProperties = result;
+
           _brandList.clear();
           List<String> _data =
               result['adata']['BRAND']['values'].cast<String>();
+          if(_data.length ==0)
+            _data.add("ShopOwned");
           _brandList.addAll(_data);
         }
         setState(() {
@@ -355,6 +363,19 @@ class _ProductPropertiesState extends State<ProductProperties> {
     } else if (_dynamicProperties == null) {
       Utility.showSnackBar(context: context, message: "Please select brand ");
     } else if (_validateFields()) {
+      
+      if(widget.product ==null)
+        {
+
+        }
+      else
+        {
+          widget.product.copyWith(category:_category.replaceAll("->", "/"),addressarea: widget.contactDetails );
+        }
+
+
+
+
       ProductModel _model = ProductModel(
         addressarea: widget.contactDetails,
         title: _titleController.text.trim(),
@@ -376,8 +397,8 @@ class _ProductPropertiesState extends State<ProductProperties> {
                     ? "SIZEANDCOLOR"
                     : "",
         nopackagedata: widget.productType == ProductType.noPackage
-            ? Nopackagedata(
-                inventoryunits: int.parse(_invUnitController.text ?? "0"),
+            ? NoPackageModel(
+                inventoryunits: double.parse(_invUnitController.text ?? "0"),
                 priceperunit: double.parse(_unitPriceController.text ?? "0"),
                 qty: int.parse(_unitController.text.trim()),
                 discountedpriceperunit: 0.0,

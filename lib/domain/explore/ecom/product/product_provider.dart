@@ -8,7 +8,7 @@ import 'package:complex/newentityfeatures/commonrepo/genericdbmethods_repository
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-import 'package:complex/domain/explore/ecom/lucene_search_suggestion/lucene_search_suggestion_data.dart';
+
 
 import 'limited_product/limited_product_data.dart';
 class ProductProvider {
@@ -30,7 +30,7 @@ class ProductProvider {
     if(entitytype== 'SELF' ||  finaltype== "REALESTATE" ||  finaltype== "JOB" ||  finaltype== "VEHICLE" ||  finaltype== "PET"  )
       collectionname="CLASSIFIED";
     else {
-      collectionname = "${entitytype}/${entityid}}/PRODUCT";
+      collectionname = "${entitytype}/${entityid}/PRODUCT";
     }
 
     try {
@@ -49,7 +49,7 @@ class ProductProvider {
               {
                 if(finaltype=="PRODUCT") {
                   querySnapshot = await _firestoreInstance
-                      .collection(collectionname).orderBy('docid').limit(limit)
+                      .collection(collectionname).orderBy('productid').limit(limit)
                       .get();
                 }
                 else
@@ -65,7 +65,7 @@ class ProductProvider {
               {
                 if(finaltype=="PRODUCT") {
                   querySnapshot = await _firestoreInstance
-                      .collection(collectionname).orderBy('docid').startAfter(
+                      .collection(collectionname).orderBy('productid').startAfter(
                       [lastdocumentid]).limit(limit)
                       .get();
                 }

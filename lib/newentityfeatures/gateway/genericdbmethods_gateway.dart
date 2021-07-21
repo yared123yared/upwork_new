@@ -5,7 +5,7 @@ import 'package:complex/domain/explore/explore_page_related_models/ExplorePageRe
 import 'package:complex/domain/explore/ecom/location/location_data.dart';
 import 'dart:math';
 
-import 'package:complex/domain/explore/ecom/lucene_search_suggestion/lucene_search_suggestion_data.dart';
+
 import 'package:complex/newentityfeatures/Models/genericHttpresponse_model.dart';
 
 import 'package:http/http.dart' as http;

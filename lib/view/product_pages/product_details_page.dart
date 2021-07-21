@@ -3,7 +3,7 @@ import 'package:complex/common/widgets/slider.dart';
 import 'package:complex/common/widgets/slider_list.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+
 
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/styles.dart';
@@ -215,7 +215,7 @@ class _PackageDetailViewState extends State<PackageDetailView> {
     );
   }
 
-  _dyanmicPropertyChild(DynamicProperty dynamicproperti) {
+  _dyanmicPropertyChild(dynaproperty dynamicproperti) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
@@ -236,7 +236,7 @@ class _PackageDetailViewState extends State<PackageDetailView> {
     );
   }
 
-  _packageChild(PackageData packagedata) {
+  _packageChild(PackageModel packagedata) {
     return TapWidget(
       onTap: () {
         setState(() {

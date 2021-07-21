@@ -1,5 +1,5 @@
 import 'package:complex/application/explore/ecom/product_owner/product_owner_bloc.dart';
-import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/view/explore_tab/owner_view/owner_product_list_page.dart';
@@ -112,7 +112,7 @@ class EcomNavigationHelper {
       @required bool isService,
       @required String serviceId,@required String entitytype, @required int origintype,
 
-      @required ContactDetails contactDetails}) {
+      @required ContactDetailsModel contactDetails}) {
     final Widget page = type.map(
       pet: (pet) => AddPetPage(
         contactDetails,

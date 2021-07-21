@@ -25,6 +25,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           loading: true,
         );
         List<ServiceGroup> services = await _productRepository.getProducts();
+
         yield state.copyWith(
           loading: false,
           serviceGroups: services,

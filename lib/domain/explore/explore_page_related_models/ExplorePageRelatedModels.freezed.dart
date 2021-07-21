@@ -8,6 +8,656 @@ part of 'ExplorePageRelatedModels.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+ProductActionModel _$ProductActionModelFromJson(Map<String, dynamic> json) {
+  return _ProductActionModel.fromJson(json);
+}
+
+/// @nodoc
+class _$ProductActionModelTearOff {
+  const _$ProductActionModelTearOff();
+
+// ignore: unused_element
+  _ProductActionModel call(
+      {@JsonKey(name: 'qtype') String qtype,
+      @JsonKey(name: 'action') String action,
+      @JsonKey(name: 'origin') String origin,
+      @JsonKey(name: 'serviceid') String serviceid,
+      @JsonKey(name: 'userid') String userid,
+      @JsonKey(name: 'producttype') String producttype,
+      @JsonKey(name: 'classifiedtype') String classifiedtype,
+      @JsonKey(name: 'realestatemodel') RealEstateModel realestatemodel,
+      @JsonKey(name: 'petmodel') PetModel petmodel,
+      @JsonKey(name: 'productmodel') ProductModel productmodel,
+      @JsonKey(name: 'vehiclemodel') EcomVehicleModel vehiclemodel,
+      @JsonKey(name: 'jobrequestmodel') JobPosting jobrequestmodel}) {
+    return _ProductActionModel(
+      qtype: qtype,
+      action: action,
+      origin: origin,
+      serviceid: serviceid,
+      userid: userid,
+      producttype: producttype,
+      classifiedtype: classifiedtype,
+      realestatemodel: realestatemodel,
+      petmodel: petmodel,
+      productmodel: productmodel,
+      vehiclemodel: vehiclemodel,
+      jobrequestmodel: jobrequestmodel,
+    );
+  }
+
+// ignore: unused_element
+  ProductActionModel fromJson(Map<String, Object> json) {
+    return ProductActionModel.fromJson(json);
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $ProductActionModel = _$ProductActionModelTearOff();
+
+/// @nodoc
+mixin _$ProductActionModel {
+  @JsonKey(name: 'qtype')
+  String get qtype;
+  @JsonKey(name: 'action')
+  String get action;
+  @JsonKey(name: 'origin')
+  String get origin;
+  @JsonKey(name: 'serviceid')
+  String get serviceid;
+  @JsonKey(name: 'userid')
+  String get userid;
+  @JsonKey(name: 'producttype')
+  String get producttype;
+  @JsonKey(name: 'classifiedtype')
+  String get classifiedtype;
+  @JsonKey(name: 'realestatemodel')
+  RealEstateModel get realestatemodel;
+  @JsonKey(name: 'petmodel')
+  PetModel get petmodel;
+  @JsonKey(name: 'productmodel')
+  ProductModel get productmodel;
+  @JsonKey(name: 'vehiclemodel')
+  EcomVehicleModel get vehiclemodel;
+  @JsonKey(name: 'jobrequestmodel')
+  JobPosting get jobrequestmodel;
+
+  Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
+  $ProductActionModelCopyWith<ProductActionModel> get copyWith;
+}
+
+/// @nodoc
+abstract class $ProductActionModelCopyWith<$Res> {
+  factory $ProductActionModelCopyWith(
+          ProductActionModel value, $Res Function(ProductActionModel) then) =
+      _$ProductActionModelCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: 'qtype') String qtype,
+      @JsonKey(name: 'action') String action,
+      @JsonKey(name: 'origin') String origin,
+      @JsonKey(name: 'serviceid') String serviceid,
+      @JsonKey(name: 'userid') String userid,
+      @JsonKey(name: 'producttype') String producttype,
+      @JsonKey(name: 'classifiedtype') String classifiedtype,
+      @JsonKey(name: 'realestatemodel') RealEstateModel realestatemodel,
+      @JsonKey(name: 'petmodel') PetModel petmodel,
+      @JsonKey(name: 'productmodel') ProductModel productmodel,
+      @JsonKey(name: 'vehiclemodel') EcomVehicleModel vehiclemodel,
+      @JsonKey(name: 'jobrequestmodel') JobPosting jobrequestmodel});
+}
+
+/// @nodoc
+class _$ProductActionModelCopyWithImpl<$Res>
+    implements $ProductActionModelCopyWith<$Res> {
+  _$ProductActionModelCopyWithImpl(this._value, this._then);
+
+  final ProductActionModel _value;
+  // ignore: unused_field
+  final $Res Function(ProductActionModel) _then;
+
+  @override
+  $Res call({
+    Object qtype = freezed,
+    Object action = freezed,
+    Object origin = freezed,
+    Object serviceid = freezed,
+    Object userid = freezed,
+    Object producttype = freezed,
+    Object classifiedtype = freezed,
+    Object realestatemodel = freezed,
+    Object petmodel = freezed,
+    Object productmodel = freezed,
+    Object vehiclemodel = freezed,
+    Object jobrequestmodel = freezed,
+  }) {
+    return _then(_value.copyWith(
+      qtype: qtype == freezed ? _value.qtype : qtype as String,
+      action: action == freezed ? _value.action : action as String,
+      origin: origin == freezed ? _value.origin : origin as String,
+      serviceid: serviceid == freezed ? _value.serviceid : serviceid as String,
+      userid: userid == freezed ? _value.userid : userid as String,
+      producttype:
+          producttype == freezed ? _value.producttype : producttype as String,
+      classifiedtype: classifiedtype == freezed
+          ? _value.classifiedtype
+          : classifiedtype as String,
+      realestatemodel: realestatemodel == freezed
+          ? _value.realestatemodel
+          : realestatemodel as RealEstateModel,
+      petmodel: petmodel == freezed ? _value.petmodel : petmodel as PetModel,
+      productmodel: productmodel == freezed
+          ? _value.productmodel
+          : productmodel as ProductModel,
+      vehiclemodel: vehiclemodel == freezed
+          ? _value.vehiclemodel
+          : vehiclemodel as EcomVehicleModel,
+      jobrequestmodel: jobrequestmodel == freezed
+          ? _value.jobrequestmodel
+          : jobrequestmodel as JobPosting,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$ProductActionModelCopyWith<$Res>
+    implements $ProductActionModelCopyWith<$Res> {
+  factory _$ProductActionModelCopyWith(
+          _ProductActionModel value, $Res Function(_ProductActionModel) then) =
+      __$ProductActionModelCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: 'qtype') String qtype,
+      @JsonKey(name: 'action') String action,
+      @JsonKey(name: 'origin') String origin,
+      @JsonKey(name: 'serviceid') String serviceid,
+      @JsonKey(name: 'userid') String userid,
+      @JsonKey(name: 'producttype') String producttype,
+      @JsonKey(name: 'classifiedtype') String classifiedtype,
+      @JsonKey(name: 'realestatemodel') RealEstateModel realestatemodel,
+      @JsonKey(name: 'petmodel') PetModel petmodel,
+      @JsonKey(name: 'productmodel') ProductModel productmodel,
+      @JsonKey(name: 'vehiclemodel') EcomVehicleModel vehiclemodel,
+      @JsonKey(name: 'jobrequestmodel') JobPosting jobrequestmodel});
+}
+
+/// @nodoc
+class __$ProductActionModelCopyWithImpl<$Res>
+    extends _$ProductActionModelCopyWithImpl<$Res>
+    implements _$ProductActionModelCopyWith<$Res> {
+  __$ProductActionModelCopyWithImpl(
+      _ProductActionModel _value, $Res Function(_ProductActionModel) _then)
+      : super(_value, (v) => _then(v as _ProductActionModel));
+
+  @override
+  _ProductActionModel get _value => super._value as _ProductActionModel;
+
+  @override
+  $Res call({
+    Object qtype = freezed,
+    Object action = freezed,
+    Object origin = freezed,
+    Object serviceid = freezed,
+    Object userid = freezed,
+    Object producttype = freezed,
+    Object classifiedtype = freezed,
+    Object realestatemodel = freezed,
+    Object petmodel = freezed,
+    Object productmodel = freezed,
+    Object vehiclemodel = freezed,
+    Object jobrequestmodel = freezed,
+  }) {
+    return _then(_ProductActionModel(
+      qtype: qtype == freezed ? _value.qtype : qtype as String,
+      action: action == freezed ? _value.action : action as String,
+      origin: origin == freezed ? _value.origin : origin as String,
+      serviceid: serviceid == freezed ? _value.serviceid : serviceid as String,
+      userid: userid == freezed ? _value.userid : userid as String,
+      producttype:
+          producttype == freezed ? _value.producttype : producttype as String,
+      classifiedtype: classifiedtype == freezed
+          ? _value.classifiedtype
+          : classifiedtype as String,
+      realestatemodel: realestatemodel == freezed
+          ? _value.realestatemodel
+          : realestatemodel as RealEstateModel,
+      petmodel: petmodel == freezed ? _value.petmodel : petmodel as PetModel,
+      productmodel: productmodel == freezed
+          ? _value.productmodel
+          : productmodel as ProductModel,
+      vehiclemodel: vehiclemodel == freezed
+          ? _value.vehiclemodel
+          : vehiclemodel as EcomVehicleModel,
+      jobrequestmodel: jobrequestmodel == freezed
+          ? _value.jobrequestmodel
+          : jobrequestmodel as JobPosting,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$_ProductActionModel
+    with DiagnosticableTreeMixin
+    implements _ProductActionModel {
+  _$_ProductActionModel(
+      {@JsonKey(name: 'qtype') this.qtype,
+      @JsonKey(name: 'action') this.action,
+      @JsonKey(name: 'origin') this.origin,
+      @JsonKey(name: 'serviceid') this.serviceid,
+      @JsonKey(name: 'userid') this.userid,
+      @JsonKey(name: 'producttype') this.producttype,
+      @JsonKey(name: 'classifiedtype') this.classifiedtype,
+      @JsonKey(name: 'realestatemodel') this.realestatemodel,
+      @JsonKey(name: 'petmodel') this.petmodel,
+      @JsonKey(name: 'productmodel') this.productmodel,
+      @JsonKey(name: 'vehiclemodel') this.vehiclemodel,
+      @JsonKey(name: 'jobrequestmodel') this.jobrequestmodel});
+
+  factory _$_ProductActionModel.fromJson(Map<String, dynamic> json) =>
+      _$_$_ProductActionModelFromJson(json);
+
+  @override
+  @JsonKey(name: 'qtype')
+  final String qtype;
+  @override
+  @JsonKey(name: 'action')
+  final String action;
+  @override
+  @JsonKey(name: 'origin')
+  final String origin;
+  @override
+  @JsonKey(name: 'serviceid')
+  final String serviceid;
+  @override
+  @JsonKey(name: 'userid')
+  final String userid;
+  @override
+  @JsonKey(name: 'producttype')
+  final String producttype;
+  @override
+  @JsonKey(name: 'classifiedtype')
+  final String classifiedtype;
+  @override
+  @JsonKey(name: 'realestatemodel')
+  final RealEstateModel realestatemodel;
+  @override
+  @JsonKey(name: 'petmodel')
+  final PetModel petmodel;
+  @override
+  @JsonKey(name: 'productmodel')
+  final ProductModel productmodel;
+  @override
+  @JsonKey(name: 'vehiclemodel')
+  final EcomVehicleModel vehiclemodel;
+  @override
+  @JsonKey(name: 'jobrequestmodel')
+  final JobPosting jobrequestmodel;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ProductActionModel(qtype: $qtype, action: $action, origin: $origin, serviceid: $serviceid, userid: $userid, producttype: $producttype, classifiedtype: $classifiedtype, realestatemodel: $realestatemodel, petmodel: $petmodel, productmodel: $productmodel, vehiclemodel: $vehiclemodel, jobrequestmodel: $jobrequestmodel)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ProductActionModel'))
+      ..add(DiagnosticsProperty('qtype', qtype))
+      ..add(DiagnosticsProperty('action', action))
+      ..add(DiagnosticsProperty('origin', origin))
+      ..add(DiagnosticsProperty('serviceid', serviceid))
+      ..add(DiagnosticsProperty('userid', userid))
+      ..add(DiagnosticsProperty('producttype', producttype))
+      ..add(DiagnosticsProperty('classifiedtype', classifiedtype))
+      ..add(DiagnosticsProperty('realestatemodel', realestatemodel))
+      ..add(DiagnosticsProperty('petmodel', petmodel))
+      ..add(DiagnosticsProperty('productmodel', productmodel))
+      ..add(DiagnosticsProperty('vehiclemodel', vehiclemodel))
+      ..add(DiagnosticsProperty('jobrequestmodel', jobrequestmodel));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ProductActionModel &&
+            (identical(other.qtype, qtype) ||
+                const DeepCollectionEquality().equals(other.qtype, qtype)) &&
+            (identical(other.action, action) ||
+                const DeepCollectionEquality().equals(other.action, action)) &&
+            (identical(other.origin, origin) ||
+                const DeepCollectionEquality().equals(other.origin, origin)) &&
+            (identical(other.serviceid, serviceid) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceid, serviceid)) &&
+            (identical(other.userid, userid) ||
+                const DeepCollectionEquality().equals(other.userid, userid)) &&
+            (identical(other.producttype, producttype) ||
+                const DeepCollectionEquality()
+                    .equals(other.producttype, producttype)) &&
+            (identical(other.classifiedtype, classifiedtype) ||
+                const DeepCollectionEquality()
+                    .equals(other.classifiedtype, classifiedtype)) &&
+            (identical(other.realestatemodel, realestatemodel) ||
+                const DeepCollectionEquality()
+                    .equals(other.realestatemodel, realestatemodel)) &&
+            (identical(other.petmodel, petmodel) ||
+                const DeepCollectionEquality()
+                    .equals(other.petmodel, petmodel)) &&
+            (identical(other.productmodel, productmodel) ||
+                const DeepCollectionEquality()
+                    .equals(other.productmodel, productmodel)) &&
+            (identical(other.vehiclemodel, vehiclemodel) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehiclemodel, vehiclemodel)) &&
+            (identical(other.jobrequestmodel, jobrequestmodel) ||
+                const DeepCollectionEquality()
+                    .equals(other.jobrequestmodel, jobrequestmodel)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(qtype) ^
+      const DeepCollectionEquality().hash(action) ^
+      const DeepCollectionEquality().hash(origin) ^
+      const DeepCollectionEquality().hash(serviceid) ^
+      const DeepCollectionEquality().hash(userid) ^
+      const DeepCollectionEquality().hash(producttype) ^
+      const DeepCollectionEquality().hash(classifiedtype) ^
+      const DeepCollectionEquality().hash(realestatemodel) ^
+      const DeepCollectionEquality().hash(petmodel) ^
+      const DeepCollectionEquality().hash(productmodel) ^
+      const DeepCollectionEquality().hash(vehiclemodel) ^
+      const DeepCollectionEquality().hash(jobrequestmodel);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ProductActionModelCopyWith<_ProductActionModel> get copyWith =>
+      __$ProductActionModelCopyWithImpl<_ProductActionModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_ProductActionModelToJson(this);
+  }
+}
+
+abstract class _ProductActionModel implements ProductActionModel {
+  factory _ProductActionModel(
+          {@JsonKey(name: 'qtype') String qtype,
+          @JsonKey(name: 'action') String action,
+          @JsonKey(name: 'origin') String origin,
+          @JsonKey(name: 'serviceid') String serviceid,
+          @JsonKey(name: 'userid') String userid,
+          @JsonKey(name: 'producttype') String producttype,
+          @JsonKey(name: 'classifiedtype') String classifiedtype,
+          @JsonKey(name: 'realestatemodel') RealEstateModel realestatemodel,
+          @JsonKey(name: 'petmodel') PetModel petmodel,
+          @JsonKey(name: 'productmodel') ProductModel productmodel,
+          @JsonKey(name: 'vehiclemodel') EcomVehicleModel vehiclemodel,
+          @JsonKey(name: 'jobrequestmodel') JobPosting jobrequestmodel}) =
+      _$_ProductActionModel;
+
+  factory _ProductActionModel.fromJson(Map<String, dynamic> json) =
+      _$_ProductActionModel.fromJson;
+
+  @override
+  @JsonKey(name: 'qtype')
+  String get qtype;
+  @override
+  @JsonKey(name: 'action')
+  String get action;
+  @override
+  @JsonKey(name: 'origin')
+  String get origin;
+  @override
+  @JsonKey(name: 'serviceid')
+  String get serviceid;
+  @override
+  @JsonKey(name: 'userid')
+  String get userid;
+  @override
+  @JsonKey(name: 'producttype')
+  String get producttype;
+  @override
+  @JsonKey(name: 'classifiedtype')
+  String get classifiedtype;
+  @override
+  @JsonKey(name: 'realestatemodel')
+  RealEstateModel get realestatemodel;
+  @override
+  @JsonKey(name: 'petmodel')
+  PetModel get petmodel;
+  @override
+  @JsonKey(name: 'productmodel')
+  ProductModel get productmodel;
+  @override
+  @JsonKey(name: 'vehiclemodel')
+  EcomVehicleModel get vehiclemodel;
+  @override
+  @JsonKey(name: 'jobrequestmodel')
+  JobPosting get jobrequestmodel;
+  @override
+  @JsonKey(ignore: true)
+  _$ProductActionModelCopyWith<_ProductActionModel> get copyWith;
+}
+
+ProductActionResponse _$ProductActionResponseFromJson(
+    Map<String, dynamic> json) {
+  return _ProductActionResponse.fromJson(json);
+}
+
+/// @nodoc
+class _$ProductActionResponseTearOff {
+  const _$ProductActionResponseTearOff();
+
+// ignore: unused_element
+  _ProductActionResponse call(
+      {@JsonKey(name: 'errorid') int errorid,
+      @JsonKey(name: 'errormsg') String errormsg,
+      @JsonKey(name: 'productid') String productid}) {
+    return _ProductActionResponse(
+      errorid: errorid,
+      errormsg: errormsg,
+      productid: productid,
+    );
+  }
+
+// ignore: unused_element
+  ProductActionResponse fromJson(Map<String, Object> json) {
+    return ProductActionResponse.fromJson(json);
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $ProductActionResponse = _$ProductActionResponseTearOff();
+
+/// @nodoc
+mixin _$ProductActionResponse {
+  @JsonKey(name: 'errorid')
+  int get errorid;
+  @JsonKey(name: 'errormsg')
+  String get errormsg;
+  @JsonKey(name: 'productid')
+  String get productid;
+
+  Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
+  $ProductActionResponseCopyWith<ProductActionResponse> get copyWith;
+}
+
+/// @nodoc
+abstract class $ProductActionResponseCopyWith<$Res> {
+  factory $ProductActionResponseCopyWith(ProductActionResponse value,
+          $Res Function(ProductActionResponse) then) =
+      _$ProductActionResponseCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: 'errorid') int errorid,
+      @JsonKey(name: 'errormsg') String errormsg,
+      @JsonKey(name: 'productid') String productid});
+}
+
+/// @nodoc
+class _$ProductActionResponseCopyWithImpl<$Res>
+    implements $ProductActionResponseCopyWith<$Res> {
+  _$ProductActionResponseCopyWithImpl(this._value, this._then);
+
+  final ProductActionResponse _value;
+  // ignore: unused_field
+  final $Res Function(ProductActionResponse) _then;
+
+  @override
+  $Res call({
+    Object errorid = freezed,
+    Object errormsg = freezed,
+    Object productid = freezed,
+  }) {
+    return _then(_value.copyWith(
+      errorid: errorid == freezed ? _value.errorid : errorid as int,
+      errormsg: errormsg == freezed ? _value.errormsg : errormsg as String,
+      productid: productid == freezed ? _value.productid : productid as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$ProductActionResponseCopyWith<$Res>
+    implements $ProductActionResponseCopyWith<$Res> {
+  factory _$ProductActionResponseCopyWith(_ProductActionResponse value,
+          $Res Function(_ProductActionResponse) then) =
+      __$ProductActionResponseCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: 'errorid') int errorid,
+      @JsonKey(name: 'errormsg') String errormsg,
+      @JsonKey(name: 'productid') String productid});
+}
+
+/// @nodoc
+class __$ProductActionResponseCopyWithImpl<$Res>
+    extends _$ProductActionResponseCopyWithImpl<$Res>
+    implements _$ProductActionResponseCopyWith<$Res> {
+  __$ProductActionResponseCopyWithImpl(_ProductActionResponse _value,
+      $Res Function(_ProductActionResponse) _then)
+      : super(_value, (v) => _then(v as _ProductActionResponse));
+
+  @override
+  _ProductActionResponse get _value => super._value as _ProductActionResponse;
+
+  @override
+  $Res call({
+    Object errorid = freezed,
+    Object errormsg = freezed,
+    Object productid = freezed,
+  }) {
+    return _then(_ProductActionResponse(
+      errorid: errorid == freezed ? _value.errorid : errorid as int,
+      errormsg: errormsg == freezed ? _value.errormsg : errormsg as String,
+      productid: productid == freezed ? _value.productid : productid as String,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$_ProductActionResponse
+    with DiagnosticableTreeMixin
+    implements _ProductActionResponse {
+  _$_ProductActionResponse(
+      {@JsonKey(name: 'errorid') this.errorid,
+      @JsonKey(name: 'errormsg') this.errormsg,
+      @JsonKey(name: 'productid') this.productid});
+
+  factory _$_ProductActionResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_ProductActionResponseFromJson(json);
+
+  @override
+  @JsonKey(name: 'errorid')
+  final int errorid;
+  @override
+  @JsonKey(name: 'errormsg')
+  final String errormsg;
+  @override
+  @JsonKey(name: 'productid')
+  final String productid;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ProductActionResponse(errorid: $errorid, errormsg: $errormsg, productid: $productid)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ProductActionResponse'))
+      ..add(DiagnosticsProperty('errorid', errorid))
+      ..add(DiagnosticsProperty('errormsg', errormsg))
+      ..add(DiagnosticsProperty('productid', productid));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ProductActionResponse &&
+            (identical(other.errorid, errorid) ||
+                const DeepCollectionEquality()
+                    .equals(other.errorid, errorid)) &&
+            (identical(other.errormsg, errormsg) ||
+                const DeepCollectionEquality()
+                    .equals(other.errormsg, errormsg)) &&
+            (identical(other.productid, productid) ||
+                const DeepCollectionEquality()
+                    .equals(other.productid, productid)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(errorid) ^
+      const DeepCollectionEquality().hash(errormsg) ^
+      const DeepCollectionEquality().hash(productid);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ProductActionResponseCopyWith<_ProductActionResponse> get copyWith =>
+      __$ProductActionResponseCopyWithImpl<_ProductActionResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_ProductActionResponseToJson(this);
+  }
+}
+
+abstract class _ProductActionResponse implements ProductActionResponse {
+  factory _ProductActionResponse(
+      {@JsonKey(name: 'errorid') int errorid,
+      @JsonKey(name: 'errormsg') String errormsg,
+      @JsonKey(name: 'productid') String productid}) = _$_ProductActionResponse;
+
+  factory _ProductActionResponse.fromJson(Map<String, dynamic> json) =
+      _$_ProductActionResponse.fromJson;
+
+  @override
+  @JsonKey(name: 'errorid')
+  int get errorid;
+  @override
+  @JsonKey(name: 'errormsg')
+  String get errormsg;
+  @override
+  @JsonKey(name: 'productid')
+  String get productid;
+  @override
+  @JsonKey(ignore: true)
+  _$ProductActionResponseCopyWith<_ProductActionResponse> get copyWith;
+}
+
 DimData _$DimDataFromJson(Map<String, dynamic> json) {
   return _DimData.fromJson(json);
 }
@@ -115,7 +765,7 @@ class __$DimDataCopyWithImpl<$Res> extends _$DimDataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_DimData implements _DimData {
+class _$_DimData with DiagnosticableTreeMixin implements _DimData {
   _$_DimData(
       {@JsonKey(name: 'dimname') this.dimname,
       @JsonKey(name: 'fieldvalues') this.fieldvalues});
@@ -131,8 +781,17 @@ class _$_DimData implements _DimData {
   final List<DimItem> fieldvalues;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DimData(dimname: $dimname, fieldvalues: $fieldvalues)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DimData'))
+      ..add(DiagnosticsProperty('dimname', dimname))
+      ..add(DiagnosticsProperty('fieldvalues', fieldvalues));
   }
 
   @override
@@ -287,7 +946,7 @@ class __$DimItemCopyWithImpl<$Res> extends _$DimItemCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_DimItem implements _DimItem {
+class _$_DimItem with DiagnosticableTreeMixin implements _DimItem {
   _$_DimItem(
       {@JsonKey(name: 'fieldvalue') this.fieldvalue,
       @JsonKey(name: 'count') this.count});
@@ -303,8 +962,17 @@ class _$_DimItem implements _DimItem {
   final int count;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DimItem(fieldvalue: $fieldvalue, count: $count)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DimItem'))
+      ..add(DiagnosticsProperty('fieldvalue', fieldvalue))
+      ..add(DiagnosticsProperty('count', count));
   }
 
   @override
@@ -476,7 +1144,7 @@ class __$AreaInfoCopyWithImpl<$Res> extends _$AreaInfoCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_AreaInfo implements _AreaInfo {
+class _$_AreaInfo with DiagnosticableTreeMixin implements _AreaInfo {
   _$_AreaInfo(
       {@JsonKey(name: 'state') this.state,
       @JsonKey(name: 'district') this.district,
@@ -500,8 +1168,19 @@ class _$_AreaInfo implements _AreaInfo {
   final int zipcode;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AreaInfo(state: $state, district: $district, areaname: $areaname, zipcode: $zipcode)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AreaInfo'))
+      ..add(DiagnosticsProperty('state', state))
+      ..add(DiagnosticsProperty('district', district))
+      ..add(DiagnosticsProperty('areaname', areaname))
+      ..add(DiagnosticsProperty('zipcode', zipcode));
   }
 
   @override
@@ -577,6 +1256,8 @@ class _$CategoryinfoTearOff {
   _Categoryinfo call(
       {@JsonKey(name: 'category')
           String category,
+      @JsonKey(name: 'count')
+          int count,
       @JsonKey(name: 'pricerange')
           List<int> pricerange,
       @JsonKey(name: 'priceareadependent')
@@ -591,6 +1272,7 @@ class _$CategoryinfoTearOff {
           List<Categoryinfo> childcategory}) {
     return _Categoryinfo(
       category: category,
+      count: count,
       pricerange: pricerange,
       priceareadependent: priceareadependent,
       iconpath: iconpath,
@@ -614,6 +1296,8 @@ const $Categoryinfo = _$CategoryinfoTearOff();
 mixin _$Categoryinfo {
   @JsonKey(name: 'category')
   String get category;
+  @JsonKey(name: 'count')
+  int get count;
   @JsonKey(name: 'pricerange')
   List<int> get pricerange;
   @JsonKey(name: 'priceareadependent')
@@ -640,6 +1324,8 @@ abstract class $CategoryinfoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'category')
           String category,
+      @JsonKey(name: 'count')
+          int count,
       @JsonKey(name: 'pricerange')
           List<int> pricerange,
       @JsonKey(name: 'priceareadependent')
@@ -665,6 +1351,7 @@ class _$CategoryinfoCopyWithImpl<$Res> implements $CategoryinfoCopyWith<$Res> {
   @override
   $Res call({
     Object category = freezed,
+    Object count = freezed,
     Object pricerange = freezed,
     Object priceareadependent = freezed,
     Object iconpath = freezed,
@@ -674,6 +1361,7 @@ class _$CategoryinfoCopyWithImpl<$Res> implements $CategoryinfoCopyWith<$Res> {
   }) {
     return _then(_value.copyWith(
       category: category == freezed ? _value.category : category as String,
+      count: count == freezed ? _value.count : count as int,
       pricerange:
           pricerange == freezed ? _value.pricerange : pricerange as List<int>,
       priceareadependent: priceareadependent == freezed
@@ -701,6 +1389,8 @@ abstract class _$CategoryinfoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'category')
           String category,
+      @JsonKey(name: 'count')
+          int count,
       @JsonKey(name: 'pricerange')
           List<int> pricerange,
       @JsonKey(name: 'priceareadependent')
@@ -728,6 +1418,7 @@ class __$CategoryinfoCopyWithImpl<$Res> extends _$CategoryinfoCopyWithImpl<$Res>
   @override
   $Res call({
     Object category = freezed,
+    Object count = freezed,
     Object pricerange = freezed,
     Object priceareadependent = freezed,
     Object iconpath = freezed,
@@ -737,6 +1428,7 @@ class __$CategoryinfoCopyWithImpl<$Res> extends _$CategoryinfoCopyWithImpl<$Res>
   }) {
     return _then(_Categoryinfo(
       category: category == freezed ? _value.category : category as String,
+      count: count == freezed ? _value.count : count as int,
       pricerange:
           pricerange == freezed ? _value.pricerange : pricerange as List<int>,
       priceareadependent: priceareadependent == freezed
@@ -757,10 +1449,12 @@ class __$CategoryinfoCopyWithImpl<$Res> extends _$CategoryinfoCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_Categoryinfo implements _Categoryinfo {
+class _$_Categoryinfo with DiagnosticableTreeMixin implements _Categoryinfo {
   _$_Categoryinfo(
       {@JsonKey(name: 'category')
           this.category,
+      @JsonKey(name: 'count')
+          this.count,
       @JsonKey(name: 'pricerange')
           this.pricerange,
       @JsonKey(name: 'priceareadependent')
@@ -781,6 +1475,9 @@ class _$_Categoryinfo implements _Categoryinfo {
   @JsonKey(name: 'category')
   final String category;
   @override
+  @JsonKey(name: 'count')
+  final int count;
+  @override
   @JsonKey(name: 'pricerange')
   final List<int> pricerange;
   @override
@@ -800,8 +1497,24 @@ class _$_Categoryinfo implements _Categoryinfo {
   final List<Categoryinfo> childcategory;
 
   @override
-  String toString() {
-    return 'Categoryinfo(category: $category, pricerange: $pricerange, priceareadependent: $priceareadependent, iconpath: $iconpath, imagepath: $imagepath, dynamicpropertiesidentifier: $dynamicpropertiesidentifier, childcategory: $childcategory)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Categoryinfo(category: $category, count: $count, pricerange: $pricerange, priceareadependent: $priceareadependent, iconpath: $iconpath, imagepath: $imagepath, dynamicpropertiesidentifier: $dynamicpropertiesidentifier, childcategory: $childcategory)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Categoryinfo'))
+      ..add(DiagnosticsProperty('category', category))
+      ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('pricerange', pricerange))
+      ..add(DiagnosticsProperty('priceareadependent', priceareadependent))
+      ..add(DiagnosticsProperty('iconpath', iconpath))
+      ..add(DiagnosticsProperty('imagepath', imagepath))
+      ..add(DiagnosticsProperty(
+          'dynamicpropertiesidentifier', dynamicpropertiesidentifier))
+      ..add(DiagnosticsProperty('childcategory', childcategory));
   }
 
   @override
@@ -811,6 +1524,8 @@ class _$_Categoryinfo implements _Categoryinfo {
             (identical(other.category, category) ||
                 const DeepCollectionEquality()
                     .equals(other.category, category)) &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.pricerange, pricerange) ||
                 const DeepCollectionEquality()
                     .equals(other.pricerange, pricerange)) &&
@@ -837,6 +1552,7 @@ class _$_Categoryinfo implements _Categoryinfo {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(category) ^
+      const DeepCollectionEquality().hash(count) ^
       const DeepCollectionEquality().hash(pricerange) ^
       const DeepCollectionEquality().hash(priceareadependent) ^
       const DeepCollectionEquality().hash(iconpath) ^
@@ -859,6 +1575,8 @@ abstract class _Categoryinfo implements Categoryinfo {
   factory _Categoryinfo(
       {@JsonKey(name: 'category')
           String category,
+      @JsonKey(name: 'count')
+          int count,
       @JsonKey(name: 'pricerange')
           List<int> pricerange,
       @JsonKey(name: 'priceareadependent')
@@ -878,6 +1596,9 @@ abstract class _Categoryinfo implements Categoryinfo {
   @override
   @JsonKey(name: 'category')
   String get category;
+  @override
+  @JsonKey(name: 'count')
+  int get count;
   @override
   @JsonKey(name: 'pricerange')
   List<int> get pricerange;
@@ -1116,7 +1837,9 @@ class __$productinorderCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_productinorder implements _productinorder {
+class _$_productinorder
+    with DiagnosticableTreeMixin
+    implements _productinorder {
   _$_productinorder(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'productid') this.productid,
@@ -1172,8 +1895,27 @@ class _$_productinorder implements _productinorder {
   final double totalprice;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'productinorder(id: $id, productid: $productid, itemid: $itemid, tileimage: $tileimage, title: $title, unit: $unit, unitprice: $unitprice, qty: $qty, price: $price, discountedprice: $discountedprice, taxid: $taxid, totalprice: $totalprice)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'productinorder'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('productid', productid))
+      ..add(DiagnosticsProperty('itemid', itemid))
+      ..add(DiagnosticsProperty('tileimage', tileimage))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('unit', unit))
+      ..add(DiagnosticsProperty('unitprice', unitprice))
+      ..add(DiagnosticsProperty('qty', qty))
+      ..add(DiagnosticsProperty('price', price))
+      ..add(DiagnosticsProperty('discountedprice', discountedprice))
+      ..add(DiagnosticsProperty('taxid', taxid))
+      ..add(DiagnosticsProperty('totalprice', totalprice));
   }
 
   @override
@@ -1308,7 +2050,7 @@ class _$orderinfomodelTearOff {
 // ignore: unused_element
   _orderinfomodel call(
       {@JsonKey(name: 'custaddress')
-          Addressmodel custaddress,
+          AddressModel custaddress,
       @JsonKey(name: 'customerid')
           String customerid,
       @JsonKey(name: 'custuserid')
@@ -1369,7 +2111,7 @@ const $orderinfomodel = _$orderinfomodelTearOff();
 /// @nodoc
 mixin _$orderinfomodel {
   @JsonKey(name: 'custaddress')
-  Addressmodel get custaddress;
+  AddressModel get custaddress;
   @JsonKey(name: 'customerid')
   String get customerid;
   @JsonKey(name: 'custuserid')
@@ -1414,7 +2156,7 @@ abstract class $orderinfomodelCopyWith<$Res> {
       _$orderinfomodelCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'custaddress')
-          Addressmodel custaddress,
+          AddressModel custaddress,
       @JsonKey(name: 'customerid')
           String customerid,
       @JsonKey(name: 'custuserid')
@@ -1444,7 +2186,7 @@ abstract class $orderinfomodelCopyWith<$Res> {
       @JsonKey(name: 'id')
           String id});
 
-  $AddressmodelCopyWith<$Res> get custaddress;
+  $AddressModelCopyWith<$Res> get custaddress;
 }
 
 /// @nodoc
@@ -1477,7 +2219,7 @@ class _$orderinfomodelCopyWithImpl<$Res>
     return _then(_value.copyWith(
       custaddress: custaddress == freezed
           ? _value.custaddress
-          : custaddress as Addressmodel,
+          : custaddress as AddressModel,
       customerid:
           customerid == freezed ? _value.customerid : customerid as String,
       custuserid:
@@ -1513,11 +2255,11 @@ class _$orderinfomodelCopyWithImpl<$Res>
   }
 
   @override
-  $AddressmodelCopyWith<$Res> get custaddress {
+  $AddressModelCopyWith<$Res> get custaddress {
     if (_value.custaddress == null) {
       return null;
     }
-    return $AddressmodelCopyWith<$Res>(_value.custaddress, (value) {
+    return $AddressModelCopyWith<$Res>(_value.custaddress, (value) {
       return _then(_value.copyWith(custaddress: value));
     });
   }
@@ -1532,7 +2274,7 @@ abstract class _$orderinfomodelCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'custaddress')
-          Addressmodel custaddress,
+          AddressModel custaddress,
       @JsonKey(name: 'customerid')
           String customerid,
       @JsonKey(name: 'custuserid')
@@ -1563,7 +2305,7 @@ abstract class _$orderinfomodelCopyWith<$Res>
           String id});
 
   @override
-  $AddressmodelCopyWith<$Res> get custaddress;
+  $AddressModelCopyWith<$Res> get custaddress;
 }
 
 /// @nodoc
@@ -1598,7 +2340,7 @@ class __$orderinfomodelCopyWithImpl<$Res>
     return _then(_orderinfomodel(
       custaddress: custaddress == freezed
           ? _value.custaddress
-          : custaddress as Addressmodel,
+          : custaddress as AddressModel,
       customerid:
           customerid == freezed ? _value.customerid : customerid as String,
       custuserid:
@@ -1637,7 +2379,9 @@ class __$orderinfomodelCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_orderinfomodel implements _orderinfomodel {
+class _$_orderinfomodel
+    with DiagnosticableTreeMixin
+    implements _orderinfomodel {
   _$_orderinfomodel(
       {@JsonKey(name: 'custaddress')
           this.custaddress,
@@ -1675,7 +2419,7 @@ class _$_orderinfomodel implements _orderinfomodel {
 
   @override
   @JsonKey(name: 'custaddress')
-  final Addressmodel custaddress;
+  final AddressModel custaddress;
   @override
   @JsonKey(name: 'customerid')
   final String customerid;
@@ -1723,8 +2467,30 @@ class _$_orderinfomodel implements _orderinfomodel {
   final String id;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'orderinfomodel(custaddress: $custaddress, customerid: $customerid, custuserid: $custuserid, custname: $custname, advanceamount: $advanceamount, productlist: $productlist, totaltax: $totaltax, totalcalculatedprice: $totalcalculatedprice, extradiscount: $extradiscount, askedprice: $askedprice, orderdate: $orderdate, orderstate: $orderstate, serviceproviderid: $serviceproviderid, custphonenum: $custphonenum, id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'orderinfomodel'))
+      ..add(DiagnosticsProperty('custaddress', custaddress))
+      ..add(DiagnosticsProperty('customerid', customerid))
+      ..add(DiagnosticsProperty('custuserid', custuserid))
+      ..add(DiagnosticsProperty('custname', custname))
+      ..add(DiagnosticsProperty('advanceamount', advanceamount))
+      ..add(DiagnosticsProperty('productlist', productlist))
+      ..add(DiagnosticsProperty('totaltax', totaltax))
+      ..add(DiagnosticsProperty('totalcalculatedprice', totalcalculatedprice))
+      ..add(DiagnosticsProperty('extradiscount', extradiscount))
+      ..add(DiagnosticsProperty('askedprice', askedprice))
+      ..add(DiagnosticsProperty('orderdate', orderdate))
+      ..add(DiagnosticsProperty('orderstate', orderstate))
+      ..add(DiagnosticsProperty('serviceproviderid', serviceproviderid))
+      ..add(DiagnosticsProperty('custphonenum', custphonenum))
+      ..add(DiagnosticsProperty('id', id));
   }
 
   @override
@@ -1810,7 +2576,7 @@ class _$_orderinfomodel implements _orderinfomodel {
 abstract class _orderinfomodel implements orderinfomodel {
   factory _orderinfomodel(
       {@JsonKey(name: 'custaddress')
-          Addressmodel custaddress,
+          AddressModel custaddress,
       @JsonKey(name: 'customerid')
           String customerid,
       @JsonKey(name: 'custuserid')
@@ -1845,7 +2611,7 @@ abstract class _orderinfomodel implements orderinfomodel {
 
   @override
   @JsonKey(name: 'custaddress')
-  Addressmodel get custaddress;
+  AddressModel get custaddress;
   @override
   @JsonKey(name: 'customerid')
   String get customerid;
@@ -1896,106 +2662,131 @@ abstract class _orderinfomodel implements orderinfomodel {
   _$orderinfomodelCopyWith<_orderinfomodel> get copyWith;
 }
 
-ProductSuggestionData _$ProductSuggestionDataFromJson(
+LuceneSearchSuggestionData _$LuceneSearchSuggestionDataFromJson(
     Map<String, dynamic> json) {
-  return _ProductSuggestionData.fromJson(json);
+  return _LuceneSearchSuggestionData.fromJson(json);
 }
 
 /// @nodoc
-class _$ProductSuggestionDataTearOff {
-  const _$ProductSuggestionDataTearOff();
+class _$LuceneSearchSuggestionDataTearOff {
+  const _$LuceneSearchSuggestionDataTearOff();
 
 // ignore: unused_element
-  _ProductSuggestionData call(
-      {@JsonKey(name: 'pid') String pid, @JsonKey(name: 'text') String text}) {
-    return _ProductSuggestionData(
+  _LuceneSearchSuggestionData call(
+      {@JsonKey(name: 'pid') String pid,
+      @JsonKey(name: 'text') String text,
+      @JsonKey(name: 'luceneid') int luceneid,
+      @JsonKey(name: 'tileimage') String tileimage}) {
+    return _LuceneSearchSuggestionData(
       pid: pid,
       text: text,
+      luceneid: luceneid,
+      tileimage: tileimage,
     );
   }
 
 // ignore: unused_element
-  ProductSuggestionData fromJson(Map<String, Object> json) {
-    return ProductSuggestionData.fromJson(json);
+  LuceneSearchSuggestionData fromJson(Map<String, Object> json) {
+    return LuceneSearchSuggestionData.fromJson(json);
   }
 }
 
 /// @nodoc
 // ignore: unused_element
-const $ProductSuggestionData = _$ProductSuggestionDataTearOff();
+const $LuceneSearchSuggestionData = _$LuceneSearchSuggestionDataTearOff();
 
 /// @nodoc
-mixin _$ProductSuggestionData {
+mixin _$LuceneSearchSuggestionData {
   @JsonKey(name: 'pid')
   String get pid;
   @JsonKey(name: 'text')
   String get text;
+  @JsonKey(name: 'luceneid')
+  int get luceneid;
+  @JsonKey(name: 'tileimage')
+  String get tileimage;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
-  $ProductSuggestionDataCopyWith<ProductSuggestionData> get copyWith;
+  $LuceneSearchSuggestionDataCopyWith<LuceneSearchSuggestionData> get copyWith;
 }
 
 /// @nodoc
-abstract class $ProductSuggestionDataCopyWith<$Res> {
-  factory $ProductSuggestionDataCopyWith(ProductSuggestionData value,
-          $Res Function(ProductSuggestionData) then) =
-      _$ProductSuggestionDataCopyWithImpl<$Res>;
+abstract class $LuceneSearchSuggestionDataCopyWith<$Res> {
+  factory $LuceneSearchSuggestionDataCopyWith(LuceneSearchSuggestionData value,
+          $Res Function(LuceneSearchSuggestionData) then) =
+      _$LuceneSearchSuggestionDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'pid') String pid, @JsonKey(name: 'text') String text});
+      {@JsonKey(name: 'pid') String pid,
+      @JsonKey(name: 'text') String text,
+      @JsonKey(name: 'luceneid') int luceneid,
+      @JsonKey(name: 'tileimage') String tileimage});
 }
 
 /// @nodoc
-class _$ProductSuggestionDataCopyWithImpl<$Res>
-    implements $ProductSuggestionDataCopyWith<$Res> {
-  _$ProductSuggestionDataCopyWithImpl(this._value, this._then);
+class _$LuceneSearchSuggestionDataCopyWithImpl<$Res>
+    implements $LuceneSearchSuggestionDataCopyWith<$Res> {
+  _$LuceneSearchSuggestionDataCopyWithImpl(this._value, this._then);
 
-  final ProductSuggestionData _value;
+  final LuceneSearchSuggestionData _value;
   // ignore: unused_field
-  final $Res Function(ProductSuggestionData) _then;
+  final $Res Function(LuceneSearchSuggestionData) _then;
 
   @override
   $Res call({
     Object pid = freezed,
     Object text = freezed,
+    Object luceneid = freezed,
+    Object tileimage = freezed,
   }) {
     return _then(_value.copyWith(
       pid: pid == freezed ? _value.pid : pid as String,
       text: text == freezed ? _value.text : text as String,
+      luceneid: luceneid == freezed ? _value.luceneid : luceneid as int,
+      tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$ProductSuggestionDataCopyWith<$Res>
-    implements $ProductSuggestionDataCopyWith<$Res> {
-  factory _$ProductSuggestionDataCopyWith(_ProductSuggestionData value,
-          $Res Function(_ProductSuggestionData) then) =
-      __$ProductSuggestionDataCopyWithImpl<$Res>;
+abstract class _$LuceneSearchSuggestionDataCopyWith<$Res>
+    implements $LuceneSearchSuggestionDataCopyWith<$Res> {
+  factory _$LuceneSearchSuggestionDataCopyWith(
+          _LuceneSearchSuggestionData value,
+          $Res Function(_LuceneSearchSuggestionData) then) =
+      __$LuceneSearchSuggestionDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'pid') String pid, @JsonKey(name: 'text') String text});
+      {@JsonKey(name: 'pid') String pid,
+      @JsonKey(name: 'text') String text,
+      @JsonKey(name: 'luceneid') int luceneid,
+      @JsonKey(name: 'tileimage') String tileimage});
 }
 
 /// @nodoc
-class __$ProductSuggestionDataCopyWithImpl<$Res>
-    extends _$ProductSuggestionDataCopyWithImpl<$Res>
-    implements _$ProductSuggestionDataCopyWith<$Res> {
-  __$ProductSuggestionDataCopyWithImpl(_ProductSuggestionData _value,
-      $Res Function(_ProductSuggestionData) _then)
-      : super(_value, (v) => _then(v as _ProductSuggestionData));
+class __$LuceneSearchSuggestionDataCopyWithImpl<$Res>
+    extends _$LuceneSearchSuggestionDataCopyWithImpl<$Res>
+    implements _$LuceneSearchSuggestionDataCopyWith<$Res> {
+  __$LuceneSearchSuggestionDataCopyWithImpl(_LuceneSearchSuggestionData _value,
+      $Res Function(_LuceneSearchSuggestionData) _then)
+      : super(_value, (v) => _then(v as _LuceneSearchSuggestionData));
 
   @override
-  _ProductSuggestionData get _value => super._value as _ProductSuggestionData;
+  _LuceneSearchSuggestionData get _value =>
+      super._value as _LuceneSearchSuggestionData;
 
   @override
   $Res call({
     Object pid = freezed,
     Object text = freezed,
+    Object luceneid = freezed,
+    Object tileimage = freezed,
   }) {
-    return _then(_ProductSuggestionData(
+    return _then(_LuceneSearchSuggestionData(
       pid: pid == freezed ? _value.pid : pid as String,
       text: text == freezed ? _value.text : text as String,
+      luceneid: luceneid == freezed ? _value.luceneid : luceneid as int,
+      tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
     ));
   }
 }
@@ -2003,12 +2794,17 @@ class __$ProductSuggestionDataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ProductSuggestionData implements _ProductSuggestionData {
-  _$_ProductSuggestionData(
-      {@JsonKey(name: 'pid') this.pid, @JsonKey(name: 'text') this.text});
+class _$_LuceneSearchSuggestionData
+    with DiagnosticableTreeMixin
+    implements _LuceneSearchSuggestionData {
+  _$_LuceneSearchSuggestionData(
+      {@JsonKey(name: 'pid') this.pid,
+      @JsonKey(name: 'text') this.text,
+      @JsonKey(name: 'luceneid') this.luceneid,
+      @JsonKey(name: 'tileimage') this.tileimage});
 
-  factory _$_ProductSuggestionData.fromJson(Map<String, dynamic> json) =>
-      _$_$_ProductSuggestionDataFromJson(json);
+  factory _$_LuceneSearchSuggestionData.fromJson(Map<String, dynamic> json) =>
+      _$_$_LuceneSearchSuggestionDataFromJson(json);
 
   @override
   @JsonKey(name: 'pid')
@@ -2016,47 +2812,76 @@ class _$_ProductSuggestionData implements _ProductSuggestionData {
   @override
   @JsonKey(name: 'text')
   final String text;
+  @override
+  @JsonKey(name: 'luceneid')
+  final int luceneid;
+  @override
+  @JsonKey(name: 'tileimage')
+  final String tileimage;
 
   @override
-  String toString() {
-    return 'ProductSuggestionData(pid: $pid, text: $text)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LuceneSearchSuggestionData(pid: $pid, text: $text, luceneid: $luceneid, tileimage: $tileimage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LuceneSearchSuggestionData'))
+      ..add(DiagnosticsProperty('pid', pid))
+      ..add(DiagnosticsProperty('text', text))
+      ..add(DiagnosticsProperty('luceneid', luceneid))
+      ..add(DiagnosticsProperty('tileimage', tileimage));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ProductSuggestionData &&
+        (other is _LuceneSearchSuggestionData &&
             (identical(other.pid, pid) ||
                 const DeepCollectionEquality().equals(other.pid, pid)) &&
             (identical(other.text, text) ||
-                const DeepCollectionEquality().equals(other.text, text)));
+                const DeepCollectionEquality().equals(other.text, text)) &&
+            (identical(other.luceneid, luceneid) ||
+                const DeepCollectionEquality()
+                    .equals(other.luceneid, luceneid)) &&
+            (identical(other.tileimage, tileimage) ||
+                const DeepCollectionEquality()
+                    .equals(other.tileimage, tileimage)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(pid) ^
-      const DeepCollectionEquality().hash(text);
+      const DeepCollectionEquality().hash(text) ^
+      const DeepCollectionEquality().hash(luceneid) ^
+      const DeepCollectionEquality().hash(tileimage);
 
   @JsonKey(ignore: true)
   @override
-  _$ProductSuggestionDataCopyWith<_ProductSuggestionData> get copyWith =>
-      __$ProductSuggestionDataCopyWithImpl<_ProductSuggestionData>(
-          this, _$identity);
+  _$LuceneSearchSuggestionDataCopyWith<_LuceneSearchSuggestionData>
+      get copyWith => __$LuceneSearchSuggestionDataCopyWithImpl<
+          _LuceneSearchSuggestionData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ProductSuggestionDataToJson(this);
+    return _$_$_LuceneSearchSuggestionDataToJson(this);
   }
 }
 
-abstract class _ProductSuggestionData implements ProductSuggestionData {
-  factory _ProductSuggestionData(
-      {@JsonKey(name: 'pid') String pid,
-      @JsonKey(name: 'text') String text}) = _$_ProductSuggestionData;
+abstract class _LuceneSearchSuggestionData
+    implements LuceneSearchSuggestionData {
+  factory _LuceneSearchSuggestionData(
+          {@JsonKey(name: 'pid') String pid,
+          @JsonKey(name: 'text') String text,
+          @JsonKey(name: 'luceneid') int luceneid,
+          @JsonKey(name: 'tileimage') String tileimage}) =
+      _$_LuceneSearchSuggestionData;
 
-  factory _ProductSuggestionData.fromJson(Map<String, dynamic> json) =
-      _$_ProductSuggestionData.fromJson;
+  factory _LuceneSearchSuggestionData.fromJson(Map<String, dynamic> json) =
+      _$_LuceneSearchSuggestionData.fromJson;
 
   @override
   @JsonKey(name: 'pid')
@@ -2065,8 +2890,15 @@ abstract class _ProductSuggestionData implements ProductSuggestionData {
   @JsonKey(name: 'text')
   String get text;
   @override
+  @JsonKey(name: 'luceneid')
+  int get luceneid;
+  @override
+  @JsonKey(name: 'tileimage')
+  String get tileimage;
+  @override
   @JsonKey(ignore: true)
-  _$ProductSuggestionDataCopyWith<_ProductSuggestionData> get copyWith;
+  _$LuceneSearchSuggestionDataCopyWith<_LuceneSearchSuggestionData>
+      get copyWith;
 }
 
 Sortfielddata _$SortfielddataFromJson(Map<String, dynamic> json) {
@@ -2178,7 +3010,7 @@ class __$SortfielddataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_Sortfielddata implements _Sortfielddata {
+class _$_Sortfielddata with DiagnosticableTreeMixin implements _Sortfielddata {
   _$_Sortfielddata(
       {@JsonKey(name: 'fieldname') this.fieldname,
       @JsonKey(name: 'desc') this.desc});
@@ -2194,8 +3026,17 @@ class _$_Sortfielddata implements _Sortfielddata {
   final bool desc;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'Sortfielddata(fieldname: $fieldname, desc: $desc)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Sortfielddata'))
+      ..add(DiagnosticsProperty('fieldname', fieldname))
+      ..add(DiagnosticsProperty('desc', desc));
   }
 
   @override
@@ -2364,7 +3205,9 @@ class __$NumericFilterDataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_NumericFilterData implements _NumericFilterData {
+class _$_NumericFilterData
+    with DiagnosticableTreeMixin
+    implements _NumericFilterData {
   _$_NumericFilterData(
       {@JsonKey(name: 'fieldname') this.fieldname,
       @JsonKey(name: 'minval') this.minval,
@@ -2384,8 +3227,18 @@ class _$_NumericFilterData implements _NumericFilterData {
   final double maxval;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NumericFilterData(fieldname: $fieldname, minval: $minval, maxval: $maxval)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NumericFilterData'))
+      ..add(DiagnosticsProperty('fieldname', fieldname))
+      ..add(DiagnosticsProperty('minval', minval))
+      ..add(DiagnosticsProperty('maxval', maxval));
   }
 
   @override
@@ -2555,7 +3408,9 @@ class __$FacetParaFilterCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_FacetParaFilter implements _FacetParaFilter {
+class _$_FacetParaFilter
+    with DiagnosticableTreeMixin
+    implements _FacetParaFilter {
   _$_FacetParaFilter(
       {@JsonKey(name: 'paraname') this.paraname,
       @JsonKey(name: 'fieldvalues') this.fieldvalues});
@@ -2571,8 +3426,17 @@ class _$_FacetParaFilter implements _FacetParaFilter {
   final List<String> fieldvalues;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'FacetParaFilter(paraname: $paraname, fieldvalues: $fieldvalues)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'FacetParaFilter'))
+      ..add(DiagnosticsProperty('paraname', paraname))
+      ..add(DiagnosticsProperty('fieldvalues', fieldvalues));
   }
 
   @override
@@ -2843,7 +3707,9 @@ class __$ProductFilterModelCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ProductFilterModel implements _ProductFilterModel {
+class _$_ProductFilterModel
+    with DiagnosticableTreeMixin
+    implements _ProductFilterModel {
   _$_ProductFilterModel(
       {@JsonKey(name: 'filtertype') this.filtertype,
       @JsonKey(name: 'psc') this.psc,
@@ -2887,8 +3753,24 @@ class _$_ProductFilterModel implements _ProductFilterModel {
   final List<FacetParaFilter> facetparalist;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ProductFilterModel(filtertype: $filtertype, psc: $psc, categorytype: $categorytype, reqfacet: $reqfacet, offset: $offset, termquery: $termquery, sortf: $sortf, filters: $filters, facetparalist: $facetparalist)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ProductFilterModel'))
+      ..add(DiagnosticsProperty('filtertype', filtertype))
+      ..add(DiagnosticsProperty('psc', psc))
+      ..add(DiagnosticsProperty('categorytype', categorytype))
+      ..add(DiagnosticsProperty('reqfacet', reqfacet))
+      ..add(DiagnosticsProperty('offset', offset))
+      ..add(DiagnosticsProperty('termquery', termquery))
+      ..add(DiagnosticsProperty('sortf', sortf))
+      ..add(DiagnosticsProperty('filters', filters))
+      ..add(DiagnosticsProperty('facetparalist', facetparalist));
   }
 
   @override
@@ -3001,22 +3883,22 @@ abstract class _ProductFilterModel implements ProductFilterModel {
   _$ProductFilterModelCopyWith<_ProductFilterModel> get copyWith;
 }
 
-Customerinfo _$CustomerinfoFromJson(Map<String, dynamic> json) {
-  return _Customerinfo.fromJson(json);
+customerinfo _$customerinfoFromJson(Map<String, dynamic> json) {
+  return _customerinfo.fromJson(json);
 }
 
 /// @nodoc
-class _$CustomerinfoTearOff {
-  const _$CustomerinfoTearOff();
+class _$customerinfoTearOff {
+  const _$customerinfoTearOff();
 
 // ignore: unused_element
-  _Customerinfo call(
+  _customerinfo call(
       {@JsonKey(name: 'infotype') int infotype,
       @JsonKey(name: 'customerid') String customerid,
       @JsonKey(name: 'customeruserid') String customeruserid,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'maddr') Addressmodel maddr}) {
-    return _Customerinfo(
+      @JsonKey(name: 'maddr') AddressModel maddr}) {
+    return _customerinfo(
       infotype: infotype,
       customerid: customerid,
       customeruserid: customeruserid,
@@ -3026,17 +3908,17 @@ class _$CustomerinfoTearOff {
   }
 
 // ignore: unused_element
-  Customerinfo fromJson(Map<String, Object> json) {
-    return Customerinfo.fromJson(json);
+  customerinfo fromJson(Map<String, Object> json) {
+    return customerinfo.fromJson(json);
   }
 }
 
 /// @nodoc
 // ignore: unused_element
-const $Customerinfo = _$CustomerinfoTearOff();
+const $customerinfo = _$customerinfoTearOff();
 
 /// @nodoc
-mixin _$Customerinfo {
+mixin _$customerinfo {
   @JsonKey(name: 'infotype')
   int get infotype;
   @JsonKey(name: 'customerid')
@@ -3046,35 +3928,35 @@ mixin _$Customerinfo {
   @JsonKey(name: 'name')
   String get name;
   @JsonKey(name: 'maddr')
-  Addressmodel get maddr;
+  AddressModel get maddr;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
-  $CustomerinfoCopyWith<Customerinfo> get copyWith;
+  $customerinfoCopyWith<customerinfo> get copyWith;
 }
 
 /// @nodoc
-abstract class $CustomerinfoCopyWith<$Res> {
-  factory $CustomerinfoCopyWith(
-          Customerinfo value, $Res Function(Customerinfo) then) =
-      _$CustomerinfoCopyWithImpl<$Res>;
+abstract class $customerinfoCopyWith<$Res> {
+  factory $customerinfoCopyWith(
+          customerinfo value, $Res Function(customerinfo) then) =
+      _$customerinfoCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'infotype') int infotype,
       @JsonKey(name: 'customerid') String customerid,
       @JsonKey(name: 'customeruserid') String customeruserid,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'maddr') Addressmodel maddr});
+      @JsonKey(name: 'maddr') AddressModel maddr});
 
-  $AddressmodelCopyWith<$Res> get maddr;
+  $AddressModelCopyWith<$Res> get maddr;
 }
 
 /// @nodoc
-class _$CustomerinfoCopyWithImpl<$Res> implements $CustomerinfoCopyWith<$Res> {
-  _$CustomerinfoCopyWithImpl(this._value, this._then);
+class _$customerinfoCopyWithImpl<$Res> implements $customerinfoCopyWith<$Res> {
+  _$customerinfoCopyWithImpl(this._value, this._then);
 
-  final Customerinfo _value;
+  final customerinfo _value;
   // ignore: unused_field
-  final $Res Function(Customerinfo) _then;
+  final $Res Function(customerinfo) _then;
 
   @override
   $Res call({
@@ -3092,48 +3974,48 @@ class _$CustomerinfoCopyWithImpl<$Res> implements $CustomerinfoCopyWith<$Res> {
           ? _value.customeruserid
           : customeruserid as String,
       name: name == freezed ? _value.name : name as String,
-      maddr: maddr == freezed ? _value.maddr : maddr as Addressmodel,
+      maddr: maddr == freezed ? _value.maddr : maddr as AddressModel,
     ));
   }
 
   @override
-  $AddressmodelCopyWith<$Res> get maddr {
+  $AddressModelCopyWith<$Res> get maddr {
     if (_value.maddr == null) {
       return null;
     }
-    return $AddressmodelCopyWith<$Res>(_value.maddr, (value) {
+    return $AddressModelCopyWith<$Res>(_value.maddr, (value) {
       return _then(_value.copyWith(maddr: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$CustomerinfoCopyWith<$Res>
-    implements $CustomerinfoCopyWith<$Res> {
-  factory _$CustomerinfoCopyWith(
-          _Customerinfo value, $Res Function(_Customerinfo) then) =
-      __$CustomerinfoCopyWithImpl<$Res>;
+abstract class _$customerinfoCopyWith<$Res>
+    implements $customerinfoCopyWith<$Res> {
+  factory _$customerinfoCopyWith(
+          _customerinfo value, $Res Function(_customerinfo) then) =
+      __$customerinfoCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'infotype') int infotype,
       @JsonKey(name: 'customerid') String customerid,
       @JsonKey(name: 'customeruserid') String customeruserid,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'maddr') Addressmodel maddr});
+      @JsonKey(name: 'maddr') AddressModel maddr});
 
   @override
-  $AddressmodelCopyWith<$Res> get maddr;
+  $AddressModelCopyWith<$Res> get maddr;
 }
 
 /// @nodoc
-class __$CustomerinfoCopyWithImpl<$Res> extends _$CustomerinfoCopyWithImpl<$Res>
-    implements _$CustomerinfoCopyWith<$Res> {
-  __$CustomerinfoCopyWithImpl(
-      _Customerinfo _value, $Res Function(_Customerinfo) _then)
-      : super(_value, (v) => _then(v as _Customerinfo));
+class __$customerinfoCopyWithImpl<$Res> extends _$customerinfoCopyWithImpl<$Res>
+    implements _$customerinfoCopyWith<$Res> {
+  __$customerinfoCopyWithImpl(
+      _customerinfo _value, $Res Function(_customerinfo) _then)
+      : super(_value, (v) => _then(v as _customerinfo));
 
   @override
-  _Customerinfo get _value => super._value as _Customerinfo;
+  _customerinfo get _value => super._value as _customerinfo;
 
   @override
   $Res call({
@@ -3143,7 +4025,7 @@ class __$CustomerinfoCopyWithImpl<$Res> extends _$CustomerinfoCopyWithImpl<$Res>
     Object name = freezed,
     Object maddr = freezed,
   }) {
-    return _then(_Customerinfo(
+    return _then(_customerinfo(
       infotype: infotype == freezed ? _value.infotype : infotype as int,
       customerid:
           customerid == freezed ? _value.customerid : customerid as String,
@@ -3151,7 +4033,7 @@ class __$CustomerinfoCopyWithImpl<$Res> extends _$CustomerinfoCopyWithImpl<$Res>
           ? _value.customeruserid
           : customeruserid as String,
       name: name == freezed ? _value.name : name as String,
-      maddr: maddr == freezed ? _value.maddr : maddr as Addressmodel,
+      maddr: maddr == freezed ? _value.maddr : maddr as AddressModel,
     ));
   }
 }
@@ -3159,16 +4041,16 @@ class __$CustomerinfoCopyWithImpl<$Res> extends _$CustomerinfoCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_Customerinfo implements _Customerinfo {
-  _$_Customerinfo(
+class _$_customerinfo with DiagnosticableTreeMixin implements _customerinfo {
+  _$_customerinfo(
       {@JsonKey(name: 'infotype') this.infotype,
       @JsonKey(name: 'customerid') this.customerid,
       @JsonKey(name: 'customeruserid') this.customeruserid,
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'maddr') this.maddr});
 
-  factory _$_Customerinfo.fromJson(Map<String, dynamic> json) =>
-      _$_$_CustomerinfoFromJson(json);
+  factory _$_customerinfo.fromJson(Map<String, dynamic> json) =>
+      _$_$_customerinfoFromJson(json);
 
   @override
   @JsonKey(name: 'infotype')
@@ -3184,17 +4066,29 @@ class _$_Customerinfo implements _Customerinfo {
   final String name;
   @override
   @JsonKey(name: 'maddr')
-  final Addressmodel maddr;
+  final AddressModel maddr;
 
   @override
-  String toString() {
-    return 'Customerinfo(infotype: $infotype, customerid: $customerid, customeruserid: $customeruserid, name: $name, maddr: $maddr)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'customerinfo(infotype: $infotype, customerid: $customerid, customeruserid: $customeruserid, name: $name, maddr: $maddr)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'customerinfo'))
+      ..add(DiagnosticsProperty('infotype', infotype))
+      ..add(DiagnosticsProperty('customerid', customerid))
+      ..add(DiagnosticsProperty('customeruserid', customeruserid))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('maddr', maddr));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Customerinfo &&
+        (other is _customerinfo &&
             (identical(other.infotype, infotype) ||
                 const DeepCollectionEquality()
                     .equals(other.infotype, infotype)) &&
@@ -3221,25 +4115,25 @@ class _$_Customerinfo implements _Customerinfo {
 
   @JsonKey(ignore: true)
   @override
-  _$CustomerinfoCopyWith<_Customerinfo> get copyWith =>
-      __$CustomerinfoCopyWithImpl<_Customerinfo>(this, _$identity);
+  _$customerinfoCopyWith<_customerinfo> get copyWith =>
+      __$customerinfoCopyWithImpl<_customerinfo>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CustomerinfoToJson(this);
+    return _$_$_customerinfoToJson(this);
   }
 }
 
-abstract class _Customerinfo implements Customerinfo {
-  factory _Customerinfo(
+abstract class _customerinfo implements customerinfo {
+  factory _customerinfo(
       {@JsonKey(name: 'infotype') int infotype,
       @JsonKey(name: 'customerid') String customerid,
       @JsonKey(name: 'customeruserid') String customeruserid,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'maddr') Addressmodel maddr}) = _$_Customerinfo;
+      @JsonKey(name: 'maddr') AddressModel maddr}) = _$_customerinfo;
 
-  factory _Customerinfo.fromJson(Map<String, dynamic> json) =
-      _$_Customerinfo.fromJson;
+  factory _customerinfo.fromJson(Map<String, dynamic> json) =
+      _$_customerinfo.fromJson;
 
   @override
   @JsonKey(name: 'infotype')
@@ -3255,22 +4149,22 @@ abstract class _Customerinfo implements Customerinfo {
   String get name;
   @override
   @JsonKey(name: 'maddr')
-  Addressmodel get maddr;
+  AddressModel get maddr;
   @override
   @JsonKey(ignore: true)
-  _$CustomerinfoCopyWith<_Customerinfo> get copyWith;
+  _$customerinfoCopyWith<_customerinfo> get copyWith;
 }
 
-Addressmodel _$AddressmodelFromJson(Map<String, dynamic> json) {
-  return _Addressmodel.fromJson(json);
+AddressModel _$AddressModelFromJson(Map<String, dynamic> json) {
+  return _AddressModel.fromJson(json);
 }
 
 /// @nodoc
-class _$AddressmodelTearOff {
-  const _$AddressmodelTearOff();
+class _$AddressModelTearOff {
+  const _$AddressModelTearOff();
 
 // ignore: unused_element
-  _Addressmodel call(
+  _AddressModel call(
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'country') String country,
       @JsonKey(name: 'state') String state,
@@ -3280,7 +4174,7 @@ class _$AddressmodelTearOff {
       @JsonKey(name: 'addressinfo') String addressinfo,
       @JsonKey(name: 'lati') double lati,
       @JsonKey(name: 'longi') double longi}) {
-    return _Addressmodel(
+    return _AddressModel(
       id: id,
       country: country,
       state: state,
@@ -3294,17 +4188,17 @@ class _$AddressmodelTearOff {
   }
 
 // ignore: unused_element
-  Addressmodel fromJson(Map<String, Object> json) {
-    return Addressmodel.fromJson(json);
+  AddressModel fromJson(Map<String, Object> json) {
+    return AddressModel.fromJson(json);
   }
 }
 
 /// @nodoc
 // ignore: unused_element
-const $Addressmodel = _$AddressmodelTearOff();
+const $AddressModel = _$AddressModelTearOff();
 
 /// @nodoc
-mixin _$Addressmodel {
+mixin _$AddressModel {
   @JsonKey(name: 'id')
   String get id;
   @JsonKey(name: 'country')
@@ -3326,14 +4220,14 @@ mixin _$Addressmodel {
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
-  $AddressmodelCopyWith<Addressmodel> get copyWith;
+  $AddressModelCopyWith<AddressModel> get copyWith;
 }
 
 /// @nodoc
-abstract class $AddressmodelCopyWith<$Res> {
-  factory $AddressmodelCopyWith(
-          Addressmodel value, $Res Function(Addressmodel) then) =
-      _$AddressmodelCopyWithImpl<$Res>;
+abstract class $AddressModelCopyWith<$Res> {
+  factory $AddressModelCopyWith(
+          AddressModel value, $Res Function(AddressModel) then) =
+      _$AddressModelCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'country') String country,
@@ -3347,12 +4241,12 @@ abstract class $AddressmodelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AddressmodelCopyWithImpl<$Res> implements $AddressmodelCopyWith<$Res> {
-  _$AddressmodelCopyWithImpl(this._value, this._then);
+class _$AddressModelCopyWithImpl<$Res> implements $AddressModelCopyWith<$Res> {
+  _$AddressModelCopyWithImpl(this._value, this._then);
 
-  final Addressmodel _value;
+  final AddressModel _value;
   // ignore: unused_field
-  final $Res Function(Addressmodel) _then;
+  final $Res Function(AddressModel) _then;
 
   @override
   $Res call({
@@ -3382,11 +4276,11 @@ class _$AddressmodelCopyWithImpl<$Res> implements $AddressmodelCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AddressmodelCopyWith<$Res>
-    implements $AddressmodelCopyWith<$Res> {
-  factory _$AddressmodelCopyWith(
-          _Addressmodel value, $Res Function(_Addressmodel) then) =
-      __$AddressmodelCopyWithImpl<$Res>;
+abstract class _$AddressModelCopyWith<$Res>
+    implements $AddressModelCopyWith<$Res> {
+  factory _$AddressModelCopyWith(
+          _AddressModel value, $Res Function(_AddressModel) then) =
+      __$AddressModelCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -3401,14 +4295,14 @@ abstract class _$AddressmodelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AddressmodelCopyWithImpl<$Res> extends _$AddressmodelCopyWithImpl<$Res>
-    implements _$AddressmodelCopyWith<$Res> {
-  __$AddressmodelCopyWithImpl(
-      _Addressmodel _value, $Res Function(_Addressmodel) _then)
-      : super(_value, (v) => _then(v as _Addressmodel));
+class __$AddressModelCopyWithImpl<$Res> extends _$AddressModelCopyWithImpl<$Res>
+    implements _$AddressModelCopyWith<$Res> {
+  __$AddressModelCopyWithImpl(
+      _AddressModel _value, $Res Function(_AddressModel) _then)
+      : super(_value, (v) => _then(v as _AddressModel));
 
   @override
-  _Addressmodel get _value => super._value as _Addressmodel;
+  _AddressModel get _value => super._value as _AddressModel;
 
   @override
   $Res call({
@@ -3422,7 +4316,7 @@ class __$AddressmodelCopyWithImpl<$Res> extends _$AddressmodelCopyWithImpl<$Res>
     Object lati = freezed,
     Object longi = freezed,
   }) {
-    return _then(_Addressmodel(
+    return _then(_AddressModel(
       id: id == freezed ? _value.id : id as String,
       country: country == freezed ? _value.country : country as String,
       state: state == freezed ? _value.state : state as String,
@@ -3440,8 +4334,8 @@ class __$AddressmodelCopyWithImpl<$Res> extends _$AddressmodelCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_Addressmodel implements _Addressmodel {
-  _$_Addressmodel(
+class _$_AddressModel with DiagnosticableTreeMixin implements _AddressModel {
+  _$_AddressModel(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'country') this.country,
       @JsonKey(name: 'state') this.state,
@@ -3452,8 +4346,8 @@ class _$_Addressmodel implements _Addressmodel {
       @JsonKey(name: 'lati') this.lati,
       @JsonKey(name: 'longi') this.longi});
 
-  factory _$_Addressmodel.fromJson(Map<String, dynamic> json) =>
-      _$_$_AddressmodelFromJson(json);
+  factory _$_AddressModel.fromJson(Map<String, dynamic> json) =>
+      _$_$_AddressModelFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -3484,14 +4378,30 @@ class _$_Addressmodel implements _Addressmodel {
   final double longi;
 
   @override
-  String toString() {
-    return 'Addressmodel(id: $id, country: $country, state: $state, district: $district, village: $village, areaname: $areaname, addressinfo: $addressinfo, lati: $lati, longi: $longi)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AddressModel(id: $id, country: $country, state: $state, district: $district, village: $village, areaname: $areaname, addressinfo: $addressinfo, lati: $lati, longi: $longi)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AddressModel'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('country', country))
+      ..add(DiagnosticsProperty('state', state))
+      ..add(DiagnosticsProperty('district', district))
+      ..add(DiagnosticsProperty('village', village))
+      ..add(DiagnosticsProperty('areaname', areaname))
+      ..add(DiagnosticsProperty('addressinfo', addressinfo))
+      ..add(DiagnosticsProperty('lati', lati))
+      ..add(DiagnosticsProperty('longi', longi));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Addressmodel &&
+        (other is _AddressModel &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.country, country) ||
@@ -3532,17 +4442,17 @@ class _$_Addressmodel implements _Addressmodel {
 
   @JsonKey(ignore: true)
   @override
-  _$AddressmodelCopyWith<_Addressmodel> get copyWith =>
-      __$AddressmodelCopyWithImpl<_Addressmodel>(this, _$identity);
+  _$AddressModelCopyWith<_AddressModel> get copyWith =>
+      __$AddressModelCopyWithImpl<_AddressModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AddressmodelToJson(this);
+    return _$_$_AddressModelToJson(this);
   }
 }
 
-abstract class _Addressmodel implements Addressmodel {
-  factory _Addressmodel(
+abstract class _AddressModel implements AddressModel {
+  factory _AddressModel(
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'country') String country,
       @JsonKey(name: 'state') String state,
@@ -3551,10 +4461,10 @@ abstract class _Addressmodel implements Addressmodel {
       @JsonKey(name: 'areaname') String areaname,
       @JsonKey(name: 'addressinfo') String addressinfo,
       @JsonKey(name: 'lati') double lati,
-      @JsonKey(name: 'longi') double longi}) = _$_Addressmodel;
+      @JsonKey(name: 'longi') double longi}) = _$_AddressModel;
 
-  factory _Addressmodel.fromJson(Map<String, dynamic> json) =
-      _$_Addressmodel.fromJson;
+  factory _AddressModel.fromJson(Map<String, dynamic> json) =
+      _$_AddressModel.fromJson;
 
   @override
   @JsonKey(name: 'id')
@@ -3585,7 +4495,7 @@ abstract class _Addressmodel implements Addressmodel {
   double get longi;
   @override
   @JsonKey(ignore: true)
-  _$AddressmodelCopyWith<_Addressmodel> get copyWith;
+  _$AddressModelCopyWith<_AddressModel> get copyWith;
 }
 
 ProductFilterResultModel _$ProductFilterResultModelFromJson(
@@ -3606,6 +4516,7 @@ class _$ProductFilterResultModelTearOff {
       @JsonKey(name: 'docwithdata3') List<LimitedRealEstateData> docwithdata3,
       @JsonKey(name: 'docwithdata4') List<LimitedVehicleData> docwithdata4,
       @JsonKey(name: 'docwithdata5') List<LimitedPetData> docwithdata5,
+      @JsonKey(name: 'longrangelist') List<String> longrangelist,
       @JsonKey(name: 'pidlist') List<String> pidlist,
       @JsonKey(name: 'diminfo') List<DimData> diminfo,
       @JsonKey(name: 'catinfo') List<Categoryinfo> catinfo,
@@ -3619,6 +4530,7 @@ class _$ProductFilterResultModelTearOff {
       docwithdata3: docwithdata3,
       docwithdata4: docwithdata4,
       docwithdata5: docwithdata5,
+      longrangelist: longrangelist,
       pidlist: pidlist,
       diminfo: diminfo,
       catinfo: catinfo,
@@ -3653,6 +4565,8 @@ mixin _$ProductFilterResultModel {
   List<LimitedVehicleData> get docwithdata4;
   @JsonKey(name: 'docwithdata5')
   List<LimitedPetData> get docwithdata5;
+  @JsonKey(name: 'longrangelist')
+  List<String> get longrangelist;
   @JsonKey(name: 'pidlist')
   List<String> get pidlist;
   @JsonKey(name: 'diminfo')
@@ -3682,6 +4596,7 @@ abstract class $ProductFilterResultModelCopyWith<$Res> {
       @JsonKey(name: 'docwithdata3') List<LimitedRealEstateData> docwithdata3,
       @JsonKey(name: 'docwithdata4') List<LimitedVehicleData> docwithdata4,
       @JsonKey(name: 'docwithdata5') List<LimitedPetData> docwithdata5,
+      @JsonKey(name: 'longrangelist') List<String> longrangelist,
       @JsonKey(name: 'pidlist') List<String> pidlist,
       @JsonKey(name: 'diminfo') List<DimData> diminfo,
       @JsonKey(name: 'catinfo') List<Categoryinfo> catinfo,
@@ -3707,6 +4622,7 @@ class _$ProductFilterResultModelCopyWithImpl<$Res>
     Object docwithdata3 = freezed,
     Object docwithdata4 = freezed,
     Object docwithdata5 = freezed,
+    Object longrangelist = freezed,
     Object pidlist = freezed,
     Object diminfo = freezed,
     Object catinfo = freezed,
@@ -3733,6 +4649,9 @@ class _$ProductFilterResultModelCopyWithImpl<$Res>
       docwithdata5: docwithdata5 == freezed
           ? _value.docwithdata5
           : docwithdata5 as List<LimitedPetData>,
+      longrangelist: longrangelist == freezed
+          ? _value.longrangelist
+          : longrangelist as List<String>,
       pidlist: pidlist == freezed ? _value.pidlist : pidlist as List<String>,
       diminfo: diminfo == freezed ? _value.diminfo : diminfo as List<DimData>,
       catinfo:
@@ -3762,6 +4681,7 @@ abstract class _$ProductFilterResultModelCopyWith<$Res>
       @JsonKey(name: 'docwithdata3') List<LimitedRealEstateData> docwithdata3,
       @JsonKey(name: 'docwithdata4') List<LimitedVehicleData> docwithdata4,
       @JsonKey(name: 'docwithdata5') List<LimitedPetData> docwithdata5,
+      @JsonKey(name: 'longrangelist') List<String> longrangelist,
       @JsonKey(name: 'pidlist') List<String> pidlist,
       @JsonKey(name: 'diminfo') List<DimData> diminfo,
       @JsonKey(name: 'catinfo') List<Categoryinfo> catinfo,
@@ -3790,6 +4710,7 @@ class __$ProductFilterResultModelCopyWithImpl<$Res>
     Object docwithdata3 = freezed,
     Object docwithdata4 = freezed,
     Object docwithdata5 = freezed,
+    Object longrangelist = freezed,
     Object pidlist = freezed,
     Object diminfo = freezed,
     Object catinfo = freezed,
@@ -3816,6 +4737,9 @@ class __$ProductFilterResultModelCopyWithImpl<$Res>
       docwithdata5: docwithdata5 == freezed
           ? _value.docwithdata5
           : docwithdata5 as List<LimitedPetData>,
+      longrangelist: longrangelist == freezed
+          ? _value.longrangelist
+          : longrangelist as List<String>,
       pidlist: pidlist == freezed ? _value.pidlist : pidlist as List<String>,
       diminfo: diminfo == freezed ? _value.diminfo : diminfo as List<DimData>,
       catinfo:
@@ -3833,7 +4757,9 @@ class __$ProductFilterResultModelCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ProductFilterResultModel implements _ProductFilterResultModel {
+class _$_ProductFilterResultModel
+    with DiagnosticableTreeMixin
+    implements _ProductFilterResultModel {
   _$_ProductFilterResultModel(
       {@JsonKey(name: 'totalcount') this.totalcount,
       @JsonKey(name: 'serviceproviderid') this.serviceproviderid,
@@ -3842,6 +4768,7 @@ class _$_ProductFilterResultModel implements _ProductFilterResultModel {
       @JsonKey(name: 'docwithdata3') this.docwithdata3,
       @JsonKey(name: 'docwithdata4') this.docwithdata4,
       @JsonKey(name: 'docwithdata5') this.docwithdata5,
+      @JsonKey(name: 'longrangelist') this.longrangelist,
       @JsonKey(name: 'pidlist') this.pidlist,
       @JsonKey(name: 'diminfo') this.diminfo,
       @JsonKey(name: 'catinfo') this.catinfo,
@@ -3873,6 +4800,9 @@ class _$_ProductFilterResultModel implements _ProductFilterResultModel {
   @JsonKey(name: 'docwithdata5')
   final List<LimitedPetData> docwithdata5;
   @override
+  @JsonKey(name: 'longrangelist')
+  final List<String> longrangelist;
+  @override
   @JsonKey(name: 'pidlist')
   final List<String> pidlist;
   @override
@@ -3889,8 +4819,28 @@ class _$_ProductFilterResultModel implements _ProductFilterResultModel {
   final bool hasmoreresults;
 
   @override
-  String toString() {
-    return 'ProductFilterResultModel(totalcount: $totalcount, serviceproviderid: $serviceproviderid, docwithdata1: $docwithdata1, docwithdata2: $docwithdata2, docwithdata3: $docwithdata3, docwithdata4: $docwithdata4, docwithdata5: $docwithdata5, pidlist: $pidlist, diminfo: $diminfo, catinfo: $catinfo, topleveltiletype: $topleveltiletype, hasmoreresults: $hasmoreresults)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ProductFilterResultModel(totalcount: $totalcount, serviceproviderid: $serviceproviderid, docwithdata1: $docwithdata1, docwithdata2: $docwithdata2, docwithdata3: $docwithdata3, docwithdata4: $docwithdata4, docwithdata5: $docwithdata5, longrangelist: $longrangelist, pidlist: $pidlist, diminfo: $diminfo, catinfo: $catinfo, topleveltiletype: $topleveltiletype, hasmoreresults: $hasmoreresults)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ProductFilterResultModel'))
+      ..add(DiagnosticsProperty('totalcount', totalcount))
+      ..add(DiagnosticsProperty('serviceproviderid', serviceproviderid))
+      ..add(DiagnosticsProperty('docwithdata1', docwithdata1))
+      ..add(DiagnosticsProperty('docwithdata2', docwithdata2))
+      ..add(DiagnosticsProperty('docwithdata3', docwithdata3))
+      ..add(DiagnosticsProperty('docwithdata4', docwithdata4))
+      ..add(DiagnosticsProperty('docwithdata5', docwithdata5))
+      ..add(DiagnosticsProperty('longrangelist', longrangelist))
+      ..add(DiagnosticsProperty('pidlist', pidlist))
+      ..add(DiagnosticsProperty('diminfo', diminfo))
+      ..add(DiagnosticsProperty('catinfo', catinfo))
+      ..add(DiagnosticsProperty('topleveltiletype', topleveltiletype))
+      ..add(DiagnosticsProperty('hasmoreresults', hasmoreresults));
   }
 
   @override
@@ -3918,6 +4868,9 @@ class _$_ProductFilterResultModel implements _ProductFilterResultModel {
             (identical(other.docwithdata5, docwithdata5) ||
                 const DeepCollectionEquality()
                     .equals(other.docwithdata5, docwithdata5)) &&
+            (identical(other.longrangelist, longrangelist) ||
+                const DeepCollectionEquality()
+                    .equals(other.longrangelist, longrangelist)) &&
             (identical(other.pidlist, pidlist) ||
                 const DeepCollectionEquality()
                     .equals(other.pidlist, pidlist)) &&
@@ -3945,6 +4898,7 @@ class _$_ProductFilterResultModel implements _ProductFilterResultModel {
       const DeepCollectionEquality().hash(docwithdata3) ^
       const DeepCollectionEquality().hash(docwithdata4) ^
       const DeepCollectionEquality().hash(docwithdata5) ^
+      const DeepCollectionEquality().hash(longrangelist) ^
       const DeepCollectionEquality().hash(pidlist) ^
       const DeepCollectionEquality().hash(diminfo) ^
       const DeepCollectionEquality().hash(catinfo) ^
@@ -3979,6 +4933,8 @@ abstract class _ProductFilterResultModel implements ProductFilterResultModel {
           List<LimitedVehicleData> docwithdata4,
       @JsonKey(name: 'docwithdata5')
           List<LimitedPetData> docwithdata5,
+      @JsonKey(name: 'longrangelist')
+          List<String> longrangelist,
       @JsonKey(name: 'pidlist')
           List<String> pidlist,
       @JsonKey(name: 'diminfo')
@@ -4014,6 +4970,9 @@ abstract class _ProductFilterResultModel implements ProductFilterResultModel {
   @override
   @JsonKey(name: 'docwithdata5')
   List<LimitedPetData> get docwithdata5;
+  @override
+  @JsonKey(name: 'longrangelist')
+  List<String> get longrangelist;
   @override
   @JsonKey(name: 'pidlist')
   List<String> get pidlist;
@@ -4199,7 +5158,7 @@ class __$SpatialDataCopyWithImpl<$Res> extends _$SpatialDataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_SpatialData implements _SpatialData {
+class _$_SpatialData with DiagnosticableTreeMixin implements _SpatialData {
   _$_SpatialData(
       {@JsonKey(name: 'locationname') this.locationname,
       @JsonKey(name: 'curstatename') this.curStatename,
@@ -4235,8 +5194,22 @@ class _$_SpatialData implements _SpatialData {
   final int type;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SpatialData(locationname: $locationname, curStatename: $curStatename, statename: $statename, lati: $lati, longi: $longi, radius: $radius, type: $type)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SpatialData'))
+      ..add(DiagnosticsProperty('locationname', locationname))
+      ..add(DiagnosticsProperty('curStatename', curStatename))
+      ..add(DiagnosticsProperty('statename', statename))
+      ..add(DiagnosticsProperty('lati', lati))
+      ..add(DiagnosticsProperty('longi', longi))
+      ..add(DiagnosticsProperty('radius', radius))
+      ..add(DiagnosticsProperty('type', type));
   }
 
   @override
@@ -4477,7 +5450,9 @@ class __$ServiceFilterParameterCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ServiceFilterParameter implements _ServiceFilterParameter {
+class _$_ServiceFilterParameter
+    with DiagnosticableTreeMixin
+    implements _ServiceFilterParameter {
   _$_ServiceFilterParameter(
       {@JsonKey(name: 'serviceofferedselectedvalues')
           this.serviceofferedselectedvalues,
@@ -4500,8 +5475,19 @@ class _$_ServiceFilterParameter implements _ServiceFilterParameter {
   final int offset;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ServiceFilterParameter(serviceofferedselectedvalues: $serviceofferedselectedvalues, textsearch: $textsearch, offset: $offset)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ServiceFilterParameter'))
+      ..add(DiagnosticsProperty(
+          'serviceofferedselectedvalues', serviceofferedselectedvalues))
+      ..add(DiagnosticsProperty('textsearch', textsearch))
+      ..add(DiagnosticsProperty('offset', offset));
   }
 
   @override
@@ -4709,7 +5695,7 @@ class __$ExplorePageAdCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ExplorePageAd implements _ExplorePageAd {
+class _$_ExplorePageAd with DiagnosticableTreeMixin implements _ExplorePageAd {
   _$_ExplorePageAd(
       {@JsonKey(name: 'imagepath') this.imagepath,
       @JsonKey(name: 'message') this.message,
@@ -4733,8 +5719,19 @@ class _$_ExplorePageAd implements _ExplorePageAd {
   final LimitedProductData lpd;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ExplorePageAd(imagepath: $imagepath, message: $message, lm: $lm, lpd: $lpd)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ExplorePageAd'))
+      ..add(DiagnosticsProperty('imagepath', imagepath))
+      ..add(DiagnosticsProperty('message', message))
+      ..add(DiagnosticsProperty('lm', lm))
+      ..add(DiagnosticsProperty('lpd', lpd));
   }
 
   @override
@@ -4813,12 +5810,14 @@ class _$ServiceFilterResultDataTearOff {
       {@JsonKey(name: 'smlist') List<LimitedServiceModel> smlist,
       @JsonKey(name: 'smidlist') List<String> smidlist,
       @JsonKey(name: 'totcount') int totcount,
-      @JsonKey(name: 'curads') List<ExplorePageAd> curads}) {
+      @JsonKey(name: 'curads') List<ExplorePageAd> curads,
+      @JsonKey(name: 'diminfo') List<DimData> diminfo}) {
     return _ServiceFilterResultData(
       smlist: smlist,
       smidlist: smidlist,
       totcount: totcount,
       curads: curads,
+      diminfo: diminfo,
     );
   }
 
@@ -4842,6 +5841,8 @@ mixin _$ServiceFilterResultData {
   int get totcount;
   @JsonKey(name: 'curads')
   List<ExplorePageAd> get curads;
+  @JsonKey(name: 'diminfo')
+  List<DimData> get diminfo;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -4857,7 +5858,8 @@ abstract class $ServiceFilterResultDataCopyWith<$Res> {
       {@JsonKey(name: 'smlist') List<LimitedServiceModel> smlist,
       @JsonKey(name: 'smidlist') List<String> smidlist,
       @JsonKey(name: 'totcount') int totcount,
-      @JsonKey(name: 'curads') List<ExplorePageAd> curads});
+      @JsonKey(name: 'curads') List<ExplorePageAd> curads,
+      @JsonKey(name: 'diminfo') List<DimData> diminfo});
 }
 
 /// @nodoc
@@ -4875,6 +5877,7 @@ class _$ServiceFilterResultDataCopyWithImpl<$Res>
     Object smidlist = freezed,
     Object totcount = freezed,
     Object curads = freezed,
+    Object diminfo = freezed,
   }) {
     return _then(_value.copyWith(
       smlist: smlist == freezed
@@ -4884,6 +5887,7 @@ class _$ServiceFilterResultDataCopyWithImpl<$Res>
           smidlist == freezed ? _value.smidlist : smidlist as List<String>,
       totcount: totcount == freezed ? _value.totcount : totcount as int,
       curads: curads == freezed ? _value.curads : curads as List<ExplorePageAd>,
+      diminfo: diminfo == freezed ? _value.diminfo : diminfo as List<DimData>,
     ));
   }
 }
@@ -4899,7 +5903,8 @@ abstract class _$ServiceFilterResultDataCopyWith<$Res>
       {@JsonKey(name: 'smlist') List<LimitedServiceModel> smlist,
       @JsonKey(name: 'smidlist') List<String> smidlist,
       @JsonKey(name: 'totcount') int totcount,
-      @JsonKey(name: 'curads') List<ExplorePageAd> curads});
+      @JsonKey(name: 'curads') List<ExplorePageAd> curads,
+      @JsonKey(name: 'diminfo') List<DimData> diminfo});
 }
 
 /// @nodoc
@@ -4920,6 +5925,7 @@ class __$ServiceFilterResultDataCopyWithImpl<$Res>
     Object smidlist = freezed,
     Object totcount = freezed,
     Object curads = freezed,
+    Object diminfo = freezed,
   }) {
     return _then(_ServiceFilterResultData(
       smlist: smlist == freezed
@@ -4929,6 +5935,7 @@ class __$ServiceFilterResultDataCopyWithImpl<$Res>
           smidlist == freezed ? _value.smidlist : smidlist as List<String>,
       totcount: totcount == freezed ? _value.totcount : totcount as int,
       curads: curads == freezed ? _value.curads : curads as List<ExplorePageAd>,
+      diminfo: diminfo == freezed ? _value.diminfo : diminfo as List<DimData>,
     ));
   }
 }
@@ -4936,12 +5943,15 @@ class __$ServiceFilterResultDataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ServiceFilterResultData implements _ServiceFilterResultData {
+class _$_ServiceFilterResultData
+    with DiagnosticableTreeMixin
+    implements _ServiceFilterResultData {
   _$_ServiceFilterResultData(
       {@JsonKey(name: 'smlist') this.smlist,
       @JsonKey(name: 'smidlist') this.smidlist,
       @JsonKey(name: 'totcount') this.totcount,
-      @JsonKey(name: 'curads') this.curads});
+      @JsonKey(name: 'curads') this.curads,
+      @JsonKey(name: 'diminfo') this.diminfo});
 
   factory _$_ServiceFilterResultData.fromJson(Map<String, dynamic> json) =>
       _$_$_ServiceFilterResultDataFromJson(json);
@@ -4958,10 +5968,25 @@ class _$_ServiceFilterResultData implements _ServiceFilterResultData {
   @override
   @JsonKey(name: 'curads')
   final List<ExplorePageAd> curads;
+  @override
+  @JsonKey(name: 'diminfo')
+  final List<DimData> diminfo;
 
   @override
-  String toString() {
-    return 'ServiceFilterResultData(smlist: $smlist, smidlist: $smidlist, totcount: $totcount, curads: $curads)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ServiceFilterResultData(smlist: $smlist, smidlist: $smidlist, totcount: $totcount, curads: $curads, diminfo: $diminfo)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ServiceFilterResultData'))
+      ..add(DiagnosticsProperty('smlist', smlist))
+      ..add(DiagnosticsProperty('smidlist', smidlist))
+      ..add(DiagnosticsProperty('totcount', totcount))
+      ..add(DiagnosticsProperty('curads', curads))
+      ..add(DiagnosticsProperty('diminfo', diminfo));
   }
 
   @override
@@ -4977,7 +6002,9 @@ class _$_ServiceFilterResultData implements _ServiceFilterResultData {
                 const DeepCollectionEquality()
                     .equals(other.totcount, totcount)) &&
             (identical(other.curads, curads) ||
-                const DeepCollectionEquality().equals(other.curads, curads)));
+                const DeepCollectionEquality().equals(other.curads, curads)) &&
+            (identical(other.diminfo, diminfo) ||
+                const DeepCollectionEquality().equals(other.diminfo, diminfo)));
   }
 
   @override
@@ -4986,7 +6013,8 @@ class _$_ServiceFilterResultData implements _ServiceFilterResultData {
       const DeepCollectionEquality().hash(smlist) ^
       const DeepCollectionEquality().hash(smidlist) ^
       const DeepCollectionEquality().hash(totcount) ^
-      const DeepCollectionEquality().hash(curads);
+      const DeepCollectionEquality().hash(curads) ^
+      const DeepCollectionEquality().hash(diminfo);
 
   @JsonKey(ignore: true)
   @override
@@ -5005,7 +6033,8 @@ abstract class _ServiceFilterResultData implements ServiceFilterResultData {
           {@JsonKey(name: 'smlist') List<LimitedServiceModel> smlist,
           @JsonKey(name: 'smidlist') List<String> smidlist,
           @JsonKey(name: 'totcount') int totcount,
-          @JsonKey(name: 'curads') List<ExplorePageAd> curads}) =
+          @JsonKey(name: 'curads') List<ExplorePageAd> curads,
+          @JsonKey(name: 'diminfo') List<DimData> diminfo}) =
       _$_ServiceFilterResultData;
 
   factory _ServiceFilterResultData.fromJson(Map<String, dynamic> json) =
@@ -5024,6 +6053,9 @@ abstract class _ServiceFilterResultData implements ServiceFilterResultData {
   @JsonKey(name: 'curads')
   List<ExplorePageAd> get curads;
   @override
+  @JsonKey(name: 'diminfo')
+  List<DimData> get diminfo;
+  @override
   @JsonKey(ignore: true)
   _$ServiceFilterResultDataCopyWith<_ServiceFilterResultData> get copyWith;
 }
@@ -5041,6 +6073,7 @@ class _$LimitedServiceModelTearOff {
       {@JsonKey(name: 'phone') List<String> phone,
       @JsonKey(name: 'servicetype') List<String> servicetype,
       @JsonKey(name: 'address') String address,
+      @JsonKey(name: 'adm') AddressDataModel adm,
       @JsonKey(name: 'email') String email,
       @JsonKey(name: 'photo1') String photo1,
       @JsonKey(name: 'servicename') String serviceName,
@@ -5053,11 +6086,13 @@ class _$LimitedServiceModelTearOff {
       @JsonKey(name: 'hasecom') bool hasecom,
       @JsonKey(name: 'hasproductcatalog') bool hasproductcatalog,
       @JsonKey(name: 'lati') double lati,
-      @JsonKey(name: 'longi') double longi}) {
+      @JsonKey(name: 'longi') double longi,
+      @JsonKey(name: 'serviceoffered') List<String> serviceOffered}) {
     return _LimitedServiceModel(
       phone: phone,
       servicetype: servicetype,
       address: address,
+      adm: adm,
       email: email,
       photo1: photo1,
       serviceName: serviceName,
@@ -5071,6 +6106,7 @@ class _$LimitedServiceModelTearOff {
       hasproductcatalog: hasproductcatalog,
       lati: lati,
       longi: longi,
+      serviceOffered: serviceOffered,
     );
   }
 
@@ -5092,6 +6128,8 @@ mixin _$LimitedServiceModel {
   List<String> get servicetype;
   @JsonKey(name: 'address')
   String get address;
+  @JsonKey(name: 'adm')
+  AddressDataModel get adm;
   @JsonKey(name: 'email')
   String get email;
   @JsonKey(name: 'photo1')
@@ -5118,6 +6156,8 @@ mixin _$LimitedServiceModel {
   double get lati;
   @JsonKey(name: 'longi')
   double get longi;
+  @JsonKey(name: 'serviceoffered')
+  List<String> get serviceOffered;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -5133,6 +6173,7 @@ abstract class $LimitedServiceModelCopyWith<$Res> {
       {@JsonKey(name: 'phone') List<String> phone,
       @JsonKey(name: 'servicetype') List<String> servicetype,
       @JsonKey(name: 'address') String address,
+      @JsonKey(name: 'adm') AddressDataModel adm,
       @JsonKey(name: 'email') String email,
       @JsonKey(name: 'photo1') String photo1,
       @JsonKey(name: 'servicename') String serviceName,
@@ -5145,7 +6186,8 @@ abstract class $LimitedServiceModelCopyWith<$Res> {
       @JsonKey(name: 'hasecom') bool hasecom,
       @JsonKey(name: 'hasproductcatalog') bool hasproductcatalog,
       @JsonKey(name: 'lati') double lati,
-      @JsonKey(name: 'longi') double longi});
+      @JsonKey(name: 'longi') double longi,
+      @JsonKey(name: 'serviceoffered') List<String> serviceOffered});
 }
 
 /// @nodoc
@@ -5162,6 +6204,7 @@ class _$LimitedServiceModelCopyWithImpl<$Res>
     Object phone = freezed,
     Object servicetype = freezed,
     Object address = freezed,
+    Object adm = freezed,
     Object email = freezed,
     Object photo1 = freezed,
     Object serviceName = freezed,
@@ -5175,6 +6218,7 @@ class _$LimitedServiceModelCopyWithImpl<$Res>
     Object hasproductcatalog = freezed,
     Object lati = freezed,
     Object longi = freezed,
+    Object serviceOffered = freezed,
   }) {
     return _then(_value.copyWith(
       phone: phone == freezed ? _value.phone : phone as List<String>,
@@ -5182,6 +6226,7 @@ class _$LimitedServiceModelCopyWithImpl<$Res>
           ? _value.servicetype
           : servicetype as List<String>,
       address: address == freezed ? _value.address : address as String,
+      adm: adm == freezed ? _value.adm : adm as AddressDataModel,
       email: email == freezed ? _value.email : email as String,
       photo1: photo1 == freezed ? _value.photo1 : photo1 as String,
       serviceName:
@@ -5202,6 +6247,9 @@ class _$LimitedServiceModelCopyWithImpl<$Res>
           : hasproductcatalog as bool,
       lati: lati == freezed ? _value.lati : lati as double,
       longi: longi == freezed ? _value.longi : longi as double,
+      serviceOffered: serviceOffered == freezed
+          ? _value.serviceOffered
+          : serviceOffered as List<String>,
     ));
   }
 }
@@ -5217,6 +6265,7 @@ abstract class _$LimitedServiceModelCopyWith<$Res>
       {@JsonKey(name: 'phone') List<String> phone,
       @JsonKey(name: 'servicetype') List<String> servicetype,
       @JsonKey(name: 'address') String address,
+      @JsonKey(name: 'adm') AddressDataModel adm,
       @JsonKey(name: 'email') String email,
       @JsonKey(name: 'photo1') String photo1,
       @JsonKey(name: 'servicename') String serviceName,
@@ -5229,7 +6278,8 @@ abstract class _$LimitedServiceModelCopyWith<$Res>
       @JsonKey(name: 'hasecom') bool hasecom,
       @JsonKey(name: 'hasproductcatalog') bool hasproductcatalog,
       @JsonKey(name: 'lati') double lati,
-      @JsonKey(name: 'longi') double longi});
+      @JsonKey(name: 'longi') double longi,
+      @JsonKey(name: 'serviceoffered') List<String> serviceOffered});
 }
 
 /// @nodoc
@@ -5248,6 +6298,7 @@ class __$LimitedServiceModelCopyWithImpl<$Res>
     Object phone = freezed,
     Object servicetype = freezed,
     Object address = freezed,
+    Object adm = freezed,
     Object email = freezed,
     Object photo1 = freezed,
     Object serviceName = freezed,
@@ -5261,6 +6312,7 @@ class __$LimitedServiceModelCopyWithImpl<$Res>
     Object hasproductcatalog = freezed,
     Object lati = freezed,
     Object longi = freezed,
+    Object serviceOffered = freezed,
   }) {
     return _then(_LimitedServiceModel(
       phone: phone == freezed ? _value.phone : phone as List<String>,
@@ -5268,6 +6320,7 @@ class __$LimitedServiceModelCopyWithImpl<$Res>
           ? _value.servicetype
           : servicetype as List<String>,
       address: address == freezed ? _value.address : address as String,
+      adm: adm == freezed ? _value.adm : adm as AddressDataModel,
       email: email == freezed ? _value.email : email as String,
       photo1: photo1 == freezed ? _value.photo1 : photo1 as String,
       serviceName:
@@ -5288,6 +6341,9 @@ class __$LimitedServiceModelCopyWithImpl<$Res>
           : hasproductcatalog as bool,
       lati: lati == freezed ? _value.lati : lati as double,
       longi: longi == freezed ? _value.longi : longi as double,
+      serviceOffered: serviceOffered == freezed
+          ? _value.serviceOffered
+          : serviceOffered as List<String>,
     ));
   }
 }
@@ -5295,11 +6351,14 @@ class __$LimitedServiceModelCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_LimitedServiceModel implements _LimitedServiceModel {
+class _$_LimitedServiceModel
+    with DiagnosticableTreeMixin
+    implements _LimitedServiceModel {
   _$_LimitedServiceModel(
       {@JsonKey(name: 'phone') this.phone,
       @JsonKey(name: 'servicetype') this.servicetype,
       @JsonKey(name: 'address') this.address,
+      @JsonKey(name: 'adm') this.adm,
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'photo1') this.photo1,
       @JsonKey(name: 'servicename') this.serviceName,
@@ -5312,7 +6371,8 @@ class _$_LimitedServiceModel implements _LimitedServiceModel {
       @JsonKey(name: 'hasecom') this.hasecom,
       @JsonKey(name: 'hasproductcatalog') this.hasproductcatalog,
       @JsonKey(name: 'lati') this.lati,
-      @JsonKey(name: 'longi') this.longi});
+      @JsonKey(name: 'longi') this.longi,
+      @JsonKey(name: 'serviceoffered') this.serviceOffered});
 
   factory _$_LimitedServiceModel.fromJson(Map<String, dynamic> json) =>
       _$_$_LimitedServiceModelFromJson(json);
@@ -5326,6 +6386,9 @@ class _$_LimitedServiceModel implements _LimitedServiceModel {
   @override
   @JsonKey(name: 'address')
   final String address;
+  @override
+  @JsonKey(name: 'adm')
+  final AddressDataModel adm;
   @override
   @JsonKey(name: 'email')
   final String email;
@@ -5365,10 +6428,38 @@ class _$_LimitedServiceModel implements _LimitedServiceModel {
   @override
   @JsonKey(name: 'longi')
   final double longi;
+  @override
+  @JsonKey(name: 'serviceoffered')
+  final List<String> serviceOffered;
 
   @override
-  String toString() {
-    return 'LimitedServiceModel(phone: $phone, servicetype: $servicetype, address: $address, email: $email, photo1: $photo1, serviceName: $serviceName, timeinfo: $timeinfo, serviceID: $serviceID, ratingcount: $ratingcount, totalratings: $totalratings, hasapt: $hasapt, hasadhoctrips: $hasadhoctrips, hasecom: $hasecom, hasproductcatalog: $hasproductcatalog, lati: $lati, longi: $longi)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LimitedServiceModel(phone: $phone, servicetype: $servicetype, address: $address, adm: $adm, email: $email, photo1: $photo1, serviceName: $serviceName, timeinfo: $timeinfo, serviceID: $serviceID, ratingcount: $ratingcount, totalratings: $totalratings, hasapt: $hasapt, hasadhoctrips: $hasadhoctrips, hasecom: $hasecom, hasproductcatalog: $hasproductcatalog, lati: $lati, longi: $longi, serviceOffered: $serviceOffered)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LimitedServiceModel'))
+      ..add(DiagnosticsProperty('phone', phone))
+      ..add(DiagnosticsProperty('servicetype', servicetype))
+      ..add(DiagnosticsProperty('address', address))
+      ..add(DiagnosticsProperty('adm', adm))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('photo1', photo1))
+      ..add(DiagnosticsProperty('serviceName', serviceName))
+      ..add(DiagnosticsProperty('timeinfo', timeinfo))
+      ..add(DiagnosticsProperty('serviceID', serviceID))
+      ..add(DiagnosticsProperty('ratingcount', ratingcount))
+      ..add(DiagnosticsProperty('totalratings', totalratings))
+      ..add(DiagnosticsProperty('hasapt', hasapt))
+      ..add(DiagnosticsProperty('hasadhoctrips', hasadhoctrips))
+      ..add(DiagnosticsProperty('hasecom', hasecom))
+      ..add(DiagnosticsProperty('hasproductcatalog', hasproductcatalog))
+      ..add(DiagnosticsProperty('lati', lati))
+      ..add(DiagnosticsProperty('longi', longi))
+      ..add(DiagnosticsProperty('serviceOffered', serviceOffered));
   }
 
   @override
@@ -5383,6 +6474,8 @@ class _$_LimitedServiceModel implements _LimitedServiceModel {
             (identical(other.address, address) ||
                 const DeepCollectionEquality()
                     .equals(other.address, address)) &&
+            (identical(other.adm, adm) ||
+                const DeepCollectionEquality().equals(other.adm, adm)) &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.photo1, photo1) ||
@@ -5416,7 +6509,10 @@ class _$_LimitedServiceModel implements _LimitedServiceModel {
             (identical(other.lati, lati) ||
                 const DeepCollectionEquality().equals(other.lati, lati)) &&
             (identical(other.longi, longi) ||
-                const DeepCollectionEquality().equals(other.longi, longi)));
+                const DeepCollectionEquality().equals(other.longi, longi)) &&
+            (identical(other.serviceOffered, serviceOffered) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceOffered, serviceOffered)));
   }
 
   @override
@@ -5425,6 +6521,7 @@ class _$_LimitedServiceModel implements _LimitedServiceModel {
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(servicetype) ^
       const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(adm) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(photo1) ^
       const DeepCollectionEquality().hash(serviceName) ^
@@ -5437,7 +6534,8 @@ class _$_LimitedServiceModel implements _LimitedServiceModel {
       const DeepCollectionEquality().hash(hasecom) ^
       const DeepCollectionEquality().hash(hasproductcatalog) ^
       const DeepCollectionEquality().hash(lati) ^
-      const DeepCollectionEquality().hash(longi);
+      const DeepCollectionEquality().hash(longi) ^
+      const DeepCollectionEquality().hash(serviceOffered);
 
   @JsonKey(ignore: true)
   @override
@@ -5453,22 +6551,25 @@ class _$_LimitedServiceModel implements _LimitedServiceModel {
 
 abstract class _LimitedServiceModel implements LimitedServiceModel {
   factory _LimitedServiceModel(
-      {@JsonKey(name: 'phone') List<String> phone,
-      @JsonKey(name: 'servicetype') List<String> servicetype,
-      @JsonKey(name: 'address') String address,
-      @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'photo1') String photo1,
-      @JsonKey(name: 'servicename') String serviceName,
-      @JsonKey(name: 'timeinfo') String timeinfo,
-      @JsonKey(name: 'serviceid') String serviceID,
-      @JsonKey(name: 'ratingcount') int ratingcount,
-      @JsonKey(name: 'totalratings') int totalratings,
-      @JsonKey(name: 'hasapt') bool hasapt,
-      @JsonKey(name: 'hasadhoctrips') bool hasadhoctrips,
-      @JsonKey(name: 'hasecom') bool hasecom,
-      @JsonKey(name: 'hasproductcatalog') bool hasproductcatalog,
-      @JsonKey(name: 'lati') double lati,
-      @JsonKey(name: 'longi') double longi}) = _$_LimitedServiceModel;
+          {@JsonKey(name: 'phone') List<String> phone,
+          @JsonKey(name: 'servicetype') List<String> servicetype,
+          @JsonKey(name: 'address') String address,
+          @JsonKey(name: 'adm') AddressDataModel adm,
+          @JsonKey(name: 'email') String email,
+          @JsonKey(name: 'photo1') String photo1,
+          @JsonKey(name: 'servicename') String serviceName,
+          @JsonKey(name: 'timeinfo') String timeinfo,
+          @JsonKey(name: 'serviceid') String serviceID,
+          @JsonKey(name: 'ratingcount') int ratingcount,
+          @JsonKey(name: 'totalratings') int totalratings,
+          @JsonKey(name: 'hasapt') bool hasapt,
+          @JsonKey(name: 'hasadhoctrips') bool hasadhoctrips,
+          @JsonKey(name: 'hasecom') bool hasecom,
+          @JsonKey(name: 'hasproductcatalog') bool hasproductcatalog,
+          @JsonKey(name: 'lati') double lati,
+          @JsonKey(name: 'longi') double longi,
+          @JsonKey(name: 'serviceoffered') List<String> serviceOffered}) =
+      _$_LimitedServiceModel;
 
   factory _LimitedServiceModel.fromJson(Map<String, dynamic> json) =
       _$_LimitedServiceModel.fromJson;
@@ -5482,6 +6583,9 @@ abstract class _LimitedServiceModel implements LimitedServiceModel {
   @override
   @JsonKey(name: 'address')
   String get address;
+  @override
+  @JsonKey(name: 'adm')
+  AddressDataModel get adm;
   @override
   @JsonKey(name: 'email')
   String get email;
@@ -5522,6 +6626,9 @@ abstract class _LimitedServiceModel implements LimitedServiceModel {
   @JsonKey(name: 'longi')
   double get longi;
   @override
+  @JsonKey(name: 'serviceoffered')
+  List<String> get serviceOffered;
+  @override
   @JsonKey(ignore: true)
   _$LimitedServiceModelCopyWith<_LimitedServiceModel> get copyWith;
 }
@@ -5542,7 +6649,7 @@ class _$ProductSearchInformationConfigTearOff {
       @JsonKey(name: 'grouptype') String grouptype,
       @JsonKey(name: 'isshop') bool isshop,
       @JsonKey(name: 'sp') SpatialData sp,
-      @JsonKey(name: 'cust') Customerinfo cust,
+      @JsonKey(name: 'cust') customerinfo cust,
       @JsonKey(name: 'entrypoint') int entrypoint,
       @JsonKey(name: 'servicesselected') List<String> servicesselected,
       @JsonKey(name: 'spoffset') int spoffset}) {
@@ -5583,7 +6690,7 @@ mixin _$ProductSearchInformationConfig {
   @JsonKey(name: 'sp')
   SpatialData get sp;
   @JsonKey(name: 'cust')
-  Customerinfo get cust;
+  customerinfo get cust;
   @JsonKey(name: 'entrypoint')
   int get entrypoint;
   @JsonKey(name: 'servicesselected')
@@ -5609,14 +6716,14 @@ abstract class $ProductSearchInformationConfigCopyWith<$Res> {
       @JsonKey(name: 'grouptype') String grouptype,
       @JsonKey(name: 'isshop') bool isshop,
       @JsonKey(name: 'sp') SpatialData sp,
-      @JsonKey(name: 'cust') Customerinfo cust,
+      @JsonKey(name: 'cust') customerinfo cust,
       @JsonKey(name: 'entrypoint') int entrypoint,
       @JsonKey(name: 'servicesselected') List<String> servicesselected,
       @JsonKey(name: 'spoffset') int spoffset});
 
   $LimitedServiceModelCopyWith<$Res> get lsm;
   $SpatialDataCopyWith<$Res> get sp;
-  $CustomerinfoCopyWith<$Res> get cust;
+  $customerinfoCopyWith<$Res> get cust;
 }
 
 /// @nodoc
@@ -5647,7 +6754,7 @@ class _$ProductSearchInformationConfigCopyWithImpl<$Res>
       grouptype: grouptype == freezed ? _value.grouptype : grouptype as String,
       isshop: isshop == freezed ? _value.isshop : isshop as bool,
       sp: sp == freezed ? _value.sp : sp as SpatialData,
-      cust: cust == freezed ? _value.cust : cust as Customerinfo,
+      cust: cust == freezed ? _value.cust : cust as customerinfo,
       entrypoint: entrypoint == freezed ? _value.entrypoint : entrypoint as int,
       servicesselected: servicesselected == freezed
           ? _value.servicesselected
@@ -5677,11 +6784,11 @@ class _$ProductSearchInformationConfigCopyWithImpl<$Res>
   }
 
   @override
-  $CustomerinfoCopyWith<$Res> get cust {
+  $customerinfoCopyWith<$Res> get cust {
     if (_value.cust == null) {
       return null;
     }
-    return $CustomerinfoCopyWith<$Res>(_value.cust, (value) {
+    return $customerinfoCopyWith<$Res>(_value.cust, (value) {
       return _then(_value.copyWith(cust: value));
     });
   }
@@ -5701,7 +6808,7 @@ abstract class _$ProductSearchInformationConfigCopyWith<$Res>
       @JsonKey(name: 'grouptype') String grouptype,
       @JsonKey(name: 'isshop') bool isshop,
       @JsonKey(name: 'sp') SpatialData sp,
-      @JsonKey(name: 'cust') Customerinfo cust,
+      @JsonKey(name: 'cust') customerinfo cust,
       @JsonKey(name: 'entrypoint') int entrypoint,
       @JsonKey(name: 'servicesselected') List<String> servicesselected,
       @JsonKey(name: 'spoffset') int spoffset});
@@ -5711,7 +6818,7 @@ abstract class _$ProductSearchInformationConfigCopyWith<$Res>
   @override
   $SpatialDataCopyWith<$Res> get sp;
   @override
-  $CustomerinfoCopyWith<$Res> get cust;
+  $customerinfoCopyWith<$Res> get cust;
 }
 
 /// @nodoc
@@ -5746,7 +6853,7 @@ class __$ProductSearchInformationConfigCopyWithImpl<$Res>
       grouptype: grouptype == freezed ? _value.grouptype : grouptype as String,
       isshop: isshop == freezed ? _value.isshop : isshop as bool,
       sp: sp == freezed ? _value.sp : sp as SpatialData,
-      cust: cust == freezed ? _value.cust : cust as Customerinfo,
+      cust: cust == freezed ? _value.cust : cust as customerinfo,
       entrypoint: entrypoint == freezed ? _value.entrypoint : entrypoint as int,
       servicesselected: servicesselected == freezed
           ? _value.servicesselected
@@ -5760,6 +6867,7 @@ class __$ProductSearchInformationConfigCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_ProductSearchInformationConfig
+    with DiagnosticableTreeMixin
     implements _ProductSearchInformationConfig {
   _$_ProductSearchInformationConfig(
       {@JsonKey(name: 'lsm') this.lsm,
@@ -5793,7 +6901,7 @@ class _$_ProductSearchInformationConfig
   final SpatialData sp;
   @override
   @JsonKey(name: 'cust')
-  final Customerinfo cust;
+  final customerinfo cust;
   @override
   @JsonKey(name: 'entrypoint')
   final int entrypoint;
@@ -5805,8 +6913,24 @@ class _$_ProductSearchInformationConfig
   final int spoffset;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ProductSearchInformationConfig(lsm: $lsm, servicetype: $servicetype, grouptype: $grouptype, isshop: $isshop, sp: $sp, cust: $cust, entrypoint: $entrypoint, servicesselected: $servicesselected, spoffset: $spoffset)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ProductSearchInformationConfig'))
+      ..add(DiagnosticsProperty('lsm', lsm))
+      ..add(DiagnosticsProperty('servicetype', servicetype))
+      ..add(DiagnosticsProperty('grouptype', grouptype))
+      ..add(DiagnosticsProperty('isshop', isshop))
+      ..add(DiagnosticsProperty('sp', sp))
+      ..add(DiagnosticsProperty('cust', cust))
+      ..add(DiagnosticsProperty('entrypoint', entrypoint))
+      ..add(DiagnosticsProperty('servicesselected', servicesselected))
+      ..add(DiagnosticsProperty('spoffset', spoffset));
   }
 
   @override
@@ -5871,7 +6995,7 @@ abstract class _ProductSearchInformationConfig
           @JsonKey(name: 'grouptype') String grouptype,
           @JsonKey(name: 'isshop') bool isshop,
           @JsonKey(name: 'sp') SpatialData sp,
-          @JsonKey(name: 'cust') Customerinfo cust,
+          @JsonKey(name: 'cust') customerinfo cust,
           @JsonKey(name: 'entrypoint') int entrypoint,
           @JsonKey(name: 'servicesselected') List<String> servicesselected,
           @JsonKey(name: 'spoffset') int spoffset}) =
@@ -5897,7 +7021,7 @@ abstract class _ProductSearchInformationConfig
   SpatialData get sp;
   @override
   @JsonKey(name: 'cust')
-  Customerinfo get cust;
+  customerinfo get cust;
   @override
   @JsonKey(name: 'entrypoint')
   int get entrypoint;
@@ -5923,12 +7047,18 @@ class _$SPCustomerModelTearOff {
 
 // ignore: unused_element
   _SPCustomerModel call(
-      {@JsonKey(name: 'customerid') String customerId,
-      @JsonKey(name: 'userid') String userId,
-      @JsonKey(name: 'phonenum') String phoneNum,
-      @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'names') List<List<CustomerNameAgeIngo>> names,
-      @JsonKey(name: 'addressinfolist') List<Addressmodel> addressInfolist}) {
+      {@JsonKey(name: 'customerid')
+          String customerId,
+      @JsonKey(name: 'userid')
+          String userId,
+      @JsonKey(name: 'phonenum')
+          String phoneNum,
+      @JsonKey(name: 'email')
+          String email,
+      @JsonKey(name: 'names')
+          List<CustomerNameAgeIngo> names,
+      @JsonKey(name: 'addressinfolist')
+          List<AddressDataModel> addressInfolist}) {
     return _SPCustomerModel(
       customerId: customerId,
       userId: userId,
@@ -5960,9 +7090,9 @@ mixin _$SPCustomerModel {
   @JsonKey(name: 'email')
   String get email;
   @JsonKey(name: 'names')
-  List<List<CustomerNameAgeIngo>> get names;
+  List<CustomerNameAgeIngo> get names;
   @JsonKey(name: 'addressinfolist')
-  List<Addressmodel> get addressInfolist;
+  List<AddressDataModel> get addressInfolist;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -5975,12 +7105,18 @@ abstract class $SPCustomerModelCopyWith<$Res> {
           SPCustomerModel value, $Res Function(SPCustomerModel) then) =
       _$SPCustomerModelCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'customerid') String customerId,
-      @JsonKey(name: 'userid') String userId,
-      @JsonKey(name: 'phonenum') String phoneNum,
-      @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'names') List<List<CustomerNameAgeIngo>> names,
-      @JsonKey(name: 'addressinfolist') List<Addressmodel> addressInfolist});
+      {@JsonKey(name: 'customerid')
+          String customerId,
+      @JsonKey(name: 'userid')
+          String userId,
+      @JsonKey(name: 'phonenum')
+          String phoneNum,
+      @JsonKey(name: 'email')
+          String email,
+      @JsonKey(name: 'names')
+          List<CustomerNameAgeIngo> names,
+      @JsonKey(name: 'addressinfolist')
+          List<AddressDataModel> addressInfolist});
 }
 
 /// @nodoc
@@ -6007,12 +7143,11 @@ class _$SPCustomerModelCopyWithImpl<$Res>
       userId: userId == freezed ? _value.userId : userId as String,
       phoneNum: phoneNum == freezed ? _value.phoneNum : phoneNum as String,
       email: email == freezed ? _value.email : email as String,
-      names: names == freezed
-          ? _value.names
-          : names as List<List<CustomerNameAgeIngo>>,
+      names:
+          names == freezed ? _value.names : names as List<CustomerNameAgeIngo>,
       addressInfolist: addressInfolist == freezed
           ? _value.addressInfolist
-          : addressInfolist as List<Addressmodel>,
+          : addressInfolist as List<AddressDataModel>,
     ));
   }
 }
@@ -6025,12 +7160,18 @@ abstract class _$SPCustomerModelCopyWith<$Res>
       __$SPCustomerModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'customerid') String customerId,
-      @JsonKey(name: 'userid') String userId,
-      @JsonKey(name: 'phonenum') String phoneNum,
-      @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'names') List<List<CustomerNameAgeIngo>> names,
-      @JsonKey(name: 'addressinfolist') List<Addressmodel> addressInfolist});
+      {@JsonKey(name: 'customerid')
+          String customerId,
+      @JsonKey(name: 'userid')
+          String userId,
+      @JsonKey(name: 'phonenum')
+          String phoneNum,
+      @JsonKey(name: 'email')
+          String email,
+      @JsonKey(name: 'names')
+          List<CustomerNameAgeIngo> names,
+      @JsonKey(name: 'addressinfolist')
+          List<AddressDataModel> addressInfolist});
 }
 
 /// @nodoc
@@ -6059,12 +7200,11 @@ class __$SPCustomerModelCopyWithImpl<$Res>
       userId: userId == freezed ? _value.userId : userId as String,
       phoneNum: phoneNum == freezed ? _value.phoneNum : phoneNum as String,
       email: email == freezed ? _value.email : email as String,
-      names: names == freezed
-          ? _value.names
-          : names as List<List<CustomerNameAgeIngo>>,
+      names:
+          names == freezed ? _value.names : names as List<CustomerNameAgeIngo>,
       addressInfolist: addressInfolist == freezed
           ? _value.addressInfolist
-          : addressInfolist as List<Addressmodel>,
+          : addressInfolist as List<AddressDataModel>,
     ));
   }
 }
@@ -6072,7 +7212,9 @@ class __$SPCustomerModelCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_SPCustomerModel implements _SPCustomerModel {
+class _$_SPCustomerModel
+    with DiagnosticableTreeMixin
+    implements _SPCustomerModel {
   _$_SPCustomerModel(
       {@JsonKey(name: 'customerid') this.customerId,
       @JsonKey(name: 'userid') this.userId,
@@ -6098,14 +7240,27 @@ class _$_SPCustomerModel implements _SPCustomerModel {
   final String email;
   @override
   @JsonKey(name: 'names')
-  final List<List<CustomerNameAgeIngo>> names;
+  final List<CustomerNameAgeIngo> names;
   @override
   @JsonKey(name: 'addressinfolist')
-  final List<Addressmodel> addressInfolist;
+  final List<AddressDataModel> addressInfolist;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SPCustomerModel(customerId: $customerId, userId: $userId, phoneNum: $phoneNum, email: $email, names: $names, addressInfolist: $addressInfolist)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SPCustomerModel'))
+      ..add(DiagnosticsProperty('customerId', customerId))
+      ..add(DiagnosticsProperty('userId', userId))
+      ..add(DiagnosticsProperty('phoneNum', phoneNum))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('names', names))
+      ..add(DiagnosticsProperty('addressInfolist', addressInfolist));
   }
 
   @override
@@ -6161,9 +7316,9 @@ abstract class _SPCustomerModel implements SPCustomerModel {
       @JsonKey(name: 'email')
           String email,
       @JsonKey(name: 'names')
-          List<List<CustomerNameAgeIngo>> names,
+          List<CustomerNameAgeIngo> names,
       @JsonKey(name: 'addressinfolist')
-          List<Addressmodel> addressInfolist}) = _$_SPCustomerModel;
+          List<AddressDataModel> addressInfolist}) = _$_SPCustomerModel;
 
   factory _SPCustomerModel.fromJson(Map<String, dynamic> json) =
       _$_SPCustomerModel.fromJson;
@@ -6182,10 +7337,10 @@ abstract class _SPCustomerModel implements SPCustomerModel {
   String get email;
   @override
   @JsonKey(name: 'names')
-  List<List<CustomerNameAgeIngo>> get names;
+  List<CustomerNameAgeIngo> get names;
   @override
   @JsonKey(name: 'addressinfolist')
-  List<Addressmodel> get addressInfolist;
+  List<AddressDataModel> get addressInfolist;
   @override
   @JsonKey(ignore: true)
   _$SPCustomerModelCopyWith<_SPCustomerModel> get copyWith;
@@ -6322,7 +7477,9 @@ class __$CustomerNameAgeIngoCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_CustomerNameAgeIngo implements _CustomerNameAgeIngo {
+class _$_CustomerNameAgeIngo
+    with DiagnosticableTreeMixin
+    implements _CustomerNameAgeIngo {
   _$_CustomerNameAgeIngo(
       {@JsonKey(name: 'name')
           this.name,
@@ -6348,8 +7505,18 @@ class _$_CustomerNameAgeIngo implements _CustomerNameAgeIngo {
   final String gender;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CustomerNameAgeIngo(name: $name, dob: $dob, gender: $gender)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CustomerNameAgeIngo'))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('dob', dob))
+      ..add(DiagnosticsProperty('gender', gender));
   }
 
   @override
@@ -6567,7 +7734,7 @@ class __$ServiceGroupCopyWithImpl<$Res> extends _$ServiceGroupCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ServiceGroup implements _ServiceGroup {
+class _$_ServiceGroup with DiagnosticableTreeMixin implements _ServiceGroup {
   _$_ServiceGroup(
       {@JsonKey(name: 'sectionname') this.sectionname,
       @JsonKey(name: 'icon') this.icon,
@@ -6599,8 +7766,21 @@ class _$_ServiceGroup implements _ServiceGroup {
   final List<ServiceType> servicetypelist;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ServiceGroup(sectionname: $sectionname, icon: $icon, displaylist: $displaylist, ordernum: $ordernum, type: $type, servicetypelist: $servicetypelist)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ServiceGroup'))
+      ..add(DiagnosticsProperty('sectionname', sectionname))
+      ..add(DiagnosticsProperty('icon', icon))
+      ..add(DiagnosticsProperty('displaylist', displaylist))
+      ..add(DiagnosticsProperty('ordernum', ordernum))
+      ..add(DiagnosticsProperty('type', type))
+      ..add(DiagnosticsProperty('servicetypelist', servicetypelist));
   }
 
   @override
@@ -6883,7 +8063,7 @@ class __$ServiceTypeCopyWithImpl<$Res> extends _$ServiceTypeCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ServiceType implements _ServiceType {
+class _$_ServiceType with DiagnosticableTreeMixin implements _ServiceType {
   _$_ServiceType(
       {@JsonKey(name: 'servicetype') this.servicetype,
       @JsonKey(name: 'querystr') this.querystr,
@@ -6923,8 +8103,23 @@ class _$_ServiceType implements _ServiceType {
   final ServiceTypeFilterData filterdata;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ServiceType(servicetype: $servicetype, querystr: $querystr, icon: $icon, displaylist: $displaylist, ordernum: $ordernum, childservicetype: $childservicetype, filtertype: $filtertype, filterdata: $filterdata)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ServiceType'))
+      ..add(DiagnosticsProperty('servicetype', servicetype))
+      ..add(DiagnosticsProperty('querystr', querystr))
+      ..add(DiagnosticsProperty('icon', icon))
+      ..add(DiagnosticsProperty('displaylist', displaylist))
+      ..add(DiagnosticsProperty('ordernum', ordernum))
+      ..add(DiagnosticsProperty('childservicetype', childservicetype))
+      ..add(DiagnosticsProperty('filtertype', filtertype))
+      ..add(DiagnosticsProperty('filterdata', filterdata));
   }
 
   @override
@@ -7151,7 +8346,9 @@ class __$ServiceTypeFilterDataCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ServiceTypeFilterData implements _ServiceTypeFilterData {
+class _$_ServiceTypeFilterData
+    with DiagnosticableTreeMixin
+    implements _ServiceTypeFilterData {
   _$_ServiceTypeFilterData(
       {@JsonKey(name: 'filterheading') this.filterheading,
       @JsonKey(name: 'depth') this.depth,
@@ -7171,8 +8368,18 @@ class _$_ServiceTypeFilterData implements _ServiceTypeFilterData {
   final List<ServiceTypeFilterValues> values;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ServiceTypeFilterData(filterheading: $filterheading, depth: $depth, values: $values)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ServiceTypeFilterData'))
+      ..add(DiagnosticsProperty('filterheading', filterheading))
+      ..add(DiagnosticsProperty('depth', depth))
+      ..add(DiagnosticsProperty('values', values));
   }
 
   @override
@@ -7346,7 +8553,9 @@ class __$ServiceTypeFilterValuesCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ServiceTypeFilterValues implements _ServiceTypeFilterValues {
+class _$_ServiceTypeFilterValues
+    with DiagnosticableTreeMixin
+    implements _ServiceTypeFilterValues {
   _$_ServiceTypeFilterValues(
       {@JsonKey(name: 'value') this.value,
       @JsonKey(name: 'childvalues') this.childvalues});
@@ -7362,8 +8571,17 @@ class _$_ServiceTypeFilterValues implements _ServiceTypeFilterValues {
   final List<String> childvalues;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ServiceTypeFilterValues(value: $value, childvalues: $childvalues)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ServiceTypeFilterValues'))
+      ..add(DiagnosticsProperty('value', value))
+      ..add(DiagnosticsProperty('childvalues', childvalues));
   }
 
   @override
@@ -7529,7 +8747,9 @@ class __$ExplorePageParametersCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_ExplorePageParameters implements _ExplorePageParameters {
+class _$_ExplorePageParameters
+    with DiagnosticableTreeMixin
+    implements _ExplorePageParameters {
   _$_ExplorePageParameters(
       {@JsonKey(name: 'adlist') this.adlist,
       @JsonKey(name: 'favsplist') this.favsplist});
@@ -7545,8 +8765,17 @@ class _$_ExplorePageParameters implements _ExplorePageParameters {
   final List<LimitedServiceModel> favsplist;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ExplorePageParameters(adlist: $adlist, favsplist: $favsplist)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ExplorePageParameters'))
+      ..add(DiagnosticsProperty('adlist', adlist))
+      ..add(DiagnosticsProperty('favsplist', favsplist));
   }
 
   @override
@@ -7596,4 +8825,380 @@ abstract class _ExplorePageParameters implements ExplorePageParameters {
   @override
   @JsonKey(ignore: true)
   _$ExplorePageParametersCopyWith<_ExplorePageParameters> get copyWith;
+}
+
+NumericFilterForIndex _$NumericFilterForIndexFromJson(
+    Map<String, dynamic> json) {
+  return _NumericFilterForIndex.fromJson(json);
+}
+
+/// @nodoc
+class _$NumericFilterForIndexTearOff {
+  const _$NumericFilterForIndexTearOff();
+
+// ignore: unused_element
+  _NumericFilterForIndex call(
+      {@JsonKey(name: 'fieldname') String fieldname,
+      @JsonKey(name: 'value') int value}) {
+    return _NumericFilterForIndex(
+      fieldname: fieldname,
+      value: value,
+    );
+  }
+
+// ignore: unused_element
+  NumericFilterForIndex fromJson(Map<String, Object> json) {
+    return NumericFilterForIndex.fromJson(json);
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $NumericFilterForIndex = _$NumericFilterForIndexTearOff();
+
+/// @nodoc
+mixin _$NumericFilterForIndex {
+  @JsonKey(name: 'fieldname')
+  String get fieldname;
+  @JsonKey(name: 'value')
+  int get value;
+
+  Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
+  $NumericFilterForIndexCopyWith<NumericFilterForIndex> get copyWith;
+}
+
+/// @nodoc
+abstract class $NumericFilterForIndexCopyWith<$Res> {
+  factory $NumericFilterForIndexCopyWith(NumericFilterForIndex value,
+          $Res Function(NumericFilterForIndex) then) =
+      _$NumericFilterForIndexCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: 'fieldname') String fieldname,
+      @JsonKey(name: 'value') int value});
+}
+
+/// @nodoc
+class _$NumericFilterForIndexCopyWithImpl<$Res>
+    implements $NumericFilterForIndexCopyWith<$Res> {
+  _$NumericFilterForIndexCopyWithImpl(this._value, this._then);
+
+  final NumericFilterForIndex _value;
+  // ignore: unused_field
+  final $Res Function(NumericFilterForIndex) _then;
+
+  @override
+  $Res call({
+    Object fieldname = freezed,
+    Object value = freezed,
+  }) {
+    return _then(_value.copyWith(
+      fieldname: fieldname == freezed ? _value.fieldname : fieldname as String,
+      value: value == freezed ? _value.value : value as int,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$NumericFilterForIndexCopyWith<$Res>
+    implements $NumericFilterForIndexCopyWith<$Res> {
+  factory _$NumericFilterForIndexCopyWith(_NumericFilterForIndex value,
+          $Res Function(_NumericFilterForIndex) then) =
+      __$NumericFilterForIndexCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: 'fieldname') String fieldname,
+      @JsonKey(name: 'value') int value});
+}
+
+/// @nodoc
+class __$NumericFilterForIndexCopyWithImpl<$Res>
+    extends _$NumericFilterForIndexCopyWithImpl<$Res>
+    implements _$NumericFilterForIndexCopyWith<$Res> {
+  __$NumericFilterForIndexCopyWithImpl(_NumericFilterForIndex _value,
+      $Res Function(_NumericFilterForIndex) _then)
+      : super(_value, (v) => _then(v as _NumericFilterForIndex));
+
+  @override
+  _NumericFilterForIndex get _value => super._value as _NumericFilterForIndex;
+
+  @override
+  $Res call({
+    Object fieldname = freezed,
+    Object value = freezed,
+  }) {
+    return _then(_NumericFilterForIndex(
+      fieldname: fieldname == freezed ? _value.fieldname : fieldname as String,
+      value: value == freezed ? _value.value : value as int,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$_NumericFilterForIndex
+    with DiagnosticableTreeMixin
+    implements _NumericFilterForIndex {
+  _$_NumericFilterForIndex(
+      {@JsonKey(name: 'fieldname') this.fieldname,
+      @JsonKey(name: 'value') this.value});
+
+  factory _$_NumericFilterForIndex.fromJson(Map<String, dynamic> json) =>
+      _$_$_NumericFilterForIndexFromJson(json);
+
+  @override
+  @JsonKey(name: 'fieldname')
+  final String fieldname;
+  @override
+  @JsonKey(name: 'value')
+  final int value;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'NumericFilterForIndex(fieldname: $fieldname, value: $value)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NumericFilterForIndex'))
+      ..add(DiagnosticsProperty('fieldname', fieldname))
+      ..add(DiagnosticsProperty('value', value));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _NumericFilterForIndex &&
+            (identical(other.fieldname, fieldname) ||
+                const DeepCollectionEquality()
+                    .equals(other.fieldname, fieldname)) &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(fieldname) ^
+      const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  _$NumericFilterForIndexCopyWith<_NumericFilterForIndex> get copyWith =>
+      __$NumericFilterForIndexCopyWithImpl<_NumericFilterForIndex>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_NumericFilterForIndexToJson(this);
+  }
+}
+
+abstract class _NumericFilterForIndex implements NumericFilterForIndex {
+  factory _NumericFilterForIndex(
+      {@JsonKey(name: 'fieldname') String fieldname,
+      @JsonKey(name: 'value') int value}) = _$_NumericFilterForIndex;
+
+  factory _NumericFilterForIndex.fromJson(Map<String, dynamic> json) =
+      _$_NumericFilterForIndex.fromJson;
+
+  @override
+  @JsonKey(name: 'fieldname')
+  String get fieldname;
+  @override
+  @JsonKey(name: 'value')
+  int get value;
+  @override
+  @JsonKey(ignore: true)
+  _$NumericFilterForIndexCopyWith<_NumericFilterForIndex> get copyWith;
+}
+
+SingleFacetField _$SingleFacetFieldFromJson(Map<String, dynamic> json) {
+  return _SingleFacetField.fromJson(json);
+}
+
+/// @nodoc
+class _$SingleFacetFieldTearOff {
+  const _$SingleFacetFieldTearOff();
+
+// ignore: unused_element
+  _SingleFacetField call(
+      {@JsonKey(name: 'fieldname') String fieldname,
+      @JsonKey(name: 'value') String value}) {
+    return _SingleFacetField(
+      fieldname: fieldname,
+      value: value,
+    );
+  }
+
+// ignore: unused_element
+  SingleFacetField fromJson(Map<String, Object> json) {
+    return SingleFacetField.fromJson(json);
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $SingleFacetField = _$SingleFacetFieldTearOff();
+
+/// @nodoc
+mixin _$SingleFacetField {
+  @JsonKey(name: 'fieldname')
+  String get fieldname;
+  @JsonKey(name: 'value')
+  String get value;
+
+  Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
+  $SingleFacetFieldCopyWith<SingleFacetField> get copyWith;
+}
+
+/// @nodoc
+abstract class $SingleFacetFieldCopyWith<$Res> {
+  factory $SingleFacetFieldCopyWith(
+          SingleFacetField value, $Res Function(SingleFacetField) then) =
+      _$SingleFacetFieldCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: 'fieldname') String fieldname,
+      @JsonKey(name: 'value') String value});
+}
+
+/// @nodoc
+class _$SingleFacetFieldCopyWithImpl<$Res>
+    implements $SingleFacetFieldCopyWith<$Res> {
+  _$SingleFacetFieldCopyWithImpl(this._value, this._then);
+
+  final SingleFacetField _value;
+  // ignore: unused_field
+  final $Res Function(SingleFacetField) _then;
+
+  @override
+  $Res call({
+    Object fieldname = freezed,
+    Object value = freezed,
+  }) {
+    return _then(_value.copyWith(
+      fieldname: fieldname == freezed ? _value.fieldname : fieldname as String,
+      value: value == freezed ? _value.value : value as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$SingleFacetFieldCopyWith<$Res>
+    implements $SingleFacetFieldCopyWith<$Res> {
+  factory _$SingleFacetFieldCopyWith(
+          _SingleFacetField value, $Res Function(_SingleFacetField) then) =
+      __$SingleFacetFieldCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: 'fieldname') String fieldname,
+      @JsonKey(name: 'value') String value});
+}
+
+/// @nodoc
+class __$SingleFacetFieldCopyWithImpl<$Res>
+    extends _$SingleFacetFieldCopyWithImpl<$Res>
+    implements _$SingleFacetFieldCopyWith<$Res> {
+  __$SingleFacetFieldCopyWithImpl(
+      _SingleFacetField _value, $Res Function(_SingleFacetField) _then)
+      : super(_value, (v) => _then(v as _SingleFacetField));
+
+  @override
+  _SingleFacetField get _value => super._value as _SingleFacetField;
+
+  @override
+  $Res call({
+    Object fieldname = freezed,
+    Object value = freezed,
+  }) {
+    return _then(_SingleFacetField(
+      fieldname: fieldname == freezed ? _value.fieldname : fieldname as String,
+      value: value == freezed ? _value.value : value as String,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$_SingleFacetField
+    with DiagnosticableTreeMixin
+    implements _SingleFacetField {
+  _$_SingleFacetField(
+      {@JsonKey(name: 'fieldname') this.fieldname,
+      @JsonKey(name: 'value') this.value});
+
+  factory _$_SingleFacetField.fromJson(Map<String, dynamic> json) =>
+      _$_$_SingleFacetFieldFromJson(json);
+
+  @override
+  @JsonKey(name: 'fieldname')
+  final String fieldname;
+  @override
+  @JsonKey(name: 'value')
+  final String value;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SingleFacetField(fieldname: $fieldname, value: $value)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SingleFacetField'))
+      ..add(DiagnosticsProperty('fieldname', fieldname))
+      ..add(DiagnosticsProperty('value', value));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _SingleFacetField &&
+            (identical(other.fieldname, fieldname) ||
+                const DeepCollectionEquality()
+                    .equals(other.fieldname, fieldname)) &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(fieldname) ^
+      const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  _$SingleFacetFieldCopyWith<_SingleFacetField> get copyWith =>
+      __$SingleFacetFieldCopyWithImpl<_SingleFacetField>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_SingleFacetFieldToJson(this);
+  }
+}
+
+abstract class _SingleFacetField implements SingleFacetField {
+  factory _SingleFacetField(
+      {@JsonKey(name: 'fieldname') String fieldname,
+      @JsonKey(name: 'value') String value}) = _$_SingleFacetField;
+
+  factory _SingleFacetField.fromJson(Map<String, dynamic> json) =
+      _$_SingleFacetField.fromJson;
+
+  @override
+  @JsonKey(name: 'fieldname')
+  String get fieldname;
+  @override
+  @JsonKey(name: 'value')
+  String get value;
+  @override
+  @JsonKey(ignore: true)
+  _$SingleFacetFieldCopyWith<_SingleFacetField> get copyWith;
 }

@@ -33,7 +33,7 @@ class JobCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              jobReqModel.companyicon,
+              jobReqModel.companyname,
               width: 48,
               height: 48,
               fit: BoxFit.cover,
@@ -69,7 +69,7 @@ class JobCard extends StatelessWidget {
                       ),
                       SizedBox(width: 4),
                       Text(
-                        jobReqModel.addressarea.addressinfo,
+                        jobReqModel.addressarea.address.addressline !=null?jobReqModel.addressarea.address.addressline:"",
                         style: Theme.of(context).textTheme.bodyText2.copyWith(
                               color: Color(0xff666666),
                             ),

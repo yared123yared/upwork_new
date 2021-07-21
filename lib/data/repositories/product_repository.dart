@@ -1,11 +1,8 @@
 import 'package:complex/data/models/response/general_response.dart';
 import 'package:complex/data/models/response/generic_response.dart';
 import 'package:complex/data/providers/product_provider_old.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/job_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/pet_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/property_model.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/vehicle_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
+
 
 class ProductRepository {
   final ProductProviderOld productProvider;
@@ -40,10 +37,10 @@ class ProductRepository {
     }
   }
 
-  Future<GenericResponse<List<VehicleModel>>> getVehicleList(
+  Future<GenericResponse<List<EcomVehicleModel>>> getVehicleList(
       String userID) async {
     try {
-      List<VehicleModel> response =
+      List<EcomVehicleModel> response =
           await productProvider.getVehicleList(userID);
       return GenericResponse(
         success: true,
@@ -55,9 +52,9 @@ class ProductRepository {
     }
   }
 
-  Future<GenericResponse<List<JobModel>>> getJobList(String userID) async {
+  Future<GenericResponse<List<JobPosting>>> getJobList(String userID) async {
     try {
-      List<JobModel> response = await productProvider.getJobList(userID);
+      List<JobPosting> response = await productProvider.getJobList(userID);
       return GenericResponse(
         success: true,
         message: "success",
@@ -68,10 +65,10 @@ class ProductRepository {
     }
   }
 
-  Future<GenericResponse<List<PropertyModel>>> getPropertyList(
+  Future<GenericResponse<List<RealEstateModel>>> getPropertyList(
       String userID) async {
     try {
-      List<PropertyModel> response =
+      List<RealEstateModel> response =
           await productProvider.getPropertyList(userID);
       return GenericResponse(
         success: true,
@@ -109,7 +106,7 @@ class ProductRepository {
   }
 
   Future<GeneralResponse> addNewProperty(
-      {PropertyModel model, String userId}) async {
+      {RealEstateModel model, String userId}) async {
     final response =
         await productProvider.addNewProperty(model: model, userId: userId);
     if (response) {
@@ -120,7 +117,7 @@ class ProductRepository {
   }
 
   Future<GeneralResponse> addNewVehicle(
-      {VehicleModel model, String userId}) async {
+      {EcomVehicleModel model, String userId}) async {
     final response =
         await productProvider.addNewVehicle(model: model, userId: userId);
     if (response) {
@@ -130,7 +127,7 @@ class ProductRepository {
     return GeneralResponse(message: "Something went wrong", success: false);
   }
 
-  Future<GeneralResponse> addNewJob({JobModel model, String userId}) async {
+  Future<GeneralResponse> addNewJob({JobPosting model, String userId}) async {
     final response =
         await productProvider.addNewJob(model: model, userId: userId);
     if (response) {

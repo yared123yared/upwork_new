@@ -1,13 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:complex/domain/entity/json_helper.dart';
-import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'product_data.dart';
-part 'pet_data.dart';
-part 'job_data.dart';
-part 'real_estate_data.dart';
-part 'vehicle_data.dart';
+
+part 'completeownerproductmodel.dart';
 part 'complete_product_data.freezed.dart';
 part 'complete_product_data.g.dart';
 
@@ -18,9 +17,9 @@ abstract class CompleteProductData with _$CompleteProductData {
     @required String dt,
     @JsonKey(name: 'serviceproviderid', defaultValue: '')
     @required
-        String serviceId,
+    String serviceId,
     @JsonKey(name: 'userid', defaultValue: '') @required String userId,
-    @JsonKey(name: 'adata') @required RealEstateData data,
+    @JsonKey(name: 'adata') @required RealEstateModel data,
   }) = CompleteRealEstate;
 
   const factory CompleteProductData.job({
@@ -28,9 +27,9 @@ abstract class CompleteProductData with _$CompleteProductData {
     @required String dt,
     @JsonKey(name: 'serviceproviderid', defaultValue: '')
     @required
-        String serviceId,
+    String serviceId,
     @JsonKey(name: 'userid', defaultValue: '') @required String userId,
-    @JsonKey(name: 'adata') @required JobData data,
+    @JsonKey(name: 'adata') @required JobPosting data,
   }) = CompleteJob;
 
   const factory CompleteProductData.pet({
@@ -38,27 +37,27 @@ abstract class CompleteProductData with _$CompleteProductData {
     @required String dt,
     @JsonKey(name: 'serviceproviderid', defaultValue: '')
     @required
-        String serviceId,
+    String serviceId,
     @JsonKey(name: 'userid', defaultValue: '') @required String userId,
-    @JsonKey(name: 'adata') @required PetData data,
+    @JsonKey(name: 'adata') @required PetModel data,
   }) = CompletePet;
   const factory CompleteProductData.vehicle({
     @JsonKey(name: 'docid') @required String docId,
     @required String dt,
     @JsonKey(name: 'serviceproviderid', defaultValue: '')
     @required
-        String serviceId,
+    String serviceId,
     @JsonKey(name: 'userid', defaultValue: '') @required String userId,
-    @JsonKey(name: 'adata') @required VehicleData data,
+    @JsonKey(name: 'adata') @required EcomVehicleModel data,
   }) = CompleteVehicle;
   const factory CompleteProductData.product({
     @JsonKey(name: 'docid', defaultValue: '') @required String docId,
     @required String dt,
     @JsonKey(name: 'serviceproviderid', defaultValue: '')
     @required
-        String serviceId,
+    String serviceId,
     @JsonKey(name: 'userid', defaultValue: '') @required String userId,
-    @JsonKey(name: 'adata') @required ProductData data,
+    @JsonKey(name: 'adata') @required ProductModel data,
   }) = CompleteProduct;
 
   factory CompleteProductData.fromJson(Map<String, dynamic> json) =>

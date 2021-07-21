@@ -212,7 +212,7 @@ class _PackageDetailViewState extends State<PackageDetailView> {
     );
   }
 
-  _dyanmicPropertyChild(DynamicProperty dynamicproperti) {
+  _dyanmicPropertyChild(dynaproperty dynamicproperti) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
@@ -233,7 +233,7 @@ class _PackageDetailViewState extends State<PackageDetailView> {
     );
   }
 
-  _packageChild(PackageData packagedata) {
+  _packageChild(PackageModel packagedata) {
     return TapWidget(
       onTap: () {
         setState(() {

@@ -4,7 +4,8 @@ import 'package:complex/data/models/response/auth_response/user_session.dart';
 import 'package:complex/common/widgets/alerts_widget.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
+
 import 'package:complex/view/product_pages/package_detail_form.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
 import 'package:complex/utils/next_page_routing.dart';
@@ -30,7 +31,7 @@ class PackageListView extends StatefulWidget {
   }
 }
 
-List<Packagedata> packageList = [];
+List<PackageModel> packageList = [];
 
 class _PackageListViewState extends State<PackageListView> {
   ProductBloc _productBloc;
@@ -104,7 +105,7 @@ class _PackageListViewState extends State<PackageListView> {
                         text: 'SAVE',
                         onTap: () {
                           ProductModel _model = widget.model;
-                          _model.packagedata = packageList;
+                          _model.copyWith(packagedata :packageList);
                           _productBloc.add(AddPackageEvent(
                               model: _model, userId: UserSession.userId));
                         },
@@ -170,7 +171,7 @@ class _PackageListViewState extends State<PackageListView> {
     );
   }
 
-  Widget cardModel(Packagedata packageList) {
+  Widget cardModel(PackageModel packageList) {
     return Container(
       height: 150,
       margin: EdgeInsets.all(10),
@@ -194,7 +195,7 @@ class _PackageListViewState extends State<PackageListView> {
     );
   }
 
-  Widget _renderImage(Packagedata packageList) {
+  Widget _renderImage(PackageModel packageList) {
     return ClipRRect(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(10),
@@ -212,7 +213,7 @@ class _PackageListViewState extends State<PackageListView> {
     );
   }
 
-  Widget _renderDescription(Packagedata packageList) {
+  Widget _renderDescription(PackageModel packageList) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(

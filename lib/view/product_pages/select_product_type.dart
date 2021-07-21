@@ -1,6 +1,7 @@
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
-import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
+
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/view/product_pages/product_properties.dart';
 import 'package:complex/utils/next_page_routing.dart';
 import 'package:complex/utils/resource/colors.dart';
@@ -10,14 +11,14 @@ import 'package:flutter/material.dart';
 enum ProductType { noPackage, package, multiColor, mySpecial }
 
 class SelectProductType extends StatefulWidget {
-  final ContactDetails contactDetail;
+  final ContactDetailsModel contactDetail;
   final bool isService;
   final String serviceId;
   final String entitytype;
   final int origintype;
-
+  final ProductModel model;
   SelectProductType(this.contactDetail,
-      {this.isService, this.serviceId, this.entitytype,this.origintype});
+      {this.isService, this.serviceId, this.entitytype,this.origintype,this.model});
 
   @override
   _SelectProductTypeState createState() => _SelectProductTypeState();

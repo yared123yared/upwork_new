@@ -5,7 +5,8 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
+
 import 'package:complex/view/product_pages/size_and_color_list_view.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/utility.dart';
@@ -135,7 +136,7 @@ class _SizeAndColorDetailViewState extends State<SizeAndColorDetailView> {
                     context: context, message: "At least one image required");
               } else if (_validateInput()) {
                 sizeAndColor.add(
-                  Sizeandcolordata(
+                  SizeAndColorModel(
                     size: _sizeController.text.trim(),
                     color: _colorController.text.trim(),
                     sizecolorid: _idController.text.trim(),

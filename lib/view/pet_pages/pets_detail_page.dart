@@ -6,7 +6,8 @@ import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/slider.dart';
 import 'package:complex/common/widgets/slider_list.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/pet_model.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
+
 import 'package:complex/view/product_pages/share_widget.dart';
 import 'package:complex/utils/log_print.dart';
 import 'package:complex/utils/resource/colors.dart';
@@ -238,7 +239,7 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
         itemBuilder: (context, index) {
           if (index == 0) {
             return itemBuilder('Address',
-                "${_model.contactdetails.address.addressline}, ${_model.contactdetails.address.areaSector}, ${_model.contactdetails.address.district}, ${_model.contactdetails.address.state}",
+                "${_model.contactdetails.address.addressline}, ${_model.contactdetails.address.area_sector}, ${_model.contactdetails.address.district}, ${_model.contactdetails.address.state}",
                 alignment: Alignment.centerLeft);
           }
 

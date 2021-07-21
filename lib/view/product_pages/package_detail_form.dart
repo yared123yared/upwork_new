@@ -5,7 +5,7 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+
 import 'package:complex/view/product_pages/package_list_view.dart';
 import 'package:complex/utils/resource/colors.dart';
 import 'package:complex/utils/utility.dart';
@@ -16,7 +16,7 @@ import 'package:injector/injector.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 
 class PackageDetailForm extends StatefulWidget {
-  final PackageData packageData;
+  final PackageModel packageData;
 
   PackageDetailForm({this.packageData,});
   @override
@@ -151,7 +151,7 @@ class _PackageDetailFormState extends State<PackageDetailForm> {
                     context: context, message: "At least one image required");
               } else if (_validateInput()) {
                 packageList.add(
-                  Packagedata(
+                  PackageModel(
                     packageid: _idController.text.trim(),
                     title: _titleController.text.trim(),
                     price: double.parse(_priceController.text.trim()),

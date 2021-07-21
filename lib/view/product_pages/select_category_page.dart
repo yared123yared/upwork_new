@@ -26,7 +26,7 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
     _productProvider
         .getCategory(
             levelName: widget.serviceProviderId != null
-                ? "SERVICEPROVIDERINFO/${widget.serviceProviderId}/PRODUCTCATEGORYINFO/${widget.documentname}"
+                ? "PRODUCTCATEGORYINFO/${widget.documentname}" //"SERVICEPROVIDERINFO/${widget.serviceProviderId}/PRODUCTCATEGORYINFO/${widget.documentname}"
                 : "PRODUCTCATEGORYINFO/${widget.documentname}")
         .then((result) {
       if (result != null) {

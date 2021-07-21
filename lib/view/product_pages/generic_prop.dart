@@ -9,8 +9,9 @@ import 'package:complex/common/widgets/custom_text_field.dart';
 import 'package:complex/common/widgets/group_title.dart';
 import 'package:complex/common/widgets/screen_with_loader.dart';
 import 'package:complex/common/widgets/tap_widget.dart';
-import 'package:complex/domain/explore/ecom/contact_details/contact_details.dart';
-import 'package:complex/domain/explore/ecom/product/product_data/product_model.dart';
+
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
+
 import 'package:complex/view/product_pages/addittional_properties_page.dart';
 import 'package:complex/view/product_pages/select_category_page.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
@@ -26,7 +27,7 @@ import 'package:injector/injector.dart';
 class GenericProperties extends StatefulWidget {
   final bool withUnitPrice;
   final String serviceProviderId;
-  final ContactDetails contactDetails;
+  final ContactDetailsModel contactDetails;
   final ProductType productType;
   final bool isService;
   final String serviceId;
@@ -98,7 +99,7 @@ class _GenericPropertiesState extends State<GenericProperties> {
     _productProvider
         .getCategory(
             levelName: widget.serviceProviderId != null
-                ? "SERVICEPROVIDERINFO/${widget.serviceProviderId}/PRODUCTCATEGORYINFO/L1"
+                ? "PRODUCTCATEGORYINFO/L1"//"SERVICEPROVIDERINFO/${widget.serviceProviderId}/PRODUCTCATEGORYINFO/L1"
                 : "PRODUCTCATEGORYINFO/L1")
         .then((result) {
       print("result ${json.encode(result)}");
@@ -371,8 +372,8 @@ class _GenericPropertiesState extends State<GenericProperties> {
                     ? "SIZEANDCOLOR"
                     : "",
         nopackagedata: widget.productType == ProductType.noPackage
-            ? Nopackagedata(
-                inventoryunits: int.parse(_invUnitController.text ?? "0"),
+            ? NoPackageModel(
+                inventoryunits: double.parse(_invUnitController.text ?? "0"),
                 priceperunit: double.parse(_unitPriceController.text ?? "0"),
                 qty: int.parse(_unitController.text.trim()),
                 discountedpriceperunit: 0.0,

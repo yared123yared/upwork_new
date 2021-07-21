@@ -95,7 +95,7 @@ class RealEstateCard extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '${realEstateModel.addressarea.addressinfo}, ${realEstateModel.addressarea.village}, ${realEstateModel.addressarea.state}, ${realEstateModel.addressarea.country}',
+                      '${realEstateModel.addressarea.address.area_sector}, ${realEstateModel.addressarea.address.town_village}, ${realEstateModel.addressarea.address.district}, ${realEstateModel.addressarea.address.state}',
                       style: TextStyle(
                         color: Color(0xbb000000),
                         fontWeight: FontWeight.w600,
@@ -169,7 +169,7 @@ class RealEstateCard extends StatelessWidget {
                         ),
                         SizedBox(width: 4),
                         Text(
-                          '${realEstateModel.floorNumber ?? 0}',
+                          '${realEstateModel.numbedroom ?? 0}',
                           style: TextStyle(
                             color: Color(0xbb000000),
                             fontWeight: FontWeight.w600,

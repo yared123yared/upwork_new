@@ -45,7 +45,7 @@ import 'package:complex/newentityfeatures/ecommerce-admin/bloc/store-product/sto
 import 'newentityfeatures/commonrepo/complex_repository.dart';
 import 'newentityfeatures/commonrepo/genericdbmethods_repository.dart';
 import 'newentityfeatures/commonrepo/school_repository.dart';
-
+//Open customerinfo -addressmodel, inventoryunits -d0uble
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp().then((value) {
