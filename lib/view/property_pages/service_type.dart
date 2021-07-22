@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class ServiceType extends StatefulWidget {
   final Function(String) onSelect;
+  final String initialvalue;
 
-  ServiceType({this.onSelect});
+  ServiceType({this.onSelect,this.initialvalue});
 
   @override
   _ServiceTypeState createState() => _ServiceTypeState();
@@ -15,6 +16,23 @@ class ServiceType extends StatefulWidget {
 class _ServiceTypeState extends State<ServiceType> {
   String _type = '';
 
+  void setIntialValue(context)
+  {
+    if(widget.initialvalue !=null ) {
+      _type = widget.initialvalue;
+      if (widget.onSelect != null) {
+        widget.onSelect(_type);
+      }
+    }
+  }
+
+  @override
+  void initState() {
+
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => setIntialValue(context));
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Row(

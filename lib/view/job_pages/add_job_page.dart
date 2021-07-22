@@ -351,7 +351,7 @@ class _AddJobPageState extends State<AddJobPage> {
             worktype: '',
           ));
       _productBloc.add(
-        ProductOwnerEvent.update(productData: newJob,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+        ProductOwnerEvent.update(productdata: newJob.data.toJson(),type:"job",entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     } else {
       newJob = CompleteJob(
@@ -369,6 +369,7 @@ class _AddJobPageState extends State<AddJobPage> {
             companyname: _companyName.text.trim(),
             educationqualification: '',
             isparttime: _isPartTime,
+            serviceproviderid: widget.entityid,
             maxsalaryrange: int.parse(_maxValue.text.trim()),
             minsalaryrange: int.parse(_minValue.text.trim()),
             minyearexperience: int.parse(_yearExperience.text.trim()),
@@ -376,7 +377,7 @@ class _AddJobPageState extends State<AddJobPage> {
           ));
 
       _productBloc.add(
-        ProductOwnerEvent.add(productData: newJob,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+        ProductOwnerEvent.add(productdata: newJob.data.toJson(),type:"job",entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     }
   }

@@ -1647,7 +1647,7 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newattendancepage',
             tapAction: () async {
-              
+
               UserRepository _userRepository = HelpUtil.getUserRepository();
 
               String entityid = getCurEntity().entityid;
@@ -1936,7 +1936,7 @@ class UiSchoolHandler {
                   ));
             });
         break;
-
+      //origintype=1 , need contact , 2 means no contact
       case DynamicEntityGridState.shopproduct:
         _customGrid = CustomGridClass(
             icon: Icons.import_contacts,
@@ -1944,7 +1944,7 @@ class UiSchoolHandler {
             tapAction: () {
               EcomNavigationHelper.of(context)
                   .toListPage(type: EcomProductType.product(),entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,isService:false,origin:1);
+                  entityid: getCurEntity().entityid,isService:false,origin:2);
             });
         break;
       case DynamicEntityGridState.classifiedproduct:

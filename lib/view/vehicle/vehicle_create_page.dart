@@ -1059,7 +1059,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
             bodytype: _bodyType,
           ));
       _bloc.add(
-        ProductOwnerEvent.add(productData: newVehicle,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+        ProductOwnerEvent.add(productdata: newVehicle.data.toJson(),type:"vehicle",entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     } else {
       newVehicle = CompleteVehicle(
@@ -1081,6 +1081,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
             vehicletype: _vehicleType,
             transmission: transmissionType,
             ownershiptransfer: ownershipTransferType,
+            serviceproviderid: widget.entityid,
             model: _txtModel.text,
             milage: int.parse(_txtMilage.text),
             make: _txtMake.text,
@@ -1095,7 +1096,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
           ));
 
       _bloc.add(
-        ProductOwnerEvent.add(productData: newVehicle,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+        ProductOwnerEvent.add(productdata: newVehicle.data.toJson(),type:"vehicle",entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     }
   }

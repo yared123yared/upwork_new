@@ -24,7 +24,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:injector/injector.dart';
 import 'package:intl/intl.dart';
-
+//missing some fields
+//_facingSide =widget.realEstate.data
+//tenant preference
 class AddPropertyPage extends StatefulWidget {
   final ContactDetailsModel contactDetail;
   final CompleteRealEstate realEstate;
@@ -69,6 +71,49 @@ class _AddPropertyPage extends State<AddPropertyPage> {
   bool _isLoading = false;
   ProductOwnerBloc _productBloc;
   var _key = GlobalKey<ScaffoldState>();
+
+  Future _initFiledValue() async {
+    if (widget.realEstate != null)
+    {
+      currentSegment=widget.realEstate.data.listingownertype=="Broker"?0:1;
+
+      _serviceType =widget.realEstate.data.servicetype;
+      _propertyType=widget.realEstate.data.usagetype;
+      _categoryType =widget.realEstate.data.propertytype;
+      _photos =widget.realEstate.data.imagelist;
+      _saleType =widget.realEstate.data.saletype;
+      _ownershipStatus = widget.realEstate.data.ownershiptype;
+      _furnishingStatus=widget.realEstate.data.furnishedstatus;
+      _bedRooms =widget.realEstate.data.numrooms;
+      _bathRooms =widget.realEstate.data.numbath;
+      _sqFeet =widget.realEstate.data.sqfeetarea;
+      //_facingSide =widget.realEstate.data
+      //tenant preference
+      if(widget.realEstate.data.has24hrwater) _amenities.add("24xWater");
+      if(widget.realEstate.data.hastv) _amenities.add("TV");
+    if(widget.realEstate.data.hasfridge) _amenities.add("Fridge");
+    if(widget.realEstate.data.hascooler) _amenities.add("Cooler");
+    if(widget.realEstate.data.hasairconditioner) _amenities.add("AirConditioner");
+    if(widget.realEstate.data.hasinternet) _amenities.add("Internet/Wifi");
+    if(widget.realEstate.data.hasgreenarea) _amenities.add("GreenArea");
+    if(widget.realEstate.data.hasparking) _amenities.add("Parking");
+    if(widget.realEstate.data.hasgaspipeline) _amenities.add("GasPipeLine");
+    if(widget.realEstate.data.hassecurity) _amenities.add("Security");
+    if(widget.realEstate.data.hasclubhouse) _amenities.add("ClubHouse");
+    if(widget.realEstate.data.haspowerbackup) _amenities.add("PowerBackup");
+    if(widget.realEstate.data.haslift) _amenities.add("Lift");
+
+
+    }
+
+
+
+  }
+  @override
+  void initState() {
+    _initFiledValue();
+    super.initState();
+  }
 
   bool _validateTitleBody() {
     bool vaild = true;
@@ -399,7 +444,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 4),
                     alignment: Alignment.centerLeft,
-                    child: Text(widget.contactDetail.address.addressline,
+                    child: Text(widget.contactDetail.address.addressline ==null?"":widget.contactDetail.address.addressline,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Merriweather',
@@ -785,7 +830,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
                       _progress = 20;
                       _score = 15;
                       _serviceType = serviceType;
-                    })),
+                    }),initialvalue: widget.realEstate?.data?.servicetype),
             SizedBox(height: 20),
             _propertyType1(),
             _propertyType2()
@@ -1643,7 +1688,8 @@ class _AddPropertyPage extends State<AddPropertyPage> {
             title: _title.text.trim(),
             description: _description.text.trim(),
             contactdetails: widget.contactDetail,
-            propertytype: _propertyType,
+            usagetype: _propertyType,
+            propertytype: _categoryType,
             servicetype: _serviceType,
             saletype: _saleType,
             ownershiptype: _ownershipStatus,
@@ -1671,7 +1717,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
           ));
 
       _productBloc.add(
-        ProductOwnerEvent.update(productData: newRealEstate,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+        ProductOwnerEvent.update(productdata: newRealEstate.data.toJson(),type:"realestate",entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     } else {
       newRealEstate = CompleteRealEstate(
@@ -1683,7 +1729,8 @@ class _AddPropertyPage extends State<AddPropertyPage> {
             title: _title.text.trim(),
             description: _description.text.trim(),
             contactdetails: widget.contactDetail,
-            propertytype: _propertyType,
+            usagetype: _propertyType,
+            propertytype: _categoryType,
             servicetype: _serviceType,
             saletype: _saleType,
             ownershiptype: _ownershipStatus,
@@ -1692,6 +1739,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
             constructionstatus: _contructionType,
             numrooms: _bedRooms,
             numbath: _bathRooms,
+            serviceproviderid: widget.entityid,
             sqfeetarea: _sqFeet,
             listingownertype: currentSegment == 0 ? "Broker" : "Owner",
             has24hrwater: _amenities.contains("24xWater"),
@@ -1711,7 +1759,7 @@ class _AddPropertyPage extends State<AddPropertyPage> {
           ));
 
       _productBloc.add(
-        ProductOwnerEvent.add(productData: newRealEstate,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+        ProductOwnerEvent.add(productdata: newRealEstate.data.toJson(),type:"realestate",entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     }
   }

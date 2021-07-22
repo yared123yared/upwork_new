@@ -31,8 +31,8 @@ class OwnerProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () =>
-          EcomNavigationHelper.of(context).completeToDetailsPage(data: data),
+        onTap: () {},
+          //EcomNavigationHelper.of(context).completeToDetailsPage(data: data),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         padding: EdgeInsets.all(16.0),
@@ -159,7 +159,7 @@ class OwnerProductCard extends StatelessWidget {
                           InkWell(
                             onTap: () {
 
-                              if(data.dt =="realestate") {
+                              if(data.dt =="REALESTATE") {
                                 CompleteRealEstate cme =data;
                                 EcomNavigationHelper.of(context)
                                 //.completeToDetailsPage(data: data);
@@ -170,7 +170,7 @@ class OwnerProductCard extends StatelessWidget {
                                     origintype: origin,type:EcomProductType.realEstate()
                                     );
                               }
-                              else if(data.dt =="job") {
+                              else if(data.dt =="JOB") {
                                 CompleteJob cme =data;
                                 EcomNavigationHelper.of(context)
                                 //.completeToDetailsPage(data: data);
@@ -181,7 +181,7 @@ class OwnerProductCard extends StatelessWidget {
                                     origintype: origin,type:EcomProductType.job()
                                 );
                               }
-                              else if(data.dt =="vehicle") {
+                              else if(data.dt =="VEHICLE") {
                                 CompleteVehicle cme =data;
                                 EcomNavigationHelper.of(context)
                                 //.completeToDetailsPage(data: data);
@@ -192,7 +192,7 @@ class OwnerProductCard extends StatelessWidget {
                                     origintype: origin,type:EcomProductType.vehicle()
                                 );
                               }
-                              else if(data.dt =="pet") {
+                              else if(data.dt =="PET") {
                                 CompletePet cme =data;
                                 EcomNavigationHelper.of(context)
                                 //.completeToDetailsPage(data: data);
@@ -203,16 +203,24 @@ class OwnerProductCard extends StatelessWidget {
                                     origintype: origin,type:EcomProductType.pet()
                                 );
                               }
-                              else if(data.dt =="product") {
-                                CompleteRealEstate cme =data;
-                                EcomNavigationHelper.of(context)
-                                //.completeToDetailsPage(data: data);
-                                    .fromContactToAddProductPage(data: data,contactDetails:cme.data.contactdetails,
-                                    isService: isService,
-                                    entitytype: entitytype,
-                                    serviceId: entityid,
-                                    origintype: origin,type:EcomProductType.product()
-                                );
+                              else if(data.dt =="PRODUCT") {
+                                CompleteProduct cme =data;
+                                if(origin ==1) {
+                                  EcomNavigationHelper.of(context)
+                                  //.completeToDetailsPage(data: data);
+                                      .fromContactToAddProductPage(data: data,
+                                      contactDetails: cme.data.addressarea,
+                                      isService: isService,
+                                      entitytype: entitytype,
+                                      serviceId: entityid,
+                                      origintype: origin,
+                                      type: EcomProductType.product()
+                                  );
+                                }
+                                else
+                                  {
+                                    EcomNavigationHelper.of(context).fromContactToAddProductPage(type: EcomProductType.product(),data:data,contactDetails: null,  isService: isService, serviceId: entityid, entitytype: entitytype, origintype: origin);
+                                  }
                               }
                               else
                                 {

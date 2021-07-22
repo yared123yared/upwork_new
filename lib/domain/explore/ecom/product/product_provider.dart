@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
+import 'package:complex/data/models/response/user_response/user_model.dart';
 import 'package:complex/domain/core/api_helper.dart';
 import 'package:complex/domain/core/failure/failure.dart';
 import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
@@ -8,12 +9,13 @@ import 'package:complex/newentityfeatures/commonrepo/genericdbmethods_repository
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-
-
+import 'package:complex/data/repositories/user_repository.dart';
+import 'package:complex/common/helputil.dart';
 import 'limited_product/limited_product_data.dart';
 class ProductProvider {
   final FirebaseFirestore _firestoreInstance = FirebaseFirestore.instance;
-
+  final UserRepository _userRepository = HelpUtil.getUserRepository();
+   UserModel get _user => _userRepository.getUser();
   Future<Either<Failure, T>> _helperFunction<T>({
     @required
         T Function(
@@ -49,7 +51,7 @@ class ProductProvider {
               {
                 if(finaltype=="PRODUCT") {
                   querySnapshot = await _firestoreInstance
-                      .collection(collectionname).orderBy('productid').limit(limit)
+                      .collection(collectionname).orderBy('docid').limit(limit)
                       .get();
                 }
                 else
@@ -65,7 +67,7 @@ class ProductProvider {
               {
                 if(finaltype=="PRODUCT") {
                   querySnapshot = await _firestoreInstance
-                      .collection(collectionname).orderBy('productid').startAfter(
+                      .collection(collectionname).orderBy('docid').startAfter(
                       [lastdocumentid]).limit(limit)
                       .get();
                 }
@@ -84,6 +86,15 @@ class ProductProvider {
         }
       List<Map<String, dynamic>> dataList = List<Map<String, dynamic>>.from(
           querySnapshot.docs.map((e) => e.data()));
+      for (var k in dataList)
+        {
+          for(String key in k.keys)
+            {
+              if(key !='dt' && key !='adata' )
+                k['adata'][key]=k[key];
+            }
+        }
+
       final T typedResponse = fromListData(dataList);
       return right(typedResponse);
     } on FirebaseException catch (e) {
@@ -265,48 +276,39 @@ class ProductProvider {
   
   
   Future<Option<Failure>> addProduct(
-      {@required CompleteProductData data,@required String entitytype,@required String entityid,@required bool isservice,@required int origin}) async {
-     final String finaldttype=data.dt.toUpperCase();
-    final Map<String, dynamic> productAction = {
-      "qtype": null,
-      "action": "add",
-      "origin": entityid ==null?"USER":"SERVICE",
-      "serviceid": entityid,
-      "userid": data.userId,
-      "producttype": null,
-      "classifiedtype": data.dt.toUpperCase(),
-      "petmodel": null,
-      "productmodel": null,
-      "vehiclemodel": null,
-      "jobrequestmodel": null,
-      'realestatemodel': null,
-    };
-    var k =data.map(
-        realEstate: (realEstate) => productAction.update('realestatemodel',
-            (value) => realEstate.data.toJson()..remove('runtimeType')),
-        job: (job) => productAction.update('jobrequestmodel',
-            (value) => job.data.toJson()..remove('runtimeType')),
-        pet: (pet) => productAction.update(
-            'petmodel', (value) => pet.data.toJson()..remove('runtimeType')),
-        vehicle: (vehicle) => productAction.update('vehiclemodel',
-            (value) => vehicle.data.toJson()..remove('runtimeType')),
-        product: (product) => productAction.update('productmodel',
-            (value) => product.data.toJson()..remove('runtimeType')));
+      {@required Map<String,dynamic> data,@required String producttype,@required String entitytype,@required String entityid,@required bool isservice,@required int origin}) async {
+     final String finaldttype=producttype.toUpperCase();
+     final Map<String, dynamic> productAction = {
+       "qtype": null,
+       "action": "add",
+       "origin": entityid==null?"USER":"SERVICEPROVIDERINFO",
+       "serviceid":entityid==null?null:entityid,
+       "userid": entityid==null?_user.userID:null,
+       "producttype": producttype.toUpperCase(),
+       "classifiedtype": producttype.toUpperCase(),
+       "petmodel": null,
+       "productmodel": null,
+       "vehiclemodel": null,
+       "jobrequestmodel": null,
+       'realestatemodel': null,
+       'productid' :null
+     };
+
 
     if(finaldttype =="REALESTATE") {
-      productAction['realestatemodel']=k;
+      productAction['realestatemodel']=data;
     }
     else if(finaldttype =="JOB") {
-      productAction['jobrequestmodel']=k;
+      productAction['jobrequestmodel']=data;
     }
     else if(finaldttype =="VEHICLE") {
-      productAction['vehiclemodel']=k;
+      productAction['vehiclemodel']=data;
     }
     else if(finaldttype =="PET") {
-      productAction['petmodel']=k;
+      productAction['petmodel']=data;
     }
     else if(finaldttype =="PRODUCT") {
-      productAction['productmodel']=k;
+      productAction['productmodel']=data;
     }
     else
     {
@@ -322,75 +324,75 @@ class ProductProvider {
   }
 
   Future<Option<Failure>> updateProduct(
-      {@required CompleteProductData data,@required String entitytype,@required String entityid,@required bool isservice,@required int origin}) async {
+      {@required Map<String,dynamic> data,@required String producttype,@required String entitytype,@required String entityid,@required bool isservice,@required int origin}) async {
+    final String finaldttype=producttype.toUpperCase();
     final Map<String, dynamic> productAction = {
       "qtype": null,
-      "action": "add",
-      "origin": "USER",
-      "serviceid": null,
-      "userid": data.userId,
-      "producttype": null,
-      "classifiedtype": data.dt.toUpperCase(),
+      "action": "update",
+      "origin": entityid==null?"USER":"SERVICEPROVIDERINFO",
+      "serviceid":entityid==null?null:entityid,
+      "userid": entityid==null?_user.userID:null,
+      "producttype": producttype.toUpperCase(),
+      "classifiedtype": producttype.toUpperCase(),
       "petmodel": null,
       "productmodel": null,
       "vehiclemodel": null,
       "jobrequestmodel": null,
       'realestatemodel': null,
+      'productid' :null
     };
-    data.map(
-        realEstate: (realEstate) => productAction.update('realestatemodel',
-                (value) => realEstate.data.toJson()..remove('runtimeType')),
-        job: (job) => productAction.update('jobrequestmodel',
-                (value) => job.data.toJson()..remove('runtimeType')),
-        pet: (pet) => productAction.update(
-            'petmodel', (value) => pet.data.toJson()..remove('runtimeType')),
-        vehicle: (vehicle) => productAction.update('vehiclemodel',
-                (value) => vehicle.data.toJson()..remove('runtimeType')),
-        product: (product) => productAction.update('productmodel',
-                (value) => product.data.toJson()..remove('runtimeType')));
+    if(finaldttype =="REALESTATE") {
+      productAction['realestatemodel']=data;
+    }
+    else if(finaldttype =="JOB") {
+      productAction['jobrequestmodel']=data;
+    }
+    else if(finaldttype =="VEHICLE") {
+      productAction['vehiclemodel']=data;
+    }
+    else if(finaldttype =="PET") {
+      productAction['petmodel']=data;
+    }
+    else if(finaldttype =="PRODUCT") {
+      productAction['productmodel']=data;
+    }
+    else
+    {
+      return Future.error("Undefined Product type", StackTrace.fromString("This is its trace"));
+    }
 
     final Option<Failure> response = await ApiHelper(ApiHelper.dgOcnEp)
-        .httpPost<CompleteProductData>(data.toJson());
+        .httpPost<Map<String, dynamic>>(productAction);
 
     return response;
   }
 
   Future<Option<Failure>> deleteProduct(
-      {@required CompleteProductData data,@required String entitytype,@required String entityid,@required bool isservice,@required int origin}) async {
+      {@required String productid,@required String producttype,@required String entitytype,@required String entityid,@required bool isservice,@required int origin}) async {
     final Map<String, dynamic> productAction = {
       "qtype": null,
-      "action": "add",
-      "origin": "USER",
-      "serviceid": null,
-      "userid": data.userId,
-      "producttype": null,
-      "classifiedtype": data.dt.toUpperCase(),
+      "action": "update",
+      "origin": entityid==null?"USER":"SERVICEPROVIDERINFO",
+      "serviceid":entityid==null?_user.userID:null,
+      "userid": entityid==null?_user.userID:null,
+      "producttype": producttype.toUpperCase(),
+      "classifiedtype": producttype.toUpperCase(),
       "petmodel": null,
       "productmodel": null,
       "vehiclemodel": null,
       "jobrequestmodel": null,
       'realestatemodel': null,
+      'productid' :productid
     };
-    data.map(
-        realEstate: (realEstate) => productAction.update('realestatemodel',
-                (value) => realEstate.data.toJson()..remove('runtimeType')),
-        job: (job) => productAction.update('jobrequestmodel',
-                (value) => job.data.toJson()..remove('runtimeType')),
-        pet: (pet) => productAction.update(
-            'petmodel', (value) => pet.data.toJson()..remove('runtimeType')),
-        vehicle: (vehicle) => productAction.update('vehiclemodel',
-                (value) => vehicle.data.toJson()..remove('runtimeType')),
-        product: (product) => productAction.update('productmodel',
-                (value) => product.data.toJson()..remove('runtimeType')));
 
     final Option<Failure> response = await ApiHelper(ApiHelper.dgOcnEp)
-        .httpPost<CompleteProductData>(data.toJson());
+        .httpPost<Map<String, dynamic>>(productAction);
 
     return response;
   }
 
 
-  Future<Either<Failure, List<LuceneSearchSuggestionData>>> getProductSuggestion({@required String texttosearch,@required EcomProductType type,@required String entitytype,@required String entityid,@required bool isservice,@required int origin,int offset}) async {
+  Future<Either<Failure, List<LuceneSearchSuggestionData>>> getProductSuggestion({@required String texttosearch,@required String producttype,@required String entitytype,@required String entityid,@required bool isservice,@required int origin,int offset}) async {
     ProductSearchInformationConfig psc =null;
     String token =null;
     List<String> serverlist =null;

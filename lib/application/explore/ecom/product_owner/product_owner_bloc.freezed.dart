@@ -16,12 +16,12 @@ class _$ProductOwnerEventTearOff {
 // ignore: unused_element
   _GetProductList get(
       {@required EcomProductType type,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin,
-        @required int limit,
-        @required String lastdocumentid}) {
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin,
+      @required int limit,
+      @required String lastdocumentid}) {
     return _GetProductList(
       type: type,
       entitytype: entitytype,
@@ -35,13 +35,15 @@ class _$ProductOwnerEventTearOff {
 
 // ignore: unused_element
   _AddProduct add(
-      {@required CompleteProductData productData,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin}) {
+      {@required Map<String, dynamic> productdata,
+      @required String type,
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin}) {
     return _AddProduct(
-      productData: productData,
+      productdata: productdata,
+      type: type,
       entitytype: entitytype,
       entityid: entityid,
       isservice: isservice,
@@ -51,13 +53,15 @@ class _$ProductOwnerEventTearOff {
 
 // ignore: unused_element
   _UpdateProduct update(
-      {@required CompleteProductData productData,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin}) {
+      {@required Map<String, dynamic> productdata,
+      @required String type,
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin}) {
     return _UpdateProduct(
-      productData: productData,
+      productdata: productdata,
+      type: type,
       entitytype: entitytype,
       entityid: entityid,
       isservice: isservice,
@@ -68,12 +72,12 @@ class _$ProductOwnerEventTearOff {
 // ignore: unused_element
   _GetProductSuggestion getProductSuggestion(
       {@required String texttosearch,
-        @required EcomProductType type,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin,
-        int offset}) {
+      @required String type,
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin,
+      int offset}) {
     return _GetProductSuggestion(
       texttosearch: texttosearch,
       type: type,
@@ -88,12 +92,12 @@ class _$ProductOwnerEventTearOff {
 // ignore: unused_element
   _GetProductById getProductById(
       {@required String productid,
-        @required EcomProductType type,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin,
-        int offset}) {
+      @required EcomProductType type,
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin,
+      int offset}) {
     return _GetProductById(
       productid: productid,
       type: type,
@@ -107,13 +111,15 @@ class _$ProductOwnerEventTearOff {
 
 // ignore: unused_element
   _DeleteProduct delete(
-      {@required CompleteProductData productData,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin}) {
+      {@required String productid,
+      @required String type,
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin}) {
     return _DeleteProduct(
-      productData: productData,
+      productid: productid,
+      type: type,
       entitytype: entitytype,
       entityid: entityid,
       isservice: isservice,
@@ -136,47 +142,47 @@ mixin _$ProductOwnerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-    TResult get(EcomProductType type, String entitytype, String entityid,
-        bool isservice, int origin, int limit, String lastdocumentid),
+        TResult get(EcomProductType type, String entitytype, String entityid,
+            bool isservice, int origin, int limit, String lastdocumentid),
     @required
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult add(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult update(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult getProductSuggestion(
-        String texttosearch,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductSuggestion(
+            String texttosearch,
+            String type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult getProductById(
-        String productid,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductById(
+            String productid,
+            EcomProductType type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult delete(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult delete(String productid, String type, String entitytype,
+            String entityid, bool isservice, int origin),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult get(EcomProductType type, String entitytype, String entityid,
         bool isservice, int origin, int limit, String lastdocumentid),
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+    TResult add(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
+    TResult update(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
     TResult getProductSuggestion(
         String texttosearch,
-        EcomProductType type,
+        String type,
         String entitytype,
         String entityid,
         bool isservice,
@@ -190,7 +196,7 @@ mixin _$ProductOwnerEvent {
         bool isservice,
         int origin,
         int offset),
-    TResult delete(CompleteProductData productData, String entitytype,
+    TResult delete(String productid, String type, String entitytype,
         String entityid, bool isservice, int origin),
     @required TResult orElse(),
   });
@@ -221,8 +227,8 @@ mixin _$ProductOwnerEvent {
 /// @nodoc
 abstract class $ProductOwnerEventCopyWith<$Res> {
   factory $ProductOwnerEventCopyWith(
-      ProductOwnerEvent value, $Res Function(ProductOwnerEvent) then) =
-  _$ProductOwnerEventCopyWithImpl<$Res>;
+          ProductOwnerEvent value, $Res Function(ProductOwnerEvent) then) =
+      _$ProductOwnerEventCopyWithImpl<$Res>;
   $Res call({String entitytype, String entityid, bool isservice, int origin});
 }
 
@@ -244,7 +250,7 @@ class _$ProductOwnerEventCopyWithImpl<$Res>
   }) {
     return _then(_value.copyWith(
       entitytype:
-      entitytype == freezed ? _value.entitytype : entitytype as String,
+          entitytype == freezed ? _value.entitytype : entitytype as String,
       entityid: entityid == freezed ? _value.entityid : entityid as String,
       isservice: isservice == freezed ? _value.isservice : isservice as bool,
       origin: origin == freezed ? _value.origin : origin as int,
@@ -256,17 +262,19 @@ class _$ProductOwnerEventCopyWithImpl<$Res>
 abstract class _$GetProductListCopyWith<$Res>
     implements $ProductOwnerEventCopyWith<$Res> {
   factory _$GetProductListCopyWith(
-      _GetProductList value, $Res Function(_GetProductList) then) =
-  __$GetProductListCopyWithImpl<$Res>;
+          _GetProductList value, $Res Function(_GetProductList) then) =
+      __$GetProductListCopyWithImpl<$Res>;
   @override
   $Res call(
       {EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int limit,
-        String lastdocumentid});
+      String entitytype,
+      String entityid,
+      bool isservice,
+      int origin,
+      int limit,
+      String lastdocumentid});
+
+  $EcomProductTypeCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -293,7 +301,7 @@ class __$GetProductListCopyWithImpl<$Res>
     return _then(_GetProductList(
       type: type == freezed ? _value.type : type as EcomProductType,
       entitytype:
-      entitytype == freezed ? _value.entitytype : entitytype as String,
+          entitytype == freezed ? _value.entitytype : entitytype as String,
       entityid: entityid == freezed ? _value.entityid : entityid as String,
       isservice: isservice == freezed ? _value.isservice : isservice as bool,
       origin: origin == freezed ? _value.origin : origin as int,
@@ -303,18 +311,28 @@ class __$GetProductListCopyWithImpl<$Res>
           : lastdocumentid as String,
     ));
   }
+
+  @override
+  $EcomProductTypeCopyWith<$Res> get type {
+    if (_value.type == null) {
+      return null;
+    }
+    return $EcomProductTypeCopyWith<$Res>(_value.type, (value) {
+      return _then(_value.copyWith(type: value));
+    });
+  }
 }
 
 /// @nodoc
 class _$_GetProductList implements _GetProductList {
   const _$_GetProductList(
       {@required this.type,
-        @required this.entitytype,
-        @required this.entityid,
-        @required this.isservice,
-        @required this.origin,
-        @required this.limit,
-        @required this.lastdocumentid})
+      @required this.entitytype,
+      @required this.entityid,
+      @required this.isservice,
+      @required this.origin,
+      @required this.limit,
+      @required this.lastdocumentid})
       : assert(type != null),
         assert(entitytype != null),
         assert(entityid != null),
@@ -387,35 +405,35 @@ class _$_GetProductList implements _GetProductList {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-    TResult get(EcomProductType type, String entitytype, String entityid,
-        bool isservice, int origin, int limit, String lastdocumentid),
+        TResult get(EcomProductType type, String entitytype, String entityid,
+            bool isservice, int origin, int limit, String lastdocumentid),
     @required
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult add(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult update(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult getProductSuggestion(
-        String texttosearch,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductSuggestion(
+            String texttosearch,
+            String type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult getProductById(
-        String productid,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductById(
+            String productid,
+            EcomProductType type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult delete(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult delete(String productid, String type, String entitytype,
+            String entityid, bool isservice, int origin),
   }) {
     assert(get != null);
     assert(add != null);
@@ -432,13 +450,13 @@ class _$_GetProductList implements _GetProductList {
   TResult maybeWhen<TResult extends Object>({
     TResult get(EcomProductType type, String entitytype, String entityid,
         bool isservice, int origin, int limit, String lastdocumentid),
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+    TResult add(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
+    TResult update(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
     TResult getProductSuggestion(
         String texttosearch,
-        EcomProductType type,
+        String type,
         String entitytype,
         String entityid,
         bool isservice,
@@ -452,7 +470,7 @@ class _$_GetProductList implements _GetProductList {
         bool isservice,
         int origin,
         int offset),
-    TResult delete(CompleteProductData productData, String entitytype,
+    TResult delete(String productid, String type, String entitytype,
         String entityid, bool isservice, int origin),
     @required TResult orElse(),
   }) {
@@ -505,12 +523,12 @@ class _$_GetProductList implements _GetProductList {
 abstract class _GetProductList implements ProductOwnerEvent {
   const factory _GetProductList(
       {@required EcomProductType type,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin,
-        @required int limit,
-        @required String lastdocumentid}) = _$_GetProductList;
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin,
+      @required int limit,
+      @required String lastdocumentid}) = _$_GetProductList;
 
   EcomProductType get type;
   @override
@@ -532,15 +550,16 @@ abstract class _GetProductList implements ProductOwnerEvent {
 abstract class _$AddProductCopyWith<$Res>
     implements $ProductOwnerEventCopyWith<$Res> {
   factory _$AddProductCopyWith(
-      _AddProduct value, $Res Function(_AddProduct) then) =
-  __$AddProductCopyWithImpl<$Res>;
+          _AddProduct value, $Res Function(_AddProduct) then) =
+      __$AddProductCopyWithImpl<$Res>;
   @override
   $Res call(
-      {CompleteProductData productData,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin});
+      {Map<String, dynamic> productdata,
+      String type,
+      String entitytype,
+      String entityid,
+      bool isservice,
+      int origin});
 }
 
 /// @nodoc
@@ -556,18 +575,20 @@ class __$AddProductCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object productData = freezed,
+    Object productdata = freezed,
+    Object type = freezed,
     Object entitytype = freezed,
     Object entityid = freezed,
     Object isservice = freezed,
     Object origin = freezed,
   }) {
     return _then(_AddProduct(
-      productData: productData == freezed
-          ? _value.productData
-          : productData as CompleteProductData,
+      productdata: productdata == freezed
+          ? _value.productdata
+          : productdata as Map<String, dynamic>,
+      type: type == freezed ? _value.type : type as String,
       entitytype:
-      entitytype == freezed ? _value.entitytype : entitytype as String,
+          entitytype == freezed ? _value.entitytype : entitytype as String,
       entityid: entityid == freezed ? _value.entityid : entityid as String,
       isservice: isservice == freezed ? _value.isservice : isservice as bool,
       origin: origin == freezed ? _value.origin : origin as int,
@@ -578,19 +599,23 @@ class __$AddProductCopyWithImpl<$Res>
 /// @nodoc
 class _$_AddProduct implements _AddProduct {
   const _$_AddProduct(
-      {@required this.productData,
-        @required this.entitytype,
-        @required this.entityid,
-        @required this.isservice,
-        @required this.origin})
-      : assert(productData != null),
+      {@required this.productdata,
+      @required this.type,
+      @required this.entitytype,
+      @required this.entityid,
+      @required this.isservice,
+      @required this.origin})
+      : assert(productdata != null),
+        assert(type != null),
         assert(entitytype != null),
         assert(entityid != null),
         assert(isservice != null),
         assert(origin != null);
 
   @override
-  final CompleteProductData productData;
+  final Map<String, dynamic> productdata;
+  @override
+  final String type;
   @override
   final String entitytype;
   @override
@@ -602,16 +627,18 @@ class _$_AddProduct implements _AddProduct {
 
   @override
   String toString() {
-    return 'ProductOwnerEvent.add(productData: $productData, entitytype: $entitytype, entityid: $entityid, isservice: $isservice, origin: $origin)';
+    return 'ProductOwnerEvent.add(productdata: $productdata, type: $type, entitytype: $entitytype, entityid: $entityid, isservice: $isservice, origin: $origin)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AddProduct &&
-            (identical(other.productData, productData) ||
+            (identical(other.productdata, productdata) ||
                 const DeepCollectionEquality()
-                    .equals(other.productData, productData)) &&
+                    .equals(other.productdata, productdata)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.entitytype, entitytype) ||
                 const DeepCollectionEquality()
                     .equals(other.entitytype, entitytype)) &&
@@ -628,7 +655,8 @@ class _$_AddProduct implements _AddProduct {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(productData) ^
+      const DeepCollectionEquality().hash(productdata) ^
+      const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(entitytype) ^
       const DeepCollectionEquality().hash(entityid) ^
       const DeepCollectionEquality().hash(isservice) ^
@@ -643,35 +671,35 @@ class _$_AddProduct implements _AddProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-    TResult get(EcomProductType type, String entitytype, String entityid,
-        bool isservice, int origin, int limit, String lastdocumentid),
+        TResult get(EcomProductType type, String entitytype, String entityid,
+            bool isservice, int origin, int limit, String lastdocumentid),
     @required
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult add(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult update(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult getProductSuggestion(
-        String texttosearch,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductSuggestion(
+            String texttosearch,
+            String type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult getProductById(
-        String productid,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductById(
+            String productid,
+            EcomProductType type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult delete(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult delete(String productid, String type, String entitytype,
+            String entityid, bool isservice, int origin),
   }) {
     assert(get != null);
     assert(add != null);
@@ -679,7 +707,7 @@ class _$_AddProduct implements _AddProduct {
     assert(getProductSuggestion != null);
     assert(getProductById != null);
     assert(delete != null);
-    return add(productData, entitytype, entityid, isservice, origin);
+    return add(productdata, type, entitytype, entityid, isservice, origin);
   }
 
   @override
@@ -687,13 +715,13 @@ class _$_AddProduct implements _AddProduct {
   TResult maybeWhen<TResult extends Object>({
     TResult get(EcomProductType type, String entitytype, String entityid,
         bool isservice, int origin, int limit, String lastdocumentid),
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+    TResult add(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
+    TResult update(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
     TResult getProductSuggestion(
         String texttosearch,
-        EcomProductType type,
+        String type,
         String entitytype,
         String entityid,
         bool isservice,
@@ -707,13 +735,13 @@ class _$_AddProduct implements _AddProduct {
         bool isservice,
         int origin,
         int offset),
-    TResult delete(CompleteProductData productData, String entitytype,
+    TResult delete(String productid, String type, String entitytype,
         String entityid, bool isservice, int origin),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (add != null) {
-      return add(productData, entitytype, entityid, isservice, origin);
+      return add(productdata, type, entitytype, entityid, isservice, origin);
     }
     return orElse();
   }
@@ -758,13 +786,15 @@ class _$_AddProduct implements _AddProduct {
 
 abstract class _AddProduct implements ProductOwnerEvent {
   const factory _AddProduct(
-      {@required CompleteProductData productData,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin}) = _$_AddProduct;
+      {@required Map<String, dynamic> productdata,
+      @required String type,
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin}) = _$_AddProduct;
 
-  CompleteProductData get productData;
+  Map<String, dynamic> get productdata;
+  String get type;
   @override
   String get entitytype;
   @override
@@ -782,15 +812,16 @@ abstract class _AddProduct implements ProductOwnerEvent {
 abstract class _$UpdateProductCopyWith<$Res>
     implements $ProductOwnerEventCopyWith<$Res> {
   factory _$UpdateProductCopyWith(
-      _UpdateProduct value, $Res Function(_UpdateProduct) then) =
-  __$UpdateProductCopyWithImpl<$Res>;
+          _UpdateProduct value, $Res Function(_UpdateProduct) then) =
+      __$UpdateProductCopyWithImpl<$Res>;
   @override
   $Res call(
-      {CompleteProductData productData,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin});
+      {Map<String, dynamic> productdata,
+      String type,
+      String entitytype,
+      String entityid,
+      bool isservice,
+      int origin});
 }
 
 /// @nodoc
@@ -806,18 +837,20 @@ class __$UpdateProductCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object productData = freezed,
+    Object productdata = freezed,
+    Object type = freezed,
     Object entitytype = freezed,
     Object entityid = freezed,
     Object isservice = freezed,
     Object origin = freezed,
   }) {
     return _then(_UpdateProduct(
-      productData: productData == freezed
-          ? _value.productData
-          : productData as CompleteProductData,
+      productdata: productdata == freezed
+          ? _value.productdata
+          : productdata as Map<String, dynamic>,
+      type: type == freezed ? _value.type : type as String,
       entitytype:
-      entitytype == freezed ? _value.entitytype : entitytype as String,
+          entitytype == freezed ? _value.entitytype : entitytype as String,
       entityid: entityid == freezed ? _value.entityid : entityid as String,
       isservice: isservice == freezed ? _value.isservice : isservice as bool,
       origin: origin == freezed ? _value.origin : origin as int,
@@ -828,19 +861,23 @@ class __$UpdateProductCopyWithImpl<$Res>
 /// @nodoc
 class _$_UpdateProduct implements _UpdateProduct {
   const _$_UpdateProduct(
-      {@required this.productData,
-        @required this.entitytype,
-        @required this.entityid,
-        @required this.isservice,
-        @required this.origin})
-      : assert(productData != null),
+      {@required this.productdata,
+      @required this.type,
+      @required this.entitytype,
+      @required this.entityid,
+      @required this.isservice,
+      @required this.origin})
+      : assert(productdata != null),
+        assert(type != null),
         assert(entitytype != null),
         assert(entityid != null),
         assert(isservice != null),
         assert(origin != null);
 
   @override
-  final CompleteProductData productData;
+  final Map<String, dynamic> productdata;
+  @override
+  final String type;
   @override
   final String entitytype;
   @override
@@ -852,16 +889,18 @@ class _$_UpdateProduct implements _UpdateProduct {
 
   @override
   String toString() {
-    return 'ProductOwnerEvent.update(productData: $productData, entitytype: $entitytype, entityid: $entityid, isservice: $isservice, origin: $origin)';
+    return 'ProductOwnerEvent.update(productdata: $productdata, type: $type, entitytype: $entitytype, entityid: $entityid, isservice: $isservice, origin: $origin)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _UpdateProduct &&
-            (identical(other.productData, productData) ||
+            (identical(other.productdata, productdata) ||
                 const DeepCollectionEquality()
-                    .equals(other.productData, productData)) &&
+                    .equals(other.productdata, productdata)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.entitytype, entitytype) ||
                 const DeepCollectionEquality()
                     .equals(other.entitytype, entitytype)) &&
@@ -878,7 +917,8 @@ class _$_UpdateProduct implements _UpdateProduct {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(productData) ^
+      const DeepCollectionEquality().hash(productdata) ^
+      const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(entitytype) ^
       const DeepCollectionEquality().hash(entityid) ^
       const DeepCollectionEquality().hash(isservice) ^
@@ -893,35 +933,35 @@ class _$_UpdateProduct implements _UpdateProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-    TResult get(EcomProductType type, String entitytype, String entityid,
-        bool isservice, int origin, int limit, String lastdocumentid),
+        TResult get(EcomProductType type, String entitytype, String entityid,
+            bool isservice, int origin, int limit, String lastdocumentid),
     @required
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult add(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult update(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult getProductSuggestion(
-        String texttosearch,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductSuggestion(
+            String texttosearch,
+            String type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult getProductById(
-        String productid,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductById(
+            String productid,
+            EcomProductType type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult delete(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult delete(String productid, String type, String entitytype,
+            String entityid, bool isservice, int origin),
   }) {
     assert(get != null);
     assert(add != null);
@@ -929,7 +969,7 @@ class _$_UpdateProduct implements _UpdateProduct {
     assert(getProductSuggestion != null);
     assert(getProductById != null);
     assert(delete != null);
-    return update(productData, entitytype, entityid, isservice, origin);
+    return update(productdata, type, entitytype, entityid, isservice, origin);
   }
 
   @override
@@ -937,13 +977,13 @@ class _$_UpdateProduct implements _UpdateProduct {
   TResult maybeWhen<TResult extends Object>({
     TResult get(EcomProductType type, String entitytype, String entityid,
         bool isservice, int origin, int limit, String lastdocumentid),
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+    TResult add(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
+    TResult update(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
     TResult getProductSuggestion(
         String texttosearch,
-        EcomProductType type,
+        String type,
         String entitytype,
         String entityid,
         bool isservice,
@@ -957,13 +997,13 @@ class _$_UpdateProduct implements _UpdateProduct {
         bool isservice,
         int origin,
         int offset),
-    TResult delete(CompleteProductData productData, String entitytype,
+    TResult delete(String productid, String type, String entitytype,
         String entityid, bool isservice, int origin),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (update != null) {
-      return update(productData, entitytype, entityid, isservice, origin);
+      return update(productdata, type, entitytype, entityid, isservice, origin);
     }
     return orElse();
   }
@@ -1008,13 +1048,15 @@ class _$_UpdateProduct implements _UpdateProduct {
 
 abstract class _UpdateProduct implements ProductOwnerEvent {
   const factory _UpdateProduct(
-      {@required CompleteProductData productData,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin}) = _$_UpdateProduct;
+      {@required Map<String, dynamic> productdata,
+      @required String type,
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin}) = _$_UpdateProduct;
 
-  CompleteProductData get productData;
+  Map<String, dynamic> get productdata;
+  String get type;
   @override
   String get entitytype;
   @override
@@ -1032,17 +1074,17 @@ abstract class _UpdateProduct implements ProductOwnerEvent {
 abstract class _$GetProductSuggestionCopyWith<$Res>
     implements $ProductOwnerEventCopyWith<$Res> {
   factory _$GetProductSuggestionCopyWith(_GetProductSuggestion value,
-      $Res Function(_GetProductSuggestion) then) =
-  __$GetProductSuggestionCopyWithImpl<$Res>;
+          $Res Function(_GetProductSuggestion) then) =
+      __$GetProductSuggestionCopyWithImpl<$Res>;
   @override
   $Res call(
       {String texttosearch,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset});
+      String type,
+      String entitytype,
+      String entityid,
+      bool isservice,
+      int origin,
+      int offset});
 }
 
 /// @nodoc
@@ -1070,9 +1112,9 @@ class __$GetProductSuggestionCopyWithImpl<$Res>
       texttosearch: texttosearch == freezed
           ? _value.texttosearch
           : texttosearch as String,
-      type: type == freezed ? _value.type : type as EcomProductType,
+      type: type == freezed ? _value.type : type as String,
       entitytype:
-      entitytype == freezed ? _value.entitytype : entitytype as String,
+          entitytype == freezed ? _value.entitytype : entitytype as String,
       entityid: entityid == freezed ? _value.entityid : entityid as String,
       isservice: isservice == freezed ? _value.isservice : isservice as bool,
       origin: origin == freezed ? _value.origin : origin as int,
@@ -1085,12 +1127,12 @@ class __$GetProductSuggestionCopyWithImpl<$Res>
 class _$_GetProductSuggestion implements _GetProductSuggestion {
   const _$_GetProductSuggestion(
       {@required this.texttosearch,
-        @required this.type,
-        @required this.entitytype,
-        @required this.entityid,
-        @required this.isservice,
-        @required this.origin,
-        this.offset})
+      @required this.type,
+      @required this.entitytype,
+      @required this.entityid,
+      @required this.isservice,
+      @required this.origin,
+      this.offset})
       : assert(texttosearch != null),
         assert(type != null),
         assert(entitytype != null),
@@ -1101,7 +1143,7 @@ class _$_GetProductSuggestion implements _GetProductSuggestion {
   @override
   final String texttosearch;
   @override
-  final EcomProductType type;
+  final String type;
   @override
   final String entitytype;
   @override
@@ -1163,35 +1205,35 @@ class _$_GetProductSuggestion implements _GetProductSuggestion {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-    TResult get(EcomProductType type, String entitytype, String entityid,
-        bool isservice, int origin, int limit, String lastdocumentid),
+        TResult get(EcomProductType type, String entitytype, String entityid,
+            bool isservice, int origin, int limit, String lastdocumentid),
     @required
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult add(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult update(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult getProductSuggestion(
-        String texttosearch,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductSuggestion(
+            String texttosearch,
+            String type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult getProductById(
-        String productid,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductById(
+            String productid,
+            EcomProductType type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult delete(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult delete(String productid, String type, String entitytype,
+            String entityid, bool isservice, int origin),
   }) {
     assert(get != null);
     assert(add != null);
@@ -1208,13 +1250,13 @@ class _$_GetProductSuggestion implements _GetProductSuggestion {
   TResult maybeWhen<TResult extends Object>({
     TResult get(EcomProductType type, String entitytype, String entityid,
         bool isservice, int origin, int limit, String lastdocumentid),
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+    TResult add(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
+    TResult update(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
     TResult getProductSuggestion(
         String texttosearch,
-        EcomProductType type,
+        String type,
         String entitytype,
         String entityid,
         bool isservice,
@@ -1228,7 +1270,7 @@ class _$_GetProductSuggestion implements _GetProductSuggestion {
         bool isservice,
         int origin,
         int offset),
-    TResult delete(CompleteProductData productData, String entitytype,
+    TResult delete(String productid, String type, String entitytype,
         String entityid, bool isservice, int origin),
     @required TResult orElse(),
   }) {
@@ -1281,15 +1323,15 @@ class _$_GetProductSuggestion implements _GetProductSuggestion {
 abstract class _GetProductSuggestion implements ProductOwnerEvent {
   const factory _GetProductSuggestion(
       {@required String texttosearch,
-        @required EcomProductType type,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin,
-        int offset}) = _$_GetProductSuggestion;
+      @required String type,
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin,
+      int offset}) = _$_GetProductSuggestion;
 
   String get texttosearch;
-  EcomProductType get type;
+  String get type;
   @override
   String get entitytype;
   @override
@@ -1308,17 +1350,19 @@ abstract class _GetProductSuggestion implements ProductOwnerEvent {
 abstract class _$GetProductByIdCopyWith<$Res>
     implements $ProductOwnerEventCopyWith<$Res> {
   factory _$GetProductByIdCopyWith(
-      _GetProductById value, $Res Function(_GetProductById) then) =
-  __$GetProductByIdCopyWithImpl<$Res>;
+          _GetProductById value, $Res Function(_GetProductById) then) =
+      __$GetProductByIdCopyWithImpl<$Res>;
   @override
   $Res call(
       {String productid,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset});
+      EcomProductType type,
+      String entitytype,
+      String entityid,
+      bool isservice,
+      int origin,
+      int offset});
+
+  $EcomProductTypeCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -1346,12 +1390,22 @@ class __$GetProductByIdCopyWithImpl<$Res>
       productid: productid == freezed ? _value.productid : productid as String,
       type: type == freezed ? _value.type : type as EcomProductType,
       entitytype:
-      entitytype == freezed ? _value.entitytype : entitytype as String,
+          entitytype == freezed ? _value.entitytype : entitytype as String,
       entityid: entityid == freezed ? _value.entityid : entityid as String,
       isservice: isservice == freezed ? _value.isservice : isservice as bool,
       origin: origin == freezed ? _value.origin : origin as int,
       offset: offset == freezed ? _value.offset : offset as int,
     ));
+  }
+
+  @override
+  $EcomProductTypeCopyWith<$Res> get type {
+    if (_value.type == null) {
+      return null;
+    }
+    return $EcomProductTypeCopyWith<$Res>(_value.type, (value) {
+      return _then(_value.copyWith(type: value));
+    });
   }
 }
 
@@ -1359,12 +1413,12 @@ class __$GetProductByIdCopyWithImpl<$Res>
 class _$_GetProductById implements _GetProductById {
   const _$_GetProductById(
       {@required this.productid,
-        @required this.type,
-        @required this.entitytype,
-        @required this.entityid,
-        @required this.isservice,
-        @required this.origin,
-        this.offset})
+      @required this.type,
+      @required this.entitytype,
+      @required this.entityid,
+      @required this.isservice,
+      @required this.origin,
+      this.offset})
       : assert(productid != null),
         assert(type != null),
         assert(entitytype != null),
@@ -1436,35 +1490,35 @@ class _$_GetProductById implements _GetProductById {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-    TResult get(EcomProductType type, String entitytype, String entityid,
-        bool isservice, int origin, int limit, String lastdocumentid),
+        TResult get(EcomProductType type, String entitytype, String entityid,
+            bool isservice, int origin, int limit, String lastdocumentid),
     @required
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult add(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult update(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult getProductSuggestion(
-        String texttosearch,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductSuggestion(
+            String texttosearch,
+            String type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult getProductById(
-        String productid,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductById(
+            String productid,
+            EcomProductType type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult delete(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult delete(String productid, String type, String entitytype,
+            String entityid, bool isservice, int origin),
   }) {
     assert(get != null);
     assert(add != null);
@@ -1481,13 +1535,13 @@ class _$_GetProductById implements _GetProductById {
   TResult maybeWhen<TResult extends Object>({
     TResult get(EcomProductType type, String entitytype, String entityid,
         bool isservice, int origin, int limit, String lastdocumentid),
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+    TResult add(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
+    TResult update(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
     TResult getProductSuggestion(
         String texttosearch,
-        EcomProductType type,
+        String type,
         String entitytype,
         String entityid,
         bool isservice,
@@ -1501,7 +1555,7 @@ class _$_GetProductById implements _GetProductById {
         bool isservice,
         int origin,
         int offset),
-    TResult delete(CompleteProductData productData, String entitytype,
+    TResult delete(String productid, String type, String entitytype,
         String entityid, bool isservice, int origin),
     @required TResult orElse(),
   }) {
@@ -1554,12 +1608,12 @@ class _$_GetProductById implements _GetProductById {
 abstract class _GetProductById implements ProductOwnerEvent {
   const factory _GetProductById(
       {@required String productid,
-        @required EcomProductType type,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin,
-        int offset}) = _$_GetProductById;
+      @required EcomProductType type,
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin,
+      int offset}) = _$_GetProductById;
 
   String get productid;
   EcomProductType get type;
@@ -1581,15 +1635,16 @@ abstract class _GetProductById implements ProductOwnerEvent {
 abstract class _$DeleteProductCopyWith<$Res>
     implements $ProductOwnerEventCopyWith<$Res> {
   factory _$DeleteProductCopyWith(
-      _DeleteProduct value, $Res Function(_DeleteProduct) then) =
-  __$DeleteProductCopyWithImpl<$Res>;
+          _DeleteProduct value, $Res Function(_DeleteProduct) then) =
+      __$DeleteProductCopyWithImpl<$Res>;
   @override
   $Res call(
-      {CompleteProductData productData,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin});
+      {String productid,
+      String type,
+      String entitytype,
+      String entityid,
+      bool isservice,
+      int origin});
 }
 
 /// @nodoc
@@ -1605,18 +1660,18 @@ class __$DeleteProductCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object productData = freezed,
+    Object productid = freezed,
+    Object type = freezed,
     Object entitytype = freezed,
     Object entityid = freezed,
     Object isservice = freezed,
     Object origin = freezed,
   }) {
     return _then(_DeleteProduct(
-      productData: productData == freezed
-          ? _value.productData
-          : productData as CompleteProductData,
+      productid: productid == freezed ? _value.productid : productid as String,
+      type: type == freezed ? _value.type : type as String,
       entitytype:
-      entitytype == freezed ? _value.entitytype : entitytype as String,
+          entitytype == freezed ? _value.entitytype : entitytype as String,
       entityid: entityid == freezed ? _value.entityid : entityid as String,
       isservice: isservice == freezed ? _value.isservice : isservice as bool,
       origin: origin == freezed ? _value.origin : origin as int,
@@ -1627,19 +1682,23 @@ class __$DeleteProductCopyWithImpl<$Res>
 /// @nodoc
 class _$_DeleteProduct implements _DeleteProduct {
   const _$_DeleteProduct(
-      {@required this.productData,
-        @required this.entitytype,
-        @required this.entityid,
-        @required this.isservice,
-        @required this.origin})
-      : assert(productData != null),
+      {@required this.productid,
+      @required this.type,
+      @required this.entitytype,
+      @required this.entityid,
+      @required this.isservice,
+      @required this.origin})
+      : assert(productid != null),
+        assert(type != null),
         assert(entitytype != null),
         assert(entityid != null),
         assert(isservice != null),
         assert(origin != null);
 
   @override
-  final CompleteProductData productData;
+  final String productid;
+  @override
+  final String type;
   @override
   final String entitytype;
   @override
@@ -1651,16 +1710,18 @@ class _$_DeleteProduct implements _DeleteProduct {
 
   @override
   String toString() {
-    return 'ProductOwnerEvent.delete(productData: $productData, entitytype: $entitytype, entityid: $entityid, isservice: $isservice, origin: $origin)';
+    return 'ProductOwnerEvent.delete(productid: $productid, type: $type, entitytype: $entitytype, entityid: $entityid, isservice: $isservice, origin: $origin)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _DeleteProduct &&
-            (identical(other.productData, productData) ||
+            (identical(other.productid, productid) ||
                 const DeepCollectionEquality()
-                    .equals(other.productData, productData)) &&
+                    .equals(other.productid, productid)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.entitytype, entitytype) ||
                 const DeepCollectionEquality()
                     .equals(other.entitytype, entitytype)) &&
@@ -1677,7 +1738,8 @@ class _$_DeleteProduct implements _DeleteProduct {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(productData) ^
+      const DeepCollectionEquality().hash(productid) ^
+      const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(entitytype) ^
       const DeepCollectionEquality().hash(entityid) ^
       const DeepCollectionEquality().hash(isservice) ^
@@ -1692,35 +1754,35 @@ class _$_DeleteProduct implements _DeleteProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-    TResult get(EcomProductType type, String entitytype, String entityid,
-        bool isservice, int origin, int limit, String lastdocumentid),
+        TResult get(EcomProductType type, String entitytype, String entityid,
+            bool isservice, int origin, int limit, String lastdocumentid),
     @required
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult add(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult update(Map<String, dynamic> productdata, String type,
+            String entitytype, String entityid, bool isservice, int origin),
     @required
-    TResult getProductSuggestion(
-        String texttosearch,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductSuggestion(
+            String texttosearch,
+            String type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult getProductById(
-        String productid,
-        EcomProductType type,
-        String entitytype,
-        String entityid,
-        bool isservice,
-        int origin,
-        int offset),
+        TResult getProductById(
+            String productid,
+            EcomProductType type,
+            String entitytype,
+            String entityid,
+            bool isservice,
+            int origin,
+            int offset),
     @required
-    TResult delete(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+        TResult delete(String productid, String type, String entitytype,
+            String entityid, bool isservice, int origin),
   }) {
     assert(get != null);
     assert(add != null);
@@ -1728,7 +1790,7 @@ class _$_DeleteProduct implements _DeleteProduct {
     assert(getProductSuggestion != null);
     assert(getProductById != null);
     assert(delete != null);
-    return delete(productData, entitytype, entityid, isservice, origin);
+    return delete(productid, type, entitytype, entityid, isservice, origin);
   }
 
   @override
@@ -1736,13 +1798,13 @@ class _$_DeleteProduct implements _DeleteProduct {
   TResult maybeWhen<TResult extends Object>({
     TResult get(EcomProductType type, String entitytype, String entityid,
         bool isservice, int origin, int limit, String lastdocumentid),
-    TResult add(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
-    TResult update(CompleteProductData productData, String entitytype,
-        String entityid, bool isservice, int origin),
+    TResult add(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
+    TResult update(Map<String, dynamic> productdata, String type,
+        String entitytype, String entityid, bool isservice, int origin),
     TResult getProductSuggestion(
         String texttosearch,
-        EcomProductType type,
+        String type,
         String entitytype,
         String entityid,
         bool isservice,
@@ -1756,13 +1818,13 @@ class _$_DeleteProduct implements _DeleteProduct {
         bool isservice,
         int origin,
         int offset),
-    TResult delete(CompleteProductData productData, String entitytype,
+    TResult delete(String productid, String type, String entitytype,
         String entityid, bool isservice, int origin),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (delete != null) {
-      return delete(productData, entitytype, entityid, isservice, origin);
+      return delete(productid, type, entitytype, entityid, isservice, origin);
     }
     return orElse();
   }
@@ -1807,13 +1869,15 @@ class _$_DeleteProduct implements _DeleteProduct {
 
 abstract class _DeleteProduct implements ProductOwnerEvent {
   const factory _DeleteProduct(
-      {@required CompleteProductData productData,
-        @required String entitytype,
-        @required String entityid,
-        @required bool isservice,
-        @required int origin}) = _$_DeleteProduct;
+      {@required String productid,
+      @required String type,
+      @required String entitytype,
+      @required String entityid,
+      @required bool isservice,
+      @required int origin}) = _$_DeleteProduct;
 
-  CompleteProductData get productData;
+  String get productid;
+  String get type;
   @override
   String get entitytype;
   @override
@@ -1834,12 +1898,12 @@ class _$ProductOwnerStateTearOff {
 // ignore: unused_element
   _ProductListState call(
       {@required bool isLoading,
-        @required bool workDone,
-        @required dynamic failure,
-        @required String message,
-        @required int returneddatatype,
-        @required CompleteProductDataList listData,
-        @required List<LuceneSearchSuggestionData> lucenesuggestiondata}) {
+      @required bool workDone,
+      @required dynamic failure,
+      @required String message,
+      @required int returneddatatype,
+      @required CompleteProductDataList listData,
+      @required List<LuceneSearchSuggestionData> lucenesuggestiondata}) {
     return _ProductListState(
       isLoading: isLoading,
       workDone: workDone,
@@ -1873,16 +1937,16 @@ mixin _$ProductOwnerState {
 /// @nodoc
 abstract class $ProductOwnerStateCopyWith<$Res> {
   factory $ProductOwnerStateCopyWith(
-      ProductOwnerState value, $Res Function(ProductOwnerState) then) =
-  _$ProductOwnerStateCopyWithImpl<$Res>;
+          ProductOwnerState value, $Res Function(ProductOwnerState) then) =
+      _$ProductOwnerStateCopyWithImpl<$Res>;
   $Res call(
       {bool isLoading,
-        bool workDone,
-        dynamic failure,
-        String message,
-        int returneddatatype,
-        CompleteProductDataList listData,
-        List<LuceneSearchSuggestionData> lucenesuggestiondata});
+      bool workDone,
+      dynamic failure,
+      String message,
+      int returneddatatype,
+      CompleteProductDataList listData,
+      List<LuceneSearchSuggestionData> lucenesuggestiondata});
 }
 
 /// @nodoc
@@ -1926,17 +1990,17 @@ class _$ProductOwnerStateCopyWithImpl<$Res>
 abstract class _$ProductListStateCopyWith<$Res>
     implements $ProductOwnerStateCopyWith<$Res> {
   factory _$ProductListStateCopyWith(
-      _ProductListState value, $Res Function(_ProductListState) then) =
-  __$ProductListStateCopyWithImpl<$Res>;
+          _ProductListState value, $Res Function(_ProductListState) then) =
+      __$ProductListStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {bool isLoading,
-        bool workDone,
-        dynamic failure,
-        String message,
-        int returneddatatype,
-        CompleteProductDataList listData,
-        List<LuceneSearchSuggestionData> lucenesuggestiondata});
+      bool workDone,
+      dynamic failure,
+      String message,
+      int returneddatatype,
+      CompleteProductDataList listData,
+      List<LuceneSearchSuggestionData> lucenesuggestiondata});
 }
 
 /// @nodoc
@@ -1982,12 +2046,12 @@ class __$ProductListStateCopyWithImpl<$Res>
 class _$_ProductListState implements _ProductListState {
   const _$_ProductListState(
       {@required this.isLoading,
-        @required this.workDone,
-        @required this.failure,
-        @required this.message,
-        @required this.returneddatatype,
-        @required this.listData,
-        @required this.lucenesuggestiondata})
+      @required this.workDone,
+      @required this.failure,
+      @required this.message,
+      @required this.returneddatatype,
+      @required this.listData,
+      @required this.lucenesuggestiondata})
       : assert(isLoading != null),
         assert(workDone != null),
         assert(failure != null),
@@ -2062,14 +2126,14 @@ class _$_ProductListState implements _ProductListState {
 
 abstract class _ProductListState implements ProductOwnerState {
   const factory _ProductListState(
-      {@required bool isLoading,
-        @required bool workDone,
-        @required dynamic failure,
-        @required String message,
-        @required int returneddatatype,
-        @required CompleteProductDataList listData,
-        @required List<LuceneSearchSuggestionData> lucenesuggestiondata}) =
-  _$_ProductListState;
+          {@required bool isLoading,
+          @required bool workDone,
+          @required dynamic failure,
+          @required String message,
+          @required int returneddatatype,
+          @required CompleteProductDataList listData,
+          @required List<LuceneSearchSuggestionData> lucenesuggestiondata}) =
+      _$_ProductListState;
 
   @override
   bool get isLoading;

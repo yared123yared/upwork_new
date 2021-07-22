@@ -481,7 +481,7 @@ class _AddPetPageState extends State<AddPetPage> {
         ),
       );
       _productBloc.add(
-        ProductOwnerEvent.update(productData: newPet,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+        ProductOwnerEvent.update(productdata: newPet.data.toJson(),type:"pet",entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     } else {
       newPet = CompletePet(
@@ -501,6 +501,7 @@ class _AddPetPageState extends State<AddPetPage> {
             breed: _descriptionController.text.trim(),
             gender: _descriptionController.text.trim(),
             ismilking: _isMilking,
+            serviceproviderid: widget.entityid,
             milkqty: _milkQuantityController.text.isNotEmpty
                 ? int.parse(_milkQuantityController.text.trim())
                 : null,
@@ -508,7 +509,7 @@ class _AddPetPageState extends State<AddPetPage> {
             vaccinated: false,
           ));
       _productBloc.add(
-        ProductOwnerEvent.add(productData: newPet,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+        ProductOwnerEvent.add(productdata: newPet.data.toJson(),type:"pet",entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     }
   }

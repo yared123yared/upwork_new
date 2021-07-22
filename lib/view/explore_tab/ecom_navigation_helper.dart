@@ -8,6 +8,7 @@ import 'package:complex/view/job_pages/job_detail_page.dart';
 import 'package:complex/view/pet_pages/add_pet_page.dart';
 import 'package:complex/view/pet_pages/pets_detail_page.dart';
 import 'package:complex/view/product_pages/general_contact_details_page.dart';
+import 'package:complex/view/product_pages/product_properties.dart';
 import 'package:complex/view/product_pages/select_product_type.dart';
 import 'package:complex/view/property_pages/add_property_page.dart';
 import 'package:complex/view/property_pages/property_detail_page.dart';
@@ -128,12 +129,18 @@ class EcomNavigationHelper {
         contactDetails,
         completeJob: data,entitytype: entitytype,entityid: serviceId,isService: isService,origin:origintype
       ),
-      product: (product) => SelectProductType(
-        contactDetails,
-        isService: isService,
+      product: (product) =>
+       ProductProperties(
+        withUnitPrice: (data as CompleteProduct).data.ptype==1?false:true,
+        productType:SelectProductType.fromStringProductType ((data as CompleteProduct).data.varinattype)  ,
+        contactDetails: null,
         serviceId: serviceId,
-        entitytype: entitytype,origintype:origintype
-      ),
+        entitytype: entitytype,
+        isService: isService,product:(data as CompleteProduct).data
+      )
+
+
+  ,
     );
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
   }

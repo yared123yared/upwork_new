@@ -17,11 +17,8 @@ _$LimitedPetData _$_$LimitedPetDataFromJson(Map<String, dynamic> json) {
     tileimage: json['tileimage'] as String,
     title: json['title'] as String,
     price: (json['price'] as num)?.toDouble(),
-    postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
-    addressarea: json['addressarea'] == null
-        ? null
-        : ContactDetailsModel.fromJson(
-            json['addressarea'] as Map<String, dynamic>),
+    postedon: JsonHelper.fromJsonTimeStamp(json['postedon']),
+    addressarea: json['addressarea'],
     serviceproviderid: json['serviceproviderid'] as String,
     userid: json['userid'] as String,
     docid: json['docid'] as String,
@@ -85,10 +82,7 @@ _$LimitedProductData _$_$LimitedProductDataFromJson(Map<String, dynamic> json) {
     userid: json['userid'] as String,
     serviceproviderid: json['serviceproviderid'] as String,
     contenttype: json['contenttype'] as String,
-    addressarea: json['addressarea'] == null
-        ? null
-        : ContactDetailsModel.fromJson(
-            json['addressarea'] as Map<String, dynamic>),
+    addressarea: json['addressarea'],
   );
 }
 
@@ -124,11 +118,8 @@ _$LimitedVehicleData _$_$LimitedVehicleDataFromJson(Map<String, dynamic> json) {
     milage: json['milage'] as int,
     price: (json['price'] as num)?.toDouble(),
     tileimage: json['tileimage'] as String,
-    postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
-    addressarea: json['addressarea'] == null
-        ? null
-        : ContactDetailsModel.fromJson(
-            json['addressarea'] as Map<String, dynamic>),
+    postedon: JsonHelper.fromJsonTimeStamp(json['postedon']),
+    addressarea: json['addressarea'],
     serviceproviderid: json['serviceproviderid'] as String,
     userid: json['userid'] as String,
   );
@@ -164,11 +155,8 @@ _$LimitedRealEstateData _$_$LimitedRealEstateDataFromJson(
     sqrfootage: json['sqrfootage'] as int,
     price: (json['price'] as num)?.toDouble(),
     title: json['title'] as String,
-    addressarea: json['addressarea'] == null
-        ? null
-        : ContactDetailsModel.fromJson(
-            json['addressarea'] as Map<String, dynamic>),
-    postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
+    addressarea: json['addressarea'],
+    postedon: JsonHelper.fromJsonTimeStamp(json['postedon']),
     tileimage: json['tileimage'] as String,
     serviceprovidername: json['serviceprovidername'] as String,
     serviceproviderid: json['serviceproviderid'] as String,
@@ -202,12 +190,9 @@ _$LimitedJobData _$_$LimitedJobDataFromJson(Map<String, dynamic> json) {
     title: json['title'] as String,
     companyname: json['companyname'] as String,
     salaryrange: json['salaryrange'] as String,
-    addressarea: json['addressarea'] == null
-        ? null
-        : ContactDetailsModel.fromJson(
-            json['addressarea'] as Map<String, dynamic>),
+    addressarea: json['addressarea'],
     jobtype: json['jobtype'] as String,
-    postedon: JsonHelper.fromJsonTimeStamp(json['postedon'] as Timestamp),
+    postedon: JsonHelper.fromJsonTimeStamp(json['postedon']),
     serviceproviderid: json['serviceproviderid'] as String,
     userid: json['userid'] as String,
   );

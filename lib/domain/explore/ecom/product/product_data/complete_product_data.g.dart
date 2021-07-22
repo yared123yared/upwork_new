@@ -212,10 +212,8 @@ _$_RealEstateModel _$_$_RealEstateModelFromJson(Map<String, dynamic> json) {
     imagelist: (json['imagelist'] as List)?.map((e) => e as String)?.toList(),
     constructionstatus: json['constructionstatus'] as String,
     saletype: json['saletype'] as String,
-    discountstartdate:
-        JsonHelper.fromJsonTimeStamp(json['discountstartdate'] as Timestamp),
-    discountenddate:
-        JsonHelper.fromJsonTimeStamp(json['discountenddate'] as Timestamp),
+    discountstartdate: JsonHelper.fromJsonTimeStamp(json['discountstartdate']),
+    discountenddate: JsonHelper.fromJsonTimeStamp(json['discountenddate']),
     occupancytype: json['occupancytype'] as String,
     tenantgenderfamilypreference: (json['tenantgenderfamilypreference'] as List)
         ?.map((e) => e as String)
@@ -238,8 +236,7 @@ _$_RealEstateModel _$_$_RealEstateModelFromJson(Map<String, dynamic> json) {
     hasfridge: json['hasfridge'] as bool,
     hastv: json['hastv'] as bool,
     haslift: json['haslift'] as bool,
-    creationdate:
-        JsonHelper.fromJsonTimeStamp(json['creationdate'] as Timestamp),
+    creationdate: JsonHelper.fromJsonTimeStamp(json['creationdate']),
     title: json['title'] as String,
     description: json['description'] as String,
     listingownertype: json['listingownertype'] as String,
@@ -325,8 +322,7 @@ _$_EcomVehicleModel _$_$_EcomVehicleModelFromJson(Map<String, dynamic> json) {
     ownershiptransfer: json['ownershiptransfer'] as String,
     price: json['price'] as int,
     seatingcapacity: json['seatingcapacity'] as int,
-    creationdate:
-        JsonHelper.fromJsonTimeStamp(json['creationdate'] as Timestamp),
+    creationdate: JsonHelper.fromJsonTimeStamp(json['creationdate']),
     turboengine: json['turboengine'] as bool,
     powersteering: json['powersteering'] as bool,
     parkingsensors: json['parkingsensors'] as bool,
@@ -412,8 +408,7 @@ _$_PetModel _$_$_PetModelFromJson(Map<String, dynamic> json) {
     ismilking: json['ismilking'] as bool,
     milkqty: json['milkqty'] as int,
     price: json['price'] as int,
-    creationdate:
-        JsonHelper.fromJsonTimeStamp(json['creationdate'] as Timestamp),
+    creationdate: JsonHelper.fromJsonTimeStamp(json['creationdate']),
   );
 }
 

@@ -79,6 +79,8 @@ class _AdditionalPropertiesPageState extends State<AdditionalPropertiesPage> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     _productBloc = BlocProvider.of<ProductOwnerBloc>(context);
@@ -113,6 +115,22 @@ class _AdditionalPropertiesPageState extends State<AdditionalPropertiesPage> {
     );
   }
 
+  static dynaproperty GetMatchedDynaProperty(Map<String, dynamic> dynamicProperties,List<dynaproperty>dplist)
+  {
+    if(dplist ==null)
+      return null;
+    for( var kp in dplist)
+      {
+
+        if(kp.propertyname ==dynamicProperties['name'])
+          {
+            return kp;
+          }
+
+      }
+
+    return null;
+  }
   _renderList() {
     return Container(
       width: double.infinity,
@@ -124,16 +142,22 @@ class _AdditionalPropertiesPageState extends State<AdditionalPropertiesPage> {
               itemCount: widget.dynamicProperties.keys.length,
               padding: const EdgeInsets.symmetric(vertical: 20),
               itemBuilder: (context, index) {
-                return /*widget.dynamicProperties.keys.elementAt(index) ==
-                            "BRAND" ||
-                        widget.dynamicProperties.keys.elementAt(index) ==
-                            "PRICE"
-                    ? Container()
-                    : */
-                    DynamicElementBuilder(
-                  widget.dynamicProperties[
-                      widget.dynamicProperties.keys.elementAt(index)],
-                );
+                if(widget.model==null || widget.model.dynamicproperties ==null ) {
+                  return    DynamicElementBuilder(
+                      widget.dynamicProperties[
+                      widget.dynamicProperties.keys.elementAt(index)],null
+                    );
+                }
+                else
+                  {
+                    dynaproperty d = GetMatchedDynaProperty(widget.dynamicProperties[
+                    widget.dynamicProperties.keys.elementAt(index)],widget.model.dynamicproperties);
+
+                    return     DynamicElementBuilder(widget.dynamicProperties[
+                    widget.dynamicProperties.keys.elementAt(index)]
+                        ,d
+                    );
+                  }
               },
             ),
           ),
@@ -153,9 +177,12 @@ class _AdditionalPropertiesPageState extends State<AdditionalPropertiesPage> {
                 ProductModel _model = widget.model;
                 _model.copyWith(dynamicproperties :_dp);
                 if (widget.productType == ProductType.noPackage) {
-                 // _productBloc.add(
-                  //  ProductOwnerEvent.add(productData: _model,entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
-                  //)
+                  //_productBloc.add(
+                 //   ProductOwnerEvent.add(productdata: _model.toJson(),entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+                //  );
+                  _productBloc.add(
+                  ProductOwnerEvent.add(productdata: _model.toJson(),entitytype: "SERVICEPROVIDERINFO",entityid:"ZyapTHn6nrEr9cckYdhh",isservice:false,origin:1,type: "PRODUCT")
+                  );
 
                 } else if (widget.productType == ProductType.package) {
                   Navigator.push(
@@ -190,10 +217,13 @@ class _AdditionalPropertiesPageState extends State<AdditionalPropertiesPage> {
   }
 }
 
+
+
 class DynamicElementBuilder extends StatefulWidget {
   final Map<String, dynamic> dynamicProperties;
+  final dynaproperty dp;
 
-  DynamicElementBuilder(this.dynamicProperties);
+  DynamicElementBuilder(this.dynamicProperties,this.dp);
 
   @override
   _DynamicElementBuilderState createState() => _DynamicElementBuilderState();
@@ -201,10 +231,11 @@ class DynamicElementBuilder extends StatefulWidget {
 
 class _DynamicElementBuilderState extends State<DynamicElementBuilder> {
   var _dropDownController = CustomTextFieldController();
-
+  String firstval =null;
   @override
   void initState() {
-    widget.dynamicProperties['selectedValues'] = [];
+    widget.dynamicProperties['selectedValues'] = widget.dp==null?[]:widget.dp.values;
+    firstval=widget.dp==null  || widget.dp.values.length==0 ?null:widget.dp.values[0];
     super.initState();
   }
 
@@ -222,16 +253,17 @@ class _DynamicElementBuilderState extends State<DynamicElementBuilder> {
           widget.dynamicProperties['displaytype'] == "MULTI"
               ? _multiSelect()
               : widget.dynamicProperties['displaytype'] == "DROP"
-                  ? _dropDown()
+                  ? _dropDown(firstval)
                   : Container()
         ],
       ),
     );
   }
 
-  _dropDown() {
+  _dropDown(String initialval) {
     return CustomDropDownList<String>(
       title: "Value",
+      initialValue: initialval,
       controller: _dropDownController,
       loadData: () async => widget.dynamicProperties['values'],
       displayName: (x) => x,
@@ -246,6 +278,7 @@ class _DynamicElementBuilderState extends State<DynamicElementBuilder> {
 
   _multiSelect() {
     List<String> _values = List.castFrom(widget.dynamicProperties['values']);
+
     return Wrap(
       children: List.generate(
         _values.length,

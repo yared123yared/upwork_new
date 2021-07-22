@@ -33,6 +33,7 @@ class ProductProperties extends StatefulWidget {
   final String serviceId;
   final ProductModel product;
 
+
   ProductProperties({
     this.withUnitPrice,
     this.contactDetails,
@@ -40,7 +41,7 @@ class ProductProperties extends StatefulWidget {
     this.entitytype,
     this.serviceId,
     this.isService,
-    this.product,
+    this.product
   });
 
   @override
@@ -98,22 +99,35 @@ class _ProductPropertiesState extends State<ProductProperties> {
   @override
   void initState() {
     super.initState();
-    _productProvider
-        .getCategory(
-            levelName: widget.serviceId != null
-                ?  "SERVICEPROVIDERINFO/${widget.serviceId}/PRODUCTCATEGORYINFO/L1"
-                : "PRODUCTCATEGORYINFO/L1")
-        .then((result) {
-      print("result ${json.encode(result)}");
-      if (result != null) {
-        _categoryIds.clear();
-        List<String> _data = result['data'].cast<String>();
-        _categoryIds.addAll(_data);
-      }
-      setState(() {
-        _isLoading = false;
+
+    if(widget.product ==null) {
+      _productProvider
+          .getCategory(
+          levelName: widget.serviceId != null
+              ? "SERVICEPROVIDERINFO/${widget.serviceId}/PRODUCTCATEGORYINFO/L1"
+              : "PRODUCTCATEGORYINFO/L1")
+          .then((result) {
+        print("result ${json.encode(result)}");
+        if (result != null) {
+          _categoryIds.clear();
+          List<String> _data = result['data'].cast<String>();
+          _categoryIds.addAll(_data);
+        }
+
       });
+    }
+    else
+      {
+        String finalcat =  widget.product.category.replaceAll('/', '->');
+        getDynamicPropertiesBasedOnFinalCategory(finalcat);
+        _photos = widget.product.imagelist;
+
+
+      }
+    setState(() {
+      _isLoading = false;
     });
+
   }
 
   @override
@@ -148,13 +162,20 @@ class _ProductPropertiesState extends State<ProductProperties> {
       children: [
         _renderTextField("Title", _titleController,initialValue: widget.product?.title
         ),
+
         _renderTextField("Descripton", _descController,initialValue: widget.product?.description),
+        if (widget.product ==null)
         _renderDropDown("Category", _categoryController, _categoryIds,
             onSelect: (a, v) {
           _onCategoryClick(a);
         }),
+        if (widget.product ==null)
         _renderDropDown("Brand", _brandController, _brandList,
             onSelect: (a, v) {}),
+        if (widget.product !=null)
+        _renderTextField("Category", _categoryController,initialValue: widget.product?.category),
+        if (widget.product !=null)
+        _renderTextField("Brand", _brandController,initialValue: widget.product?.brand),
         GroupTitle(text: 'Photos'),
         _renderPhotosGrid(),
         GroupTitle(text: 'Price Info'),
@@ -169,14 +190,14 @@ class _ProductPropertiesState extends State<ProductProperties> {
   }
 
   Widget _renderTextField(String text, CustomTextFieldController controller,
-      {Function() onTap, bool isInt = false, String initialValue}) {
+      {Function() onTap, bool isInt = false, String initialValue,bool isenabled=true}) {
     return CustomTextField(
       title: text,
       initialValue: initialValue,
       controller: controller,
       validate:
       Validate.withOption(isRequired: true, isInt: isInt, isNumber: isInt),
-      enabled: onTap == null,
+      enabled: isenabled ,
       onTap: () {
         if (onTap != null) onTap();
       },
@@ -185,9 +206,10 @@ class _ProductPropertiesState extends State<ProductProperties> {
 
   Widget _renderDropDown(
       String text, CustomTextFieldController controller, List<String> items,
-      {Function(String, int) onSelect}) {
+      {Function(String, int) onSelect,String initialvalue}) {
     return CustomDropDownList<String>(
       title: text,
+      initialValue: initialvalue,
       controller: controller,
       loadData: () async => items,
       displayName: (x) => x,
@@ -202,10 +224,10 @@ class _ProductPropertiesState extends State<ProductProperties> {
     Widget _unitPrice() {
       return Column(
         children: [
-          _renderDropDown("Unit", _unitController, _unitList),
+          _renderDropDown("Unit", _unitController, _unitList,initialvalue:widget.product?.nopackagedata?.unitmeasure),
           _renderTextField("Price/ Per Unit", _unitPriceController,
-              isInt: true,initialValue: widget.product?.price.toString()),
-          _renderTextField("Inventonary Unit", _invUnitController, isInt: true,initialValue: widget.product?.nopackagedata?.inventoryunits?.toString()),
+              isInt: true,initialValue: widget.product?.price.round().toString()),
+          _renderTextField("Inventonary Unit", _invUnitController, isInt: true,initialValue: widget.product?.nopackagedata?.inventoryunits?.round().toString()),
         ],
       );
     }
@@ -315,6 +337,32 @@ class _ProductPropertiesState extends State<ProductProperties> {
     );
   }
 
+  void getDynamicPropertiesBasedOnFinalCategory(String finalcategory) {
+
+      _productProvider
+          .getBrandAndDyanmicProperty(
+          levelName: widget.serviceId != null
+              ? "SERVICEPROVIDERINFO/${widget
+              .serviceId}/PRODUCTCATEGORYPROPERTIES/${finalcategory}"
+              : "PRODUCTCATEGORYPROPERTIES/${finalcategory}")
+          .then((result) {
+        LogPrint("result ===> ${json.encode(result)}");
+        if (result != null) {
+          _dynamicProperties = result;
+
+          if(widget.product !=null) {
+            _brandList.clear();
+            List<String> _data =
+            result['adata']['BRAND']['values'].cast<String>();
+            if (_data.length == 0)
+              _data.add("ShopOwned");
+            _brandList.addAll(_data);
+          }
+
+        }
+      });
+
+  }
   _onCategoryClick(String a) async {
     final result = await Navigator.push(
         context,
@@ -323,30 +371,15 @@ class _ProductPropertiesState extends State<ProductProperties> {
           serviceProviderId: widget.serviceId,
         )));
     _category = result;
-    _categoryController.text = result.split("->").last ?? "";
+    _categoryController.text = _category;
     if (_categoryController.text.trim().isNotEmpty) {
-      _productProvider
-          .getBrandAndDyanmicProperty(
-              levelName: widget.serviceId != null
-                  ? "SERVICEPROVIDERINFO/${widget.serviceId}/PRODUCTCATEGORYPROPERTIES/${_category}"
-                  : "PRODUCTCATEGORYPROPERTIES/${_category}")
-          .then((result) {
-        LogPrint("result ===> ${json.encode(result)}");
-        if (result != null) {
-          _dynamicProperties = result;
 
-          _brandList.clear();
-          List<String> _data =
-              result['adata']['BRAND']['values'].cast<String>();
-          if(_data.length ==0)
-            _data.add("ShopOwned");
-          _brandList.addAll(_data);
-        }
-        setState(() {
-          _isLoading = false;
-        });
-      });
+      getDynamicPropertiesBasedOnFinalCategory(_category);
     }
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   _validateFields() {
@@ -363,55 +396,85 @@ class _ProductPropertiesState extends State<ProductProperties> {
     } else if (_dynamicProperties == null) {
       Utility.showSnackBar(context: context, message: "Please select brand ");
     } else if (_validateFields()) {
-      
+      ProductModel _model;
       if(widget.product ==null)
         {
+           _model = ProductModel(
+            addressarea: widget.contactDetails,
+            title: _titleController.text.trim(),
+            description: _descController.text.trim(),
+            category: _category.replaceAll("->", "/"),
+            brand: _brandController.text,
+            imagelist: _photos,
+            price: double.parse(_pricePriceController?.text ?? "0"),
+            discountedprice:
+            widget.productType == ProductType.noPackage ? 0.0 : null,
+            ptype: _setPType(),
+            userid: UserSession.userId,
+            serviceproviderid: widget.serviceId,
+            varinattype: widget.productType == ProductType.noPackage
+                ? "NOPACKAGE"
+                : widget.productType == ProductType.package
+                ? "PACKAGE"
+                : widget.productType == ProductType.multiColor
+                ? "SIZEANDCOLOR"
+                : "",
+            nopackagedata: widget.productType == ProductType.noPackage
+                ? NoPackageModel(
+              inventoryunits: double.parse(_invUnitController.text ?? "0"),
+              priceperunit: double.parse(_unitPriceController.text ?? "0"),
+              qty: int.parse(_unitController.text.trim()),
+              discountedpriceperunit: 0.0,
+              unitmeasure: _unitController.text.trim(),
+            )
+                : null,
+          );
 
         }
       else
         {
-          widget.product.copyWith(category:_category.replaceAll("->", "/"),addressarea: widget.contactDetails );
+          widget.product.copyWith(
+            addressarea: widget.contactDetails,
+            title: _titleController.text.trim(),
+            description: _descController.text.trim(),
+            category: _category.replaceAll("->", "/"),
+            brand: _brandController.text,
+            imagelist: _photos,
+            price: double.parse(_pricePriceController?.text ?? "0"),
+            discountedprice:
+            widget.productType == ProductType.noPackage ? 0.0 : null,
+            ptype: _setPType(),
+            userid: UserSession.userId,
+            serviceproviderid: widget.serviceId,
+            varinattype: widget.productType == ProductType.noPackage
+                ? "NOPACKAGE"
+                : widget.productType == ProductType.package
+                ? "PACKAGE"
+                : widget.productType == ProductType.multiColor
+                ? "SIZEANDCOLOR"
+                : "",
+            nopackagedata: widget.productType == ProductType.noPackage
+                ? NoPackageModel(
+              inventoryunits: double.parse(_invUnitController.text ?? "0"),
+              priceperunit: double.parse(_unitPriceController.text ?? "0"),
+              qty: int.parse(_unitController.text.trim()),
+              discountedpriceperunit: 0.0,
+              unitmeasure: _unitController.text.trim(),
+            )
+                : null,
+
+          );
         }
 
 
 
 
-      ProductModel _model = ProductModel(
-        addressarea: widget.contactDetails,
-        title: _titleController.text.trim(),
-        description: _descController.text.trim(),
-        category: _category.replaceAll("->", "/"),
-        brand: _brandController.text,
-        imagelist: _photos,
-        price: double.parse(_pricePriceController?.text ?? "0"),
-        discountedprice:
-            widget.productType == ProductType.noPackage ? 0.0 : null,
-        ptype: _setPType(),
-        userid: UserSession.userId,
-        serviceproviderid: widget.serviceId,
-        varinattype: widget.productType == ProductType.noPackage
-            ? "NOPACKAGE"
-            : widget.productType == ProductType.package
-                ? "PACKAGE"
-                : widget.productType == ProductType.multiColor
-                    ? "SIZEANDCOLOR"
-                    : "",
-        nopackagedata: widget.productType == ProductType.noPackage
-            ? NoPackageModel(
-                inventoryunits: double.parse(_invUnitController.text ?? "0"),
-                priceperunit: double.parse(_unitPriceController.text ?? "0"),
-                qty: int.parse(_unitController.text.trim()),
-                discountedpriceperunit: 0.0,
-                unitmeasure: null,
-              )
-            : null,
-      );
       Navigator.push(
         context,
         NextPageRoute(
           AdditionalPropertiesPage(
             productType: widget.productType,
-            model: _model,
+            model:  widget.product ==null?_model: widget.product,
             dynamicProperties:
                 _dynamicProperties == null ? null : _dynamicProperties['adata'],
           ),

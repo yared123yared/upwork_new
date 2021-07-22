@@ -614,8 +614,6 @@ abstract class $LimitedPetDataCopyWith<$Res> {
           String userid,
       @JsonKey(name: 'docid')
           String docid});
-
-  $ContactDetailsModelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -666,16 +664,6 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
       userid: userid == freezed ? _value.userid : userid as String,
       docid: docid == freezed ? _value.docid : docid as String,
     ));
-  }
-
-  @override
-  $ContactDetailsModelCopyWith<$Res> get addressarea {
-    if (_value.addressarea == null) {
-      return null;
-    }
-    return $ContactDetailsModelCopyWith<$Res>(_value.addressarea, (value) {
-      return _then(_value.copyWith(addressarea: value));
-    });
   }
 }
 
@@ -1720,8 +1708,6 @@ abstract class $LimitedProductDataCopyWith<$Res> {
       @JsonKey(name: 'serviceproviderid') String serviceproviderid,
       @JsonKey(name: 'contenttype') String contenttype,
       @JsonKey(name: 'addressarea') ContactDetailsModel addressarea});
-
-  $ContactDetailsModelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -1784,16 +1770,6 @@ class _$LimitedProductDataCopyWithImpl<$Res>
           ? _value.addressarea
           : addressarea as ContactDetailsModel,
     ));
-  }
-
-  @override
-  $ContactDetailsModelCopyWith<$Res> get addressarea {
-    if (_value.addressarea == null) {
-      return null;
-    }
-    return $ContactDetailsModelCopyWith<$Res>(_value.addressarea, (value) {
-      return _then(_value.copyWith(addressarea: value));
-    });
   }
 }
 
@@ -2404,8 +2380,6 @@ abstract class $LimitedVehicleDataCopyWith<$Res> {
           String serviceproviderid,
       @JsonKey(name: 'userid')
           String userid});
-
-  $ContactDetailsModelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -2455,16 +2429,6 @@ class _$LimitedVehicleDataCopyWithImpl<$Res>
           : serviceproviderid as String,
       userid: userid == freezed ? _value.userid : userid as String,
     ));
-  }
-
-  @override
-  $ContactDetailsModelCopyWith<$Res> get addressarea {
-    if (_value.addressarea == null) {
-      return null;
-    }
-    return $ContactDetailsModelCopyWith<$Res>(_value.addressarea, (value) {
-      return _then(_value.copyWith(addressarea: value));
-    });
   }
 }
 
@@ -3057,8 +3021,6 @@ abstract class $LimitedRealEstateDataCopyWith<$Res> {
           String serviceproviderid,
       @JsonKey(name: 'userid')
           String userid});
-
-  $ContactDetailsModelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -3119,16 +3081,6 @@ class _$LimitedRealEstateDataCopyWithImpl<$Res>
           : serviceproviderid as String,
       userid: userid == freezed ? _value.userid : userid as String,
     ));
-  }
-
-  @override
-  $ContactDetailsModelCopyWith<$Res> get addressarea {
-    if (_value.addressarea == null) {
-      return null;
-    }
-    return $ContactDetailsModelCopyWith<$Res>(_value.addressarea, (value) {
-      return _then(_value.copyWith(addressarea: value));
-    });
   }
 }
 
@@ -3756,8 +3708,6 @@ abstract class $LimitedJobDataCopyWith<$Res> {
           String serviceproviderid,
       @JsonKey(name: 'userid')
           String userid});
-
-  $ContactDetailsModelCopyWith<$Res> get addressarea;
 }
 
 /// @nodoc
@@ -3799,16 +3749,6 @@ class _$LimitedJobDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
           : serviceproviderid as String,
       userid: userid == freezed ? _value.userid : userid as String,
     ));
-  }
-
-  @override
-  $ContactDetailsModelCopyWith<$Res> get addressarea {
-    if (_value.addressarea == null) {
-      return null;
-    }
-    return $ContactDetailsModelCopyWith<$Res>(_value.addressarea, (value) {
-      return _then(_value.copyWith(addressarea: value));
-    });
   }
 }
 

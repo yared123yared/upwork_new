@@ -1,6 +1,7 @@
 import 'package:complex/application/explore/ecom/product_owner/product_owner_bloc.dart';
 import 'package:complex/common/widgets/custom_floating_action.dart';
 import 'package:complex/domain/explore/ecom/product/limited_product/limited_product_data.dart';
+import 'package:complex/domain/explore/ecom/product/product_data/complete_product_data.dart';
 import 'package:complex/view/explore_tab/owner_view/owner_product_card.dart';
 import 'package:complex/view/widget/error_dialogue.dart';
 import 'package:flutter/material.dart';
@@ -48,8 +49,10 @@ class OwnerProductListPage extends StatelessWidget {
         return Scaffold(
           floatingActionButton: CustomFloatingButton(
             onTap: () {
+              if(origin==1)
               EcomNavigationHelper.of(context).toContactFormPage(type: type,  isService: isService, entityid: entityid, entitytype: entitytype, origin: origin);
-
+              else
+                EcomNavigationHelper.of(context).fromContactToAddProductPage(type: type,contactDetails: null,data:null,  isService: isService, serviceId: entityid, entitytype: entitytype, origintype: origin);
             },
             text: "Add New",
           ),

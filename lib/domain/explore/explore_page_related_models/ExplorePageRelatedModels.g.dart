@@ -183,7 +183,7 @@ _$_orderinfomodel _$_$_orderinfomodelFromJson(Map<String, dynamic> json) {
     totalcalculatedprice: (json['totalcalculatedprice'] as num)?.toDouble(),
     extradiscount: (json['extradiscount'] as num)?.toDouble(),
     askedprice: (json['askedprice'] as num)?.toDouble(),
-    orderdate: JsonHelper.fromJsonTimeStamp(json['orderdate'] as Timestamp),
+    orderdate: JsonHelper.fromJsonTimeStamp(json['orderdate']),
     orderstate: json['orderstate'] as String,
     serviceproviderid: json['serviceproviderid'] as String,
     custphonenum: json['custphonenum'] as String,
@@ -617,7 +617,7 @@ _$_CustomerNameAgeIngo _$_$_CustomerNameAgeIngoFromJson(
     Map<String, dynamic> json) {
   return _$_CustomerNameAgeIngo(
     name: json['name'] as String,
-    dob: JsonHelper.fromJsonTimeStamp(json['dob'] as Timestamp),
+    dob: JsonHelper.fromJsonTimeStamp(json['dob']),
     gender: json['gender'] as String,
   );
 }

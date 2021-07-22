@@ -61,6 +61,8 @@ abstract class CompleteProductData with _$CompleteProductData {
   }) = CompleteProduct;
 
   factory CompleteProductData.fromJson(Map<String, dynamic> json) =>
+
+
       _$CompleteProductDataFromJson(json);
 
 

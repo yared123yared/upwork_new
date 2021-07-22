@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 
 enum ProductType { noPackage, package, multiColor, mySpecial }
 
+
 class SelectProductType extends StatefulWidget {
   final ContactDetailsModel contactDetail;
   final bool isService;
@@ -19,6 +20,21 @@ class SelectProductType extends StatefulWidget {
   final ProductModel model;
   SelectProductType(this.contactDetail,
       {this.isService, this.serviceId, this.entitytype,this.origintype,this.model});
+
+  static ProductType fromStringProductType(String ptype)
+  {
+    if(ptype=="NOPACKAGE")
+      return ProductType.noPackage;
+    else if(ptype=="PACKAGE")
+      return ProductType.package;
+    else if(ptype=="SIZEANDCOLOR")
+      return ProductType.multiColor;
+    else if(ptype=="MYSPECIAL")
+      return ProductType.mySpecial;
+    else
+      return ProductType.noPackage;
+
+  }
 
   @override
   _SelectProductTypeState createState() => _SelectProductTypeState();
