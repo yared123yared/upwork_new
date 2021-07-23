@@ -129,19 +129,60 @@ class EcomNavigationHelper {
         contactDetails,
         completeJob: data,entitytype: entitytype,entityid: serviceId,isService: isService,origin:origintype
       ),
-      product: (product) =>
-       ProductProperties(
-        withUnitPrice: (data as CompleteProduct).data.ptype==1?false:true,
-        productType:SelectProductType.fromStringProductType ((data as CompleteProduct).data.varinattype)  ,
-        contactDetails: null,
-        serviceId: serviceId,
-        entitytype: entitytype,
-        isService: isService,product:(data as CompleteProduct).data
-      )
-
-
+      product: (product) =>getRightPageForProduct(type:type,data:data,isService:isService,serviceId:serviceId,entitytype:entitytype,origintype:origintype,contactDetails:contactDetails)
   ,
     );
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
   }
+
+  Widget getRightPageForProduct({@required EcomProductType type,
+    @required CompleteProductData data,
+    @required bool isService,
+    @required String serviceId,@required String entitytype, @required int origintype,
+
+    @required ContactDetailsModel contactDetails})
+  {
+    if(data !=null)
+      {
+
+        return ProductProperties(
+            withUnitPrice: (serviceId !=null && isService) || serviceId ==null?false:true,
+            productType:SelectProductType.fromStringProductType (data !=null ?(data as CompleteProduct).data.varinattype:null)  ,
+            contactDetails: contactDetails,
+            serviceId: serviceId,
+            entitytype: entitytype,
+            isService: isService,product:(data as CompleteProduct).data
+        );
+
+      }
+    else
+      {
+        if(serviceId ==null ||  (serviceId !=null && isService)) {
+          return ProductProperties(
+              withUnitPrice:  false,
+              productType: ProductType.noPackage,
+              contactDetails: contactDetails,
+              serviceId: serviceId,
+              entitytype: entitytype,
+              isService: isService,
+              product: (data as CompleteProduct).data
+          );
+        }
+      else
+        {
+          return SelectProductType(
+              contactDetails,
+              isService: isService,
+              serviceId: serviceId,
+              entitytype: entitytype,origintype:origintype
+          );
+
+        }
+
+      }
+
+
+  }
+
+
 }

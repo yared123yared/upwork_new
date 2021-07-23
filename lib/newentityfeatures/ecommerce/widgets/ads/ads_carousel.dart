@@ -60,7 +60,7 @@ class _AdsCarouselState extends State<AdsCarousel> {
                           final ad = state.explorePageAds[
                               index % state.explorePageAds.length];
                           return AdContainer(
-                            key: Key(ad?.lm?.serviceID ?? ad?.lpd?.id),
+                            key: Key(ad?.lm?.serviceID ?? ad?.lpd?.productid),
                             explorePageAd: ad,
                           );
                         },

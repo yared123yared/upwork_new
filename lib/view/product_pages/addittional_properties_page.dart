@@ -25,12 +25,16 @@ class AdditionalPropertiesPage extends StatefulWidget {
   final ProductModel model;
   final CompleteProduct product;
   final Map<String, dynamic> dynamicProperties;
+  final bool isupdate;
+  final String entitytype;
+  final String entityid;
+
 
   AdditionalPropertiesPage({
     this.productType,
     this.model,
     this.dynamicProperties,
-    this.product,
+    this.product,this.isupdate,this.entitytype,this.entityid
   });
 
   @override
@@ -175,22 +179,44 @@ class _AdditionalPropertiesPageState extends State<AdditionalPropertiesPage> {
                   }
                 });
                 ProductModel _model = widget.model;
-                _model.copyWith(dynamicproperties :_dp);
+                ProductModel _model2 =  _model.copyWith(dynamicproperties :_dp,varinattype: "abc");
                 if (widget.productType == ProductType.noPackage) {
                   //_productBloc.add(
                  //   ProductOwnerEvent.add(productdata: _model.toJson(),entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
                 //  );
-                  _productBloc.add(
-                  ProductOwnerEvent.add(productdata: _model.toJson(),entitytype: "SERVICEPROVIDERINFO",entityid:"ZyapTHn6nrEr9cckYdhh",isservice:false,origin:1,type: "PRODUCT")
-                  );
+                  if(widget.isupdate) {
+                    _productBloc.add(
+                        ProductOwnerEvent.update(productdata: _model2.toJson(),
+                            entitytype: widget.entitytype,
+                            entityid: widget.entityid,
+                            isservice: false,
+                            origin: 1,
+                            type: "PRODUCT")
+                    );
+                  }
+                  else
+                    {
+                      _productBloc.add(
+                          ProductOwnerEvent.add(productdata: _model2.toJson(),
+                              entitytype: widget.entitytype,
+                              entityid: widget.entityid,
+                              isservice: false,
+                              origin: 1,
+                              type: "PRODUCT")
+                      );
 
-                } else if (widget.productType == ProductType.package) {
+                    }
+
+                }
+
+
+                else if (widget.productType == ProductType.package) {
                   Navigator.push(
                     context,
                     NextPageRoute(
                       PackageListView(
                         productType: widget.productType,
-                        model: widget.model,
+                        model: _model2,isupdate:widget.isupdate ,entitytype: widget.entitytype,entityid: widget.entityid
                       ),
                     ),
                   );
@@ -200,7 +226,7 @@ class _AdditionalPropertiesPageState extends State<AdditionalPropertiesPage> {
                     NextPageRoute(
                       SizeAndColorListView(
                         productType: widget.productType,
-                        model: widget.model,
+                        model: _model2,isupdate:widget.isupdate ,entitytype: widget.entitytype,entityid: widget.entityid
                       ),
                     ),
                   );

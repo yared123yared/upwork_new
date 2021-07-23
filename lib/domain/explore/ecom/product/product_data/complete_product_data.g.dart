@@ -482,7 +482,7 @@ Map<String, dynamic> _$_$_JobPostingToJson(_$_JobPosting instance) =>
 
 _$_ProductModel _$_$_ProductModelFromJson(Map<String, dynamic> json) {
   return _$_ProductModel(
-    productid: json['productid'] as String,
+    productid: json['docid'] as String,
     title: json['title'] as String,
     description: json['description'] as String,
     brand: json['brand'] as String,
@@ -527,7 +527,7 @@ _$_ProductModel _$_$_ProductModelFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_ProductModelToJson(_$_ProductModel instance) =>
     <String, dynamic>{
-      'productid': instance.productid,
+      'docid': instance.productid,
       'title': instance.title,
       'description': instance.description,
       'brand': instance.brand,

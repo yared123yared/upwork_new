@@ -26,7 +26,7 @@ abstract class LimitedData with _$LimitedData {
     @JsonKey(name:'addressarea')ContactDetailsModel addressarea,
     @JsonKey(name:'serviceproviderid')String serviceproviderid,
     @JsonKey(name:'userid')String userid,
-    @JsonKey(name:'docid')String docid,
+    @JsonKey(name:'productid')String productid,
   }) = LimitedPetData;
 
   const factory LimitedData.package({
@@ -37,7 +37,7 @@ abstract class LimitedData with _$LimitedData {
   }) = LimitedPackageData;
 
   const factory LimitedData.product({
-    @JsonKey(name:'id')String id,
+    @JsonKey(name:'productid')String productid,
     @JsonKey(name:'title')String title,
     @JsonKey(name:'tileimage')String tileimage,
     @JsonKey(name:'reqqty')bool reqqty,

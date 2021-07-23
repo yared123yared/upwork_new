@@ -9,6 +9,9 @@ enum DateTimeMode { DATE, TIME, DATETIME }
 
 typedef void ReloadAction(bool doreload);
 
+//int 1 = insert, 2 update
+typedef void AddToListActionForProduct({dynamic data,bool apply,int actiontype});
+
 extension TimeOfDayExtension on TimeOfDay {
   // Ported from org.threeten.bp;
   TimeOfDay plusMinutes(int minutes) {

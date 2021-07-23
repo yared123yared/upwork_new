@@ -1,3 +1,4 @@
+import 'package:complex/application/explore/ecom/product_owner/product_owner_bloc.dart';
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
@@ -21,10 +22,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SizeAndColorListView extends StatefulWidget {
   final ProductType productType;
   final ProductModel model;
+  final bool isupdate;
+  final String entitytype;
+  final String entityid;
 
   SizeAndColorListView({
     this.productType,
-    this.model,
+    this.model,this.isupdate,this.entitytype,this.entityid
   });
 
   @override
@@ -33,15 +37,42 @@ class SizeAndColorListView extends StatefulWidget {
   }
 }
 
-List<SizeAndColorModel> sizeAndColor = [];
+
 
 class _SizeAndColorListViewState extends State<SizeAndColorListView> {
   CustomTextFieldController _sizeTypeController = CustomTextFieldController();
   List<String> _sizeTypeItems = ['size_ 1', 'size_2', ' size_3'];
   var _isLoading = false;
   var _key = GlobalKey<ScaffoldState>();
-  ProductBloc _productBloc;
+  ProductOwnerBloc _productBloc;
+  List<SizeAndColorModel> sizeAndColor ;
+  @override
+  void initState() {
 
+      if(widget.isupdate)
+        {
+          sizeAndColor =widget.model.sizeandcolordata;
+        }
+      else
+        {
+          sizeAndColor=[];
+        }
+
+
+    super.initState();
+  }
+  void AddToListActionForProduct({dynamic data,bool apply,int actiontype}) {
+    setState(() {
+
+      if(apply)
+      {
+        SizeAndColorModel pm = data as SizeAndColorModel;
+        sizeAndColor.add(pm);
+      }
+
+
+    });
+  }
   void _handleAddNoPackageResponse(AddMultiColorState state) {
     switch (state.apiState) {
       case ApiStatus.LOADING:
@@ -72,7 +103,7 @@ class _SizeAndColorListViewState extends State<SizeAndColorListView> {
 
   @override
   Widget build(BuildContext context) {
-    _productBloc = BlocProvider.of<ProductBloc>(context);
+    _productBloc = BlocProvider.of<ProductOwnerBloc>(context);
     return BlocListener<ProductBloc, ProductState>(
       listener: (context, state) {
         if (state is AddMultiColorState) _handleAddNoPackageResponse(state);
@@ -116,10 +147,32 @@ class _SizeAndColorListViewState extends State<SizeAndColorListView> {
                       child: CustomButton(
                         text: 'SAVE',
                         onTap: () {
-                          ProductModel _model = widget.model;
-                          _model.copyWith(sizeandcolordata : sizeAndColor);
-                          _productBloc.add(AddMultiColorEvent(
-                              model: _model, userId: UserSession.userId));
+
+                          ProductModel _model2 =  widget.model.copyWith(sizeandcolordata : sizeAndColor);
+
+                          if(widget.isupdate) {
+                            _productBloc.add(
+                                ProductOwnerEvent.update(productdata: _model2.toJson(),
+                                    entitytype: widget.entitytype,
+                                    entityid: widget.entityid,
+                                    isservice: false,
+                                    origin: 1,
+                                    type: "PRODUCT")
+                            );
+                          }
+                          else
+                          {
+                            _productBloc.add(
+                                ProductOwnerEvent.add(productdata: _model2.toJson(),
+                                    entitytype: widget.entitytype,
+                                    entityid: widget.entityid,
+                                    isservice: false,
+                                    origin: 1,
+                                    type: "PRODUCT")
+                            );
+
+                          }
+
                         },
                         borderColor: ColorConstants.primaryColor,
                       ),

@@ -6769,7 +6769,7 @@ class _$ProductModelTearOff {
 
 // ignore: unused_element
   _ProductModel call(
-      {@JsonKey(name: 'productid')
+      {@JsonKey(name: 'docid')
           String productid,
       @JsonKey(name: 'title')
           String title,
@@ -6845,7 +6845,7 @@ const $ProductModel = _$ProductModelTearOff();
 
 /// @nodoc
 mixin _$ProductModel {
-  @JsonKey(name: 'productid')
+  @JsonKey(name: 'docid')
   String get productid;
   @JsonKey(name: 'title')
   String get title;
@@ -6897,7 +6897,7 @@ abstract class $ProductModelCopyWith<$Res> {
           ProductModel value, $Res Function(ProductModel) then) =
       _$ProductModelCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'productid')
+      {@JsonKey(name: 'docid')
           String productid,
       @JsonKey(name: 'title')
           String title,
@@ -7045,7 +7045,7 @@ abstract class _$ProductModelCopyWith<$Res>
       __$ProductModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'productid')
+      {@JsonKey(name: 'docid')
           String productid,
       @JsonKey(name: 'title')
           String title,
@@ -7174,7 +7174,7 @@ class __$ProductModelCopyWithImpl<$Res> extends _$ProductModelCopyWithImpl<$Res>
 /// @nodoc
 class _$_ProductModel implements _ProductModel {
   _$_ProductModel(
-      {@JsonKey(name: 'productid') this.productid,
+      {@JsonKey(name: 'docid') this.productid,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'brand') this.brand,
@@ -7199,7 +7199,7 @@ class _$_ProductModel implements _ProductModel {
       _$_$_ProductModelFromJson(json);
 
   @override
-  @JsonKey(name: 'productid')
+  @JsonKey(name: 'docid')
   final String productid;
   @override
   @JsonKey(name: 'title')
@@ -7362,7 +7362,7 @@ class _$_ProductModel implements _ProductModel {
 
 abstract class _ProductModel implements ProductModel {
   factory _ProductModel(
-      {@JsonKey(name: 'productid')
+      {@JsonKey(name: 'docid')
           String productid,
       @JsonKey(name: 'title')
           String title,
@@ -7407,7 +7407,7 @@ abstract class _ProductModel implements ProductModel {
       _$_ProductModel.fromJson;
 
   @override
-  @JsonKey(name: 'productid')
+  @JsonKey(name: 'docid')
   String get productid;
   @override
   @JsonKey(name: 'title')

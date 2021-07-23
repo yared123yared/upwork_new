@@ -60,8 +60,8 @@ class _$LimitedDataTearOff {
           String serviceproviderid,
       @JsonKey(name: 'userid')
           String userid,
-      @JsonKey(name: 'docid')
-          String docid}) {
+      @JsonKey(name: 'productid')
+          String productid}) {
     return LimitedPetData(
       petclass: petclass,
       name: name,
@@ -76,7 +76,7 @@ class _$LimitedDataTearOff {
       addressarea: addressarea,
       serviceproviderid: serviceproviderid,
       userid: userid,
-      docid: docid,
+      productid: productid,
     );
   }
 
@@ -96,7 +96,7 @@ class _$LimitedDataTearOff {
 
 // ignore: unused_element
   LimitedProductData product(
-      {@JsonKey(name: 'id') String id,
+      {@JsonKey(name: 'productid') String productid,
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'tileimage') String tileimage,
       @JsonKey(name: 'reqqty') bool reqqty,
@@ -113,7 +113,7 @@ class _$LimitedDataTearOff {
       @JsonKey(name: 'contenttype') String contenttype,
       @JsonKey(name: 'addressarea') ContactDetailsModel addressarea}) {
     return LimitedProductData(
-      id: id,
+      productid: productid,
       title: title,
       tileimage: tileimage,
       reqqty: reqqty,
@@ -303,8 +303,8 @@ mixin _$LimitedData {
                 String serviceproviderid,
             @JsonKey(name: 'userid')
                 String userid,
-            @JsonKey(name: 'docid')
-                String docid),
+            @JsonKey(name: 'productid')
+                String productid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -313,7 +313,7 @@ mixin _$LimitedData {
             @JsonKey(name: 'discountedprice') double discountedprice),
     @required
         TResult product(
-            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'productid') String productid,
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'tileimage') String tileimage,
             @JsonKey(name: 'reqqty') bool reqqty,
@@ -439,15 +439,15 @@ mixin _$LimitedData {
             String serviceproviderid,
         @JsonKey(name: 'userid')
             String userid,
-        @JsonKey(name: 'docid')
-            String docid),
+        @JsonKey(name: 'productid')
+            String productid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
         @JsonKey(name: 'origprice') double origprice,
         @JsonKey(name: 'discountedprice') double discountedprice),
     TResult product(
-        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'productid') String productid,
         @JsonKey(name: 'title') String title,
         @JsonKey(name: 'tileimage') String tileimage,
         @JsonKey(name: 'reqqty') bool reqqty,
@@ -612,8 +612,8 @@ abstract class $LimitedPetDataCopyWith<$Res> {
           String serviceproviderid,
       @JsonKey(name: 'userid')
           String userid,
-      @JsonKey(name: 'docid')
-          String docid});
+      @JsonKey(name: 'productid')
+          String productid});
 }
 
 /// @nodoc
@@ -641,7 +641,7 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
     Object addressarea = freezed,
     Object serviceproviderid = freezed,
     Object userid = freezed,
-    Object docid = freezed,
+    Object productid = freezed,
   }) {
     return _then(LimitedPetData(
       petclass: petclass == freezed ? _value.petclass : petclass as String,
@@ -662,7 +662,7 @@ class _$LimitedPetDataCopyWithImpl<$Res> extends _$LimitedDataCopyWithImpl<$Res>
           ? _value.serviceproviderid
           : serviceproviderid as String,
       userid: userid == freezed ? _value.userid : userid as String,
-      docid: docid == freezed ? _value.docid : docid as String,
+      productid: productid == freezed ? _value.productid : productid as String,
     ));
   }
 }
@@ -698,8 +698,8 @@ class _$LimitedPetData implements LimitedPetData {
           this.serviceproviderid,
       @JsonKey(name: 'userid')
           this.userid,
-      @JsonKey(name: 'docid')
-          this.docid});
+      @JsonKey(name: 'productid')
+          this.productid});
 
   factory _$LimitedPetData.fromJson(Map<String, dynamic> json) =>
       _$_$LimitedPetDataFromJson(json);
@@ -747,12 +747,12 @@ class _$LimitedPetData implements LimitedPetData {
   @JsonKey(name: 'userid')
   final String userid;
   @override
-  @JsonKey(name: 'docid')
-  final String docid;
+  @JsonKey(name: 'productid')
+  final String productid;
 
   @override
   String toString() {
-    return 'LimitedData.pet(petclass: $petclass, name: $name, breed: $breed, gender: $gender, animalclass: $animalclass, age: $age, tileimage: $tileimage, title: $title, price: $price, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid, userid: $userid, docid: $docid)';
+    return 'LimitedData.pet(petclass: $petclass, name: $name, breed: $breed, gender: $gender, animalclass: $animalclass, age: $age, tileimage: $tileimage, title: $title, price: $price, postedon: $postedon, addressarea: $addressarea, serviceproviderid: $serviceproviderid, userid: $userid, productid: $productid)';
   }
 
   @override
@@ -791,8 +791,9 @@ class _$LimitedPetData implements LimitedPetData {
                     .equals(other.serviceproviderid, serviceproviderid)) &&
             (identical(other.userid, userid) ||
                 const DeepCollectionEquality().equals(other.userid, userid)) &&
-            (identical(other.docid, docid) ||
-                const DeepCollectionEquality().equals(other.docid, docid)));
+            (identical(other.productid, productid) ||
+                const DeepCollectionEquality()
+                    .equals(other.productid, productid)));
   }
 
   @override
@@ -811,7 +812,7 @@ class _$LimitedPetData implements LimitedPetData {
       const DeepCollectionEquality().hash(addressarea) ^
       const DeepCollectionEquality().hash(serviceproviderid) ^
       const DeepCollectionEquality().hash(userid) ^
-      const DeepCollectionEquality().hash(docid);
+      const DeepCollectionEquality().hash(productid);
 
   @JsonKey(ignore: true)
   @override
@@ -849,8 +850,8 @@ class _$LimitedPetData implements LimitedPetData {
                 String serviceproviderid,
             @JsonKey(name: 'userid')
                 String userid,
-            @JsonKey(name: 'docid')
-                String docid),
+            @JsonKey(name: 'productid')
+                String productid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -859,7 +860,7 @@ class _$LimitedPetData implements LimitedPetData {
             @JsonKey(name: 'discountedprice') double discountedprice),
     @required
         TResult product(
-            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'productid') String productid,
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'tileimage') String tileimage,
             @JsonKey(name: 'reqqty') bool reqqty,
@@ -962,8 +963,21 @@ class _$LimitedPetData implements LimitedPetData {
     assert(vehicle != null);
     assert(realEstate != null);
     assert(job != null);
-    return pet(petclass, name, breed, gender, animalclass, age, tileimage,
-        title, price, postedon, addressarea, serviceproviderid, userid, docid);
+    return pet(
+        petclass,
+        name,
+        breed,
+        gender,
+        animalclass,
+        age,
+        tileimage,
+        title,
+        price,
+        postedon,
+        addressarea,
+        serviceproviderid,
+        userid,
+        productid);
   }
 
   @override
@@ -996,15 +1010,15 @@ class _$LimitedPetData implements LimitedPetData {
             String serviceproviderid,
         @JsonKey(name: 'userid')
             String userid,
-        @JsonKey(name: 'docid')
-            String docid),
+        @JsonKey(name: 'productid')
+            String productid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
         @JsonKey(name: 'origprice') double origprice,
         @JsonKey(name: 'discountedprice') double discountedprice),
     TResult product(
-        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'productid') String productid,
         @JsonKey(name: 'title') String title,
         @JsonKey(name: 'tileimage') String tileimage,
         @JsonKey(name: 'reqqty') bool reqqty,
@@ -1115,7 +1129,7 @@ class _$LimitedPetData implements LimitedPetData {
           addressarea,
           serviceproviderid,
           userid,
-          docid);
+          productid);
     }
     return orElse();
   }
@@ -1191,8 +1205,8 @@ abstract class LimitedPetData implements LimitedData {
           String serviceproviderid,
       @JsonKey(name: 'userid')
           String userid,
-      @JsonKey(name: 'docid')
-          String docid}) = _$LimitedPetData;
+      @JsonKey(name: 'productid')
+          String productid}) = _$LimitedPetData;
 
   factory LimitedPetData.fromJson(Map<String, dynamic> json) =
       _$LimitedPetData.fromJson;
@@ -1226,8 +1240,8 @@ abstract class LimitedPetData implements LimitedData {
   String get serviceproviderid;
   @JsonKey(name: 'userid')
   String get userid;
-  @JsonKey(name: 'docid')
-  String get docid;
+  @JsonKey(name: 'productid')
+  String get productid;
   @JsonKey(ignore: true)
   $LimitedPetDataCopyWith<LimitedPetData> get copyWith;
 }
@@ -1364,8 +1378,8 @@ class _$LimitedPackageData implements LimitedPackageData {
                 String serviceproviderid,
             @JsonKey(name: 'userid')
                 String userid,
-            @JsonKey(name: 'docid')
-                String docid),
+            @JsonKey(name: 'productid')
+                String productid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -1374,7 +1388,7 @@ class _$LimitedPackageData implements LimitedPackageData {
             @JsonKey(name: 'discountedprice') double discountedprice),
     @required
         TResult product(
-            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'productid') String productid,
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'tileimage') String tileimage,
             @JsonKey(name: 'reqqty') bool reqqty,
@@ -1510,15 +1524,15 @@ class _$LimitedPackageData implements LimitedPackageData {
             String serviceproviderid,
         @JsonKey(name: 'userid')
             String userid,
-        @JsonKey(name: 'docid')
-            String docid),
+        @JsonKey(name: 'productid')
+            String productid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
         @JsonKey(name: 'origprice') double origprice,
         @JsonKey(name: 'discountedprice') double discountedprice),
     TResult product(
-        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'productid') String productid,
         @JsonKey(name: 'title') String title,
         @JsonKey(name: 'tileimage') String tileimage,
         @JsonKey(name: 'reqqty') bool reqqty,
@@ -1692,7 +1706,7 @@ abstract class $LimitedProductDataCopyWith<$Res> {
           LimitedProductData value, $Res Function(LimitedProductData) then) =
       _$LimitedProductDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'id') String id,
+      {@JsonKey(name: 'productid') String productid,
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'tileimage') String tileimage,
       @JsonKey(name: 'reqqty') bool reqqty,
@@ -1723,7 +1737,7 @@ class _$LimitedProductDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
+    Object productid = freezed,
     Object title = freezed,
     Object tileimage = freezed,
     Object reqqty = freezed,
@@ -1741,7 +1755,7 @@ class _$LimitedProductDataCopyWithImpl<$Res>
     Object addressarea = freezed,
   }) {
     return _then(LimitedProductData(
-      id: id == freezed ? _value.id : id as String,
+      productid: productid == freezed ? _value.productid : productid as String,
       title: title == freezed ? _value.title : title as String,
       tileimage: tileimage == freezed ? _value.tileimage : tileimage as String,
       reqqty: reqqty == freezed ? _value.reqqty : reqqty as bool,
@@ -1778,7 +1792,7 @@ class _$LimitedProductDataCopyWithImpl<$Res>
 /// @nodoc
 class _$LimitedProductData implements LimitedProductData {
   const _$LimitedProductData(
-      {@JsonKey(name: 'id') this.id,
+      {@JsonKey(name: 'productid') this.productid,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'tileimage') this.tileimage,
       @JsonKey(name: 'reqqty') this.reqqty,
@@ -1799,8 +1813,8 @@ class _$LimitedProductData implements LimitedProductData {
       _$_$LimitedProductDataFromJson(json);
 
   @override
-  @JsonKey(name: 'id')
-  final String id;
+  @JsonKey(name: 'productid')
+  final String productid;
   @override
   @JsonKey(name: 'title')
   final String title;
@@ -1849,15 +1863,16 @@ class _$LimitedProductData implements LimitedProductData {
 
   @override
   String toString() {
-    return 'LimitedData.product(id: $id, title: $title, tileimage: $tileimage, reqqty: $reqqty, isvegetarian: $isvegetarian, spicetype: $spicetype, ispackage: $ispackage, unitmeasure: $unitmeasure, origprice: $origprice, discountedprice: $discountedprice, varianttype: $varianttype, packdata: $packdata, userid: $userid, serviceproviderid: $serviceproviderid, contenttype: $contenttype, addressarea: $addressarea)';
+    return 'LimitedData.product(productid: $productid, title: $title, tileimage: $tileimage, reqqty: $reqqty, isvegetarian: $isvegetarian, spicetype: $spicetype, ispackage: $ispackage, unitmeasure: $unitmeasure, origprice: $origprice, discountedprice: $discountedprice, varianttype: $varianttype, packdata: $packdata, userid: $userid, serviceproviderid: $serviceproviderid, contenttype: $contenttype, addressarea: $addressarea)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is LimitedProductData &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.productid, productid) ||
+                const DeepCollectionEquality()
+                    .equals(other.productid, productid)) &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.tileimage, tileimage) ||
@@ -1905,7 +1920,7 @@ class _$LimitedProductData implements LimitedProductData {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(productid) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(tileimage) ^
       const DeepCollectionEquality().hash(reqqty) ^
@@ -1958,8 +1973,8 @@ class _$LimitedProductData implements LimitedProductData {
                 String serviceproviderid,
             @JsonKey(name: 'userid')
                 String userid,
-            @JsonKey(name: 'docid')
-                String docid),
+            @JsonKey(name: 'productid')
+                String productid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -1968,7 +1983,7 @@ class _$LimitedProductData implements LimitedProductData {
             @JsonKey(name: 'discountedprice') double discountedprice),
     @required
         TResult product(
-            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'productid') String productid,
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'tileimage') String tileimage,
             @JsonKey(name: 'reqqty') bool reqqty,
@@ -2072,7 +2087,7 @@ class _$LimitedProductData implements LimitedProductData {
     assert(realEstate != null);
     assert(job != null);
     return product(
-        id,
+        productid,
         title,
         tileimage,
         reqqty,
@@ -2120,15 +2135,15 @@ class _$LimitedProductData implements LimitedProductData {
             String serviceproviderid,
         @JsonKey(name: 'userid')
             String userid,
-        @JsonKey(name: 'docid')
-            String docid),
+        @JsonKey(name: 'productid')
+            String productid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
         @JsonKey(name: 'origprice') double origprice,
         @JsonKey(name: 'discountedprice') double discountedprice),
     TResult product(
-        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'productid') String productid,
         @JsonKey(name: 'title') String title,
         @JsonKey(name: 'tileimage') String tileimage,
         @JsonKey(name: 'reqqty') bool reqqty,
@@ -2226,7 +2241,7 @@ class _$LimitedProductData implements LimitedProductData {
     assert(orElse != null);
     if (product != null) {
       return product(
-          id,
+          productid,
           title,
           tileimage,
           reqqty,
@@ -2291,7 +2306,7 @@ class _$LimitedProductData implements LimitedProductData {
 
 abstract class LimitedProductData implements LimitedData {
   const factory LimitedProductData(
-          {@JsonKey(name: 'id') String id,
+          {@JsonKey(name: 'productid') String productid,
           @JsonKey(name: 'title') String title,
           @JsonKey(name: 'tileimage') String tileimage,
           @JsonKey(name: 'reqqty') bool reqqty,
@@ -2312,8 +2327,8 @@ abstract class LimitedProductData implements LimitedData {
   factory LimitedProductData.fromJson(Map<String, dynamic> json) =
       _$LimitedProductData.fromJson;
 
-  @JsonKey(name: 'id')
-  String get id;
+  @JsonKey(name: 'productid')
+  String get productid;
   @JsonKey(name: 'title')
   String get title;
   @JsonKey(name: 'tileimage')
@@ -2607,8 +2622,8 @@ class _$LimitedVehicleData implements LimitedVehicleData {
                 String serviceproviderid,
             @JsonKey(name: 'userid')
                 String userid,
-            @JsonKey(name: 'docid')
-                String docid),
+            @JsonKey(name: 'productid')
+                String productid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -2617,7 +2632,7 @@ class _$LimitedVehicleData implements LimitedVehicleData {
             @JsonKey(name: 'discountedprice') double discountedprice),
     @required
         TResult product(
-            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'productid') String productid,
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'tileimage') String tileimage,
             @JsonKey(name: 'reqqty') bool reqqty,
@@ -2754,15 +2769,15 @@ class _$LimitedVehicleData implements LimitedVehicleData {
             String serviceproviderid,
         @JsonKey(name: 'userid')
             String userid,
-        @JsonKey(name: 'docid')
-            String docid),
+        @JsonKey(name: 'productid')
+            String productid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
         @JsonKey(name: 'origprice') double origprice,
         @JsonKey(name: 'discountedprice') double discountedprice),
     TResult product(
-        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'productid') String productid,
         @JsonKey(name: 'title') String title,
         @JsonKey(name: 'tileimage') String tileimage,
         @JsonKey(name: 'reqqty') bool reqqty,
@@ -3281,8 +3296,8 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
                 String serviceproviderid,
             @JsonKey(name: 'userid')
                 String userid,
-            @JsonKey(name: 'docid')
-                String docid),
+            @JsonKey(name: 'productid')
+                String productid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -3291,7 +3306,7 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
             @JsonKey(name: 'discountedprice') double discountedprice),
     @required
         TResult product(
-            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'productid') String productid,
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'tileimage') String tileimage,
             @JsonKey(name: 'reqqty') bool reqqty,
@@ -3442,15 +3457,15 @@ class _$LimitedRealEstateData implements LimitedRealEstateData {
             String serviceproviderid,
         @JsonKey(name: 'userid')
             String userid,
-        @JsonKey(name: 'docid')
-            String docid),
+        @JsonKey(name: 'productid')
+            String productid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
         @JsonKey(name: 'origprice') double origprice,
         @JsonKey(name: 'discountedprice') double discountedprice),
     TResult product(
-        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'productid') String productid,
         @JsonKey(name: 'title') String title,
         @JsonKey(name: 'tileimage') String tileimage,
         @JsonKey(name: 'reqqty') bool reqqty,
@@ -3895,8 +3910,8 @@ class _$LimitedJobData implements LimitedJobData {
                 String serviceproviderid,
             @JsonKey(name: 'userid')
                 String userid,
-            @JsonKey(name: 'docid')
-                String docid),
+            @JsonKey(name: 'productid')
+                String productid),
     @required
         TResult package(
             @JsonKey(name: 'itemid') String itemid,
@@ -3905,7 +3920,7 @@ class _$LimitedJobData implements LimitedJobData {
             @JsonKey(name: 'discountedprice') double discountedprice),
     @required
         TResult product(
-            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'productid') String productid,
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'tileimage') String tileimage,
             @JsonKey(name: 'reqqty') bool reqqty,
@@ -4042,15 +4057,15 @@ class _$LimitedJobData implements LimitedJobData {
             String serviceproviderid,
         @JsonKey(name: 'userid')
             String userid,
-        @JsonKey(name: 'docid')
-            String docid),
+        @JsonKey(name: 'productid')
+            String productid),
     TResult package(
         @JsonKey(name: 'itemid') String itemid,
         @JsonKey(name: 'desc') String desc,
         @JsonKey(name: 'origprice') double origprice,
         @JsonKey(name: 'discountedprice') double discountedprice),
     TResult product(
-        @JsonKey(name: 'id') String id,
+        @JsonKey(name: 'productid') String productid,
         @JsonKey(name: 'title') String title,
         @JsonKey(name: 'tileimage') String tileimage,
         @JsonKey(name: 'reqqty') bool reqqty,

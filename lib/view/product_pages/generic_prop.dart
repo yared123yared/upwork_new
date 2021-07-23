@@ -24,6 +24,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:injector/injector.dart';
 
+import 'my_special_selected_item_page.dart';
+
 class GenericProperties extends StatefulWidget {
   final bool withUnitPrice;
   final String serviceProviderId;
@@ -381,17 +383,29 @@ class _GenericPropertiesState extends State<GenericProperties> {
               )
             : null,
       );
-      Navigator.push(
-        context,
-        NextPageRoute(
-          AdditionalPropertiesPage(
-            productType: widget.productType,
-            model: _model,
-            dynamicProperties:
-                _dynamicProperties == null ? null : _dynamicProperties['adata'],
+
+      if (widget.productType == ProductType.mySpecial) {
+        Navigator.push(
+          context,
+          NextPageRoute(
+            MySpecialSelectedItemPage(
+              model: _model,
+            ),
           ),
-        ),
-      );
+        );
+      } else {
+        Navigator.push(
+          context,
+          NextPageRoute(
+            AdditionalPropertiesPage(
+              productType: widget.productType,
+              model: _model,
+              dynamicProperties:
+              _dynamicProperties == null ? null : _dynamicProperties['adata'],
+            ),
+          ),
+        );
+      }
     }
   }
 

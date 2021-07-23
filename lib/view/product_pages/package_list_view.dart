@@ -1,3 +1,4 @@
+import 'package:complex/application/explore/ecom/product_owner/product_owner_bloc.dart';
 import 'package:complex/blocs/product_bloc.dart';
 import 'package:complex/data/api/api_service.dart';
 import 'package:complex/data/models/response/auth_response/user_session.dart';
@@ -19,10 +20,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class PackageListView extends StatefulWidget {
   final ProductType productType;
   final ProductModel model;
+  final String entitytype;
+  final String entityid;
+
+  final bool isupdate;
+
 
   PackageListView({
     this.productType,
-    this.model,
+    this.model,this.isupdate,this.entitytype,this.entityid
   });
 
   @override
@@ -31,12 +37,41 @@ class PackageListView extends StatefulWidget {
   }
 }
 
-List<PackageModel> packageList = [];
+
 
 class _PackageListViewState extends State<PackageListView> {
-  ProductBloc _productBloc;
+  ProductOwnerBloc _productBloc;
   var _isLoading = false;
   var _key = GlobalKey<ScaffoldState>();
+  List<PackageModel> packageList ;
+  void AddToListActionForProduct({dynamic data,bool apply,int actiontype}) {
+    setState(() {
+
+      if(apply)
+        {
+          PackageModel pm = data as PackageModel;
+          packageList.add(pm);
+        }
+
+
+    });
+  }
+
+  @override
+  void initState() {
+
+    if(widget.isupdate)
+    {
+      packageList =widget.model.packagedata;
+    }
+    else
+    {
+      packageList=[];
+    }
+
+
+    super.initState();
+  }
 
   void _handleAddNoPackageResponse(AddPackageState state) {
     switch (state.apiState) {
@@ -68,7 +103,7 @@ class _PackageListViewState extends State<PackageListView> {
 
   @override
   Widget build(BuildContext context) {
-    _productBloc = BlocProvider.of<ProductBloc>(context);
+    _productBloc = BlocProvider.of<ProductOwnerBloc>(context);
     return BlocListener<ProductBloc, ProductState>(
       listener: (context, state) {
         if (state is AddPackageState) _handleAddNoPackageResponse(state);
@@ -104,10 +139,30 @@ class _PackageListViewState extends State<PackageListView> {
                       child: CustomButton(
                         text: 'SAVE',
                         onTap: () {
-                          ProductModel _model = widget.model;
-                          _model.copyWith(packagedata :packageList);
-                          _productBloc.add(AddPackageEvent(
-                              model: _model, userId: UserSession.userId));
+                          ProductModel _model2 =  widget.model.copyWith(packagedata :packageList);
+                          if(widget.isupdate) {
+                            _productBloc.add(
+                                ProductOwnerEvent.update(productdata: _model2.toJson(),
+                                    entitytype: widget.entitytype,
+                                    entityid: widget.entityid,
+                                    isservice: false,
+                                    origin: 1,
+                                    type: "PRODUCT")
+                            );
+                          }
+                          else
+                          {
+                            _productBloc.add(
+                                ProductOwnerEvent.add(productdata: _model2.toJson(),
+                                    entitytype: widget.entitytype,
+                                    entityid: widget.entityid,
+                                    isservice: false,
+                                    origin: 1,
+                                    type: "PRODUCT")
+                            );
+
+                          }
+
                         },
                         borderColor: ColorConstants.primaryColor,
                       ),
@@ -148,7 +203,7 @@ class _PackageListViewState extends State<PackageListView> {
               ),
             ),
             onTap: () {
-              Navigator.push(context, NextPageRoute(PackageDetailForm()))
+              Navigator.push(context, NextPageRoute(PackageDetailForm(packageData:null, givenreloadaction: AddToListActionForProduct )))
                   .then((value) {
                 Utility.waitForMili(500).then((value) => setState(() {}));
               });

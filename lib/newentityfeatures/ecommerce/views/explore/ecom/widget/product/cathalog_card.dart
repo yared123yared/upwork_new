@@ -19,8 +19,8 @@ class CathalogCard extends StatelessWidget {
           AddedProductCartEvent(
             productinorder(
               id: Random().nextInt(2340).toString(),
-              itemid: productData.id,
-              productid: productData.id,
+              itemid: productData.productid,
+              productid: productData.productid,
               tileimage: productData.tileimage,
               title: productData.title,
               price: productData.origprice,

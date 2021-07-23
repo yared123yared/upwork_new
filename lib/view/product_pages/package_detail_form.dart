@@ -1,3 +1,4 @@
+import 'package:complex/common/helputil.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_dropdown.dart';
@@ -17,8 +18,8 @@ import 'package:complex/domain/explore/ecom/product/product_data/complete_produc
 
 class PackageDetailForm extends StatefulWidget {
   final PackageModel packageData;
-
-  PackageDetailForm({this.packageData,});
+  final AddToListActionForProduct givenreloadaction;
+  PackageDetailForm({this.packageData,this.givenreloadaction});
   @override
   State<StatefulWidget> createState() {
     return _PackageDetailFormState();
@@ -150,7 +151,7 @@ class _PackageDetailFormState extends State<PackageDetailForm> {
                 Utility.showSnackBar(
                     context: context, message: "At least one image required");
               } else if (_validateInput()) {
-                packageList.add(
+                widget.givenreloadaction(data:
                   PackageModel(
                     packageid: _idController.text.trim(),
                     title: _titleController.text.trim(),
@@ -163,7 +164,7 @@ class _PackageDetailFormState extends State<PackageDetailForm> {
                     tileimage: _photos.first,
                     inventoryunits:
                         int.parse(_inventoryUnitController.text.trim()),
-                  ),
+                  ),actiontype: 1,apply:true
                 );
                 Navigator.pop(context);
               }

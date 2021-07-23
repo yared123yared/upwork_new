@@ -152,7 +152,7 @@ abstract class JobPosting with _$JobPosting {
 @freezed
 abstract class ProductModel with _$ProductModel {
   factory ProductModel({
-    @JsonKey(name:'productid')String productid,
+    @JsonKey(name:'docid')String productid,
     @JsonKey(name:'title')String title,
     @JsonKey(name:'description')String description,
     @JsonKey(name:'brand')String brand,

@@ -24,6 +24,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:injector/injector.dart';
 
+import 'my_special_selected_item_page.dart';
+
 class ProductProperties extends StatefulWidget {
   final bool withUnitPrice;
   final String entitytype;
@@ -118,8 +120,8 @@ class _ProductPropertiesState extends State<ProductProperties> {
     }
     else
       {
-        String finalcat =  widget.product.category.replaceAll('/', '->');
-        getDynamicPropertiesBasedOnFinalCategory(finalcat);
+        _category =  widget.product.category.replaceAll('/', '->');
+        getDynamicPropertiesBasedOnFinalCategory(_category);
         _photos = widget.product.imagelist;
 
 
@@ -226,7 +228,7 @@ class _ProductPropertiesState extends State<ProductProperties> {
         children: [
           _renderDropDown("Unit", _unitController, _unitList,initialvalue:widget.product?.nopackagedata?.unitmeasure),
           _renderTextField("Price/ Per Unit", _unitPriceController,
-              isInt: true,initialValue: widget.product?.price.round().toString()),
+              isInt: true,initialValue: widget.product?.nopackagedata?.priceperunit.round().toString()),
           _renderTextField("Inventonary Unit", _invUnitController, isInt: true,initialValue: widget.product?.nopackagedata?.inventoryunits?.round().toString()),
         ],
       );
@@ -350,7 +352,7 @@ class _ProductPropertiesState extends State<ProductProperties> {
         if (result != null) {
           _dynamicProperties = result;
 
-          if(widget.product !=null) {
+          if(widget.product ==null) {
             _brandList.clear();
             List<String> _data =
             result['adata']['BRAND']['values'].cast<String>();
@@ -433,7 +435,7 @@ class _ProductPropertiesState extends State<ProductProperties> {
         }
       else
         {
-          widget.product.copyWith(
+          _model=widget.product.copyWith(
             addressarea: widget.contactDetails,
             title: _titleController.text.trim(),
             description: _descController.text.trim(),
@@ -467,19 +469,33 @@ class _ProductPropertiesState extends State<ProductProperties> {
         }
 
 
-
-
-      Navigator.push(
-        context,
-        NextPageRoute(
-          AdditionalPropertiesPage(
-            productType: widget.productType,
-            model:  widget.product ==null?_model: widget.product,
-            dynamicProperties:
-                _dynamicProperties == null ? null : _dynamicProperties['adata'],
+      if (widget.productType == ProductType.mySpecial) {
+        Navigator.push(
+          context,
+          NextPageRoute(
+            MySpecialSelectedItemPage(
+              model: _model,isupdate: widget.product == null ? false : true,
+              entitytype: widget.entitytype,
+              entityid: widget.serviceId,
+            ),
           ),
-        ),
-      );
+        );
+      }else {
+        Navigator.push(
+          context,
+          NextPageRoute(
+            AdditionalPropertiesPage(
+              productType: widget.productType,
+              model: _model,
+              dynamicProperties:
+              _dynamicProperties == null ? null : _dynamicProperties['adata'],
+              isupdate: widget.product == null ? false : true,
+              entitytype: widget.entitytype,
+              entityid: widget.serviceId,
+            ),
+          ),
+        );
+      }
     }
   }
 

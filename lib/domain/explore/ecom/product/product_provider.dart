@@ -93,6 +93,7 @@ class ProductProvider {
               if(key !='dt' && key !='adata' )
                 k['adata'][key]=k[key];
             }
+          k['adata']['productid']=k['docid'];
         }
 
       final T typedResponse = fromListData(dataList);
@@ -140,6 +141,15 @@ class ProductProvider {
       List<Map<String, dynamic>> dataList =[];
       if(docdata.exists)
         dataList.add(docdata.data());
+      for (var k in dataList)
+      {
+        for(String key in k.keys)
+        {
+          if(key !='dt' && key !='adata' )
+            k['adata'][key]=k[key];
+        }
+        k['adata']['productid']=k['docid'];
+      }
       final T typedResponse = fromListData(dataList);
       return right(typedResponse);
     } on FirebaseException catch (e) {

@@ -21,7 +21,7 @@ _$LimitedPetData _$_$LimitedPetDataFromJson(Map<String, dynamic> json) {
     addressarea: json['addressarea'],
     serviceproviderid: json['serviceproviderid'] as String,
     userid: json['userid'] as String,
-    docid: json['docid'] as String,
+    productid: json['productid'] as String,
   );
 }
 
@@ -40,7 +40,7 @@ Map<String, dynamic> _$_$LimitedPetDataToJson(_$LimitedPetData instance) =>
       'addressarea': instance.addressarea,
       'serviceproviderid': instance.serviceproviderid,
       'userid': instance.userid,
-      'docid': instance.docid,
+      'productid': instance.productid,
     };
 
 _$LimitedPackageData _$_$LimitedPackageDataFromJson(Map<String, dynamic> json) {
@@ -63,7 +63,7 @@ Map<String, dynamic> _$_$LimitedPackageDataToJson(
 
 _$LimitedProductData _$_$LimitedProductDataFromJson(Map<String, dynamic> json) {
   return _$LimitedProductData(
-    id: json['id'] as String,
+    productid: json['productid'] as String,
     title: json['title'] as String,
     tileimage: json['tileimage'] as String,
     reqqty: json['reqqty'] as bool,
@@ -89,7 +89,7 @@ _$LimitedProductData _$_$LimitedProductDataFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$LimitedProductDataToJson(
         _$LimitedProductData instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'productid': instance.productid,
       'title': instance.title,
       'tileimage': instance.tileimage,
       'reqqty': instance.reqqty,

@@ -1,3 +1,4 @@
+import 'package:complex/common/helputil.dart';
 import 'package:complex/data/providers/channel_provider.dart';
 import 'package:complex/common/widgets/custom_button.dart';
 import 'package:complex/common/widgets/custom_dropdown.dart';
@@ -17,8 +18,9 @@ import 'package:complex/domain/explore/ecom/product/product_data/complete_produc
 
 class SizeAndColorDetailForm extends StatefulWidget {
   final SizeAndColorModel sizeAndColorData;
+  final AddToListActionForProduct givenreloadaction;
   SizeAndColorDetailForm({
-    this.sizeAndColorData,
+    this.sizeAndColorData,this.givenreloadaction
   });
 
   @override
@@ -146,7 +148,7 @@ class _SizeAndColorDetailFormState extends State<SizeAndColorDetailForm> {
                 Utility.showSnackBar(
                     context: context, message: "At least one image required");
               } else if (_validateInput()) {
-                sizeAndColor.add(
+                widget.givenreloadaction(data:
                   SizeAndColorModel(
                     size: _sizeController.text.trim(),
                     color: _colorController.text.trim(),
@@ -161,7 +163,7 @@ class _SizeAndColorDetailFormState extends State<SizeAndColorDetailForm> {
                     tileimage: _photos.first,
                     inventoryunits:
                         int.parse(_inventoryUnitController.text.trim()),
-                  ),
+                  ),actiontype: 1,apply:true
                 );
                 Navigator.pop(context);
               }
