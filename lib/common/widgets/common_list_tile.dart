@@ -24,9 +24,10 @@ class _CommonListTileState extends State<CommonListTile> {
   Widget build(BuildContext context) {
     return Card(
       color: ColorConstants.primaryColor,
+      // color: Colors.white,
       elevation: 3,
       clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.symmetric(vertical: height, horizontal: 10),
+      margin: EdgeInsets.symmetric(vertical: height, horizontal: 8),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(width * 4),
       ),
@@ -58,6 +59,13 @@ class _CommonListTileState extends State<CommonListTile> {
                   radius: 30,
                   foregroundImage:
                       AssetImage('assets/listViewIcons/EntryLogsIcon.png'),
+                )
+              else if (widget.listState.iconpath != null)
+                CircleAvatar(
+                  radius: 30,
+                  foregroundImage: AssetImage(
+                    widget.listState.iconpath,
+                  ),
                 ),
               if (widget.listState.formName == null)
                 Icon(
@@ -184,6 +192,7 @@ class _CommonListTileState extends State<CommonListTile> {
                                       ),
                                     ),
                                     decoration: BoxDecoration(
+                                        color: Colors.white,
                                         borderRadius: BorderRadius.circular(20),
                                         border: Border.all(
                                             color: C.secondaryTextBlue)),
@@ -266,6 +275,25 @@ class _CommonListTileState extends State<CommonListTile> {
                           ),
                         ),
                     ],
+                  ),
+                ),
+              if (widget.listState.trailingTitle != null && !showDeleteButton)
+                Container(
+                  width: 75,
+                  decoration: BoxDecoration(
+                    // color: Color.fromRGBO(39, 122, 150, 0),
+                    color: widget.listState.trailingBgColor != null
+                        ? widget.listState.trailingBgColor
+                        : ColorConstants.primaryColor,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 16.0),
+                    child: Text(
+                      widget.listState.trailingTitle,
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               Icon(

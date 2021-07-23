@@ -21,6 +21,9 @@ class ListStateClass extends Equatable {
   final int info2color;
   final String textforsearch;
 
+  final String trailingTitle;
+  final Color trailingBgColor;
+
   ListStateClass(
       {@required this.title,
       this.tittleH1,
@@ -38,7 +41,9 @@ class ListStateClass extends Equatable {
       this.info2,
       this.info1color,
       this.info2color,
-      this.textforsearch});
+      this.textforsearch,
+      this.trailingTitle,
+      this.trailingBgColor});
 
   ListStateClass copyWith({
     VoidCallback tapAction,

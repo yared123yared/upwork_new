@@ -77,8 +77,13 @@ class _FeeItemGroupsModelListListState
       List<FeeItemGroupsModel> listItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
+      int total = 0;
+      item.feeItem.forEach((feeItem) {
+        total += feeItem.amount;
+      });
       _dynamicList.add(ListStateClass(
         title: "${item.scheduleName ?? ''} ${item.feeItem ?? ""}",
+        tittleH1: "Grade: ${item.grade}",
         // subtitle: "grade: ${item.grade}",
         tapAction: () {
           Navigator.push(
@@ -102,6 +107,7 @@ class _FeeItemGroupsModelListListState
                     item: listItems[index]));
           }
         },
+        trailingTitle: "$total\$",
       ));
     });
 
@@ -141,7 +147,7 @@ class _FeeItemGroupsModelListListState
       value: mlistbloc,
       child: Scaffold(
           appBar: CustomAppBar(
-            title: "FeeItem Group List",
+            title: "Fee Item Groups",
           ),
           body: BlocListener<listbloc.FeeItemGroupsModelListBloc,
               listbloc.FeeItemGroupsModelListState>(listener: (context, state) {
@@ -192,7 +198,7 @@ class _FeeItemGroupsModelListListState
               addButtonActions(context: context);
             },
             icon: Icon(Icons.add),
-            label: Text("Add New"),
+            label: Text("Add Fee"),
           )),
     );
   }
@@ -251,8 +257,8 @@ class _FeeItemGroupsModelListListState
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Fee Item Groups",
+                dynamicListState: "Fee Item Groups",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

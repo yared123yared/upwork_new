@@ -78,8 +78,11 @@ class _TeacherAssignmentModelListListState
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: "${item.offeringgroupname ?? ''} ${item.primaryOwner ?? ""}",
-        subtitle: "grade: ${item.grade}",
+        title: "${item.offeringgroupname ?? ''}",
+        tittleH1: "Group: ${item.grade}",
+        tittleH2:
+            "Primary: ${item.primaryOwner.display.replaceAll("+_+", " ")}",
+        // subtitle: "grade: ${item.grade}",
         tapAction: () {
           Navigator.push(
             context,
@@ -141,7 +144,7 @@ class _TeacherAssignmentModelListListState
       value: mlistbloc,
       child: Scaffold(
           appBar: CustomAppBar(
-            title: "Assigned Teachers List",
+            title: "Teacher Assignments",
           ),
           body: BlocListener<
               listbloc.TeacherAssignmentModelListBloc,
@@ -195,7 +198,7 @@ class _TeacherAssignmentModelListListState
               addButtonActions(context: context);
             },
             icon: Icon(Icons.add),
-            label: Text("Add New"),
+            label: Text("Add Assignment"),
           )),
     );
   }
@@ -233,8 +236,8 @@ class _TeacherAssignmentModelListListState
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "Teacher Assignments",
+                dynamicListState: "Teacher Assignments",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

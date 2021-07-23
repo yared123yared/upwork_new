@@ -85,7 +85,8 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
 
     list.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: "${item.type ?? ''} - periods: ${item?.schedule?.length ?? ""}",
+        title: "${item.type ?? ''}",
+        tittleH1: item.schedule.length.toString(),
         tapAction: () {
           Navigator.push(
             context,
@@ -221,7 +222,7 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
               addButtonActions(context: context);
             },
             icon: Icon(Icons.add),
-            label: Text("Add New"),
+            label: Text("Add Period"),
           )),
     );
   }

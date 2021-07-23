@@ -94,6 +94,9 @@ class _StudentBasicFormModelListListState
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
         title: "${item.name ?? ''} ${item.feePlan ?? ""}",
+        tittleH1: "Age: ${item.isAdult}",
+        tittleH2: "Guardian 1: ${item.guardian1name}",
+        tittleH3: "Guardian 2: ${item.guardian2name}",
         tapAction: () {
           Navigator.push(
             context,
@@ -163,7 +166,7 @@ class _StudentBasicFormModelListListState
       value: mlistbloc,
       child: Scaffold(
           appBar: CustomAppBar(
-            title: "Student List",
+            title: "User Registration",
           ),
           body: BlocListener<listbloc.StudentBasicFormModelListBloc,
                   listbloc.StudentBasicFormModelListState>(
@@ -242,7 +245,7 @@ class _StudentBasicFormModelListListState
               addButtonActions(context: context);
             },
             icon: Icon(Icons.add),
-            label: Text("Add New"),
+            label: Text("Add User"),
           )),
     );
   }
@@ -338,8 +341,8 @@ class _StudentBasicFormModelListListState
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Attach Assignment List",
-                dynamicListState: "Attach Assignment List",
+                appBarTitle: "User Registration",
+                dynamicListState: "User Registration",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

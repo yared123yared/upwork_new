@@ -87,6 +87,8 @@ class _CreateAssignmentListState extends State<CreateAssignmentList> {
       _dynamicList.add(
         ListStateClass(
           title: assignment.assignmentTitle,
+          tittleH1: assignment.topic,
+          tittleH2: assignment.topic,
           subtitle: "topic: ${assignment.topic}",
           customAction_1: CustomAction(
             title: "Questions",
@@ -176,7 +178,7 @@ class _CreateAssignmentListState extends State<CreateAssignmentList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: CustomAppBar(
-            title: "Create Assignment List",
+            title: "Create Assignments",
           ),
           body: BlocListener<listbloc.CreateAssignmentListBloc,
               listbloc.CreateAssignmentListState>(listener: (context, state) {
@@ -227,7 +229,7 @@ class _CreateAssignmentListState extends State<CreateAssignmentList> {
               addButtonActions(context: context);
             },
             icon: Icon(Icons.add),
-            label: Text("Add New"),
+            label: Text("Add Assignment"),
           )),
     );
   }
@@ -286,8 +288,8 @@ class _CreateAssignmentListState extends State<CreateAssignmentList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Create Assignment List",
-                dynamicListState: "Create Assignment List",
+                appBarTitle: "Create Assignments",
+                dynamicListState: "Create Assignments",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );
