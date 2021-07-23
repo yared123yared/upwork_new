@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:complex/newentityfeatures/gateway/user_registration_gateway.dart';
 
 import 'package:equatable/equatable.dart';
 

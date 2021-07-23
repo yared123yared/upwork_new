@@ -30,9 +30,9 @@ class StudentBasicFormModelRepositoryReturnData {
 
 class StudentBasicFormModelRepository {
   Future<StudentBasicFormModelRepositoryReturnData>
-      getAllStudentBasicFormModels(String entitytype, String entityid) async {
+  getAllStudentBasicFormModels(String entitytype, String entityid) async {
     StudentBasicFormModelRepositoryReturnData myreturn =
-        StudentBasicFormModelRepositoryReturnData();
+    StudentBasicFormModelRepositoryReturnData();
     //Please put your code here
 
     myreturn.errortype = -1;
@@ -42,21 +42,21 @@ class StudentBasicFormModelRepository {
   Future<GenericLookUpDataUsedForRegistration> getListFormPreLoadData(
       String entitytype, String entityid) async {
     GenericLookUpDataUsedForRegistration grerror =
-        new GenericLookUpDataUsedForRegistration();
+    new GenericLookUpDataUsedForRegistration();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
       List<String> gradelist =
-          await LookupGateway.getGradeList(serviceID: entityid);
+      await LookupGateway.getGradeList(serviceID: entityid);
       List<String> sessiontermlist =
-          await SessionTermGateway.getSessionStringList(
+      await SessionTermGateway.getSessionStringList(
         serviceID: entityid,
       );
 
       //Please put your code here
       GenericLookUpDataUsedForRegistration gr =
-          new GenericLookUpDataUsedForRegistration();
+      new GenericLookUpDataUsedForRegistration();
       gr.errortype = -1;
       gr.grades = gradelist;
       gr.sessionterm = sessiontermlist;
@@ -70,15 +70,15 @@ class StudentBasicFormModelRepository {
     return grerror;
   }
 
-  Future<StudentFormEntryData> getItemFormNewEntryData(
-      String entitytype, String entityid) async {
+  Future<StudentFormEntryData> getItemFormNewEntryData(String entitytype,
+      String entityid) async {
     StudentFormEntryData grerror = StudentFormEntryData();
     grerror.errortype = -2;
     grerror.error = "UNknown exception has occured";
 
     try {
       int studentId =
-          await UserRegistrationGateway.getRegistrationNumber(entityid);
+      await UserRegistrationGateway.getRegistrationNumber(entityid);
       int formIndex = 1;
       List<Place> availablePlaces = await Place.places;
       // bool update;
@@ -97,7 +97,7 @@ class StudentBasicFormModelRepository {
   Future<StudentBasicFormModelRepositoryReturnData> createStudentBasicFormModel(
       UserRegistrationModel item, String entitytype, String entityid) async {
     StudentBasicFormModelRepositoryReturnData myreturn =
-        StudentBasicFormModelRepositoryReturnData();
+    StudentBasicFormModelRepositoryReturnData();
 
     String guardian1Id = null;
     String guardian2Id = null;
@@ -119,7 +119,7 @@ class StudentBasicFormModelRepository {
 
     var authrepository = HelpUtil.getAuthRepositoryl();
     GeneralResponseWithUserId gr =
-        await authrepository.createUserForRequest_for(request: _signUpModel);
+    await authrepository.createUserForRequest_for(request: _signUpModel);
     if (gr.success) guardian1Id = gr.userid;
     gr = await authrepository.createUserForRequest_for(request: _signUpModel2);
     if (gr.success) guardian2Id = gr.userid;
@@ -132,7 +132,7 @@ class StudentBasicFormModelRepository {
           password: "defultPassword",
           requestType: "CHECKANDCREATE");
       gr =
-          await authrepository.createUserForRequest_for(request: _signUpModel3);
+      await authrepository.createUserForRequest_for(request: _signUpModel3);
       if (gr.success) appuserid = gr.userid;
     }
 
@@ -151,7 +151,7 @@ class StudentBasicFormModelRepository {
   Future<StudentBasicFormModelRepositoryReturnData> updateStudentBasicFormModel(
       UserRegistrationModel item, String entitytype, String entityid) async {
     StudentBasicFormModelRepositoryReturnData myreturn =
-        StudentBasicFormModelRepositoryReturnData();
+    StudentBasicFormModelRepositoryReturnData();
     await UserRegistrationGateway.updateUserRegistration(
       userReg: item,
       serviceID: entityid,
@@ -161,19 +161,18 @@ class StudentBasicFormModelRepository {
   }
 
   Future<StudentBasicFormModelRepositoryReturnData>
-      updateStudentBasicFormModelWithDiff(
-          UserRegistrationModel newitem,
-          UserRegistrationModel olditem,
-          String entitytype,
-          String entityid) async {
+  updateStudentBasicFormModelWithDiff(UserRegistrationModel newitem,
+      UserRegistrationModel olditem,
+      String entitytype,
+      String entityid) async {
     return null;
   }
 
   Future<StudentBasicFormModelRepositoryReturnData>
-      deleteStudentBasicFormModelWithData(UserRegistrationModel item,
-          String entitytype, String entityid) async {
+  deleteStudentBasicFormModelWithData(UserRegistrationModel item,
+      String entitytype, String entityid) async {
     StudentBasicFormModelRepositoryReturnData myreturn =
-        StudentBasicFormModelRepositoryReturnData();
+    StudentBasicFormModelRepositoryReturnData();
 
     await UserRegistrationGateway.removeUserRegistration(item, entityid);
     myreturn.errortype = -1;
@@ -183,7 +182,7 @@ class StudentBasicFormModelRepository {
   Future<StudentBasicFormModelRepositoryReturnData> getInitialData(
       String entitytype, String entityid) async {
     StudentBasicFormModelRepositoryReturnData myreturn =
-        StudentBasicFormModelRepositoryReturnData();
+    StudentBasicFormModelRepositoryReturnData();
 
     List<UserRegistrationModel> list = [];
 
@@ -192,6 +191,7 @@ class StudentBasicFormModelRepository {
     return myreturn;
   }
 
+/*
   Future<List<UserRegistrationModel>> getUserWithOneOf({
     String cardNum,
     String phone,
@@ -208,6 +208,8 @@ class StudentBasicFormModelRepository {
     );
     return users;
   }
+
+*/
 }
 
 class StudentFormEntryData {
