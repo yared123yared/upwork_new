@@ -52,20 +52,22 @@ class UserRegistrationGateway {
   }
 
   ///must two of these are null and one is valid
-  static Future<List<UserRegistrationModel>> getUserWithOneOf({
-    @required String serviceID,
+  static Future<List<UserRegistrationModel>> getUserWithOneOf({@required String entitytype,
+    @required String entityid,
     String cardNum,
     String phone,
     String guardianPhone,
   }) async {
 
       var doc = FirebaseFirestore.instance
-          .collection("SERVICEPROVIDERINFO/$serviceID/USERREGISTRATION");
+          .collection("${entitytype}/${entityid}/USERREGISTRATION");
       Query s;
-      if (cardNum != null) s = doc.where("idcardnum", isEqualTo: cardNum);
-      if (phone != null) s = doc.where("phone", isEqualTo: phone);
-      if (guardianPhone != null)
-        s = doc.where("gaurdian1phone", isEqualTo: phone);
+      if (cardNum != null && cardNum.isNotEmpty)
+        s = doc.where("idcardnum", isEqualTo: cardNum);
+      else if (phone != null && phone.isNotEmpty)
+        s = doc.where("phone", isEqualTo: phone);
+      else if (guardianPhone != null && guardianPhone.isNotEmpty)
+        s = doc.where("gaurdian1phone", isEqualTo: guardianPhone);
 
       var res = await s.get();
       List<UserRegistrationModel> mylist=[];

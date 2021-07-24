@@ -13,7 +13,7 @@ class StudentBasicFormModelListBloc extends Bloc<StudentBasicFormModelListEvent,
     if (event is StudentSearchEvent) {
       yield IsBusy();
       try {
-        List<UserRegistrationModel> users = await mrepository.getUserWithOneOf(
+        List<UserRegistrationModel> users = await UserRegistrationGateway.getUserWithOneOf(
           cardNum: event.card,
           phone: event.phone,
           guardianPhone: event.guardianPhone,

@@ -47,15 +47,16 @@ class IsReadyForDetailsPage extends SessionRegistrationState {
     @required this.activeSessions,
     @required this.offeringModelGroup,
     @required this.userSessionRegModel,
+    @required this.gradelist
   });
 
   final String detailstype; //create or update
   final String entityid;
   final String entitytype;
-
+  final List<String> gradelist;
   final bool update;
-  final List<VirtualRoomModelNewFormat> virtualRoomList;
-  final List<FeePlanModel> feePlanList;
+  final Future<List<String>> Function(String grade) virtualRoomList;
+  final Future<List<FeePlanModel>> Function(String grade) feePlanList;
   final List<PaymentPeriodInfo> paymentPeriods;
   final List<OfferingWeeklySchedule> offeringScheduleList;
   final List<String> activeSessions;

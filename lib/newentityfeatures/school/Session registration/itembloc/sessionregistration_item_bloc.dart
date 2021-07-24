@@ -45,6 +45,7 @@ class SessionRegistrationBloc
           activeSessions: ud.activeSessions,
           offeringModelGroup: ud.offeringModelGroup,
           userSessionRegModel: ud.userSessionRegModel,
+          gradelist: ud.gradelist
         );
       else if (ud.errortype == 1)
         yield HasLogicalFaliur(error: ud.error);

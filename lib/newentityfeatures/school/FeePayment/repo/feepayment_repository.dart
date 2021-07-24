@@ -64,15 +64,16 @@ class FeePaymentRepository {
       cardNum,
     );
 
-    List<FeePlanModel> feePlanModels = await FeePlanGateway.getFeePlanList(
-      serviceID: entityid,
+    FeePlanModel feePlan = await FeePlanGateway.getFeePlanById(
+      serviceID: entityid,entitytype: entitytype,feeplanname: userSession.feePLan
     );
-    FeePlanModel feePlan;
-    feePlanModels?.forEach((feePlanModel) {
-      if (feePlanModel.feePlanName == user.feePLan) {
-        feePlan = feePlanModel;
-      }
-    });
+//     FeePlanModel feePlan;
+//     feePlanModels?.forEach((feePlanModel) {
+//       if (feePlanModel.feePlanName == user.feePLan) {
+//         feePlan = feePlanModel;
+//       }
+//     });
+
 
     myreturn.itemlist = filteredUsersRegFee;
     myreturn.startPeriod = userSession.startPeriod;

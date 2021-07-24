@@ -11,7 +11,7 @@ class EntryLogsListBloc extends Bloc<EntryLogsListEvent, EntryLogsListState> {
     if (event is GetListData) {
       yield IsBusy();
       EntryLogsRepositoryReturnData ud =
-          await mrepository.getInitialData(event.entitytype, event.entityid);
+          await mrepository.getAllEntryLogss(event.entitytype, event.entityid);
 
       if (ud.errortype == -1)
         yield IsListDataLoaded(listdata: ud.itemlist);

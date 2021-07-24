@@ -1,5 +1,3 @@
-
-
 import 'package:complex/common/helputil.dart';
 import 'package:complex/data/repositories/user_repository.dart';
 import 'package:complex/newentityfeatures/Models/CommonGenericModel.dart';
@@ -28,7 +26,6 @@ class EntryLogsRepositoryReturnData {
 }
 
 class EntryLogsRepository {
-
   UserRepository _userRepository = HelpUtil.getUserRepository();
   UserModel get _user => _userRepository.getUser();
 
@@ -40,13 +37,13 @@ class EntryLogsRepository {
     myreturn.itemlist = await EntryLogGateway.getEntryLogListGateway(
       entitytype: entitytype,
       entityid: entityid,
-
     );
     // myreturn.itemlist = await _complexRepository.getQrModel(
     //   entitytype: entitytype,
     //   entityid: entityid,
     //   qrcode: qrcode,
     // );
+    myreturn.errortype=-1;
 
     return myreturn;
   }
