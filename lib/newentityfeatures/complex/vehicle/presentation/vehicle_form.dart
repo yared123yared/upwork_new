@@ -475,7 +475,7 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
                       _floorNum.text != null &&
                       _floorNum.text.isNotEmpty &&
                       selectedUnitOcupant != null,
-                  controller: _residentowner,
+                  controller: _unitNumber,
                   //initialValue: widget?.serviceRequestModel?.unitId,
                   loadData: () async => ownerresident,
                   displayName: (x) => x,
@@ -484,10 +484,24 @@ class _VehicleModelFormState extends State<VehicleModelForm> {
                   ),
                   onSelected: (value, index) {
                     setState(() {
-                      if(value == "ForOwner")
-                        _unitNumber.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_o" ;
-                      if(value == "ForResident")
-                        _unitNumber.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_r" ;
+                      String unitNumber;
+                      if (value == "ForOwner") {
+                        unitNumber = _building.text +
+                            "@" +
+                            _floorNum.text +
+                            "@" +
+                            _justunitcontroller.text +
+                            "_o";
+                      }
+                      if (value == "ForResident") {
+                        unitNumber = _building.text +
+                            "@" +
+                            _floorNum.text +
+                            "@" +
+                            _justunitcontroller.text +
+                            "_r";
+                      }
+                      _unitNumber.text = unitNumber;
                     });
                   },
                 ),
