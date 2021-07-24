@@ -40,6 +40,16 @@ class IsDeleted extends UnitModelListState {
   List<Object> get props => [];
 }
 
+class IsBuildingListDataLoaded extends UnitModelListState {
+  IsBuildingListDataLoaded({
+    @required this.oul,
+  });
+  final OccupiedUnitLookupModel oul;
+
+  @override
+  List<Object> get props => [oul];
+}
+
 class IsSearchParaLoaded extends UnitModelListState {
   IsSearchParaLoaded(
       {@required this.gradelist,
@@ -51,4 +61,18 @@ class IsSearchParaLoaded extends UnitModelListState {
   @override
   List<Object> get props =>
       [gradelist, sessiontermlist, offeringModelGroupfunc];
+}
+
+class IsSearchedListDataLoaded extends UnitModelListState {
+  IsSearchedListDataLoaded({
+    @required this.listdata,
+  });
+
+  final List<UnitModel> listdata;
+  // final List<String> roles;
+  // final String buildingType;
+  // final bool isOwner;
+  // final List<String> availablefortenantunits;
+  @override
+  List<Object> get props => [listdata];
 }

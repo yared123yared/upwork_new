@@ -13,6 +13,20 @@ class getPreData extends UnitModelListEvent {
   List<Object> get props => [entityid, entitytype];
 }
 
+class getListDataByBuildingAndFloor extends UnitModelListEvent {
+  final String entityid;
+  final String entitytype;
+  final String buildingid;
+  final int floor;
+  getListDataByBuildingAndFloor(
+      {@required this.entityid,
+      @required this.entitytype,
+      @required this.buildingid,
+      @required this.floor});
+  @override
+  List<Object> get props => [entityid, entitytype];
+}
+
 //to get listdata
 class getListData extends UnitModelListEvent {
   final String entityid;

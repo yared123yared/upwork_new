@@ -1,5 +1,7 @@
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 import 'package:complex/newentityfeatures/Models/entry_logs_model.dart';
+import 'package:complex/newentityfeatures/Models/school_owner_model.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
@@ -23,18 +25,27 @@ class EntryLogsListList extends StatefulWidget {
 
 class _EntryLogsListListState extends State<EntryLogsListList> {
   listbloc.EntryLogsListBloc mlistbloc;
-  CustomTextFieldController _grade = CustomTextFieldController();
-  CustomTextFieldController _sessionterm = CustomTextFieldController();
-  CustomTextFieldController _offering = CustomTextFieldController();
-
+  CustomTextFieldController _building = CustomTextFieldController();
+  CustomTextFieldController _floorNum = CustomTextFieldController();
+  CustomTextFieldController _justunitcontroller = CustomTextFieldController();
+  CustomTextFieldController _residentowner = CustomTextFieldController();
+  CustomTextFieldController _staffcomtroller = CustomTextFieldController();
   List<String> gradelist;
+  OccupiedUnitLookupModel oul;
+  List<UnitOccupants> unitlist;
   List<String> sessionterm;
   Future<List<String>> offeringgrouplist;
+  List<int> floors;
   List<EntryLogModel> em;
+  List<String> ownerresident;
+  SchoolOwner selectedStaff;
+  List<SchoolOwner> stafflist;
+  UnitOccupants selectedUnitOcupant;
+  String _search;
   Future<List<String>> Function(String, String) offeringModelGroupfunc;
   void initState() {
     mlistbloc = listbloc.EntryLogsListBloc();
-    mlistbloc.add(listbloc.GetPreData(
+    mlistbloc.add(listbloc.GetListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }
 
@@ -73,7 +84,9 @@ class _EntryLogsListListState extends State<EntryLogsListList> {
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
         title: "${item.logID ?? ''} ${item.entrytype ?? ""}",
-        subtitle: "logged in security: ${item.loggedInSecurity}",
+        tittleH1: "${item.unitaddress}",
+        tittleH2: "${item.timeDate}",
+        // subtitle: "logged in security: ${item.loggedInSecurity}",
         tapAction: () {
           Navigator.push(
             context,
@@ -202,42 +215,133 @@ class _EntryLogsListListState extends State<EntryLogsListList> {
             child: ExpansionTile(
               title: Text("Select Parameters To Search"),
               children: [
-                CustomDropDownList<String>(
-                  loadData: () async => sessionterm,
-                  shouldReload: true,
-                  displayName: (x) => x,
-                  controller: _sessionterm,
-                  title: "SessionTerm",
-                ),
-                CustomDropDownList<String>(
-                  loadData: () async => gradelist,
-                  shouldReload: true,
-                  displayName: (x) => x,
-                  controller: _grade,
-                  title: "Select Grade",
-                  onSelected: (item, index) => setState(() {
-                    offeringgrouplist =
-                        offeringModelGroupfunc(item, widget.entityid);
-                  }),
-                ),
-                CustomDropDownList<String>(
-                    loadData: () async =>
-                        offeringgrouplist == null ? [] : offeringgrouplist,
-                    shouldReload: true,
-                    displayName: (x) => x,
-                    controller: _offering,
-                    title: "Select Offering Group",
-                    onSelected: (item, index) {
-                      if (item != null && item.length > 0) {
+                Column(
+                  children: [
+                    RadioListTile(
+                      value: "Staff",
+                      title: Text("Search by Staff"),
+                      groupValue: _search,
+                      onChanged: (value) {
                         setState(() {
-                          mlistbloc.add(listbloc.GetListDataWithSearchParameter(
-                              entitytype: widget.entitytype,
-                              entityid: widget.entityid,
-                              offeringmodelgroupname: item,
-                              sessionterm: _sessionterm.text));
+                          _search = value;
                         });
-                      }
-                    }),
+                      },
+                    ),
+                    RadioListTile(
+                      value: "Unit",
+                      title: Text("Search by Unit"),
+                      groupValue: _search,
+                      onChanged: (value) {
+                        setState(() {
+                          _search = value;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                if (_search == "Unit") ...[
+                  CustomDropDownList<String>(
+                    title: "Building Name",
+                    controller: _building,
+                    loadData: () async => oul.buildinglist,
+                    displayName: (x) => x,
+                    validate: Validate.withOption(isRequired: true),
+                    onSelected: (value, index) {
+                      setState(() {
+                        _building.text = value;
+                        floors = oul.floormap.containsKey(value)
+                            ? oul.floormap[value]
+                            : [];
+                      });
+                    },
+                  ),
+                  CustomDropDownList<int>(
+                    enabled:
+                        _building.text != null && _building.text.isNotEmpty,
+                    loadData: () async => floors,
+                    shouldReload: true,
+                    displayName: (x) => x.toString(),
+                    title: "Floor Number",
+                    controller: _floorNum,
+                    validate: Validate.withOption(isRequired: true),
+                    onSelected: (floor, index) {
+                      setState(() {
+                        _floorNum.text = floor.toString();
+                        String buildingfloor =
+                            _building.text + "@" + _floorNum.text;
+                        unitlist = oul.occupiedunits.containsKey(buildingfloor)
+                            ? oul.occupiedunits[buildingfloor]
+                            : [];
+                      });
+                    },
+                  ),
+                  CustomDropDownList<UnitOccupants>(
+                    title: "Unit Address",
+                    enabled: _building.text != null &&
+                        _building.text.isNotEmpty &&
+                        _floorNum != null &&
+                        _floorNum.text.isNotEmpty,
+                    controller: _justunitcontroller,
+                    //initialValue: widget?.serviceRequestModel?.unitId,
+                    loadData: () async => unitlist,
+                    displayName: (x) => x.unitaddress,
+                    validate: Validate.withOption(
+                      isRequired: true,
+                    ),
+                    onSelected: (value, index) {
+                      setState(() {
+                        selectedUnitOcupant = value;
+                        ownerresident = [];
+                        if (selectedUnitOcupant.hasowner)
+                          ownerresident.add("ForOwner");
+
+                        if (selectedUnitOcupant.hasresident)
+                          ownerresident.add("ForResident");
+                      });
+                    },
+                  ),
+                  CustomDropDownList<String>(
+                    title: "Owner/Resident",
+                    enabled: _building.text != null &&
+                        _building.text.isNotEmpty &&
+                        _floorNum.text != null &&
+                        _floorNum.text.isNotEmpty &&
+                        selectedUnitOcupant != null,
+                    controller: _residentowner,
+                    //initialValue: widget?.serviceRequestModel?.unitId,
+                    loadData: () async => ownerresident,
+                    displayName: (x) => x,
+                    validate: Validate.withOption(
+                      isRequired: true,
+                    ),
+                    onSelected: (value, index) {
+                      setState(() {
+                        /*
+                      if(value == "ForOwner")
+                        _unitAddress.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_o" ;
+                      if(value == "ForResident")
+                        _unitAddress.text= _building.text + "@" + _floorNum.text + "@" + _justunitcontroller.text + "_r" ;
+
+                    */
+                      });
+                    },
+                  ),
+                ],
+                if (_search == "Staff")
+                  CustomDropDownList<SchoolOwner>(
+                    title: "Staff",
+                    controller: _staffcomtroller,
+                    loadData: () async => stafflist ?? [],
+                    displayName: (x) => x?.display ?? "",
+                    validate: Validate.withOption(
+                      isRequired: true,
+                    ),
+                    onSelected: (value, index) {
+                      setState(() {
+                        selectedStaff = value;
+                      });
+                    },
+                  ),
               ],
             ),
           ),

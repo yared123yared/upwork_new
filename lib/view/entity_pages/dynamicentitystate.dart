@@ -501,8 +501,6 @@ class UiEntityPageStateList {
     //panelmem.add(DynamicEntityGridState.MyAppointmentServiceProvider);
     //panelmem.add(DynamicEntityGridState.MyAppointmentMembersView);
     // panelmem.add(DynamicEntityGridState.Appointment_Products);
-
-
   }
 
   static List<DynamicEntityGridState> fillStaffPanelService() {
@@ -557,6 +555,7 @@ class UiEntityPageStateList {
     panelmem.add(DynamicEntityGridState.ComplexQRScan);
     panelmem.add(DynamicEntityGridState.newVehicle);
     panelmem.add(DynamicEntityGridState.securityservicerequest);
+    panelmem.add(DynamicEntityGridState.newEntryLogs);
     return panelmem;
   }
 
@@ -1343,7 +1342,6 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'neweventpage',
             tapAction: () async {
-
               UserRepository _userRepository = Get.find();
 
               String entityid = getCurEntity().entityid;
@@ -1379,8 +1377,6 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newparentattendanceinfopage',
             tapAction: () async {
-
-
               String entityid = getCurEntity().entityid;
 
               Future<List<VrAssignmentModel>> vrAssignmentGetter({
@@ -1422,8 +1418,6 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newparentprogressinfopage',
             tapAction: () async {
-
-
               String entityid = getCurEntity().entityid;
 
               Future<List<VrAssignmentModel>> vrAssignmentGetter({
@@ -1465,8 +1459,6 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newparenteventinfopage',
             tapAction: () async {
-
-
               String entityid = getCurEntity().entityid;
 
               Future<List<VrAssignmentModel>> vrAssignmentGetter({
@@ -1508,8 +1500,6 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newparentassignmentscoreinfopage',
             tapAction: () async {
-
-
               String entityid = getCurEntity().entityid;
 
               Future<List<VrAssignmentModel>> vrAssignmentGetter({
@@ -1551,8 +1541,6 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newparentassignmentslistinfopage',
             tapAction: () async {
-
-
               String entityid = getCurEntity().entityid;
 
               Future<List<VrAssignmentModel>> vrAssignmentGetter({
@@ -1594,7 +1582,6 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newprogresspage',
             tapAction: () async {
-
               UserRepository _userRepository = HelpUtil.getUserRepository();
 
               String entityid = getCurEntity().entityid;
@@ -1647,7 +1634,6 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'newattendancepage',
             tapAction: () async {
-
               UserRepository _userRepository = HelpUtil.getUserRepository();
 
               String entityid = getCurEntity().entityid;
@@ -1859,9 +1845,12 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Pet/FarmAnimals',
             tapAction: () {
-              EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.pet(),entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,isService:false,origin:1);
+              EcomNavigationHelper.of(context).toListPage(
+                  type: EcomProductType.pet(),
+                  entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,
+                  isService: false,
+                  origin: 1);
             });
         break;
       case DynamicEntityGridState.classifiedjob:
@@ -1869,9 +1858,12 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Job',
             tapAction: () {
-              EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.job(),entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,isService:false,origin:1);
+              EcomNavigationHelper.of(context).toListPage(
+                  type: EcomProductType.job(),
+                  entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,
+                  isService: false,
+                  origin: 1);
             });
         break;
       case DynamicEntityGridState.classifiedvehicle:
@@ -1879,9 +1871,12 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Vehicle',
             tapAction: () {
-              EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.vehicle(),entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,isService:false,origin:1);
+              EcomNavigationHelper.of(context).toListPage(
+                  type: EcomProductType.vehicle(),
+                  entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,
+                  isService: false,
+                  origin: 1);
             });
         break;
       case DynamicEntityGridState.brokerclassifiedvehicle:
@@ -1889,9 +1884,12 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Vehicle',
             tapAction: () {
-              EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.vehicle(),entitytype: getCurEntity().entitytype,
-                entityid: getCurEntity().entityid,isService:false,origin:1);
+              EcomNavigationHelper.of(context).toListPage(
+                  type: EcomProductType.vehicle(),
+                  entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,
+                  isService: false,
+                  origin: 1);
             });
         break;
 
@@ -1900,9 +1898,12 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Real Estate',
             tapAction: () {
-              EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,isService:false,origin:1);
+              EcomNavigationHelper.of(context).toListPage(
+                  type: EcomProductType.realEstate(),
+                  entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,
+                  isService: false,
+                  origin: 1);
             });
         break;
       case DynamicEntityGridState.classifiedrealestate:
@@ -1911,12 +1912,15 @@ class UiSchoolHandler {
             title: 'Real Estate',
             tapAction: () {
               EcomNavigationHelper.of(context)
-                 // .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype, //79gE5SnVjQPtQ2weFsncv19TWrY2
-                 // entityid: getCurEntity().entityid,isService:false,origin:1);
-              .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype, //79gE5SnVjQPtQ2weFsncv19TWrY2
-              entityid: getCurEntity().entityid,isService:false,origin:1);
-
-
+                  // .toListPage(type: EcomProductType.realEstate(),entitytype: getCurEntity().entitytype, //79gE5SnVjQPtQ2weFsncv19TWrY2
+                  // entityid: getCurEntity().entityid,isService:false,origin:1);
+                  .toListPage(
+                      type: EcomProductType.realEstate(),
+                      entitytype: getCurEntity()
+                          .entitytype, //79gE5SnVjQPtQ2weFsncv19TWrY2
+                      entityid: getCurEntity().entityid,
+                      isService: false,
+                      origin: 1);
             });
         break;
 
@@ -1942,9 +1946,12 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Shop Product',
             tapAction: () {
-              EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.product(),entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,isService:false,origin:2);
+              EcomNavigationHelper.of(context).toListPage(
+                  type: EcomProductType.product(),
+                  entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,
+                  isService: false,
+                  origin: 2);
             });
         break;
       case DynamicEntityGridState.classifiedproduct:
@@ -1952,9 +1959,12 @@ class UiSchoolHandler {
             icon: Icons.import_contacts,
             title: 'Classified Product',
             tapAction: () {
-              EcomNavigationHelper.of(context)
-                  .toListPage(type: EcomProductType.product(),entitytype: getCurEntity().entitytype,
-                  entityid: getCurEntity().entityid,isService:false,origin:1);
+              EcomNavigationHelper.of(context).toListPage(
+                  type: EcomProductType.product(),
+                  entitytype: getCurEntity().entitytype,
+                  entityid: getCurEntity().entityid,
+                  isService: false,
+                  origin: 1);
             });
         break;
       case DynamicEntityGridState.neworder:

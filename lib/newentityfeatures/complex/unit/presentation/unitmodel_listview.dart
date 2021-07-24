@@ -1,6 +1,9 @@
 import 'package:complex/common/widgets/common_list_tile.dart';
+import 'package:complex/common/widgets/custom_action_button.dart';
 import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
+import 'package:complex/newentityfeatures/Models/building_model.dart';
+import 'package:complex/newentityfeatures/Models/common/common_models/common_model.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
@@ -26,13 +29,12 @@ class UnitModelListList extends StatefulWidget {
 
 class _UnitModelListListState extends State<UnitModelListList> {
   listbloc.UnitModelListBloc mlistbloc;
-  CustomTextFieldController _grade = CustomTextFieldController();
-  CustomTextFieldController _sessionterm = CustomTextFieldController();
-  CustomTextFieldController _offering = CustomTextFieldController();
+  CustomTextFieldController _building = CustomTextFieldController();
+  CustomTextFieldController _floor = CustomTextFieldController();
+  OccupiedUnitLookupModel oul;
 
-  List<String> gradelist;
-  List<String> sessionterm;
-  Future<List<String>> offeringgrouplist;
+  List<BuildingModel> buildings = [];
+  List<int> floors = [];
   List<UnitModel> em;
   // List<BuildingModel> buildingList;
 
@@ -43,6 +45,8 @@ class _UnitModelListListState extends State<UnitModelListList> {
   void initState() {
     super.initState();
     mlistbloc = listbloc.UnitModelListBloc();
+    mlistbloc.add(listbloc.getPreData(
+        entitytype: widget.entitytype, entityid: widget.entityid));
     mlistbloc.add(listbloc.getListData(
         entitytype: widget.entitytype, entityid: widget.entityid));
   }
@@ -153,11 +157,16 @@ class _UnitModelListListState extends State<UnitModelListList> {
               doreload(true);
             }
 
-            if (state is listbloc.IsSearchParaLoaded) {
+            // if (state is listbloc.IsSearchParaLoaded) {
+            //   setState(() {
+            //     gradelist = state.gradelist;
+            //     sessionterm = state.sessiontermlist;
+            //     offeringModelGroupfunc = state.offeringModelGroupfunc;
+            //   });
+            // }
+            if (state is listbloc.IsBuildingListDataLoaded) {
               setState(() {
-                gradelist = state.gradelist;
-                sessionterm = state.sessiontermlist;
-                offeringModelGroupfunc = state.offeringModelGroupfunc;
+                oul = state.oul;
               });
             }
             if (state is listbloc.IsListDataLoaded) {
@@ -198,14 +207,26 @@ class _UnitModelListListState extends State<UnitModelListList> {
             if (state is listbloc.IsDeleted) {
               return Center(child: Text("Deleted item"));
             }
-            if (state is listbloc.IsSearchParaLoaded) {
-              return _blocBuilder(context);
+            // if (state is listbloc.IsSearchParaLoaded) {
+            //   List<UnitModel> em = state.;
+
+            //   return _blocBuilder(context,em);
+            // }
+            if (state is listbloc.IsSearchedListDataLoaded) {
+              List<UnitModel> em = state.listdata;
+
+              state.listdata;
+              List<BuildingModel> bm = [];
+
+              return _blocBuilder(context, em);
             }
 
             if (state is listbloc.IsListDataLoaded) {
-              return _blocBuilder(context);
+              List<UnitModel> em = state.listdata;
+              return _blocBuilder(context, em);
+            } else {
+              return Center(child: Text('Empty'));
             }
-            return Center(child: Text('Empty'));
           })),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () async {
@@ -217,7 +238,7 @@ class _UnitModelListListState extends State<UnitModelListList> {
     );
   }
 
-  Widget _blocBuilder(context) {
+  Widget _blocBuilder(context, List<UnitModel> em) {
     return CustomScrollView(
       shrinkWrap: true,
       slivers: [
@@ -227,84 +248,63 @@ class _UnitModelListListState extends State<UnitModelListList> {
             child: ExpansionTile(
               title: Text("Select Parameters To Search"),
               children: [
-                CustomDropDownList<String>(
-                  loadData: () async => sessionterm,
-                  shouldReload: true,
-                  displayName: (x) => x,
-                  controller: _sessionterm,
-                  title: "SessionTerm",
+                CustomDropDownList(
+                  controller: _building,
+                  title: "Building",
+                  displayName: (data) => data,
+                  loadData: () async => oul.buildinglist,
+                  onSelected: (value, index) {
+                    setState(() {
+                      // floors = blist[value].keys.toList();
+                      floors = oul.floormap[value];
+                    });
+                  },
                 ),
-                CustomDropDownList<String>(
-                  loadData: () async => gradelist,
-                  shouldReload: true,
-                  displayName: (x) => x,
-                  controller: _grade,
-                  title: "Select Grade",
-                  onSelected: (item, index) => setState(() {
-                    offeringgrouplist =
-                        offeringModelGroupfunc(item, widget.entityid);
-                  }),
+                CustomDropDownList(
+                  title: "Floor Number",
+                  controller: _floor,
+                  displayName: (data) => data.toString(),
+                  loadData: () async => floors,
                 ),
-                CustomDropDownList<String>(
-                    loadData: () async =>
-                        offeringgrouplist == null ? [] : offeringgrouplist,
-                    shouldReload: true,
-                    displayName: (x) => x,
-                    controller: _offering,
-                    title: "Select Offering Group",
-                    onSelected: (item, index) {
-                      if (item != null && item.length > 0) {
-                        setState(() {
-                          mlistbloc.add(listbloc.getListDataWithSearchParameter(
-                              entitytype: widget.entitytype,
-                              entityid: widget.entityid,
-                              offeringmodelgroupname: item,
-                              sessionterm: _sessionterm.text));
-                        });
+                CustomActionButton(
+                    title: "Get Units",
+                    onTap: () {
+                      if (_floor.text.isEmpty || _building.text.isEmpty) {
+                        EasyLoading.showToast(
+                            "Please fill the parameters to do the search",
+                            duration: Duration(seconds: 2));
                       }
+
+                      BlocProvider.of<listbloc.UnitModelListBloc>(context).add(
+                        listbloc.getListDataByBuildingAndFloor(
+                          entityid: widget.entityid,
+                          entitytype: widget.entitytype,
+                          buildingid: _building.text,
+                          floor: int.parse(_floor.text),
+                        ),
+                      );
+
+                      // BlocProvider.of<listbloc.UnitModelListBloc>(context).add(
+                      //   listbloc.getListDataByBuildingAndFloor(
+                      //     entityid: widget.entityid,
+                      //     entitytype: widget.entitytype,
+                      //     buildingid: _building.text,
+                      //     floor: int.parse(_floor.text),
+                      //   ),
+                      // );
                     }),
               ],
             ),
           ),
         ),
         // list?.entries != null
-        SliverList(
-          delegate: SliverChildListDelegate(
-            list.entries
-                .map<Widget>(
-                  (e) => expanded(
-                    Text("Building: ${e.key}"),
-                    e.value.entries
-                        .map<Widget>((floor) => expanded(
-                            Text("Floor: ${floor.key}"),
-                            [
-                              CommonListPage(
-                                canSearch: false,
-                                updateAction: null,
-                                appBarTitle: "Class Period List",
-                                dynamicListState: "Class Period List",
-                                listItems: em != null
-                                    ? toCommonListState(
-                                        floor.value.toList(),
-                                        context,
-                                      )
-                                    : [],
-                              ),
-                            ],
-                            // floor.value
-                            //         ?.map<Widget>((model) => CommonListTile(
-                            //               listState: model,
-                            //             ))
-                            //         ?.toList() ??
-                            //     [],
-                            floor.key == e.value.keys.first))
-                        .toList(),
-                    e.key == list.keys.first,
-                  ),
-                )
-                .toList(),
-          ),
-        )
+        SliverToBoxAdapter(
+            child: CommonListPage(
+                canSearch: false,
+                updateAction: null,
+                appBarTitle: "Attach Assignment List",
+                dynamicListState: "Attach Assignment List",
+                listItems: em != null ? toCommonListState(em, context) : [])),
         // SliverToBoxAdapter(
         //     child: CommonListPage(
         //         canSearch: false,
