@@ -287,7 +287,7 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
           }
           return Center(child: Text('Empty'));
         })),
-        floatingActionButton: isAllPaid
+        floatingActionButton: !isAllPaid
             ? FloatingActionButton.extended(
                 onPressed: () async {
                   addButtonActions(context: context);
