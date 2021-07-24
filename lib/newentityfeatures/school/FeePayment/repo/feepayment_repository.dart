@@ -43,19 +43,8 @@ class FeePaymentRepository {
       idcardnum: cardNum,
       session: sessionTerm,
     );
-
-    UserSessionRegModel user =
-        await UserSessionRegGateway.getUserSessionRegModel(
-      entityid,
-      sessionTerm,
-      cardNum,
-    );
-
-    List<UserRegFeeCollectionModel> filteredUsersRegFee = [];
-    usersRegFee.forEach((element) {
-      if (element.idCardNum == cardNum && element.sessionTerm == sessionTerm)
-        filteredUsersRegFee.add(element);
-    });
+    usersRegFee = await UserFeeCollectionGateWay.getUserFeeCollectionList(
+        serviceID: entityid);
 
     UserSessionRegModel userSession =
         await UserSessionRegGateway.getUserSessionRegModel(
@@ -65,18 +54,12 @@ class FeePaymentRepository {
     );
 
     FeePlanModel feePlan = await FeePlanGateway.getFeePlanById(
-      serviceID: entityid,entitytype: entitytype,feeplanname: userSession.feePLan
-    );
-//     FeePlanModel feePlan;
-//     feePlanModels?.forEach((feePlanModel) {
-//       if (feePlanModel.feePlanName == user.feePLan) {
-//         feePlan = feePlanModel;
-//       }
-//     });
+        serviceID: entityid,
+        entitytype: entitytype,
+        feeplanname: userSession?.feePLan ?? usersRegFee.first.feePlaneName);
 
-
-    myreturn.itemlist = filteredUsersRegFee;
-    myreturn.startPeriod = userSession.startPeriod;
+    myreturn.itemlist = usersRegFee;
+    myreturn.startPeriod = userSession?.startPeriod;
     myreturn.feePlan = feePlan;
     myreturn.errortype = -1;
 

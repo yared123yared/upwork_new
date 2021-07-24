@@ -95,10 +95,12 @@ class _StudentBasicFormModelListListState
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: "${item.name ?? ''} ${item.feePlan ?? ""}",
-        tittleH1: "Age: ${item.isAdult}",
-        tittleH2: "Guardian 1: ${item.guardian1name}",
-        tittleH3: "Guardian 2: ${item.guardian2name}",
+        title: "${item?.name ?? ''} ${item?.feePlan ?? ""}",
+        tittleH1: "Age: ${item?.isAdult}",
+        tittleH2: "Guardian 1: ${item?.guardian1name}",
+        tittleH3: item.guardian2name != null
+            ? "Guardian 2: ${item.guardian2name}"
+            : null,
         tapAction: () {
           Navigator.push(
             context,

@@ -108,8 +108,8 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
                 ? "${listItems[index].paymentPeriodName ?? ''}"
                 : "${feePlanItems[index].paymentPeriodName ?? ''}",
             tittleH1: numPeriodsDefined > index
-                ? "${listItems[index].periodStartDay ?? ''} to ${listItems[index].periodEndDay ?? ''}"
-                : "${feePlanItems[index].startDate ?? ''} to ${feePlanItems[index].endDate ?? ''}",
+                ? "${dateFormatted(listItems[index].periodStartDay) ?? ''} to ${dateFormatted(listItems[index].periodEndDay) ?? ''}"
+                : "${dateFormatted(feePlanItems[index].startDate) ?? ''} to ${dateFormatted(feePlanItems[index].endDate) ?? ''}",
             trailingTitle: numPeriodsDefined > index
                 ? listItems[index].closed
                     ? "Closed\n${item.totalpaymentmade}\$"
@@ -251,7 +251,9 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
               List<FeeData> feeDataList = [];
               bool hasEncounteredStartPeriod = false;
               feePlan.feeData.forEach((feeData) {
-                if (state.startPeriod == feeData.paymentPeriodName) {
+                if (state.startPeriod == null) {
+                  hasEncounteredStartPeriod = true;
+                } else if (state.startPeriod == feeData.paymentPeriodName) {
                   hasEncounteredStartPeriod = true;
                 }
                 if (hasEncounteredStartPeriod == true) {
@@ -323,4 +325,23 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
   }
 
   void OnSelectedAction(String item, int index) {}
+
+  String dateFormatted(DateTime date) {
+    String month;
+    switch(date.month) {
+      case 1: month = "Jan"; break;
+      case 2: month = "Feb"; break;
+      case 3: month = "Mar"; break;
+      case 4: month = "Apr"; break;
+      case 5: month = "May"; break;
+      case 6: month = "Jun"; break;
+      case 7: month = "Jul"; break;
+      case 8: month = "Aug"; break;
+      case 9: month = "Sept"; break;
+      case 10: month = "Oct"; break;
+      case 11: month = "Nov"; break;
+      case 12: month = "Dec"; break;
+    }
+    return "${month}, ${date.year}";
+  }
 }

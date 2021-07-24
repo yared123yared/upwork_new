@@ -86,14 +86,12 @@ class _OfferingWeeklyScheduleListListState
           (item.tue != null ? " Tue" : "") +
           (item.fri != null ? " Fri" : "") +
           (item.sat != null ? " Sat" : "");
-      days.replaceAll(" ", ", ");
       _dynamicList.add(ListStateClass(
-        title: "${item.offeringgroupid ?? ''} ${item.grade ?? ""}",
-        // subtitle: "grade: ${item.grade}",
+        title: "${item.grade ?? ""}",
         tittleH1:
-            "Primary: ${item.primaryOwner.display.replaceAll("+_+", " ")}",
-        tittleH2: "Period Number: ${item.priodtype}",
-        tittleH3: "Section: ${item.grade}",
+            "Primary: ${item.primaryOwner.display.split("+")[0]}",
+        tittleH2: "Period: ${item.priodtype}",
+        tittleH3: "Section: ${item.roomname}",
         trailingTitle: days,
         tapAction: () {
           Navigator.push(
