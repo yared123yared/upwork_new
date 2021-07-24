@@ -85,13 +85,17 @@ class SessionRegistrationRepository {
 
     try {
       bool update = false;
+      List<String> gradelist =
+      await LookupGateway.getGradeList(serviceID: entityid);
+      Future<List<String>> Function(String grade) virtualRoomList =
+          (String grade) async => await OfferingsVrManagementGateway.getVirtualRoomsListForGrade(
+        entityid: entityid,
+        entitytype: entitytype,
+        grade: grade,
+      );
 
-      List<VirtualRoomModelNewFormat> virtualRoomList =
-          await OfferingsVrManagementGateway
-              .getVirtualRoomModelNewFormatList( entityid,"");
-
-      List<FeePlanModel> feePlanList =
-          await FeePlanGateway.getFeePlanList(serviceID: entityid);
+      Future<List<FeePlanModel>> Function(String grade) feePlanList =
+      (String grade) async =>  await FeePlanGateway.getFeePlanListByGrade(serviceID: entityid,entitytype: entitytype,grade: grade);
 
       List<PaymentPeriodInfo> paymentPeriods = await LookupGateway.getPaymentPeriodInfo(serviceID: entityid);
 
@@ -129,6 +133,7 @@ class SessionRegistrationRepository {
       gr.activeSessions = activeSessions;
       gr.offeringModelGroup = offeringModelGroup;
       gr.userSessionRegModel = userSessionRegModel;
+      gr.gradelist=gradelist;
 
       return gr;
     } catch (ex) {}
@@ -243,11 +248,12 @@ class SessionRegistrationRepository {
 
 class SessionRegistrationEntryData {
   bool update;
-  List<VirtualRoomModelNewFormat> virtualRoomList;
-  List<FeePlanModel> feePlanList;
+  Future<List<String>> Function(String grade) virtualRoomList;
+  Future<List<FeePlanModel>> Function(String grade) feePlanList;
   List<PaymentPeriodInfo> paymentPeriods;
   List<OfferingWeeklySchedule> offeringScheduleList;
   List<String> activeSessions;
+  List<String> gradelist;
   Future<List<OfferingModelGroup>> Function(String) offeringModelGroup;
   UserSessionRegModel userSessionRegModel;
 

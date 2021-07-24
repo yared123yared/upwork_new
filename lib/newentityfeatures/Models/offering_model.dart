@@ -15,6 +15,10 @@ class OfferingModelGroup extends Equatable {
   bool isindependent;
   String offeringgroupid;
 
+  String getValueStr()
+  {
+    return subject+", grp:"+group;
+  }
   OfferingModelGroup(
       {this.subject,
       this.grade,

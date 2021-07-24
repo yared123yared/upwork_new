@@ -50,6 +50,7 @@ class UserSessionRegModel {
   String virtualRoom;
   String docID;
   FeePlanModel feeplandata;
+  String grade;
 
   UserSessionRegModel({
     this.version,
@@ -59,6 +60,7 @@ class UserSessionRegModel {
     this.allocatedTransportCost,
     this.rollNumber,
     this.isActive,
+    this.grade,
     this.activeSession,
     this.allocatedTransportedRoute,
     this.feePLan,
@@ -79,6 +81,7 @@ class UserSessionRegModel {
     String feePLanPeriodType,
     String feePlanType,
     String house,
+    String grade,
     bool isActive,
     List<String> offeringsTaken,
     int rollNumber,
@@ -102,6 +105,7 @@ class UserSessionRegModel {
         version: version ?? this.version,
         virtualRoom: virtualRoom ?? this.virtualRoom,
         idCardNum: idCardNum ?? this.idCardNum,
+        grade:grade ?? this.grade,
         isActive: isActive ?? this.isActive);
   }
 
@@ -127,6 +131,7 @@ class UserSessionRegModel {
       } else {
         offeringSchedules = [];
       }
+      grade = json['grade'];
       isActive = json['isActive'];
       allocatedTransportCost = json['allocatedtransportcost'];
       allocatedTransportedRoute =
@@ -163,6 +168,7 @@ class UserSessionRegModel {
       "virtualroom": this.virtualRoom,
       "rollnumber": this.rollNumber,
       "offerings": this.offeringsTaken,
+      "grade":this.grade,
       "offeringsschedule": this
               .offeringSchedules
               ?.map((offeringSchedule) => offeringSchedule.toJson())

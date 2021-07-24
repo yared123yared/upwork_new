@@ -112,7 +112,7 @@ class FeePlanModelRepository {
 
     try {
       List<FeePlanModel> list =
-          await FeePlanGateway.getFeePlanList(serviceID: entityid);
+          await FeePlanGateway.getFeePlanList(serviceID: entityid,entitytype: entitytype);
       FeePlanModelRepositoryReturnData gr =
           new FeePlanModelRepositoryReturnData();
       gr.errortype = -1;
@@ -128,7 +128,7 @@ class FeePlanModelRepository {
         FeePlanModelRepositoryReturnData();
     await FeePlanGateway.addNewFeePlan(
       serviceID: entityid,
-      feePlan: item,
+      feePlan: item,entitytype: entitytype
     );
     myreturn.errortype = -1;
     return myreturn;
@@ -139,7 +139,7 @@ class FeePlanModelRepository {
     FeePlanModelRepositoryReturnData myreturn =
         FeePlanModelRepositoryReturnData();
     await FeePlanGateway.updateFeePlan(
-      serviceID: entityid,
+      serviceID: entityid,entitytype: entitytype,
       feePlan: item,
     );
     myreturn.errortype = -1;
@@ -168,7 +168,7 @@ class FeePlanModelRepository {
         FeePlanModelRepositoryReturnData();
 
     List<FeePlanModel> list =
-        await FeePlanGateway.getFeePlanList(serviceID: entityid);
+        await FeePlanGateway.getFeePlanList(serviceID: entityid,entitytype: entitytype);
 
     myreturn.errortype = -1;
     myreturn.itemlist = list;

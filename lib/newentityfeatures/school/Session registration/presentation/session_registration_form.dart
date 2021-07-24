@@ -56,18 +56,20 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
   CustomTextFieldController _house = CustomTextFieldController();
   CustomTextFieldController _applicableDiscount = CustomTextFieldController();
   CustomTextFieldController _rollNumber = CustomTextFieldController();
-
+  CustomTextFieldController _gradeController = CustomTextFieldController();
   bool _isActive = true;
   bool _isUpdate;
   bool _allocatedTransportRoute = false;
 
   ButtonState btnState;
-  List<VirtualRoomModelNewFormat> virtualRoomList;
-  List<FeePlanModel> feePlanList;
-  List<PaymentPeriodInfo> paymentPeriods;
+  Future<List<String>> virtualRoomList;
+  Future<List<FeePlanModel>> feePlanList;
+  List<FeeData> feedatapaymentPeriods;
   List<OfferingWeeklySchedule> offeringScheduleList;
+  List<OfferingModelGroup> offeringmodelgrouplist;
   List<String> activeSessions;
-  Future<List<OfferingModelGroup>> Function(String) offeringModelGroup;
+  List<String> gradelist;
+  Future<List<OfferingModelGroup>> Function(String) offeringModelGroupfunc;
 
   List<OfferingWeeklySchedule> _selectedOfferingSchedules = [];
 
@@ -76,6 +78,11 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
   FeePlanModel _selectedFeePlan;
 
   UserSessionRegModel userSessionRegModel;
+
+
+  Future<List<String>> Function(String grade) virtualroomfunc;
+  Future<List<FeePlanModel>> Function(String grade) feePlanListfunc;
+
 
   bool _validate() {
     return Validate.validateAll([
@@ -151,13 +158,13 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
 
             if (state is itembloc.IsReadyForDetailsPage) {
               _isUpdate = state.update;
-              virtualRoomList = state.virtualRoomList;
-              feePlanList = state.feePlanList;
-              paymentPeriods = state.paymentPeriods;
+              virtualroomfunc = state.virtualRoomList;
+              feePlanListfunc = state.feePlanList;
+
               offeringScheduleList = state.offeringScheduleList;
               activeSessions = state.activeSessions;
-              offeringModelGroup = state.offeringModelGroup;
-
+              offeringModelGroupfunc = state.offeringModelGroup;
+              gradelist=state.gradelist;
               userSessionRegModel = state.userSessionRegModel;
 
               _initFiledValue();
@@ -212,15 +219,6 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
                       ),
                     ),
                     CustomDropDownList<String>(
-                      title: "Virtual Room",
-                      controller: _virtualRoomController,
-                      loadData: () async => virtualRoomList
-                          .map((e) => e.virtualRoomName)
-                          .toList(),
-                      displayName: (x) => x,
-                      validate: Validate.withOption(isRequired: true),
-                    ),
-                    CustomDropDownList<String>(
                       title: "Active Session Term",
                       controller: _activeSession,
                       loadData: () async => activeSessions,
@@ -229,16 +227,43 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
                         isRequired: true,
                       ),
                     ),
+
+                    CustomDropDownList<String>(
+                      title: "Grade",
+                      controller: _gradeController,
+                      loadData: () async => gradelist,
+                      displayName: (x) => x,
+                      onSelected: (value, index) => setState(() {
+
+                        virtualRoomList=virtualroomfunc(value);
+                        feePlanList=feePlanListfunc(value);
+
+                        offeringModelGroupfunc(value).then(
+                                (value) =>  offeringmodelgrouplist = value);
+
+                      }),
+                      validate: Validate.withOption(isRequired: true),
+                    ),
+
+                    CustomDropDownList<String>(
+                      title: "Virtual Room",
+                      enabled: _gradeController.text !=null,
+                      controller: _virtualRoomController,
+                      loadData: () async => virtualRoomList,
+
+                      displayName: (x) => x,
+                      validate: Validate.withOption(isRequired: true),
+                    ),
                     CustomMultiSelect(
                       dialogType: MultiSelectDialogType.LIST,
                       buttonText: "Offering Schedule",
                       title: "Offering Schedules",
-                      items: offeringScheduleList
+                      items: offeringmodelgrouplist
                           .map(
-                            (offeringSchedule) =>
-                                MultiSelectItem<OfferingWeeklySchedule>(
-                              label: offeringSchedule.offeringgroupid,
-                              value: offeringSchedule,
+                            (va) =>
+                                MultiSelectItem<String>(
+                              label: va.getValueStr(),
+                              value: va.offeringgroupid,
                             ),
                           )
                           .toList(),
@@ -300,32 +325,18 @@ class _SessionRegistrationFormState extends State<SessionRegistrationForm> {
                           _selectedFeePlan = value;
                           _feePlanType.text = value.feePlanType;
                           _feePlanPeriodType.text = value.paymentPeriodType;
-
+                          feedatapaymentPeriods =value.feeData;
                           _startPeriod.text = '';
                         });
                       },
                       validate: Validate.withOption(isRequired: true),
                     ),
-                    CustomDropDownList<PeriodInfo>(
+                    CustomDropDownList<FeeData>(
                       title: "Start Period",
                       controller: _startPeriod,
                       shouldReload: true,
                       enabled: _selectedFeePlan != null,
-                      loadData: () async {
-                        var periods = paymentPeriods
-                            .where(
-                              (element) =>
-                                  element.grpName ==
-                                  _selectedFeePlan.paymentPeriodType,
-                            )
-                            .toList();
-
-                        if (periods.length > 0) {
-                          return periods.first.periodInfo;
-                        } else {
-                          return []; //todo remove
-                        }
-                      },
+                      loadData:()async => feedatapaymentPeriods,
                       displayName: (x) => x.paymentPeriodName,
                       validate: Validate.withOption(isRequired: true),
                     ),
