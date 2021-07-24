@@ -23,7 +23,7 @@ class _CommonListTileState extends State<CommonListTile> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: ColorConstants.primaryColor,
+      color: Colors.white,
       // color: Colors.white,
       elevation: 3,
       clipBehavior: Clip.antiAlias,
@@ -58,7 +58,7 @@ class _CommonListTileState extends State<CommonListTile> {
                 CircleAvatar(
                   radius: 30,
                   foregroundImage:
-                      AssetImage('assets/listViewIcons/EntryLogsIcon.png'),
+                      AssetImage('assets/listViewIcons/Buildingicon.png'),
                 )
               else if (widget.listState.iconpath != null)
                 CircleAvatar(
@@ -89,7 +89,7 @@ class _CommonListTileState extends State<CommonListTile> {
                             widget.listState.title ?? "Error",
                             style: TextStyle(
                               fontFamily: 'Merriweather',
-                              color: const Color.fromRGBO(228, 247, 243, 1),
+                              color: ColorConstants.primaryColor,
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
                             ),
@@ -103,7 +103,7 @@ class _CommonListTileState extends State<CommonListTile> {
                             widget.listState.tittleH1 ?? "Error",
                             style: TextStyle(
                               fontFamily: 'Merriweather',
-                              color: const Color.fromRGBO(228, 247, 243, 1),
+                              color: ColorConstants.primaryColor,
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                             ),
@@ -116,7 +116,7 @@ class _CommonListTileState extends State<CommonListTile> {
                             widget.listState.tittleH2 ?? "Error",
                             style: TextStyle(
                               fontFamily: 'Merriweather',
-                              color: const Color.fromRGBO(228, 247, 243, 1),
+                              color: ColorConstants.primaryColor,
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                             ),

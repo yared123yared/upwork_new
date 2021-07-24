@@ -90,7 +90,6 @@ class StudentItemPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => FeePaymentListList(
-                      // userRegistrationModel: userRegistrationModel,
                       entitytype: entitytype,
                       entityid: entityid,
                       cardNum: userRegistrationModel.idCardNum,

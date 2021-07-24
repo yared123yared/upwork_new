@@ -1,14 +1,33 @@
 part of 'bloc.dart';
 
-class UnitModelListBloc
-    extends Bloc<UnitModelListEvent, UnitModelListState> {
+class UnitModelListBloc extends Bloc<UnitModelListEvent, UnitModelListState> {
   UnitModelRepository mrepository = UnitModelRepository();
   UnitModelListBloc() : super(UnitModelListState());
+  NewComplexRepository _complexRepository = Get.find();
 
   @override
   Stream<UnitModelListState> mapEventToState(
     UnitModelListEvent event,
   ) async* {
+    if (event is getListDataByBuildingAndFloor) {
+      yield IsBusy();
+      UnitModelRepositoryReturnData ud =
+          await mrepository.getAllUnitBybuildingFloor(
+        event.entitytype,
+        event.entityid,
+        event.buildingid,
+        event.floor,
+      );
+
+      if (ud.errortype == -1)
+        yield IsSearchedListDataLoaded(
+          listdata: ud.itemlist,
+        );
+      else if (ud.errortype == 1)
+        yield HasLogicalFaliur(error: ud.error);
+      else
+        yield HasExceptionFaliur(error: ud.error);
+    }
     if (event is getListData) {
       yield IsBusy();
       UnitModelRepositoryReturnData ud =
@@ -24,20 +43,16 @@ class UnitModelListBloc
 
     if (event is getPreData) {
       yield IsBusy();
-      GenericLookUpDataUsedForRegistration ud = await mrepository
-          .getListFormPreLoadData(event.entitytype, event.entityid);
-
-      if (ud.errortype == -1)
-        yield IsSearchParaLoaded(
-            gradelist: ud.grades,
-            sessiontermlist: ud.sessionterm,
-            offeringModelGroupfunc: ud.offeringModelGroupfunc);
-      else if (ud.errortype == 1)
-        yield HasLogicalFaliur(error: ud.error);
-      else
-        yield HasExceptionFaliur(error: ud.error);
+      try {
+        OccupiedUnitLookupModel oul = await _complexRepository.getOccupiedUnits(
+          entitytype: event.entitytype,
+          entityid: event.entityid,
+        );
+        yield IsBuildingListDataLoaded(oul: oul);
+      } catch (e) {
+        yield HasExceptionFaliur(error: "Error has occured");
+      }
     }
-
     if (event is deleteItemWithData) {
       yield IsBusy();
       UnitModelRepositoryReturnData ud =

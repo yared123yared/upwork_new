@@ -38,7 +38,17 @@ class FeePaymentRepository {
 
     List<UserRegFeeCollectionModel> usersRegFee =
         await UserFeeCollectionGateWay.getPaymentDataForIDCardSessionTerm(
-      entitytype: entitytype,serviceID:entityid,idcardnum: cardNum,session:sessionTerm
+      entitytype: entitytype,
+      serviceID: entityid,
+      idcardnum: cardNum,
+      session: sessionTerm,
+    );
+
+    UserSessionRegModel user =
+        await UserSessionRegGateway.getUserSessionRegModel(
+      entityid,
+      sessionTerm,
+      cardNum,
     );
 
     List<UserRegFeeCollectionModel> filteredUsersRegFee = [];
@@ -57,6 +67,12 @@ class FeePaymentRepository {
     FeePlanModel feePlan = await FeePlanGateway.getFeePlanById(
       serviceID: entityid,entitytype: entitytype,feeplanname: userSession.feePLan
     );
+//     FeePlanModel feePlan;
+//     feePlanModels?.forEach((feePlanModel) {
+//       if (feePlanModel.feePlanName == user.feePLan) {
+//         feePlan = feePlanModel;
+//       }
+//     });
 
 
     myreturn.itemlist = filteredUsersRegFee;

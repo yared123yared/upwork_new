@@ -42,14 +42,29 @@ class UnitModelRepository {
       String entitytype, String entityid) async {
     UnitModelRepositoryReturnData myreturn = UnitModelRepositoryReturnData();
 
-
-
     myreturn.itemlist = await UnitGateway.getUnitList(
       entitytype: entitytype,
       entityid: entityid,
       // complexID: entityid,
       // user: _user,
     );
+
+    return myreturn;
+  }
+
+  Future<UnitModelRepositoryReturnData> getAllUnitBybuildingFloor(
+      String entitytype, String entityid, String buildingid, int floor) async {
+    UnitModelRepositoryReturnData myreturn = UnitModelRepositoryReturnData();
+
+    myreturn.itemlist = await UnitGateway.getUnitListForBuildingFloor(
+        entitytype: entitytype,
+        entityid: entityid,
+        buildingid: buildingid,
+        floor: floor
+        // complexID: entityid,
+        // user: _user,
+        );
+    myreturn.errortype = -1;
 
     return myreturn;
   }
@@ -113,7 +128,6 @@ class UnitModelRepository {
       entityid: entityid,
       // complexID: entityid,
       unitModel: item,
-
     );
     myreturn.errortype = -1;
     return myreturn;
@@ -122,12 +136,11 @@ class UnitModelRepository {
   Future<UnitModelRepositoryReturnData> updateUnitModel(
       UnitModel item, String entitytype, String entityid) async {
     UnitModelRepositoryReturnData myreturn = UnitModelRepositoryReturnData();
-    await  UnitGateway.updateUnit(
+    await UnitGateway.updateUnit(
       entitytype: entitytype,
       entityid: entityid,
       // complexID: entityid,
       unitModel: item,
-
     );
     myreturn.errortype = -1;
     return myreturn;
@@ -149,7 +162,6 @@ class UnitModelRepository {
       entityid: entityid,
       // complexID: entityid,
       unitModel: item,
-
     );
 
     myreturn.errortype = -1;
@@ -159,8 +171,6 @@ class UnitModelRepository {
   Future<UnitModelRepositoryReturnData> getInitialData(
       String entitytype, String entityid) async {
     UnitModelRepositoryReturnData myreturn = UnitModelRepositoryReturnData();
-
-
 
     List<UnitModel> unitList = await UnitGateway.getUnitList(
       entitytype: entitytype,

@@ -9,37 +9,31 @@ import 'package:complex/newentityfeatures/Models/unit_model.dart';
 class UnitGateway {
   static Future<List<UnitModel>> getUnitList(
       {@required String entitytype, String entityid}) async {
-
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entityid/UNITS")
-          .get()
-          .then((x) {
-        print(x.docs);
-        return UnitModel.listFromJson(x.docs.map((d) => d.data).toList(),
-            x.docs.map((d) => d.id).toList());
-      });
-
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entityid/UNITS")
+        .get()
+        .then((x) {
+      print(x.docs);
+      return UnitModel.listFromJson(
+          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
+    });
   }
-
-
-
-
 
   static Future<List<UnitModel>> getUnitListForBuildingFloor(
       {@required String entitytype,
       @required String entityid,
       @required String buildingid,
-      @required int floor}) async {
-
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entityid/UNITS")
-          .get()
-          .then((x) {
-        print(x.docs);
-        return UnitModel.listFromJson(x.docs.map((d) => d.data).toList(),
-            x.docs.map((d) => d.id).toList());
-      });
-
+      int floor}) async {
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entityid/UNITS")
+        .where("buildingname", isEqualTo: buildingid)
+        .where("floornum", isEqualTo: floor)
+        .get()
+        .then((x) {
+      print(x.docs);
+      return UnitModel.listFromJson(
+          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
+    });
   }
 
   static Future<List<UnitModel>> getUnitListForBuildingFloorOwnerAvailable(
@@ -47,16 +41,14 @@ class UnitGateway {
       @required String entityid,
       @required String buildingid,
       @required int floor}) async {
-
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entityid/UNITS")
-          .get()
-          .then((x) {
-        print(x.docs);
-        return UnitModel.listFromJson(x.docs.map((d) => d.data).toList(),
-            x.docs.map((d) => d.id).toList());
-      });
-
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entityid/UNITS")
+        .get()
+        .then((x) {
+      print(x.docs);
+      return UnitModel.listFromJson(
+          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
+    });
   }
 
   static Future<List<UnitModel>> getUnitListForBuildingFloorResidentAvailable(
@@ -64,32 +56,28 @@ class UnitGateway {
       @required String entityid,
       @required String buildingid,
       @required int floor}) async {
-
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entityid/UNITS")
-          .get()
-          .then((x) {
-        print(x.docs);
-        return UnitModel.listFromJson(x.docs.map((d) => d.data).toList(),
-            x.docs.map((d) => d.id).toList());
-      });
-
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entityid/UNITS")
+        .get()
+        .then((x) {
+      print(x.docs);
+      return UnitModel.listFromJson(
+          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
+    });
   }
 
   static Future<List<UnitModel>> getUnitListForResidentAvailableForOwner(
       {@required String entitytype,
       @required String entityid,
       @required List<String> unitlist}) async {
-
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entityid/UNITS")
-          .get()
-          .then((x) {
-        print(x.docs);
-        return UnitModel.listFromJson(x.docs.map((d) => d.data).toList(),
-            x.docs.map((d) => d.id).toList());
-      });
-
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entityid/UNITS")
+        .get()
+        .then((x) {
+      print(x.docs);
+      return UnitModel.listFromJson(
+          x.docs.map((d) => d.data).toList(), x.docs.map((d) => d.id).toList());
+    });
   }
 
   static Future<UnitModel> getUnit({
@@ -97,79 +85,68 @@ class UnitGateway {
     String entityid,
     @required String unitID,
   }) async {
-
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entityid/UNITS")
-          .doc(unitID)
-          .get()
-          .then((x) {
-        // if (x.data() == null) return null;
-        return UnitModel.fromJson(x.data(), x.id);
-      });
-
-
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entityid/UNITS")
+        .doc(unitID)
+        .get()
+        .then((x) {
+      // if (x.data() == null) return null;
+      return UnitModel.fromJson(x.data(), x.id);
+    });
   }
 
   static Future<void> updateUnit(
       {@required String entitytype,
       String entityid,
       UnitModel unitModel}) async {
-
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entityid/UNITS")
-          .doc(unitModel.unitID)
-          .update(unitModel.toJson());
-
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entityid/UNITS")
+        .doc(unitModel.unitID)
+        .update(unitModel.toJson());
   }
 
   Future<void> addNewUnit(
       {@required String entitytype,
       String entityid,
       UnitModel unitModel}) async {
-
-      return await FirebaseFirestore.instance
-          .collection("$entitytype/$entityid/UNITS")
-          .doc(unitModel.unitID)
-          .set(unitModel.toJson());
-
+    return await FirebaseFirestore.instance
+        .collection("$entitytype/$entityid/UNITS")
+        .doc(unitModel.unitID)
+        .set(unitModel.toJson());
   }
 
   static Future newUnitRequest(
       {@required String entitytype,
       String entityid,
       UnitModel unitModel}) async {
-
-      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-        'NewUnitRequestModified',
-      );
-      print("CloudFunction " + "end");
-      dynamic resp = await callable.call(<String, dynamic>{
-        'unitdata': {
-          'version': 1,
-          'address': unitModel.address,
-          'buildingname': unitModel.buildingName,
-          'floornum': unitModel.floorNum,
-          'numvisitorparking': unitModel.numVisitorParking,
-          'numfixedparking': unitModel.numFixedParking,
-          'channel': null
-        },
-        'entitytype': entitytype,
-        'entityid': entityid,
-      });
-      print("CloudFunction " + callable.toString());
-      print("CloudFunction " + resp.data.toString());
-
+    final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+      'NewUnitRequestModified',
+    );
+    print("CloudFunction " + "end");
+    dynamic resp = await callable.call(<String, dynamic>{
+      'unitdata': {
+        'version': 1,
+        'address': unitModel.address,
+        'buildingname': unitModel.buildingName,
+        'floornum': unitModel.floorNum,
+        'numvisitorparking': unitModel.numVisitorParking,
+        'numfixedparking': unitModel.numFixedParking,
+        'channel': null
+      },
+      'entitytype': entitytype,
+      'entityid': entityid,
+    });
+    print("CloudFunction " + callable.toString());
+    print("CloudFunction " + resp.data.toString());
   }
 
   static Future<void> removeUnit(
       {@required String entitytype,
       String entityid,
       @required UnitModel unitModel}) async {
-
-      await FirebaseFirestore.instance
-          .collection("$entitytype/$entityid/UNITS")
-          .doc(unitModel.unitID)
-          .delete();
-
+    await FirebaseFirestore.instance
+        .collection("$entitytype/$entityid/UNITS")
+        .doc(unitModel.unitID)
+        .delete();
   }
 }
