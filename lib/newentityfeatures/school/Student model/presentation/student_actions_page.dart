@@ -85,6 +85,20 @@ class StudentItemPage extends StatelessWidget {
           CustomActionButton(
             title: "Fee Payment",
             onTap: () {
+              if (sessionTerm.length == 1) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FeePaymentListList(
+                      // userRegistrationModel: userRegistrationModel,
+                      entitytype: entitytype,
+                      entityid: entityid,
+                      cardNum: userRegistrationModel.idCardNum,
+                      sessionTerm: sessionTerm.first,
+                    ),
+                  ),
+                );
+              }
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
