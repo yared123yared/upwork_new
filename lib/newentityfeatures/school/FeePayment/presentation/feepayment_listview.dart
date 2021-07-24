@@ -1,8 +1,10 @@
 //
 //import "package:asuka/asuka.dart" as asuka;
+import 'package:complex/common/widgets/custom_floating_action.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/newentityfeatures/Models/user_reg_fee_collection.dart';
+import 'package:complex/utils/resource/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -288,12 +290,13 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
           return Center(child: Text('Empty'));
         })),
         floatingActionButton: !isAllPaid
-            ? FloatingActionButton.extended(
-                onPressed: () async {
+            ? CustomFloatingButton(
+                onTap: () async {
                   addButtonActions(context: context);
                 },
-                icon: Icon(Icons.add),
-                label: Text("Add Period"),
+                buttonColor: ColorConstants.primaryColor,
+                borderColor: ColorConstants.primaryColor,
+                text: "Add Period",
               )
             : null,
       ),

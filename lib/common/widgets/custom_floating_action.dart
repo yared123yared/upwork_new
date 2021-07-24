@@ -21,35 +21,40 @@ class CustomFloatingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return TapWidget(
-      onTap: () {
-        if (onTap != null) {
-          onTap();
-        }
-      },
-      child: Container(
-        width: size.width / 3,
-        height: 50,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          color: buttonColor,
-          border: Border.all(color: borderColor, width: 2),
-        ),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Icon(
-                Icons.add,
-                color: const Color.fromRGBO(228, 247, 243, 1),
+    return FittedBox(
+      child: TapWidget(
+        onTap: () {
+          if (onTap != null) {
+            onTap();
+          }
+        },
+        child: Container(
+          // width: (size.width / 3) + 5,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            color: buttonColor,
+            border: Border.all(color: borderColor, width: 2),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(
+                    Icons.add,
+                    color: const Color.fromRGBO(228, 247, 243, 1),
+                  ),
+                  Text(
+                    text ?? " ",
+                    style: Styles.semiBoldText(
+                        size: 16, color: const Color.fromRGBO(228, 247, 243, 1)),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-              Text(
-                text ?? " ",
-                style: Styles.boldText(
-                    size: 16, color: const Color.fromRGBO(228, 247, 243, 1)),
-                textAlign: TextAlign.center,
-              ),
-            ],
+            ),
           ),
         ),
       ),

@@ -1,8 +1,10 @@
 import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
+import 'package:complex/common/widgets/custom_floating_action.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
+import 'package:complex/utils/resource/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -187,12 +189,13 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
             }
             return Center(child: Text('Empty'));
           })),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
+          floatingActionButton: CustomFloatingButton(
+            onTap: () async {
               addButtonActions(context: context);
             },
-            icon: Icon(Icons.add),
-            label: Text("Add Fee Plan"),
+            buttonColor: ColorConstants.primaryColor,
+            borderColor: ColorConstants.primaryColor,
+            text: "Add Fee Plan",
           )),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
+import 'package:complex/common/widgets/custom_floating_action.dart';
+import 'package:complex/utils/resource/colors.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
@@ -78,16 +80,18 @@ class _OfferingWeeklyScheduleListListState
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       String days = (item.sun != null ? "Sun" : "") +
-          (item.mon != null ? " Mon" : "") + 
+          (item.mon != null ? " Mon" : "") +
           (item.thu != null ? " Thu" : "") +
           (item.wed != null ? " Wed" : "") +
           (item.tue != null ? " Tue" : "") +
           (item.fri != null ? " Fri" : "") +
           (item.sat != null ? " Sat" : "");
+      days.replaceAll(" ", ", ");
       _dynamicList.add(ListStateClass(
         title: "${item.offeringgroupid ?? ''} ${item.grade ?? ""}",
         // subtitle: "grade: ${item.grade}",
-        tittleH1: "Primary: ${item.primaryOwner.display.replaceAll("+_+", " ")}",
+        tittleH1:
+            "Primary: ${item.primaryOwner.display.replaceAll("+_+", " ")}",
         tittleH2: "Period Number: ${item.priodtype}",
         tittleH3: "Section: ${item.grade}",
         trailingTitle: days,
@@ -201,12 +205,13 @@ class _OfferingWeeklyScheduleListListState
             }
             return Center(child: Text('Empty'));
           })),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
+          floatingActionButton: CustomFloatingButton(
+            onTap: () async {
               addButtonActions(context: context);
             },
-            icon: Icon(Icons.add),
-            label: Text("Add Schedule"),
+            buttonColor: ColorConstants.primaryColor,
+            borderColor: ColorConstants.primaryColor,
+            text: "Add Schedule",
           )),
     );
   }

@@ -279,7 +279,7 @@ class _CommonListTileState extends State<CommonListTile> {
                 ),
               if (widget.listState.trailingTitle != null && !showDeleteButton)
                 Container(
-                  width: 75,
+                  width: widget.listState.trailingTitle.length > 15 ? 90 : 70,
                   decoration: BoxDecoration(
                     // color: Color.fromRGBO(39, 122, 150, 0),
                     color: widget.listState.trailingBgColor != null
@@ -289,17 +289,18 @@ class _CommonListTileState extends State<CommonListTile> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 16.0),
+                        horizontal: 5.0, vertical: 16.0),
                     child: Text(
                       widget.listState.trailingTitle,
                       style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
-              Icon(
-                Icons.more_vert,
-                color: Colors.white,
-              ),
+              // Icon(
+              //   Icons.more_vert,
+              //   color: Colors.white,
+              // ),
             ],
           ),
         ),

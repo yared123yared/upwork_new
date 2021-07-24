@@ -1,8 +1,10 @@
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/common/widgets/custom_app_bar.dart';
+import 'package:complex/common/widgets/custom_floating_action.dart';
 import 'package:complex/newentityfeatures/Models/fee_plan_model.dart';
 import 'package:complex/newentityfeatures/Models/user_reg_fee_collection.dart';
+import 'package:complex/utils/resource/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,8 +35,6 @@ class PaymentDetailsListList extends StatefulWidget {
 
 class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
   listbloc.FeePaymentListBloc mlistbloc;
-
-  // bool isAllPaid = false;
 
   List<PaymentDetails> em;
   FeePlanModel feePlan;
@@ -158,22 +158,22 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: CustomAppBar(
-            title: "Payment Details List",
-          ),
-          body: BlocListener<listbloc.FeePaymentListBloc,
-              listbloc.FeePaymentListState>(listener: (context, state) {
-            if (state is listbloc.IsDeleted) {
-              EasyLoading.showSuccess("Item is deleted");
-              doreload(true);
-            }
+        appBar: CustomAppBar(
+          title: "Payment Details List",
+        ),
+        body: BlocListener<listbloc.FeePaymentListBloc,
+            listbloc.FeePaymentListState>(listener: (context, state) {
+          if (state is listbloc.IsDeleted) {
+            EasyLoading.showSuccess("Item is deleted");
+            doreload(true);
+          }
 
-            if (state is listbloc.IsSearchParaLoaded) {}
+          if (state is listbloc.IsSearchParaLoaded) {}
 
-            if (state is listbloc.IsPaymentDetailsListDataLoaded) {
-              setState(() {
-                em = state.listdata ?? [];
-                /* 
+          if (state is listbloc.IsPaymentDetailsListDataLoaded) {
+            setState(() {
+              em = state.listdata ?? [];
+              /* 
                 feePlan = state.feePlan ?? [];
 
                 List<FeeData> feeDataList = [];
@@ -194,45 +194,42 @@ class _PaymentDetailsListListState extends State<PaymentDetailsListList> {
                 nextPaymentDetailsFeeData =
                     state.feePlan.feeData[numPeriodsDefined];
                  */
-              });
-            }
-          }, child: BlocBuilder<listbloc.FeePaymentListBloc,
-              listbloc.FeePaymentListState>(builder: (context, state) {
-            if (state is listbloc.IsBusy)
-              return Center(
-                child: Container(
-                    width: 20, height: 20, child: CircularProgressIndicator()),
-              );
-            if (state is listbloc.HasLogicalFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.IsDeleted) {
-              return Center(child: Text("Deleted item"));
-            }
-            if (state is listbloc.IsSearchParaLoaded) {
-              return _blocBuilder(context);
-            }
+            });
+          }
+        }, child: BlocBuilder<listbloc.FeePaymentListBloc,
+            listbloc.FeePaymentListState>(builder: (context, state) {
+          if (state is listbloc.IsBusy)
+            return Center(
+              child: Container(
+                  width: 20, height: 20, child: CircularProgressIndicator()),
+            );
+          if (state is listbloc.HasLogicalFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.HasExceptionFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.HasExceptionFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.IsDeleted) {
+            return Center(child: Text("Deleted item"));
+          }
+          if (state is listbloc.IsSearchParaLoaded) {
+            return _blocBuilder(context);
+          }
 
-            if (state is listbloc.IsPaymentDetailsListDataLoaded) {
-              return _blocBuilder(context);
-            }
-            return Center(child: Text('Empty'));
-          })),
-          floatingActionButton:
-              // !isAllPaid
-              //     ?
-              FloatingActionButton.extended(
-            onPressed: () async {
-              addButtonActions(context: context);
-            },
-            icon: Icon(Icons.arrow_right_alt),
-            label: Text("Add New"),
-          )
-          // : null,
-          ),
+          if (state is listbloc.IsPaymentDetailsListDataLoaded) {
+            return _blocBuilder(context);
+          }
+          return Center(child: Text('Empty'));
+        })),
+        floatingActionButton: CustomFloatingButton(
+          onTap: () async {
+            addButtonActions(context: context);
+          },
+          buttonColor: ColorConstants.primaryColor,
+          borderColor: ColorConstants.primaryColor,
+          text: "Add New",
+        ),
+      ),
     );
   }
 

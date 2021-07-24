@@ -1,5 +1,7 @@
 import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
+import 'package:complex/common/widgets/custom_floating_action.dart';
+import 'package:complex/utils/resource/colors.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
@@ -187,12 +189,13 @@ class _OfferingModelGroupListListState
             }
             return Center(child: Text('Empty'));
           })),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
+          floatingActionButton: CustomFloatingButton(
+            onTap: () async {
               addButtonActions(context: context);
             },
-            icon: Icon(Icons.add),
-            label: Text("Add New"),
+            buttonColor: ColorConstants.primaryColor,
+            borderColor: ColorConstants.primaryColor,
+            text: "Add New",
           )),
     );
   }

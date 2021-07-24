@@ -1,5 +1,7 @@
 import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
+import 'package:complex/common/widgets/custom_floating_action.dart';
+import 'package:complex/utils/resource/colors.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
@@ -146,60 +148,70 @@ class _FeeItemGroupsModelListListState
     return BlocProvider.value(
       value: mlistbloc,
       child: Scaffold(
-          appBar: CustomAppBar(
-            title: "Fee Item Groups",
-          ),
-          body: BlocListener<listbloc.FeeItemGroupsModelListBloc,
-              listbloc.FeeItemGroupsModelListState>(listener: (context, state) {
-            if (state is listbloc.IsDeleted) {
-              EasyLoading.showSuccess("Item is deleted");
-              doreload(true);
-            }
+        appBar: CustomAppBar(
+          title: "Fee Item Groups",
+        ),
+        body: BlocListener<listbloc.FeeItemGroupsModelListBloc,
+            listbloc.FeeItemGroupsModelListState>(listener: (context, state) {
+          if (state is listbloc.IsDeleted) {
+            EasyLoading.showSuccess("Item is deleted");
+            doreload(true);
+          }
 
-            if (state is listbloc.IsSearchParaLoaded) {
-              setState(() {
-                gradelist = state.gradelist;
-                sessionterm = state.sessiontermlist;
-                offeringModelGroupfunc = state.offeringModelGroupfunc;
-              });
-            }
-            if (state is listbloc.IsListDataLoaded) {
-              setState(() {
-                em = state.listdata;
-              });
-            }
-          }, child: BlocBuilder<listbloc.FeeItemGroupsModelListBloc,
-              listbloc.FeeItemGroupsModelListState>(builder: (context, state) {
-            if (state is listbloc.IsBusy)
-              return Center(
-                child: Container(
-                    width: 20, height: 20, child: CircularProgressIndicator()),
-              );
-            if (state is listbloc.HasLogicalFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.HasExceptionFaliur)
-              return Center(child: Text(state.error));
-            if (state is listbloc.IsDeleted) {
-              return Center(child: Text("Deleted item"));
-            }
-            if (state is listbloc.IsSearchParaLoaded) {
-              return _blocBuilder(context);
-            }
+          if (state is listbloc.IsSearchParaLoaded) {
+            setState(() {
+              gradelist = state.gradelist;
+              sessionterm = state.sessiontermlist;
+              offeringModelGroupfunc = state.offeringModelGroupfunc;
+            });
+          }
+          if (state is listbloc.IsListDataLoaded) {
+            setState(() {
+              em = state.listdata;
+            });
+          }
+        }, child: BlocBuilder<listbloc.FeeItemGroupsModelListBloc,
+            listbloc.FeeItemGroupsModelListState>(builder: (context, state) {
+          if (state is listbloc.IsBusy)
+            return Center(
+              child: Container(
+                  width: 20, height: 20, child: CircularProgressIndicator()),
+            );
+          if (state is listbloc.HasLogicalFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.HasExceptionFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.HasExceptionFaliur)
+            return Center(child: Text(state.error));
+          if (state is listbloc.IsDeleted) {
+            return Center(child: Text("Deleted item"));
+          }
+          if (state is listbloc.IsSearchParaLoaded) {
+            return _blocBuilder(context);
+          }
 
-            if (state is listbloc.IsListDataLoaded) {
-              return _blocBuilder(context);
-            }
-            return Center(child: Text('Empty'));
-          })),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
-              addButtonActions(context: context);
-            },
-            icon: Icon(Icons.add),
-            label: Text("Add Fee"),
-          )),
+          if (state is listbloc.IsListDataLoaded) {
+            return _blocBuilder(context);
+          }
+          return Center(child: Text('Empty'));
+        })),
+
+        floatingActionButton: CustomFloatingButton(
+          onTap: () async {
+            addButtonActions(context: context);
+          },
+          buttonColor: ColorConstants.primaryColor,
+          borderColor: ColorConstants.primaryColor,
+          text: "Add Fee",
+        ),
+        // FloatingActionButton.extended(
+        //   onPressed: () async {
+        //     addButtonActions(context: context);
+        //   },
+        //   icon: Icon(Icons.add),
+        //   label: Text("Add Fee"),
+        // )
+      ),
     );
   }
 

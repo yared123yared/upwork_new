@@ -1,10 +1,12 @@
 import 'package:complex/common/widgets/custom_app_bar.dart';
 import 'package:complex/common/widgets/custom_drop_down_list.dart';
+import 'package:complex/common/widgets/custom_floating_action.dart';
 //
 //import "package:asuka/asuka.dart" as asuka;
 import 'package:complex/data/screen_size.dart';
 import 'package:complex/data/styles_colors.dart';
 import 'package:complex/domain/entity/school/lookup/lookup.dart';
+import 'package:complex/utils/resource/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:complex/common/model/dynamic_list_state_class.dart';
@@ -217,12 +219,13 @@ class _ClassPeriodModelListListState extends State<ClassPeriodModelListList> {
             }
             return Center(child: Text('Empty'));
           })),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
+          floatingActionButton: CustomFloatingButton(
+            onTap: () async {
               addButtonActions(context: context);
             },
-            icon: Icon(Icons.add),
-            label: Text("Add Period"),
+            buttonColor: ColorConstants.primaryColor,
+            borderColor: ColorConstants.primaryColor,
+            text: "Add Period",
           )),
     );
   }
