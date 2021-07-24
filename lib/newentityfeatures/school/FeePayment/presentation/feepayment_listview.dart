@@ -103,13 +103,20 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
         _dynamicList.add(
           ListStateClass(
             title: numPeriodsDefined > index
-                ? "${listItems[index].userName ?? ''} ${feePlanItems[index] ?? ""}"
-                : "${feePlanItems[index].paymentPeriodName ?? ''} ${feePlanItems[index] ?? ""}",
-            subtitle: numPeriodsDefined > index
+                ? "${listItems[index].paymentPeriodName ?? ''}"
+                : "${feePlanItems[index].paymentPeriodName ?? ''}",
+            tittleH1: numPeriodsDefined > index
+                ? "${listItems[index].periodStartDay ?? ''} to ${listItems[index].periodEndDay ?? ''}"
+                : "${feePlanItems[index].startDate ?? ''} to ${feePlanItems[index].endDate ?? ''}",
+            trailingTitle: numPeriodsDefined > index
                 ? listItems[index].closed
-                    ? "Closed"
-                    : "Not Closed"
+                    ? "Closed\n${item.totalpaymentmade}\$"
+                    : "Not Closed\n${item.totalpaymentmade}\$"
                 : "Not Defined",
+            trailingBgColor:
+                numPeriodsDefined > index && !listItems[index].closed
+                    ? Colors.red
+                    : null,
             customAction_1: CustomAction(
               title: "Master form",
               action: () {
@@ -212,7 +219,7 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
       value: mlistbloc,
       child: Scaffold(
         appBar: CustomAppBar(
-          title: "Fee Payment List",
+          title: "Fee Payment Periods",
         ),
         body: BlocListener<listbloc.FeePaymentListBloc,
             listbloc.FeePaymentListState>(listener: (context, state) {
@@ -286,7 +293,7 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
                   addButtonActions(context: context);
                 },
                 icon: Icon(Icons.add),
-                label: Text("Add New"),
+                label: Text("Add Period"),
               )
             : null,
       ),
@@ -301,8 +308,8 @@ class _FeePaymentListListState extends State<FeePaymentListList> {
           child: CommonListPage(
             canSearch: false,
             updateAction: null,
-            appBarTitle: "Fee Payment List",
-            dynamicListState: "Fee Payment List",
+            appBarTitle: "Fee Payment Periods",
+            dynamicListState: "Fee Payment Periods",
             listItems: em != null
                 ? toCommonListState(em, feePlan.feeData, context)
                 : [],

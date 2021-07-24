@@ -78,7 +78,10 @@ class _VirtualRoomModelListListState extends State<VirtualRoomModelListList> {
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
         title: "${item.grade ?? ''} ${item.primaryOwner ?? ""}",
-        subtitle: "grade: ${item.grade}",
+        tittleH1: "Section: ${item.sectionname}",
+        tittleH2:
+            "Primary: ${item.primaryOwner.display.replaceAll("+_+", " ")}",
+        // subtitle: "grade: ${item.grade}",
         tapAction: () {
           Navigator.push(
             context,
@@ -140,7 +143,7 @@ class _VirtualRoomModelListListState extends State<VirtualRoomModelListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: CustomAppBar(
-            title: "Virtual Room List",
+            title: "Virtual Rooms",
           ),
           body: BlocListener<listbloc.VirtualRoomModelListBloc,
               listbloc.VirtualRoomModelListState>(listener: (context, state) {
@@ -191,7 +194,7 @@ class _VirtualRoomModelListListState extends State<VirtualRoomModelListList> {
               addButtonActions(context: context);
             },
             icon: Icon(Icons.add),
-            label: Text("Add New"),
+            label: Text("Add Room"),
           )),
     );
   }
@@ -250,8 +253,8 @@ class _VirtualRoomModelListListState extends State<VirtualRoomModelListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Virtual Room List",
-                dynamicListState: "Virtual Room List",
+                appBarTitle: "Virtual Rooms",
+                dynamicListState: "Virtual Rooms",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

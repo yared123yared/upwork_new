@@ -77,9 +77,20 @@ class _OfferingWeeklyScheduleListListState
       List<OfferingWeeklySchedule> listItems, BuildContext context) {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
+      String days = (item.sun != null ? "Sun" : "") +
+          (item.mon != null ? " Mon" : "") + 
+          (item.thu != null ? " Thu" : "") +
+          (item.wed != null ? " Wed" : "") +
+          (item.tue != null ? " Tue" : "") +
+          (item.fri != null ? " Fri" : "") +
+          (item.sat != null ? " Sat" : "");
       _dynamicList.add(ListStateClass(
         title: "${item.offeringgroupid ?? ''} ${item.grade ?? ""}",
-        subtitle: "grade: ${item.grade}",
+        // subtitle: "grade: ${item.grade}",
+        tittleH1: "Primary: ${item.primaryOwner.display.replaceAll("+_+", " ")}",
+        tittleH2: "Period Number: ${item.priodtype}",
+        tittleH3: "Section: ${item.grade}",
+        trailingTitle: days,
         tapAction: () {
           Navigator.push(
             context,
@@ -141,7 +152,7 @@ class _OfferingWeeklyScheduleListListState
       value: mlistbloc,
       child: Scaffold(
           appBar: CustomAppBar(
-            title: "Offering Schedule List",
+            title: "Offering Weekly Schedule",
           ),
           body: BlocListener<
               listbloc.OfferingWeeklyScheduleListBloc,
@@ -195,7 +206,7 @@ class _OfferingWeeklyScheduleListListState
               addButtonActions(context: context);
             },
             icon: Icon(Icons.add),
-            label: Text("Add New"),
+            label: Text("Add Schedule"),
           )),
     );
   }
@@ -252,8 +263,8 @@ class _OfferingWeeklyScheduleListListState
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Offerings Schedule List",
-                dynamicListState: "Offerings Schedule List",
+                appBarTitle: "Offering Weekly Schedule",
+                dynamicListState: "Offering Weekly Schedule",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );

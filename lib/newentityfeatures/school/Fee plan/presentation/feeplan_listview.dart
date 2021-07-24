@@ -76,7 +76,9 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
     List<ListStateClass> _dynamicList = [];
     listItems.asMap().forEach((index, item) {
       _dynamicList.add(ListStateClass(
-        title: "${item.startDate ?? ''} ${item.feeData ?? ""}",
+        title: "${item.feePlanName ?? ''} ${item.feeData ?? ""}",
+        tittleH1: "Grade: ${item.grade}",
+        tittleH2: item.paymentPeriodType,
         // subtitle: "grade: ${item.grade}",
         tapAction: () {
           Navigator.push(
@@ -139,7 +141,7 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
       value: mlistbloc,
       child: Scaffold(
           appBar: CustomAppBar(
-            title: "Fee Plan List",
+            title: "Fee Plans",
           ),
           body: BlocListener<listbloc.FeePlanModelListBloc,
               listbloc.FeePlanModelListState>(listener: (context, state) {
@@ -190,7 +192,7 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
               addButtonActions(context: context);
             },
             icon: Icon(Icons.add),
-            label: Text("Add New"),
+            label: Text("Add Fee Plan"),
           )),
     );
   }
@@ -248,8 +250,8 @@ class _FeePlanModelListListState extends State<FeePlanModelListList> {
             child: CommonListPage(
                 canSearch: false,
                 updateAction: null,
-                appBarTitle: "Fee Plan List",
-                dynamicListState: "Fee Plan List",
+                appBarTitle: "Fee Plans",
+                dynamicListState: "Fee Plans",
                 listItems: em != null ? toCommonListState(em, context) : [])),
       ],
     );
