@@ -99,8 +99,22 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
     }
   }
 
+  Future _initFiledValue()  {
+    if (widget.completeVehicle != null) {
+      currentSegment =   widget.completeVehicle.data.listingownertype == "Broker" ? 0 : 1;
+      _photos = widget.completeVehicle.data.imagelist;
+      _vehicleType =widget.completeVehicle.data.vehicletype;
+      _fuelType=widget.completeVehicle.data.fueltype;
+      _bodyType =widget.completeVehicle.data.bodytype;
+      _driveType=widget.completeVehicle.data.drivetype;
+      transmissionType =widget.completeVehicle.data.transmission;
+      ownershipTransferType =widget.completeVehicle.data.ownershiptransfer;
+      _cylinder =widget.completeVehicle.data.cylinder.toString();
+    }
+  }
   @override
   void initState() {
+     _initFiledValue();
     super.initState();
     Utility.waitFor(2).then((value) {
       _productProvider.maketypes().then((result) {
@@ -256,7 +270,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
               child: Column(
                 children: [
                   CustomTextField(
-                    initialValue: widget.completeVehicle?.toString(),
+                    initialValue: widget.completeVehicle?.data?.title.toString(),
                     icon: Icons.title,
                     title: "Title",
                     controller: _title,
@@ -265,7 +279,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                     ),
                   ),
                   CustomTextField(
-                    initialValue: widget.completeVehicle?.toString(),
+                    initialValue: widget.completeVehicle?.data?.description.toString(),
                     icon: Icons.text_fields_outlined,
                     title: "Description",
                     controller: _description,
@@ -274,7 +288,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                     ),
                   ),
                   CustomTextField(
-                    initialValue: widget.completeVehicle?.toString(),
+                    initialValue: widget.completeVehicle?.data?.price.toString(),
                     icon: Icons.text_fields_outlined,
                     title: "Price",
                     controller: _price,
@@ -527,10 +541,10 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                 ),
               ),
             ),
-            _makeDropdown("Make", _txtMake, _makeList),
-            _modelDropdown("Model", _txtModel, _modelList),
+            _makeDropdown("Make", _txtMake, _makeList,widget.completeVehicle?.data.make),
+            _modelDropdown("Model", _txtModel, _modelList,widget.completeVehicle?.data.model),
             CustomTextField(
-              initialValue: widget.completeVehicle?.toString(),
+              initialValue: widget.completeVehicle?.data.yearbuild.toString(),
               icon: null,
               title: "YearBuild",
               controller: _txtYearBuild,
@@ -541,7 +555,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
               ),
             ),
             CustomTextField(
-              initialValue: widget.completeVehicle?.toString(),
+              initialValue: widget.completeVehicle?.data.milage.toString(),
               icon: null,
               title: "Milage",
               controller: _txtMilage,
@@ -572,8 +586,10 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
     String text,
     CustomTextFieldController controller,
     List<String> items,
+      String initialvalue
   ) {
     return CustomDropDownList<String>(
+      initialValue: initialvalue,
       title: text,
       controller: controller,
       loadData: () async => items,
@@ -609,9 +625,10 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
   Widget _modelDropdown(
     String text,
     CustomTextFieldController controller,
-    List<String> items,
+    List<String> items,String initialvalue
   ) {
     return CustomDropDownList<String>(
+      initialValue: initialvalue,
       title: text,
       controller: controller,
       loadData: () async => items,
@@ -640,7 +657,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
                       style: Styles.semiBoldText(size: 18))),
             ),
             CustomTextField(
-              initialValue: widget.completeVehicle?.toString(),
+              initialValue: widget.completeVehicle?.data?.exteriorcolor.toString(),
               icon: null,
               title: "Exterior Color",
               controller: _txtExteriorColor,
@@ -650,7 +667,7 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
             ),
             _vehicleType == 'Car/Suv'
                 ? CustomTextField(
-                    initialValue: widget.completeVehicle?.toString(),
+                    initialValue: widget.completeVehicle?.data.interiorcolor.toString(),
                     icon: null,
                     title: "Interior Color",
                     controller: _txtInteriorColor,
@@ -1053,13 +1070,13 @@ class _VehicleCreatePageState extends State<VehicleCreatePage> {
             fueltype: _fuelType,
             exteriorcolor: _txtExteriorColor.text,
             drivetype: _driveType,
-            cylinder: _cylinder == null || _cylinder.isEmpty
-                ? null
+            cylinder: _cylinder == null || _cylinder.isEmpty || _cylinder =="null"
+                ? 1
                 : int.parse(_cylinder),
             bodytype: _bodyType,
           ));
       _bloc.add(
-        ProductOwnerEvent.add(productdata: newVehicle.data.toJson(),type:"vehicle",entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
+        ProductOwnerEvent.update(productdata: newVehicle.data.toJson(),type:"vehicle",entitytype: widget.entitytype,entityid:widget.entityid,isservice:widget.isService,origin:widget.origin),
       );
     } else {
       newVehicle = CompleteVehicle(
