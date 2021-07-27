@@ -53,7 +53,7 @@ class OwnerProductCard extends StatelessWidget {
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(10)),
               clipBehavior: Clip.hardEdge,
-              child: Image.network(
+              child:imageUrl !=null? Image.network(
                 imageUrl,
                 width: 100,
                 height: 100,
@@ -62,7 +62,7 @@ class OwnerProductCard extends StatelessWidget {
                   width: 48,
                   height: 48,
                 ),
-              ),
+              ):null,
             ),
             SizedBox(width: 16),
             Expanded(

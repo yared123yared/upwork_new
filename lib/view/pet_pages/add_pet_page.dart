@@ -178,41 +178,43 @@ class _AddPetPageState extends State<AddPetPage> {
 
 //xoxo
   Widget _renderForm() {
-    return Column(
-      children: [
-        _renderTextField("Title", _titleController,
-            initialValue: widget.completePet?.data?.title),
-        _renderTextField("Description", _descriptionController,
-            initialValue: widget.completePet?.data?.description),
-        _renderTextField("Name", _nameController,
-            initialValue: widget.completePet?.data?.petname),
-        _renderTextField("Age", _ageController,
-            isInt: true,
-            initialValue: widget.completePet?.data?.age.toString()),
-        _renderTextField("Sex", _sexController,
-            initialValue: widget.completePet?.data?.gender),
-        _petTypeDropdown("Pet Type", _petTypeController, _petList),
-        _breedDropdown("Breed", _breedController, _breed),
-        _renderTextField("Price", _priceController,
-            isInt: true,
-            initialValue: widget.completePet?.data?.price.toString()),
-        _renderOwner(),
-        GroupTitle(text: 'Milk Info'),
-        _renderIsMilkingNow(),
-        _renderTextField("Milk Quantity (Liter)", _milkQuantityController,
-            isInt: true,
-            initialValue: widget.completePet?.data?.milkqty.toString()),
-        GroupTitle(text: 'Photos'),
-        _renderPhotosGrid(),
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: CustomButton(
-            onTap: _onRegisterClick,
-            text: "Register",
-            borderColor: ColorConstants.primaryColor,
-          ),
-        )
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _renderTextField("Title", _titleController,
+              initialValue: widget.completePet?.data?.title),
+          _renderTextField("Description", _descriptionController,
+              initialValue: widget.completePet?.data?.description),
+          _renderTextField("Name", _nameController,
+              initialValue: widget.completePet?.data?.petname),
+          _renderTextField("Age", _ageController,
+              isInt: true,
+              initialValue: widget.completePet?.data?.age.toString()),
+          _renderTextField("Sex", _sexController,
+              initialValue: widget.completePet?.data?.gender),
+          _petTypeDropdown("Pet Type", _petTypeController, _petList),
+          _breedDropdown("Breed", _breedController, _breed),
+          _renderTextField("Price", _priceController,
+              isInt: true,
+              initialValue: widget.completePet?.data?.price.toString()),
+          _renderOwner(),
+          GroupTitle(text: 'Milk Info'),
+          _renderIsMilkingNow(),
+          _renderTextField("Milk Quantity (Liter)", _milkQuantityController,
+              isInt: true,
+              initialValue: widget.completePet?.data?.milkqty.toString()),
+          GroupTitle(text: 'Photos'),
+          _renderPhotosGrid(),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: CustomButton(
+              onTap: _onRegisterClick,
+              text: "Register",
+              borderColor: ColorConstants.primaryColor,
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -459,7 +461,7 @@ class _AddPetPageState extends State<AddPetPage> {
   _onRegisterClick() {
     CompletePet newPet;
     if (widget.completePet != null) {
-      widget.completePet.copyWith(
+      newPet =widget.completePet.copyWith(
         userId: UserSession.userId,
         data: widget.completePet.data.copyWith(
           description: _descriptionController.text.trim(),
